@@ -13,6 +13,12 @@ indent_size = 4
 [grailsw]
 end_of_line = lf
 
+[*.sh]
+end_of_line = lf
+
+[*.bat]
+end_of_line = cr
+
 [.travis.yml]
 indent_style = space
 indent_size = 2
