@@ -10,6 +10,9 @@ charset = utf-8
 indent_style = tab
 indent_size = 4
 
+[grailsw]
+end_of_line = lf
+
 [.travis.yml]
 indent_style = space
 indent_size = 2
