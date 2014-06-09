@@ -16,6 +16,7 @@ class ImodController {
             return false
         }
         currentUser = springSecurityService.currentUser.id
+
     }
 
     def index() {
@@ -30,7 +31,7 @@ class ImodController {
     }
 
     def create() {
-        [imodInstance: new Imod(params)]
+        [imodInstance: new Imod(params), currentUser: currentUser]
     }
 
     def save() {
@@ -60,6 +61,7 @@ class ImodController {
 
     def edit(Long id) {
         def imodInstance = Imod.get(id)
+
         if (!params.objectiveId) {
             params.objectiveId = LearningObjective.findByImod(imodInstance)?.id
         }
@@ -68,7 +70,7 @@ class ImodController {
             redirect(action: "list")
             return
         }
-        [imodInstance: imodInstance, objectiveId: params.objectiveId]
+        [imodInstance: imodInstance, objectiveId: params.objectiveId, currentUser: currentUser]
     }
 
     def update(Long id, Long version) {

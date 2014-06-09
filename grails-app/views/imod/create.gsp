@@ -1,4 +1,4 @@
-<%@ page import="imodv6.Imod" %>
+<%@ page import="imodv6.Imod; imodv6.ImodUser" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -142,7 +142,7 @@
 		<script>
 		function updateDatePicker () { 
 		    $("input[value='date.struct']:hidden").each(function() {
-		        var dateFormat = "dd/mm/yy";
+	            var dateFormat = "${ImodUser.get(currentUser).preferences.dateRepresentation}";
 		        var name = $(this).attr('name');            
 		        var id = name.replace(".", "_").replace("[", "_").replace("]", "_") + "_input"; // Create JQuery Friendly ID
 
@@ -212,7 +212,7 @@
 		                    }
 		                    else {
 		                        $(selectDay).val(inst.selectedDay);
-		                        $(selectMonth).val(inst.selectedMonth+1);
+		                    	$(selectMonth).val(inst.selectedMonth+1);
 		                        $(selectYear).val(inst.selectedYear);
 		                    }
 		                }           
@@ -318,7 +318,7 @@
 													<h3>Classroom decorum</h3>
 													<div><textarea rows="2" cols="30"></textarea>
 													</div>
-													<h3>Mixed exams/Make-up exams</h3>
+													<h3>Missed exams/Make-up exams</h3>
 													<div><textarea rows="2" cols="30"></textarea>
 													</div>
 													<h3>Missed Assignments</h3>
