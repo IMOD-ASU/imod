@@ -11,7 +11,7 @@
 <div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'subjectArea', 'error')} ">
 	<label for="subjectArea">
 		<g:message code="imod.subjectArea.label" default="Subject Area" />
-		
+		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="subjectArea" value="${imodInstance?.subjectArea}"/>
 </div>
@@ -21,7 +21,7 @@
 		<g:message code="imod.audience.label" default="Audience" />
 		
 	</label>
-	<g:select name="audience" from="${imodv6.Audience.list()}" multiple="multiple" optionKey="id" size="5" value="${imodInstance?.audience*.id}" class="many-to-many"/>
+	<g:select name="audience" from="${imodv6.Audience.list()}" noSelection="${['none':'No Audience'] }"multiple="multiple" optionKey="id" size="5" value="${imodInstance?.audience*.id}" class="many-to-many"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'creditHours', 'error')} ">

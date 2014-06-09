@@ -12,7 +12,7 @@
 <div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'imodNumber', 'error')} ">
 	<label for="imodNumber">
 		<g:message code="imod.imodNumber.label" default="Course Number" />
-		
+		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="imodNumber" value="${imodInstance?.imodNumber}"/>
 </div>
@@ -20,7 +20,7 @@
 <div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'url', 'error')} ">
 	<label for="url">
 		<g:message code="imod.url.label" default="Url" />
-		
+		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="url" value="${imodInstance?.url}"/>
 </div>

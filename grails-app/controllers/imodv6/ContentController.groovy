@@ -243,7 +243,7 @@ class ContentController {
         contentTopicScheduleCO.topicScheduleIds.eachWithIndex { obj, index ->
             imodv6.ContentSchedule contentSchedule = (obj == 0) ? new imodv6.ContentSchedule(imod: imod) : imodv6.ContentSchedule.get(obj)
             contentSchedule.content = contentTopicScheduleCO.scheduleTopicList.get(index) ? Content.get(contentTopicScheduleCO.scheduleTopicList.get(index)) : contentSchedule.content
-            contentSchedule.startDate = contentTopicScheduleCO.scheduleDate_day.get(index) ? new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(contentTopicScheduleCO.dateCalc(index)) : null
+            contentSchedule.startDate = contentTopicScheduleCO.scheduleDate_day.get(index) ? new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH).parse(contentTopicScheduleCO.dateCalc(index)) : null
             if (!contentSchedule.validate()) {
                 println contentSchedule.errors.allErrors
             }

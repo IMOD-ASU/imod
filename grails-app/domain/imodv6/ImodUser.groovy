@@ -11,14 +11,18 @@ class ImodUser {
 	boolean accountLocked
 	boolean passwordExpired
 
-	UserProfile profile
 	
 	static hasMany = [imods:Imod]
+	static hasOne = [profile:UserProfile, preferences:UserPreferences]
+
 	
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
-		profile nullable: true
+		profile nullable: false
+		profile unique: true
+		preferences nullable: false
+		preferences unique: true
 	}
 
 	static mapping = {
