@@ -1,4 +1,4 @@
-Instructional Module Development (IMoD) System
+Instructional Module Development (IMOD) System
 ====
 [![Build Status](https://travis-ci.org/IMOD-ASU/imod.svg?branch=master)](https://travis-ci.org/IMOD-ASU/imod)
 [![Stories in Ready](https://badge.waffle.io/imod-asu/imod.png?label=ready&title=Ready)](https://waffle.io/imod-asu/imod)
