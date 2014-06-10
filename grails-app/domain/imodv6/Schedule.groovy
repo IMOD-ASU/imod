@@ -12,7 +12,6 @@ class Schedule {
 	Integer thursday
 	Integer friday
 	Integer saturday
-	static final String format="mm/dd/yy"
 	
 	static belongsTo = [imod:Imod]
 	

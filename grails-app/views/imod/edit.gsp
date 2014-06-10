@@ -163,7 +163,7 @@
 				width:12em;
 				height: 9em;
 			    position: absolute;
-			    right: 25px;
+			    right: 15px;
 			    top: 144px;
 			    border-width: 1px;
 			    padding-right: 1em;
@@ -178,7 +178,7 @@
 				width:12em;
 				height: 1em;
 			    position: absolute;
-			    right: 25px;
+			    right: 15px;
 			    top: 144px;
 			    border-width: 1px;
 			    padding-right: 1em;
@@ -243,6 +243,10 @@
 		                container: $('div#qtipPlace')
 		            }
 		        });
+		        var showHelp="${ImodUser.get(currentUser).preferences.showHelp}";
+			    if (showHelp!="true"){
+			    	$("#help_placeholder").css("display","none")
+				}
 		    });
 		</script>
 		<script type="text/javascript">
