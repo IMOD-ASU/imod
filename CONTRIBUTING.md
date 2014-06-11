@@ -8,6 +8,7 @@ Contributing Guidelines
   * commits to master will be reverted
 - Open a pull request to master on Github when branch is stable
   * merge latest master code into branch before opening PR
+  * wait to the Travis CI build to pass before merging a pull request
 
 #### Issue Guidelines
 A bug is a demonstrable problem that is caused by the code in the repository.
