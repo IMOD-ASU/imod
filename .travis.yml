@@ -3,4 +3,4 @@ jdk:
   - openjdk7
   - oraclejdk7
 
-script: ./grailsw test-app
+script: ./grailsw compile

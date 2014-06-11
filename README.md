@@ -1,4 +1,4 @@
-Instructional Module Development (IMoD) System
+Instructional Module Development System (IMODS)
 ====
 [![Build Status](https://travis-ci.org/IMOD-ASU/imod.svg?branch=master)](https://travis-ci.org/IMOD-ASU/imod)
 [![Stories in Ready](https://badge.waffle.io/imod-asu/imod.png?label=ready&title=Ready)](https://waffle.io/imod-asu/imod)
@@ -16,4 +16,4 @@ a semantic web-based tool that guides STEM educators through the complex task of
 [(windows)](http://www.postgresql.org/download/windows/)
 [(linux)](https://help.ubuntu.com/community/PostgreSQL)
 * For develop ensure postgres user is "postres" with password "postres"
-* Create a database "sample"
+* Create a database named "sample"
