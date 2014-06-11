@@ -162,8 +162,8 @@
 			#help_placeholder {
 				width:12em;
 				height: 9em;
-			    position: absolute;
-			    right: 15px;
+				position: absolute;
+				right: 15px;
 			    top: 144px;
 			    border-width: 1px;
 			    padding-right: 1em;
