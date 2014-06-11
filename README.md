@@ -16,4 +16,4 @@ a semantic web-based tool that guides STEM educators through the complex task of
 [(windows)](http://www.postgresql.org/download/windows/)
 [(linux)](https://help.ubuntu.com/community/PostgreSQL)
 * For develop ensure postgres user is "postres" with password "postres"
-* Create a database "sample"
+* Create a database named "sample"
