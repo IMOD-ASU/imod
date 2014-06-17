@@ -1,7 +1,7 @@
 /* FONT STACK */
 @font-face {
-	font-family: Ubuntu;
-	src: local(Ubuntu), url('Ubuntu/Ubuntu-Regular.ttf') format('opentype');
+    font-family: Ubuntu;
+    src: local(Ubuntu), url('Ubuntu/Ubuntu-Regular.ttf') format('opentype');
 }
 
 body,
@@ -29,7 +29,7 @@ html {
 	/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
-			box-sizing: border-box;
+	        box-sizing: border-box;
 }
 
 html.no-cssgradients {
@@ -52,25 +52,25 @@ body {
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
 	   -moz-box-shadow: 0 0 0.3em #2B3856;
 	-webkit-box-shadow: 0 0 0.3em #2B3856;
-			box-shadow: 0 0 0.3em #2B3856;
+	        box-shadow: 0 0 0.3em #2B3856;
 }
 
 #grailsLogo {
 	background-color: #1a82f7;
 	  background-repeat: repeat-x;
-
+	
 	  /* Safari 4-5, Chrome 1-9 */
 	  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0A1629), to(#12223A));
-
+	
 	  /* Safari 5.1, Chrome 10+ */
 	  background: -webkit-linear-gradient(top, #12223A,#0A1629);
-
+	
 	  /* Firefox 3.6+ */
 	  background: -moz-linear-gradient(top, #12223A, #0A1629);
-
+	
 	  /* IE 10 */
 	  background: -ms-linear-gradient(top, #12223A, #0A1629);
-
+	
 	  /* Opera 11.10+ */
 	  background: -o-linear-gradient(top, #12223A, #0A1629);
 }
@@ -157,9 +157,9 @@ img {
 	background: url(../images/spinner.gif) 50% 50% no-repeat transparent;
 	height: 16px;
 	width: 16px;
-	padding: 0.5em;
-	position: absolute;
-	right: 0;
+    padding: 0.5em;
+    position: absolute;
+    right: 0;
 	top: 0;
 	text-indent: -9999px;
 }
@@ -171,7 +171,7 @@ img {
 	padding: 0.5em 0.75em;
 	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
 	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-			box-shadow: 0 0 3px 1px #aaaaaa;
+	        box-shadow: 0 0 3px 1px #aaaaaa;
 	zoom: 1;
 }
 
@@ -197,7 +197,7 @@ img {
 	text-decoration: none;
 	   -moz-border-radius: 0.3em;
 	-webkit-border-radius: 0.3em;
-			border-radius: 0.3em;
+	        border-radius: 0.3em;
 }
 
 .nav a:active, .nav a:visited {
@@ -310,7 +310,7 @@ input:focus, select:focus, textarea:focus {
 	outline: 0;
 	   -moz-box-shadow: 0 0 0.5em #ffffff;
 	-webkit-box-shadow: 0 0 0.5em #ffffff;
-			box-shadow: 0 0 0.5em #ffffff;
+	        box-shadow: 0 0 0.5em #ffffff;
 }
 
 .required-indicator {
@@ -348,7 +348,7 @@ fieldset.embedded {
 	padding-right: 0;
 	   -moz-box-shadow: none;
 	-webkit-box-shadow: none;
-			box-shadow: none;
+	        box-shadow: none;
 }
 
 fieldset.embedded legend {
@@ -371,7 +371,7 @@ fieldset.embedded legend {
 	color: #006dba;
 	   -moz-box-shadow: 0 0 0.25em #b2d1ff;
 	-webkit-box-shadow: 0 0 0.25em #b2d1ff;
-			box-shadow: 0 0 0.25em #b2d1ff;
+	        box-shadow: 0 0 0.25em #b2d1ff;
 }
 
 .errors {
@@ -380,7 +380,7 @@ fieldset.embedded legend {
 	color: #cc0000;
 	   -moz-box-shadow: 0 0 0.25em #ff8888;
 	-webkit-box-shadow: 0 0 0.25em #ff8888;
-			box-shadow: 0 0 0.25em #ff8888;
+	        box-shadow: 0 0 0.25em #ff8888;
 }
 
 .errors ul,
@@ -410,7 +410,7 @@ fieldset.embedded legend {
 .error input:focus, .error select:focus, .error textarea:focus {
 	   -moz-box-shadow: 0 0 0.5em #ffaaaa;
 	-webkit-box-shadow: 0 0 0.5em #ffaaaa;
-			box-shadow: 0 0 0.5em #ffaaaa;
+	        box-shadow: 0 0 0.5em #ffaaaa;
 }
 
 /* same effects for browsers that support HTML5 client-side validation (these have to be specified separately or IE will ignore the entire rule) */
@@ -424,7 +424,7 @@ input:invalid, select:invalid, textarea:invalid {
 input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
 	   -moz-box-shadow: 0 0 0.5em #ffaaaa;
 	-webkit-box-shadow: 0 0 0.5em #ffaaaa;
-			box-shadow: 0 0 0.5em #ffaaaa;
+	        box-shadow: 0 0 0.5em #ffaaaa;
 }
 
 /* TABLES */
@@ -458,7 +458,7 @@ th {
 	background-color: #efefef;
 	background-image: -moz-linear-gradient(top, #ffffff, #eaeaea);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(1, #eaeaea));
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#ffffff', EndColorStr = '#eaeaea');
+	    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#ffffff', EndColorStr = '#eaeaea');
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#eaeaea')";
 	color: #666666;
 	font-weight: bold;
@@ -518,7 +518,7 @@ th.desc a {
 	text-align: center;
 	   -moz-box-shadow: 0 0 3px 1px #AAAAAA;
 	-webkit-box-shadow: 0 0 3px 1px #AAAAAA;
-			box-shadow: 0 0 3px 1px #AAAAAA;
+	        box-shadow: 0 0 3px 1px #AAAAAA;
 	background-color: #EFEFEF;
 }
 
@@ -531,7 +531,7 @@ th.desc a {
 	text-decoration: none;
 	   -moz-border-radius: 0.3em;
 	-webkit-border-radius: 0.3em;
-			border-radius: 0.3em;
+	        border-radius: 0.3em;
 }
 
 .pagination a:hover, .pagination a:focus,
@@ -557,7 +557,7 @@ th.desc a {
 	padding: 0.3em;
 	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
 	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-			box-shadow: 0 0 3px 1px #aaaaaa;
+	        box-shadow: 0 0 3px 1px #aaaaaa;
 	margin: 0.1em 0 0 0;
 	border: none;
 }
@@ -576,7 +576,7 @@ th.desc a {
 
 	   -moz-border-radius: 0.3em;
 	-webkit-border-radius: 0.3em;
-			border-radius: 0.3em;
+	        border-radius: 0.3em;
 }
 
 .buttons input:hover, .buttons input:focus,
@@ -587,7 +587,7 @@ th.desc a {
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 	   -moz-box-shadow: none;
 	-webkit-box-shadow: none;
-			box-shadow: none;
+	        box-shadow: none;
 }
 
 .no-borderradius .buttons input:hover, .no-borderradius .buttons input:focus,
@@ -699,14 +699,17 @@ a.banner-link{
 	right: -25px;
 }
 .add {
-	background-image: url(../images/add.png) !important;
-	background-position: 0.7em center;
-	background-repeat: no-repeat;
-	text-indent: 25px;
+    background-image: url(../images/add.png) !important;
+    background-position: 0.7em center;
+    background-repeat: no-repeat;
+    text-indent: 25px;
 }
 .remove {
-	background-image: url(../images/delete.gif) !important;
-	background-position: 0.7em center;
-	background-repeat: no-repeat;
-	text-indent: 25px;
+    background-image: url(../images/delete.gif) !important;
+    background-position: 0.7em center;
+    background-repeat: no-repeat;
+    text-indent: 25px;
+}
+.pedTechTable{
+	font-size: 12px;
 }

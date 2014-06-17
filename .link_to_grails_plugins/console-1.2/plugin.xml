@@ -1,0 +1,25 @@
+<plugin name='console' version='1.2' grailsVersion='1.3.3 &gt; *'>
+  <author>Siegfried Puchbauer/Mingfai Ma</author>
+  <authorEmail>siegfried.puchbauer@gmail.com / mingfai.ma@gmail.com</authorEmail>
+  <title>Console Plugin</title>
+  <description>A web-based Groovy console for interactive runtime application management and debugging</description>
+  <documentation>http://grails.org/plugin/console</documentation>
+  <type>ConsoleGrailsPlugin</type>
+  <resources>
+    <resource>ConsolePluginResources</resource>
+    <resource>org.grails.plugins.console.ConsoleController</resource>
+    <resource>org.grails.plugins.console.ConsoleService</resource>
+    <resource>org.grails.plugins.console.ConsoleTagLib</resource>
+  </resources>
+  <repositories>
+    <repository name='grailsCentral' url='http://plugins.grails.org' />
+    <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
+    <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
+    <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
+    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
+  </repositories>
+  <dependencies />
+  <plugins />
+  <runtimePluginRequirements />
+  <behavior />
+</plugin>
