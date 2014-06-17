@@ -29,3 +29,8 @@ web-app/WEB-INF/tld/*
 
 # "temporary" build files
 /target
+.link_to_grails_plugins/**
+RemoteSystemsTempFiles
+target-eclipse/**
+.classpath
+.settings
