@@ -36,3 +36,4 @@ target-eclipse/**
 .settings
 Servers/**
 target/dependency-report
+.metadata/version.ini
