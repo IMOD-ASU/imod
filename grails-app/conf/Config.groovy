@@ -88,6 +88,7 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+	warn 'grails.app.services.grails.plugin.springsecurity.ui.SpringSecurityUiService'
 }
 
 // Added by the Spring Security Core plugin:
@@ -109,6 +110,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/login/**':		['permitAll'],
 	'/logout/**':		['permitAll'],
 	'/security/**':		['permitAll'],
+	'/error/**':		['permitAll'],
 	'/register/**':		['permitAll'],
 	'/j_spring_security_check':		['permitAll'],
 	'/actionWord/**':['ROLE_USER'],

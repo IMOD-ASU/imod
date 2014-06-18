@@ -531,7 +531,7 @@
 				</div>
 
 				<div id="tabs-3">
-					%{--<g:render template="/content/topicInformationGraphWidget"/>--}%
+					<g:render template="/content/topicInformationGraphWidget"/>
 				</div>
 
 				<div id="tabs-4">
