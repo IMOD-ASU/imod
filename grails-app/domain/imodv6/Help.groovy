@@ -15,7 +15,7 @@ class Help {
     }
 
     static String toolTip(String tabId, String tabFieldUiId) {
-        return Help.findByTabIdAndTabFieldUiId(tabId, tabFieldUiId)?.text
+		return Help.findByTabIdAndTabFieldUiId(tabId, tabFieldUiId)?.text
     }
 
     def String toString() {

@@ -13,7 +13,7 @@ class LearningObjective {
 
     static belongsTo = [imod: Imod]
 
-    static hasMany = [contents: Content]
+    static hasMany = [contents: Content, pedogoyTechniques: PedagogyTechnique]
 
     static transients = ['name']
 
@@ -31,6 +31,7 @@ class LearningObjective {
     static mapping = {
         version false
     }
+	
 
     def String toString() {
         return completeLearningObjective

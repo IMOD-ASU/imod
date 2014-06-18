@@ -439,11 +439,11 @@
 										<td/>
 										<td>
 											<fieldset class="buttons">
-												<g:actionSubmit class="save showHoverNew" 
-													action="update"  
+												<g:actionSubmit class="save showHoverNew"
+													action="update"
 													title="${Help.toolTip("OVERVIEW", "Save Course Overview")}"
 													value="${message(code: 'Save', default: 'Save')}"/>
-												<g:actionSubmit class="delete showHoverNew" 
+												<g:actionSubmit class="delete showHoverNew"
 													action="delete"
 													title="${Help.toolTip("OVERVIEW", "Delete Course Overview")}"
 													value="${message(code: 'default.button.delete.label', default: 'Delete')}"
