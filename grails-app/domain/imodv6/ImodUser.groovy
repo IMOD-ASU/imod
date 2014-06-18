@@ -13,20 +13,21 @@ class ImodUser {
 
 	
 	static hasMany = [imods:Imod]
-	static hasOne = [profile:UserProfile, preferences:UserPreferences]
-
+	static hasOne = [preferences:UserPreferences, profile:UserProfile]
+	
 	
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
-		profile nullable: false
+		profile nullable: true
 		profile unique: true
-		preferences nullable: false
+		preferences nullable: true
 		preferences unique: true
 	}
 
 	static mapping = {
 		password column: '`password`'
+		
 	}
 
 	Set<Role> getAuthorities() {

@@ -2,15 +2,15 @@ package imodv6
 
 class UserPreferences {
 	String dateRepresentation
-	Boolean showHelp
+	boolean showHelp
 	ImodUser user
 	
     static constraints = {
-		dateRepresentation nullable: false
+		dateRepresentation nullable: true
 		showHelp nullable: false
 		}
 	static mapping = {
-		showHelp defaultValue: "true"
+		showHelp defaultValue: "'true'"
 		dateRepresentation defaultValue: "'mm/dd/yy'"
 		version false
 	}

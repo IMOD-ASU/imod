@@ -88,17 +88,31 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+	warn 'grails.app.services.grails.plugin.springsecurity.ui.SpringSecurityUiService'
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'imodv6.ImodUser'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'imodv6.ImodUserRole'
-grails.plugins.springsecurity.authority.className = 'imodv6.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'imodv6.ImodUser'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'imodv6.ImodUserRole'
+grails.plugin.springsecurity.authority.className = 'imodv6.Role'
 
 
 //InterceptUrlMap to make all links secure
-grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
-grails.plugins.springsecurity.interceptUrlMap = [
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugin.springsecurity.interceptUrlMap = [
+	'/':				['permitAll'],
+	'/index':			['permitAll'],
+	'/index.gsp':		['permitAll'],
+	'/**/js/**':		['permitAll'],
+	'/**/css/**':		['permitAll'],
+	'/**/images/**':	['permitAll'],
+	'/**/favicon.ico':	['permitAll'],
+	'/login/**':		['permitAll'],
+	'/logout/**':		['permitAll'],
+	'/security/**':		['permitAll'],
+	'/error/**':		['permitAll'],
+	'/register/**':		['permitAll'],
+	'/j_spring_security_check':		['permitAll'],
 	'/actionWord/**':['ROLE_USER'],
 	'/componentDesignation/**':['ROLE_USER'],
 	'/content/**':['ROLE_USER'],
@@ -119,7 +133,7 @@ grails.plugins.springsecurity.interceptUrlMap = [
 	'/console':['ROLE_ADMIN']
 ]
 //to allow user to login, avoid double encryption
-grails.plugins.springsecurity.ui.encodePassword = false
+grails.plugin.springsecurity.ui.encodePassword = false
 
 //mail configuration
 grails {
@@ -136,5 +150,5 @@ grails {
  }
 
 //makes the imod page default url after user logs in
-grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/imod'
-objective.length = 40
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/imod'
+objective.length = 63
