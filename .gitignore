@@ -30,3 +30,4 @@ web-app/WEB-INF/tld/*
 # "temporary" build files
 /target
 /target-eclipse
+/target-ecplise/*
