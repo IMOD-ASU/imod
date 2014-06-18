@@ -91,26 +91,14 @@ log4j = {
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'imodv6.ImodUser'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'imodv6.ImodUserRole'
-grails.plugin.springsecurity.authority.className = 'imodv6.Role'
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'imodv6.ImodUser'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'imodv6.ImodUserRole'
+grails.plugins.springsecurity.authority.className = 'imodv6.Role'
 
 
 //InterceptUrlMap to make all links secure
-grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
-grails.plugin.springsecurity.interceptUrlMap = [
-	'/':				['permitAll'],
-	'/index':			['permitAll'],
-	'/index.gsp':		['permitAll'],
-	'/**/js/**':		['permitAll'],
-	'/**/css/**':		['permitAll'],
-	'/**/images/**':	['permitAll'],
-	'/**/favicon.ico':	['permitAll'],
-	'/login/**':		['permitAll'],
-	'/logout/**':		['permitAll'],
-	'/security/**':		['permitAll'],
-	'/register/**':		['permitAll'],
-	'/j_spring_security_check':		['permitAll'],
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugins.springsecurity.interceptUrlMap = [
 	'/actionWord/**':['ROLE_USER'],
 	'/componentDesignation/**':['ROLE_USER'],
 	'/content/**':['ROLE_USER'],
@@ -131,7 +119,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/console':['ROLE_ADMIN']
 ]
 //to allow user to login, avoid double encryption
-grails.plugin.springsecurity.ui.encodePassword = false
+grails.plugins.springsecurity.ui.encodePassword = false
 
 //mail configuration
 grails {
@@ -148,5 +136,5 @@ grails {
  }
 
 //makes the imod page default url after user logs in
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/imod'
-objective.length = 63
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/imod'
+objective.length = 40

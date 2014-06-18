@@ -23,7 +23,7 @@
                 'background-color': '#efefef',
                 tip: 'leftMiddle' // Notice the corner value is identical to the previously mentioned positioning corners
             },
-            position: { adjust: { x: 3, y: -38 } }
+            position: { adjust: { x: 3, y: -80 } }
         });
         jQuery('.showHover').qtip({
 //            content: jQuery('.topic_addition_widget').attr('title'),

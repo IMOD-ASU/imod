@@ -29,5 +29,12 @@ web-app/WEB-INF/tld/*
 
 # "temporary" build files
 /target
-/target-eclipse
-/target-ecplise/*
+.link_to_grails_plugins/**
+RemoteSystemsTempFiles
+target-eclipse/**
+.classpath
+.settings
+Servers/**
+target/dependency-report
+.metadata/**
+web-app/development-bundle/**
