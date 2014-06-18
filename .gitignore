@@ -34,3 +34,5 @@ RemoteSystemsTempFiles
 target-eclipse/**
 .classpath
 .settings
+Servers/**
+target/dependency-report
