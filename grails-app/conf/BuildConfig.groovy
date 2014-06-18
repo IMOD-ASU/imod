@@ -11,14 +11,14 @@ grails.project.war.file = "target/${appName}.war"
 //grails.project.fork = [
 //   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
 //]
-
+grails.project.dependency.resolver="maven"
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
-    log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log 'warn' // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
@@ -50,19 +50,19 @@ grails.project.dependency.resolution = {
     plugins {
         build ":tomcat:7.0.52.1"
 
-        compile ":console:1.2"
+        compile ":console:1.4.2"
         compile ":postgresql-extensions:0.6.7"
-        compile ':cache:1.0.1'
-        compile ":spring-security-core:1.2.7.3"
-        compile ":mail:1.0.1"
-        compile ":jquery-ui:1.8.24"
+        compile ":cache:1.0.1"
+        compile ":spring-security-core:2.0-RC3"
+        compile ":mail:1.0.5"
+        compile ":jquery-ui:1.10.3"
         compile ":famfamfam:1.0.1"
-        compile ":spring-security-ui:0.2"
+        compile ":spring-security-ui:1.0-RC2"
         compile ":google-visualization:0.6.2"
 
-        runtime ":hibernate:3.6.10.10"
-        runtime ":jquery:1.8.3"
-        runtime ":resources:1.1.6"
+        runtime ":hibernate:3.6.10.16"
+        runtime ":jquery:1.11.1"
+        runtime ":resources:1.2.8"
         runtime ":database-migration:1.2.1"
     }
 }
