@@ -8,7 +8,7 @@
         	#tabs-container{
         		margin-left:2.5%;
         		margin-right:17.5%;
-        		margin-top:5%;
+        		//margin-top:5%;
         		margin-bottom:10.5%;
         		font-size:12px;
         	}

@@ -89,9 +89,7 @@
 		</style>
 	</head>
 	<body>
-		<a href="#page-body" class="skip">
-			<g:message code="default.link.skip.label" default="Skip to content&hellip;"/>
-		</a>
+		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="page-body" role="main">
 			<h1>Welcome to IMOD™</h1>
 			<p>The Instructional Module Development (IMOD™) 
@@ -106,18 +104,15 @@
 				course design.
 			</p>
 		</div>
-		<%-- Uncomment the following block of code to view the list of controllers
-			<div id="controller-list" role="navigation">
+		<%--Uncomment the following block of code to view the list of controllers
+		<div id="controller-list" role="navigation">
 				<h2>Available Controllers:</h2>
 				<ul>
 					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller">
-							<g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-						</li>
+						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
 					</g:each>
 				</ul>
-			</div>
-		--%>
+			</div> --%>
 <script type='text/javascript'>
 	<!--
 	(function() {
