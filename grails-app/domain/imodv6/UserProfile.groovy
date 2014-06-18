@@ -13,9 +13,10 @@ class UserProfile {
 	String state
 	String country
 	String zip
-	
 
-	static belongsTo = [user:ImodUser]
+
+	ImodUser user
+	
     static constraints = {
 		// remove these constraints selectively in the future if profile is not nullable in ImodUser class
 		firstName nullable: true
@@ -29,7 +30,7 @@ class UserProfile {
 		state nullable: true
 		country nullable: true
 		zip nullable: true
-    }
+   }
 	
 	static mapping = {
 		version false

@@ -5,6 +5,8 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 <head>
+	<meta http-equiv="Cache-Control" content="no-store"/>
+	<meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><g:layoutTitle default="IMOD"/></title>
@@ -13,6 +15,7 @@
     <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}">
     <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'imod.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/flick', file: 'jquery-ui-1.10.3.custom.css')}" type="text/css">
     <gvisualization:apiImport/>
@@ -21,9 +24,9 @@
 </head>
 
 <body>
-<div id="grailsLogo" role="banner"><a href="${createLink(uri: '/')}"><img id="imod_logo"
+<div id="imodlogo" role="banner" style="background-color:#0C1625;"><a href="${createLink(uri: '/')}"><img id="imod_logo"
                                                                           src="${resource(dir: 'images', file: 'colorsignature_sml.png')}"
-                                                                          alt="Grails"/></a>
+                                                                          alt="imod"/></a>
     <span id='s2ui_login_link_container'>
 
         <a class="banner-imod" href="${createLink(uri: '/imod')}"><g:message code="My i-mods"/></a>
@@ -33,7 +36,7 @@
         <nobr>
             <div id='loginLinkContainer' class='banner-link'>
                 <sec:ifLoggedIn><img class="resize_home" src="${resource(dir: 'images', file: 'user_sm.png')}" alt=""/>
-                    <sec:username/><a href='${createLink(uri: '/logout')}' id='logoutLink'
+                    <sec:username/> <a href='${createLink(uri: '/logout')}' id='logoutLink'
                                       class='banner-link'>Logout</a>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
@@ -49,7 +52,7 @@
     </span>
 </div>
 <g:layoutBody/>
-<div class="footer" role="contentinfo">Copyright © 2013 IMOD™</div>
+<div class="footer" role="contentinfo">Copyright © 2014 IMOD™</div>
 
 <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 <g:javascript library="application"/>
