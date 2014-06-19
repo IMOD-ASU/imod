@@ -59,8 +59,6 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
-// load the jquery plugin for all pages
-
 environments {
     development {
         grails.logging.jul.usebridge = true
@@ -99,39 +97,40 @@ grails.plugin.springsecurity.authority.className = 'imodv6.Role'
 
 
 //InterceptUrlMap to make all links secure
+//InterceptUrlMap to make all links secure
 grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugin.springsecurity.interceptUrlMap = [
-	'/':						['permitAll'],
-	'/index':					['permitAll'],
-	'/index.gsp':				['permitAll'],
-	'/**/js/**':				['permitAll'],
-	'/**/css/**':				['permitAll'],
-	'/**/images/**':			['permitAll'],
-	'/**/favicon.ico':			['permitAll'],
-	'/login/**':				['permitAll'],
-	'/logout/**':				['permitAll'],
-	'/security/**':				['permitAll'],
-	'/error/**':				['permitAll'],
-	'/register/**':				['permitAll'],
-	'/j_spring_security_check':	['permitAll'],
-	'/actionWord/**':			['ROLE_USER'],
-	'/componentDesignation/**':	['ROLE_USER'],
-	'/content/**':				['ROLE_USER'],
-	'/contentPriorityCode/**':	['ROLE_USER'],
-	'/contentResource/**':		['ROLE_USER'],
-	'/contentResourceType/**':	['ROLE_USER'],
-	'/courseComponentCode/**':	['ROLE_USER'],
-	'/coursePolicyCategory/**':	['ROLE_USER'],
-	'/coursePolicy/**':			['ROLE_USER'],
-	'/domainCategory/**':		['ROLE_USER'],
-	'/imod/**':					['ROLE_USER'],
-	'/instructor/**':			['ROLE_USER'],
-	'/instructorPhone/**':		['ROLE_USER'],
-	'/learningDomain/**':		['ROLE_USER'],
-	'/schedule/**':				['ROLE_USER'],
-	'/scheduleRepeats/**':		['ROLE_USER'],
-	'/scheduleRepeatsEvery/**':	['ROLE_USER'],
-	'/console':					['ROLE_ADMIN']
+	'/':				['permitAll'],
+	'/index':			['permitAll'],
+	'/index.gsp':		['permitAll'],
+	'/**/js/**':		['permitAll'],
+	'/**/css/**':		['permitAll'],
+	'/**/images/**':	['permitAll'],
+	'/**/favicon.ico':	['permitAll'],
+	'/login/**':		['permitAll'],
+	'/logout/**':		['permitAll'],
+	'/security/**':		['permitAll'],
+	'/error/**':		['permitAll'],
+	'/register/**':		['permitAll'],
+	'/j_spring_security_check':		['permitAll'],
+	'/actionWord/**':['ROLE_USER'],
+	'/componentDesignation/**':['ROLE_USER'],
+	'/content/**':['ROLE_USER'],
+	'/contentPriorityCode/**':['ROLE_USER'],
+	'/contentResource/**':['ROLE_USER'],
+	'/contentResourceType/**':['ROLE_USER'],
+	'/courseComponentCode/**':['ROLE_USER'],
+	'/coursePolicyCategory/**':['ROLE_USER'],
+	'/coursePolicy/**':['ROLE_USER'],
+	'/domainCategory/**':['ROLE_USER'],
+	'/imod/**':['ROLE_USER'],
+	'/instructor/**':['ROLE_USER'],
+	'/instructorPhone/**':['ROLE_USER'],
+	'/learningDomain/**':['ROLE_USER'],
+	'/schedule/**':['ROLE_USER'],
+	'/scheduleRepeats/**':['ROLE_USER'],
+	'/scheduleRepeatsEvery/**':['ROLE_USER'],
+	'/console':['ROLE_ADMIN']
 ]
 //to allow user to login, avoid double encryption
 grails.plugin.springsecurity.ui.encodePassword = false
