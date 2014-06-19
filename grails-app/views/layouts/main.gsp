@@ -74,7 +74,7 @@
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
-			Copyright © 2014 IMOD™
+			Copyright &copy; 2014 IMOD&trade;
 		</div>
 
 		<div id="spinner" class="spinner" style="display:none;">

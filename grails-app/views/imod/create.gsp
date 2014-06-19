@@ -40,8 +40,7 @@
 
 			.buttons {
 				width:20%;
-				position:absolute;
-				right:0;
+				float:right;
 			}
 
 			.ui-widget-content {
