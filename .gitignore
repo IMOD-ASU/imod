@@ -39,3 +39,5 @@ target/dependency-report
 .metadata/**
 web-app/development-bundle/**
 *.class
+
+*.project
