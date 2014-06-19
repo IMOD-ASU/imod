@@ -24,10 +24,12 @@
 	  <link rel="stylesheet" href="${resource(dir: 'css', file: 'imod.css')}" type="text/css">
 	  <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 	  <link rel="stylesheet" href="${resource(dir: 'css/flick', file: 'jquery-ui-1.10.3.custom.css')}" type="text/css">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<script src="${resource(dir: 'js', file: 'application.js')}" defer></script>
 
 	  <gvisualization:apiImport/>
 	  <g:layoutHead/>
-		<r:require module="application"/>
 		<r:layoutResources/>
 	</head>
 
@@ -49,16 +51,21 @@
 	          <sec:ifLoggedIn>
 							<img class="resize_home" src="${resource(dir: 'images', file: 'user_sm.png')}" alt=""/>
 	            <sec:username/>
-							<a href='${createLink(uri: '/logout')}' id='logoutLink' class='banner-link'>Logout</a>
+							<a href='${createLink(uri: '/logout')}' id='logoutLink' class='banner-link'>
+								Logout
+							</a>
 	          </sec:ifLoggedIn>
 
 	          <sec:ifNotLoggedIn>
-	            <a href='${createLink(uri: '/login')}' id='loginLink' class='banner-link'>Login</a>
+	            <a href='${createLink(uri: '/login')}' id='loginLink' class='banner-link'>
+								Login
+							</a>
 	          </sec:ifNotLoggedIn>
 
 	          <sec:ifSwitched>
 	            <a href='${request.contextPath}/j_spring_security_exit_user'>
-	              Resume as <sec:switchedUserOriginalUsername/>
+	              Resume as
+								<sec:switchedUserOriginalUsername/>
 	            </a>
 	          </sec:ifSwitched>
 	        </div>
