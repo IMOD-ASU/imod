@@ -619,6 +619,9 @@ th.desc a {
 .buttons .save {
 	background-image: url(../images/skin/database_save.png);
 }
+.buttons .add {
+	background-image: url(../images/skin/)
+}
 
 a.skip {
 	position: absolute;
