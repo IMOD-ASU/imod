@@ -97,8 +97,22 @@ grails.plugin.springsecurity.authority.className = 'imodv6.Role'
 
 
 //InterceptUrlMap to make all links secure
+//InterceptUrlMap to make all links secure
 grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugin.springsecurity.interceptUrlMap = [
+	'/':				['permitAll'],
+	'/index':			['permitAll'],
+	'/index.gsp':		['permitAll'],
+	'/**/js/**':		['permitAll'],
+	'/**/css/**':		['permitAll'],
+	'/**/images/**':	['permitAll'],
+	'/**/favicon.ico':	['permitAll'],
+	'/login/**':		['permitAll'],
+	'/logout/**':		['permitAll'],
+	'/security/**':		['permitAll'],
+	'/error/**':		['permitAll'],
+	'/register/**':		['permitAll'],
+	'/j_spring_security_check':		['permitAll'],
 	'/actionWord/**':['ROLE_USER'],
 	'/componentDesignation/**':['ROLE_USER'],
 	'/content/**':['ROLE_USER'],
