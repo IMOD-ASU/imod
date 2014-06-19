@@ -88,7 +88,6 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
-	warn 'grails.app.services.grails.plugin.springsecurity.ui.SpringSecurityUiService'
 }
 
 // Added by the Spring Security Core plugin:
@@ -97,6 +96,7 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'imodv6.ImodUse
 grails.plugin.springsecurity.authority.className = 'imodv6.Role'
 
 
+//InterceptUrlMap to make all links secure
 //InterceptUrlMap to make all links secure
 grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugin.springsecurity.interceptUrlMap = [
@@ -151,4 +151,4 @@ grails {
 
 //makes the imod page default url after user logs in
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/imod'
-objective.length = 63
+objective.length = 40

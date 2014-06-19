@@ -6,19 +6,19 @@ grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 grails.project.war.file = "target/${appName}.war"
-grails.server.port.http = 8090
+
 // uncomment (and adjust settings) to fork the JVM to isolate classpaths
 //grails.project.fork = [
 //   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
 //]
-
+grails.project.dependency.resolver="maven"
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
-    log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log 'warn' // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
@@ -42,33 +42,27 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-	
+        runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
+
         // runtime 'mysql:mysql-connector-java:5.1.20'
     }
 
     plugins {
-        runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.8.3"
-        runtime ":resources:1.1.6"
-        compile ":console:1.2"
+        build ":tomcat:7.0.52.1"
 
-        // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0"
-        //runtime ":cached-resources:1.0"
-        //runtime ":yui-minify-resources:0.1.4"
-
-        build ":tomcat:$grailsVersion"
-
-        runtime ":database-migration:1.2.1"
-
-        compile ':cache:1.0.1'
-		compile ":spring-security-core:1.2.7.3"
-		
-		compile ":mail:1.0.1"
-		compile ":jquery-ui:1.8.24"
-		compile ":famfamfam:1.0.1"
-		
-		compile ":spring-security-ui:0.2"
+        compile ":console:1.4.2"
+        compile ":postgresql-extensions:0.6.7"
+        compile ":cache:1.0.1"
+        compile ":spring-security-core:2.0-RC3"
+        compile ":mail:1.0.5"
+        compile ":jquery-ui:1.10.3"
+        compile ":famfamfam:1.0.1"
+        compile ":spring-security-ui:1.0-RC2"
         compile ":google-visualization:0.6.2"
+
+        runtime ":hibernate:3.6.10.16"
+        runtime ":jquery:1.11.1"
+        runtime ":resources:1.2.8"
+        runtime ":database-migration:1.2.1"
     }
 }
