@@ -5,9 +5,9 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'imod.label', default: 'Imod')}"/>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-		<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.qtip-1.0.0-rc3.min.js')}"></script>
-		<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.treeview.js')}"></script>
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.treeview.css')}" type="text/css">
+		<script type="text/javascript" src="${resource(dir: 'js/library', file: 'jquery.qtip-1.0.0-rc3.min.js')}"></script>
+		<script type="text/javascript" src="${resource(dir: 'js/library', file: 'jquery.treeview.js')}"></script>
+		<link rel="stylesheet" href="${resource(dir: 'css/library', file: 'jquery.treeview.css')}" type="text/css">
 		<style type="text/css" media="screen">
 			.chapterLi {
 				list-style-type: none;

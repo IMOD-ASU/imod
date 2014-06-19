@@ -5,9 +5,9 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'imod.label', default: 'Imod')}" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-		<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.qtip-1.0.0-rc3.min.js')}"></script>
-		<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.treeview.js')}"></script>
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.treeview.css')}" type="text/css">
+		<script type="text/javascript" src="${resource(dir: 'js/library', file: 'jquery.qtip-1.0.0-rc3.min.js')}"></script>
+		<script type="text/javascript" src="${resource(dir: 'js/library', file: 'jquery.treeview.js')}"></script>
+		<link rel="stylesheet" href="${resource(dir: 'css/library', file: 'jquery.treeview.css')}" type="text/css">
 		<style type="text/css" media="screen">
 			.chapterLi {
 				list-style-type: none;
@@ -246,7 +246,7 @@
 			});
 		</script>
 		<script type="text/javascript">
-			function updateDatePicker () { 
+			function updateDatePicker () {
 				$("input[value='date.struct']:hidden").each(function() {
 					var dateFormat = "${ImodUser.get(currentUser).preferences.dateRepresentation}";
 					var name = $(this).attr('name');
@@ -265,7 +265,7 @@
 						var dateYear = $(selectYear).val();
 
 						// Calculate the Current Input Value
-						var val = "";		   
+						var val = "";
 						if (dateDay != "" && dateYear != "" && dateMonth != "") { // If there is a date in the Selects then use it otherwise it's empty
 							var date = new Date (dateYear, dateMonth-1, dateDay);
 							val = $.datepicker.formatDate(dateFormat, date);
@@ -279,10 +279,10 @@
 						}
 
 
-						$(this).before(template);	   
+						$(this).before(template);
 						var displayWidget = $('#' + id );
 
-						displayWidget.blur(function() {		 
+						displayWidget.blur(function() {
 							var date = $.datepicker.parseDate(dateFormat, $(this).val());
 
 							if (date == null) {
@@ -302,15 +302,15 @@
 							}
 						});
 
-						displayWidget.datepicker({  
+						displayWidget.datepicker({
 							changeMonth: true,
 							changeYear: true,
 							dateFormat: dateFormat,
-							constrainInput: true,		   
+							constrainInput: true,
 							showButtonPanel: true,
 							showWeeks: true,
-							showOn: 'button',		   
-							onSelect: function(dateText, inst) { 
+							showOn: 'button',
+							onSelect: function(dateText, inst) {
 								if (inst == null) {
 									$(selectDay).val("");
 									$(selectMonth).val("");
@@ -321,8 +321,8 @@
 									$(selectMonth).val(inst.selectedMonth+1);
 									$(selectYear).val(inst.selectedYear);
 								}
-							}		   
-						});	 
+							}
+						});
 					}
 				});
 			}
@@ -339,7 +339,7 @@
 				});
 				$("#accordion").accordion();
 				updateDatePicker();
-				$("#spinner").ajaxComplete (function(event, request, settings){   
+				$("#spinner").ajaxComplete (function(event, request, settings){
 					updateDatePicker();
 				});
 
@@ -419,8 +419,8 @@
 											<td />
 											<td>
 												<fieldset class="buttons">
-													<g:submitButton name="create" 
-													class="save showHoverNew" 
+													<g:submitButton name="create"
+													class="save showHoverNew"
 													title="${Help.toolTip("OVERVIEW", "Save Course Overview")}"
 													value="${message(code: 'default.button.create.label', default: 'Create Course Overview')}" />
 												</fieldset>
