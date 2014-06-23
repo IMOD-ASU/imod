@@ -13,19 +13,20 @@
 
 		<meta http-equiv="Cache-Control" content="no-store"/>
 		<meta http-equiv="pragma" content="no-cache"/>
-	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	  <link rel="shortcut icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}" type="image/x-icon">
-	  <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}">
-	  <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}">
-	  <link rel="stylesheet" href="${resource(dir: 'css/source', file: 'main.css')}" type="text/css">
-	  <link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.css')}" type="text/css">
-	  <link rel="stylesheet" href="${resource(dir: 'css/source', file: 'mobile.css')}" type="text/css">
-	  <link rel="stylesheet" href="${resource(dir: 'css/library/flick', file: 'jquery-ui-1.10.3.custom.css')}" type="text/css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		</style>
+		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}" type="image/x-icon">
+		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}">
+		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'mobile.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css/flick', file: 'jquery-ui-1.10.3.custom.css')}" type="text/css">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+		
 		<script src="${resource(dir: 'js/source', file: 'application.js')}" defer></script>
 
 	  <gvisualization:apiImport/>

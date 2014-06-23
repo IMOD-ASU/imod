@@ -5,9 +5,11 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'imod.label', default: 'Imod')}" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-		<script type="text/javascript" src="${resource(dir: 'js/library', file: 'jquery.qtip-1.0.0-rc3.min.js')}"></script>
-		<script type="text/javascript" src="${resource(dir: 'js/library', file: 'jquery.treeview.js')}"></script>
-		<link rel="stylesheet" href="${resource(dir: 'css/library', file: 'jquery.treeview.css')}" type="text/css">
+		<script src="${resource(dir: 'js', file: 'jquery.qtip-1.0.0-rc3.min.js')}"></script>
+		<script src="${resource(dir: 'js', file: 'jquery.treeview.js')}"></script>
+		<script src="${resource(dir: 'js', file: 'jquery-ui-1.10.3.custom.min.js')}"></script>
+
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.treeview.css')}" type="text/css">
 		<style type="text/css" media="screen">
 			.chapterLi {
 				list-style-type: none;
@@ -217,7 +219,6 @@
 				min-width: 153px;
 			}
 		</style>
-		<r:require module="jqueryui" />
 		<script type="text/javascript">
 			jQuery(document).ready(function () {
 				jQuery.browser = {};
@@ -336,6 +337,16 @@
 						}
 					}
 				});
+				$("#tabs-LO-subhead").tabs({
+						activate: function(event,ui){
+							var active=$('#tabs-LO-subhead').tabs('option','active');
+							var activeFile=$("#tabs-LO-subhead ul>li a").eq(active).attr("file");
+							var imageSrc="${resource(dir: 'images/learningObjectives', file: '"+activeFile+".png')}";
+							$("#LO-type-icon").attr("src",imageSrc);
+						}
+					}
+				);
+
 				$("#accordion").accordion();
 				updateDatePicker();
 				$("#spinner").ajaxComplete (function(event, request, settings){
@@ -487,7 +498,7 @@
 
 				</div>
 				<div id="tabs-2">
-					<g:render template="/learningObjective/learning_objectives_main" />
+					<g:render template="/learningObjective/main" />
 				</div>
 				<div id="tabs-3">
 				</div>
