@@ -19,13 +19,10 @@
 								<div class="form_title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 									<span class="title_text">
 										Learning Objectives
-									<fieldset class=buttons>
-										<g:submitButton name="add" 
-										class="save showHoverNew"
-										style="float:right; margin:5px" 
-										title="${Help.toolTip("OVERVIEW", "Save Learning Objectives")}"
-										value="${message(code: 'default.button.add.label', default: 'Add')}" />
-									</fieldset>
+										<g:link action="create">
+											<button type="submit"><span class="fa fa-plus"></span> Add</button>
+										</g:link>
+
 									</span>
 								</div>
 								<g:render template="/learningObjective/learning_objectives_list"/>
@@ -48,4 +45,3 @@
 			</fieldset>
 	</g:form>
 </div>
-
