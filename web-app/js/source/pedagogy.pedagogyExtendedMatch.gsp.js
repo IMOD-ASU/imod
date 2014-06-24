@@ -1,0 +1,3 @@
+$(function() {
+	$("#selectedFilter").html("${selectionLine}");
+});

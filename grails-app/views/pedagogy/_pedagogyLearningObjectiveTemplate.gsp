@@ -1,15 +1,5 @@
 <%@ page import="imodv6.Help" %>
-<script>
-$(function() {
-		$( "#ped_accordion" ).accordion({
-			heightStyle: "content"
-		});
-	});
-function submitRefresh(){
-	$("#pedAccordion").submit();
-	expandExtended();
-}
-</script>
+<script src="${resource(dir: 'js/source', file: 'pedagogy.pedagogyObjectiveTemplate.gsp.js')}" defer></script>
 <!--  To display Learning Objectives and the Filter Options -->
 <table style="padding-top: 0;">
     <tbody>
@@ -45,7 +35,7 @@ function submitRefresh(){
                         </ul>
                         </p>
                     </div>
-               
+
                 <div style = "width = 250px;" >
                 <div class="form_title removeBorder"><span class="title_text"><g:message
                         code="Filter Options"/></span>
@@ -60,33 +50,33 @@ function submitRefresh(){
                             <g:message code="learning.objectives..widget.remove.button"/></button>--}%
                     </span></div>
                  <g:formRemote name="pedAccordion" id="pedAccordion" url="[action:'updateExtendedTechnique',controller:'pedagogy']" update="extendedMatchDiv">
-                 <div id="ped_accordion">                 	                 	
+                 <div id="ped_accordion">
                  		<h3 title="${Help.toolTip("PEDAGOGY", "Domain")}" class="showHover">Domain</h3>
 							<div><p><g:each in="${lrnDomainlist}" var="domain">
 							<g:if test="${domain.toString().equals(dmn.toString())}">
-								 <input type="checkbox" name="domain" value="${domain.toString()}" checked="checked">	
+								 <input type="checkbox" name="domain" value="${domain.toString()}" checked="checked">
 							</g:if>
 							<g:else>
-						         <input type="checkbox" name="domain" value="${domain.toString()}">						            
-						    </g:else> 
-						    		<label> ${domain.toString()}</label>       
+						         <input type="checkbox" name="domain" value="${domain.toString()}">
+						    </g:else>
+						    		<label> ${domain.toString()}</label>
 						            <br>
-						          </g:each></p> </div>							
+						          </g:each></p> </div>
 						<h3 title="${Help.toolTip("PEDAGOGY", "Domain Category")}" class="showHover">Domain Category</h3>
 							<div><p><g:each in="${domainList}" var="domain">
 							<g:if test="${domain.toString().equals(dc.toString())}">
-								 <input type="checkbox" name="domainCategory" value="${domain.toString()}" checked="checked">	
+								 <input type="checkbox" name="domainCategory" value="${domain.toString()}" checked="checked">
 							</g:if>
 							<g:else>
 								<input type="checkbox" name="domainCategory" value="${domain.toString()}">
-						    </g:else>        
+						    </g:else>
 						            <label> ${domain.toString()}</label>
 						            <br>
 						          </g:each></p> </div>
-						          
+
 						<h3 title="${Help.toolTip("PEDAGOGY", "Knowledge Dimension")}" class="showHover">Knowledge Dimension</h3>
 							<div><p><g:each in="${mapkdList.entrySet()}" var="kdomain">
-						            	 <input type="checkbox" name="kdomain" value="${kdomain.key.toString()}" ${kdomain.value.toString().equals('true')?'checked':''}>	
+						            	 <input type="checkbox" name="kdomain" value="${kdomain.key.toString()}" ${kdomain.value.toString().equals('true')?'checked':''}>
 						           <label> ${kdomain.key.toString()}</label>
 						           <br>
 						          </g:each></p> </div>
@@ -94,7 +84,7 @@ function submitRefresh(){
                 </g:formRemote>
             </div>
         </td>
-        
+
     </tr>
     </tbody>
 </table>

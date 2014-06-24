@@ -1,10 +1,6 @@
 <%@ page import="imodv6.ImodUserPedagogyFavorite" %>
 <%@ page import="imodv6.ImodPedagogyAssign" %>
-<script>
-$(function() {
-	$("#selectedFilter").html("${selectionLine}");
-});
-</script>
+<script src="${resource(dir: 'js/source', file: 'pedagogy.pedagogyExtendedMatch.gsp.js')}" defer></script>
 
 <!-- Extended Match Results on click of Refresh  -->
 <g:each in="${pedaTechList}" var="p">
@@ -12,7 +8,7 @@ $(function() {
 	<g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,p)}"/>
     <g:set var="assign" value="${ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(chapter,p)}"/>
     <g:if test="${fav && assign}">
-       <img style="height: 130px;"  src="${resource(dir: 'images', file: 'fav-assign.png')}" alt="Criteria" usemap="#${p.id}" />							           
+       <img style="height: 130px;"  src="${resource(dir: 'images', file: 'fav-assign.png')}" alt="Criteria" usemap="#${p.id}" />
     </g:if>
     <g:elseif test="${fav}">
    		<img style="height: 130px;"  src="${resource(dir: 'images', file: 'fav-unassign.png')}" alt="Criteria" usemap="#${p.id}" />
