@@ -13,7 +13,7 @@
 			<td style="font-size:13px;font-weight:bold;" width="20%">Description of Strategy</td>
 			<td><g:textArea name="pedagogyDescription" rows="5" cols="42">${pedagogyTech?.pedagogyDescription}</g:textArea></td>
 		</tr>
-		
+
 		<tr>
 			<td style="font-size:13px;font-weight:bold;" width="20%">Mode<span style="color:red">*</span></td>
 			<td><g:select style="font-size:13px;font-weight:bold;" name="pedagogyModeId" id="pedagogyModeId_dialog" from="${PedagogyMode.list()}" optionKey="id" optionValue="name" noSelection="['':'Select one']" value="${pedagogyTech?.pedagogyMode?.id}"/></td>
@@ -41,7 +41,7 @@
 						<th>Knowledge Dimension<span style="color:red">*</span></th>
 						<th>Focus</th>
 					</tr>
-					<tr style="font-size: 14px; font-weight: bold;">							
+					<tr style="font-size: 14px; font-weight: bold;">
 						<td>
 							<g:select name="domain" id="domain_dialog" from="${lrnDomainlist}" style="width:100%;"
 								value="${pedagogyTech?.domain}" optionKey="id" multiple="true" disabled="${pedagogyTech?true:false}"/>
@@ -49,8 +49,8 @@
 								<div style="display:none;"><g:select name="domain" id="domain_dialog" from="${lrnDomainlist}" style="width:100%;"
 									value="${pedagogyTech?.domain}" optionKey="id" multiple="true"/></div>
 							</g:if>
-						</td>			
-					
+						</td>
+
 						<td><g:select name="category" id="category_dialog" from="${domainList}" style="width:100%;"
 								value="${pedagogyTech?.category}" optionKey="id" multiple="true" disabled="${pedagogyTech?true:false}"/>
 								<g:if test="${pedagogyTech}">
@@ -58,7 +58,7 @@
 								value="${pedagogyTech?.category}" optionKey="id" multiple="true"/></div>
 								</g:if>
 						</td>
-						
+
 						<td><g:select name="knowledge" id="knowledge_dialog" from="${KnowledgeDomainlist}" style="width:100%;"
 								value="${pedagogyTech?.knowledge}" optionKey="id" multiple="true" disabled="${pedagogyTech?true:false}" />
 							<g:if test="${pedagogyTech}">
@@ -68,13 +68,13 @@
 							</div>
 							</g:if>
 						</td>
-								
+
 						<td><g:select name="focus" from="${PedagogyActivityFocus.list()}" style="width:114%;"
 								value="${pedagogyTech?.focus}" optionKey="id" optionValue="focus" multiple="true"/></td>
-					</tr>						
+					</tr>
 				</table>
 			</td>
-		</tr>			
+		</tr>
 	</tbody>
 </table>
 <div id="ped_technique">
@@ -99,8 +99,8 @@
 									<td><g:select name="pedagogyActivity${i+1}.duration" from="${PedagogyActivityDuration.list()}" optionKey="id" optionValue="duration" noSelection="['':'Select one']" value="${activity?.pedagogyActivityDuration?.id}"/></td>
 									<td><g:field type="text" name="pedagogyActivity${i+1}.example" value="${activity?.example}" /></td>
 									<td>
-										<g:field type="text" name="pedagogyActivity${i+1}.material" value="${activity?.material}"/>										
-									</td>						
+										<g:field type="text" name="pedagogyActivity${i+1}.material" value="${activity?.material}"/>
+									</td>
 									<td><a href="javascript:" onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">x</a></td>
 								</tr>
 							</g:each>
@@ -112,7 +112,7 @@
 								<td><g:select name="pedagogyActivity1.duration" from="${PedagogyActivityDuration.list()}" optionKey="id" optionValue="duration" noSelection="['':'Select one']"/></td>
 								<td><g:field type="text" name="pedagogyActivity1.example" value="" /></td>
 								<td><g:field type="text" name="pedagogyActivity1.material" value=""/></td>
-								<td><a href="javascript:" onclick="removeRowActivity(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">x</a></td>				
+								<td><a href="javascript:" onclick="removeRowActivity(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">x</a></td>
 							</tr>
 						</g:else>
 					</table>
@@ -157,7 +157,7 @@
 								<td><g:select name="pedagogyReference1.refeType" from="${imodv6.PedagogyReferenceType.list()}" optionKey="id" optionValue="description" noSelection="['':'Select one']"/></td>
 								<td><a href="javascript:" onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">x</a></td>
 							</tr>
-						</g:else>				
+						</g:else>
 					</table>
 				</td>
 			</tr>

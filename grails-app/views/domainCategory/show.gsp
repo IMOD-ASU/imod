@@ -22,25 +22,25 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list domainCategory">
-			
+
 				<g:if test="${domainCategoryInstance?.domain}">
 				<li class="fieldcontain">
 					<span id="domain-label" class="property-label"><g:message code="domainCategory.domain.label" default="Domain" /></span>
-					
+
 						<span class="property-value" aria-labelledby="domain-label"><g:link controller="learningDomain" action="show" id="${domainCategoryInstance?.domain?.id}">${domainCategoryInstance?.domain?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${domainCategoryInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="domainCategory.name.label" default="Name" /></span>
-					
+
 						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${domainCategoryInstance}" field="name"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

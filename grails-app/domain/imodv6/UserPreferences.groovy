@@ -4,7 +4,7 @@ class UserPreferences {
 	String dateRepresentation
 	boolean showHelp
 	ImodUser user
-	
+
     static constraints = {
 		dateRepresentation nullable: true
 		showHelp nullable: false

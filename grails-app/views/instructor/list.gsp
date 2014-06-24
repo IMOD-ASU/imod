@@ -23,37 +23,37 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<g:sortableColumn property="lastName" title="${message(code: 'instructor.lastName.label', default: 'Last Name')}" />
-						
+
 						<g:sortableColumn property="firstName" title="${message(code: 'instructor.firstName.label', default: 'First Name')}" />
-					
+
 						<g:sortableColumn property="location" title="${message(code: 'instructor.location.label', default: 'Location')}" />
-					
+
 						<g:sortableColumn property="email" title="${message(code: 'instructor.email.label', default: 'Email')}" />
-					
+
 						<g:sortableColumn property="officeHours" title="${message(code: 'instructor.officeHours.label', default: 'Office Hours')}" />
-					
+
 						<g:sortableColumn property="webPage" title="${message(code: 'instructor.webPage.label', default: 'Web Page')}" />
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${instructorInstanceList}" status="i" var="instructorInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${instructorInstance.id}">${fieldValue(bean: instructorInstance, field: "lastName")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: instructorInstance, field: "firstName")}</td>
-					
+
 						<td>${fieldValue(bean: instructorInstance, field: "location")}</td>
-					
+
 						<td>${fieldValue(bean: instructorInstance, field: "email")}</td>
-					
+
 						<td>${fieldValue(bean: instructorInstance, field: "officeHours")}</td>
-					
+
 						<td>${fieldValue(bean: instructorInstance, field: "webPage")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

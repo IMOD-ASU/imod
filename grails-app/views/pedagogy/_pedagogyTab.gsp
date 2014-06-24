@@ -12,7 +12,7 @@
         </ul>
     </g:hasErrors>
     <table>
-       
+
         <tr>
             <td style="vertical-align: top;padding:-50;">
                 <g:render template="/pedagogy/pedagogyLearningObjectiveTemplate"/>

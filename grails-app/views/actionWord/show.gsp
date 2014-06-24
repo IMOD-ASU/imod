@@ -22,52 +22,52 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list actionWord">
-			
+
 				<g:if test="${actionWordInstance?.actionWord}">
 				<li class="fieldcontain">
 					<span id="actionWord-label" class="property-label"><g:message code="actionWord.actionWord.label" default="Action Word" /></span>
-					
+
 						<span class="property-value" aria-labelledby="actionWord-label"><g:fieldValue bean="${actionWordInstance}" field="actionWord"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${actionWordInstance?.category}">
 				<li class="fieldcontain">
 					<span id="category-label" class="property-label"><g:message code="actionWord.category.label" default="Category" /></span>
-					
+
 						<span class="property-value" aria-labelledby="category-label"><g:link controller="domainCategory" action="show" id="${actionWordInstance?.category?.id}">${actionWordInstance?.category?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${actionWordInstance?.domain}">
 				<li class="fieldcontain">
 					<span id="domain-label" class="property-label"><g:message code="actionWord.domain.label" default="Domain" /></span>
-					
+
 						<span class="property-value" aria-labelledby="domain-label"><g:link controller="learningDomain" action="show" id="${actionWordInstance?.domain?.id}">${actionWordInstance?.domain?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${actionWordInstance?.user}">
 				<li class="fieldcontain">
 					<span id="user-label" class="property-label"><g:message code="actionWord.user.label" default="User" /></span>
-					
+
 						<span class="property-value" aria-labelledby="user-label"><g:link controller="imodUser" action="show" id="${actionWordInstance?.user?.id}">${actionWordInstance?.user?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${actionWordInstance?.visibility}">
 				<li class="fieldcontain">
 					<span id="visibility-label" class="property-label"><g:message code="actionWord.visibility.label" default="Visibility" /></span>
-					
+
 						<span class="property-value" aria-labelledby="visibility-label"><g:fieldValue bean="${actionWordInstance}" field="visibility"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

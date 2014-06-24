@@ -20,9 +20,9 @@
 									<span class="title_text">
 										Learning Objectives
 									<fieldset class=buttons>
-										<g:submitButton name="add" 
+										<g:submitButton name="add"
 										class="save showHoverNew"
-										style="float:right; margin:5px" 
+										style="float:right; margin:5px"
 										title="${Help.toolTip("OVERVIEW", "Save Learning Objectives")}"
 										value="${message(code: 'default.button.add.label', default: 'Add')}" />
 									</fieldset>

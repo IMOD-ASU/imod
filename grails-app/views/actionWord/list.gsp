@@ -23,33 +23,33 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<g:sortableColumn property="actionWord" title="${message(code: 'actionWord.actionWord.label', default: 'Action Word')}" />
-					
+
 						<th><g:message code="actionWord.category.label" default="Category" /></th>
-					
+
 						<th><g:message code="actionWord.domain.label" default="Domain" /></th>
-					
+
 						<th><g:message code="actionWord.user.label" default="User" /></th>
-					
+
 						<g:sortableColumn property="visibility" title="${message(code: 'actionWord.visibility.label', default: 'Visibility')}" />
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${actionWordInstanceList}" status="i" var="actionWordInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${actionWordInstance.id}">${fieldValue(bean: actionWordInstance, field: "actionWord")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: actionWordInstance, field: "category")}</td>
-					
+
 						<td>${fieldValue(bean: actionWordInstance, field: "domain")}</td>
-					
+
 						<td>${fieldValue(bean: actionWordInstance, field: "user")}</td>
-					
+
 						<td>${fieldValue(bean: actionWordInstance, field: "visibility")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

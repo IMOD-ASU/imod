@@ -10,9 +10,9 @@ class Instructor {
 	String webPage
 	String phoneNumber
 	ImodUser createdBy
-	
+
 	static hasMany = [phones:InstructorPhone]
-	
+
     static constraints = {
 		middleInitial nullable: true
 		firstName nullable: true
@@ -22,7 +22,7 @@ class Instructor {
 		webPage nullable: true
 		phoneNumber nullable: true
     }
-	
+
 	static mapping = {
 		version false
 	}
@@ -32,5 +32,5 @@ class Instructor {
 		if(firstName != null){ displayName = displayName + " " + firstName}
 		if(middleInitial != null){ displayName = displayName + " " + middleInitial}
 		return displayName
-	} 
+	}
 }

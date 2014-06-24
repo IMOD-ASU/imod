@@ -22,106 +22,106 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list learningObjective">
-			
+
 				<g:if test="${learningObjectiveInstance?.actionWord}">
 				<li class="fieldcontain">
 					<span id="actionWord-label" class="property-label"><g:message code="learningObjective.actionWord.label" default="Action Word" /></span>
-					
+
 						<span class="property-value" aria-labelledby="actionWord-label"><g:link controller="actionWord" action="show" id="${learningObjectiveInstance?.actionWord?.id}">${learningObjectiveInstance?.actionWord?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.completeLearningObjective}">
 				<li class="fieldcontain">
 					<span id="completeLearningObjective-label" class="property-label"><g:message code="learningObjective.completeLearningObjective.label" default="Complete Learning Objective" /></span>
-					
+
 						<span class="property-value" aria-labelledby="completeLearningObjective-label"><g:fieldValue bean="${learningObjectiveInstance}" field="completeLearningObjective"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.condition}">
 				<li class="fieldcontain">
 					<span id="condition-label" class="property-label"><g:message code="learningObjective.condition.label" default="Condition" /></span>
-					
+
 						<span class="property-value" aria-labelledby="condition-label"><g:fieldValue bean="${learningObjectiveInstance}" field="condition"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.content}">
 				<li class="fieldcontain">
 					<span id="content-label" class="property-label"><g:message code="learningObjective.content.label" default="Content" /></span>
-					
+
 						<span class="property-value" aria-labelledby="content-label"><g:link controller="content" action="show" id="${learningObjectiveInstance?.content?.id}">${learningObjectiveInstance?.content?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.criteria}">
 				<li class="fieldcontain">
 					<span id="criteria-label" class="property-label"><g:message code="learningObjective.criteria.label" default="Criteria" /></span>
-					
+
 						<span class="property-value" aria-labelledby="criteria-label"><g:fieldValue bean="${learningObjectiveInstance}" field="criteria"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.criteriaType}">
 				<li class="fieldcontain">
 					<span id="criteriaType-label" class="property-label"><g:message code="learningObjective.criteriaType.label" default="Criteria Type" /></span>
-					
+
 						<span class="property-value" aria-labelledby="criteriaType-label"><g:link controller="learningObjectiveCriteriaType" action="show" id="${learningObjectiveInstance?.criteriaType?.id}">${learningObjectiveInstance?.criteriaType?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.domainCategory}">
 				<li class="fieldcontain">
 					<span id="domainCategory-label" class="property-label"><g:message code="learningObjective.domainCategory.label" default="Domain Category" /></span>
-					
+
 						<span class="property-value" aria-labelledby="domainCategory-label"><g:link controller="domainCategory" action="show" id="${learningObjectiveInstance?.domainCategory?.id}">${learningObjectiveInstance?.domainCategory?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.imod}">
 				<li class="fieldcontain">
 					<span id="imod-label" class="property-label"><g:message code="learningObjective.imod.label" default="Imod" /></span>
-					
+
 						<span class="property-value" aria-labelledby="imod-label"><g:link controller="imod" action="show" id="${learningObjectiveInstance?.imod?.id}">${learningObjectiveInstance?.imod?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.indicator}">
 				<li class="fieldcontain">
 					<span id="indicator-label" class="property-label"><g:message code="learningObjective.indicator.label" default="Indicator" /></span>
-					
+
 						<span class="property-value" aria-labelledby="indicator-label"><g:fieldValue bean="${learningObjectiveInstance}" field="indicator"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.learningDomain}">
 				<li class="fieldcontain">
 					<span id="learningDomain-label" class="property-label"><g:message code="learningObjective.learningDomain.label" default="Learning Domain" /></span>
-					
+
 						<span class="property-value" aria-labelledby="learningDomain-label"><g:link controller="learningDomain" action="show" id="${learningObjectiveInstance?.learningDomain?.id}">${learningObjectiveInstance?.learningDomain?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${learningObjectiveInstance?.performance}">
 				<li class="fieldcontain">
 					<span id="performance-label" class="property-label"><g:message code="learningObjective.performance.label" default="Performance" /></span>
-					
+
 						<span class="property-value" aria-labelledby="performance-label"><g:fieldValue bean="${learningObjectiveInstance}" field="performance"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

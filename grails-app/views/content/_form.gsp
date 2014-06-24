@@ -29,7 +29,7 @@
 <div class="fieldcontain ${hasErrors(bean: contentInstance, field: 'resources', 'error')} ">
 	<label for="resources">
 		<g:message code="content.resources.label" default="Resources" />
-		
+
 	</label>
 	<g:select name="resources" from="${imodv6.ContentResource.list()}" multiple="multiple" optionKey="id" size="5" value="${contentInstance?.resources*.id}" class="many-to-many"/>
 </div>
@@ -37,7 +37,7 @@
 <div class="fieldcontain ${hasErrors(bean: contentInstance, field: 'topicTitle', 'error')} ">
 	<label for="topicTitle">
 		<g:message code="content.topicTitle.label" default="Topic Title" />
-		
+
 	</label>
 	<g:textField name="topicTitle" value="${contentInstance?.topicTitle}"/>
 </div>

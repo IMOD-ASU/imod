@@ -28,7 +28,7 @@
 <div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'courseLocation', 'error')} ">
 	<label for="courseLocation">
 		<g:message code="imod.courseLocation.label" default="Classroom Location" />
-		
+
 	</label>
 	<g:textField name="courseLocation" value="${imodInstance?.courseLocation}"/>
 </div>
@@ -36,7 +36,7 @@
 <div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'courseSemester', 'error')} ">
 	<label for="courseSemester">
 		<g:message code="imod.courseSemester.label" default="Semester" />
-		
+
 	</label>
 	<g:textField name="courseSemester" value="${imodInstance?.courseSemester}"/>
 </div>

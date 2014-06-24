@@ -23,18 +23,18 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<g:sortableColumn property="description" title="${message(code: 'scheduleRepeatsEvery.description.label', default: 'Description')}" />
-					
-					
+
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${scheduleRepeatsEveryInstanceList}" status="i" var="scheduleRepeatsEveryInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${scheduleRepeatsEveryInstance.id}">${fieldValue(bean: scheduleRepeatsEveryInstance, field: "description")}</g:link></td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

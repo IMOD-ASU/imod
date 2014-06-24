@@ -13,7 +13,7 @@
 <div class="fieldcontain ${hasErrors(bean: learningObjectiveInstance, field: 'completeLearningObjective', 'error')} ">
 	<label for="completeLearningObjective">
 		<g:message code="learningObjective.completeLearningObjective.label" default="Complete Learning Objective" />
-		
+
 	</label>
 	<g:textField name="completeLearningObjective" value="${learningObjectiveInstance?.completeLearningObjective}"/>
 </div>
@@ -21,7 +21,7 @@
 <div class="fieldcontain ${hasErrors(bean: learningObjectiveInstance, field: 'condition', 'error')} ">
 	<label for="condition">
 		<g:message code="learningObjective.condition.label" default="Condition" />
-		
+
 	</label>
 	<g:textField name="condition" value="${learningObjectiveInstance?.condition}"/>
 </div>
@@ -37,7 +37,7 @@
 <div class="fieldcontain ${hasErrors(bean: learningObjectiveInstance, field: 'criteria', 'error')} ">
 	<label for="criteria">
 		<g:message code="learningObjective.criteria.label" default="Criteria" />
-		
+
 	</label>
 	<g:textField name="criteria" value="${learningObjectiveInstance?.criteria}"/>
 </div>
@@ -69,7 +69,7 @@
 <div class="fieldcontain ${hasErrors(bean: learningObjectiveInstance, field: 'indicator', 'error')} ">
 	<label for="indicator">
 		<g:message code="learningObjective.indicator.label" default="Indicator" />
-		
+
 	</label>
 	<g:textField name="indicator" value="${learningObjectiveInstance?.indicator}"/>
 </div>
@@ -85,7 +85,7 @@
 <div class="fieldcontain ${hasErrors(bean: learningObjectiveInstance, field: 'performance', 'error')} ">
 	<label for="performance">
 		<g:message code="learningObjective.performance.label" default="Performance" />
-		
+
 	</label>
 	<g:textField name="performance" value="${learningObjectiveInstance?.performance}"/>
 </div>

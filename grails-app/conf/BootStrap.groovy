@@ -53,7 +53,7 @@ class BootStrap {
             new imodv6.Help(tabFieldUiId: "Email Label", tabId: "OVERVIEW", tabFieldId: 8, tabFieldName: "Email", text: "Email").save(flush: true)
             new imodv6.Help(tabFieldUiId: "Office Hours Label", tabId: "OVERVIEW", tabFieldId: 9, tabFieldName: "Office Hours", text: "Office Hours").save(flush: true)
             new imodv6.Help(tabFieldUiId: "Web Page Label", tabId: "OVERVIEW", tabFieldId: 10, tabFieldName: "Web Page", text: "Web Page").save(flush: true)
-        
+
 			//Tab 5 Pedagogy
 			new imodv6.Help(tabFieldUiId: "Add New Technique", tabId: "PEDAGOGY", tabFieldId: 1, tabFieldName: "Add New Technique", text: "Click on this button to add a new technique").save(flush: true)
             new imodv6.Help(tabFieldUiId: "Clone technique", tabId: "PEDAGOGY", tabFieldId: 2, tabFieldName: "Clone technique", text: "Click on this button to clone a technique").save(flush: true)
@@ -78,7 +78,7 @@ class BootStrap {
             new ContentPriorityCode(description: "Very important").save(flush: true)
             new ContentPriorityCode(description: "Good to know").save(flush: true)
         }
-		
+
 		if (LearningDomain.count() == 0) {
 			new LearningDomain(name: "Cognitive").save(flush: true)
 			new LearningDomain(name: "Affective").save(flush: true)
@@ -98,8 +98,8 @@ class BootStrap {
 			new DomainCategory(domain_id: 2, name: "Organisation").save(flush: true)
 			new DomainCategory(domain_id: 2, name: "Internalising Values").save(flush: true)
 		}
-	
-		
+
+
         if (ContentKnowledgeDomainCode.count() == 0) {
             new ContentKnowledgeDomainCode(description: "Factual").save(flush: true)
             new ContentKnowledgeDomainCode(description: "Conceptual").save(flush: true)
@@ -113,18 +113,18 @@ class BootStrap {
             new ContentResourceType(description: "Chapter").save(flush: true)
             new ContentResourceType(description: "URL").save(flush: true)
         }
-		
+
 		if(PedagogyMode.count() == 0){
 			new PedagogyMode(name:"online").save(flush:true)
 			new PedagogyMode(name:"in-person").save(flush:true)
 			new PedagogyMode(name:"hybrid").save(flush:true)
 		}
-		
+
 		if(PedagogyReferenceType.count() == 0){
 			new PedagogyReferenceType(description:"Book").save(flush:true)
 			new PedagogyReferenceType(description:"Web").save(flush:true)
 		}
-		
+
 		if(PedagogyActivityDuration.count() == 0){
 			new PedagogyActivityDuration(duration:"Single Session").save(flush:true)
 			new PedagogyActivityDuration(duration:"Multiple Session").save(flush:true)
@@ -136,7 +136,7 @@ class BootStrap {
 			new PedagogyActivityFocus(focus:"Discussing").save(flush:true)
 			new PedagogyActivityFocus(focus:"Presenting").save(flush:true)
 		}
-		
+
 		if(PedagogyTechnique.count() == 0){
 			/*Pedagogy Technique*/
 			def pedagogyTech = new PedagogyTechnique(pedagogyTitle:"Jigsaw",
@@ -167,7 +167,7 @@ class BootStrap {
 				referenceLinkISBN:"978-0-470-28191-8",
 				referenceType:PedagogyReferenceType.findByDescription("Book"),
 				pedagogyTechnique:pedagogyTech).save(flush:true)
-			
+
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(pedagogyTitle:"Structured Problem Solving",
 				pedagogyDescription: "Provides students with a process for solving complex, content based problems within a specified amount of time. It breaks the problem into specific steps and thus students learn to identify, analyze, and solve problems in an organized way",
@@ -201,7 +201,7 @@ class BootStrap {
 				referenceLinkISBN:"978-0-470-28191-8",
 				referenceType:PedagogyReferenceType.findByDescription("Book"),
 				pedagogyTechnique:pedagogyTech).save(flush:true)
-			
+
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(pedagogyTitle:"Face-to Face/ Video / Audio  Lectures ",
 				pedagogyDescription: "Lecture",
@@ -215,7 +215,7 @@ class BootStrap {
 					"Presenting"
 				]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")).save(flush:true)
-			
+
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
 				pedagogyTitle:"Partially Guided Programming Exercise",
@@ -224,7 +224,7 @@ class BootStrap {
 				category:DomainCategory.findAllByNameInList(["Understanding", "Applying", "Analyzing", "Evaluating"]),
 				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
 					"Conceptual",
-					"Procedural"					
+					"Procedural"
 				]),
 				focus: PedagogyActivityFocus.findAllByFocusInList([
 					"Reading",
@@ -233,7 +233,7 @@ class BootStrap {
 					"Presenting"
 				]),
 				pedagogyMode: PedagogyMode.findByName("in-person")).save(flush:true)
-				
+
 				/*Pedagogy Technique*/
 				pedagogyTech = new PedagogyTechnique(pedagogyTitle:"Think Aloud Pair Problem Solving",
 					pedagogyDescription: "Student pairs receive a series of problems as well as specific roles - problem solver and listener - then switch with each problem. The problem solver thinks aloud, talking through the steps of solving the problem, while the partner listens, following the steps, attempting to understand the reasoning behind the steps, and offering suggestions if there is a misstep.",
@@ -273,7 +273,7 @@ class BootStrap {
 					referenceLinkISBN:"978-0-470-28191-8",
 					referenceType:PedagogyReferenceType.findByDescription("Book"),
 					pedagogyTechnique:pedagogyTech).save(flush:true)
-					
+
 					/*Pedagogy Technique*/
 					pedagogyTech = new PedagogyTechnique(pedagogyTitle:"Frames",
 						pedagogyDescription: "Instructors give students a template of sentence stem that provides the shape of a short essay but not the content. Students complete the sentence, expressing their own ideas in their own words within a clear and organized framework.",
@@ -352,7 +352,7 @@ class BootStrap {
 							referenceLinkISBN:"978-0-470-28191-8",
 							referenceType:PedagogyReferenceType.findByDescription("Book"),
 							pedagogyTechnique:pedagogyTech).save(flush:true)
-					
+
 							/*Pedagogy Technique*/410
 							pedagogyTech = new PedagogyTechnique(pedagogyTitle:"Seminar",
 								pedagogyDescription: "Students make formal presentations of an original paper to a small group of peers.",

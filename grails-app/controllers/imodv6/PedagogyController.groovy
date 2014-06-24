@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse
 class PedagogyController {
 	def springSecurityService
 	static allowedMethods = [reloadPedagogyTab: "GET", pedagogyTab: "GET", addNewTechnique: "POST"]
-	
+
 	/**
 	 * updateExtendedTechnique action used to updated Extended Match
 	 * @return
@@ -21,7 +21,7 @@ class PedagogyController {
 		}else{
 			domain.add(params.domain)
 		}
-		
+
 		if(params.domainCategory.toString().contains("[")){
 			params.domainCategory.each{
 				domainCategory.add(it)
@@ -29,7 +29,7 @@ class PedagogyController {
 		}else{
 			domainCategory.add(params.domainCategory)
 		}
-		
+
 		if(params.kdomain.toString().contains("[")){
 			params.kdomain.each{
 				kdomain.add(it)
@@ -40,9 +40,9 @@ class PedagogyController {
 		LinkedHashSet pedaTechList
 		if(kdomain.size() > 0)
 			pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd)) order by p.pedagogyTitle', [dc: domain,ld: domainCategory,kd: kdomain])
-		else 
+		else
 			pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld)) order by p.pedagogyTitle', [dc: domain,ld: domainCategory])
-			
+
 		def selectionLine = ""
 		if(domain.size() > 0){
 			if(domain.size() == 1){
@@ -71,7 +71,7 @@ class PedagogyController {
 				selectionLine += " > Knowledge Dimension (${kdomain.size()} Selections)"
 			}
 		}
-		
+
 		render view:"_pedagogyExtendedMatch", model:[selectionLine:selectionLine, pedaTechList:pedaTechList,objectiveId:params.objectiveId,userId:ImodUser.get(springSecurityService.principal.id)]
 	}
 	/**
@@ -81,8 +81,8 @@ class PedagogyController {
 	def addNewTechnique(){
 		def pedagogyActivity
 		def pedagogyReference
-		def pedTecInstance		
-		
+		def pedTecInstance
+
 		pedTecInstance = new PedagogyTechnique(params)
 		pedTecInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
 		if (!pedTecInstance.save(flush: true)) {
@@ -105,7 +105,7 @@ class PedagogyController {
 		}
 		redirect(controller: 'imod', action: 'edit', id: params.id, params: [loadPedagogyTab: true])
 	}
-	
+
 	/**
 	 * pedagogyTab action is called when used click on pedagogyTab from main page.
 	 * @param id
@@ -116,7 +116,7 @@ class PedagogyController {
 		if (imod) {
 			Long objectiveId = params.objectiveId ? params.long('objectiveId') : null
 			def lrnDomainlist = LearningDomain.list(sort:'id');
-			
+
 			List<LearningObjective> objectiveList = LearningObjective.findAllByImod(imod)
 			Set<Content> remainingContent = []
 			Set<Content> currentImodContentList = []
@@ -125,18 +125,18 @@ class PedagogyController {
 				remainingContent.addAll(it.contents);
 			}
 			LearningObjective objective = objectiveId ? LearningObjective.get(objectiveId) : objectiveList ? objectiveList?.first() : null
-			
+
 			List<Content> kdList = Content.findAllByObjective(objective)
 			def strkdList = []
 			def contentTitle = []
 			def performanceTitle = "${objective.performance}"
-			
+
 			kdList.each{
 				print "${it.knowledgeDomainCode}"
 				strkdList.add("${it.knowledgeDomainCode}")
 				contentTitle.add("${it.topicTitle}")
 			}
-			
+
 			List<imodv6.ContentSchedule> topicDateForCurrentLearningObjectiveList = []
 			Set<Content> contentList = objective ? objective.contents : []
 			topicDateForCurrentLearningObjectiveList.addAll(imodv6.ContentSchedule.findAllByContentInList(contentList))
@@ -151,17 +151,17 @@ class PedagogyController {
 			remainingContent.removeAll(contentList ? contentList.toList() : [])
 			List<ContentKnowledgeDomainCode> knowledgeDomainCodes = ContentKnowledgeDomainCode.values()
 			List<ContentPriorityCode> contentPriorityCodeTypeList = ContentPriorityCode.values()
-			
+
 			//To get the Domain Category
-			LearningDomain domain = LearningDomain.get(1)			
+			LearningDomain domain = LearningDomain.get(1)
 			def domainList = DomainCategory.findAllByDomain(domain,[sort:'id']);
-						
-			
+
+
 			//To get the Knowledge Dimension
 			def KnowledgeDomainlist = ContentKnowledgeDomainCode.list(sort:'id')
 			Map<String, String> mapkdList = new HashMap<String,String>()
 			def kdmnList = []
-			
+
 			KnowledgeDomainlist.each{ kd ->
 				def flag = false
 				def sKD = "${kd}"
@@ -181,13 +181,13 @@ class PedagogyController {
 					mapkdList.put(sKD, "false")
 				}
 			}
-			
+
 			LinkedHashSet pedaTechList
 			if(kdmnList.size() > 0)
 				pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString(),kd: kdmnList])
 			else
 				pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString()])
-			
+
 			def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
 			def selectionLine = "${objective.learningDomain} > ${objective.domainCategory}"
 			if(kdmnList.size() > 0){
@@ -247,19 +247,19 @@ class PedagogyController {
 	 * Index, This action will used to load left panel on Pedagogy
 	 */
 	def index ={
-		
+
 		// TO get the Learning Objectives
 		Imod imod = Imod.get(48)
 		def objectiveList = LearningObjective.findAllByImod(imod)
-		
+
 		//To get the Domain Category
 		LearningDomain domain = LearningDomain.get(1)
 		def domainList = DomainCategory.findAllByDomain(domain);
-		
+
 		//To get the Knowledge Dimension
 		def KnowledgeDomainlist = ContentKnowledgeDomainCode.list()
-		
-		
+
+
 		return [objectiveList : objectiveList, domainList: domainList, KnowledgeDomainlist: KnowledgeDomainlist]
 	}
 	/**
@@ -318,7 +318,7 @@ class PedagogyController {
 				}
 			}
 		}
-		if(flag){			
+		if(flag){
 			println message
 			render template:"pedagogyCloneTechnique", model:[errorMsg:message,pedagogyTech:PedagogyTechnique.get(params.pedagogy_tech_id),lrnDomainlist:LearningDomain.list(),domainList:DomainCategory.list(),KnowledgeDomainlist:ContentKnowledgeDomainCode.list()]
 //			render template:"pedagogyCloneTechnique",status:HttpServletResponse.SC_INTERNAL_SERVER_ERROR
@@ -336,7 +336,7 @@ class PedagogyController {
 		def pedagogyActivity
 		def pedagogyReference
 		def pedTecInstance
-		
+
 		pedTecInstance = new PedagogyTechnique(params)
 		pedTecInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
 		if (!pedTecInstance.save(flush: true)) {

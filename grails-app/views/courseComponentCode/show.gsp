@@ -22,25 +22,25 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list courseComponentCode">
-			
+
 				<g:if test="${courseComponentCodeInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="courseComponentCode.description.label" default="Description" /></span>
-					
+
 						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${courseComponentCodeInstance}" field="description"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${courseComponentCodeInstance?.designation}">
 				<li class="fieldcontain">
 					<span id="designation-label" class="property-label"><g:message code="courseComponentCode.designation.label" default="Designation" /></span>
-					
+
 						<span class="property-value" aria-labelledby="designation-label"><g:link controller="componentDesignation" action="show" id="${courseComponentCodeInstance?.designation?.id}">${courseComponentCodeInstance?.designation?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

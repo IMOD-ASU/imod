@@ -22,16 +22,16 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list scheduleRepeatsEvery">
-			
+
 				<g:if test="${scheduleRepeatsEveryInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="scheduleRepeatsEvery.description.label" default="Description" /></span>
-					
+
 						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${scheduleRepeatsEveryInstance}" field="description"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

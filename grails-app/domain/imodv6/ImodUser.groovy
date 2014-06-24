@@ -11,11 +11,11 @@ class ImodUser {
 	boolean accountLocked
 	boolean passwordExpired
 
-	
+
 	static hasMany = [imods:Imod]
 	static hasOne = [preferences:UserPreferences, profile:UserProfile]
-	
-	
+
+
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
@@ -27,7 +27,7 @@ class ImodUser {
 
 	static mapping = {
 		password column: '`password`'
-		
+
 	}
 
 	Set<Role> getAuthorities() {
@@ -47,7 +47,7 @@ class ImodUser {
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
 	}
-	
+
 	def String toString(){
 		return username
 	}

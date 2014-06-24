@@ -6,14 +6,14 @@ class ActionWord {
 	ImodUser user
 	LearningDomain domain
 	DomainCategory category
-	
+
     static constraints = {
     }
-	
+
 	static mapping = {
 		version false
 	}
-	
+
 	def String toString(){
 		return actionWord
 	}
