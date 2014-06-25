@@ -10,17 +10,25 @@ import imodv6.PedagogyMode
 import imodv6.PedagogyReference
 import imodv6.PedagogyReferenceType
 import imodv6.PedagogyTechnique
+import imodv6.ImodUser
+import imodv6.ImodUserRole
 
 
 class BootStrap {
 
     def init = { servletContext ->
+    	def tempRole
         if (imodv6.Role.list().size() == 0) {
             //user roles can be changed here, or in the ui
             new imodv6.Role(authority: "ROLE_ANONYMOUS").save();
             new imodv6.Role(authority: "ROLE_ADMIN").save();
-            new imodv6.Role(authority: "ROLE_USER").save();
+            tempRole = new imodv6.Role(authority: "ROLE_USER").save();
         }
+
+        if (imodv6.ImodUser.count() < 1){
+			def developer = new imodv6.ImodUser(username: "postgres", password: "postgres", enabled: true, accountExpired: false, accountLocked: false, passwordExpired: false).save(flush: true)
+			new imodv6.ImodUserRole(imodUser: developer, role: tempRole).save(flush: true)
+		}
 
         if (imodv6.Help.count() == 0) {
             //Tab 3 Content tab
