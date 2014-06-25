@@ -19,9 +19,9 @@
 								<div class="form_title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 									<span class="title_text">
 										Learning Objectives
-										<g:link action="create">
-											<button type="submit"><span class="fa fa-plus"></span> Add</button>
-										</g:link>
+										<a href="/imodv6/learningObjective/create">
+											<button><span class="fa fa-plus"></span> Add</button>
+										</a>
 
 									</span>
 								</div>
