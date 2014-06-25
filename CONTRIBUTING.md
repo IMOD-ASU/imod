@@ -39,6 +39,10 @@ Example:
 > merits).
 
 #### Code Guidelines
+Front end code should be written in [HTML5](http://www.w3schools.com/tags/default.asp) following the [Google style guide](https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml) (using tabs instead of two spaces)
+
+When creating pages, HTML is for content, Cascading Stylesheets are for presentation, Javascript is for events and state. Keep these languages each in their seperate files. ([http://webdesignfromscratch.com/html-css/how-html-css-js-work-together/](http://webdesignfromscratch.com/html-css/how-html-css-js-work-together/))
+
 Follow the [Zen of Python](http://legacy.python.org/dev/peps/pep-0020/)
 > Beautiful is better than ugly.
 >
