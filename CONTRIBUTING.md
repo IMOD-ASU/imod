@@ -1,6 +1,9 @@
 Contributing Guidelines
 ====
 
+#### Editor Guidelines
+Please install the [Editor Config plugin](http://editorconfig.org/#download) for your prefered editor to assist with uniform code style
+
 #### Git Guidelines
 - Always work from a separate branch
   * user branch is okay
