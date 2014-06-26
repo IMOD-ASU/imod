@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.edit.gsp.css')}">
 		<script src="${resource(dir: 'js/source', file: 'imod.edit.gsp.js')}"></script>
 
-		<script src="${resource(dir: 'js/library', file: 'jquery-ui-1.10.3.custom.min.js')}" defer></script>
+		<script src="${resource(dir: 'js', file: 'jquery-ui-1.10.3.custom.min.js')}" defer></script>
 
 		<title>
 			<g:message code="default.edit.label" args="[entityName]"/>
