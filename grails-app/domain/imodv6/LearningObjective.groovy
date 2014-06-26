@@ -28,6 +28,7 @@ class LearningObjective {
 
 	/**
 	 * Linkers to other domain objects (?)
+	 * TODO: double check this is really what is going on
 	 */
 	LearningDomain learningDomain
 	DomainCategory domainCategory
