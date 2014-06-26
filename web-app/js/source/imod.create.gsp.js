@@ -21,6 +21,25 @@ jQuery(document).ready(function () {
 	if (showHelp!="true"){
 		$("#help_placeholder").css("display","none")
 	}
+	$("#tabs-LO-subhead").tabs({
+			activate: function(event,ui){
+				var active=$('#tabs-LO-subhead').tabs('option','active');
+				var activeFile=$("#tabs-LO-subhead ul>li a").eq(active).attr("file");
+				var imageSrc="${resource(dir: 'images/learningObjectives', file: '"+activeFile+".png')}";
+				$("#LO-type-icon").attr("src",imageSrc);
+			}
+		}
+	);
+	$('input:radio[name=LO_condition_type]').change(function(){
+		if(this.value=='Generic'){
+			$('#LO_condition_custom').css("display","none")
+			$('#LO_condition_generic').css("display","block")
+		}
+		else{
+			$('#LO_condition_generic').css("display","none")
+			$('#LO_condition_custom').css("display","block")
+		}
+	});
 });
 
 function updateDatePicker () {

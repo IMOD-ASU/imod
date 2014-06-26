@@ -10,6 +10,7 @@
 			</g:eachError>
 		</ul>
 	</g:hasErrors>
+
 	<table style="border:1px solid black; border-collapse:collapse; left:-5%;height:500px; width:110%;" class="inner_table">
 		<tr >
 			<td style="border:1px solid black; border-collapse:collapse; width:30%" rowspan="2">
