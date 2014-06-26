@@ -9,11 +9,19 @@
 		<script src="${resource(dir: 'js', file: 'jquery.treeview.js')}"></script>
 		<script src="${resource(dir: 'js', file: 'jquery-ui-1.10.3.custom.min.js')}"></script>
 		<script src="${resource(dir: 'js/source', file: 'imod.create.gsp.js')}"></script>
-		<link rel="stylesheet" href="${resource(dir: 'css/library', file: 'jquery.treeview.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.treeview.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.create.gsp.css')}" type="text/css">
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		<script>
+		$(document).ready(function() {
+			var displayHelp="${ImodUser.get(currentUser).preferences.showHelp}";
+			var dateFormat = "${ImodUser.get(currentUser).preferences.dateRepresentation}";
+			showHelp(displayHelp);
+			updateDatePicker(dateFormat);
+		});
+		</script>
 	</head>
-	<body onLoad="myFunc()">
+	<body>
 		<a href="#create-imod" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="help_placeholder"  >
 			<img id="resize_quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/><span>Quick tip</Span> <a id="closebutton" href="#" onclick="toggleHelp()">_</a>
