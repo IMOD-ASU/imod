@@ -7,9 +7,9 @@ class InstructorController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 		def springSecurityService
-	
+
 	def currentUser
-	
+
 	def beforeInterceptor ={
 		if(!springSecurityService.isLoggedIn()){
 			redirect(controller:'login', action: 'auth')
@@ -17,8 +17,8 @@ class InstructorController {
 		}
 		currentUser = springSecurityService.currentUser.id
 	}
-	
-   
+
+
     def index() {
         redirect(action: "list", params: params)
     }
@@ -32,7 +32,7 @@ class InstructorController {
         [instructorInstance: new Instructor(params)]
     }
 
-    def save() {		
+    def save() {
 		params.remove('createdBy')
 		params.remove('createdBy.id')
 		params.put('createdBy.id', currentUser)

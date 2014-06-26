@@ -11,5 +11,5 @@
 	<div id="LO-criteria">
 		Criteria
 	</div>
-	
+
 </div>

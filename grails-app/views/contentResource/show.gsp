@@ -22,25 +22,25 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list contentResource">
-			
+
 				<g:if test="${contentResourceInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="contentResource.name.label" default="Name" /></span>
-					
+
 						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${contentResourceInstance}" field="name"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${contentResourceInstance?.type}">
 				<li class="fieldcontain">
 					<span id="type-label" class="property-label"><g:message code="contentResource.type.label" default="Type" /></span>
-					
+
 						<span class="property-value" aria-labelledby="type-label"><g:link controller="contentResourceType" action="show" id="${contentResourceInstance?.type?.id}">${contentResourceInstance?.type?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

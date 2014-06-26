@@ -13,7 +13,7 @@
 <div class="fieldcontain ${hasErrors(bean: coursePolicyInstance, field: 'description', 'error')} ">
 	<label for="description">
 		<g:message code="coursePolicy.description.label" default="Description" />
-		
+
 	</label>
 	<g:textField name="description" value="${coursePolicyInstance?.description}"/>
 </div>
@@ -21,7 +21,7 @@
 <div class="fieldcontain ${hasErrors(bean: coursePolicyInstance, field: 'name', 'error')} ">
 	<label for="name">
 		<g:message code="coursePolicy.name.label" default="Name" />
-		
+
 	</label>
 	<g:textField name="name" value="${coursePolicyInstance?.name}"/>
 </div>

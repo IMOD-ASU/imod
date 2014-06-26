@@ -22,34 +22,34 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list contentSchedule">
-			
+
 				<g:if test="${contentScheduleInstance?.content}">
 				<li class="fieldcontain">
 					<span id="content-label" class="property-label"><g:message code="contentSchedule.content.label" default="Content" /></span>
-					
+
 						<span class="property-value" aria-labelledby="content-label"><g:link controller="content" action="show" id="${contentScheduleInstance?.content?.id}">${contentScheduleInstance?.content?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${contentScheduleInstance?.imod}">
 				<li class="fieldcontain">
 					<span id="imod-label" class="property-label"><g:message code="contentSchedule.imod.label" default="Imod" /></span>
-					
+
 						<span class="property-value" aria-labelledby="imod-label"><g:link controller="imod" action="show" id="${contentScheduleInstance?.imod?.id}">${contentScheduleInstance?.imod?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${contentScheduleInstance?.startDate}">
 				<li class="fieldcontain">
 					<span id="startDate-label" class="property-label"><g:message code="contentSchedule.startDate.label" default="Start Date" /></span>
-					
+
 						<span class="property-value" aria-labelledby="startDate-label"><g:formatDate date="${contentScheduleInstance?.startDate}" /></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

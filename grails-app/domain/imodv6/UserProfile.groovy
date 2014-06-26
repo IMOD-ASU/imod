@@ -5,7 +5,7 @@ class UserProfile {
 	String lastName
 	String middleInitial
 	String email
-	
+
 	String organization
 	String themeCode
 	String streetAddress
@@ -17,7 +17,7 @@ class UserProfile {
 
 	ImodUser user
 
-	
+
     static constraints = {
 		// remove these constraints selectively in the future if profile is not nullable in ImodUser class
 		firstName nullable: true
@@ -32,7 +32,7 @@ class UserProfile {
 		country nullable: true
 		zip nullable: true
    }
-	
+
 	static mapping = {
 		version false
 	}

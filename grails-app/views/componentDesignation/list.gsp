@@ -23,17 +23,17 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<g:sortableColumn property="description" title="${message(code: 'componentDesignation.description.label', default: 'Description')}" />
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${componentDesignationInstanceList}" status="i" var="componentDesignationInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${componentDesignationInstance.id}">${fieldValue(bean: componentDesignationInstance, field: "description")}</g:link></td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

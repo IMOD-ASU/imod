@@ -23,29 +23,29 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<th><g:message code="content.chapter.label" default="Chapter" /></th>
-					
+
 						<g:sortableColumn property="knowledgeDomainCode" title="${message(code: 'content.learningObjectiveType.label', default: 'Learning Objective Type')}" />
-					
+
 						<g:sortableColumn property="priorityCode" title="${message(code: 'content.priorityCodeType.label', default: 'Priority Code Type')}" />
-					
+
 						<g:sortableColumn property="topicTitle" title="${message(code: 'content.topicTitle.label', default: 'Topic Title')}" />
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${contentInstanceList}" status="i" var="contentInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${contentInstance.id}">${fieldValue(bean: contentInstance, field: "chapter")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: contentInstance, field: "knowledgeDomainCode")}</td>
-					
+
 						<td>${fieldValue(bean: contentInstance, field: "priorityCode")}</td>
-					
+
 						<td>${fieldValue(bean: contentInstance, field: "topicTitle")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

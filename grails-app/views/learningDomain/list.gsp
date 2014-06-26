@@ -23,17 +23,17 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<g:sortableColumn property="name" title="${message(code: 'learningDomain.name.label', default: 'Name')}" />
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${learningDomainInstanceList}" status="i" var="learningDomainInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${learningDomainInstance.id}">${fieldValue(bean: learningDomainInstance, field: "name")}</g:link></td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

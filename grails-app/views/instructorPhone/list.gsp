@@ -23,25 +23,25 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<th><g:message code="instructorPhone.instructor.label" default="Instructor" /></th>
-					
+
 						<g:sortableColumn property="number" title="${message(code: 'instructorPhone.number.label', default: 'Number')}" />
-					
+
 						<g:sortableColumn property="type" title="${message(code: 'instructorPhone.type.label', default: 'Type')}" />
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${instructorPhoneInstanceList}" status="i" var="instructorPhoneInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${instructorPhoneInstance.id}">${fieldValue(bean: instructorPhoneInstance, field: "instructor")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: instructorPhoneInstance, field: "number")}</td>
-					
+
 						<td>${fieldValue(bean: instructorPhoneInstance, field: "type")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

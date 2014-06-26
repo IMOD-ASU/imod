@@ -1,9 +1,3 @@
-/* FONT STACK */
-@font-face {
-    font-family: Ubuntu;
-    src: local(Ubuntu), url('../font/Ubuntu/Ubuntu-Regular.ttf') format('opentype');
-}
-
 body,
 input, select, textarea {
 	font-family: "Ubuntu";

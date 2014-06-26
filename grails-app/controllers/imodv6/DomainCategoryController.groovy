@@ -5,9 +5,9 @@ import org.springframework.dao.DataIntegrityViolationException
 class DomainCategoryController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-	
+
 	def springSecurityService
-	
+
 	def beforeInterceptor ={
 		if(!springSecurityService.isLoggedIn()){
 			redirect(controller:'login', action: 'auth')

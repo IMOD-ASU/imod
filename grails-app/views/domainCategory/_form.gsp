@@ -13,7 +13,7 @@
 <div class="fieldcontain ${hasErrors(bean: domainCategoryInstance, field: 'name', 'error')} ">
 	<label for="name">
 		<g:message code="domainCategory.name.label" default="Name" />
-		
+
 	</label>
 	<g:textField name="name" value="${domainCategoryInstance?.name}"/>
 </div>

@@ -26,7 +26,7 @@
 		<link rel="stylesheet" href="${resource(dir: 'css/flick', file: 'jquery-ui-1.10.3.custom.css')}" type="text/css">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
-		
+
 		<script src="${resource(dir: 'js/source', file: 'application.js')}" defer></script>
 
 	  <gvisualization:apiImport/>

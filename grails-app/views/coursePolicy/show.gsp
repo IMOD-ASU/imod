@@ -22,43 +22,43 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list coursePolicy">
-			
+
 				<g:if test="${coursePolicyInstance?.category}">
 				<li class="fieldcontain">
 					<span id="category-label" class="property-label"><g:message code="coursePolicy.category.label" default="Category" /></span>
-					
+
 						<span class="property-value" aria-labelledby="category-label"><g:link controller="coursePolicyCategory" action="show" id="${coursePolicyInstance?.category?.id}">${coursePolicyInstance?.category?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${coursePolicyInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="coursePolicy.description.label" default="Description" /></span>
-					
+
 						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${coursePolicyInstance}" field="description"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${coursePolicyInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="coursePolicy.name.label" default="Name" /></span>
-					
+
 						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${coursePolicyInstance}" field="name"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${coursePolicyInstance?.user}">
 				<li class="fieldcontain">
 					<span id="user-label" class="property-label"><g:message code="coursePolicy.user.label" default="User" /></span>
-					
+
 						<span class="property-value" aria-labelledby="user-label"><g:link controller="imodUser" action="show" id="${coursePolicyInstance?.user?.id}">${coursePolicyInstance?.user?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

@@ -23,20 +23,20 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<th><g:message code="domainCategory.domain.label" default="Domain" /></th>
-					
-						<g:sortableColumn property="name" title="${message(code: 'domainCategory.name.label', default: 'Name')}" />			
+
+						<g:sortableColumn property="name" title="${message(code: 'domainCategory.name.label', default: 'Name')}" />
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${domainCategoryInstanceList}" status="i" var="domainCategoryInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${domainCategoryInstance.id}">${fieldValue(bean: domainCategoryInstance, field: "domain")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: domainCategoryInstance, field: "name")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

@@ -12,9 +12,9 @@ class Schedule {
 	Integer thursday
 	Integer friday
 	Integer saturday
-	
+
 	static belongsTo = [imod:Imod]
-	
+
     static constraints = {
 		endOccurences nullable: true
 		sunday nullable: true
@@ -26,7 +26,7 @@ class Schedule {
 		saturday nullable: true
 		repeatsDays nullable: true
     }
-	
+
 	static mapping = {
 		version false
 	}

@@ -23,21 +23,21 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<g:sortableColumn property="description" title="${message(code: 'courseComponentCode.description.label', default: 'Description')}" />
-					
+
 						<th><g:message code="courseComponentCode.designation.label" default="Designation" /></th>
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${courseComponentCodeInstanceList}" status="i" var="courseComponentCodeInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${courseComponentCodeInstance.id}">${fieldValue(bean: courseComponentCodeInstance, field: "description")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: courseComponentCodeInstance, field: "designation")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

@@ -23,37 +23,37 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<th><g:message code="learningObjective.actionWord.label" default="Action Word" /></th>
-					
+
 						<g:sortableColumn property="completeLearningObjective" title="${message(code: 'learningObjective.completeLearningObjective.label', default: 'Complete Learning Objective')}" />
-					
+
 						<g:sortableColumn property="condition" title="${message(code: 'learningObjective.condition.label', default: 'Condition')}" />
-					
+
 						<th><g:message code="learningObjective.content.label" default="Content" /></th>
-					
+
 						<g:sortableColumn property="criteria" title="${message(code: 'learningObjective.criteria.label', default: 'Criteria')}" />
-					
+
 						<th><g:message code="learningObjective.criteriaType.label" default="Criteria Type" /></th>
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${learningObjectiveInstanceList}" status="i" var="learningObjectiveInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${learningObjectiveInstance.id}">${fieldValue(bean: learningObjectiveInstance, field: "actionWord")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: learningObjectiveInstance, field: "completeLearningObjective")}</td>
-					
+
 						<td>${fieldValue(bean: learningObjectiveInstance, field: "condition")}</td>
-					
+
 						<td>${fieldValue(bean: learningObjectiveInstance, field: "content")}</td>
-					
+
 						<td>${fieldValue(bean: learningObjectiveInstance, field: "criteria")}</td>
-					
+
 						<td>${fieldValue(bean: learningObjectiveInstance, field: "criteriaType")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

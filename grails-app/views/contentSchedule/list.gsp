@@ -23,25 +23,25 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<th><g:message code="contentSchedule.content.label" default="Content" /></th>
-					
+
 						<th><g:message code="contentSchedule.imod.label" default="Imod" /></th>
-					
+
 						<g:sortableColumn property="startDate" title="${message(code: 'contentSchedule.startDate.label', default: 'Start Date')}" />
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${contentScheduleInstanceList}" status="i" var="contentScheduleInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${contentScheduleInstance.id}">${fieldValue(bean: contentScheduleInstance, field: "content")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: contentScheduleInstance, field: "imod")}</td>
-					
+
 						<td><g:formatDate date="${contentScheduleInstance.startDate}" /></td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

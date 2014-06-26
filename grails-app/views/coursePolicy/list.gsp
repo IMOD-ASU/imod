@@ -23,29 +23,29 @@
 			<table>
 				<thead>
 					<tr>
-					
+
 						<th><g:message code="coursePolicy.category.label" default="Category" /></th>
-					
+
 						<g:sortableColumn property="description" title="${message(code: 'coursePolicy.description.label', default: 'Description')}" />
-					
+
 						<g:sortableColumn property="name" title="${message(code: 'coursePolicy.name.label', default: 'Name')}" />
-					
+
 						<th><g:message code="coursePolicy.user.label" default="User" /></th>
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${coursePolicyInstanceList}" status="i" var="coursePolicyInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${coursePolicyInstance.id}">${fieldValue(bean: coursePolicyInstance, field: "category")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: coursePolicyInstance, field: "description")}</td>
-					
+
 						<td>${fieldValue(bean: coursePolicyInstance, field: "name")}</td>
-					
+
 						<td>${fieldValue(bean: coursePolicyInstance, field: "user")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>

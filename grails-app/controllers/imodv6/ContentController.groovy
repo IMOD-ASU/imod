@@ -179,7 +179,7 @@ class ContentController {
                     objectiveList: objectiveList, contentList: contentList, learningObjectiveTypeList: knowledgeDomainCodes]
         }
     }
-	
+
 
     def reloadContentTab(Long id, Long objectiveId) {
         redirect(controller: 'imod', action: 'edit', id: id, params: [loadContentTab: true, objectiveId: objectiveId])
