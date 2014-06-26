@@ -346,6 +346,16 @@
 						}
 					}
 				);
+				$('input:radio[name=LO_condition_type]').change(function(){
+					if(this.value=='Generic'){
+						$('#LO_condition_custom').css("display","none")
+						$('#LO_condition_generic').css("display","block")
+					}
+					else{
+						$('#LO_condition_generic').css("display","none")
+						$('#LO_condition_custom').css("display","block")
+					}
+				});
 
 				$("#accordion").accordion();
 				updateDatePicker();

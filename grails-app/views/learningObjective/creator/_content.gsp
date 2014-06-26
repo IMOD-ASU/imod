@@ -6,7 +6,7 @@
 		Content
 	</div>
 	<div id="LO-condition">
-		Condition
+		<g:render template="/learningObjective/creator/LO_condition"/>
 	</div>
 	<div id="LO-criteria">
 		Criteria

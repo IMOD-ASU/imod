@@ -5,6 +5,7 @@ input, select, textarea {
 	font-family: "Ubuntu";
 	/*"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;*/
 	height:100%;
+	min-height:100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -14,6 +15,8 @@ h1, h2, h3, h4, h5, h6 {
 /* BASE LAYOUT */
 
 html {
+	height: 100%;
+	min-height: 100%;
 	background-color: #ddd;
 	background-image: -moz-linear-gradient(center top, #aaa, #ddd);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));

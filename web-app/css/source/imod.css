@@ -9,7 +9,8 @@ table.LO_inner_table {
 	position: relative;
 	left: -5%;
 	width: 110%;
-	min-height: 80%;
+	height: 100%;
+	min-height:40em;
 	border-spacing:10px 5px;
 	border-collapse:separate;
 }
@@ -38,6 +39,34 @@ td.LO_creator{
 	border-radius:5px;
 	border-style:solid;
 }
+#LO_condition_radio_form{
+	height:1.5em;
+	font-size:1.3em;
+	font-weight:bold;
+	margin-left:auto;
+	margin-right:auto;
+	width:15em;
+	padding:1em;
+}
+#LO_condition_radio_form span{
+	margin-left:2em;
+}
+.LO_condition_radio{
+	height:1.3em;
+	width:1.3em;
+	margin-right:5px;
+	margin-left:5px;
+	vertical-align:middle;
+}
+#LO_condition_custom{
+	display:none;
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#LO_condition_generic{
+	display:block;
+}
 #LO-type-icon{
 	display:inline-block;
 	float:left;
@@ -61,16 +90,26 @@ td.LO_creator{
 	margin:10px;
 	border-collapse:collapse;
 }
-#tabs-LO-subhead .ui-tabs-nav li a:active{
-	color:#0000FF;
-}
+
 #tabs-LO-subhead .ui-tabs-nav li.ui-state-active a {
-	color:#0000FF;
 	background:-webkit-radial-gradient(bottom, #FDFDFD, transparent);
 	background:-o-radial-gradient(bottom, #FDFDFD, transparent);
 	background:-moz-radial-gradient(bottom, #FDFDFD, transparent);
 	background:radial-gradient(bottom, #FDFDFD, transparent);
 }
+#tabs-LO-subhead .ui-tabs-nav li.ui-state-active a.performance {
+	color:#3BA8DE;
+}
+#tabs-LO-subhead .ui-tabs-nav li.ui-state-active a.content {
+	color:#F7941D;
+}
+#tabs-LO-subhead .ui-tabs-nav li.ui-state-active a.condition {
+	color:#EC008C;
+}
+#tabs-LO-subhead .ui-tabs-nav li.ui-state-active a.criteria {
+	color:#EC008C;
+}
+
 #tabs-LO-subhead .ui-tabs-nav li a {
 	color:#B6B6B6;
 	outline-color: transparent;
