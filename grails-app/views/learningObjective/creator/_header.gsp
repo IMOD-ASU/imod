@@ -3,10 +3,10 @@
 
 <div id="tabs-LO-subhead">
 	<ul class="ui-tabs-nav">
-		<li><A file="LO-performance" class="performance" href="#LO-performance">Performance</A></li>
-		<li><A file="LO-content" class="content" href="#LO-content">Content</A></li>
-		<li><A file="LO-condition" class="condition" href="#LO-condition">Condition</A></li>
-		<li><A file="LO-criteria" class="criteria" href="#LO-criteria">Criteria</A></li>
+		<li><A file="${resource(dir: 'images/learningObjectives', file: 'LO-performance.png')}" class="performance" href="#LO-performance">Performance</A></li>
+		<li><A file="${resource(dir: 'images/learningObjectives', file: 'LO-content.png')}" class="content" href="#LO-content">Content</A></li>
+		<li><A file="${resource(dir: 'images/learningObjectives', file: 'LO-condition.png')}" class="condition" href="#LO-condition">Condition</A></li>
+		<li><A file="${resource(dir: 'images/learningObjectives', file: 'LO-criteria.png')}" class="criteria" href="#LO-criteria">Criteria</A></li>
 	</ul>
 	<div class="tabs-background"></div>
 <hr />

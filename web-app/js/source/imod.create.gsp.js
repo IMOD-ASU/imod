@@ -17,15 +17,11 @@ jQuery(document).ready(function () {
 			container: $('div#qtipPlace')
 		}
 	});
-	var showHelp="${ImodUser.get(currentUser).preferences.showHelp}";
-	if (showHelp!="true"){
-		$("#help_placeholder").css("display","none")
-	}
 	$("#tabs-LO-subhead").tabs({
 			activate: function(event,ui){
 				var active=$('#tabs-LO-subhead').tabs('option','active');
-				var activeFile=$("#tabs-LO-subhead ul>li a").eq(active).attr("file");
-				var imageSrc="${resource(dir: 'images/learningObjectives', file: '"+activeFile+".png')}";
+				var imageSrc=$("#tabs-LO-subhead ul>li a").eq(active).attr("file");
+
 				$("#LO-type-icon").attr("src",imageSrc);
 			}
 		}
@@ -42,9 +38,15 @@ jQuery(document).ready(function () {
 	});
 });
 
-function updateDatePicker () {
+function showHelp(displayHelp){
+
+	if (displayHelp!="true"){
+		$("#help_placeholder").css("display","none")
+	}
+	
+}
+function updateDatePicker (dateFormat) {
 	$("input[value='date.struct']:hidden").each(function() {
-		var dateFormat = "${ImodUser.get(currentUser).preferences.dateRepresentation}";
 		var name = $(this).attr('name');
 		var id = name.replace(".", "_").replace("[", "_").replace("]", "_") + "_input"; // Create JQuery Friendly ID
 
@@ -134,10 +136,7 @@ $(document).ready(function() {
 		}
 	});
 	$("#accordion").accordion();
-	updateDatePicker();
-	$("#spinner").ajaxComplete (function(event, request, settings){
-		updateDatePicker();
-	});
+
 
 });
 
