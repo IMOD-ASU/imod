@@ -1,43 +1,75 @@
 package imodv6
 
 class LearningObjective {
-    String condition
-    String performance
-    String criteria
-    String indicator
-    String completeLearningObjective
-    LearningDomain learningDomain
-    DomainCategory domainCategory
-    ActionWord actionWord
-    LearningObjectiveCriteriaType criteriaType
+	/**
+	 * These Strings store the informantion used to make the learning objective definition
+	 * preAttributes are the filler String used to give context to the attribute
+	 * attributes are the dynamic content from the learning objective
+	 * postAtrributes are the linking words between this attribute and the next
+	 */
+	String preCondition
+	String condition
+	String postCondition
 
-    static belongsTo = [imod: Imod]
+	String prePerformance
+	String performance
+	String postPerformance
 
-    static hasMany = [contents: Content, pedogoyTechniques: PedagogyTechnique]
+	String preCriteria
+	String criteria
+	String postCriteria
 
-    static transients = ['name']
+	String preIndicator
+	String indicator
+	String postIndicator
 
-    static constraints = {
-        condition nullable: true
-        performance nullable: true
-        criteria nullable: true
-        indicator nullable: true
-        learningDomain nullable: true
-        domainCategory nullable: true
-        actionWord nullable: true
-        criteriaType nullable: true
-    }
+	// TODO: what is this for?
+	String completeLearningObjective
 
-    static mapping = {
-        version false
-    }
-	
+	/**
+	 * Linkers to other domain objects (?)
+	 * TODO: double check this is really what is going on
+	 */
+	LearningDomain learningDomain
+	DomainCategory domainCategory
+	ActionWord actionWord
+	LearningObjectiveCriteriaType criteriaType
 
-    def String toString() {
-        return completeLearningObjective
-    }
+	/**
+	 * Relationships to other domain objects
+	 */
+	static belongsTo = [imod: Imod]
 
-    def String getName() {
-        return completeLearningObjective
-    }
+	static hasMany = [contents: Content, pedogoyTechniques: PedagogyTechnique]
+
+	static transients = ['name']
+
+	/**
+	 * Constraints on the fields of Learning Objective
+	 */
+	static constraints = {
+		condition nullable: true
+		performance nullable: true
+		criteria nullable: true
+		indicator nullable: true
+		learningDomain nullable: true
+		domainCategory nullable: true
+		actionWord nullable: true
+		criteriaType nullable: true
+	}
+
+	//TODO: What does this do?
+	static mapping = {
+		version false
+	}
+
+	//TODO: What does this do?
+	def String toString() {
+		return completeLearningObjective
+	}
+
+	//TODO: What does this do?
+	def String getName() {
+		return completeLearningObjective
+	}
 }
