@@ -9,9 +9,10 @@
 		<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.treeview.js')}" defer></script>
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.treeview.css')}">
 		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.edit.gsp.css')}">
-		<r:require module="jqueryui"/>
-
 		<script src="${resource(dir: 'js/source', file: 'imod.edit.gsp.js')}"></script>
+
+		<script src="${resource(dir: 'js/library', file: 'jquery-ui-1.10.3.custom.min.js')}" defer></script>
+
 		<title>
 			<g:message code="default.edit.label" args="[entityName]"/>
 		</title>
@@ -33,18 +34,46 @@
 		<div id="tabs-container">
 			<div id="tabs">
 				<ul>
-					<li><a href="#tabs-1"><img class="tab_icon"
-						src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/><span
-						id="overview_tab_title">Course Overview</span></a></li>
-					<li><a href="#tabs-2"><img class="tab_icon" src="${resource(dir: 'images', file: 'LO_icon.png')}"
-						alt=""/><span id="lo_tab_title">Learning Objectives</span></a></li>
-					<li><a href="${createLink(controller: 'content', action: 'contentTab', id: imodInstance?.id, params: [objectiveId: params.objectiveId])}"><img
-						class="tab_icon" src="${resource(dir: 'images', file: 'content_icon.png')}" alt=""/><span
-						id="content_tab_title">Content</span></a></li>
-					<li><a href="#tabs-4"><img class="tab_icon" src="${resource(dir: 'images', file: 'assess_icon.png')}"
-						alt=""/><span id="assess_tab_title">Assessment</span></a></li>
-					<li><a href="#tabs-5"><img class="tab_icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}"
-						alt=""/><span id="pedagogy_tab_title">Pedagogy</span></a></li>
+					<li>
+						<a href="#tabs-1">
+							<img class="tab_icon" src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/>
+							<span id="overview_tab_title">
+								Course Overview
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#tabs-2">
+							<img class="tab_icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
+							<span id="lo_tab_title">
+								Learning Objectives
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="${createLink(controller: 'content', action: 'contentTab', id: imodInstance?.id, params: [objectiveId: params.objectiveId])}">
+							<img class="tab_icon" src="${resource(dir: 'images', file: 'content_icon.png')}" alt=""/>
+							<span id="content_tab_title">
+								Content
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#tabs-4">
+							<img class="tab_icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
+							<span id="assess_tab_title">
+								Assessment
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#tabs-5">
+							<img class="tab_icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
+							<span id="pedagogy_tab_title">
+								Pedagogy
+							</span>
+						</a>
+					</li>
 				</ul>
 
 				<div id="tabs-1">

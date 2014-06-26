@@ -1,7 +1,7 @@
 /* FONT STACK */
 @font-face {
     font-family: Ubuntu;
-    src: local(Ubuntu), url('../../font/Ubuntu/Ubuntu-Regular.ttf') format('opentype');
+    src: local(Ubuntu), url('../font/Ubuntu/Ubuntu-Regular.ttf') format('opentype');
 }
 
 body,
@@ -58,19 +58,19 @@ body {
 #grailsLogo {
 	background-color: #1a82f7;
 	  background-repeat: repeat-x;
-	
+
 	  /* Safari 4-5, Chrome 1-9 */
 	  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0A1629), to(#12223A));
-	
+
 	  /* Safari 5.1, Chrome 10+ */
 	  background: -webkit-linear-gradient(top, #12223A,#0A1629);
-	
+
 	  /* Firefox 3.6+ */
 	  background: -moz-linear-gradient(top, #12223A, #0A1629);
-	
+
 	  /* IE 10 */
 	  background: -ms-linear-gradient(top, #12223A, #0A1629);
-	
+
 	  /* Opera 11.10+ */
 	  background: -o-linear-gradient(top, #12223A, #0A1629);
 }

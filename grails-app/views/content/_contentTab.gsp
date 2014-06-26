@@ -1,4 +1,5 @@
-<g:render template="/content/contentTabScript"/>
+<script src="${resource(dir: 'js/source', file: 'content.contentTab.gsp.js')}" defer></script>
+<link href="${resource(dir: 'css/source', file: 'content.contentTab.gsp.css')}" rel="stylesheet">
 <div id="edit-imod" class="content scaffold-edit" role="main">
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
