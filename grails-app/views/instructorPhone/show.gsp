@@ -22,34 +22,34 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list instructorPhone">
-			
+
 				<g:if test="${instructorPhoneInstance?.instructor}">
 				<li class="fieldcontain">
 					<span id="instructor-label" class="property-label"><g:message code="instructorPhone.instructor.label" default="Instructor" /></span>
-					
+
 						<span class="property-value" aria-labelledby="instructor-label"><g:link controller="instructor" action="show" id="${instructorPhoneInstance?.instructor?.id}">${instructorPhoneInstance?.instructor?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${instructorPhoneInstance?.number}">
 				<li class="fieldcontain">
 					<span id="number-label" class="property-label"><g:message code="instructorPhone.number.label" default="Number" /></span>
-					
+
 						<span class="property-value" aria-labelledby="number-label"><g:fieldValue bean="${instructorPhoneInstance}" field="number"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${instructorPhoneInstance?.type}">
 				<li class="fieldcontain">
 					<span id="type-label" class="property-label"><g:message code="instructorPhone.type.label" default="Type" /></span>
-					
+
 						<span class="property-value" aria-labelledby="type-label"><g:fieldValue bean="${instructorPhoneInstance}" field="type"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form>
 				<fieldset class="buttons">
