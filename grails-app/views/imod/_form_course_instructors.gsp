@@ -18,11 +18,21 @@
 			<tbody>
 				<g:each in="${imodInstance?.instructors?}" var="i">
 				    <tr>
-				    	<td><g:textField name="lastName" value="${i.lastName}"/></td>
-						<td><g:textField name="firstName" value="${i.firstName}"/></td>
-						<td><g:textField name="email" value="${i.email}"/></td>
-						<td><g:textField name="officeHours" value="${i.officeHours}"/></td>
-						<td><g:textField name="webPage" value="${i.webPage}"/></td>
+				    	<td>
+				    		<g:textField name="lastName" value="${i.lastName}"/>
+				    	</td>
+						<td>
+							<g:textField name="firstName" value="${i.firstName}"/>
+						</td>
+						<td>
+							<g:textField name="email" value="${i.email}"/>
+						</td>
+						<td>
+							<g:textField name="officeHours" value="${i.officeHours}"/>
+						</td>
+						<td>
+							<g:textField name="webPage" value="${i.webPage}"/>
+						</td>
 				    </tr>
 				</g:each>
 			</tbody>
@@ -31,7 +41,6 @@
 		<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'instructors', 'error')} " style="margin-left:-20px;">
 			<label for="instructors">
 				<g:message code="imod.instructors.label" default="Select Instructors:" />
-
 			</label>
 			<g:select name="instructors" from="${imodv6.Instructor.list()}" multiple="multiple" optionKey="id" size="5" value="${imodInstance?.instructors*.id}" class="many-to-many" style="width:150px;margin-left:-110px;" />
 		</div>
