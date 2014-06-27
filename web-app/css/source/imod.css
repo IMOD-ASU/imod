@@ -17,7 +17,7 @@ table.LO_inner_table {
 	border-spacing:10px 5px;
 	border-collapse:separate;
 }
-td.LO_list_pane{
+#LO_list_pane{
 	width:30%;
 	background-color:#EDEDEF;
 	border:1px;
@@ -25,7 +25,7 @@ td.LO_list_pane{
 	border-radius:5px;
 	border-style:solid;
 }
-td.LO_definition_cell{
+#LO_definition_cell{
 	min-height:2em;
 	height:5em;
 	width:70%;
@@ -35,7 +35,7 @@ td.LO_definition_cell{
 	border-radius:5px;
 	border-style:solid;
 }
-td.LO_creator{
+#LO_creator{
 	background-color:#EDEDEF;
 	border:1px;
 	border-color:#C4C2C2;
@@ -67,8 +67,14 @@ td.LO_creator{
 	margin-left:auto;
 	margin-right:auto;
 }
+#LO_generic{
+	width:100%;
+}
 #LO_condition_generic{
 	display:block;
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
 }
 #LO-type-icon{
 	display:inline-block;
@@ -157,4 +163,7 @@ td.LO_creator{
 	padding-bottom:0px;
 	border-bottom:1px solid #C4C2C2;
 	border-top:1px solid #C4C2C2
+}
+#LO_hide_from_Objective{
+	height:1em;
 }
