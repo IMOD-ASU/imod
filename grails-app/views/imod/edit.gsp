@@ -22,14 +22,16 @@
 		<div id="help_placeholder"  >
 			<img id="resize_quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/><span>Quick tip</Span> <a id="closebutton" href="#" onclick="toggleHelp()">_</a>
 
-			<div id="qtipPlace" style="
-			float: right;
-			text-align: right;
-			position: absolute;
-			right: 0;"></div>
+			<div id="qtipPlace" style="float: right; text-align: right; position: absolute; right: 0;">
+			</div>
 		</div>
 		<div id="open_help" >
-			<Span>Quick Tip</Span> 	<a id="closebutton" href="#" onclick="toggleHelp()">_</a>
+			<Span>
+				Quick Tip
+			</Span>
+			<a id="closebutton" href="#" onclick="toggleHelp()">
+				_
+			</a>
 		</div>
 		<div id="tabs-container">
 			<div id="tabs">
@@ -84,8 +86,13 @@
 						<g:hasErrors bean="${imodInstance}">
 							<ul class="errors" role="alert">
 								<g:eachError bean="${imodInstance}" var="error">
-									<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>>
-										<g:message error="${error}"/></li>
+									<li
+										<g:if test="${error in org.springframework.validation.FieldError}">
+											data-field-id="${error.field}"
+										</g:if>
+									>
+										<g:message error="${error}"/>
+									</li>
 								</g:eachError>
 							</ul>
 						</g:hasErrors>
@@ -95,32 +102,33 @@
 							<fieldset class="form">
 								<table class="inner_table">
 									<tr height="50px">
-										<td/>
+										<td>
+										</td>
 										<td>
 											<fieldset class="buttons">
-												<g:actionSubmit class="save showHoverNew"
-													action="update"
-													title="${Help.toolTip("OVERVIEW", "Save Course Overview")}"
-													value="${message(code: 'Save', default: 'Save')}"/>
-												<g:actionSubmit class="delete showHoverNew"
-													action="delete"
-													title="${Help.toolTip("OVERVIEW", "Delete Course Overview")}"
-													value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-													formnovalidate=""
-													onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+												<g:actionSubmit class="save showHoverNew" action="update" title="${Help.toolTip("OVERVIEW", "Save Course Overview")}" value="${message(code: 'Save', default: 'Save')}"/>
+												<g:actionSubmit class="delete showHoverNew" action="delete" title="${Help.toolTip("OVERVIEW", "Delete Course Overview")}" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
 											</fieldset>
 										</td>
 									</tr>
 									<tr>
 										<td>
 											<div class="course_overview_form">
-												<div class="form_title"><span class="title_text">Course Details</span></div>
+												<div class="form_title">
+													<span class="title_text">
+														Course Details
+													</span>
+												</div>
 												<g:render template="form_course_details"/>
 											</div>
 										</td>
 										<td>
 											<div class="course_overview_form">
-												<div class="form_title"><span class="title_text">Schedule</span></div>
+												<div class="form_title">
+													<span class="title_text">
+														Schedule
+													</span>
+												</div>
 												<g:render template="form_course_schedule"/>
 											</div>
 										</td>
@@ -128,7 +136,11 @@
 									<tr>
 										<td colspan="2">
 											<div class="course_overview_form">
-												<div class="form_title"><span class="title_text">Instructors</span></div>
+												<div class="form_title">
+													<span class="title_text">
+														Instructors
+													</span>
+												</div>
 												<g:render template="form_course_instructors"/>
 											</div>
 										</td>
@@ -136,43 +148,61 @@
 									<tr>
 										<td>
 											<div class="course_overview_form">
-												<div class="form_title"><span class="title_text">Course Description</span></div>
+												<div class="form_title">
+													<span class="title_text">
+														Course Description
+													</span>
+												</div>
 												<g:render template="form_course_description"/>
 											</div>
 										</td>
 										<td>
 											<div class="course_overview_form" id="policy">
-												<div class="form_title"><span class="title_text">Course Policy</span></div>
-
+												<div class="form_title">
+													<span class="title_text">
+														Course Policy
+													</span>
+												</div>
 												<div id="accordion">
-													<h3>Grading procedure</h3>
-
-													<div><g:textArea name="gradingProcedure" rows="3" cols="30"/>
+													<h3>
+														Grading procedure
+													</h3>
+													<div>
+														<g:textArea name="gradingProcedure" rows="3" cols="30"/>
 													</div>
-
-													<h3>Attendance and tardiness</h3>
-
-													<div><g:textArea name="attendance" rows="3" cols="30"/>
+													<h3>
+														Attendance and tardiness
+													</h3>
+													<div>
+														<g:textArea name="attendance" rows="3" cols="30"/>
 													</div>
-
-													<h3>Class participation</h3>
-
-													<div><textarea rows="2" cols="30"></textarea>
+													<h3>
+														Class participation
+													</h3>
+													<div>
+														<textarea rows="2" cols="30">
+														</textarea>
 													</div>
-
-													<h3>Classroom decorum</h3>
-
-													<div><textarea rows="2" cols="30"></textarea>
+													<h3>
+														Classroom decorum
+													</h3>
+													<div>
+														<textarea rows="2" cols="30">
+														</textarea>
 													</div>
-
-													<h3>Missed exams/Make-up exams</h3>
-
-													<div><textarea rows="2" cols="30"></textarea>
+													<h3>
+														Missed exams/Make-up exams
+													</h3>
+													<div>
+														<textarea rows="2" cols="30">
+														</textarea>
 													</div>
-
-													<h3>Missed Assignments</h3>
-
-													<div><textarea rows="2" cols="30"></textarea>
+													<h3>
+														Missed Assignments
+													</h3>
+													<div>
+														<textarea rows="2" cols="30">
+														</textarea>
 													</div>
 												</div>
 											</div>
@@ -180,25 +210,25 @@
 									</tr>
 								</table>
 							</fieldset>
-
 						</g:form>
 					</div>
 				</div>
-
 				<div id="tabs-2">
 					<g:render template="/learningObjective/main"/>
 				</div>
-
 				<div id="tabs-3">
 					<g:render template="/content/topicInformationGraphWidget"/>
 				</div>
-
 				<div id="tabs-4">
-					<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+					<p>
+						Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.
+					</p>
 				</div>
 
 				<div id="tabs-5">
-					<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+					<p>
+						Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.
+					</p>
 				</div>
 			</div>
 		</div>

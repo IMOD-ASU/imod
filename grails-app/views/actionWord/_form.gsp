@@ -5,7 +5,6 @@
 <div class="fieldcontain ${hasErrors(bean: actionWordInstance, field: 'actionWord', 'error')} ">
 	<label for="actionWord">
 		<g:message code="actionWord.actionWord.label" default="Action Word" />
-
 	</label>
 	<g:textField name="actionWord" value="${actionWordInstance?.actionWord}"/>
 </div>
@@ -37,7 +36,6 @@
 <div class="fieldcontain ${hasErrors(bean: actionWordInstance, field: 'visibility', 'error')} ">
 	<label for="visibility">
 		<g:message code="actionWord.visibility.label" default="Visibility" />
-
 	</label>
 	<g:textField name="visibility" value="${actionWordInstance?.visibility}"/>
 </div>
