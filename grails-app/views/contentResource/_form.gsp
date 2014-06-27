@@ -5,7 +5,6 @@
 <div class="fieldcontain ${hasErrors(bean: contentResourceInstance, field: 'name', 'error')} ">
 	<label for="name">
 		<g:message code="contentResource.name.label" default="Name" />
-
 	</label>
 	<g:textField name="name" value="${contentResourceInstance?.name}"/>
 </div>
