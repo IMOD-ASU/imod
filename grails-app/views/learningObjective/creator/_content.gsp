@@ -1,4 +1,4 @@
-
+<div>
 	<div id="LO-performance">
 		Performance
 	</div>
@@ -11,5 +11,4 @@
 	<div id="LO-criteria">
 		Criteria
 	</div>
-
 </div>
