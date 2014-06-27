@@ -101,10 +101,14 @@ table.LO_inner_table {
 }
 
 #tabs-LO-subhead .ui-tabs-nav li.ui-state-active a {
-	background:-webkit-radial-gradient(bottom, #FDFDFD, transparent);
-	background:-o-radial-gradient(bottom, #FDFDFD, transparent);
-	background:-moz-radial-gradient(bottom, #FDFDFD, transparent);
-	background:radial-gradient(bottom, #FDFDFD, transparent);
+	height:1.35em;
+	-webkit-border-radius:2.6em/1.2em;
+	-moz-border-radius:2.6em/1.2em;
+	border-radius:2.6em/1.2em;
+	background:-webkit-linear-gradient(left, transparent, #FDFDFD, transparent);
+	background:-o-linear-gradient(right, transparent, #FDFDFD, transparent);
+	background:-moz-linear-gradient(right, transparent, #FDFDFD, transparent);
+	background:linear-gradient(to right, transparent, #FDFDFD, transparent);
 }
 #tabs-LO-subhead .ui-tabs-nav li.ui-state-active a.performance {
 	color:#3BA8DE;
@@ -144,7 +148,7 @@ table.LO_inner_table {
 	padding-bottom:0px;
 	width:7.5em;
 	height:2.4em;
-	text-shadow:0px 2px 1px white
+	text-shadow:2px 2px 1px white
 }
 
 #tabs-LO-subhead .ui-tabs-nav li:first-child {
