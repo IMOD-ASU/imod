@@ -35,6 +35,8 @@ class ImodUser {
 	}
 
 	def beforeInsert() {
+		profile =new UserProfile().save()
+		preferences = new UserPreferences().save()
 		encodePassword()
 	}
 

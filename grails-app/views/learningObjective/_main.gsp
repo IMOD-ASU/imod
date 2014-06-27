@@ -13,19 +13,19 @@
 	<fieldset class="form">
 		 <table  class="LO_inner_table">
 				<tr>
-					<td class="LO_list_pane" rowspan="2">
+					<td id="LO_list_pane" rowspan="2">
 						<div class="learning_objectives_list">
 							<g:render template="/learningObjective/list_pane"/>
 						</div>
 					</td>
-					<td class="LO_definition_cell">
+					<td id="LO_definition_cell">
 						<div class="learning_objectives_definition">
 							<g:render template="/learningObjective/definition" />
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td class="LO_creator">
+					<td id="LO_creator">
 						<div class="learning_objective_creator">
 							<g:render template="/learningObjective/creator/header"/>
 							<g:render template="/learningObjective/creator/content"/>

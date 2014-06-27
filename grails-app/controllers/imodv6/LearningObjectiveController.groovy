@@ -1,10 +1,12 @@
 package imodv6
 
+
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
 
 class LearningObjectiveController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [updateDefinition:"POST", save: "POST", update: "POST", delete: "POST"]
 
     def index() {
         redirect(action: "list", params: params)
@@ -109,4 +111,9 @@ class LearningObjectiveController {
         }
         render template: '/content/chapterListTableTemplate', model: [chapter: objectiveInstance, count: imodv6.LearningObjective.countByImod(objectiveInstance.imod) - 1]
     }
+	def updateDefinition(){
+		def type=params.type
+		def value=params.value
+		render ([type:type, value:value] as JSON)
+	}
 }

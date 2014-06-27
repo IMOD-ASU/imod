@@ -1,4 +1,25 @@
-jQuery(document).ready(function () {
+$(document).ready(function() {
+	document.getElementById("repeats").removeAttribute("multiple")
+	document.getElementById("repeatsEvery").removeAttribute("multiple")
+	$("#LO_hide_from_Objective").change(function(){
+		changeDefinition("hideFromObjective", this.checked)
+	});
+	$(".LO_condition_data").change(function(){
+		propagateToDefinition("condition", this.value)
+		changeDefinition("condition", this.value)
+	});	$("#LO_condition_custom").keyup(function() {
+		propagateToDefinition("condition",this.value)
+	});
+	$("#tabs").tabs({
+		ajaxOptions: {
+			error: function (xhr, status, index, anchor) {
+				$(anchor.hash).html('errorLoadingTabMessage');
+			}
+		}
+	});
+	$("#accordion").accordion();
+	$( "#help_placeholder" ).draggable();
+	$("#open_help").draggable();
 	jQuery.browser = {};
 	(function () {
 		jQuery.browser.msie = false;
@@ -43,7 +64,7 @@ function showHelp(displayHelp){
 	if (displayHelp!="true"){
 		$("#help_placeholder").css("display","none")
 	}
-	
+
 }
 function updateDatePicker (dateFormat) {
 	$("input[value='date.struct']:hidden").each(function() {
@@ -124,15 +145,17 @@ function updateDatePicker (dateFormat) {
 		}
 	});
 }
-
-$(document).ready(function() {
-	document.getElementById("repeats").removeAttribute("multiple")
-	document.getElementById("repeatsEvery").removeAttribute("multiple")
-	$("#tabs").tabs({
-		ajaxOptions: {
-			error: function (xhr, status, index, anchor) {
-				$(anchor.hash).html('errorLoadingTabMessage');
-			}
+function changeDefinition(type, value){
+	$.ajax({
+		url:"../learningObjective/updateDefinition",
+		type:"POST",
+		dataType:'json',
+		data:{type:type, value:value},
+		success: function(data){
+			console.log(data);
+		},
+		error: function(xhr){
+			alert(xhr.responseText);
 		}
 	});
 	$("#accordion").accordion();
@@ -140,11 +163,11 @@ $(document).ready(function() {
 
 });
 
-
-$(function() {
-	$( "#help_placeholder" ).draggable();
-	$("#open_help").draggable();
-})
+}
+function propagateToDefinition(type, value){
+	var definitionType=".learning-objective-"+type
+	$(definitionType).text(value)
+}
 
 function toggleHelp(){
 	var helpbox=$("#help_placeholder")
