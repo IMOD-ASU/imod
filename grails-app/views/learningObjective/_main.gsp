@@ -80,7 +80,7 @@
 							<hr />
 							<div>
 								<div id="LO-performance">
-									Performance
+									<g:render template="/learningObjective/creator/LO_performance"/>
 								</div>
 								<div id="LO-content">
 									Content
