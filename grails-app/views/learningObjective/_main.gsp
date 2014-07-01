@@ -1,11 +1,21 @@
 <%@ page import="imodv6.Help" %>
+
+<script src="${resource(dir: 'js/source', file: 'learningObjective.main.gsp.js')}" defer></script>
+<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'learningObjective.main.gsp.css')}" type="text/css">
+
 <g:if test="${flash.message}">
 	<div class="message" role="status">${flash.message}</div>
 </g:if>
 <g:hasErrors bean="${imodInstance}">
 	<ul class="errors" role="alert">
 		<g:eachError bean="${imodInstance}" var="error">
-		<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+			<li
+				<g:if test="${error in org.springframework.validation.FieldError}">
+					data-field-id="${error.field}"
+				</g:if>
+			>
+				<g:message error="${error}"/>
+			</li>
 		</g:eachError>
 	</ul>
 </g:hasErrors>
@@ -53,24 +63,24 @@
 							<div id="tabs-LO-subhead">
 								<ul class="ui-tabs-nav">
 									<li>
-										<A file="${resource(dir: 'images/learningObjectives', file: 'LO-performance.png')}" class="performance" href="#LO-performance">
+										<a file="${resource(dir: 'images/learningObjectives', file: 'LO-performance.png')}" class="performance" href="#LO-performance">
 											Performance
-										</A>
+										</a>
 									</li>
 									<li>
-										<A file="${resource(dir: 'images/learningObjectives', file: 'LO-content.png')}" class="content" href="#LO-content">
+										<a file="${resource(dir: 'images/learningObjectives', file: 'LO-content.png')}" class="content" href="#LO-content">
 											Content
-										</A>
+										</a>
 									</li>
 									<li>
-										<A file="${resource(dir: 'images/learningObjectives', file: 'LO-condition.png')}" class="condition" href="#LO-condition">
+										<a file="${resource(dir: 'images/learningObjectives', file: 'LO-condition.png')}" class="condition" href="#LO-condition">
 											Condition
-										</A>
+										</a>
 									</li>
 									<li>
-										<A file="${resource(dir: 'images/learningObjectives', file: 'LO-criteria.png')}" class="criteria" href="#LO-criteria">
+										<a file="${resource(dir: 'images/learningObjectives', file: 'LO-criteria.png')}" class="criteria" href="#LO-criteria">
 											Criteria
-										</A>
+										</a>
 									</li>
 								</ul>
 								<div class="tabs-background">

@@ -1,6 +1,3 @@
-<script src="${resource(dir: 'js/source', file: 'action.words.js')}" defer></script>
-<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'action.words.css')}" type="text/css">
-
 <label for="learning-domain-list">Learning Domain</label>
 <g:select name="LDL" id="learning-domain-list" from="${['Cognitive','Domain2','Domain3','Domain4'] }" />
 <hr />
@@ -9,10 +6,10 @@
 <g:select name="DCL" id="domain-category-list" from="${['Analyze','Category2','Category3','Category4'] }" />
 <hr />
 
-<div id="action-words" class="selectable">
+<ol id="action-words">
 	<g:each var="actionWord" in="${['Differntiating', 'Organizing', 'Attributing']}">
-		<div class="ui-state-default">
+		<li class="ui-state-default">
 			${actionWord}
-		</div>
+		</li>
 	</g:each>
-</div>
+</ol>
