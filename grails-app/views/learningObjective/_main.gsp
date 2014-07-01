@@ -25,7 +25,6 @@
 											Add
 										</button>
 									</a>
-
 								</span>
 							</div>
 							<ul>
