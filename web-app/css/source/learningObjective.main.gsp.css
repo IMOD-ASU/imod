@@ -1,9 +1,10 @@
 #action-words {
+	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	width: 450px;
 }
-#action-words > div {
+#action-words > li {
 	margin: 3px;
 	padding: 1px;
 	text-align: center;

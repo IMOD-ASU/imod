@@ -86,6 +86,9 @@
 								<div class="tabs-background">
 								</div>
 							</div>
+							<br />
+							<br />
+							<br />
 							<hr />
 							<div>
 								<div id="LO-performance">
