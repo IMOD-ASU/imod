@@ -17,11 +17,11 @@ class PedagogyTechniqueController {
 
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-        redirect(action: "list")
+		redirect(action: "list")
 	}
 
 
-    def index() {
+	def index() {
 
 		//To get Learning Domain
 		def domains = LearningDomain.list()

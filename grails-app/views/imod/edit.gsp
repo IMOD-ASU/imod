@@ -13,8 +13,6 @@
 
 		<script src="${resource(dir: 'js', file: 'jquery-ui-1.10.3.custom.min.js')}" defer></script>
 
-		<g:layoutHead/>
-
 		<title>
 			<g:message code="default.edit.label" args="[entityName]"/>
 		</title>
