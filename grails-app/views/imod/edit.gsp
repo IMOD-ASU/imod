@@ -13,6 +13,8 @@
 
 		<script src="${resource(dir: 'js', file: 'jquery-ui-1.10.3.custom.min.js')}" defer></script>
 
+		<g:layoutHead/>
+
 		<title>
 			<g:message code="default.edit.label" args="[entityName]"/>
 		</title>
@@ -20,7 +22,13 @@
 
 	<body>
 		<div id="help_placeholder"  >
-			<img id="resize_quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/><span>Quick tip</Span> <a id="closebutton" href="#" onclick="toggleHelp()">_</a>
+			<img id="resize_quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
+			<span>
+				Quick tip
+			</Span>
+			<a id="closebutton" href="#" onclick="toggleHelp()">
+				_
+			</a>
 
 			<div id="qtipPlace" style="float: right; text-align: right; position: absolute; right: 0;">
 			</div>
