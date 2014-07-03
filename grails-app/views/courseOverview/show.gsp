@@ -49,9 +49,7 @@
 												Course Details
 											</span>
 										</div>
-										<%--
-											<g:render template="form_course_details"/>
-										--%>
+										<g:render template="form_course_details"/>
 									</div>
 								</td>
 								<td>
@@ -61,9 +59,7 @@
 												Schedule
 											</span>
 										</div>
-										<%--
-											<g:render template="form_course_schedule"/>
-										--%>
+										<g:render template="form_course_schedule"/>
 									</div>
 								</td>
 							</tr>
@@ -75,9 +71,7 @@
 												Instructors
 											</span>
 										</div>
-										<%--
-											<g:render template="form_course_instructors"/>
-										--%>
+										<g:render template="form_course_instructors"/>
 									</div>
 								</td>
 							</tr>
@@ -89,9 +83,7 @@
 												Course Description
 											</span>
 										</div>
-										<%--
-											<g:render template="form_course_description"/>
-										--%>
+										<g:render template="form_course_description"/>
 									</div>
 								</td>
 								<td>
