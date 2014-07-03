@@ -49,12 +49,12 @@
 			<div id="tabs-container">
 				<ul>
 					<li>
-						<a href="#tabs-1">
+						<g:link controller="courseOverview" action="show" id="${imodInstance.id}">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/>
 							<span id="overview_tab_title">
 								Course Overview
 							</span>
-						</a>
+						</g:link>
 					</li>
 					<li>
 						<a href="#tabs-2">
