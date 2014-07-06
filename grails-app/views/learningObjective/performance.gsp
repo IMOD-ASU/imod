@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>
-			Course Overview
+			Learning Objective - Performance
 		</title>
 
 		<meta name="layout" content="learningObjective">
