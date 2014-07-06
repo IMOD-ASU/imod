@@ -8,16 +8,6 @@ class ImodController {
 
 	def springSecurityService
 
-	def currentUser
-
-	def beforeInterceptor = {
-		if (!springSecurityService.isLoggedIn()) {
-			redirect(controller: 'login', action: 'auth')
-			return false
-		}
-		currentUser = springSecurityService.currentUser.id
-
-	}
 
 	def index() {
 		redirect(action: "list", params: params)
@@ -25,19 +15,19 @@ class ImodController {
 
 	def list(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
-		def displayList = Imod.executeQuery("select distinct i from Imod i where i.owner=" + currentUser)
+		def displayList = Imod.executeQuery("select distinct i from Imod i where i.owner=" + springSecurityService.currentUser.id)
 		[imodInstanceList: displayList, imodInstanceTotal: displayList.size(), sort: "name"]
 		//[imodInstanceList: Imod.list(params), imodInstanceTotal: Imod.count()]
 	}
 
 	def create() {
-		[imodInstance: new Imod(params), currentUser: currentUser]
+		redirect(controller: "courseOverview", action: "create")
 	}
 
 	def save() {
 		params.remove('owner')
 		params.remove('owner.id')
-		params.put('owner.id', currentUser)
+		params.put('owner.id', springSecurityService.currentUser.id)
 		def imodInstance = new Imod(params)
 		if (!imodInstance.save(flush: true)) {
 			render(view: "create", model: [imodInstance: imodInstance])
@@ -46,31 +36,6 @@ class ImodController {
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
 		redirect(action: "list")
-	}
-
-	def show(Long id) {
-		def imodInstance = Imod.get(id)
-		if (!imodInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-			redirect(action: "list")
-			return
-		}
-
-		[imodInstance: imodInstance]
-	}
-
-	def edit(Long id) {
-		def imodInstance = Imod.get(id)
-
-		if (!params.objectiveId) {
-			params.objectiveId = LearningObjective.findByImod(imodInstance)?.id
-		}
-		if (!imodInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-			redirect(action: "list")
-			return
-		}
-		[imodInstance: imodInstance, objectiveId: params.objectiveId, currentUser: currentUser]
 	}
 
 	def update(Long id, Long version) {

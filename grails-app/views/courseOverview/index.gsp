@@ -11,7 +11,9 @@
 		<div id="tabs-1">
 			<div id="edit-imod" class="content scaffold-edit" role="main">
 				<g:if test="${flash.message}">
-					<div class="message" role="status">${flash.message}</div>
+					<div class="message" role="status">
+						${flash.message}
+					</div>
 				</g:if>
 				<g:hasErrors bean="${imodInstance}">
 					<ul class="errors" role="alert">
