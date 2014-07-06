@@ -7,7 +7,7 @@ class CourseOverviewController {
 		def imodInstance = Imod.get(id)
 		if (!imodInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-			redirect(action: "list")
+			redirect(controller: "imod", action: "list")
 			return
 		}
 
@@ -18,7 +18,7 @@ class CourseOverviewController {
 		def imodInstance = Imod.get(id)
 		if (!imodInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-			redirect(action: "list")
+			redirect(controller: "imod", action: "list")
 			return
 		}
 
@@ -27,7 +27,7 @@ class CourseOverviewController {
 				imodInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
 						[message(code: 'imod.label', default: 'Imod')] as Object[],
 						"Another user has updated this Imod while you were editing")
-				render(view: "edit", model: [imodInstance: imodInstance])
+				render(view: "index", model: [imodInstance: imodInstance])
 				return
 			}
 		}
@@ -35,30 +35,30 @@ class CourseOverviewController {
 		imodInstance.properties = params
 
 		if (!imodInstance.save(flush: true)) {
-			render(view: "edit", model: [imodInstance: imodInstance])
+			render(view: "index", model: [imodInstance: imodInstance])
 			return
 		}
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-		redirect(action: "list")
+		redirect(controller: "imod", action: "list")
 	}
 
 	def delete(Long id) {
 		def imodInstance = Imod.get(id)
 		if (!imodInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-			redirect(action: "list")
+			redirect(controller: "imod", action: "list")
 			return
 		}
 
 		try {
 			imodInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-			redirect(action: "list")
+			redirect(controller: "imod", action: "list")
 		}
 		catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-			redirect(action: "show", id: id)
+			redirect(action: "index", id: id)
 		}
 	}
 }

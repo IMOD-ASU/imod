@@ -13,14 +13,14 @@
 				<g:layoutTitle default="IMOD"/>
 			</title>
 
+			<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.treeview.css')}">
+			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.edit.gsp.css')}">
+
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 			<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.qtip-1.0.0-rc3.min.js')}" defer></script>
 			<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.treeview.js')}" defer></script>
 			<script src="${resource(dir: 'js/source', file: 'imod.edit.gsp.js')}"></script>
 			<script src="${resource(dir: 'js', file: 'jquery-ui-1.10.3.custom.min.js')}" defer></script>
-
-			<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.treeview.css')}">
-			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.edit.gsp.css')}">
 
 			<g:layoutHead/>
 		</head>
