@@ -21,7 +21,7 @@
 						<tr style="border-bottom: 1px solid gray;">
 							<td>
 								<div style="margin-top: 10px;margin-bottom: 10px;">
-									<g:render template="/imod/form_chapter_topic"/>
+									<g:render template="/content/form_chapter_topic"/>
 								</div>
 							</td>
 						</tr>

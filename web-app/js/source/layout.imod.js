@@ -107,13 +107,7 @@ $("input[value='date.struct']:hidden").each(function () {
 $(document).ready(function () {
 document.getElementById("repeats").removeAttribute("multiple")
 document.getElementById("repeatsEvery").removeAttribute("multiple")
-$("#tabs").tabs({
-	ajaxOptions: {
-		error: function (xhr, status, index, anchor) {
-			$(anchor.hash).html('errorLoadingTabMessage');
-		}
-	}
-});
+$("#tabs-container").tabs();
 $("#accordion").accordion();
 $("#clickthis").click(function () {
 	$("#dialog").dialog();

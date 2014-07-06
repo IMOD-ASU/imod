@@ -14,12 +14,12 @@
 			</title>
 
 			<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.treeview.css')}">
-			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.edit.gsp.css')}">
+			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'layout.imod.css')}">
 
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 			<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.qtip-1.0.0-rc3.min.js')}" defer></script>
 			<script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.treeview.js')}" defer></script>
-			<script src="${resource(dir: 'js/source', file: 'imod.edit.gsp.js')}"></script>
+			<script src="${resource(dir: 'js/source', file: 'layout.imod.js')}"></script>
 			<script src="${resource(dir: 'js', file: 'jquery-ui-1.10.3.custom.min.js')}" defer></script>
 
 			<g:layoutHead/>
@@ -57,36 +57,36 @@
 						</g:link>
 					</li>
 					<li>
-						<a href="#tabs-2">
+						<g:link controller="learningObjective" action="performance">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
 							<span id="lo_tab_title">
 								Learning Objectives
 							</span>
-						</a>
+						</g:link>
 					</li>
 					<li>
-						<a href="${createLink(controller: 'content', action: 'contentTab', id: imodInstance?.id, params: [objectiveId: params.objectiveId])}">
+						<g:link controller="content" action="contentTab" id="${imodInstance?.id}" params=" [ ${objectiveId: params.objectiveId} ] ">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'content_icon.png')}" alt=""/>
 							<span id="content_tab_title">
 								Content
 							</span>
-						</a>
+						</g:link>
 					</li>
 					<li>
-						<a href="#tabs-4">
+						<g:link controller="assessment" action="index">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
 							<span id="assess_tab_title">
 								Assessment
 							</span>
-						</a>
+						</g:link>
 					</li>
 					<li>
-						<a href="#tabs-5">
+						<g:link controller="pedagogy" action="pedagogyTab">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
 							<span id="pedagogy_tab_title">
 								Pedagogy
 							</span>
-						</a>
+						</g:link>
 					</li>
 				</ul>
 
