@@ -34,7 +34,7 @@
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js" defer></script>
 		<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.min.js" defer></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" defer></script>
-		<script src="${resource(dir: 'js/source', file: 'application.js')}" defer></script>
+		<script src="${resource(dir: 'js', file: 'application.js')}" defer></script>
 
 		<gvisualization:apiImport/>
 		<g:layoutHead/>
@@ -42,51 +42,61 @@
 	</head>
 
 	<body>
-		<div id="imodlogo" role="banner" style="background-color:#0C1625;">
-			<a href="${createLink(uri: '/')}">
-				<img id="imod_logo" src="${resource(dir: 'images', file: 'colorsignature_sml.png')}" alt="imod"/>
-			</a>
-			<span id='s2ui_login_link_container'>
-				<a class="banner-imod" href="${createLink(uri: '/imod')}">
-					<g:message code="My i-mods"/>
-				</a>
-				<a class="banner-home" href="${createLink(uri: '/')}">
-					<img class="resize_home" src="${resource(dir: 'images', file: 'home_sm.png')}" alt=""/>
-					<g:message code="default.home.label"/>
-				</a>
-				<nobr>
-					<div id='loginLinkContainer' class='banner-link'>
+		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#imod-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="${createLink(uri: '/')}">
+						<img class="img-responsive" src="${resource(dir: 'images', file: 'colorsignature_sml.png')}" alt="imods"/>
+					</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="imod-navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
 						<sec:ifLoggedIn>
-							<img class="resize_home" src="${resource(dir: 'images', file: 'user_sm.png')}" alt=""/>
-						<sec:username/>
-							<a href='${createLink(uri: '/logout')}' id='logoutLink' class='banner-link'>
-								Logout
-							</a>
+							<li>
+								<span class="glyphicon glyphicon-user"></span>
+								<sec:username/>
+								<a href='${createLink(uri: '/logout')}'>
+									<span class="fa fa-unlock"></span>
+									Logout
+								</a>
+							</li>
 						</sec:ifLoggedIn>
 
 						<sec:ifNotLoggedIn>
-							<a href='${createLink(uri: '/login')}' id='loginLink' class='banner-link'>
-								Login
-							</a>
+							<li>
+								<a href='${createLink(uri: '/login')}' id='loginLink' class='banner-link'>
+									<span class="fa fa-lock"></span>
+									Login
+								</a>
+							</li>
 						</sec:ifNotLoggedIn>
 
 						<sec:ifSwitched>
-							<a href='${request.contextPath}/j_spring_security_exit_user'>
-						  		Resume as
-						  	</a>
-							<sec:switchedUserOriginalUsername/>
-					  	</sec:ifSwitched>
-					</div>
-				</nobr>
-			</span>
-		</div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo">
-			Copyright &copy; 2014 IMOD&trade;
-		</div>
+							<li>
+								<a href='${request.contextPath}/j_spring_security_exit_user'>
+									Resume as
+								</a>
+								<sec:switchedUserOriginalUsername/>
+							</li>
+						</sec:ifSwitched>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
 
-		<div id="spinner" class="spinner" style="display:none;">
-			<g:message code="spinner.alt" default="Loading&hellip;"/>
+		<g:layoutBody/>
+
+		<div class="container footer">
+			Copyright &copy; 2014 IMOD&trade;
 		</div>
 	</body>
 </html>
