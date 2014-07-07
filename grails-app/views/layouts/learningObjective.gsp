@@ -117,41 +117,34 @@
 						<tr>
 							<td id="LO_creator">
 								<div class="learning_objective_creator">
-									<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-performance.png')}" alt=""/>
+
 
 									<div id="tabs-LO-subhead">
 										<ul class="ui-tabs-nav">
 											<li>
-												<g:link action="performance" id="${imodInstance.id}" class="performance" file="${resource(dir: 'images/learningObjectives', file: 'LO-performance.png')}">
+												<g:link action="performance" id="${imodInstance.id}">
 													Performance
 												</g:link>
 											</li>
 											<li>
-												<g:link action="content" id="${imodInstance.id}" class="content" file="${resource(dir: 'images/learningObjectives', file: 'LO-content.png')}">
+												<g:link action="content" id="${imodInstance.id}">
 													Content
 												</g:link>
 											</li>
 											<li>
-												<g:link action="condition" id="${imodInstance.id}" class="condition" file="${resource(dir: 'images/learningObjectives', file: 'LO-condition.png')}">
+												<g:link action="condition" id="${imodInstance.id}">
 													Condition
 												</g:link>
 											</li>
 											<li>
-												<g:link action="criteria" id="${imodInstance.id}" class="criteria" file="${resource(dir: 'images/learningObjectives', file: 'LO-criteria.png')}">
+												<g:link action="criteria" id="${imodInstance.id}">
 													Criteria
 												</g:link>
 											</li>
 										</ul>
-										<div class="tabs-background">
-										</div>
 									</div>
-									<br />
-									<br />
-									<br />
-									<hr />
-									<div>
-										<g:layoutBody/>
-									</div>
+
+									<g:layoutBody/>
 								</div>
 							</td>
 						</tr>

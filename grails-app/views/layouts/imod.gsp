@@ -22,7 +22,7 @@
 				<div class="col-md-offset-1 col-md-8">
 					<ul class="nav nav-tabs nav-justified" role="tablist">
 						<li class="active">
-							<g:link controller="courseOverview" action="show" id="${imodInstance.id}">
+							<g:link controller="courseOverview" action="index" id="${imodInstance.id}">
 								<span class="fa fa-book">
 								</span>
 								<span id="overview_tab_title">
@@ -31,7 +31,7 @@
 							</g:link>
 						</li>
 						<li>
-							<g:link controller="learningObjective" action="performance">
+							<g:link controller="learningObjective" action="performance" id="${imodInstance.id}">
 								<span class="fa fa-list">
 								</span>
 								<span id="lo_tab_title">
@@ -40,7 +40,7 @@
 							</g:link>
 						</li>
 						<li>
-							<g:link controller="content" action="contentTab" id="${imodInstance?.id}" params=" [ ${objectiveId: params.objectiveId} ] ">
+							<g:link controller="content" action="contentTab" id="${imodInstance.id}" params=" [ ${objectiveId: params.objectiveId} ] ">
 								<span class="fa fa-pencil-square-o">
 								</span>
 								<span id="content_tab_title">
@@ -49,7 +49,7 @@
 							</g:link>
 						</li>
 						<li>
-							<g:link controller="assessment" action="index">
+							<g:link controller="assessment" action="index" id="${imodInstance.id}">
 								<span class="fa fa-tasks">
 								</span>
 								<span id="assess_tab_title">

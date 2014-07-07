@@ -53,7 +53,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="${createLink(uri: '/')}">
-						<img class="img-responsive" src="${resource(dir: 'images', file: 'colorsignature_sml.png')}" alt="imods"/>
+						IMODS
 					</a>
 				</div>
 
