@@ -1,3 +1,7 @@
+<%--
+	this is the basic layout with only the IMOD header and footer
+--%>
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->

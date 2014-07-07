@@ -24,7 +24,7 @@
 					New i-mod
 				</g:link>
 				<g:each in="${imodInstanceList}" status="i" var="imodInstance">
-					<g:link action="edit" id="${imodInstance.id}" class="square">
+					<g:link controller="courseOverview" action="index" id="${imodInstance.id}" class="square">
 						<br/>
 						<br/>
 						${fieldValue(bean: imodInstance, field: "name")}
