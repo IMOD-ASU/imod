@@ -46,10 +46,10 @@
 					_
 				</a>
 			</div>
-			<div  class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 					<li class="ui-state-default ui-corner-top">
-						<g:link controller="courseOverview" action="show" id="${imodInstance.id}" class="ui-tabs-anchor">
+						<g:link controller="courseOverview" action="index" id="${imodInstance.id}" class="ui-tabs-anchor">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/>
 							<span id="overview_tab_title">
 								Course Overview

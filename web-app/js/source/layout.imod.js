@@ -107,7 +107,6 @@ $("input[value='date.struct']:hidden").each(function () {
 $(document).ready(function () {
 document.getElementById("repeats").removeAttribute("multiple")
 document.getElementById("repeatsEvery").removeAttribute("multiple")
-$("#tabs-container").tabs();
 $("#accordion").accordion();
 $("#clickthis").click(function () {
 	$("#dialog").dialog();
