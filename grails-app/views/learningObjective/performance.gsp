@@ -20,7 +20,7 @@
 		<br />
 
 		<ol id="action-words">
-			<g:each var="actionWord" in="${['Differntiating', 'Organizing', 'Attributing']}">
+			<g:each var="actionWord" in="${['Differentiating', 'Organizing', 'Attributing']}">
 				<li class="action-word ui-state-default">
 					${actionWord}
 				</li>
