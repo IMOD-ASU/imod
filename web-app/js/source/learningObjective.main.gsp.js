@@ -1,6 +1,7 @@
 $( '#action-words' ).selectable();
 //$( '#tabs-LO-subhead' ).tabs();
 
+
 $( '.action-word' )
 	.change(
 		function() {

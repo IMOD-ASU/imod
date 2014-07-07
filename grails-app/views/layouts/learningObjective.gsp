@@ -9,7 +9,7 @@
 
 <%@ page import="imodv6.Help" %>
 
-<g:applyLayout name="main">
+<g:applyLayout name="imod">
 	<html>
 		<head>
 			<title>
@@ -126,24 +126,24 @@
 									<div id="tabs-LO-subhead">
 										<ul class="ui-tabs-nav">
 											<li>
-												<a file="${resource(dir: 'images/learningObjectives', file: 'LO-performance.png')}" class="performance" href="#LO-performance">
+												<g:link action="performance" id="${imodInstance.id}" class="performance" file="${resource(dir: 'images/learningObjectives', file: 'LO-performance.png')}">
 													Performance
-												</a>
+												</g:link>
 											</li>
 											<li>
-												<a file="${resource(dir: 'images/learningObjectives', file: 'LO-content.png')}" class="content" href="#LO-content">
+												<g:link action="content" id="${imodInstance.id}" class="content" file="${resource(dir: 'images/learningObjectives', file: 'LO-content.png')}">
 													Content
-												</a>
+												</g:link>
 											</li>
 											<li>
-												<a file="${resource(dir: 'images/learningObjectives', file: 'LO-condition.png')}" class="condition" href="#LO-condition">
+												<g:link action="condition" id="${imodInstance.id}" class="condition" file="${resource(dir: 'images/learningObjectives', file: 'LO-condition.png')}">
 													Condition
-												</a>
+												</g:link>
 											</li>
 											<li>
-												<a file="${resource(dir: 'images/learningObjectives', file: 'LO-criteria.png')}" class="criteria" href="#LO-criteria">
+												<g:link action="criteria" id="${imodInstance.id}" class="criteria" file="${resource(dir: 'images/learningObjectives', file: 'LO-criteria.png')}">
 													Criteria
-												</a>
+												</g:link>
 											</li>
 										</ul>
 										<div class="tabs-background">
