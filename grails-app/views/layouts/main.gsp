@@ -57,13 +57,17 @@
 					</a>
 				</div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
+				<!-- Collect the nav links, forms, and other content for toggling on mobile screens -->
 				<div class="collapse navbar-collapse" id="imod-navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<sec:ifLoggedIn>
 							<li>
-								<span class="glyphicon glyphicon-user"></span>
-								<sec:username/>
+								<a href="#coming-soon">
+									<span class="glyphicon glyphicon-user"></span>
+									<sec:username/>
+								</a>
+							</li>
+							<li>
 								<a href='${createLink(uri: '/logout')}'>
 									<span class="fa fa-unlock"></span>
 									Logout
@@ -73,7 +77,7 @@
 
 						<sec:ifNotLoggedIn>
 							<li>
-								<a href='${createLink(uri: '/login')}' id='loginLink' class='banner-link'>
+								<a href='${createLink(uri: '/login')}'>
 									<span class="fa fa-lock"></span>
 									Login
 								</a>
@@ -89,8 +93,8 @@
 							</li>
 						</sec:ifSwitched>
 					</ul>
-				</div><!-- /.navbar-collapse -->
-			</div><!-- /.container-fluid -->
+				</div>
+			</div>
 		</nav>
 
 		<g:layoutBody/>

@@ -70,25 +70,25 @@
 					<g:layoutBody/>
 				</div>
 
-				<div class="col-md-2">
-					<div id="help_placeholder"  >
+				<div class="col-md-2 well well-default">
+					<div>
 						<span class="fa fa-lightbulb-o">
 						</span>
 						<span>
 							Quick tip
 						</Span>
-						<a id="closebutton" href="#" onclick="toggleHelp()">
+						<a id="closebutton" href="#">
 							_
 						</a>
 
-						<div id="qtipPlace" style="float: right; text-align: right; position: absolute; right: 0;">
+						<div id="qtipPlace">
 						</div>
 					</div>
-					<div id="open_help" >
+					<div>
 						<Span>
 							Quick Tip
 						</Span>
-						<a id="closebutton" href="#" onclick="toggleHelp()">
+						<a id="closebutton" href="#">
 							_
 						</a>
 					</div>

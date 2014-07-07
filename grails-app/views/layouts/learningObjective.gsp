@@ -43,7 +43,7 @@
 						<tr>
 							<td id="LO_list_pane" rowspan="2">
 								<div class="learning_objectives_list">
-									<div class="form_title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
+									<div class="form_title">
 										<span class="title_text">
 											Learning Objectives
 											<a href="/imodv6/learningObjective/create">
