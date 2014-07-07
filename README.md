@@ -1,7 +1,6 @@
 Instructional Module Development System (IMODS)
 ====
 [![Build Status](https://travis-ci.org/IMOD-ASU/imod.svg?branch=master)](https://travis-ci.org/IMOD-ASU/imod)
-[![Stories in Ready](https://badge.waffle.io/imod-asu/imod.png?label=ready&title=Ready)](https://waffle.io/imod-asu/imod)
 
 a semantic web-based tool that guides STEM educators through the complex task of outcomes-based course design.
 
