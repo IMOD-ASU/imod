@@ -57,7 +57,7 @@
 						</g:link>
 					</li>
 					<li>
-						<g:link controller="learningObjective" action="performance">
+						<g:link controller="learningObjective" action="performance" id="${imodInstance.id}">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
 							<span id="lo_tab_title">
 								Learning Objectives
