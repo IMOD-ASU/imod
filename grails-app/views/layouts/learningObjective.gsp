@@ -9,7 +9,7 @@
 
 <%@ page import="imodv6.Help" %>
 
-<g:applyLayout name="main">
+<g:applyLayout name="imod">
 	<html>
 		<head>
 			<title>
