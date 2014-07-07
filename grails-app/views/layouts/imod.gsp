@@ -46,42 +46,42 @@
 					_
 				</a>
 			</div>
-			<div id="tabs-container">
-				<ul>
-					<li>
-						<g:link controller="courseOverview" action="show" id="${imodInstance.id}">
+			<div  class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+					<li class="ui-state-default ui-corner-top">
+						<g:link controller="courseOverview" action="show" id="${imodInstance.id}" class="ui-tabs-anchor">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/>
 							<span id="overview_tab_title">
 								Course Overview
 							</span>
 						</g:link>
 					</li>
-					<li>
-						<g:link controller="learningObjective" action="performance" id="${imodInstance.id}">
+					<li class="ui-state-default ui-corner-top">
+						<g:link controller="learningObjective" action="performance" id="${imodInstance.id}" class="ui-tabs-anchor">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
 							<span id="lo_tab_title">
 								Learning Objectives
 							</span>
 						</g:link>
 					</li>
-					<li>
-						<g:link controller="content" action="contentTab" id="${imodInstance?.id}" params=" [ ${objectiveId: params.objectiveId} ] ">
+					<li class="ui-state-default ui-corner-top">
+						<g:link controller="content" action="contentTab" id="${imodInstance?.id}" params=" [ ${objectiveId: params.objectiveId} ] " class="ui-tabs-anchor">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'content_icon.png')}" alt=""/>
 							<span id="content_tab_title">
 								Content
 							</span>
 						</g:link>
 					</li>
-					<li>
-						<g:link controller="assessment" action="index">
+					<li class="ui-state-default ui-corner-top">
+						<g:link controller="assessment" action="index" class="ui-tabs-anchor">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
 							<span id="assess_tab_title">
 								Assessment
 							</span>
 						</g:link>
 					</li>
-					<li>
-						<g:link controller="pedagogy" action="pedagogyTab">
+					<li class="ui-state-default ui-corner-top">
+						<g:link controller="pedagogy" action="pedagogyTab" class="ui-tabs-anchor">
 							<img class="tab_icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
 							<span id="pedagogy_tab_title">
 								Pedagogy
