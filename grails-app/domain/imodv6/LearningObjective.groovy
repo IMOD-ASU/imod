@@ -14,7 +14,6 @@ class LearningObjective {
 	 * Linkers to other domain objects (?)
 	 * TODO: double check this is really what is going on
 	 */
-	Imod							owner
 	LearningDomain					learningDomain
 	DomainCategory					domainCategory
 	ActionWord						actionWord

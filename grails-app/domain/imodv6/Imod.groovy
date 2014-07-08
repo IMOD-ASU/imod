@@ -17,6 +17,7 @@ class Imod {
 	ScheduleDate	scheduleDate
 	ScheduleRepeats	repeats
 	Piechart		piechart
+	Collection		learningObjectives
 	ScheduleRepeatsEvery	repeatsEvery
 
 	static belongsTo = ImodUser
