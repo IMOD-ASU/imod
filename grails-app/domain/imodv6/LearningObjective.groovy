@@ -14,6 +14,7 @@ class LearningObjective {
 	 * Linkers to other domain objects (?)
 	 * TODO: double check this is really what is going on
 	 */
+	Imod							owner
 	LearningDomain					learningDomain
 	DomainCategory					domainCategory
 	ActionWord						actionWord
@@ -22,9 +23,14 @@ class LearningObjective {
 	/**
 	 * Relationships to other domain objects
 	 */
-	static belongsTo = [imod: Imod]
+	static belongsTo = [
+		imod: Imod
+	]
 
-	static hasMany = [contents: Content, pedogoyTechniques: PedagogyTechnique]
+	static hasMany = [
+		contents: Content,
+		pedogoyTechniques: PedagogyTechnique
+	]
 
 	static transients = ['name']
 
