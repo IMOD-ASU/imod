@@ -2,7 +2,14 @@ package imodv6
 
 class LearningObjectiveController {
 	def performance(Long id) {
-		[imodInstance: Imod.get(id)]
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
+		[
+			imodInstance: imodInstance,
+			learningObjectivesList: learningObjectivesList
+		]
 	}
 
 	def content(Long id) {
@@ -26,7 +33,7 @@ class LearningObjectiveController {
 		imodInstance.addToLearningObjectives(learningObjectiveInstance)
 		// saves the imod (and in theory the learning objective)
 		imodInstance.save(flush: true)
-		// redirects to the performance page to allow for newly created imod to be edited
+		// redirects to the performance page to allow for newly created learning objective to be edited
 		redirect(
 			action: "performance",
 			id: id
