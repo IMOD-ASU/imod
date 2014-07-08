@@ -63,7 +63,7 @@
 										<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveInstance">
 											<li>
 												<g:link action="edit" id="${learningObjectiveInstance.id}" class="square">
-													${fieldValue(bean: learningObjectiveInstance, field: "name")}
+													${fieldValue(bean: learningObjectiveInstance, field: "id")}
 												</g:link>
 											</li>
 										</g:each>
