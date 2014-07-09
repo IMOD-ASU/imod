@@ -11,6 +11,7 @@
 
 <g:applyLayout name="imod">
 	<html>
+
 		<head>
 			<title>
 				<g:layoutTitle default="Learning Objective"/>
@@ -23,6 +24,7 @@
 			<g:layoutHead/>
 		</head>
 		<body>
+
 			<g:if test="${flash.message}">
 				<div class="message" role="status">
 					${flash.message}
@@ -71,49 +73,26 @@
 								</div>
 							</td>
 							<td id="LO_definition_cell">
-								<div class="learning_objectives_definition">
+								<div id="learning_objectives_definition">
 									<!-- Definition of the conditions for completing a learning objective -->
-									<span>
-										${fieldValue(bean: learningObjective, field: "preCondition")}
-									</span>
-									<span class="learning-objective-condition">
+									<span id="learning-objective-condition">
 										${fieldValue(bean: learningObjective, field: "condition")}
 									</span>
-									<span>
-										${fieldValue(bean: learningObjective, field: "postCondition")}
-									</span>
-
 									<!-- Definition of the perfomance evaulations for a learning objective -->
-									<span>
-										${fieldValue(bean: learningObjective, field: "prePerformance")}
-									</span>
-									<span class="learning-objective-performance">
+
+									<span id="learning-objective-performance">
 										${fieldValue(bean: learningObjective, field: "performace")}
-									</span>
-									<span>
-										${fieldValue(bean: learningObjective, field: "postPerformance")}
 									</span>
 
 									<!-- Definition of the criteria for understanding a learning objective -->
-									<span>
-										${fieldValue(bean: learningObjective, field: "preCriteria")}
-									</span>
-									<span class="learning-objective-criteria">
+
+									<span id="learning-objective-criteria">
 										${fieldValue(bean: learningObjective, field: "criteria")}
-									</span>
-									<span>
-										${fieldValue(bean: learningObjective, field: "postCriteria")}
 									</span>
 
 									<!-- Definition of the indicators used to measure progress through learning objective -->
-									<span>
-										${fieldValue(bean: learningObjective, field: "preIndicator")}
-									</span>
-									<span class="learning-objective-indicator">
+									<span id="learning-objective-indicator">
 										${fieldValue(bean: learningObjective, field: "indicator")}
-									</span>
-									<span>
-										${fieldValue(bean: learningObjective, field: "postIndicator")}
 									</span>
 								</div>
 							</td>
@@ -121,38 +100,36 @@
 						<tr>
 							<td id="LO_creator">
 								<div class="learning_objective_creator">
-									<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-performance.png')}" alt=""/>
+									<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-'+currentPage+'.png')}" alt=""/>
 
 									<div id="tabs-LO-subhead">
 										<ul class="ui-tabs-nav">
-											<li>
-												<g:link action="performance" id="${imodInstance.id}" class="performance" file="${resource(dir: 'images/learningObjectives', file: 'LO-performance.png')}">
+											<li <g:if test="${currentPage=='performance'}">class="active" </g:if>>
+												<g:link action="performance" id="${imodInstance?.id}" class="performance" >
 													Performance
 												</g:link>
 											</li>
-											<li>
-												<g:link action="content" id="${imodInstance.id}" class="content" file="${resource(dir: 'images/learningObjectives', file: 'LO-content.png')}">
+											<li <g:if test="${currentPage=='content'}">class="active" </g:if>>
+												<g:link action="content" id="${imodInstance?.id}" class="content">
 													Content
 												</g:link>
 											</li>
-											<li>
-												<g:link action="condition" id="${imodInstance.id}" class="condition" file="${resource(dir: 'images/learningObjectives', file: 'LO-condition.png')}">
+											<li <g:if test="${currentPage=='condition'}">class="active" </g:if>>
+												<g:link action="condition" id="${imodInstance?.id}" class="condition">
 													Condition
 												</g:link>
 											</li>
-											<li>
-												<g:link action="criteria" id="${imodInstance.id}" class="criteria" file="${resource(dir: 'images/learningObjectives', file: 'LO-criteria.png')}">
+											<li <g:if test="${currentPage=='criteria'}">class="active" </g:if>>
+												<g:link action="criteria" id="${imodInstance?.id}" class="criteria">
 													Criteria
 												</g:link>
 											</li>
 										</ul>
-										<div class="tabs-background">
-										</div>
 									</div>
-									<br />
-									<br />
-									<br />
+									<div class="tabs-background">
+									</div>
 									<hr />
+									<br>
 									<div>
 										<g:layoutBody/>
 									</div>

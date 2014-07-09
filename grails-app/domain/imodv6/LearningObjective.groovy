@@ -4,11 +4,13 @@ class LearningObjective {
 	/**
 	 * These Strings store the informantion used to make the learning objective definition
 	 * attributes are the dynamic content from the learning objective
+	 * Boolean to keep track of whether or not to hide the Condition from the Learning Objective
 	 */
 	String condition
 	String criteria
 	String indicator
 	String performance
+	Boolean hideFromObjective
 
 	/**
 	 * Linkers to other domain objects (?)

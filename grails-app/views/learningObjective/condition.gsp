@@ -21,8 +21,7 @@
 			</label>
 		</div>
 		<br>
-		<textarea id="LO_condition_custom" class="LO_condition_data" rows="8" >
-		</textarea>
+		<textarea id="LO_condition_custom" class="LO_condition_data" rows="8" ></textarea>
 		<div id="LO_condition_generic">
 			<g:select size="5" name="LO_generic" class="LO_condition_data" from="${['Condition1','Condition2','Condition3','Condition4','Condition5'] }" />
 		</div>
