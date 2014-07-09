@@ -50,13 +50,13 @@
 									<div class="form_title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 										<span class="title_text">
 											Learning Objectives
-											<a href="/imodv6/learningObjective/create">
+											<g:link action="create" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Add Learning Objective')}">
 												<button>
 													<span class="fa fa-plus">
 													</span>
 													Add
 												</button>
-											</a>
+											</g:link>
 										</span>
 									</div>
 									<ul>

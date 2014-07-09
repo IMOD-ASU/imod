@@ -7,13 +7,13 @@
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
-		<label for="learning-domain-list">
+		<label for="learning-domain-list" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 			Learning Domain
 		</label>
 		<g:select name="LDL" id="learning-domain-list" from="${['Cognitive','Domain2','Domain3','Domain4'] }" />
 		<br />
 
-		<label for="domain-category-list">
+		<label for="domain-category-list" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
 			Domain Category
 		</label>
 		<g:select name="DCL" id="domain-category-list" from="${['Analyze','Category2','Category3','Category4'] }" />
