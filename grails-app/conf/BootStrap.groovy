@@ -162,9 +162,33 @@ class BootStrap {
 			new imodv6.Help(
 				tabFieldUiId: "Add Learning Objective",
 				tabId: "LEARNINGOBJECTIVE",
-				tabFieldId: 1,
+				tabFieldId: 2,
 				tabFieldName: "Add Learning Objective",
 				text: "Click on this button to add a Learning Objective"
+			).save(flush: true)
+
+			new imodv6.Help(
+				tabFieldUiId: "Learning Domain",
+				tabId: "LEARNINGOBJECTIVE",
+				tabFieldId: 2,
+				tabFieldName: "Learning Domain",
+				text: "Select a Domain for student to Learn"
+			).save(flush: true)
+
+			new imodv6.Help(
+				tabFieldUiId: "Learning Category",
+				tabId: "LEARNINGOBJECTIVE",
+				tabFieldId: 2,
+				tabFieldName: "Learning Category",
+				text: "Select a Category for student to Learn"
+			).save(flush: true)
+
+			new imodv6.Help(
+				tabFieldUiId: "Hide from Objective",
+				tabId: "LEARNINGOBJECTIVE",
+				tabFieldId: 2,
+				tabFieldName: "Hide from Objective",
+				text: "Hides this custom condition from the Learning Objective"
 			).save(flush: true)
 
 			/**
@@ -416,7 +440,7 @@ class BootStrap {
 
 		/**
 		 * Learning Domain
-		 * TODO: What is this???
+		 * These are the overarching categories for the Learning Objective performance tab
 		 */
 		if (LearningDomain.count() == 0) {
 			new LearningDomain(
@@ -432,6 +456,7 @@ class BootStrap {
 			).save(flush: true)
 		}
 
+		//TODO rewrite this to use proper GORM domain relationships
 		if (DomainCategory.count() == 0) {
 			new DomainCategory(
 				domain_id: 1,
