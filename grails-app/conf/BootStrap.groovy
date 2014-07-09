@@ -152,6 +152,21 @@ class BootStrap {
 				text: "Web Page"
 			).save(flush: true)
 
+
+			/**
+			 *
+			 * These are the help information for the Learning Objective tab
+			 * Learning Objective is the 2st tab
+			 *
+			 */
+			new imodv6.Help(
+				tabFieldUiId: "Add Learning Objective",
+				tabId: "LEARNINGOBJECTIVE",
+				tabFieldId: 1,
+				tabFieldName: "Add Learning Objective",
+				text: "Click on this button to add a Learning Objective"
+			).save(flush: true)
+
 			/**
 			 *
 			 * These are the help tips for the Content Tab
