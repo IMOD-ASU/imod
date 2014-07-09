@@ -4,7 +4,11 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ImodController {
 
-	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	static allowedMethods = [
+		save: "POST",
+		update: "POST",
+		delete: "POST"
+	]
 
 	def springSecurityService
 
@@ -14,10 +18,15 @@ class ImodController {
 	}
 
 	def list(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
-		def displayList = Imod.executeQuery("select distinct i from Imod i where i.owner=" + springSecurityService.currentUser.id)
-		[imodInstanceList: displayList, imodInstanceTotal: displayList.size(), sort: "name"]
-		//[imodInstanceList: Imod.list(params), imodInstanceTotal: Imod.count()]
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// search for imods owned by current user
+		def displayList = Imod.findAllWhere(owner: currentUser)
+		[
+			imodInstanceList: displayList,
+			imodInstanceTotal: displayList.size(),
+			sort: "name"
+		]
 	}
 
 	def create() {
