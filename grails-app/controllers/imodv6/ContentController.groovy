@@ -7,37 +7,88 @@ import java.text.SimpleDateFormat
 
 class ContentController {
 
-	static allowedMethods = [reloadContentTab: "GET", fetchResource: "POST", saveTopicSchedule: "POST", changePreReq: "POST", saveResource: "POST", saveTopic: "POST", save: "POST", addToChapter: "POST", saveObjectives: "POST", update: "POST", delete: "POST", removeAllObjectives: "POST", ajaxDelete: "POST", contentTab: "GET"]
+	static allowedMethods = [
+		reloadContentTab: "GET",
+		fetchResource: "POST",
+		saveTopicSchedule: "POST",
+		changePreReq: "POST",
+		saveResource: "POST",
+		saveTopic: "POST",
+		save: "POST",
+		addToChapter: "POST",
+		saveObjectives: "POST",
+		update: "POST",
+		delete: "POST",
+		removeAllObjectives: "POST",
+		ajaxDelete: "POST",
+		contentTab: "GET"
+	]
 
 	def index() {
-		redirect(action: "list", params: params)
+		redirect(
+			action: "list",
+			params: params
+		)
 	}
 
 	def list(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
-		[contentInstanceList: Content.list(params), contentInstanceTotal: Content.count()]
+		[
+			contentInstanceList: Content.list(params),
+			contentInstanceTotal: Content.count()
+		]
 	}
 
 	def create() {
-		[contentInstance: new Content(params)]
+		[
+			contentInstance: new Content(params)
+		]
 	}
 
 	def save() {
 		def contentInstance = new Content(params)
 		if (!contentInstance.save(flush: true)) {
-			render(view: "create", model: [contentInstance: contentInstance])
+			render(
+				view: "create",
+				model: [
+					contentInstance: contentInstance
+				]
+			)
 			return
 		}
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'content.label', default: 'Content'), contentInstance.id])
-		redirect(action: "show", id: contentInstance.id)
+		flash.message = message(
+			code: 'default.created.message',
+			args: [
+				message(
+					code: 'content.label',
+					default: 'Content'
+				),
+				contentInstance.id
+			]
+		)
+		redirect(
+			action: "show",
+			id: contentInstance.id
+		)
 	}
 
 	def show(Long id) {
 		def contentInstance = Content.get(id)
 		if (!contentInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
-			redirect(action: "list")
+			flash.message = message(
+				code: 'default.not.found.message',
+				args: [
+					message(
+						code: 'content.label',
+						default: 'Content'
+					),
+					id
+				]
+			)
+			redirect(
+				action: "list"
+			)
 			return
 		}
 
@@ -47,28 +98,65 @@ class ContentController {
 	def edit(Long id) {
 		def contentInstance = Content.get(id)
 		if (!contentInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
-			redirect(action: "list")
+			flash.message = message(
+				code: 'default.not.found.message',
+				args: [
+					message(
+						code: 'content.label',
+						default: 'Content'
+					),
+					id
+				]
+			)
+			redirect(
+				action: "list"
+			)
 			return
 		}
 
-		[contentInstance: contentInstance]
+		[
+			contentInstance: contentInstance
+		]
 	}
 
 	def update(Long id, Long version) {
 		def contentInstance = Content.get(id)
 		if (!contentInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
-			redirect(action: "list")
+			flash.message = message(
+				code: 'default.not.found.message',
+				args: [
+					message(
+						code: 'content.label',
+						default: 'Content'
+					),
+					id
+				]
+			)
+			redirect(
+				action: "list"
+			)
 			return
 		}
 
 		if (version != null) {
 			if (contentInstance.version > version) {
-				contentInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-						[message(code: 'content.label', default: 'Content')] as Object[],
-						"Another user has updated this Content while you were editing")
-				render(view: "edit", model: [contentInstance: contentInstance])
+				contentInstance.errors.rejectValue(
+					"version",
+					"default.optimistic.locking.failure",
+					[
+						message(
+							code: 'content.label',
+							default: 'Content'
+						)
+					] as Object[],
+					"Another user has updated this Content while you were editing"
+				)
+				render(
+					view: "edit",
+					model: [
+						contentInstance: contentInstance
+					]
+				)
 				return
 			}
 		}
@@ -76,30 +164,81 @@ class ContentController {
 		contentInstance.properties = params
 
 		if (!contentInstance.save(flush: true)) {
-			render(view: "edit", model: [contentInstance: contentInstance])
+			render(
+				view: "edit",
+				model: [
+					contentInstance: contentInstance
+				]
+			)
 			return
 		}
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'content.label', default: 'Content'), contentInstance.id])
-		redirect(action: "show", id: contentInstance.id)
+		flash.message = message(
+			code: 'default.updated.message',
+			args: [
+				message(
+					code: 'content.label',
+					default: 'Content'
+				),
+				contentInstance.id
+			]
+		)
+		redirect(
+			action: "show",
+			id: contentInstance.id
+		)
 	}
 
 	def delete(Long id) {
 		def contentInstance = Content.get(id)
 		if (!contentInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
-			redirect(action: "list")
+			flash.message = message(
+				code: 'default.not.found.message',
+				args: [
+					message(
+						code: 'content.label',
+						default: 'Content'
+					),
+					id
+				]
+			)
+			redirect(
+				action: "list"
+			)
 			return
 		}
 
 		try {
 			contentInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
-			redirect(action: "list")
+			flash.message = message(
+				code: 'default.deleted.message',
+				args: [
+					message(
+						code: 'content.label',
+						default: 'Content'
+					),
+					id
+				]
+			)
+			redirect(
+				action: "list"
+			)
 		}
 		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
-			redirect(action: "show", id: id)
+			flash.message = message(
+				code: 'default.not.deleted.message',
+				args: [
+					message(
+						code: 'content.label',
+						default: 'Content'
+					),
+					id
+				]
+			)
+			redirect(
+				action: "show",
+				id: id
+			)
 		}
 	}
 
@@ -119,7 +258,16 @@ class ContentController {
 		}
 		List<Content> contentList = Content.findAllByIdInList(contentIds2)
 		if (!contentList) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
+			flash.message = message(
+				code: 'default.not.found.message',
+				args: [
+					message(
+						code: 'content.label',
+						default: 'Content'
+					),
+					id
+				]
+			)
 			render ''
 			return
 		}
@@ -136,11 +284,29 @@ class ContentController {
 				}
 				content.delete(flush: true)
 			}
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
+			flash.message = message(
+				code: 'default.deleted.message',
+				args: [
+					message(
+						code: 'content.label',
+						default: 'Content'
+					),
+					id
+				]
+			)
 			render "success"
 		}
 		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
+			flash.message = message(
+				code: 'default.not.deleted.message',
+				args: [
+					message(
+						code: 'content.label',
+						default: 'Content'
+					),
+					id
+				]
+			)
 			render ''
 		}
 	}
@@ -192,7 +358,15 @@ class ContentController {
 
 
 	def reloadContentTab(Long id, Long objectiveId) {
-		redirect(controller: 'imod', action: 'edit', id: id, params: [loadContentTab: true, objectiveId: objectiveId])
+		redirect(
+			controller: 'imod',
+			action: 'edit',
+			id: id,
+			params: [
+				loadContentTab: true,
+				objectiveId: objectiveId
+			]
+		)
 	}
 
 	def saveObjectives(Long id, String name) {
@@ -208,7 +382,14 @@ class ContentController {
 		Content content = new Content(topicTitle: topicTitle)
 		content.objective = objective
 		content.save(flush: true)
-		redirect(controller: 'imod', action: 'edit', id: id, params: [loadContentTab: true])
+		redirect(
+			controller: 'imod',
+			action: 'edit',
+			id: id,
+			params: [
+				loadContentTab: true
+			]
+		)
 	}
 
 	def removeAllObjectives(Long id) {
@@ -340,7 +521,22 @@ class ContentController {
 				contentPriorityMap.add([it, 0])
 			}
 		}
-		def topicInformationColumns = [['string', 'Topic'], ['number', 'Priority']]
-		render template: '/content/graphView', model: [topicInformationColumns: topicInformationColumns, contentPriorityMap: contentPriorityMap]
+		def topicInformationColumns = [
+			[
+				'string',
+				'Topic'
+			],
+			[
+				'number',
+				'Priority'
+			]
+		]
+		render (
+			template: '/content/graphView',
+			model: [
+				topicInformationColumns: topicInformationColumns,
+				contentPriorityMap: contentPriorityMap
+			]
+		)
 	}
 }

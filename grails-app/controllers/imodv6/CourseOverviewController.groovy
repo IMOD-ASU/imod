@@ -8,6 +8,11 @@ class CourseOverviewController {
 	}
 
 	def create() {
-		render(view : "index", model : [imodInstance: new Imod(params)])
+		render(
+			view  : "index",
+			model : [
+				imodInstance: new Imod(params)
+			]
+		)
 	}
 }
