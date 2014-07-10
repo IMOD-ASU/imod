@@ -1,5 +1,8 @@
 package imodv6
 
+/**
+ * TODO what is this?
+ */
 class ScheduleRepeats {
 	String description
 

@@ -1,5 +1,8 @@
 package imodv6
 
+/**
+ * TODO what is this?
+ */
 class Schedule {
 	String repeatsDays
 	Date startDate

@@ -1,6 +1,8 @@
 package imodv6
 
-
+/**
+ * TODO what is this?
+ */
 class PedagogyTechnique {
 
 	String pedagogyTitle
