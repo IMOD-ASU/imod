@@ -2,7 +2,7 @@ package imodv6
 
 class LearningObjective {
 	/**
-	 * These Strings store the informantion used to make the learning objective definition
+	 * These Strings store the information used to make the learning objective definition
 	 * attributes are the dynamic content from the learning objective
 	 */
 	String condition

@@ -1,6 +1,10 @@
 package imodv6
 
 class LearningObjectiveController {
+	// begin editing a Learning Objective
+	def edit (Long id){
+		render(action:"perfomance", learningObjectiveID:id)
+	}
 	def performance(Long id) {
 		// get relevant imod
 		def imodInstance = Imod.get(id)
@@ -34,7 +38,7 @@ class LearningObjectiveController {
 		// get the IMOD that this learning objective will be associated with
 		def imodInstance = Imod.get(id)
 		// create a learning objective, linked to the imod
-		def learningObjectiveInstance = new LearningObjective(imod: imodInstance)
+		def learningObjectiveInstance = new LearningObjective(imod: imodInstance).save()
 		// add the learning objective to the collection of learning objectives in the imod
 		imodInstance.addToLearningObjectives(learningObjectiveInstance)
 		// saves the imod (and in theory the learning objective)
