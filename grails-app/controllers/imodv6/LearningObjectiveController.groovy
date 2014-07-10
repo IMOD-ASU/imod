@@ -35,7 +35,7 @@ class LearningObjectiveController {
 	}
 	def getDomainCategories(){
 		def domain=LearningDomain.findByName(params.domain)
-		def value=domain.domainCategories.asList().sort(it.name)
+		def value=domain.domainCategories.asList().sort {it.name}
 		render ([value:value] as JSON)
 	}
 }
