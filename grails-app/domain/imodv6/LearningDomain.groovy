@@ -7,8 +7,12 @@ package imodv6
 class LearningDomain {
 	String name
 
-	static constraints = {
-	}
+	static hasMany=[
+		domainCategories: DomainCategory
+	]
+
+    static constraints = {
+    }
 
 	static mapping = {
 		version false
