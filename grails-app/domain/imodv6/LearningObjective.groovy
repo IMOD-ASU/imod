@@ -4,11 +4,13 @@ class LearningObjective {
 	/**
 	 * These Strings store the information used to make the learning objective definition
 	 * attributes are the dynamic content from the learning objective
+	 * Boolean to keep track of whether or not to hide the Condition from the Learning Objective
 	 */
 	String condition
 	String criteria
 	String indicator
 	String performance
+	Boolean hideFromObjective
 
 	/**
 	 * Linkers to other domain objects (?)
@@ -45,10 +47,12 @@ class LearningObjective {
 		indicator		nullable: true
 		learningDomain	nullable: true
 		performance		nullable: true
+		
 	}
 
 	//TODO: What does this do?
 	static mapping = {
 		version false
+		hideFromObjective defaultValue:"'false'"
 	}
 }
