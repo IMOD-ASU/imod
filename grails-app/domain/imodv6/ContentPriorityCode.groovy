@@ -1,20 +1,23 @@
 package imodv6
 
+/**
+ * Gives a
+ */
 class ContentPriorityCode {
-    String description
+	String description
 
-    static constraints = {
-    }
+	static constraints = {
+	}
 
-    static mapping = {
-        version false
-    }
+	static mapping = {
+		version false
+	}
 
-    def String toString() {
-        return description
-    }
+	def String toString() {
+		return description
+	}
 
-    public static List<ContentPriorityCode> values() {
-        return ContentPriorityCode.list() ?: []
-    }
+	public static List<ContentPriorityCode> values() {
+		return ContentPriorityCode.list() ?: []
+	}
 }

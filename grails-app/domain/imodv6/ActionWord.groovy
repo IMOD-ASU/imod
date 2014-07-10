@@ -1,5 +1,13 @@
 package imodv6
 
+/**
+ * An action word is a Learning Objective Performance indicator
+ * @param visibility determines if action word will be shown
+ * @param actionWord actual conent of the action word
+ * @param user that generated the action word (TODO ?)
+ * @param domain General domain that word belongs to ( TODO is the necessary?)
+ * @param category specific learning domain category that will pull up word
+ */
 class ActionWord {
 	String visibility
 	String actionWord
@@ -7,14 +15,12 @@ class ActionWord {
 	LearningDomain domain
 	DomainCategory category
 
-    static constraints = {
-    }
-
-	static mapping = {
-		version false
+	//TODO is this necessary?
+	static constraints = {
 	}
 
-	def String toString(){
-		return actionWord
+	//TODO what is this?
+	static mapping = {
+		version false
 	}
 }

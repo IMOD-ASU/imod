@@ -1,5 +1,9 @@
 package imodv6
 
+/**
+ * This instructor is completely unrelated to IMOD user (TODO what?)
+ *
+ */
 class Instructor {
 	String firstName
 	String lastName
@@ -11,9 +15,11 @@ class Instructor {
 	String phoneNumber
 	ImodUser createdBy
 
-	static hasMany = [phones:InstructorPhone]
+	static hasMany = [
+		phones:InstructorPhone
+	]
 
-    static constraints = {
+	static constraints = {
 		middleInitial nullable: true
 		firstName nullable: true
 		location nullable: true
@@ -21,7 +27,7 @@ class Instructor {
 		officeHours nullable: true
 		webPage nullable: true
 		phoneNumber nullable: true
-    }
+	}
 
 	static mapping = {
 		version false

@@ -3,14 +3,18 @@ import grails.converters.JSON
 
 class LearningObjectiveController {
 	static allowedMethods = [
-		getDomainCategories:"GET", 
-		updateDefinition:"POST", 
-		performance: "GET", 
-		condition: "GET", 
-		criteria: "GET", 
+		getDomainCategories:"GET",
+		updateDefinition:"POST",
+		performance: "GET",
+		condition: "GET",
+		criteria: "GET",
 		content: "GET",
 	]
-	
+
+	/*
+		TODO rework getting learning objectives into a function that can be shared by all sub tabs
+	 */
+
 	def performance(Long id) {
 		// get relevant imod
 		def imodInstance = Imod.get(id)
@@ -25,22 +29,37 @@ class LearningObjectiveController {
 	}
 
 	def content(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
 		[
-			imodInstance: Imod.get(id),
+			imodInstance: imodInstance,
+			learningObjectivesList: learningObjectivesList,
 			currentPage:"content"
 		]
 	}
 
 	def condition(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
 		[
-			imodInstance: Imod.get(id),
+			imodInstance: imodInstance,
+			learningObjectivesList: learningObjectivesList,
 			currentPage:"condition"
 		]
 	}
 
 	def criteria(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
 		[
-			imodInstance: Imod.get(id),
+			imodInstance: imodInstance,
+			learningObjectivesList: learningObjectivesList,
 			currentPage:"criteria"
 		]
 	}
