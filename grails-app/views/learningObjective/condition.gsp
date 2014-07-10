@@ -25,6 +25,6 @@
 		<div id="LO_condition_generic">
 			<g:select size="5" name="LO_generic" class="LO_condition_data" from="${['Condition1','Condition2','Condition3','Condition4','Condition5'] }" />
 		</div>
-		<g:checkBox name="LO_hide_from_Objective" /> Hide from Objective
+		<g:checkBox name="LO_hide_from_Objective" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Hide from Objective')}"/> Hide from Objective
 	</body>
 </html>

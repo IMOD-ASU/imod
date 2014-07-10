@@ -24,9 +24,14 @@ class LearningObjective {
 	/**
 	 * Relationships to other domain objects
 	 */
-	static belongsTo = [imod: Imod]
+	static belongsTo = [
+		imod: Imod
+	]
 
-	static hasMany = [contents: Content, pedogoyTechniques: PedagogyTechnique]
+	static hasMany = [
+		contents: Content,
+		pedogoyTechniques: PedagogyTechnique
+	]
 
 	static transients = ['name']
 
