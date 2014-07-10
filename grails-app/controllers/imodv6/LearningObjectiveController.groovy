@@ -2,7 +2,14 @@ package imodv6
 import grails.converters.JSON
 
 class LearningObjectiveController {
-	static allowedMethods = [getDomainCategories:"GET", updateDefinition:"POST", performance: "GET", condition: "GET", criteria: "GET", content: "GET",]
+	static allowedMethods = [
+		getDomainCategories:"GET", 
+		updateDefinition:"POST", 
+		performance: "GET", 
+		condition: "GET", 
+		criteria: "GET", 
+		content: "GET",
+	]
 	
 	def performance(Long id) {
 		[imodInstance: Imod.get(id),currentPage:"performance",domainList:LearningDomain.list()]
@@ -28,7 +35,7 @@ class LearningObjectiveController {
 	}
 	def getDomainCategories(){
 		def domain=LearningDomain.findByName(params.domain)
-		def value=domain.domainCategories
+		def value=domain.domainCategories.asList().sort(it.name)
 		render ([value:value] as JSON)
 	}
 }
