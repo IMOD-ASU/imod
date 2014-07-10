@@ -11,6 +11,10 @@ class LearningObjectiveController {
 		content: "GET",
 	]
 
+	/*
+		TODO rework getting learning objectives into a function that can be shared by all sub tabs
+	 */
+
 	def performance(Long id) {
 		// get relevant imod
 		def imodInstance = Imod.get(id)
