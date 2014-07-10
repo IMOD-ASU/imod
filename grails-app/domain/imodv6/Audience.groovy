@@ -1,10 +1,13 @@
 package imodv6
 
+/**
+ * TODO what is the purpose of this?
+ */
 class Audience {
 	String description
 
-    static constraints = {
-    }
+	static constraints = {
+	}
 
 	static mapping = {
 		version false
