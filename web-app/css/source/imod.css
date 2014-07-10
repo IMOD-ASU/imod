@@ -9,9 +9,6 @@
 	max-width:80%;
 }
 table.LO_inner_table {
-	position: relative;
-	left: -5%;
-	width: 110%;
 	height: 100%;
 	min-height:40em;
 	border-spacing:10px 5px;

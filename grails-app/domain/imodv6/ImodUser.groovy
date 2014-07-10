@@ -12,8 +12,13 @@ class ImodUser {
 	boolean passwordExpired
 
 
-	static hasMany = [imods:Imod]
-	static hasOne = [preferences:UserPreferences, profile:UserProfile]
+	static hasMany = [
+		imods:Imod
+	]
+	static hasOne = [
+		preferences:UserPreferences,
+		profile:UserProfile
+	]
 
 
 	static constraints = {

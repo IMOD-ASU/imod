@@ -13,15 +13,21 @@ class LearningObjectiveController {
 	}
 
 	def content(Long id) {
-		[imodInstance: Imod.get(id)]
+		[
+			imodInstance: Imod.get(id)
+		]
 	}
 
 	def condition(Long id) {
-		[imodInstance: Imod.get(id)]
+		[
+			imodInstance: Imod.get(id)
+		]
 	}
 
 	def criteria(Long id) {
-		[imodInstance: Imod.get(id)]
+		[
+			imodInstance: Imod.get(id)
+		]
 	}
 
 	def create(Long id) {

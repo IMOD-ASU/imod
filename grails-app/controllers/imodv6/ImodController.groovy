@@ -14,25 +14,25 @@ class ImodController {
 
 
 	def index() {
-		redirect(action: "list", params: params)
+		redirect(
+			action: "list",
+			params: params
+		)
 	}
 
 	/**
 	 * TODO: This appears to be written without using GORM
 	 */
 	def list(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
-		def displayList = Imod.executeQuery(
-			"select distinct i from Imod i where i.owner="
-			+
-			springSecurityService.currentUser.id
-		)
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// search for imods owned by current user
+		def displayList = Imod.findAllWhere(owner: currentUser)
 		[
 			imodInstanceList: displayList,
 			imodInstanceTotal: displayList.size(),
 			sort: "name"
 		]
-		//[imodInstanceList: Imod.list(params), imodInstanceTotal: Imod.count()]
 	}
 
 	def create() {
@@ -70,7 +70,9 @@ class ImodController {
 				imodInstance
 			]
 		)
-		redirect(action: "list")
+		redirect(
+			action: "list"
+		)
 	}
 
 	def update(Long id, Long version) {
@@ -162,9 +164,7 @@ class ImodController {
 		}
 
 		try {
-			imodInstance.delete(
-				flush: true
-			)
+			imodInstance.delete(flush: true)
 			flash.message = message (
 				code: 'default.deleted.message',
 				args: [

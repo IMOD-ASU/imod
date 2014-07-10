@@ -1,6 +1,7 @@
 package imodv6
 
 class Imod {
+
 	ImodUser		owner
 	String			name
 	String			url
@@ -46,6 +47,7 @@ class Imod {
 		imodNumber		nullable: true
 		repeats			nullable: true
 		repeatsEvery	nullable: true
+
 	}
 
 	static mapping = {
