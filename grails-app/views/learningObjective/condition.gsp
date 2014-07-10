@@ -23,7 +23,15 @@
 		<br>
 		<textarea id="LO_condition_custom" class="LO_condition_data" rows="8" ></textarea>
 		<div id="LO_condition_generic">
-			<g:select size="5" name="LO_generic" class="LO_condition_data" from="${['Condition1','Condition2','Condition3','Condition4','Condition5'] }" />
+			<g:select 
+				size="5" 
+				name="LO_generic" 
+				class="LO_condition_data" 
+				from="${[
+					'Given a program specification',
+					'Students completing this course will be able to',
+					'After completing the course, the student will be able to'
+				] }" />
 		</div>
 		<g:checkBox name="LO_hide_from_Objective" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Hide from Objective')}"/> Hide from Objective
 	</body>

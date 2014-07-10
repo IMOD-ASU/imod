@@ -47,10 +47,12 @@ class LearningObjective {
 		indicator		nullable: true
 		learningDomain	nullable: true
 		performance		nullable: true
+		
 	}
 
 	//TODO: What does this do?
 	static mapping = {
 		version false
+		hideFromObjective defaultValue:"'false'"
 	}
 }

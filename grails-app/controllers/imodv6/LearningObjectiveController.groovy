@@ -15,28 +15,33 @@ class LearningObjectiveController {
 		// get relevant imod
 		def imodInstance = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = imodInstance.learningObjectives.asList().sort {it.name}
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
 		[
 			imodInstance: imodInstance,
-			learningObjectivesList: learningObjectivesList
+			learningObjectivesList: learningObjectivesList,
+			domainList:LearningDomain.list(),
+			currentPage:"performance"
 		]
 	}
 
 	def content(Long id) {
 		[
-			imodInstance: Imod.get(id)
+			imodInstance: Imod.get(id),
+			currentPage:"content"
 		]
 	}
 
 	def condition(Long id) {
 		[
-			imodInstance: Imod.get(id)
+			imodInstance: Imod.get(id),
+			currentPage:"condition"
 		]
 	}
 
 	def criteria(Long id) {
 		[
-			imodInstance: Imod.get(id)
+			imodInstance: Imod.get(id),
+			currentPage:"criteria"
 		]
 	}
 
@@ -67,5 +72,6 @@ class LearningObjectiveController {
 	def getDomainCategories(){
 		def domain=LearningDomain.findByName(params.domain)
 		def value=domain.domainCategories.asList().sort {it.name}
-	render ([value:value] as JSON)
+		render ([value:value] as JSON)
+	}
 }
