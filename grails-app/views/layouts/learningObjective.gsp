@@ -50,7 +50,7 @@
 									<div class="form_title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 										<span class="title_text">
 											Learning Objectives
-											<g:link action="create" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Add Learning Objective')}">
+											<g:link action="create" id="${imodInstance.id}" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Add Learning Objective')}">
 												<button>
 													<span class="fa fa-plus">
 													</span>
@@ -60,61 +60,39 @@
 										</span>
 									</div>
 									<ul>
-										<li>
-											<g:each in="${learningObjectiveInstanceList}" status="i" var="learningObjective">
-												<g:link action="edit" id="${learningObjective.id}" class="square">
-													${fieldValue(bean: learningObjective, field: "name")}
+										<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveInstance">
+											<li>
+												<g:link action="edit" id="${learningObjectiveInstance.id}" class="square">
+													${fieldValue(bean: learningObjectiveInstance, field: "id")}
 												</g:link>
-											</g:each>
-										</li>
+											</li>
+										</g:each>
 									</ul>
 								</div>
 							</td>
 							<td id="LO_definition_cell">
 								<div class="learning_objectives_definition">
+									<%--
 									<!-- Definition of the conditions for completing a learning objective -->
-									<span>
-										${fieldValue(bean: learningObjective, field: "preCondition")}
-									</span>
 									<span class="learning-objective-condition">
 										${fieldValue(bean: learningObjective, field: "condition")}
 									</span>
-									<span>
-										${fieldValue(bean: learningObjective, field: "postCondition")}
-									</span>
 
 									<!-- Definition of the perfomance evaulations for a learning objective -->
-									<span>
-										${fieldValue(bean: learningObjective, field: "prePerformance")}
-									</span>
 									<span class="learning-objective-performance">
 										${fieldValue(bean: learningObjective, field: "performace")}
 									</span>
-									<span>
-										${fieldValue(bean: learningObjective, field: "postPerformance")}
-									</span>
 
 									<!-- Definition of the criteria for understanding a learning objective -->
-									<span>
-										${fieldValue(bean: learningObjective, field: "preCriteria")}
-									</span>
 									<span class="learning-objective-criteria">
 										${fieldValue(bean: learningObjective, field: "criteria")}
 									</span>
-									<span>
-										${fieldValue(bean: learningObjective, field: "postCriteria")}
-									</span>
 
 									<!-- Definition of the indicators used to measure progress through learning objective -->
-									<span>
-										${fieldValue(bean: learningObjective, field: "preIndicator")}
-									</span>
 									<span class="learning-objective-indicator">
 										${fieldValue(bean: learningObjective, field: "indicator")}
 									</span>
-									<span>
-										${fieldValue(bean: learningObjective, field: "postIndicator")}
-									</span>
+									--%>
 								</div>
 							</td>
 						</tr>

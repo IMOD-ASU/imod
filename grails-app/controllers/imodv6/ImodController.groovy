@@ -20,6 +20,9 @@ class ImodController {
 		)
 	}
 
+	/**
+	 * TODO: This appears to be written without using GORM
+	 */
 	def list(Integer max) {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
@@ -33,13 +36,19 @@ class ImodController {
 	}
 
 	def create() {
-		redirect(controller: "courseOverview", action: "create")
+		redirect(
+			controller: "courseOverview",
+			action: "create"
+		)
 	}
 
 	def save() {
 		params.remove('owner')
 		params.remove('owner.id')
-		params.put('owner.id', springSecurityService.currentUser.id)
+		params.put(
+			'owner.id',
+			springSecurityService.currentUser.id
+		)
 		def imodInstance = new Imod(params)
 		if (!imodInstance.save(flush: true)) {
 			render(
@@ -98,7 +107,7 @@ class ImodController {
 					] as Object[],
 					"Another user has updated this Imod while you were editing"
 				)
-				render(
+				render (
 					view: "edit",
 					model: [
 						imodInstance: imodInstance
@@ -120,10 +129,10 @@ class ImodController {
 			return
 		}
 
-		flash.message = message(
+		flash.message = message (
 			code: 'default.updated.message',
 			args: [
-				message(
+				message (
 					code: 'imod.label',
 					default: 'Imod'
 				),
@@ -156,7 +165,7 @@ class ImodController {
 
 		try {
 			imodInstance.delete(flush: true)
-			flash.message = message(
+			flash.message = message (
 				code: 'default.deleted.message',
 				args: [
 					message(
