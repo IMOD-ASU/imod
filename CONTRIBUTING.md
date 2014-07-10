@@ -1,10 +1,10 @@
 Contributing Guidelines
 ====
 
-#### Editor Guidelines
+### Editor Guidelines
 Please install the [Editor Config plugin](http://editorconfig.org/#download) for your prefered editor to assist with uniform code style
 
-#### Git Guidelines
+### Git Guidelines
 - Always work from a separate branch
   * user branch is okay
   * feature branches are better
@@ -13,7 +13,7 @@ Please install the [Editor Config plugin](http://editorconfig.org/#download) for
   * merge latest master code into branch before opening PR
   * wait to the Travis CI build to pass before merging a pull request
 
-#### Issue Guidelines
+### Issue Guidelines
 A bug is a demonstrable problem that is caused by the code in the repository.
 
 Guidelines for bug reports:
@@ -41,7 +41,7 @@ Example:
 > causing the bug, and potential solutions (and your opinions on their
 > merits).
 
-#### Code Guidelines
+### Code Guidelines
 Front end code should be written in [HTML5](http://www.w3schools.com/tags/default.asp) following the [Google style guide](https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml) (using tabs instead of two spaces)
 
 When creating pages, HTML is for content, Cascading Stylesheets are for presentation, Javascript is for events and state. Keep these languages each in their seperate files. ([http://webdesignfromscratch.com/html-css/how-html-css-js-work-together/](http://webdesignfromscratch.com/html-css/how-html-css-js-work-together/))
