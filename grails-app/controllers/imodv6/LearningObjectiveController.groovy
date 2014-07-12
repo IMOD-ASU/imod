@@ -1,6 +1,20 @@
 package imodv6
+import grails.converters.JSON
 
 class LearningObjectiveController {
+	static allowedMethods = [
+		getDomainCategories:"GET",
+		updateDefinition:"POST",
+		performance: "GET",
+		condition: "GET",
+		criteria: "GET",
+		content: "GET",
+	]
+
+	/*
+		TODO rework getting learning objectives into a function that can be shared by all sub tabs
+	 */
+
 	def performance(Long id) {
 		// get relevant imod
 		def imodInstance = Imod.get(id)
@@ -8,25 +22,45 @@ class LearningObjectiveController {
 		def learningObjectivesList = imodInstance.learningObjectives.asList()
 		[
 			imodInstance: imodInstance,
-			learningObjectivesList: learningObjectivesList
+			learningObjectivesList: learningObjectivesList,
+			domainList:LearningDomain.list(),
+			currentPage:"performance"
 		]
 	}
 
 	def content(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
 		[
-			imodInstance: Imod.get(id)
+			imodInstance: imodInstance,
+			learningObjectivesList: learningObjectivesList,
+			currentPage:"content"
 		]
 	}
 
 	def condition(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
 		[
-			imodInstance: Imod.get(id)
+			imodInstance: imodInstance,
+			learningObjectivesList: learningObjectivesList,
+			currentPage:"condition"
 		]
 	}
 
 	def criteria(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
 		[
-			imodInstance: Imod.get(id)
+			imodInstance: imodInstance,
+			learningObjectivesList: learningObjectivesList,
+			currentPage:"criteria"
 		]
 	}
 
@@ -44,5 +78,19 @@ class LearningObjectiveController {
 			action: "performance",
 			id: id
 		)
+
+	}
+	// insert new values for performance, condition, etc into the learning Objective
+	// TODO actuall save to database, currently just bouncing data back
+	def updateDefinition(){
+		def type=params.type
+		def value=params.value
+		def id=params.LOid
+		render ([type:type,value:value] as JSON)
+	}
+	def getDomainCategories(){
+		def domain=LearningDomain.findByName(params.domain)
+		def value=domain.domainCategories.asList().sort {it.name}
+		render ([value:value] as JSON)
 	}
 }
