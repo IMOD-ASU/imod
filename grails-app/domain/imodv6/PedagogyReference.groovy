@@ -10,7 +10,10 @@ class PedagogyReference {
 	String referenceLinkISBN
 	String author
 
-	static belongsTo =[referenceType: PedagogyReferenceType, pedagogyTechnique:PedagogyTechnique]
+	static belongsTo =[
+		referenceType: PedagogyReferenceType,
+		pedagogyTechnique:PedagogyTechnique
+	]
 
 	static mapping = {
 		description type:'text'
