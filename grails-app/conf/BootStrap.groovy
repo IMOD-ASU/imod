@@ -1,7 +1,10 @@
+import imodv6.ActionWord
 import imodv6.ContentKnowledgeDomainCode
 import imodv6.ContentPriorityCode
 import imodv6.ContentResourceType
 import imodv6.DomainCategory
+import imodv6.ImodUser
+import imodv6.ImodUserRole
 import imodv6.LearningDomain
 import imodv6.PedagogyActivity
 import imodv6.PedagogyActivityDuration
@@ -10,8 +13,6 @@ import imodv6.PedagogyMode
 import imodv6.PedagogyReference
 import imodv6.PedagogyReferenceType
 import imodv6.PedagogyTechnique
-import imodv6.ImodUser
-import imodv6.ImodUserRole
 
 
 class BootStrap {
@@ -457,33 +458,33 @@ class BootStrap {
 		}
 
 		//TODO rewrite this to use proper GORM domain relationships
-		if (DomainCategory.count() == 0) {
-			new DomainCategory(
+		if (DomainCategory.count() < 1) {
+			def domainCategoryRemembering = new DomainCategory(
 				domain_id: 1,
 				name: "Remembering"
 			).save(flush: true)
 
-			new DomainCategory(
+			def domainCategoryUnderstanding = new DomainCategory(
 				domain_id: 1,
 				name: "Understanding"
 			).save(flush: true)
 
-			new DomainCategory(
+			def domainCategoryApplying = new DomainCategory(
 				domain_id: 1,
 				name: "Applying"
 			).save(flush: true)
 
-			new DomainCategory(
+			def domainCategoryAnalyzing = new DomainCategory(
 				domain_id: 1,
 				name: "Analyzing"
 			).save(flush: true)
 
-			new DomainCategory(
+			def domainCategoryEvaluating = new DomainCategory(
 				domain_id: 1,
 				name: "Evaluating"
 			).save(flush: true)
 
-			new DomainCategory(
+			def domainCategoryCreating = new DomainCategory(
 				domain_id: 1,
 				name: "Creating"
 			).save(flush: true)
@@ -515,7 +516,17 @@ class BootStrap {
 		}
 
 
-		if (ContentKnowledgeDomainCode.count() == 0) {
+		/**
+		 * Creates action words that are based off of the domain categories
+		 */
+		if (ActionWord.count() < 1) {
+			new ActionWord(
+				category: domainCategoryRemembering,
+				actionWord: "Recognizing"
+			).save(flush: true)
+		}
+
+		if (ContentKnowledgeDomainCode.count() < 1) {
 			new ContentKnowledgeDomainCode(
 				description: "Factual"
 			).save(flush: true)
