@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * Describes how often the schedule cycles
  */
 class ScheduleRepeats {
 	String description

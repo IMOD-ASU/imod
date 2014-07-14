@@ -1,12 +1,14 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * Information for a special date for the course
  */
 class ScheduleDate {
 	Date date
 
-	static belongsTo = [imod:Imod]
+	static belongsTo = [
+		imod:Imod
+	]
 
     static constraints = {
     }

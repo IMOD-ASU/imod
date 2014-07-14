@@ -7,7 +7,9 @@ class Piechart {
 	Integer count
 	ContentPriorityCode priority
 
-	static belongsTo = [imod:Imod]
+	static belongsTo = [
+		imod: Imod
+	]
 
     static constraints = {
     }
