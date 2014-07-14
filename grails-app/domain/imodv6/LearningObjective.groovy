@@ -33,6 +33,11 @@ class LearningObjective {
 		pedogoyTechniques: PedagogyTechnique
 	]
 
+	public static final List genericConditions=[
+						'Given a program specification',
+						'Students completing this course will be able to',
+						'After completing the course, the student will be able to'
+						]
 	static transients = ['name']
 
 	/**

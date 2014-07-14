@@ -5,47 +5,102 @@ class LearningObjectiveController {
 
 	static allowedMethods = [
 		getDomainCategories:"GET", 
-		updateDefinition:"POST", 
 		performance: "GET", 
 		condition: "GET", 
 		criteria: "GET", 
 		content: "GET",
+		save: "POST",
 	]
+	// save learning objective data
+	def save (Long id, Long learningObjectiveID, String pageType){
+		def learningObjectiveInstance=LearningObjective.get(learningObjectiveID)
+		if (pageType=='performance'){
+			savePerformance(id, learningObjectiveID, params.actionWord)
+			redirect(action:"performance", id:id, learningObjectiveID:learningObjectiveID)
+		}
+		else if (pageType=='condition'){
+			if (params.LO_condition_type=='Generic'){
+				learningObjectiveInstance.condition=params.LO_generic
+			}
+			if (params.LO_condition_type=='Custom'){
+				learningObjectiveInstance.condition= params.LO_custom
+			}
+			learningObjectiveInstance.hideFromObjective=params.LO_hide_from_Objective=='on'?true:false
+			redirect(action:"condition", id:id, learningObjectiveID:learningObjectiveID)
+		}
+		else{
+			redirect(action:"performance", id:id, learningObjectiveID:learningObjectiveID)
+		}
+	}
 	// begin editing a Learning Objective
 	def edit (Long id){
 		render(action:"perfomance", learningObjectiveID:id)
 	}
-	def performance(Long id) {
+	def performance(Long id, Long learningObjectiveID) {
 		// get relevant imod
 		def imodInstance = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = imodInstance.learningObjectives.asList()
+
+
+		// get all performance data to set in the Performance page
+		def learningObjective=getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def selectedActionWord=learningObjective.actionWord
+		def selectedDomainCategory=selectedActionWord?.category
+		def selectedDomain=selectedDomainCategory?.domain
+		
+		// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
+		def domainList=LearningDomain.list()
+		def categoriesList=selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
+		def actionWordList=selectedDomainCategory?.actionWords?:categoriesList[0].actionWords.asList().sort {it.actionWord}
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			domainList:LearningDomain.list(),
-			currentPage:"performance"
+			currentPage:"performance",
+			learningObjective:learningObjective,
+			selectedActionWord:selectedActionWord,
+			selectedDomainCategory:selectedDomainCategory,
+			selectedDomain:selectedDomain,
+			domainList:domainList,
+			categoriesList:categoriesList,
+			actionWordList:actionWordList,
 		]
 	}
 
-	def content(Long id) {
+	def content(Long id, Long learningObjectiveID) {
+		def imodInstance = Imod.get(id)
+		def learningObjective=getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		[
-			imodInstance: Imod.get(id),
-			currentPage:"content"
+			imodInstance: imodInstance,
+			currentPage:"content",
+			learningObjective:learningObjective,
 		]
 	}
 
-	def condition(Long id) {
+	def condition(Long id, Long learningObjectiveID) {
+		def imodInstance = Imod.get(id)
+		def learningObjectiveInstance=getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def currentCondition=learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
+		def isCustom=!((boolean)(LearningObjective.genericConditions.find{it==currentCondition}))
+		def hideCondition=learningObjectiveInstance.hideFromObjective
+		
 		[
-			imodInstance: Imod.get(id),
-			currentPage:"condition"
+			imodInstance: imodInstance,
+			currentPage:"condition",
+			learningObjective:learningObjectiveInstance,
+			currentCondition:currentCondition,
+			isCustom:isCustom,
+			hideCondition:hideCondition,
 		]
 	}
 
-	def criteria(Long id) {
+	def criteria(Long id, Long learningObjectiveID) {
+		def imodInstance = Imod.get(id)
+		def learningObjective=getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		[
-			imodInstance: Imod.get(id),
-			currentPage:"criteria"
+			imodInstance: imodInstance,
+			currentPage:"criteria",
+			learningObjective:learningObjective,
 		]
 	}
 
@@ -61,21 +116,27 @@ class LearningObjectiveController {
 		// redirects to the performance page to allow for newly created learning objective to be edited
 		redirect(
 			action: "performance",
-			id: id
+			id: id,
+			learningObjectiveID:learningObjectiveInstance.id,
 		)
 
 	}
-	// insert new values for performance, condition, etc into the learning Objective
-	// TODO actuall save to database, currently just bouncing data back
-	def updateDefinition(){
-		def type=params.type
-		def value=params.value
-		def id=params.LOid
-		render ([type:type,value:value] as JSON)
+	private def getDefaultLearningObjective(Imod imodInstance, Long learningObjectiveID)
+	{
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
+		if (learningObjectiveID==null){
+			learningObjectiveID=learningObjectivesList[0].id
+		}
+		return LearningObjective.get(learningObjectiveID)
 	}
-	def getDomainCategories(){
-		def domain=LearningDomain.findByName(params.domain)
+
+	
+	// gather the domain categories for each Learning Domain, return them sorted
+	def getDomainCategories(String domainName){
+		def domain=LearningDomain.findByName(domainName)
 		def value=domain.domainCategories.asList().sort {it.name}
 		render ([value:value] as JSON)
 	}
+	
 }
