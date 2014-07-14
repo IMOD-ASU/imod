@@ -13,33 +13,27 @@ class LearningObjectiveController {
 
 	static defaultAction = "performance"
 
-	private Imod imodInstance
-	private List learningObjectivesList
-
-	def beforeInterceptor = [
-		action: this.&learningObjectiveExistsCheck,
-		except: [
-			'create',
-			'updateDefinition',
-			'getDomainCategories'
-		]
-	]
-
-	def learningObjectiveExistsCheck() {
-		println "interceptor works"
-		println params.id
-		// get relevant imod
-		imodInstance = Imod.get(params.id)
+	private learningObjectiveManager(Imod imodInstance) {
 		// get a list of all of the learning objectives for this imod
-		learningObjectivesList = imodInstance.learningObjectives.asList()
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
+
+		println learningObjectivesList
 
 		// if there are no learning objectives create one
 		if (learningObjectivesList.size() < 1) {
 			create(id)
+			// updates the list of all of the learning objectives for this imod
+			learningObjectivesList = imodInstance.learningObjectives.asList()
 		}
+
+		return learningObjectivesList
 	}
 
-	def performance() {
+	def performance(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		//gets the list of learning Objectives
+		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
@@ -48,33 +42,45 @@ class LearningObjectiveController {
 		]
 	}
 
-	def content() {
+	def content(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		//gets the list of learning Objectives
+		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage:"content"
+			currentPage: "content"
 		]
 	}
 
-	def condition() {
+	def condition(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		//gets the list of learning Objectives
+		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage:"condition"
+			currentPage: "condition"
 		]
 	}
 
-	def criteria() {
+	def criteria(Long id) {
+		// get relevant imod
+		def imodInstance = Imod.get(id)
+		//gets the list of learning Objectives
+		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage:"criteria"
+			currentPage: "criteria"
 		]
 	}
 
 	def create(Long id) {
 		// get the IMOD that this learning objective will be associated with
-		imodInstance = Imod.get(id)
+		def imodInstance = Imod.get(id)
 		// create a learning objective, linked to the imod
 		def learningObjectiveInstance = new LearningObjective(imod: imodInstance)
 		// add the learning objective to the collection of learning objectives in the imod
@@ -96,8 +102,8 @@ class LearningObjectiveController {
 		def id = params.LOid
 		render (
 			[
-				type:type,
-				value:value
+				type: type,
+				value: value
 			] as JSON
 		)
 	}
