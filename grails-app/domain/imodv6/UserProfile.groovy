@@ -1,5 +1,9 @@
 package imodv6
 
+/**
+ * General Instructor information
+ * TODO attributes
+ */
 class UserProfile {
 	String firstName
 	String lastName

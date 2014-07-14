@@ -1,5 +1,13 @@
 package imodv6
 
+/**
+ * a Learning Objective is a topic which the instructor wishes the students to master
+ * Each Learning Objective has a
+ * @param condition condition where a learning objective has been mastered
+ * @param criteria the measure of how the objective has been the completed
+ * @param indicator the point part of the objective that is being measured by the Criteria, Condition and Performance
+ * @param performance allows measure of progress and velocity of student moving toward mastering topic
+ */
 class LearningObjective {
 	/**
 	 * These Strings store the information used to make the learning objective definition

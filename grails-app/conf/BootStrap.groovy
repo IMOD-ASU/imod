@@ -1,7 +1,10 @@
+import imodv6.ActionWord
 import imodv6.ContentKnowledgeDomainCode
 import imodv6.ContentPriorityCode
 import imodv6.ContentResourceType
 import imodv6.DomainCategory
+import imodv6.ImodUser
+import imodv6.ImodUserRole
 import imodv6.LearningDomain
 import imodv6.PedagogyActivity
 import imodv6.PedagogyActivityDuration
@@ -10,8 +13,6 @@ import imodv6.PedagogyMode
 import imodv6.PedagogyReference
 import imodv6.PedagogyReferenceType
 import imodv6.PedagogyTechnique
-import imodv6.ImodUser
-import imodv6.ImodUserRole
 
 
 class BootStrap {
@@ -456,34 +457,44 @@ class BootStrap {
 			).save(flush: true)
 		}
 
+		/**
+		 * These are used to link action words to their domain categories
+		 */
+		def domainCategoryRemembering
+		def domainCategoryUnderstanding
+		def domainCategoryApplying
+		def domainCategoryAnalyzing
+		def domainCategoryEvaluating
+		def domainCategoryCreating
+
 		//TODO rewrite this to use proper GORM domain relationships
-		if (DomainCategory.count() == 0) {
-			new DomainCategory(
+		if (DomainCategory.count() < 1) {
+			domainCategoryRemembering = new DomainCategory(
 				domain_id: 1,
 				name: "Remembering"
 			).save(flush: true)
 
-			new DomainCategory(
+			domainCategoryUnderstanding = new DomainCategory(
 				domain_id: 1,
 				name: "Understanding"
 			).save(flush: true)
 
-			new DomainCategory(
+			domainCategoryApplying = new DomainCategory(
 				domain_id: 1,
 				name: "Applying"
 			).save(flush: true)
 
-			new DomainCategory(
+			domainCategoryAnalyzing = new DomainCategory(
 				domain_id: 1,
 				name: "Analyzing"
 			).save(flush: true)
 
-			new DomainCategory(
+			domainCategoryEvaluating = new DomainCategory(
 				domain_id: 1,
 				name: "Evaluating"
 			).save(flush: true)
 
-			new DomainCategory(
+			domainCategoryCreating = new DomainCategory(
 				domain_id: 1,
 				name: "Creating"
 			).save(flush: true)
@@ -515,7 +526,107 @@ class BootStrap {
 		}
 
 
-		if (ContentKnowledgeDomainCode.count() == 0) {
+		/**
+		 * Creates action words that are based off of the domain categories
+		 */
+		if (ActionWord.count() < 1) {
+			new ActionWord(
+				category: domainCategoryRemembering,
+				actionWord: "Recognizing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryRemembering,
+				actionWord: "Recalling"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Interpreting"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Exemplifying"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Classifying"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Summarizing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Inferring"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Comparing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Explaining"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryApplying,
+				actionWord: "Executing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryApplying,
+				actionWord: "Implementing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryAnalyzing,
+				actionWord: "Differentiating"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryAnalyzing,
+				actionWord: "Organizing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryAnalyzing,
+				actionWord: "Attributing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryEvaluating,
+				actionWord: "Checking"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryEvaluating,
+				actionWord: "Critiquing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryCreating,
+				actionWord: "Generating"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryCreating,
+				actionWord: "Planning"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryCreating,
+				actionWord: "Producing"
+			).save(flush: true)
+		}
+
+		if (ContentKnowledgeDomainCode.count() < 1) {
 			new ContentKnowledgeDomainCode(
 				description: "Factual"
 			).save(flush: true)

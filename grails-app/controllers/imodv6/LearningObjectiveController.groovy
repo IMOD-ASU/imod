@@ -4,13 +4,17 @@ import grails.converters.JSON
 class LearningObjectiveController {
 
 	static allowedMethods = [
-		getDomainCategories:"GET", 
-		performance: "GET", 
-		condition: "GET", 
-		criteria: "GET", 
+		getDomainCategories:"GET",
+		updateDefinition:"POST",
+		performance: "GET",
+		condition: "GET",
+		criteria: "GET",
 		content: "GET",
 		save: "POST",
 	]
+
+	static defaultAction = "performance"
+
 	// save learning objective data
 	def save (Long id, Long learningObjectiveID, String pageType){
 		def learningObjectiveInstance=LearningObjective.get(learningObjectiveID)
@@ -40,7 +44,7 @@ class LearningObjectiveController {
 		// get relevant imod
 		def imodInstance = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = imodInstance.learningObjectives.asList()
+		def learningObjectivesList = learningObjectiveManager(imodInstance)
 
 
 		// get all performance data to set in the Performance page
@@ -101,7 +105,19 @@ class LearningObjectiveController {
 			imodInstance: imodInstance,
 			currentPage:"criteria",
 			learningObjective:learningObjective,
-		]
+
+	private learningObjectiveManager(Imod imodInstance) {
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = imodInstance.learningObjectives.asList()
+
+		// if there are no learning objectives create one
+		if (learningObjectivesList.size() < 1) {
+			create(id)
+			// updates the list of all of the learning objectives for this imod
+			learningObjectivesList = imodInstance.learningObjectives.asList()
+		}
+
+		return learningObjectivesList
 	}
 
 	def create(Long id) {

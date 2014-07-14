@@ -199,13 +199,32 @@ class PedagogyController {
 					selectionLine += " > Knowledge Dimension (${kdmnList.size()} Selections)"
 				}
 			}
-			render template: '/pedagogy/pedagogyTab', model: [topicDateForCurrentLearningObjectiveList: topicDateForCurrentLearningObjectiveList,
-					learningObjectiveDates: learningObjectiveDates, remainingContent: remainingContent, imod: imod, mapkdList: mapkdList,
-					currentImodContentList: currentImodContentList, contentTitle: contentTitle, selectionLine:selectionLine,
-					currentChapterContentList: contentList, chapter: objective, dmn: objective.learningDomain, dc: objective.domainCategory,
-					chapterCount: (objectiveList?.size() > 1), contentPriorityCodeTypeList: contentPriorityCodeTypeList,
-					objectiveList: objectiveList, contentList: contentList, learningObjectiveTypeList: knowledgeDomainCodes, domainList: domainList, KnowledgeDomainlist:KnowledgeDomainlist,
-					lrnDomainlist: lrnDomainlist, pedaTechList: pedaTechList,userId:ImodUser.get(springSecurityService.principal.id),favPedaTechList:favPedaTechList,referenceTypeList:PedagogyReferenceType.list()]
+			[
+				topicDateForCurrentLearningObjectiveList: topicDateForCurrentLearningObjectiveList,
+				learningObjectiveDates: learningObjectiveDates,
+				remainingContent: remainingContent,
+				imod: imod,
+				mapkdList: mapkdList,
+				currentImodContentList: currentImodContentList,
+				contentTitle: contentTitle,
+				selectionLine:selectionLine,
+				currentChapterContentList: contentList,
+				chapter: objective,
+				dmn: objective.learningDomain,
+				dc: objective.domainCategory,
+				chapterCount: (objectiveList?.size() > 1),
+				contentPriorityCodeTypeList: contentPriorityCodeTypeList,
+				objectiveList: objectiveList,
+				contentList: contentList,
+				learningObjectiveTypeList: knowledgeDomainCodes,
+				domainList: domainList,
+				KnowledgeDomainlist: KnowledgeDomainlist,
+				lrnDomainlist: lrnDomainlist,
+				pedaTechList: pedaTechList,
+				userId: ImodUser.get(springSecurityService.principal.id),
+				favPedaTechList: favPedaTechList,
+				referenceTypeList: PedagogyReferenceType.list()
+			]
 		}
 	}
 	/**
@@ -240,7 +259,15 @@ class PedagogyController {
 				assign.save(flush:true)
 			}
 		}
-		redirect(controller: 'imod', action: 'edit', id: id, params: [loadPedagogyTab: true, objectiveId: objectiveId])
+		redirect(
+			controller: 'imod',
+			action: 'edit',
+			id: id,
+			params: [
+				loadPedagogyTab: true,
+				objectiveId: objectiveId
+			]
+		)
 	}
 
 	/**
@@ -260,7 +287,11 @@ class PedagogyController {
 		def KnowledgeDomainlist = ContentKnowledgeDomainCode.list()
 
 
-		return [objectiveList : objectiveList, domainList: domainList, KnowledgeDomainlist: KnowledgeDomainlist]
+		return [
+			objectiveList : objectiveList,
+			domainList: domainList,
+			KnowledgeDomainlist: KnowledgeDomainlist
+		]
 	}
 	/**
 	 * To open Pedagogy Technique clone popup
