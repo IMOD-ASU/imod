@@ -63,9 +63,9 @@
 									</div>
 									<ul>
 										<li>
-											<g:each in="${learningObjectiveInstanceList}" status="i" var="learningObjective">
+											<g:each in="${learningObjectivesList}" status="i" var="learningObjective">
 												<g:link action="edit" id="${learningObjective.id}" class="square">
-													${fieldValue(bean: learningObjective, field: "name")}
+													${fieldValue(bean: learningObjective, field: "id")}
 												</g:link>
 											</g:each>
 										</li>

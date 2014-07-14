@@ -17,8 +17,6 @@ class LearningObjectiveController {
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = imodInstance.learningObjectives.asList()
 
-		println learningObjectivesList
-
 		// if there are no learning objectives create one
 		if (learningObjectivesList.size() < 1) {
 			create(id)
@@ -34,6 +32,7 @@ class LearningObjectiveController {
 		def imodInstance = Imod.get(id)
 		//gets the list of learning Objectives
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
+
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
@@ -107,6 +106,7 @@ class LearningObjectiveController {
 			] as JSON
 		)
 	}
+
 	def getDomainCategories(){
 		def domain = LearningDomain.findByName(params.domain)
 		def value = domain.domainCategories.asList().sort {it.name}
