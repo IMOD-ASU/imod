@@ -457,34 +457,44 @@ class BootStrap {
 			).save(flush: true)
 		}
 
+		/**
+		 * These are used to link action words to their domain categories
+		 */
+		def domainCategoryRemembering
+		def domainCategoryUnderstanding
+		def domainCategoryApplying
+		def domainCategoryAnalyzing
+		def domainCategoryEvaluating
+		def domainCategoryCreating
+
 		//TODO rewrite this to use proper GORM domain relationships
 		if (DomainCategory.count() < 1) {
-			def domainCategoryRemembering = new DomainCategory(
+			domainCategoryRemembering = new DomainCategory(
 				domain_id: 1,
 				name: "Remembering"
 			).save(flush: true)
 
-			def domainCategoryUnderstanding = new DomainCategory(
+			domainCategoryUnderstanding = new DomainCategory(
 				domain_id: 1,
 				name: "Understanding"
 			).save(flush: true)
 
-			def domainCategoryApplying = new DomainCategory(
+			domainCategoryApplying = new DomainCategory(
 				domain_id: 1,
 				name: "Applying"
 			).save(flush: true)
 
-			def domainCategoryAnalyzing = new DomainCategory(
+			domainCategoryAnalyzing = new DomainCategory(
 				domain_id: 1,
 				name: "Analyzing"
 			).save(flush: true)
 
-			def domainCategoryEvaluating = new DomainCategory(
+			domainCategoryEvaluating = new DomainCategory(
 				domain_id: 1,
 				name: "Evaluating"
 			).save(flush: true)
 
-			def domainCategoryCreating = new DomainCategory(
+			domainCategoryCreating = new DomainCategory(
 				domain_id: 1,
 				name: "Creating"
 			).save(flush: true)
@@ -523,6 +533,96 @@ class BootStrap {
 			new ActionWord(
 				category: domainCategoryRemembering,
 				actionWord: "Recognizing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryRemembering,
+				actionWord: "Recalling"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Interpreting"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Exemplifying"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Classifying"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Summarizing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Inferring"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Comparing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Explaining"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryApplying,
+				actionWord: "Executing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryApplying,
+				actionWord: "Implementing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryAnalyzing,
+				actionWord: "Differentiating"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryAnalyzing,
+				actionWord: "Organizing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryAnalyzing,
+				actionWord: "Attributing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryEvaluating,
+				actionWord: "Checking"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryEvaluating,
+				actionWord: "Critiquing"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryCreating,
+				actionWord: "Generating"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryCreating,
+				actionWord: "Planning"
+			).save(flush: true)
+
+			new ActionWord(
+				category: domainCategoryCreating,
+				actionWord: "Producing"
 			).save(flush: true)
 		}
 
