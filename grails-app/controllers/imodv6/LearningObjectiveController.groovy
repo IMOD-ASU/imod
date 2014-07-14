@@ -11,28 +11,44 @@ class LearningObjectiveController {
 		content: "GET",
 	]
 
-	/*
-		TODO rework getting learning objectives into a function that can be shared by all sub tabs
-	 */
+	static defaultAction = "performance"
 
-	def performance(Long id) {
+	private Imod imodInstance
+	private List learningObjectivesList
+
+	def beforeInterceptor = [
+		action: this.&learningObjectiveExistsCheck,
+		except: [
+			'create',
+			'updateDefinition',
+			'getDomainCategories'
+		]
+	]
+
+	def learningObjectiveExistsCheck() {
+		println "interceptor works"
+		println params.id
 		// get relevant imod
-		def imodInstance = Imod.get(id)
+		imodInstance = Imod.get(params.id)
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = imodInstance.learningObjectives.asList()
+		learningObjectivesList = imodInstance.learningObjectives.asList()
+
+		// if there are no learning objectives create one
+		if (learningObjectivesList.size() < 1) {
+			create(id)
+		}
+	}
+
+	def performance() {
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			domainList:LearningDomain.list(),
-			currentPage:"performance"
+			domainList: LearningDomain.list(),
+			currentPage: "performance"
 		]
 	}
 
-	def content(Long id) {
-		// get relevant imod
-		def imodInstance = Imod.get(id)
-		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = imodInstance.learningObjectives.asList()
+	def content() {
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
@@ -40,11 +56,7 @@ class LearningObjectiveController {
 		]
 	}
 
-	def condition(Long id) {
-		// get relevant imod
-		def imodInstance = Imod.get(id)
-		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = imodInstance.learningObjectives.asList()
+	def condition() {
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
@@ -52,11 +64,7 @@ class LearningObjectiveController {
 		]
 	}
 
-	def criteria(Long id) {
-		// get relevant imod
-		def imodInstance = Imod.get(id)
-		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = imodInstance.learningObjectives.asList()
+	def criteria() {
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
@@ -66,7 +74,7 @@ class LearningObjectiveController {
 
 	def create(Long id) {
 		// get the IMOD that this learning objective will be associated with
-		def imodInstance = Imod.get(id)
+		imodInstance = Imod.get(id)
 		// create a learning objective, linked to the imod
 		def learningObjectiveInstance = new LearningObjective(imod: imodInstance)
 		// add the learning objective to the collection of learning objectives in the imod
@@ -83,14 +91,23 @@ class LearningObjectiveController {
 	// insert new values for performance, condition, etc into the learning Objective
 	// TODO actuall save to database, currently just bouncing data back
 	def updateDefinition(){
-		def type=params.type
-		def value=params.value
-		def id=params.LOid
-		render ([type:type,value:value] as JSON)
+		def type = params.type
+		def value = params.value
+		def id = params.LOid
+		render (
+			[
+				type:type,
+				value:value
+			] as JSON
+		)
 	}
 	def getDomainCategories(){
-		def domain=LearningDomain.findByName(params.domain)
-		def value=domain.domainCategories.asList().sort {it.name}
-		render ([value:value] as JSON)
+		def domain = LearningDomain.findByName(params.domain)
+		def value = domain.domainCategories.asList().sort {it.name}
+		render (
+			[
+				value:value
+			] as JSON
+		)
 	}
 }
