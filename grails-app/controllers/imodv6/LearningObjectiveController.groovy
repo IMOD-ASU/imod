@@ -19,7 +19,9 @@ class LearningObjectiveController {
 		// get the IMOD that this learning objective will be associated with
 		def imodInstance = Imod.get(id)
 		// create a learning objective, linked to the imod
-		def learningObjectiveInstance = new LearningObjective(imod: imodInstance)
+		def learningObjectiveInstance = new LearningObjective(
+			imod: imodInstance
+		)
 		// add the learning objective to the collection of learning objectives in the imod
 		imodInstance.addToLearningObjectives(learningObjectiveInstance)
 		// saves the imod and the learning objective
