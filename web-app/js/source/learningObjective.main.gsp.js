@@ -44,7 +44,7 @@ function populateDomainCategories(domain){
 		url:"../../learningObjective/getDomainCategories",
 		type:"GET",
 		dataType:"json",
-		data:{domain:domain},
+		data:{domainName:domain},
 		success:function(data){
 			var categories=data.value
 			var options='';

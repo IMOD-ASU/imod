@@ -4,6 +4,7 @@ import grails.converters.JSON
 class LearningObjectiveController {
 
 	static allowedMethods = [
+		create:"GET",
 		getDomainCategories:"GET",
 		updateDefinition:"POST",
 		performance: "GET",
@@ -19,7 +20,8 @@ class LearningObjectiveController {
 		// get the IMOD that this learning objective will be associated with
 		def imodInstance = Imod.get(id)
 		// create a learning objective, linked to the imod
-		def learningObjectiveInstance = new LearningObjective(imod: imodInstance).save()
+		def learningObjectiveInstance = new LearningObjective(imod: imodInstance)
+		learningObjectiveInstance.save()
 		// add the learning objective to the collection of learning objectives in the imod
 		imodInstance.addToLearningObjectives(learningObjectiveInstance)
 		// saves the imod (and in theory the learning objective)
@@ -101,6 +103,7 @@ class LearningObjectiveController {
 
 	def condition(Long id, Long learningObjectiveID) {
 		def imodInstance = Imod.get(id)
+		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjectiveInstance=getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		def currentCondition=learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
 		def isCustom=!((boolean)(LearningObjective.genericConditions.find{it==currentCondition}))
@@ -108,6 +111,7 @@ class LearningObjectiveController {
 		
 		[
 			imodInstance: imodInstance,
+			learningObjectiveList: learningObjectiveList,
 			currentPage:"condition",
 			learningObjective:learningObjectiveInstance,
 			currentCondition:currentCondition,
