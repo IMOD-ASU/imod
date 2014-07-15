@@ -4,19 +4,19 @@ $(function(){
 	});
 
 	$('#LO_hide_from_Objective').change(function(){
-		changeDefinition( this.checked, "hideFromObjective")
 		if(this.checked){
 			$('#learning-objective-condition').css("display","none")
 		}
 		else{
 			$('#learning-objective-condition').css("display","inline")
 		}
-	});
+	})
+	.change();
 	$('#LO_condition_custom').keyup(function(){
 		propagateToDefinition(this.value, "condition")
 	});
 	$(".LO_condition_data").change(function(){
-		changeDefinition(this.value, "condition")
+		propagateToDefinition(this.value, "condition")
 	});	
 	$('input:radio[name=LO_condition_type]').change(function(){
 		if(this.value=='Generic'){
@@ -28,6 +28,7 @@ $(function(){
 			$('#LO_condition_custom').css("display","block")
 		}
 	});
+	$('input:radio[name=LO_condition_type]:checked').change()
 	$('#action-words' ).selectable();
 	$('.action-word').change(function() {
 		$( '.learning-objective-performance').html(
@@ -35,6 +36,9 @@ $(function(){
 			)
 	});
 });
+
+// ajax to pull domain categories based on which Learning Domain was selected, 
+// then populate the select box with the domain categories
 function populateDomainCategories(domain){
 	$.ajax({
 		url:"../../learningObjective/getDomainCategories",
@@ -49,22 +53,13 @@ function populateDomainCategories(domain){
 			}
 			$('#domain-category-list').html(options);
 		},
-	})
-}
-function changeDefinition(value, type){
-	$.ajax({
-		url:"../../learningObjective/updateDefinition",
-		type:"POST",
-		dataType:"json",
-		data:{type:type,value:value},
-		success:function(data){
-			propagateToDefinition(data.value, data.type)
-		},
 		error: function(xhr){
 			alert(xhr.responseText);
 		}
 	});
 }
+
+// add the data to the definition box, depending on which type of data it is
 function propagateToDefinition(value, type){
 	var definitionType="#learning-objective-"+type
 	$(definitionType).text(value)

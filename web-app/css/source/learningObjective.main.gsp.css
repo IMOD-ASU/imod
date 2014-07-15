@@ -186,3 +186,69 @@ table.LO_inner_table {
 	height:1em;
 }
 
+/* save and delete buttons */
+.LO_buttons {
+	float:right;
+	background-color: #efefef;
+	overflow: hidden;
+	padding: 0.3em;
+	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
+	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
+	        box-shadow: 0 0 3px 1px #aaaaaa;
+	margin: 0.1em 0 0 0;
+	border: none;
+}
+
+.LO_buttons input,
+.LO_buttons a {
+	background-color: transparent;
+	border: 0;
+	color: #666666;
+	cursor: pointer;
+	display: inline-block;
+	margin: 0 0.25em 0;
+	overflow: visible;
+	padding: 0.25em 0.7em;
+	text-decoration: none;
+
+	   -moz-border-radius: 0.3em;
+	-webkit-border-radius: 0.3em;
+	        border-radius: 0.3em;
+}
+
+.LO_buttons input:hover, .LO_buttons input:focus,
+.LO_buttons a:hover, .LO_buttons a:focus {
+	background-color: #999999;
+	color: #ffffff;
+	outline: none;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+	   -moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+}
+
+.no-borderradius .LO_buttons input:hover, .no-borderradius .LO_buttons input:focus,
+.no-borderradius .LO_buttons a:hover, .no-borderradius .LO_buttons a:focus {
+	background-color: transparent;
+	color: #444444;
+	text-decoration: underline;
+}
+
+.LO_buttons .delete, .LO_buttons .save {
+	background-position: 0.7em center;
+	background-repeat: no-repeat;
+	text-indent: 25px;
+}
+
+.ie6 .LO_buttons input.delete, .ie6 .LO_buttons input.save,
+.ie7 .LO_buttons input.delete, .ie7 .LO_buttons input.save {
+	padding-left: 36px;
+}
+
+.LO_buttons .delete {
+	background-image: url(../../images/skin/database_delete.png);
+}
+
+.LO_buttons .save {
+	background-image: url(../../images/skin/database_save.png);
+}

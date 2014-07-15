@@ -10,7 +10,7 @@ package imodv6
  */
 class LearningObjective {
 	/**
-	 * These Strings store the informantion used to make the learning objective definition
+	 * These Strings store the information used to make the learning objective definition
 	 * attributes are the dynamic content from the learning objective
 	 * Boolean to keep track of whether or not to hide the Condition from the Learning Objective
 	 */
@@ -41,6 +41,11 @@ class LearningObjective {
 		pedogoyTechniques: PedagogyTechnique
 	]
 
+	public static final List genericConditions=[
+						'Given a program specification',
+						'Students completing this course will be able to',
+						'After completing the course, the student will be able to'
+						]
 	static transients = ['name']
 
 	/**

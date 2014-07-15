@@ -1,4 +1,4 @@
-<%@ page import="imodv6.Help; imodv6.Imod; imodv6.ImodUser;" %>
+<%@ page import="imodv6.Help" %>
 <html>
 	<head>
 		<title>
@@ -8,20 +8,42 @@
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
+		<fieldset class="LO_buttons">
+			<g:actionSubmit 
+				class="save showHoverNew" 
+				action="save" 
+				title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}"  
+				value="${message(code: 'Save', default: 'Save')}"
+				id="${imodInstance.id }"
+				learningObjectiveID="${learningObjective.id }"
+				type="performance"
+			/>
+		</fieldset>
+
 		<label for="learning-domain-list" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 			Learning Domain
 		</label>
-		<g:select name="LDL" id="learning-domain-list" from="${domainList.name}" />
+		<g:select 
+			name="LDL" 
+			id="learning-domain-list" 
+			from="${domainList.name}" 
+			value="${selectedDomain?.name?:""}"
+		/>
 		<br />
 
 		<label for="domain-category-list" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
 			Domain Category
 		</label>
-		<g:select name="DCL" id="domain-category-list" from="${domainList[0].domainCategories}"  />
+		<g:select 
+			name="DCL" 
+			id="domain-category-list" 
+			from="${categoriesList.name}" 
+			value="${selectedDomainCategory?.name?:"" }" 
+		/>
 		<br />
 
 		<ol id="action-words">
-			<g:each var="actionWord" in="${['Differentiating', 'Organizing', 'Attributing']}">
+			<g:each var="actionWord" in="${actionWordList.actionWord}">
 				<li class="action-word ui-state-default">
 					${actionWord}
 				</li>
