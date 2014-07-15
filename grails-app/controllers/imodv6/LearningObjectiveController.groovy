@@ -37,7 +37,7 @@ class LearningObjectiveController {
 	def save (Long id, Long learningObjectiveID, String pageType){
 		def learningObjectiveInstance=LearningObjective.get(learningObjectiveID)
 		if (pageType=='performance'){
-			savePerformance(id, learningObjectiveID, params.actionWord)
+			learningObjectiveInstance.actionWord=ActionWord.findByActionWord(params.actionWord)
 			redirect(action:"performance", id:id, learningObjectiveID:learningObjectiveID)
 		}
 		else if (pageType=='condition'){
