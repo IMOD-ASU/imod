@@ -15,6 +15,24 @@ class LearningObjectiveController {
 
 	static defaultAction = "performance"
 
+	def create(Long id) {
+		// get the IMOD that this learning objective will be associated with
+		def imodInstance = Imod.get(id)
+		// create a learning objective, linked to the imod
+		def learningObjectiveInstance = new LearningObjective(imod: imodInstance).save()
+		// add the learning objective to the collection of learning objectives in the imod
+		imodInstance.addToLearningObjectives(learningObjectiveInstance)
+		// saves the imod (and in theory the learning objective)
+		imodInstance.save(flush: true)
+		// redirects to the performance page to allow for newly created learning objective to be edited
+		redirect(
+			action: "performance",
+			id: id,
+			learningObjectiveID:learningObjectiveInstance.id,
+		)
+
+	}
+
 	// save learning objective data
 	def save (Long id, Long learningObjectiveID, String pageType){
 		def learningObjectiveInstance=LearningObjective.get(learningObjectiveID)
@@ -105,8 +123,18 @@ class LearningObjectiveController {
 			imodInstance: imodInstance,
 			currentPage:"criteria",
 			learningObjective:learningObjective,
+		]
+	}
 
-	private learningObjectiveManager(Imod imodInstance) {
+	
+	// gather the domain categories for each Learning Domain, return them sorted
+	def getDomainCategories(String domainName){
+		def domain=LearningDomain.findByName(domainName)
+		def value=domain.domainCategories.asList().sort {it.name}
+		render ([value:value] as JSON)
+	}
+
+	private def learningObjectiveManager(Imod imodInstance) {
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = imodInstance.learningObjectives.asList()
 
@@ -120,23 +148,6 @@ class LearningObjectiveController {
 		return learningObjectivesList
 	}
 
-	def create(Long id) {
-		// get the IMOD that this learning objective will be associated with
-		def imodInstance = Imod.get(id)
-		// create a learning objective, linked to the imod
-		def learningObjectiveInstance = new LearningObjective(imod: imodInstance).save()
-		// add the learning objective to the collection of learning objectives in the imod
-		imodInstance.addToLearningObjectives(learningObjectiveInstance)
-		// saves the imod (and in theory the learning objective)
-		imodInstance.save(flush: true)
-		// redirects to the performance page to allow for newly created learning objective to be edited
-		redirect(
-			action: "performance",
-			id: id,
-			learningObjectiveID:learningObjectiveInstance.id,
-		)
-
-	}
 	private def getDefaultLearningObjective(Imod imodInstance, Long learningObjectiveID)
 	{
 		// get a list of all of the learning objectives for this imod
@@ -146,13 +157,4 @@ class LearningObjectiveController {
 		}
 		return LearningObjective.get(learningObjectiveID)
 	}
-
-	
-	// gather the domain categories for each Learning Domain, return them sorted
-	def getDomainCategories(String domainName){
-		def domain=LearningDomain.findByName(domainName)
-		def value=domain.domainCategories.asList().sort {it.name}
-		render ([value:value] as JSON)
-	}
-	
 }
