@@ -4,7 +4,11 @@ import javax.servlet.http.HttpServletResponse
 
 class PedagogyController {
 	def springSecurityService
-	static allowedMethods = [reloadPedagogyTab: "GET", pedagogyTab: "GET", addNewTechnique: "POST"]
+	static allowedMethods = [
+		reloadPedagogyTab: "GET",
+		pedagogyTab: "GET",
+		addNewTechnique: "POST"
+	]
 
 	/**
 	 * updateExtendedTechnique action used to updated Extended Match

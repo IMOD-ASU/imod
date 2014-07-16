@@ -8,9 +8,14 @@ package imodv6
  */
 class DomainCategory {
 	String name
-	LearningDomain domain
-	
-	static hasMany=[actionWords:ActionWord]
+
+	static belongsTo = [
+		learningDomain: LearningDomain
+	]
+
+	static hasMany = [
+		actionWords: ActionWord
+	]
 
 	static constraints = {
 	}

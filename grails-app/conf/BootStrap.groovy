@@ -421,6 +421,7 @@ class BootStrap {
 			).save(flush: true)
 		}
 
+
 		/**
 		 * Content Priority
 		 * TODO: What is this???
@@ -439,198 +440,296 @@ class BootStrap {
 			).save(flush: true)
 		}
 
-		/**
-		 * Learning Domain
-		 * These are the overarching categories for the Learning Objective performance tab
-		 */
-		def learningDomainCognitive=LearningDomain.findByName("Cognitive")?:
-			new LearningDomain(
+
+		if (LearningDomain.count() < 1) {
+			/**
+			 * Generate Learning Domains, Domain Categories and Action Words
+			 */
+			def learningDomainCognitive = new LearningDomain(
 				name: "Cognitive"
-			).save(flush: true)
+			)
+			learningDomainCognitive.save(flush: true)
 
-		def learningDomainAffective=LearningDomain.findByName("Affective")?:
-			new LearningDomain(
+			def learningDomainAffective = new LearningDomain(
 				name: "Affective"
-			).save(flush: true)
+			)
+			learningDomainAffective.save(flush: true)
 
-		def learningDomainPsychomotor=LearningDomain.findByName("Psychomotor")?:
-			new LearningDomain(
+			def learningDomainPsychomotor = new LearningDomain(
 				name: "Psychomotor"
-			).save(flush: true)
+			)
+			learningDomainPsychomotor.save(flush: true)
 
-		/**
-		 * These are used to link action words to their domain categories
-		 * Verifies that each category exists, and if not, creates the category
-		 */
+			/**
+			 * This creates the domain Category instances,
+			 * these are used to link Learning Domains to Action Words
+			 */
 
-
-		
-		//TODO rewrite this to use proper GORM domain relationships
-		def domainCategoryRemembering=DomainCategory.findByName("Remembering")?:
-			new DomainCategory(
+			/**
+			 * These are the Categories for the Cognitive Domain
+			 */
+			def domainCategoryRemembering = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Remembering"
-			).save(flush: true)
+			)
 
-		def domainCategoryUnderstanding=DomainCategory.findByName("Understanding")?:
-			new DomainCategory(
+			def domainCategoryUnderstanding = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Understanding"
-			).save(flush: true)
+			)
 
-		def domainCategoryApplying=DomainCategory.findByName("Applying")?:
-			new DomainCategory(
+			def domainCategoryApplying = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Applying"
-			).save(flush: true)
+			)
 
-		def domainCategoryAnalyzing=DomainCategory.findByName("Analyzing")?:
-			new DomainCategory(
+			def domainCategoryAnalyzing = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Analyzing"
-			).save(flush: true)
+			)
 
-		def domainCategoryEvaluating=DomainCategory.findByName("Evaluating")?:
-			new DomainCategory(
+			def domainCategoryEvaluating = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Evaluating"
-			).save(flush: true)
+			)
 
-		def domainCategoryCreating=DomainCategory.findByName("Creating")?:
-			new DomainCategory(
+			def domainCategoryCreating = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Creating"
-			).save(flush: true)
+			)
 
-		def domainCategoryReceivingPhenomena=DomainCategory.findByName("Receiving Phenomena")?:
-			new DomainCategory(
-				domain: learningDomainCognitiveAffective,
+			/**
+			 * This Links each Domain Category to its Learning Domain
+			 */
+			learningDomainCognitive.addToDomainCategories(domainCategoryRemembering)
+			learningDomainCognitive.addToDomainCategories(domainCategoryUnderstanding)
+			learningDomainCognitive.addToDomainCategories(domainCategoryApplying)
+			learningDomainCognitive.addToDomainCategories(domainCategoryAnalyzing)
+			learningDomainCognitive.addToDomainCategories(domainCategoryEvaluating)
+			learningDomainCognitive.addToDomainCategories(domainCategoryCreating)
+
+			/**
+			 * These are the Categories for the Affective Domain
+			 */
+			def domainCategoryReceivingPhenomena = new DomainCategory(
+				domain: learningDomainAffective,
 				name: "Receiving Phenomena"
-			).save(flush: true)
+			)
 
-		def domainCategoryResponding=DomainCategory.findByName("Responding")?:
-			new DomainCategory(
-				domain: learningDomainCognitiveAffective,
+			def domainCategoryResponding = new DomainCategory(
+				domain: learningDomainAffective,
 				name: "Responding"
-			).save(flush: true)
+			)
 
-		def domainCategoryValuing=DomainCategory.findByName("Valuing")?:
-			new DomainCategory(
-				domain: learningDomainCognitiveAffective,
+			def domainCategoryValuing = new DomainCategory(
+				domain: learningDomainAffective,
 				name: "Valuing"
-			).save(flush: true)
+			)
 
-		def domainCategoryOrganisation=DomainCategory.findByName("Organisation")?:
-			new DomainCategory(
-				domain: learningDomainCognitiveAffective,
+			def domainCategoryOrganisation = new DomainCategory(
+				domain: learningDomainAffective,
 				name: "Organisation"
-			).save(flush: true)
+			)
 
-		def domainCategoryInternalisingValues=DomainCategory.findByName("Internalising Values")?:
-			new DomainCategory(
-				domain: learningDomainCognitiveAffective,
+			def domainCategoryInternalisingValues = new DomainCategory(
+				domain: learningDomainAffective,
 				name: "Internalising Values"
-			).save(flush: true)
+			)
 
+			/**
+			 * This Links each Domain Category to its Learning Domain
+			 */
+			learningDomainAffective.addToDomainCategories(domainCategoryReceivingPhenomena)
+			learningDomainAffective.addToDomainCategories(domainCategoryResponding)
+			learningDomainAffective.addToDomainCategories(domainCategoryValuing)
+			learningDomainAffective.addToDomainCategories(domainCategoryOrganisation)
+			learningDomainAffective.addToDomainCategories(domainCategoryInternalisingValues)
 
-		/**
-		 * Creates action words that are based off of the domain categories
-		 */
-		if (ActionWord.count() < 1) {
-			new ActionWord(
+			/**
+			 * creating action words for remembering category
+			 */
+			def actionWordRemembering = new ActionWord(
 				category: domainCategoryRemembering,
 				actionWord: "Recognizing"
-			).save(flush: true,failOnError: true)
+			)
 
-			new ActionWord(
+			def actionWordRecalling = new ActionWord(
 				category: domainCategoryRemembering,
 				actionWord: "Recalling"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryRemembering.addToActionWords(actionWordRemembering)
+			domainCategoryRemembering.addToActionWords(actionWordRecalling)
+
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryRemembering.save(flush: true)
+
+			/**
+			 * creating action words for understanding category
+			 */
+			def actionWordInterpreting = new ActionWord(
 				category: domainCategoryUnderstanding,
 				actionWord: "Interpreting"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordExemplifying = new ActionWord(
 				category: domainCategoryUnderstanding,
 				actionWord: "Exemplifying"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordClassifying = new ActionWord(
 				category: domainCategoryUnderstanding,
 				actionWord: "Classifying"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordSummarizing = new ActionWord(
 				category: domainCategoryUnderstanding,
 				actionWord: "Summarizing"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordInferring = new ActionWord(
 				category: domainCategoryUnderstanding,
 				actionWord: "Inferring"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordComparing = new ActionWord(
 				category: domainCategoryUnderstanding,
 				actionWord: "Comparing"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordExplaining = new ActionWord(
 				category: domainCategoryUnderstanding,
 				actionWord: "Explaining"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryUnderstanding.addToActionWords(actionWordInterpreting)
+			domainCategoryUnderstanding.addToActionWords(actionWordExemplifying)
+			domainCategoryUnderstanding.addToActionWords(actionWordClassifying)
+			domainCategoryUnderstanding.addToActionWords(actionWordSummarizing)
+			domainCategoryUnderstanding.addToActionWords(actionWordInferring)
+			domainCategoryUnderstanding.addToActionWords(actionWordComparing)
+			domainCategoryUnderstanding.addToActionWords(actionWordExplaining)
+
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryUnderstanding.save(flush: true)
+
+			/**
+			 * creating action words for applying category
+			 */
+			def actionWordExecuting = new ActionWord(
 				category: domainCategoryApplying,
 				actionWord: "Executing"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordImplementing = new ActionWord(
 				category: domainCategoryApplying,
 				actionWord: "Implementing"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryApplying.addToActionWords(actionWordExecuting)
+			domainCategoryApplying.addToActionWords(actionWordImplementing)
+
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryApplying.save(flush: true)
+
+			/**
+			 * creating action words for analyzing category
+			 */
+			def actionWordDifferentiating = new ActionWord(
 				category: domainCategoryAnalyzing,
 				actionWord: "Differentiating"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordOrganizing = new ActionWord(
 				category: domainCategoryAnalyzing,
 				actionWord: "Organizing"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordAttributing = new ActionWord(
 				category: domainCategoryAnalyzing,
 				actionWord: "Attributing"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryAnalyzing.addToActionWords(actionWordDifferentiating)
+			domainCategoryAnalyzing.addToActionWords(actionWordOrganizing)
+			domainCategoryAnalyzing.addToActionWords(actionWordAttributing)
+
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryAnalyzing.save(flush: true)
+
+			/**
+			 * creating action words for evaluating category
+			 */
+			def actionWordChecking = new ActionWord(
 				category: domainCategoryEvaluating,
 				actionWord: "Checking"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordCritiquing = new ActionWord(
 				category: domainCategoryEvaluating,
 				actionWord: "Critiquing"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryEvaluating.addToActionWords(actionWordChecking)
+			domainCategoryEvaluating.addToActionWords(actionWordCritiquing)
+
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryEvaluating.save(flush: true)
+
+			/**
+			 * creating action words for evaluating category
+			 */
+			def actionWordGenerating = new ActionWord(
 				category: domainCategoryCreating,
 				actionWord: "Generating"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordPlanning = new ActionWord(
 				category: domainCategoryCreating,
 				actionWord: "Planning"
-			).save(flush: true)
+			)
 
-			new ActionWord(
+			def actionWordProducing = new ActionWord(
 				category: domainCategoryCreating,
 				actionWord: "Producing"
-			).save(flush: true)
+			)
+
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryCreating.addToActionWords(actionWordGenerating)
+			domainCategoryCreating.addToActionWords(actionWordPlanning)
+			domainCategoryCreating.addToActionWords(actionWordProducing)
+
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryCreating.save(flush: true)
 		}
 
 		if (ContentKnowledgeDomainCode.count() < 1) {
@@ -794,51 +893,51 @@ class BootStrap {
 			new PedagogyActivity(
 				title:"Step-2",
 				description: "ask students to solve the problem using specific steps you have identified as a problem solving technique",
-				example:"The Dewey Six-Step Problem Solving Technique",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "The Dewey Six-Step Problem Solving Technique",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "ask students to solve the problem using specific steps you have identified as a problem solving technique",
-				example:"The Dewey Six-Step Problem Solving Technique",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "The Dewey Six-Step Problem Solving Technique",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-1",
-				description:"Organize students into teams and assign them a complex problem to solve",
-				example:"Problem could be like evaluate the effectiveness of the antacids",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				title: "Step-1",
+				description: "Organize students into teams and assign them a complex problem to solve",
+				example: "Problem could be like evaluate the effectiveness of the antacids",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Face-to Face/ Video / Audio  Lectures ",
+				pedagogyTitle: "Face-to Face/ Video / Audio  Lectures ",
 				pedagogyDescription: "Lecture",
-				domain:LearningDomain.findAllByNameInList([
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),//'Cognitive','Affective', 'Psychomotor'
-				category:DomainCategory.findAllByNameInList([
+				category: DomainCategory.findAllByNameInList([
 					'Remembering',
 					"Understanding"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual"
 				]),
@@ -850,18 +949,18 @@ class BootStrap {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Partially Guided Programming Exercise",
-				pedagogyDescription:"Partially Guided Programming Exercise ",
-				domain:LearningDomain.findAllByNameInList([
+				pedagogyTitle: "Partially Guided Programming Exercise",
+				pedagogyDescription: "Partially Guided Programming Exercise ",
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),//'Cognitive','Affective', 'Psychomotor'
-				category:DomainCategory.findAllByNameInList([
+				category: DomainCategory.findAllByNameInList([
 					"Understanding",
 					"Applying",
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
 					"Conceptual",
 					"Procedural"
 				]),
@@ -876,18 +975,18 @@ class BootStrap {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Think Aloud Pair Problem Solving",
+				pedagogyTitle: "Think Aloud Pair Problem Solving",
 				pedagogyDescription: "Student pairs receive a series of problems as well as specific roles - problem solver and listener - then switch with each problem. The problem solver thinks aloud, talking through the steps of solving the problem, while the partner listens, following the steps, attempting to understand the reasoning behind the steps, and offering suggestions if there is a misstep.",
-				domain:LearningDomain.findAllByNameInList([
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),
-				category:DomainCategory.findAllByNameInList([
+				category: DomainCategory.findAllByNameInList([
 					"Understanding",
 					"Applying",
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual",
 					"Procedural",
@@ -902,62 +1001,62 @@ class BootStrap {
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:"Step-1",
+				title: "Step-1",
 				description: "Spend time developing an appropriate set of field related problems to solve within a limited time frame",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-2",
+				title: "Step-2",
 				description: "Ask students to form pairs",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "Ask students to solve problems alternating the roles with each new problem",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-4",
+				title: "Step-4",
 				description: "Call completion when all problems have been solved",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Frames",
+				pedagogyTitle: "Frames",
 				pedagogyDescription: "Instructors give students a template of sentence stem that provides the shape of a short essay but not the content. Students complete the sentence, expressing their own ideas in their own words within a clear and organized framework.",
-				domain:LearningDomain.findAllByNameInList([
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),
-				category:DomainCategory.findAllByNameInList([
+				category: DomainCategory.findAllByNameInList([
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual",
 					"Procedural",
@@ -972,112 +1071,112 @@ class BootStrap {
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:"Step-1",
+				title: "Step-1",
 				description: "Choose a topic and write a brief essay that you have a skeleton of the esay",
-				example:"Theory X exposes that ________ and is very useful because it offers insight into __________. ",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "Theory X exposes that ________ and is very useful because it offers insight into __________. ",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-2",
+				title: "Step-2",
 				description: "Make copies of the frames along with the directions to use as handouts and distribute it to each student.",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "Students write the essay using the framework as a guide",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-4",
+				title: "Step-4",
 				description: "Assess the student essay based on the original essay ",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"In-Class Portfolio",
+				pedagogyTitle: "In-Class Portfolio",
 				pedagogyDescription: "Students collect and organize lecture notes, essay responses to prompts presented in class, summaries of discussions, personal reflections into a portfolio and submit for evaluation two to three times during the academic year.",
-				domain:LearningDomain.findAllByNameInList(['Cognitive']),
-				category:DomainCategory.findAllByNameInList(["Applying","Analyzing"]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList(["Factual", "Conceptual", "Procedural", "Metacognitive"]),
+				domain: LearningDomain.findAllByNameInList(['Cognitive']),
+				category: DomainCategory.findAllByNameInList(["Applying","Analyzing"]),
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList(["Factual", "Conceptual", "Procedural", "Metacognitive"]),
 				focus: PedagogyActivityFocus.findAllByFocusInList(["Writing", "Discussing"]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")
 			).save(flush:true)
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:"Step-1",
+				title: "Step-1",
 				description: "Organise class sessions so that in addition to listening, students are actively integrating and applying what they learnt by writing, discussing and problem solving ",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-2",
+				title: "Step-2",
 				description: "Determine portfolio parameters",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "Decide how portfolio will be evaluated and determine the grading rubrics. Explain the process and expectations to students",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-4",
+				title: "Step-4",
 				description: "Assess the student essay based on the original essay ",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Seminar",
+				pedagogyTitle: "Seminar",
 				pedagogyDescription: "Students make formal presentations of an original paper to a small group of peers.",
-				domain:LearningDomain.findAllByNameInList([
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),
 				category:DomainCategory.findAllByNameInList([
@@ -1099,39 +1198,39 @@ class BootStrap {
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:"Step-1",
+				title: "Step-1",
 				description: "Assign students research papers",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-2",
+				title: "Step-2",
 				description: "Explain the time frame and tasks, and give time to discuss the paper with peers",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "Students will present the paper in the class and discuss the questions raised by other students.",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 		}
 	}
