@@ -440,280 +440,283 @@ class BootStrap {
 			).save(flush: true)
 		}
 
-		/**
-		 * Generate Learning Domains, Domain Categories and Action Words
-		 */
-		def learningDomainCognitive = new LearningDomain(
-			name: "Cognitive"
-		)
-		learningDomainCognitive.save(flush: true)
 
-		def learningDomainAffective = new LearningDomain(
-			name: "Affective"
-		)
-		learningDomainAffective.save(flush: true)
+		if (LearningDomain.count() < 1) {
+			/**
+			 * Generate Learning Domains, Domain Categories and Action Words
+			 */
+			def learningDomainCognitive = new LearningDomain(
+				name: "Cognitive"
+			)
+			learningDomainCognitive.save(flush: true)
 
-		def learningDomainPsychomotor = new LearningDomain(
-			name: "Psychomotor"
-		)
-		learningDomainPsychomotor.save(flush: true)
+			def learningDomainAffective = new LearningDomain(
+				name: "Affective"
+			)
+			learningDomainAffective.save(flush: true)
 
-		/**
-		 * These are used to link action words to their domain categories
-		 * Verifies that each category exists, and if not, creates the category
-		 */
-		def domainCategoryRemembering = new DomainCategory(
-			domain: learningDomainCognitive,
-			name: "Remembering"
-		)
-		domainCategoryRemembering.save(flush: true)
+			def learningDomainPsychomotor = new LearningDomain(
+				name: "Psychomotor"
+			)
+			learningDomainPsychomotor.save(flush: true)
 
-		def domainCategoryUnderstanding = new DomainCategory(
-			domain: learningDomainCognitive,
-			name: "Understanding"
-		)
-		domainCategoryUnderstanding.save(flush: true)
+			/**
+			 * These are used to link action words to their domain categories
+			 * Verifies that each category exists, and if not, creates the category
+			 */
+			def domainCategoryRemembering = new DomainCategory(
+				domain: learningDomainCognitive,
+				name: "Remembering"
+			)
+			domainCategoryRemembering.save(flush: true)
 
-		def domainCategoryApplying = new DomainCategory(
-			domain: learningDomainCognitive,
-			name: "Applying"
-		)
-		domainCategoryApplying.save(flush: true)
+			def domainCategoryUnderstanding = new DomainCategory(
+				domain: learningDomainCognitive,
+				name: "Understanding"
+			)
+			domainCategoryUnderstanding.save(flush: true)
 
-		def domainCategoryAnalyzing = new DomainCategory(
-			domain: learningDomainCognitive,
-			name: "Analyzing"
-		)
-		domainCategoryAnalyzing.save(flush: true)
+			def domainCategoryApplying = new DomainCategory(
+				domain: learningDomainCognitive,
+				name: "Applying"
+			)
+			domainCategoryApplying.save(flush: true)
 
-		def domainCategoryEvaluating = new DomainCategory(
-			domain: learningDomainCognitive,
-			name: "Evaluating"
-		)
-		domainCategoryEvaluating.save(flush: true)
+			def domainCategoryAnalyzing = new DomainCategory(
+				domain: learningDomainCognitive,
+				name: "Analyzing"
+			)
+			domainCategoryAnalyzing.save(flush: true)
 
-		def domainCategoryCreating = new DomainCategory(
-			domain: learningDomainCognitive,
-			name: "Creating"
-		)
-		domainCategoryCreating.save(flush: true)
+			def domainCategoryEvaluating = new DomainCategory(
+				domain: learningDomainCognitive,
+				name: "Evaluating"
+			)
+			domainCategoryEvaluating.save(flush: true)
 
-		def domainCategoryReceivingPhenomena = new DomainCategory(
-			domain: learningDomainAffective,
-			name: "Receiving Phenomena"
-		)
-		domainCategoryReceivingPhenomena.save(flush: true)
+			def domainCategoryCreating = new DomainCategory(
+				domain: learningDomainCognitive,
+				name: "Creating"
+			)
+			domainCategoryCreating.save(flush: true)
 
-		def domainCategoryResponding = new DomainCategory(
-			domain: learningDomainAffective,
-			name: "Responding"
-		)
-		domainCategoryResponding.save(flush: true)
+			def domainCategoryReceivingPhenomena = new DomainCategory(
+				domain: learningDomainAffective,
+				name: "Receiving Phenomena"
+			)
+			domainCategoryReceivingPhenomena.save(flush: true)
 
-		def domainCategoryValuing = new DomainCategory(
-			domain: learningDomainAffective,
-			name: "Valuing"
-		)
-		domainCategoryValuing.save(flush: true)
+			def domainCategoryResponding = new DomainCategory(
+				domain: learningDomainAffective,
+				name: "Responding"
+			)
+			domainCategoryResponding.save(flush: true)
 
-		def domainCategoryOrganisation = new DomainCategory(
-			domain: learningDomainAffective,
-			name: "Organisation"
-		)
-		domainCategoryOrganisation.save(flush: true)
+			def domainCategoryValuing = new DomainCategory(
+				domain: learningDomainAffective,
+				name: "Valuing"
+			)
+			domainCategoryValuing.save(flush: true)
 
-		def domainCategoryInternalisingValues = new DomainCategory(
-			domain: learningDomainAffective,
-			name: "Internalising Values"
-		)
-		domainCategoryInternalisingValues.save(flush: true)
+			def domainCategoryOrganisation = new DomainCategory(
+				domain: learningDomainAffective,
+				name: "Organisation"
+			)
+			domainCategoryOrganisation.save(flush: true)
+
+			def domainCategoryInternalisingValues = new DomainCategory(
+				domain: learningDomainAffective,
+				name: "Internalising Values"
+			)
+			domainCategoryInternalisingValues.save(flush: true)
 
 
-		/**
-		 * creating action words for remembering category
-		 */
-		def actionWordRemembering = new ActionWord(
-			category: domainCategoryRemembering,
-			actionWord: "Recognizing"
-		)
+			/**
+			 * creating action words for remembering category
+			 */
+			def actionWordRemembering = new ActionWord(
+				category: domainCategoryRemembering,
+				actionWord: "Recognizing"
+			)
 
-		def actionWordRecalling = new ActionWord(
-			category: domainCategoryRemembering,
-			actionWord: "Recalling"
-		)
+			def actionWordRecalling = new ActionWord(
+				category: domainCategoryRemembering,
+				actionWord: "Recalling"
+			)
 
-		/**
-		 * relating the words to the category
-		 */
-		domainCategoryRemembering.addToActionWords(actionWordRemembering)
-		domainCategoryRemembering.addToActionWords(actionWordRecalling)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryRemembering.addToActionWords(actionWordRemembering)
+			domainCategoryRemembering.addToActionWords(actionWordRecalling)
 
-		/**
-		 * Saving the action words and the domain category
-		 */
-		domainCategoryRemembering.save(flush: true)
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryRemembering.save(flush: true)
 
-		/**
-		 * creating action words for understanding category
-		 */
-		def actionWordInterpreting = new ActionWord(
-			category: domainCategoryUnderstanding,
-			actionWord: "Interpreting"
-		)
+			/**
+			 * creating action words for understanding category
+			 */
+			def actionWordInterpreting = new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Interpreting"
+			)
 
-		def actionWordExemplifying = new ActionWord(
-			category: domainCategoryUnderstanding,
-			actionWord: "Exemplifying"
-		)
+			def actionWordExemplifying = new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Exemplifying"
+			)
 
-		def actionWordClassifying = new ActionWord(
-			category: domainCategoryUnderstanding,
-			actionWord: "Classifying"
-		)
+			def actionWordClassifying = new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Classifying"
+			)
 
-		def actionWordSummarizing = new ActionWord(
-			category: domainCategoryUnderstanding,
-			actionWord: "Summarizing"
-		)
+			def actionWordSummarizing = new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Summarizing"
+			)
 
-		def actionWordInferring = new ActionWord(
-			category: domainCategoryUnderstanding,
-			actionWord: "Inferring"
-		)
+			def actionWordInferring = new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Inferring"
+			)
 
-		def actionWordComparing = new ActionWord(
-			category: domainCategoryUnderstanding,
-			actionWord: "Comparing"
-		)
+			def actionWordComparing = new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Comparing"
+			)
 
-		def actionWordExplaining = new ActionWord(
-			category: domainCategoryUnderstanding,
-			actionWord: "Explaining"
-		)
+			def actionWordExplaining = new ActionWord(
+				category: domainCategoryUnderstanding,
+				actionWord: "Explaining"
+			)
 
-		/**
-		 * relating the words to the category
-		 */
-		domainCategoryUnderstanding.addToActionWords(actionWordInterpreting)
-		domainCategoryUnderstanding.addToActionWords(actionWordExemplifying)
-		domainCategoryUnderstanding.addToActionWords(actionWordClassifying)
-		domainCategoryUnderstanding.addToActionWords(actionWordSummarizing)
-		domainCategoryUnderstanding.addToActionWords(actionWordInferring)
-		domainCategoryUnderstanding.addToActionWords(actionWordComparing)
-		domainCategoryUnderstanding.addToActionWords(actionWordExplaining)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryUnderstanding.addToActionWords(actionWordInterpreting)
+			domainCategoryUnderstanding.addToActionWords(actionWordExemplifying)
+			domainCategoryUnderstanding.addToActionWords(actionWordClassifying)
+			domainCategoryUnderstanding.addToActionWords(actionWordSummarizing)
+			domainCategoryUnderstanding.addToActionWords(actionWordInferring)
+			domainCategoryUnderstanding.addToActionWords(actionWordComparing)
+			domainCategoryUnderstanding.addToActionWords(actionWordExplaining)
 
-		/**
-		 * Saving the action words and the domain category
-		 */
-		domainCategoryUnderstanding.save(flush: true)
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryUnderstanding.save(flush: true)
 
-		/**
-		 * creating action words for applying category
-		 */
-		def actionWordExecuting = new ActionWord(
-			category: domainCategoryApplying,
-			actionWord: "Executing"
-		)
+			/**
+			 * creating action words for applying category
+			 */
+			def actionWordExecuting = new ActionWord(
+				category: domainCategoryApplying,
+				actionWord: "Executing"
+			)
 
-		def actionWordImplementing = new ActionWord(
-			category: domainCategoryApplying,
-			actionWord: "Implementing"
-		)
+			def actionWordImplementing = new ActionWord(
+				category: domainCategoryApplying,
+				actionWord: "Implementing"
+			)
 
-		/**
-		 * relating the words to the category
-		 */
-		domainCategoryApplying.addToActionWords(actionWordExecuting)
-		domainCategoryApplying.addToActionWords(actionWordImplementing)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryApplying.addToActionWords(actionWordExecuting)
+			domainCategoryApplying.addToActionWords(actionWordImplementing)
 
-		/**
-		 * Saving the action words and the domain category
-		 */
-		domainCategoryApplying.save(flush: true)
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryApplying.save(flush: true)
 
-		/**
-		 * creating action words for analyzing category
-		 */
-		def actionWordDifferentiating = new ActionWord(
-			category: domainCategoryAnalyzing,
-			actionWord: "Differentiating"
-		)
+			/**
+			 * creating action words for analyzing category
+			 */
+			def actionWordDifferentiating = new ActionWord(
+				category: domainCategoryAnalyzing,
+				actionWord: "Differentiating"
+			)
 
-		def actionWordOrganizing = new ActionWord(
-			category: domainCategoryAnalyzing,
-			actionWord: "Organizing"
-		)
+			def actionWordOrganizing = new ActionWord(
+				category: domainCategoryAnalyzing,
+				actionWord: "Organizing"
+			)
 
-		def actionWordAttributing = new ActionWord(
-			category: domainCategoryAnalyzing,
-			actionWord: "Attributing"
-		)
+			def actionWordAttributing = new ActionWord(
+				category: domainCategoryAnalyzing,
+				actionWord: "Attributing"
+			)
 
-		/**
-		 * relating the words to the category
-		 */
-		domainCategoryAnalyzing.addToActionWords(actionWordDifferentiating)
-		domainCategoryAnalyzing.addToActionWords(actionWordOrganizing)
-		domainCategoryAnalyzing.addToActionWords(actionWordAttributing)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryAnalyzing.addToActionWords(actionWordDifferentiating)
+			domainCategoryAnalyzing.addToActionWords(actionWordOrganizing)
+			domainCategoryAnalyzing.addToActionWords(actionWordAttributing)
 
-		/**
-		 * Saving the action words and the domain category
-		 */
-		domainCategoryAnalyzing.save(flush: true)
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryAnalyzing.save(flush: true)
 
-		/**
-		 * creating action words for evaluating category
-		 */
-		def actionWordChecking = new ActionWord(
-			category: domainCategoryEvaluating,
-			actionWord: "Checking"
-		)
+			/**
+			 * creating action words for evaluating category
+			 */
+			def actionWordChecking = new ActionWord(
+				category: domainCategoryEvaluating,
+				actionWord: "Checking"
+			)
 
-		def actionWordCritiquing = new ActionWord(
-			category: domainCategoryEvaluating,
-			actionWord: "Critiquing"
-		)
+			def actionWordCritiquing = new ActionWord(
+				category: domainCategoryEvaluating,
+				actionWord: "Critiquing"
+			)
 
-		/**
-		 * relating the words to the category
-		 */
-		domainCategoryEvaluating.addToActionWords(actionWordChecking)
-		domainCategoryEvaluating.addToActionWords(actionWordCritiquing)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryEvaluating.addToActionWords(actionWordChecking)
+			domainCategoryEvaluating.addToActionWords(actionWordCritiquing)
 
-		/**
-		 * Saving the action words and the domain category
-		 */
-		domainCategoryEvaluating.save(flush: true)
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryEvaluating.save(flush: true)
 
-		/**
-		 * creating action words for evaluating category
-		 */
-		def actionWordGenerating = new ActionWord(
-			category: domainCategoryCreating,
-			actionWord: "Generating"
-		)
+			/**
+			 * creating action words for evaluating category
+			 */
+			def actionWordGenerating = new ActionWord(
+				category: domainCategoryCreating,
+				actionWord: "Generating"
+			)
 
-		def actionWordPlanning = new ActionWord(
-			category: domainCategoryCreating,
-			actionWord: "Planning"
-		)
+			def actionWordPlanning = new ActionWord(
+				category: domainCategoryCreating,
+				actionWord: "Planning"
+			)
 
-		def actionWordProducing = new ActionWord(
-			category: domainCategoryCreating,
-			actionWord: "Producing"
-		)
+			def actionWordProducing = new ActionWord(
+				category: domainCategoryCreating,
+				actionWord: "Producing"
+			)
 
-		/**
-		 * relating the words to the category
-		 */
-		domainCategoryCreating.addToActionWords(actionWordGenerating)
-		domainCategoryCreating.addToActionWords(actionWordPlanning)
-		domainCategoryCreating.addToActionWords(actionWordProducing)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryCreating.addToActionWords(actionWordGenerating)
+			domainCategoryCreating.addToActionWords(actionWordPlanning)
+			domainCategoryCreating.addToActionWords(actionWordProducing)
 
-		/**
-		 * Saving the action words and the domain category
-		 */
-		domainCategoryCreating.save(flush: true)
+			/**
+			 * Saving the action words and the domain category
+			 */
+			domainCategoryCreating.save(flush: true)
+		}
 
 		if (ContentKnowledgeDomainCode.count() < 1) {
 			new ContentKnowledgeDomainCode(
