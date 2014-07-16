@@ -503,26 +503,31 @@ class BootStrap {
 			)
 			domainCategoryCreating.save(flush: true)
 
+		def domainCategoryReceivingPhenomena=DomainCategory.findByName("Receiving Phenomena")?:
 			new DomainCategory(
 				learningDomain: learningDomainAffective,
 				name: "Receiving Phenomena"
 			).save(flush: true)
 
+		def domainCategoryResponding=DomainCategory.findByName("Responding")?:
 			new DomainCategory(
 				learningDomain: learningDomainAffective,
 				name: "Responding"
 			).save(flush: true)
 
+		def domainCategoryValuing=DomainCategory.findByName("Valuing")?:
 			new DomainCategory(
 				learningDomain: learningDomainAffective,
 				name: "Valuing"
 			).save(flush: true)
 
+		def domainCategoryOrganisation=DomainCategory.findByName("Organisation")?:
 			new DomainCategory(
 				learningDomain: learningDomainAffective,
 				name: "Organisation"
 			).save(flush: true)
 
+		def domainCategoryInternalisingValues=DomainCategory.findByName("Internalising Values")?:
 			new DomainCategory(
 				learningDomain: learningDomainAffective,
 				name: "Internalising Values"
