@@ -566,7 +566,7 @@ class BootStrap {
 			actionWord: "Exemplifying"
 		)
 
-		actionWordClassifying = new ActionWord(
+		def actionWordClassifying = new ActionWord(
 			category: domainCategoryUnderstanding,
 			actionWord: "Classifying"
 		)
