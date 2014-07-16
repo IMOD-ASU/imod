@@ -530,7 +530,7 @@ class BootStrap {
 
 
 		/**
-		 *
+		 * creating action words for remembering category
 		 */
 		def actionWordRemembering = new ActionWord(
 			category: domainCategoryRemembering,
@@ -542,55 +542,95 @@ class BootStrap {
 			actionWord: "Recalling"
 		)
 
+		/**
+		 * relating the words to the category
+		 */
 		domainCategoryRemembering.addToActionWords(actionWordRemembering)
 		domainCategoryRemembering.addToActionWords(actionWordRecalling)
 
+		/**
+		 * Saving the action words and the domain category
+		 */
 		domainCategoryRemembering.save(flush: true)
 
-		new ActionWord(
+		/**
+		 * creating action words for understanding category
+		 */
+		def actionWordInterpreting = new ActionWord(
 			category: domainCategoryUnderstanding,
 			actionWord: "Interpreting"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordExemplifying = new ActionWord(
 			category: domainCategoryUnderstanding,
 			actionWord: "Exemplifying"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		actionWordClassifying = new ActionWord(
 			category: domainCategoryUnderstanding,
 			actionWord: "Classifying"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordSummarizing = new ActionWord(
 			category: domainCategoryUnderstanding,
 			actionWord: "Summarizing"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordInferring = new ActionWord(
 			category: domainCategoryUnderstanding,
 			actionWord: "Inferring"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordComparing = new ActionWord(
 			category: domainCategoryUnderstanding,
 			actionWord: "Comparing"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordExplaining = new ActionWord(
 			category: domainCategoryUnderstanding,
 			actionWord: "Explaining"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		/**
+		 * relating the words to the category
+		 */
+		domainCategoryUnderstanding.addToActionWords(actionWordInterpreting)
+		domainCategoryUnderstanding.addToActionWords(actionWordExemplifying)
+		domainCategoryUnderstanding.addToActionWords(actionWordClassifying)
+		domainCategoryUnderstanding.addToActionWords(actionWordSummarizing)
+		domainCategoryUnderstanding.addToActionWords(actionWordInferring)
+		domainCategoryUnderstanding.addToActionWords(actionWordComparing)
+		domainCategoryUnderstanding.addToActionWords(actionWordExplaining)
+
+		/**
+		 * Saving the action words and the domain category
+		 */
+		domainCategoryUnderstanding.save(flush: true)
+
+		/**
+		 * creating action words for applying category
+		 */
+		def actionWordExecuting = new ActionWord(
 			category: domainCategoryApplying,
 			actionWord: "Executing"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordImplementing = new ActionWord(
 			category: domainCategoryApplying,
 			actionWord: "Implementing"
-		).save(flush: true)
+		)
+
+		/**
+		 * relating the words to the category
+		 */
+		domainCategoryApplying.addToActionWords(actionWordExecuting)
+		domainCategoryApplying.addToActionWords(actionWordImplementing)
+
+		/**
+		 * Saving the action words and the domain category
+		 */
+		domainCategoryApplying.save(flush: true)
+
 
 		new ActionWord(
 			category: domainCategoryAnalyzing,
