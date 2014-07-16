@@ -661,30 +661,59 @@ class BootStrap {
 		 */
 		domainCategoryAnalyzing.save(flush: true)
 
-		new ActionWord(
+		/**
+		 * creating action words for evaluating category
+		 */
+		def actionWordChecking = new ActionWord(
 			category: domainCategoryEvaluating,
 			actionWord: "Checking"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordCritiquing = new ActionWord(
 			category: domainCategoryEvaluating,
 			actionWord: "Critiquing"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		/**
+		 * relating the words to the category
+		 */
+		domainCategoryEvaluating.addToActionWords(actionWordChecking)
+		domainCategoryEvaluating.addToActionWords(actionWordCritiquing)
+
+		/**
+		 * Saving the action words and the domain category
+		 */
+		domainCategoryEvaluating.save(flush: true)
+
+		/**
+		 * creating action words for evaluating category
+		 */
+		def actionWordGenerating = new ActionWord(
 			category: domainCategoryCreating,
 			actionWord: "Generating"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordPlanning = new ActionWord(
 			category: domainCategoryCreating,
 			actionWord: "Planning"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordProducing = new ActionWord(
 			category: domainCategoryCreating,
 			actionWord: "Producing"
-		).save(flush: true)
+		)
+
+		/**
+		 * relating the words to the category
+		 */
+		domainCategoryCreating.addToActionWords(actionWordGenerating)
+		domainCategoryCreating.addToActionWords(actionWordPlanning)
+		domainCategoryCreating.addToActionWords(actionWordProducing)
+
+		/**
+		 * Saving the action words and the domain category
+		 */
+		domainCategoryCreating.save(flush: true)
 
 		if (ContentKnowledgeDomainCode.count() < 1) {
 			new ContentKnowledgeDomainCode(
