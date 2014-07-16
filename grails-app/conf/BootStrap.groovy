@@ -461,75 +461,89 @@ class BootStrap {
 			learningDomainPsychomotor.save(flush: true)
 
 			/**
-			 * These are used to link action words to their domain categories
-			 * Verifies that each category exists, and if not, creates the category
+			 * This creates the domain Category instances,
+			 * these are used to link Learning Domains to Action Words
+			 */
+
+			/**
+			 * These are the Categories for the Cognitive Domain
 			 */
 			def domainCategoryRemembering = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Remembering"
 			)
-			domainCategoryRemembering.save(flush: true)
 
 			def domainCategoryUnderstanding = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Understanding"
 			)
-			domainCategoryUnderstanding.save(flush: true)
 
 			def domainCategoryApplying = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Applying"
 			)
-			domainCategoryApplying.save(flush: true)
 
 			def domainCategoryAnalyzing = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Analyzing"
 			)
-			domainCategoryAnalyzing.save(flush: true)
 
 			def domainCategoryEvaluating = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Evaluating"
 			)
-			domainCategoryEvaluating.save(flush: true)
 
 			def domainCategoryCreating = new DomainCategory(
 				domain: learningDomainCognitive,
 				name: "Creating"
 			)
-			domainCategoryCreating.save(flush: true)
 
+			/**
+			 * This Links each Domain Category to its Learning Domain
+			 */
+			learningDomainCognitive.addToDomainCategories(domainCategoryRemembering)
+			learningDomainCognitive.addToDomainCategories(domainCategoryUnderstanding)
+			learningDomainCognitive.addToDomainCategories(domainCategoryApplying)
+			learningDomainCognitive.addToDomainCategories(domainCategoryAnalyzing)
+			learningDomainCognitive.addToDomainCategories(domainCategoryEvaluating)
+			learningDomainCognitive.addToDomainCategories(domainCategoryCreating)
+
+			/**
+			 * These are the Categories for the Affective Domain
+			 */
 			def domainCategoryReceivingPhenomena = new DomainCategory(
 				domain: learningDomainAffective,
 				name: "Receiving Phenomena"
 			)
-			domainCategoryReceivingPhenomena.save(flush: true)
 
 			def domainCategoryResponding = new DomainCategory(
 				domain: learningDomainAffective,
 				name: "Responding"
 			)
-			domainCategoryResponding.save(flush: true)
 
 			def domainCategoryValuing = new DomainCategory(
 				domain: learningDomainAffective,
 				name: "Valuing"
 			)
-			domainCategoryValuing.save(flush: true)
 
 			def domainCategoryOrganisation = new DomainCategory(
 				domain: learningDomainAffective,
 				name: "Organisation"
 			)
-			domainCategoryOrganisation.save(flush: true)
 
 			def domainCategoryInternalisingValues = new DomainCategory(
 				domain: learningDomainAffective,
 				name: "Internalising Values"
 			)
-			domainCategoryInternalisingValues.save(flush: true)
 
+			/**
+			 * This Links each Domain Category to its Learning Domain
+			 */
+			learningDomainAffective.addToDomainCategories(domainCategoryReceivingPhenomena)
+			learningDomainAffective.addToDomainCategories(domainCategoryResponding)
+			learningDomainAffective.addToDomainCategories(domainCategoryValuing)
+			learningDomainAffective.addToDomainCategories(domainCategoryOrganisation)
+			learningDomainAffective.addToDomainCategories(domainCategoryInternalisingValues)
 
 			/**
 			 * creating action words for remembering category
