@@ -443,95 +443,90 @@ class BootStrap {
 		/**
 		 * Generate Learning Domains, Domain Categories and Action Words
 		 */
-		if (LearningDomain.count() == 0) {
-			/**
-			 * Learning Domain
-			 * These are the overarching categories for the Learning Objective performance tab
-			 */
-			def learningDomainCognitive = new LearningDomain(
-				name: "Cognitive"
-			)
-			learningDomainCognitive.save(flush: true)
+		def learningDomainCognitive = new LearningDomain(
+			name: "Cognitive"
+		)
+		learningDomainCognitive.save(flush: true)
 
-			def learningDomainAffective = new LearningDomain(
-				name: "Affective"
-			)
-			learningDomainAffective.save(flush: true)
+		def learningDomainAffective = new LearningDomain(
+			name: "Affective"
+		)
+		learningDomainAffective.save(flush: true)
 
-			def learningDomainPsychomotor = new LearningDomain(
-				name: "Psychomotor"
-			)
-			learningDomainPsychomotor.save(flush: true)
+		def learningDomainPsychomotor = new LearningDomain(
+			name: "Psychomotor"
+		)
+		learningDomainPsychomotor.save(flush: true)
 
+		/**
+		 * These are used to link action words to their domain categories
+		 * Verifies that each category exists, and if not, creates the category
+		 */
+		def domainCategoryRemembering = new DomainCategory(
+			domain: learningDomainCognitive,
+			name: "Remembering"
+		)
+		domainCategoryRemembering.save(flush: true)
 
-			/**
-			 * Domain Category is the glue that links Learning Domains to Action Words
-			 */
-			def domainCategoryRemembering = new DomainCategory(
-				learningDomain: learningDomainCognitive,
-				name: "Remembering"
-			)
-			domainCategoryRemembering.save(flush: true)
+		def domainCategoryUnderstanding = new DomainCategory(
+			domain: learningDomainCognitive,
+			name: "Understanding"
+		)
+		domainCategoryUnderstanding.save(flush: true)
 
-			def domainCategoryUnderstanding = new DomainCategory(
-				learningDomain: learningDomainCognitive,
-				name: "Understanding"
-			)
-			domainCategoryUnderstanding.save(flush: true)
+		def domainCategoryApplying = new DomainCategory(
+			domain: learningDomainCognitive,
+			name: "Applying"
+		)
+		domainCategoryApplying.save(flush: true)
 
-			def domainCategoryApplying = new DomainCategory(
-				learningDomain: learningDomainCognitive,
-				name: "Applying"
-			)
-			domainCategoryApplying.save(flush: true)
+		def domainCategoryAnalyzing = new DomainCategory(
+			domain: learningDomainCognitive,
+			name: "Analyzing"
+		)
+		domainCategoryAnalyzing.save(flush: true)
 
-			def domainCategoryAnalyzing = new DomainCategory(
-				learningDomain: learningDomainCognitive,
-				name: "Analyzing"
-			)
-			domainCategoryAnalyzing.save(flush: true)
+		def domainCategoryEvaluating = new DomainCategory(
+			domain: learningDomainCognitive,
+			name: "Evaluating"
+		)
+		domainCategoryEvaluating.save(flush: true)
 
-			def domainCategoryEvaluating = new DomainCategory(
-				learningDomain: learningDomainCognitive,
-				name: "Evaluating"
-			)
-			domainCategoryEvaluating.save(flush: true)
+		def domainCategoryCreating = new DomainCategory(
+			domain: learningDomainCognitive,
+			name: "Creating"
+		)
+		domainCategoryCreating.save(flush: true)
 
-			def domainCategoryCreating = new DomainCategory(
-				learningDomain: learningDomainCognitive,
-				name: "Creating"
-			)
-			domainCategoryCreating.save(flush: true)
+		def domainCategoryReceivingPhenomena = new DomainCategory(
+			domain: learningDomainAffective,
+			name: "Receiving Phenomena"
+		)
+		domainCategoryReceivingPhenomena.save(flush: true)
 
-		def domainCategoryReceivingPhenomena=DomainCategory.findByName("Receiving Phenomena")?:
-			new DomainCategory(
-				learningDomain: learningDomainAffective,
-				name: "Receiving Phenomena"
-			).save(flush: true)
+		def domainCategoryResponding = new DomainCategory(
+			domain: learningDomainAffective,
+			name: "Responding"
+		)
+		domainCategoryResponding.save(flush: true)
 
-		def domainCategoryResponding=DomainCategory.findByName("Responding")?:
-			new DomainCategory(
-				learningDomain: learningDomainAffective,
-				name: "Responding"
-			).save(flush: true)
+		def domainCategoryValuing = new DomainCategory(
+			domain: learningDomainAffective,
+			name: "Valuing"
+		)
+		domainCategoryValuing.save(flush: true)
 
-		def domainCategoryValuing=DomainCategory.findByName("Valuing")?:
-			new DomainCategory(
-				learningDomain: learningDomainAffective,
-				name: "Valuing"
-			).save(flush: true)
+		def domainCategoryOrganisation = new DomainCategory(
+			domain: learningDomainAffective,
+			name: "Organisation"
+		)
+		domainCategoryOrganisation.save(flush: true)
 
-		def domainCategoryOrganisation=DomainCategory.findByName("Organisation")?:
-			new DomainCategory(
-				learningDomain: learningDomainAffective,
-				name: "Organisation"
-			).save(flush: true)
-
-		def domainCategoryInternalisingValues=DomainCategory.findByName("Internalising Values")?:
-			new DomainCategory(
-				learningDomain: learningDomainAffective,
-				name: "Internalising Values"
-			).save(flush: true)
+		def domainCategoryInternalisingValues = new DomainCategory(
+			domain: learningDomainAffective,
+			name: "Internalising Values"
+		)
+		domainCategoryInternalisingValues.save(flush: true)
 
 
 			/**
