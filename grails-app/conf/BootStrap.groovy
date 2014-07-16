@@ -443,87 +443,94 @@ class BootStrap {
 		 * Learning Domain
 		 * These are the overarching categories for the Learning Objective performance tab
 		 */
-		if (LearningDomain.count() == 0) {
+		def learningDomainCognitive=LearningDomain.findByName("Cognitive")?:
 			new LearningDomain(
 				name: "Cognitive"
 			).save(flush: true)
 
+		def learningDomainAffective=LearningDomain.findByName("Affective")?:
 			new LearningDomain(
 				name: "Affective"
 			).save(flush: true)
 
+		def learningDomainPsychomotor=LearningDomain.findByName("Psychomotor")?:
 			new LearningDomain(
 				name: "Psychomotor"
 			).save(flush: true)
-		}
 
 		/**
 		 * These are used to link action words to their domain categories
+		 * Verifies that each category exists, and if not, creates the category
 		 */
-		def domainCategoryRemembering
-		def domainCategoryUnderstanding
-		def domainCategoryApplying
-		def domainCategoryAnalyzing
-		def domainCategoryEvaluating
-		def domainCategoryCreating
 
+
+		
 		//TODO rewrite this to use proper GORM domain relationships
-		if (DomainCategory.count() < 1) {
-			domainCategoryRemembering = new DomainCategory(
-				domain_id: 1,
+		def domainCategoryRemembering=DomainCategory.findByName("Remembering")?:
+			new DomainCategory(
+				domain: learningDomainCognitive,
 				name: "Remembering"
 			).save(flush: true)
 
-			domainCategoryUnderstanding = new DomainCategory(
-				domain_id: 1,
+		def domainCategoryUnderstanding=DomainCategory.findByName("Understanding")?:
+			new DomainCategory(
+				domain: learningDomainCognitive,
 				name: "Understanding"
 			).save(flush: true)
 
-			domainCategoryApplying = new DomainCategory(
-				domain_id: 1,
+		def domainCategoryApplying=DomainCategory.findByName("Applying")?:
+			new DomainCategory(
+				domain: learningDomainCognitive,
 				name: "Applying"
 			).save(flush: true)
 
-			domainCategoryAnalyzing = new DomainCategory(
-				domain_id: 1,
+		def domainCategoryAnalyzing=DomainCategory.findByName("Analyzing")?:
+			new DomainCategory(
+				domain: learningDomainCognitive,
 				name: "Analyzing"
 			).save(flush: true)
 
-			domainCategoryEvaluating = new DomainCategory(
-				domain_id: 1,
+		def domainCategoryEvaluating=DomainCategory.findByName("Evaluating")?:
+			new DomainCategory(
+				domain: learningDomainCognitive,
 				name: "Evaluating"
 			).save(flush: true)
 
-			domainCategoryCreating = new DomainCategory(
-				domain_id: 1,
+		def domainCategoryCreating=DomainCategory.findByName("Creating")?:
+			new DomainCategory(
+				domain: learningDomainCognitive,
 				name: "Creating"
 			).save(flush: true)
 
+		def domainCategoryReceivingPhenomena=DomainCategory.findByName("Receiving Phenomena")?:
 			new DomainCategory(
-				domain_id: 2,
+				domain: learningDomainCognitiveAffective,
 				name: "Receiving Phenomena"
 			).save(flush: true)
 
+		def domainCategoryResponding=DomainCategory.findByName("Responding")?:
 			new DomainCategory(
-				domain_id: 2,
+				domain: learningDomainCognitiveAffective,
 				name: "Responding"
 			).save(flush: true)
 
+		def domainCategoryValuing=DomainCategory.findByName("Valuing")?:
 			new DomainCategory(
-				domain_id: 2,
+				domain: learningDomainCognitiveAffective,
 				name: "Valuing"
 			).save(flush: true)
 
+		def domainCategoryOrganisation=DomainCategory.findByName("Organisation")?:
 			new DomainCategory(
-				domain_id: 2,
+				domain: learningDomainCognitiveAffective,
 				name: "Organisation"
 			).save(flush: true)
 
+		def domainCategoryInternalisingValues=DomainCategory.findByName("Internalising Values")?:
 			new DomainCategory(
-				domain_id: 2,
+				domain: learningDomainCognitiveAffective,
 				name: "Internalising Values"
 			).save(flush: true)
-		}
 
 
 		/**
@@ -533,7 +540,7 @@ class BootStrap {
 			new ActionWord(
 				category: domainCategoryRemembering,
 				actionWord: "Recognizing"
-			).save(flush: true)
+			).save(flush: true,failOnError: true)
 
 			new ActionWord(
 				category: domainCategoryRemembering,

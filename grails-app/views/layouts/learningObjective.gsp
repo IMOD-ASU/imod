@@ -51,7 +51,7 @@
 									<div class="form_title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 										<span class="title_text">
 											Learning Objectives
-											<a href="/imodv6/learningObjective/create">
+											<a href="/imodv6/learningObjective/create/${imodInstance.id}">
 												<button>
 													<span class="fa fa-plus">
 													</span>

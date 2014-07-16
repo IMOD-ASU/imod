@@ -60,6 +60,7 @@ class LearningObjective {
 		indicator		nullable: true
 		learningDomain	nullable: true
 		performance		nullable: true
+		hideFromObjective	nullable:true
 		
 	}
 
