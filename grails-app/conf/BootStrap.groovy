@@ -631,21 +631,35 @@ class BootStrap {
 		 */
 		domainCategoryApplying.save(flush: true)
 
-
-		new ActionWord(
+		/**
+		 * creating action words for analyzing category
+		 */
+		def actionWordDifferentiating = new ActionWord(
 			category: domainCategoryAnalyzing,
 			actionWord: "Differentiating"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordOrganizing = new ActionWord(
 			category: domainCategoryAnalyzing,
 			actionWord: "Organizing"
-		).save(flush: true)
+		)
 
-		new ActionWord(
+		def actionWordAttributing = new ActionWord(
 			category: domainCategoryAnalyzing,
 			actionWord: "Attributing"
-		).save(flush: true)
+		)
+
+		/**
+		 * relating the words to the category
+		 */
+		domainCategoryAnalyzing.addToActionWords(actionWordDifferentiating)
+		domainCategoryAnalyzing.addToActionWords(actionWordOrganizing)
+		domainCategoryAnalyzing.addToActionWords(actionWordAttributing)
+
+		/**
+		 * Saving the action words and the domain category
+		 */
+		domainCategoryAnalyzing.save(flush: true)
 
 		new ActionWord(
 			category: domainCategoryEvaluating,
@@ -833,51 +847,51 @@ class BootStrap {
 			new PedagogyActivity(
 				title:"Step-2",
 				description: "ask students to solve the problem using specific steps you have identified as a problem solving technique",
-				example:"The Dewey Six-Step Problem Solving Technique",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "The Dewey Six-Step Problem Solving Technique",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "ask students to solve the problem using specific steps you have identified as a problem solving technique",
-				example:"The Dewey Six-Step Problem Solving Technique",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "The Dewey Six-Step Problem Solving Technique",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-1",
-				description:"Organize students into teams and assign them a complex problem to solve",
-				example:"Problem could be like evaluate the effectiveness of the antacids",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				title: "Step-1",
+				description: "Organize students into teams and assign them a complex problem to solve",
+				example: "Problem could be like evaluate the effectiveness of the antacids",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Face-to Face/ Video / Audio  Lectures ",
+				pedagogyTitle: "Face-to Face/ Video / Audio  Lectures ",
 				pedagogyDescription: "Lecture",
-				domain:LearningDomain.findAllByNameInList([
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),//'Cognitive','Affective', 'Psychomotor'
-				category:DomainCategory.findAllByNameInList([
+				category: DomainCategory.findAllByNameInList([
 					'Remembering',
 					"Understanding"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual"
 				]),
@@ -889,18 +903,18 @@ class BootStrap {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Partially Guided Programming Exercise",
-				pedagogyDescription:"Partially Guided Programming Exercise ",
-				domain:LearningDomain.findAllByNameInList([
+				pedagogyTitle: "Partially Guided Programming Exercise",
+				pedagogyDescription: "Partially Guided Programming Exercise ",
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),//'Cognitive','Affective', 'Psychomotor'
-				category:DomainCategory.findAllByNameInList([
+				category: DomainCategory.findAllByNameInList([
 					"Understanding",
 					"Applying",
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
 					"Conceptual",
 					"Procedural"
 				]),
@@ -915,18 +929,18 @@ class BootStrap {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Think Aloud Pair Problem Solving",
+				pedagogyTitle: "Think Aloud Pair Problem Solving",
 				pedagogyDescription: "Student pairs receive a series of problems as well as specific roles - problem solver and listener - then switch with each problem. The problem solver thinks aloud, talking through the steps of solving the problem, while the partner listens, following the steps, attempting to understand the reasoning behind the steps, and offering suggestions if there is a misstep.",
-				domain:LearningDomain.findAllByNameInList([
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),
-				category:DomainCategory.findAllByNameInList([
+				category: DomainCategory.findAllByNameInList([
 					"Understanding",
 					"Applying",
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual",
 					"Procedural",
@@ -941,62 +955,62 @@ class BootStrap {
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:"Step-1",
+				title: "Step-1",
 				description: "Spend time developing an appropriate set of field related problems to solve within a limited time frame",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-2",
+				title: "Step-2",
 				description: "Ask students to form pairs",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "Ask students to solve problems alternating the roles with each new problem",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-4",
+				title: "Step-4",
 				description: "Call completion when all problems have been solved",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Frames",
+				pedagogyTitle: "Frames",
 				pedagogyDescription: "Instructors give students a template of sentence stem that provides the shape of a short essay but not the content. Students complete the sentence, expressing their own ideas in their own words within a clear and organized framework.",
-				domain:LearningDomain.findAllByNameInList([
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),
-				category:DomainCategory.findAllByNameInList([
+				category: DomainCategory.findAllByNameInList([
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual",
 					"Procedural",
@@ -1011,112 +1025,112 @@ class BootStrap {
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:"Step-1",
+				title: "Step-1",
 				description: "Choose a topic and write a brief essay that you have a skeleton of the esay",
-				example:"Theory X exposes that ________ and is very useful because it offers insight into __________. ",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "Theory X exposes that ________ and is very useful because it offers insight into __________. ",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-2",
+				title: "Step-2",
 				description: "Make copies of the frames along with the directions to use as handouts and distribute it to each student.",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "Students write the essay using the framework as a guide",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-4",
+				title: "Step-4",
 				description: "Assess the student essay based on the original essay ",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"In-Class Portfolio",
+				pedagogyTitle: "In-Class Portfolio",
 				pedagogyDescription: "Students collect and organize lecture notes, essay responses to prompts presented in class, summaries of discussions, personal reflections into a portfolio and submit for evaluation two to three times during the academic year.",
-				domain:LearningDomain.findAllByNameInList(['Cognitive']),
-				category:DomainCategory.findAllByNameInList(["Applying","Analyzing"]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList(["Factual", "Conceptual", "Procedural", "Metacognitive"]),
+				domain: LearningDomain.findAllByNameInList(['Cognitive']),
+				category: DomainCategory.findAllByNameInList(["Applying","Analyzing"]),
+				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList(["Factual", "Conceptual", "Procedural", "Metacognitive"]),
 				focus: PedagogyActivityFocus.findAllByFocusInList(["Writing", "Discussing"]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")
 			).save(flush:true)
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:"Step-1",
+				title: "Step-1",
 				description: "Organise class sessions so that in addition to listening, students are actively integrating and applying what they learnt by writing, discussing and problem solving ",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-2",
+				title: "Step-2",
 				description: "Determine portfolio parameters",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "Decide how portfolio will be evaluated and determine the grading rubrics. Explain the process and expectations to students",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-4",
+				title: "Step-4",
 				description: "Assess the student essay based on the original essay ",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Seminar",
+				pedagogyTitle: "Seminar",
 				pedagogyDescription: "Students make formal presentations of an original paper to a small group of peers.",
-				domain:LearningDomain.findAllByNameInList([
+				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),
 				category:DomainCategory.findAllByNameInList([
@@ -1138,39 +1152,39 @@ class BootStrap {
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:"Step-1",
+				title: "Step-1",
 				description: "Assign students research papers",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-2",
+				title: "Step-2",
 				description: "Explain the time frame and tasks, and give time to discuss the paper with peers",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			new PedagogyActivity(
-				title:"Step-3",
+				title: "Step-3",
 				description: "Students will present the paper in the class and discuss the questions raised by other students.",
-				example:"",
-				material:"",
-				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
-				pedagogyTechnique:pedagogyTech
+				example: "",
+				material: "",
+				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
-				title:"Student_Engagement_Techniques",
-				author:"Elizabeth F. Barkley",
-				referenceLinkISBN:"978-0-470-28191-8",
-				referenceType:PedagogyReferenceType.findByDescription("Book"),
-				pedagogyTechnique:pedagogyTech
+				title: "Student_Engagement_Techniques",
+				author: "Elizabeth F. Barkley",
+				referenceLinkISBN: "978-0-470-28191-8",
+				referenceType: PedagogyReferenceType.findByDescription("Book"),
+				pedagogyTechnique: pedagogyTech
 			).save(flush:true)
 		}
 	}
