@@ -86,7 +86,6 @@ class Imod {
 		imodNumber		nullable: true
 		repeats			nullable: true
 		repeatsEvery	nullable: true
-
 	}
 
 	static mapping = {

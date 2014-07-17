@@ -55,6 +55,7 @@ class BootStrap {
 				passwordExpired: false
 			).save(flush: true)
 
+
 			new ImodUserRole(
 				imodUser: developer,
 				role: tempRole
@@ -67,6 +68,7 @@ class BootStrap {
 				imodNumber: "1",
 				subjectArea: "sample"
 			)
+			defaultImod.save(flush: true)
 			developer.addToImods(defaultImod)
 			developer.save(flush: true)
 		}
