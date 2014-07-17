@@ -6,6 +6,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder
 /**
  * This describes what permissions a User of the IMODS system has
  * TODO: is this a duplicate of Spring Security Suite Roles?
+ * TODO: Revisit this is amy need to be refactored
  */
 class ImodUserRole implements Serializable {
 
