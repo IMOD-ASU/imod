@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * Grading Policy, Attendacy policy etc
  */
 class CoursePolicy {
 	String name

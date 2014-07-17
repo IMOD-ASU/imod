@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * TODO this maybe able to pedagogy reference table as an enum
  */
 class PedagogyReferenceType {
 

@@ -25,12 +25,12 @@ class ImodUser {
 
 
 	static hasMany = [
-		imods:Imod
+		imods: Imod
 	]
 
 	static hasOne = [
-		preferences:UserPreferences,
-		profile:UserProfile
+		preferences: UserPreferences,
+		profile: UserProfile
 	]
 
 

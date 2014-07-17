@@ -64,11 +64,11 @@ class Imod {
 
 	static hasMany = [
 		learningObjectives:	LearningObjective,
-		sharedOwners: 		ImodUser,
-		instructors: 		Instructor,
-		courseComponents: 	CourseComponentCode,
-		audience: 			Audience,
-		contents: 			Content
+		sharedOwners:		ImodUser,
+		instructors:		Instructor,
+		courseComponents:	CourseComponentCode,
+		audience:			Audience,
+		contents:			Content
 	]
 
 	static constraints = {
