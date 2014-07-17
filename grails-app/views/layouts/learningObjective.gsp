@@ -39,7 +39,6 @@
 					</g:eachError>
 				</ul>
 			</g:hasErrors>
-			<g:form action="save" >
 				<fieldset class="form">
 					 <table  class="LO_inner_table">
 						<tr>
@@ -48,7 +47,7 @@
 									<div class="form_title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 										<span class="title_text">
 											Learning Objectives
-											<a href="/imodv6/learningObjective/create">
+											<a href="/imodv6/learningObjective/create/${imodInstance.id}">
 												<button>
 													<span class="fa fa-plus">
 													</span>
@@ -77,7 +76,7 @@
 									<!-- Definition of the perfomance evaulations for a learning objective -->
 
 									<span id="learning-objective-performance">
-										${fieldValue(bean: learningObjective, field: "performace")}
+										${fieldValue(bean: learningObjective, field: "performance")}
 									</span>
 
 									<!-- Definition of the criteria for understanding a learning objective -->
@@ -101,22 +100,42 @@
 									<div id="tabs-LO-subhead">
 										<ul class="ui-tabs-nav">
 											<li <g:if test="${currentPage=='performance'}">class="active" </g:if>>
-												<g:link action="performance" id="${imodInstance?.id}" class="performance" >
+												<g:link 
+													action="performance" 
+													learningObjectiveID="${learningObjective.id}" 
+													id="${imodInstance?.id}" 
+													class="performance" 
+												>
 													Performance
 												</g:link>
 											</li>
 											<li <g:if test="${currentPage=='content'}">class="active" </g:if>>
-												<g:link action="content" id="${imodInstance?.id}" class="content">
+												<g:link 
+													action="content" 
+													learningObjectiveID="${learningObjective.id}" 
+													id="${imodInstance?.id}" 
+													class="content"
+												>
 													Content
 												</g:link>
 											</li>
 											<li <g:if test="${currentPage=='condition'}">class="active" </g:if>>
-												<g:link action="condition" id="${imodInstance?.id}" class="condition">
+												<g:link 
+													action="condition" 
+													learningObjectiveID="${learningObjective.id}" 
+													id="${imodInstance?.id}" 
+													class="condition"
+												>
 													Condition
 												</g:link>
 											</li>
 											<li <g:if test="${currentPage=='criteria'}">class="active" </g:if>>
-												<g:link action="criteria" id="${imodInstance?.id}" class="criteria">
+												<g:link 
+													action="criteria" 
+													learningObjectiveID="${learningObjective.id}" 
+													id="${imodInstance?.id}" 
+													class="criteria"
+												>
 													Criteria
 												</g:link>
 											</li>
@@ -134,7 +153,6 @@
 						</tr>
 					</table>
 				</fieldset>
-			</g:form>
 		</body>
 	</html>
 </g:applyLayout>

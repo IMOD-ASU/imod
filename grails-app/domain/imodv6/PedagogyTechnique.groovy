@@ -1,7 +1,8 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * This is the key table,
+ * This holds all of the pedagogy parts together
  */
 class PedagogyTechnique {
 

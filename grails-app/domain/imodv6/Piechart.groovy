@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * TODO: this can be deleted
  */
 class Piechart {
 	Integer count

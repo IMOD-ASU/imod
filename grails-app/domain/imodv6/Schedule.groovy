@@ -1,6 +1,10 @@
 package imodv6
 
 /**
+ * TODO the schedule section may need to be refactored
+ */
+
+/**
  * Store all of the general information on when the course will happen
  * @param repeateDays days that course occurs on
  * @param startDate first date classes occur

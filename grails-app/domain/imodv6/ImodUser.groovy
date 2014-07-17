@@ -25,12 +25,12 @@ class ImodUser {
 
 
 	static hasMany = [
-		imods:Imod
+		imods: Imod
 	]
 
 	static hasOne = [
-		preferences:UserPreferences,
-		profile:UserProfile
+		preferences: UserPreferences,
+		profile: UserProfile
 	]
 
 
@@ -38,9 +38,7 @@ class ImodUser {
 		username blank: false, unique: true
 		password blank: false
 		profile nullable: true
-		profile unique: true
 		preferences nullable: true
-		preferences unique: true
 	}
 
 	static mapping = {
@@ -52,21 +50,21 @@ class ImodUser {
 		ImodUserRole.findAllByImodUser(this).collect { it.role } as Set
 	}
 
-	// TODO this probably should be replaced by Spring Security users default implimentation
+	// TODO this probably should be replaced by Spring Security users default implementation
 	def beforeInsert() {
 		profile =new UserProfile().save()
 		preferences = new UserPreferences().save()
 		encodePassword()
 	}
 
-	// TODO this probably should be replaced by Spring Security users default implimentation
+	// TODO this probably should be replaced by Spring Security users default implementation
 	def beforeUpdate() {
 		if (isDirty('password')) {
 			encodePassword()
 		}
 	}
 
-	// TODO this probably should be replaced by Spring Security users default implimentation
+	// TODO this probably should be replaced by Spring Security users default implementation
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
 	}

@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * Related content for this pedagogy
  */
 class PedagogyReference {
 
