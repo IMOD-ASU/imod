@@ -2,6 +2,7 @@ package imodv6
 
 /**
  * Stores information of a document or other resource relevant to teaching a topic in a course
+ * TODO review this Dr. Bansal is not sure about these fields
  * @param name TODO what is this?
  * @param resourceType TODO what is this?
  * @param file TODO what is this?

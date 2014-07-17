@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO What is this?
+ * This allows a user to mark a pedagogy as a favourite
  */
 class ImodUserPedagogyFavorite {
 	static belongsTo = [

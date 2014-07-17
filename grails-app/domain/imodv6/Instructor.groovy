@@ -2,7 +2,9 @@ package imodv6
 
 /**
  * This instructor is completely unrelated to IMOD user (TODO what?)
- *
+ * Create a relationship between this and user
+ * 1-1 relationship with user, with no requirement constraint
+ * This maybe resolved when there is an admin setup
  */
 class Instructor {
 	String firstName
