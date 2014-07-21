@@ -50,7 +50,6 @@ grails.project.dependency.resolution = {
 
         compile ":console:1.4.2"
         compile ':scaffolding:2.1.2'
-        compile ':asset-pipeline:1.8.11'
         compile ":postgresql-extensions:4.0.0"
         compile ":cache:1.1.7"
         compile ":spring-security-core:2.0-RC4"

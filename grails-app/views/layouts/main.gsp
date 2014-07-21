@@ -43,7 +43,7 @@
 			<a href="${createLink(uri: '/')}">
 				<img id="imod_logo" src="${resource(dir: 'images', file: 'colorsignature_sml.png')}" alt="imod"/>
 			</a>
-			<span id='s2ui_login_link_container'>
+			<span>
 				<a class="banner-imod" href="${createLink(uri: '/imod')}">
 					<g:message code="My i-mods"/>
 				</a>
