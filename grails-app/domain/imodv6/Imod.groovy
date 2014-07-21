@@ -26,7 +26,6 @@ package imodv6
  * @param scedule TODO How are these supposed to work?
  * @param scheduleDate TODO How are these supposed to work?
  * @param repeats TODO How are these supposed to work?
- * @param piechart TODO What is this?
  * @param learningObjectives a collection of all of the learning objectives that will be used in the IMOD
  * @param repeatsEvery TODO How are these supposed to work?
  *
@@ -56,7 +55,6 @@ class Imod {
 	Schedule		schedule
 	ScheduleDate	scheduleDate
 	ScheduleRepeats	repeats
-	Piechart		piechart
 	Collection		learningObjectives
 	ScheduleRepeatsEvery	repeatsEvery
 
@@ -78,7 +76,6 @@ class Imod {
 		coursePolicy	nullable: true
 		schedule		nullable: true
 		scheduleDate	nullable: true
-		piechart		nullable: true
 		timeRatio		nullable: true
 		overview		nullable: true
 		courseLocation	nullable: true
