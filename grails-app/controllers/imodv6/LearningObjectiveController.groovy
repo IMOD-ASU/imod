@@ -162,7 +162,7 @@ class LearningObjectiveController {
 
 		// if there are no learning objectives create one
 		if (learningObjectivesList.size() < 1) {
-			create(id)
+			create(imodInstance.id)
 			// updates the list of all of the learning objectives for this imod
 			learningObjectivesList = imodInstance.learningObjectives.asList()
 		}
