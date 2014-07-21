@@ -11,7 +11,7 @@
 <%-- This might be the problem
 <s2ui:resources module='register' />
 --%>
-	<g:javascript library='jquery' plugin='jquery' />
+	<script src="//code.jquery.com/jquery-migrate-2.1.1.min.js"></script>
 	<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'reset.css',plugin:'spring-security-ui')}"/>
 	<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'spring-security-ui.css',plugin:'spring-security-ui')}"/>
 	<jqui:resources />
