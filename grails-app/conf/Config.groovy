@@ -101,6 +101,7 @@ grails.plugin.springsecurity.authority.className = 'imodv6.Role'
 grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugin.springsecurity.interceptUrlMap = [
 	'/':							['permitAll'],
+	'/assets/**':					['permitAll'],
 	'/index':						['permitAll'],
 	'/index.gsp':					['permitAll'],
 	'/**/js/**':					['permitAll'],
