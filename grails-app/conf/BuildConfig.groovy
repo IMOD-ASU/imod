@@ -42,27 +42,26 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
-
-        // runtime 'mysql:mysql-connector-java:5.1.20'
+        runtime 'org.postgresql:postgresql:9.3-1102-jdbc41'
     }
 
     plugins {
-        build ":tomcat:7.0.52.1"
+        build ":tomcat:7.0.54"
 
         compile ":console:1.4.2"
-        compile ":postgresql-extensions:0.6.7"
-        compile ":cache:1.0.1"
-        compile ":spring-security-core:2.0-RC3"
-        compile ":mail:1.0.5"
+        compile ':scaffolding:2.1.2'
+        compile ":postgresql-extensions:4.0.0"
+        compile ":cache:1.1.7"
+        compile ":spring-security-core:2.0-RC4"
+        compile ":mail:1.0.6"
         compile ":jquery-ui:1.10.3"
         compile ":famfamfam:1.0.1"
         compile ":spring-security-ui:1.0-RC2"
-        compile ":google-visualization:0.6.2"
+        compile ":google-visualization:0.7"
 
-        runtime ":hibernate:3.6.10.16"
+        runtime ":hibernate4:4.3.5.4"
         runtime ":jquery:1.11.1"
         runtime ":resources:1.2.8"
-        runtime ":database-migration:1.2.1"
+        runtime ":database-migration:1.4.0"
     }
 }
