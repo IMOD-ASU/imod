@@ -1,8 +1,11 @@
+//on page load
 $(function(){
+	// listen for learning domains to change, if they do call ajax
 	$('#learning-domain-list').change(function(){
 		populateDomainCategories(this.value)
 	});
 
+	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO_hide_from_Objective').change(function(){
 		if(this.checked){
 			$('#learning-objective-condition').css("display","none")
@@ -10,14 +13,19 @@ $(function(){
 		else{
 			$('#learning-objective-condition').css("display","inline")
 		}
-	})
-	.change();
+	});
+
+	// when a custom condition is added, display in the definition box above
 	$('#LO_condition_custom').keyup(function(){
 		propagateToDefinition(this.value, "condition")
 	});
+
+	// when a standard condition is added, display in the definition box above
 	$(".LO_condition_data").change(function(){
 		propagateToDefinition(this.value, "condition")
-	});	
+	});
+
+	// TODO no idea what this is doing
 	$('input:radio[name=LO_condition_type]').change(function(){
 		if(this.value=='Generic'){
 			$('#LO_condition_custom').css("display","none")
@@ -28,8 +36,14 @@ $(function(){
 			$('#LO_condition_custom').css("display","block")
 		}
 	});
+
+	//TODO no ideo what this is doing
 	$('input:radio[name=LO_condition_type]:checked').change()
+
+	// making action words selectable through jquery ui
 	$('#action-words' ).selectable();
+
+	// TODO no idea what this is doing
 	$('.action-word').change(function() {
 		$( '.learning-objective-performance').html(
 				$( '.ui-selected' ).innerHTML
@@ -37,19 +51,19 @@ $(function(){
 	});
 });
 
-// ajax to pull domain categories based on which Learning Domain was selected, 
+// ajax to pull domain categories based on which Learning Domain was selected,
 // then populate the select box with the domain categories
 function populateDomainCategories(domain){
 	$.ajax({
-		url:"../../learningObjective/getDomainCategories",
+		url:"/imodv6/learningObjective/getDomainCategories",
 		type:"GET",
 		dataType:"json",
 		data:{domainName:domain},
 		success:function(data){
-			var categories=data.value
-			var options='';
-			for (var i=0;i<categories.length;i++){
-				options+='<option value="'+categories[i].name+'">'+categories[i].name+'</option>'
+			var categories = data.value
+			var options = '';
+			for (var i = 0; i < categories.length; i++){
+				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>'
 			}
 			$('#domain-category-list').html(options);
 		},
@@ -61,6 +75,6 @@ function populateDomainCategories(domain){
 
 // add the data to the definition box, depending on which type of data it is
 function propagateToDefinition(value, type){
-	var definitionType="#learning-objective-"+type
+	var definitionType = "#learning-objective-" + type
 	$(definitionType).text(value)
 }
