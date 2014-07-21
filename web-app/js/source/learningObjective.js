@@ -43,11 +43,12 @@ $(function(){
 	// making action words selectable through jquery ui
 	$('#action-words' ).selectable();
 
-	// TODO no idea what this is doing
+	// This listens for when a learning objective is selected and saves
 	$('.action-word').change(function() {
 		$( '.learning-objective-performance').html(
-				$( '.ui-selected' ).innerHTML
-			)
+			$( '.ui-selected' ).innerHTML
+			//TODO create some sort of save
+		)
 	});
 });
 
