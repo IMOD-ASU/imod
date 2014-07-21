@@ -8,6 +8,7 @@
 		<title>
 			<g:message code="default.list.label" args="[entityName]" />
 		</title>
+		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.list.gsp.css')}">
 	</head>
 	<body>
 		<div class="list-imod-body">
