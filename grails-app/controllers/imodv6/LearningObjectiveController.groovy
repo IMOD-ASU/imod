@@ -107,11 +107,18 @@ class LearningObjectiveController {
 
 	def content(Long id, Long learningObjectiveID) {
 		def imodInstance = Imod.get(id)
+		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def contentList=imodInstance.contents
+		if (contentList.size()==0){
+			contentList.add(new Content(imod:imodInstance, failOnError:true))
+		}
 		[
 			imodInstance: imodInstance,
+			learningObjectivesList: learningObjectivesList,
 			currentPage: "content",
 			learningObjective: learningObjective,
+			contentList: contentList,
 		]
 	}
 
@@ -125,7 +132,7 @@ class LearningObjectiveController {
 
 		[
 			imodInstance: imodInstance,
-			learningObjectiveList: learningObjectiveList,
+			learningObjectivesList: learningObjectivesList,
 			currentPage:"condition",
 			learningObjective:learningObjectiveInstance,
 			currentCondition:currentCondition,

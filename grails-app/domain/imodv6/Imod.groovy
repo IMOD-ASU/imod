@@ -56,7 +56,6 @@ class Imod {
 	Schedule		schedule
 	ScheduleDate	scheduleDate
 	ScheduleRepeats	repeats
-	Piechart		piechart
 	Collection		learningObjectives
 	ScheduleRepeatsEvery	repeatsEvery
 
@@ -78,7 +77,6 @@ class Imod {
 		coursePolicy	nullable: true
 		schedule		nullable: true
 		scheduleDate	nullable: true
-		piechart		nullable: true
 		timeRatio		nullable: true
 		overview		nullable: true
 		courseLocation	nullable: true

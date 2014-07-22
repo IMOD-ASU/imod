@@ -1,0 +1,33 @@
+.no-title .ui-dialog-titlebar{
+	display: none;
+}
+.contentButtonField{
+	top:initial;
+	right:initial;
+	position:relative;
+	width:auto;
+	box-shadow:none;
+	background:linear-gradient(#FEFEFE,#EDEDEF);
+	height:3em;
+	border: 1px solid #C4C2C2
+}
+.contentButton{
+	height:2.9em;
+	background-repeat: no-repeat;
+	background-position-y:center;
+}
+.contentButtonGradient{
+	height:auto;
+	background:linear-gradient(#F5F5F5,white);
+	display:inline-block;
+	box-shadow:0px 1px 2px #888888;
+	margin-left:5px;
+	margin-right:5px;
+	border-radius:4px;
+	padding-left:5px;
+	padding-right:5px;
+}
+input{
+	height:inherit;
+	vertical-align:middle;
+}

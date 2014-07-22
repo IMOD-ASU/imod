@@ -119,16 +119,16 @@ table.LO_inner_table {
 	background:linear-gradient(to right, transparent, #F5F5F5, transparent);
 }
 #tabs-LO-subhead .ui-tabs-nav li.active a.performance {
-	color:#3BA8DE;
+	color:#00ADEF;
 }
 #tabs-LO-subhead .ui-tabs-nav li.active a.content {
-	color:#F7941D;
+	color:#F7931D;
 }
 #tabs-LO-subhead .ui-tabs-nav li.active a.condition {
-	color:#EC008C;
+	color:#EC008B;
 }
 #tabs-LO-subhead .ui-tabs-nav li.active a.criteria {
-	color:#EC008C;
+	color:#EC008B;
 }
 
 #tabs-LO-subhead .ui-tabs-nav li a {

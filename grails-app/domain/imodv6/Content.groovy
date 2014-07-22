@@ -12,26 +12,39 @@ package imodv6
  */
 class Content {
 	String topicTitle
-	ContentPriorityCode priorityCode
-	ContentKnowledgeDomainCode knowledgeDomainCode
+	String priority
 	Boolean preReq
+	Imod imod
+
 
 	static hasMany = [
+		dimensions: KnowledgeDimensionEnum,
 		resources: ContentResource,
-		subTopic: String
+		subTopic: String,
+		objectives: LearningObjective,
 	]
 
-	static belongsTo = [
-		objective: LearningObjective
-	]
-
+	static belongsTo = LearningObjective
+	
+	static List priorities(){
+		def priorityList=[
+		'Critical',
+		'Very Important',
+		'Good to Know'
+		]
+		return priorityList
+	}
+	
 	static constraints = {
+		dimensions nullable: true
 		preReq nullable: true
-		knowledgeDomainCode nullable: true
-		priorityCode nullable: true
+		priority nullable: true
+		topicTitle nullable: true
+		objectives nullable: true
 	}
 
 	static mapping = {
 		version false
 	}
+	static transients=['priorities']
 }

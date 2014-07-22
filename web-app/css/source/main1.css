@@ -614,9 +614,11 @@ th.desc a {
 	background-image: url(../images/skin/database_save.png);
 }
 .buttons .add {
-	background-image: url(../images/skin/)
+	background-image: url(../images/add.png/)
 }
-
+.buttons .remove{
+	background-image: url(../images/delete.png)
+}
 a.skip {
 	position: absolute;
 	left: -9999px;

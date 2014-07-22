@@ -422,25 +422,6 @@ class BootStrap {
 		}
 
 
-		/**
-		 * Content Priority
-		 * TODO: What is this???
-		 */
-		if (ContentPriorityCode.count() == 0) {
-			new ContentPriorityCode(
-				description: "Critical"
-			).save(flush: true)
-
-			new ContentPriorityCode(
-				description: "Very important"
-			).save(flush: true)
-
-			new ContentPriorityCode(
-				description: "Good to know"
-			).save(flush: true)
-		}
-
-
 		if (LearningDomain.count() < 1) {
 			/**
 			 * Generate Learning Domains, Domain Categories and Action Words
