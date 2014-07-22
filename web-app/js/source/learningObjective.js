@@ -1,12 +1,14 @@
 //on page load
-$(function(){
+$(document).ready(function() {
 	// listen for the selected learning domain to change, when it does call ajax
-	$('#learning-domain-list').change(
+	$('#learning-domain-list').on(
+		'change',
 		populateDomainCategories(this.value)
 	);
 
 	// listen for the selected domain category to change, when it does call ajax
-	$('#domain-category-list').change(
+	$('#domain-category-list').on(
+		'change',
 		populateActionWords(this.value)
 	);
 
@@ -31,30 +33,36 @@ $(function(){
 	);
 
 	// TODO no idea what this is doing
-	$('input:radio[name=LO_condition_type]').change(function(){
-		if(this.value == 'Generic'){
-			$('#LO_condition_custom').css("display","none")
-			$('#LO_condition_generic').css("display","block")
+	$('input:radio[name=LO_condition_type]').on(
+		'change',
+		function() {
+			if(this.value == 'Generic'){
+				$('#LO_condition_custom').css("display","none")
+				$('#LO_condition_generic').css("display","block")
+			}
+			else{
+				$('#LO_condition_generic').css("display","none")
+				$('#LO_condition_custom').css("display","block")
+			}
 		}
-		else{
-			$('#LO_condition_generic').css("display","none")
-			$('#LO_condition_custom').css("display","block")
-		}
-	});
+	);
 
-	//TODO no ideo what this is doing
+	// manually tiggers the radio box change event
 	$('input:radio[name=LO_condition_type]:checked').change()
 
 	// making action words selectable through jquery ui
 	$('#action-words' ).selectable();
 
 	// This listens for when a learning objective is selected and saves
-	$('.action-word').change(function() {
-		$('.learning-objective-performance').html(
-			$('.ui-selected').innerHTML
-			//TODO create some sort of save
-		)
-	});
+	$('.action-word').on(
+		'change',
+		function() {
+			$('.learning-objective-performance').html(
+				$('.ui-selected').innerHTML
+				//TODO create some sort of save
+			)
+		}
+	);
 });
 
 /**
@@ -64,6 +72,7 @@ $(function(){
  * @return {XML}        Populates the domain category box with options
  */
 function populateDomainCategories(domain) {
+	console.log(domain);
 	$.ajax({
 		url: "/imodv6/learningObjective/getDomainCategories",
 		type: "GET",
@@ -92,6 +101,7 @@ function populateDomainCategories(domain) {
  * @return {XML}        Populates the page with action words
  */
 function populateActionWords(domainCategory) {
+	console.log(domainCategory);
 	$.ajax({
 		url: "/imodv6/learningObjective/getActionWords",
 		type: "GET",
