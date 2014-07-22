@@ -1,20 +1,16 @@
 //on page load
-console.log('javascript loaded');
 $(document).ready(function() {
-	console.log('page is ready');
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
 		'click',
-		populateDomainCategories(this.value)
+		populateDomainCategories
 	);
 
 	// listen for the selected domain category to change, when it does call ajax
 	$('#domain-category-list').on(
 		'click',
-		populateActionWords(this.value)
+		populateActionWords
 	);
-
-	console.log('after event listeners are registered');
 
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO_hide_from_Objective').change(function(){
@@ -75,14 +71,13 @@ $(document).ready(function() {
  * @param  {String} domain text from the domain select box
  * @return {XML}        Populates the domain category box with options
  */
-function populateDomainCategories(domain) {
-	console.log(domain);
+function populateDomainCategories(event) {
 	$.ajax({
 		url: "/imodv6/learningObjective/getDomainCategories",
 		type: "GET",
 		dataType: "json",
 		data: {
-			domainName: domain
+			domainName: this.value
 		},
 		success: function(data){
 			var categories = data.value
@@ -104,14 +99,13 @@ function populateDomainCategories(domain) {
  * @param  {String} domain text from the domain category select box
  * @return {XML}        Populates the page with action words
  */
-function populateActionWords(domainCategory) {
-	console.log(domainCategory);
+function populateActionWords(event) {
 	$.ajax({
 		url: "/imodv6/learningObjective/getActionWords",
 		type: "GET",
 		dataType: "json",
 		data: {
-			domainName: domainCategory
+			domainName: this.value
 		},
 		success: function(data){
 			var actioWords = data.value
