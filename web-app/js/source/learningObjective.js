@@ -32,7 +32,7 @@ $(function(){
 
 	// TODO no idea what this is doing
 	$('input:radio[name=LO_condition_type]').change(function(){
-		if(this.value=='Generic'){
+		if(this.value == 'Generic'){
 			$('#LO_condition_custom').css("display","none")
 			$('#LO_condition_generic').css("display","block")
 		}
@@ -50,8 +50,8 @@ $(function(){
 
 	// This listens for when a learning objective is selected and saves
 	$('.action-word').change(function() {
-		$( '.learning-objective-performance').html(
-			$( '.ui-selected' ).innerHTML
+		$('.learning-objective-performance').html(
+			$('.ui-selected').innerHTML
 			//TODO create some sort of save
 		)
 	});
@@ -68,7 +68,9 @@ function populateDomainCategories(domain) {
 		url: "/imodv6/learningObjective/getDomainCategories",
 		type: "GET",
 		dataType: "json",
-		data: {domainName:domain},
+		data: {
+			domainName: domain
+		},
 		success: function(data){
 			var categories = data.value
 			var options = '';
@@ -78,7 +80,7 @@ function populateDomainCategories(domain) {
 			$('#domain-category-list').html(options);
 		},
 		error: function(xhr){
-			alert(xhr.responseText);
+			console.log(xhr.responseText);
 		}
 	});
 }
@@ -94,7 +96,9 @@ function populateActionWords(domainCategory) {
 		url: "/imodv6/learningObjective/getActionWords",
 		type: "GET",
 		dataType: "json",
-		data: {domainName:domain},
+		data: {
+			domainName: domainCategory
+		},
 		success: function(data){
 			var actioWords = data.value
 			var actionWordsHTML = '';
@@ -104,7 +108,7 @@ function populateActionWords(domainCategory) {
 			$('#action-words').html(actionWordsHTML);
 		},
 		error: function(xhr){
-			alert(xhr.responseText);
+			console.log(xhr.responseText);
 		}
 	});
 }
