@@ -1,29 +1,34 @@
 //on page load
 $(function(){
-	// listen for learning domains to change, if they do call ajax
-	$('#learning-domain-list').change(function(){
+	// listen for the selected learning domain to change, when it does call ajax
+	$('#learning-domain-list').change(
 		populateDomainCategories(this.value)
-	});
+	);
+
+	// listen for the selected domain category to change, when it does call ajax
+	$('#domain-category-list').change(
+		populateActionWords(this.value)
+	);
 
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO_hide_from_Objective').change(function(){
-		if(this.checked){
+		if(this.checked) {
 			$('#learning-objective-condition').css("display","none")
 		}
-		else{
+		else {
 			$('#learning-objective-condition').css("display","inline")
 		}
 	});
 
 	// when a custom condition is added, display in the definition box above
-	$('#LO_condition_custom').keyup(function(){
+	$('#LO_condition_custom').keyup(
 		propagateToDefinition(this.value, "condition")
-	});
+	);
 
 	// when a standard condition is added, display in the definition box above
-	$(".LO_condition_data").change(function(){
+	$(".LO_condition_data").change(
 		propagateToDefinition(this.value, "condition")
-	});
+	);
 
 	// TODO no idea what this is doing
 	$('input:radio[name=LO_condition_type]').change(function(){
@@ -91,14 +96,12 @@ function populateActionWords(domainCategory) {
 		dataType: "json",
 		data: {domainName:domain},
 		success: function(data){
-			var categories = data.value
-			var options = '';
-
-			//TODO make these selectable boxes and add them to the page
-			for (var i = 0; i < categories.length; i++){
-				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>'
+			var actioWords = data.value
+			var actionWordsHTML = '';
+			for (var i = 0; i < actioWords.length; i++){
+				actionWordsHTML += '<li class="action-word ui-state-default">' + actioWords[i].name + '</li>'
 			}
-			$('#domain-category-list').html(options);
+			$('#action-words').html(actionWordsHTML);
 		},
 		error: function(xhr){
 			alert(xhr.responseText);

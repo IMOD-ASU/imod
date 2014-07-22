@@ -5,8 +5,9 @@ class LearningObjectiveController {
 
 	static allowedMethods = [
 		create: "GET",
-		getDomainCategories:"GET",
-		updateDefinition:"POST",
+		getDomainCategories: "GET",
+		getActionWords: "GET",
+		updateDefinition: "POST",
 		performance: "GET",
 		condition: "GET",
 		criteria: "GET",
