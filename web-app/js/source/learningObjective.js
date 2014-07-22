@@ -58,7 +58,7 @@ $(function(){
  * @param  {String} domain text from the domain select box
  * @return {XML}        Populates the domain category box with options
  */
-function populateDomainCategories(domain){
+function populateDomainCategories(domain) {
 	$.ajax({
 		url: "/imodv6/learningObjective/getDomainCategories",
 		type: "GET",
@@ -67,6 +67,34 @@ function populateDomainCategories(domain){
 		success: function(data){
 			var categories = data.value
 			var options = '';
+			for (var i = 0; i < categories.length; i++){
+				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>'
+			}
+			$('#domain-category-list').html(options);
+		},
+		error: function(xhr){
+			alert(xhr.responseText);
+		}
+	});
+}
+
+/**
+ * ajax to pull Action Words based on which Domain Category was selected,
+ * then populate page with selectable action word boxes
+ * @param  {String} domain text from the domain category select box
+ * @return {XML}        Populates the page with action words
+ */
+function populateActionWords(domainCategory) {
+	$.ajax({
+		url: "/imodv6/learningObjective/getActionWords",
+		type: "GET",
+		dataType: "json",
+		data: {domainName:domain},
+		success: function(data){
+			var categories = data.value
+			var options = '';
+
+			//TODO make these selectable boxes and add them to the page
 			for (var i = 0; i < categories.length; i++){
 				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>'
 			}
