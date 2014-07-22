@@ -16,7 +16,6 @@
 			<title>
 				<g:layoutTitle default="Learning Objective"/>
 			</title>
-
 			<g:layoutHead/>
 		</head>
 		<body>
@@ -59,7 +58,7 @@
 									<ul>
 										<li>
 											<g:each in="${learningObjectivesList}" status="i" var="learningObjective">
-												<g:link action="edit" id="${learningObjective.id}" class="square">
+												<g:link action="edit" id="${learningObjective.id}">
 													${fieldValue(bean: learningObjective, field: "id")}
 												</g:link>
 											</g:each>
@@ -100,40 +99,40 @@
 									<div id="tabs-LO-subhead">
 										<ul class="ui-tabs-nav">
 											<li <g:if test="${currentPage=='performance'}">class="active" </g:if>>
-												<g:link 
-													action="performance" 
-													learningObjectiveID="${learningObjective.id}" 
-													id="${imodInstance?.id}" 
-													class="performance" 
+												<g:link
+													action="performance"
+													learningObjectiveID="${learningObjective.id}"
+													id="${imodInstance?.id}"
+													class="performance"
 												>
 													Performance
 												</g:link>
 											</li>
 											<li <g:if test="${currentPage=='content'}">class="active" </g:if>>
-												<g:link 
-													action="content" 
-													learningObjectiveID="${learningObjective.id}" 
-													id="${imodInstance?.id}" 
+												<g:link
+													action="content"
+													learningObjectiveID="${learningObjective.id}"
+													id="${imodInstance?.id}"
 													class="content"
 												>
 													Content
 												</g:link>
 											</li>
 											<li <g:if test="${currentPage=='condition'}">class="active" </g:if>>
-												<g:link 
-													action="condition" 
-													learningObjectiveID="${learningObjective.id}" 
-													id="${imodInstance?.id}" 
+												<g:link
+													action="condition"
+													learningObjectiveID="${learningObjective.id}"
+													id="${imodInstance?.id}"
 													class="condition"
 												>
 													Condition
 												</g:link>
 											</li>
 											<li <g:if test="${currentPage=='criteria'}">class="active" </g:if>>
-												<g:link 
-													action="criteria" 
-													learningObjectiveID="${learningObjective.id}" 
-													id="${imodInstance?.id}" 
+												<g:link
+													action="criteria"
+													learningObjectiveID="${learningObjective.id}"
+													id="${imodInstance?.id}"
 													class="criteria"
 												>
 													Criteria
