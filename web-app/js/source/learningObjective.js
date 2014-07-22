@@ -52,15 +52,19 @@ $(function(){
 	});
 });
 
-// ajax to pull domain categories based on which Learning Domain was selected,
-// then populate the select box with the domain categories
+/**
+ * ajax to pull domain categories based on which Learning Domain was selected,
+ * then populate the select box with the domain categories
+ * @param  {String} domain text from the domain select box
+ * @return {XML}        Populates the domain category box with options
+ */
 function populateDomainCategories(domain){
 	$.ajax({
-		url:"/imodv6/learningObjective/getDomainCategories",
-		type:"GET",
-		dataType:"json",
-		data:{domainName:domain},
-		success:function(data){
+		url: "/imodv6/learningObjective/getDomainCategories",
+		type: "GET",
+		dataType: "json",
+		data: {domainName:domain},
+		success: function(data){
 			var categories = data.value
 			var options = '';
 			for (var i = 0; i < categories.length; i++){
