@@ -4,7 +4,7 @@ import grails.converters.JSON
 class LearningObjectiveController {
 
 	static allowedMethods = [
-		create:"GET",
+		create: "GET",
 		getDomainCategories:"GET",
 		updateDefinition:"POST",
 		performance: "GET",
@@ -202,7 +202,7 @@ class LearningObjectiveController {
 
 
 	/**
-	 * gather the Domain Categories selected Learning Domain
+	 * gather the Domain Categories for selected Learning Domain
 	 * @param  domainName String that is the contents (or name) of a Learning Domain
 	 * @return            sorted list of Domain Categories
 	 */
@@ -210,17 +210,35 @@ class LearningObjectiveController {
 		// Find the selected learning domain
 		def domain = LearningDomain.findByName(domainName)
 		// get all related domain categories and sort by name
-		def value = domain.domainCategories.asList().sort {it.name}
+		def domainCategories = domain.domainCategories.asList().sort {it.name}
 		// pass back domain categories as a json data structure
 		render (
 			[
-				value:value
+				value: domainCategories
 			] as JSON
 		)
 	}
 
 	/**
-	 * Gets learning objectives for an imod
+	 * gather the Action Words for selected Domain Category
+	 * @param  domainName String that is the contents (or name) of a Domain Category
+	 * @return            sorted list of Action Words
+	 */
+	def getActionWords(String domainName) {
+		// Find the selected learning domain
+		def domain = LearningCategory.findByName(domainName)
+		// get all related domain categories and sort by name
+		def actionWords = domain.actionWords.asList().sort {it.name}
+		// pass back domain categories as a json data structure
+		render (
+			[
+				value: actionWords
+			] as JSON
+		)
+	}
+
+	/**
+	 * Gets learning objectives for an Imod, auto generates a Learning Objective if there are none
 	 * @param  imodInstance Imod that Learning Objective are linked to
 	 * @return              List of Learning Objective Domain Objects
 	 */
