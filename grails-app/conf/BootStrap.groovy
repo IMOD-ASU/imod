@@ -3,6 +3,8 @@ import imodv6.ContentKnowledgeDomainCode
 import imodv6.ContentPriorityCode
 import imodv6.ContentResourceType
 import imodv6.DomainCategory
+import imodv6.Help
+import imodv6.Imod
 import imodv6.ImodUser
 import imodv6.ImodUserRole
 import imodv6.LearningDomain
@@ -13,6 +15,7 @@ import imodv6.PedagogyMode
 import imodv6.PedagogyReference
 import imodv6.PedagogyReferenceType
 import imodv6.PedagogyTechnique
+import imodv6.Role
 
 
 class BootStrap {
@@ -23,16 +26,16 @@ class BootStrap {
 		/**
 		 * Generates the user security roles
 		 */
-		if (imodv6.Role.list().size() == 0) {
-			new imodv6.Role(
+		if (Role.list().size() == 0) {
+			new Role(
 				authority: "ROLE_ANONYMOUS"
 			).save();
 
-			new imodv6.Role(
+			new Role(
 				authority: "ROLE_ADMIN"
 			).save();
 
-			tempRole = new imodv6.Role(
+			tempRole = new Role(
 				authority: "ROLE_USER"
 			).save();
 		}
@@ -41,8 +44,8 @@ class BootStrap {
 		 * Generates a sample IMOD user
 		 * with project default username and password
 		 */
-		if (imodv6.ImodUser.count() < 1){
-			def developer = new imodv6.ImodUser(
+		if (ImodUser.count() < 1){
+			def developer = new ImodUser(
 				username: "postgres",
 				password: "postgres",
 				enabled: true,
@@ -51,7 +54,7 @@ class BootStrap {
 				passwordExpired: false
 			).save(flush: true)
 
-			new imodv6.ImodUserRole(
+			new ImodUserRole(
 				imodUser: developer,
 				role: tempRole
 			).save(flush: true)
@@ -66,14 +69,14 @@ class BootStrap {
 		 * @param tabFieldName [description]
 		 * @param text [description]
 		 */
-		if (imodv6.Help.count() == 0) {
+		if (Help.count() == 0) {
 			/**
 			 *
 			 * These are the help information for the Course Overview tab
 			 * Course Overview is the 1st tab
 			 *
 			 */
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Save Course Overview",
 				tabId: "OVERVIEW",
 				tabFieldId: 1,
@@ -81,7 +84,7 @@ class BootStrap {
 				text: "Click on this button to save a Course overview"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Delete Course Overview",
 				tabId: "OVERVIEW",
 				tabFieldId: 2,
@@ -89,7 +92,7 @@ class BootStrap {
 				text: "Click on this button to remove a Course overview"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Schedule start Date",
 				tabId: "OVERVIEW",
 				tabFieldId: 3,
@@ -97,7 +100,7 @@ class BootStrap {
 				text: "Click on this button to select a Schedule start date"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Schedule end Date",
 				tabId: "OVERVIEW",
 				tabFieldId: 4,
@@ -105,7 +108,7 @@ class BootStrap {
 				text: "Click on this button to select a Schedule end date"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Add instructor",
 				tabId: "OVERVIEW",
 				tabFieldId: 5,
@@ -113,7 +116,7 @@ class BootStrap {
 				text: "Click on this button to add a Instructor"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Last Name Label",
 				tabId: "OVERVIEW",
 				tabFieldId: 6,
@@ -121,7 +124,7 @@ class BootStrap {
 				text: "Last Name"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "First Name Label",
 				tabId: "OVERVIEW",
 				tabFieldId: 7,
@@ -129,7 +132,7 @@ class BootStrap {
 				text: "First Name"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Email Label",
 				tabId: "OVERVIEW",
 				tabFieldId: 8,
@@ -137,7 +140,7 @@ class BootStrap {
 				text: "Email"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Office Hours Label",
 				tabId: "OVERVIEW",
 				tabFieldId: 9,
@@ -145,7 +148,7 @@ class BootStrap {
 				text: "Office Hours"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Web Page Label",
 				tabId: "OVERVIEW",
 				tabFieldId: 10,
@@ -160,7 +163,7 @@ class BootStrap {
 			 * Learning Objective is the 2st tab
 			 *
 			 */
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Add Learning Objective",
 				tabId: "LEARNINGOBJECTIVE",
 				tabFieldId: 2,
@@ -168,7 +171,7 @@ class BootStrap {
 				text: "Click on this button to add a Learning Objective"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Learning Domain",
 				tabId: "LEARNINGOBJECTIVE",
 				tabFieldId: 2,
@@ -176,7 +179,7 @@ class BootStrap {
 				text: "Select a Domain for student to Learn"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Learning Category",
 				tabId: "LEARNINGOBJECTIVE",
 				tabFieldId: 2,
@@ -184,7 +187,7 @@ class BootStrap {
 				text: "Select a Category for student to Learn"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Hide from Objective",
 				tabId: "LEARNINGOBJECTIVE",
 				tabFieldId: 2,
@@ -198,7 +201,7 @@ class BootStrap {
 			 * Content is the 3rd Tab
 			 *
 			 */
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Add Learning Objective",
 				tabId: "CONTENT",
 				tabFieldId: 1,
@@ -206,7 +209,7 @@ class BootStrap {
 				text: "Click on this button to add a Learning Objective"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Remove Learning Objective",
 				tabId: "CONTENT",
 				tabFieldId: 2,
@@ -214,7 +217,7 @@ class BootStrap {
 				text: "Click on this button to remove a Learning Objective"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Add Objective",
 				tabId: "CONTENT",
 				tabFieldId: 3,
@@ -222,7 +225,7 @@ class BootStrap {
 				text: "Add Objective"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Topic Schedule",
 				tabId: "CONTENT",
 				tabFieldId: 4,
@@ -230,7 +233,7 @@ class BootStrap {
 				text: "Click on this button to add a Topic Schedule"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Topic Map",
 				tabId: "CONTENT",
 				tabFieldId: 5,
@@ -238,7 +241,7 @@ class BootStrap {
 				text: "Topic Map"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Add topic schedule",
 				tabId: "CONTENT",
 				tabFieldId: 6,
@@ -246,7 +249,7 @@ class BootStrap {
 				text: "Add topic schedule"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Add Topic Form",
 				tabId: "CONTENT",
 				tabFieldId: 7,
@@ -254,7 +257,7 @@ class BootStrap {
 				text: "Add Topic"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Remove Topic Widget",
 				tabId: "CONTENT",
 				tabFieldId: 8,
@@ -262,7 +265,7 @@ class BootStrap {
 				text: "Remove Topic"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Add Topic",
 				tabId: "CONTENT",
 				tabFieldId: 9,
@@ -270,7 +273,7 @@ class BootStrap {
 				text: "Click on this button to add a Topic"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Remove Topic",
 				tabId: "CONTENT",
 				tabFieldId: 10,
@@ -278,7 +281,7 @@ class BootStrap {
 				text: "Click on this button to remove a Topic"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Add Resource",
 				tabId: "CONTENT",
 				tabFieldId: 11,
@@ -286,7 +289,7 @@ class BootStrap {
 				text: "Add Resource"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Topic Distributions",
 				tabId: "CONTENT",
 				tabFieldId: 12,
@@ -294,7 +297,7 @@ class BootStrap {
 				text: "Click on this button to display topic distributions"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Topic Label",
 				tabId: "CONTENT",
 				tabFieldId: 13,
@@ -302,7 +305,7 @@ class BootStrap {
 				text: "Topic"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Knowledge Dimension Label",
 				tabId: "CONTENT",
 				tabFieldId: 14,
@@ -310,7 +313,7 @@ class BootStrap {
 				text: "Knowledge Dimension"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Priority Label",
 				tabId: "CONTENT",
 				tabFieldId: 15,
@@ -318,7 +321,7 @@ class BootStrap {
 				text: "Priority"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Resources Label",
 				tabId: "CONTENT",
 				tabFieldId: 16,
@@ -326,7 +329,7 @@ class BootStrap {
 				text: "Resources"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Pre-Req Label",
 				tabId: "CONTENT",
 				tabFieldId: 17,
@@ -340,7 +343,7 @@ class BootStrap {
 			 * Padagogy is the 5th tab
 			 *
 			 */
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Add New Technique",
 				tabId: "PEDAGOGY",
 				tabFieldId: 1,
@@ -348,7 +351,7 @@ class BootStrap {
 				text: "Click on this button to add a new technique"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Clone technique",
 				tabId: "PEDAGOGY",
 				tabFieldId: 2,
@@ -356,7 +359,7 @@ class BootStrap {
 				text: "Click on this button to clone a technique"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Favorites",
 				tabId: "PEDAGOGY",
 				tabFieldId: 3,
@@ -364,7 +367,7 @@ class BootStrap {
 				text: "Favorites displays the techniques that have be made the user's favorites"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Instructional Plan",
 				tabId: "PEDAGOGY",
 				tabFieldId: 4,
@@ -372,7 +375,7 @@ class BootStrap {
 				text: "Yet to be implemented"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Ideal Match",
 				tabId: "PEDAGOGY",
 				tabFieldId: 5,
@@ -380,7 +383,7 @@ class BootStrap {
 				text: "Ideal Match displays the techniques that exactly match the Domain, Domain Category and Knowledge Dimension of the objective selected."
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Extended Match",
 				tabId: "PEDAGOGY",
 				tabFieldId: 6,
@@ -388,7 +391,7 @@ class BootStrap {
 				text: "Extended Match displays the techniques that match the Domain, Domain Category and Knowledge Dimension of the selections made in the Filter Options"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Domain",
 				tabId: "PEDAGOGY",
 				tabFieldId: 7,
@@ -396,7 +399,7 @@ class BootStrap {
 				text: "Bloom's Taxonomy definition the domains of educational activities or learning (Cognitive, Affective and Psychomotive)"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Domain Category",
 				tabId: "PEDAGOGY",
 				tabFieldId: 8,
@@ -404,7 +407,7 @@ class BootStrap {
 				text: "The categories were expressed as verbs rather than nouns as Remembering, Understanding, Applying, Analyzing, Evaluating, and Creating"
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Knowledge Dimension",
 				tabId: "PEDAGOGY",
 				tabFieldId: 9,
@@ -412,7 +415,7 @@ class BootStrap {
 				text: "The Knowledge Dimension embodied both noun and verb aspects and categorized as Factual, Conceptual, Procedural and Metacognitive Knowledge "
 			).save(flush: true)
 
-			new imodv6.Help(
+			new Help(
 				tabFieldUiId: "Refresh",
 				tabId: "Refresh",
 				tabFieldId: 10,
