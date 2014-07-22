@@ -1,16 +1,20 @@
 //on page load
+console.log('javascript loaded');
 $(document).ready(function() {
+	console.log('page is ready');
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
-		'change',
+		'click',
 		populateDomainCategories(this.value)
 	);
 
 	// listen for the selected domain category to change, when it does call ajax
 	$('#domain-category-list').on(
-		'change',
+		'click',
 		populateActionWords(this.value)
 	);
+
+	console.log('after event listeners are registered');
 
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO_hide_from_Objective').change(function(){
