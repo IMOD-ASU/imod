@@ -15,10 +15,10 @@ $(document).ready(function() {
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO_hide_from_Objective').change(function(){
 		if(this.checked) {
-			$('#learning-objective-condition').css("display","none")
+			$('.learning-objective-current .learning-objective-condition').css("display","none")
 		}
 		else {
-			$('#learning-objective-condition').css("display","inline")
+			$('.learning-objective-current .learning-objective-condition').css("display","inline")
 		}
 	});
 
@@ -123,6 +123,6 @@ function populateActionWords(event) {
 
 // add the data to the definition box, depending on which type of data it is
 function propagateToDefinition(value, type){
-	var definitionType = "#learning-objective-" + type
+	var definitionType = ".learning-objective-current .learning-objective-" + type
 	$(definitionType).text(value)
 }

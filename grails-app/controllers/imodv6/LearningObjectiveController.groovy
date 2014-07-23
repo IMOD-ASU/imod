@@ -36,7 +36,7 @@ class LearningObjectiveController {
 		redirect(
 			action: "performance",
 			id: id,
-			learningObjectiveID:learningObjectiveInstance.id,
+			learningObjectiveID: learningObjectiveInstance.id,
 		)
 
 	}

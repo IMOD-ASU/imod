@@ -61,37 +61,96 @@
 									</span>
 								</div>
 								<ul>
-									<li>
-										<g:each in="${learningObjectivesList}" status="i" var="learningObjective">
+									<g:each in="${learningObjectivesList}" status="i" var="learningObjective">
+										<li>
 											<g:link action="edit" id="${learningObjective.id}">
-												${fieldValue(bean: learningObjective, field: "id")}
+												<!-- Definition of the conditions for completing a learning objective -->
+												<span class="learning-objective-condition">
+													<g:if test="${ learningObjective.condition == null }">
+														No Condition
+													</g:if>
+													<g:else>
+														${ learningObjective.condition }
+													</g:else>
+												</span>
+
+												<!-- Definition of the perfomance evaulations for a learning objective -->
+												<span class="learning-objective-performance">
+													<g:if test="${ learningObjective.performance == null }">
+														No Performance
+													</g:if>
+													<g:else>
+														${ learningObjective.performance }
+													</g:else>
+												</span>
+
+												<!-- Definition of the criteria for understanding a learning objective -->
+
+												<span class="learning-objective-criteria">
+													<g:if test="${ learningObjective.criteria == null }">
+														No Criteria
+													</g:if>
+													<g:else>
+														${ learningObjective.criteria }
+													</g:else>
+												</span>
+
+												<!-- Definition of the indicators used to measure progress through learning objective -->
+												<span class="learning-objective-indicator">
+													<g:if test="${ learningObjective.indicator == null }">
+														No Indicator
+													</g:if>
+													<g:else>
+														${ learningObjective.indicator }
+													</g:else>
+												</span>
 											</g:link>
-										</g:each>
-									</li>
+										</li>
+									</g:each>
 								</ul>
 							</div>
 						</td>
 						<td id="LO_definition_cell">
-							<div id="learning_objectives_definition">
+							<div id="learning_objectives_definition" class="learning-objective-current">
 								<!-- Definition of the conditions for completing a learning objective -->
-								<span id="learning-objective-condition">
-									${fieldValue(bean: learningObjective, field: "condition")}
+								<span class="learning-objective-condition">
+									<g:if test="${ learningObjective.condition == null }">
+										No Condition
+									</g:if>
+									<g:else>
+										${ learningObjective.condition }
+									</g:else>
 								</span>
-								<!-- Definition of the perfomance evaulations for a learning objective -->
 
-								<span id="learning-objective-performance">
-									${fieldValue(bean: learningObjective, field: "performance")}
+								<!-- Definition of the perfomance evaulations for a learning objective -->
+								<span class="learning-objective-performance">
+									<g:if test="${ learningObjective.performance == null }">
+										No Performance
+									</g:if>
+									<g:else>
+										${ learningObjective.performance }
+									</g:else>
 								</span>
 
 								<!-- Definition of the criteria for understanding a learning objective -->
 
-								<span id="learning-objective-criteria">
-									${fieldValue(bean: learningObjective, field: "criteria")}
+								<span class="learning-objective-criteria">
+									<g:if test="${ learningObjective.criteria == null }">
+										No Criteria
+									</g:if>
+									<g:else>
+										${ learningObjective.criteria }
+									</g:else>
 								</span>
 
 								<!-- Definition of the indicators used to measure progress through learning objective -->
-								<span id="learning-objective-indicator">
-									${fieldValue(bean: learningObjective, field: "indicator")}
+								<span class="learning-objective-indicator">
+									<g:if test="${ learningObjective.indicator == null }">
+										No Indicator
+									</g:if>
+									<g:else>
+										${ learningObjective.indicator }
+									</g:else>
 								</span>
 							</div>
 						</td>
