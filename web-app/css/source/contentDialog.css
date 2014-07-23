@@ -27,7 +27,27 @@
 	padding-left:5px;
 	padding-right:5px;
 }
+.contentButtonGradient.saveBG{
+	float:right;
+}
+#contentList{
+	border: 1px solid #C4C2C2;
+}
+#contentList tr{
+	border-top:1px solid #C4C2C2;
+	border-bottom:1px solid #C4C2C2;
+}
+#contentList .ui-selected{
+	background:-webkit-linear-gradient(#E0E0E1,white);
+	background:-o-linear-gradient(#E0E0E1,white);
+	background:-moz-linear-gradient(#E0E0E1,white);
+	background:linear-gradient(#E0E0E1,white);
+}
+#contentList .unsaved{
+	background:white;
+}
 input{
+	min-height:1em;
 	height:inherit;
 	vertical-align:middle;
 }
