@@ -153,10 +153,14 @@ class LearningObjectiveController {
 	def content(Long id, Long learningObjectiveID) {
 		def imodInstance = Imod.get(id)
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
+
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		[
 			imodInstance: imodInstance,
 			currentPage: "content",
 			learningObjective: learningObjective,
+			learningObjectivesList: learningObjectivesList,
 		]
 	}
 
@@ -176,7 +180,7 @@ class LearningObjectiveController {
 
 		[
 			imodInstance: imodInstance,
-			learningObjectiveList: learningObjectivesList,
+			learningObjectivesList: learningObjectivesList,
 			currentPage: "condition",
 			learningObjective: learningObjectiveInstance,
 			currentCondition: currentCondition,
@@ -193,11 +197,14 @@ class LearningObjectiveController {
 	 */
 	def criteria(Long id, Long learningObjectiveID) {
 		def imodInstance = Imod.get(id)
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		[
 			imodInstance: imodInstance,
 			currentPage: "criteria",
 			learningObjective: learningObjective,
+			learningObjectivesList: learningObjectivesList,
 		]
 	}
 
