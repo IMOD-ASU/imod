@@ -37,14 +37,14 @@ table.LO_inner_table {
 	border-style: solid;
 }
 #LO_definition_cell {
-	min-height:2em;
-	height:5em;
-	width:70%;
-	background-color:#EDEDEF;
-	border:1px;
-	border-color:#C4C2C2;
-	border-radius:5px;
-	border-style:solid;
+	min-height: 2em;
+	height: 5em;
+	width: 70%;
+	background-color: #EDEDEF;
+	border: 1px;
+	border-color: #C4C2C2;
+	border-radius: 5px;
+	border-style: solid;
 }
 #LO_creator {
 	background-color: #EDEDEF;
@@ -114,13 +114,8 @@ table.LO_inner_table {
 }
 #tabs-LO-subhead .ui-tabs-nav li.active a {
 	height: 1.35em;
-	-webkit-border-radius: 2.6em / 1.2em;
-	-moz-border-radius: 2.6em / 1.2em;
 	border-radius: 2.6em / 1.2em;
-	background: -webkit-linear-gradient(left, transparent, #F5F5F5, transparent);
-	background:      -o-linear-gradient(right, transparent, #F5F5F5, transparent);
-	background:    -moz-linear-gradient(right, transparent, #F5F5F5, transparent);
-	background:         linear-gradient(to right, transparent, #F5F5F5, transparent);
+	background: linear-gradient(to right, transparent, #F5F5F5, transparent);
 }
 #tabs-LO-subhead .ui-tabs-nav li.active a.performance {
 	color: #3BA8DE;
@@ -150,19 +145,14 @@ table.LO_inner_table {
 	text-align: center
 }
 #tabs-LO-subhead .ui-tabs-nav li{
-	background: -webkit-linear-gradient(#FDFDFD, #DDDDDD);
-	background:      -o-linear-gradient(#FDFDFD, #DDDDDD);
-	background:    -moz-linear-gradient(#FDFDFD, #DDDDDD);
-	background:         linear-gradient(#FDFDFD, #DDDDDD);
+	background: linear-gradient(#FDFDFD, #DDDDDD);
 	position: static;
 	margin: 0px;
 	border-right-style: none;
 	border-left-style: none;
 	border-bottom: 1px solid #C4C2C2;
 	border-top: 1px solid #C4C2C2;
-	   -moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	        border-radius: 0px;
+	border-radius: 0px;
 	padding-bottom: 0px;
 	width: 9em;
 	height: 2.6em;
@@ -170,15 +160,11 @@ table.LO_inner_table {
 }
 #tabs-LO-subhead .ui-tabs-nav li:first-child {
 	border-left: 1px solid #C4C2C2;
-	        border-radius: 1.5em 0px 0px 1.5em;
-	   -moz-border-radius: 1.5em 0px 0px 1.5em;
-	-webkit-border-radius: 1.5em 0px 0px 1.5em;
+	border-radius: 1.5em 0px 0px 1.5em;
 }
 #tabs-LO-subhead .ui-tabs-nav li:last-child {
 	border-right: 1px solid #C4C2C2;
-	        border-radius: 0px 1.5em 1.5em 0px ;
-	   -moz-border-radius: 0px 1.5em 1.5em 0px ;
-	-webkit-border-radius: 0px 1.5em 1.5em 0px ;
+	border-radius: 0px 1.5em 1.5em 0px;
 }
 #tabs-LO-subhead .ui-tabs-nav li:ui.tabs-selected {
 	padding-bottom: 0px;
@@ -195,9 +181,7 @@ table.LO_inner_table {
 	background-color: #efefef;
 	overflow: hidden;
 	padding: 0.3em;
-	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
-	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-	        box-shadow: 0 0 3px 1px #aaaaaa;
+	box-shadow: 0 0 3px 1px #aaaaaa;
 	margin: 0.1em 0 0 0;
 	border: none;
 }
@@ -213,10 +197,7 @@ table.LO_inner_table {
 	overflow: visible;
 	padding: 0.25em 0.7em;
 	text-decoration: none;
-
-	   -moz-border-radius: 0.3em;
-	-webkit-border-radius: 0.3em;
-	        border-radius: 0.3em;
+	border-radius: 0.3em;
 }
 
 .LO_buttons input:hover,
@@ -227,9 +208,7 @@ table.LO_inner_table {
 	color: #ffffff;
 	outline: none;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-	   -moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	        box-shadow: none;
+	box-shadow: none;
 }
 
 .no-borderradius .LO_buttons input:hover,
