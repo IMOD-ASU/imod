@@ -7,5 +7,13 @@ package imodv6
  */
 class ActionWord {
 	String actionWord
-	DomainCategory category
+
+	static belongsTo = [
+		category: DomainCategory
+	]
+
+	// lets grails know that action word text is the printable attribute
+	def String toString(){
+		return actionWord
+	}
 }

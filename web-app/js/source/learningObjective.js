@@ -108,10 +108,10 @@ function populateActionWords(event) {
 			domainName: this.value
 		},
 		success: function(data){
-			var actioWords = data.value
+			var actionWords = data.value
 			var actionWordsHTML = '';
-			for (var i = 0; i < actioWords.length; i++){
-				actionWordsHTML += '<li class="action-word ui-state-default">' + actioWords[i].name + '</li>'
+			for (var i = 0; i < actionWords.length; i++){
+				actionWordsHTML += '<li class="action-word ui-state-default">' + actionWords[i].name + '</li>'
 			}
 			$('#action-words').html(actionWordsHTML);
 		},
