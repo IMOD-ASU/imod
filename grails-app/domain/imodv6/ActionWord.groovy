@@ -11,9 +11,4 @@ class ActionWord {
 	static belongsTo = [
 		category: DomainCategory
 	]
-
-	// lets grails know that action word text is the printable attribute
-	def String toString(){
-		return actionWord
-	}
 }
