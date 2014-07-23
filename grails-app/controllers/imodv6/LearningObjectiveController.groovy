@@ -211,7 +211,7 @@ class LearningObjectiveController {
 		// Find the selected learning domain
 		def domain = LearningDomain.findByName(domainName)
 		// get all related domain categories and sort by name
-		def domainCategories = domain.domainCategories.asList().sort {it.name}
+		def domainCategories = domain.domainCategories.sort {it.name}
 		// pass back domain categories as a json data structure
 		render (
 			[
@@ -227,9 +227,9 @@ class LearningObjectiveController {
 	 */
 	def getActionWords(String domainName) {
 		// Find the selected learning domain
-		def domain = LearningCategory.findByName(domainName)
+		def domainCategory = DomainCategory.findByName(domainName)
 		// get all related domain categories and sort by name
-		def actionWords = domain.actionWords.asList().sort {it.name}
+		def actionWords = domainCategory.actionWords.sort {it.actionWord}
 		// pass back domain categories as a json data structure
 		render (
 			[

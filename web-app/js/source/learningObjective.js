@@ -1,13 +1,15 @@
 //on page load
-$(function(){
+$(document).ready(function() {
 	// listen for the selected learning domain to change, when it does call ajax
-	$('#learning-domain-list').change(
-		populateDomainCategories(this.value)
+	$('#learning-domain-list').on(
+		'click',
+		populateDomainCategories
 	);
 
 	// listen for the selected domain category to change, when it does call ajax
-	$('#domain-category-list').change(
-		populateActionWords(this.value)
+	$('#domain-category-list').on(
+		'click',
+		populateActionWords
 	);
 
 	// if the condition is set to hidden do not display it in the definition box above
@@ -31,30 +33,36 @@ $(function(){
 	);
 
 	// TODO no idea what this is doing
-	$('input:radio[name=LO_condition_type]').change(function(){
-		if(this.value == 'Generic'){
-			$('#LO_condition_custom').css("display","none")
-			$('#LO_condition_generic').css("display","block")
+	$('input:radio[name=LO_condition_type]').on(
+		'change',
+		function() {
+			if(this.value == 'Generic'){
+				$('#LO_condition_custom').css("display","none")
+				$('#LO_condition_generic').css("display","block")
+			}
+			else{
+				$('#LO_condition_generic').css("display","none")
+				$('#LO_condition_custom').css("display","block")
+			}
 		}
-		else{
-			$('#LO_condition_generic').css("display","none")
-			$('#LO_condition_custom').css("display","block")
-		}
-	});
+	);
 
-	//TODO no ideo what this is doing
+	// manually tiggers the radio box change event
 	$('input:radio[name=LO_condition_type]:checked').change()
 
 	// making action words selectable through jquery ui
 	$('#action-words' ).selectable();
 
 	// This listens for when a learning objective is selected and saves
-	$('.action-word').change(function() {
-		$('.learning-objective-performance').html(
-			$('.ui-selected').innerHTML
-			//TODO create some sort of save
-		)
-	});
+	$('.action-word').on(
+		'change',
+		function() {
+			$('.learning-objective-performance').html(
+				$('.ui-selected').innerHTML
+				//TODO create some sort of save
+			)
+		}
+	);
 });
 
 /**
@@ -63,13 +71,13 @@ $(function(){
  * @param  {String} domain text from the domain select box
  * @return {XML}        Populates the domain category box with options
  */
-function populateDomainCategories(domain) {
+function populateDomainCategories(event) {
 	$.ajax({
 		url: "/imodv6/learningObjective/getDomainCategories",
 		type: "GET",
 		dataType: "json",
 		data: {
-			domainName: domain
+			domainName: this.value
 		},
 		success: function(data){
 			var categories = data.value
@@ -91,19 +99,19 @@ function populateDomainCategories(domain) {
  * @param  {String} domain text from the domain category select box
  * @return {XML}        Populates the page with action words
  */
-function populateActionWords(domainCategory) {
+function populateActionWords(event) {
 	$.ajax({
 		url: "/imodv6/learningObjective/getActionWords",
 		type: "GET",
 		dataType: "json",
 		data: {
-			domainName: domainCategory
+			domainName: this.value
 		},
 		success: function(data){
-			var actioWords = data.value
+			var actionWords = data.value;
 			var actionWordsHTML = '';
-			for (var i = 0; i < actioWords.length; i++){
-				actionWordsHTML += '<li class="action-word ui-state-default">' + actioWords[i].name + '</li>'
+			for (var i = 0; i < actionWords.length; i++){
+				actionWordsHTML += '<li class="action-word ui-state-default">' + actionWords[i].actionWord + '</li>'
 			}
 			$('#action-words').html(actionWordsHTML);
 		},

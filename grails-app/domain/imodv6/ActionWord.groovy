@@ -7,5 +7,8 @@ package imodv6
  */
 class ActionWord {
 	String actionWord
-	DomainCategory category
+
+	static belongsTo = [
+		category: DomainCategory
+	]
 }
