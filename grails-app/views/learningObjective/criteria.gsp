@@ -8,15 +8,53 @@
 	</head>
 	<body>
 		<form>
-			<input type="checkbox" name="enableAccuracy" value="enableAccuracy" >
-			<label for="accuracy-text">
-				Accuracy
-			</label>
-			<input id="accuracy-text" type="text">
-			<input id="accuracy-hide" type="checkbox" name="hideAccuracy" value="hideAccuracy">
-		 	<label for="accuracy-hide">
-		 		hide
-		 	</label>
+			<section>
+				<input type="checkbox" name="enableAccuracy" value="enableAccuracy" >
+				<label for="accuracy-text">
+					Accuracy
+				</label>
+				<input id="accuracy-text" type="text">
+				<input id="accuracy-hide" type="checkbox" name="hideAccuracy" value="hideAccuracy">
+				<label for="accuracy-hide">
+					hide
+			 	</label>
+		 	</section>
+
+		 	<section>
+				<input type="checkbox" name="enableQuality" value="enableQuality" >
+				<label for="quality-text">
+					Quality
+				</label>
+				<input id="quality-text" type="text">
+				<input id="quality-hide" type="checkbox" name="hideQuality" value="hideQuality">
+				<label for="quality-hide">
+					hide
+			 	</label>
+		 	</section>
+
+		 	<section>
+				<input type="checkbox" name="enableQuantity" value="enableQuantity" >
+				<label for="quantity-text">
+					Quantity
+				</label>
+				<input id="quantity-text" type="text">
+				<input id="quantity-hide" type="checkbox" name="hideQuantity" value="hideQuantity">
+				<label for="quantity-hide">
+					hide
+			 	</label>
+		 	</section>
+
+		 	<section>
+				<input type="checkbox" name="enableSpeed" value="enableSpeed" >
+				<label for="quantity-text">
+					Speed
+				</label>
+				<input id="speed-text" type="text">
+				<input id="speed-hide" type="checkbox" name="hideSpeed" value="hideSpeed">
+				<label for="speed-hide">
+					hide
+			 	</label>
+		 	</section>
 		</form>
 	</body>
 </html>
