@@ -18,6 +18,20 @@
 	color: white;
 }
 
+/* learning objective left panel */
+.learning-objective-list-wrapper {
+	border-radius: 10px;
+	border: 1px solid black;
+}
+
+.learning-objective-list-item {
+	list-style-type: none;
+}
+
+.learning-objective-list-link {
+	text-decoration: none;
+}
+
 /* managing the page layout */
 table.LO_inner_table {
 	position: relative;

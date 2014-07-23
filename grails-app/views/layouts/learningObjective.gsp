@@ -60,10 +60,10 @@
 										</a>
 									</span>
 								</div>
-								<ul>
+								<ul class="learning-objective-list-wrapper">
 									<g:each in="${learningObjectivesList}" status="i" var="learningObjective">
-										<li>
-											<g:link action="edit" id="${learningObjective.id}">
+										<li class="learning-objective-list-item">
+											<g:link action="edit" id="${learningObjective.id}" class="learning-objective-list-link">
 												<!-- Definition of the conditions for completing a learning objective -->
 												<span class="learning-objective-condition">
 													<g:if test="${ learningObjective.condition == null }">
