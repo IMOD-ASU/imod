@@ -17,7 +17,7 @@
 				<g:layoutTitle default="Learning Objective"/>
 			</title>
 
-			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'learningObjective.main.gsp.css')}" type="text/css">
+			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'learningObjective.css')}" type="text/css">
 
 			<script src="${resource(dir: 'js/source', file: 'learningObjective.js')}" defer></script>
 
