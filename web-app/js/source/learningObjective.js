@@ -13,7 +13,7 @@ $(document).ready(function() {
 	);
 
 	// if the condition is set to hidden do not display it in the definition box above
-	$('#LO_hide_from_Objective').change(function(){
+	$('#LO-hide-from-Objective').change(function(){
 		if(this.checked) {
 			$('.learning-objective-current .learning-objective-condition').css("display","none")
 		}
@@ -23,12 +23,12 @@ $(document).ready(function() {
 	});
 
 	// when a custom condition is added, display in the definition box above
-	$('#LO_condition_custom').keyup(
+	$('#LO-condition-custom').keyup(
 		propagateToDefinition(this.value, "condition")
 	);
 
 	// when a standard condition is added, display in the definition box above
-	$(".LO_condition_data").change(
+	$(".LO-condition-data").change(
 		propagateToDefinition(this.value, "condition")
 	);
 
@@ -37,12 +37,12 @@ $(document).ready(function() {
 		'change',
 		function() {
 			if(this.value == 'Generic'){
-				$('#LO_condition_custom').css("display","none")
-				$('#LO_condition_generic').css("display","block")
+				$('#LO-condition-custom').css("display","none")
+				$('#LO-condition-generic').css("display","block")
 			}
 			else{
-				$('#LO_condition_generic').css("display","none")
-				$('#LO_condition_custom').css("display","block")
+				$('#LO-condition-generic').css("display","none")
+				$('#LO-condition-custom').css("display","block")
 			}
 		}
 	);
@@ -63,6 +63,66 @@ $(document).ready(function() {
 			)
 		}
 	);
+
+	// when the checkbox is changed disable text box and other check box
+	$('#enable-accuracy').on(
+		'click',
+		function() {
+			$('#accuracy-text').prop(
+				'disabled',
+				$('#enable-accuracy').is(':checked')
+			);
+			$('#accuracy-hide').prop(
+				'disabled',
+				$('#enable-accuracy').is(':checked')
+			);
+		}
+	)
+
+	// when the checkbox is changed disable text box and other check box
+	$('#enable-quality').on(
+		'click',
+		function() {
+			$('#quality-text').prop(
+				'disabled',
+				$('#enable-quality').is(':checked')
+			);
+			$('#quality-hide').prop(
+				'disabled',
+				$('#enable-quality').is(':checked')
+			);
+		}
+	)
+
+	// when the checkbox is changed disable text box and other check box
+	$('#enable-quantity').on(
+		'click',
+		function() {
+			$('#quantity-text').prop(
+				'disabled',
+				$('#enable-quantity').is(':checked')
+			);
+			$('#quantity-hide').prop(
+				'disabled',
+				$('#enable-quantity').is(':checked')
+			);
+		}
+	)
+
+	// when the checkbox is changed disable text box and other check box
+	$('#enable-speed').on(
+		'click',
+		function() {
+			$('#speed-text').prop(
+				'disabled',
+				$('#enable-speed').is(':checked')
+			);
+			$('#speed-hide').prop(
+				'disabled',
+				$('#enable-speed').is(':checked')
+			);
+		}
+	)
 });
 
 /**

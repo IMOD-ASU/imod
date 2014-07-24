@@ -7,8 +7,8 @@ $(document).ready(function() {
 		jQuery.browser.version = RegExp.$1;
 	}
 	$("#accordion").accordion();
-	$( "#help_placeholder" ).draggable();
-	$("#open_help").draggable();
+	$( "#help-placeholder" ).draggable();
+	$("#open-help").draggable();
 	jQuery('.showHoverNew').qtip({
 		style: {background: 'transparent', border: 'none', color: 'black'},
 		show: 'mouseover',
@@ -24,7 +24,7 @@ $(document).ready(function() {
 function showHelp(displayHelp){
 
 	if (displayHelp!="true"){
-		$("#help_placeholder").css("display","none")
+		$("#help-placeholder").css("display","none")
 	}
 
 }
@@ -110,8 +110,8 @@ function updateDatePicker (dateFormat) {
 
 
 function toggleHelp(){
-	var helpbox=$("#help_placeholder")
-	var openbox=$("#open_help")
+	var helpbox=$("#help-placeholder")
+	var openbox=$("#open-help")
 	if (helpbox.css("display")=="block"){
 		boxtop=helpbox.css("top")
 		boxleft=helpbox.css("left")

@@ -11,13 +11,13 @@
 .tabs-background{
 	height:4em;
 }
-table.LO_inner_table {
+table.LO-inner-table {
 	height: 100%;
 	min-height:40em;
 	border-spacing:10px 5px;
 	border-collapse:separate;
 }
-#LO_list_pane{
+#LO-list-pane{
 	width:30%;
 	background-color:#EDEDEF;
 	border:1px;
@@ -25,7 +25,7 @@ table.LO_inner_table {
 	border-radius:5px;
 	border-style:solid;
 }
-#LO_definition_cell{
+#LO-definition-cell{
 	min-height:2em;
 	height:5em;
 	width:70%;
@@ -35,14 +35,14 @@ table.LO_inner_table {
 	border-radius:5px;
 	border-style:solid;
 }
-#LO_creator{
+#LO-creator{
 	background-color:#EDEDEF;
 	border:1px;
 	border-color:#C4C2C2;
 	border-radius:5px;
 	border-style:solid;
 }
-#LO_condition_radio_form{
+#LO-condition-radio-form{
 	height:1.5em;
 	font-size:1.3em;
 	font-weight:bold;
@@ -51,26 +51,26 @@ table.LO_inner_table {
 	width:15em;
 	padding:1em;
 }
-#LO_condition_radio_form span{
+#LO-condition-radio-form span{
 	margin-left:2em;
 }
-.LO_condition_radio{
+.LO-condition-radio{
 	height:1.3em;
 	width:1.3em;
 	margin-right:5px;
 	margin-left:5px;
 	vertical-align:middle;
 }
-#LO_condition_custom{
+#LO-condition-custom{
 	display:none;
 	width:80%;
 	margin-left:auto;
 	margin-right:auto;
 }
-#LO_generic{
+#LO-generic{
 	width:100%;
 }
-#LO_condition_generic{
+#LO-condition-generic{
 	display:block;
 	width:90%;
 	margin-left:auto;
@@ -102,12 +102,7 @@ table.LO_inner_table {
 
 #tabs-LO-subhead .ui-tabs-nav li.ui-state-active a {
 	height:1.35em;
-	-webkit-border-radius:2.6em/1.2em;
-	-moz-border-radius:2.6em/1.2em;
 	border-radius:2.6em/1.2em;
-	background:-webkit-linear-gradient(left, transparent, #FDFDFD, transparent);
-	background:-o-linear-gradient(right, transparent, #FDFDFD, transparent);
-	background:-moz-linear-gradient(right, transparent, #FDFDFD, transparent);
 	background:linear-gradient(to right, transparent, #FDFDFD, transparent);
 }
 #tabs-LO-subhead .ui-tabs-nav li.ui-state-active a.performance {
@@ -132,9 +127,6 @@ table.LO_inner_table {
 	text-align:center
 }
 #tabs-LO-subhead .ui-tabs-nav li{
-	background: -webkit-linear-gradient(#FDFDFD,#DDDDDD);
-	background: -o-linear-gradient(#FDFDFD,#DDDDDD);
-	background: -moz-linear-gradient(#FDFDFD,#DDDDDD);
 	background: linear-gradient(#FDFDFD,#DDDDDD);
 	position:static;
 	margin:0px;
@@ -142,8 +134,6 @@ table.LO_inner_table {
 	border-left-style:none;
 	border-bottom:1px solid #C4C2C2;
 	border-top:1px solid #C4C2C2;
-	-moz-border-radius: 0px;
-	-webkit-border-radius:0px;
 	border-radius:0px;
 	padding-bottom:0px;
 	width:7.5em;
@@ -154,21 +144,17 @@ table.LO_inner_table {
 #tabs-LO-subhead .ui-tabs-nav li:first-child {
 	border-left:1px solid #C4C2C2;
 	border-radius:1.5em 0px 0px 1.5em;
-	-moz-border-radius:1.5em 0px 0px 1.5em;
-	-webkit-border-radius:1.5em 0px 0px 1.5em;
 }
 #tabs-LO-subhead .ui-tabs-nav li:last-child {
 	border-right:1px solid #C4C2C2;
 	border-radius:0px 1.5em 1.5em 0px ;
-	-moz-border-radius:0px 1.5em 1.5em 0px ;
-	-webkit-border-radius:0px 1.5em 1.5em 0px ;
 }
 #tabs-LO-subhead .ui-tabs-nav li:ui.tabs-selected {
 	padding-bottom:0px;
 	border-bottom:1px solid #C4C2C2;
 	border-top:1px solid #C4C2C2
 }
-#LO_hide_from_Objective{
+#LO-hide-from-Objective{
 	height:1em;
 }
 
