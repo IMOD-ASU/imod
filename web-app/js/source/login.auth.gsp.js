@@ -1,3 +1,3 @@
 $(document).ready(function() {
-		$("#loginLinkContainer").hide();
+	$("#loginLinkContainer").hide();
 });

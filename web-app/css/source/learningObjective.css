@@ -33,7 +33,7 @@
 }
 
 /* managing the page layout */
-table.LO_inner_table {
+table.LO-inner-table {
 	position: relative;
 	left: -5%;
 	width: 110%;
@@ -42,7 +42,7 @@ table.LO_inner_table {
 	border-spacing: 10px 5px;
 	border-collapse: separate;
 }
-#LO_list_pane {
+#LO-list-pane {
 	width: 30%;
 	background-color: #EDEDEF;
 	border: 1px;
@@ -50,7 +50,7 @@ table.LO_inner_table {
 	border-radius: 5px;
 	border-style: solid;
 }
-#LO_definition_cell {
+#LO-definition-cell {
 	min-height: 2em;
 	height: 5em;
 	width: 70%;
@@ -60,14 +60,14 @@ table.LO_inner_table {
 	border-radius: 5px;
 	border-style: solid;
 }
-#LO_creator {
+#LO-creator {
 	background-color: #EDEDEF;
 	border: 1px;
 	border-color: #C4C2C2;
 	border-radius: 5px;
 	border-style: solid;
 }
-#LO_condition_radio_form {
+#LO-condition-radio-form {
 	height: 1.5em;
 	font-size: 1.3em;
 	font-weight: bold;
@@ -76,26 +76,26 @@ table.LO_inner_table {
 	width: 15em;
 	padding: 1em;
 }
-#LO_condition_radio_form span {
+#LO-condition-radio-form span {
 	margin-left: 2em;
 }
-.LO_condition_radio {
+.LO-condition-radio {
 	height: 1.3em;
 	width: 1.3em;
 	margin-right: 5px;
 	margin-left: 5px;
 	vertical-align: middle;
 }
-#LO_condition_custom {
+#LO-condition-custom {
 	display: none;
 	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
 }
-#LO_generic {
+#LO-generic {
 	width: 100%;
 }
-#LO_condition_generic {
+#LO-condition-generic {
 	display: block;
 	width: 90%;
 	margin-left: auto;
@@ -185,12 +185,12 @@ table.LO_inner_table {
 	border-bottom: 1px solid #C4C2C2;
 	border-top: 1px solid #C4C2C2
 }
-#LO_hide_from_Objective{
+#LO-hide-from-Objective{
 	height: 1em;
 }
 
 /* save and delete buttons */
-.LO_buttons {
+.learning-objective-button {
 	float: right;
 	background-color: #efefef;
 	overflow: hidden;
@@ -200,8 +200,8 @@ table.LO_inner_table {
 	border: none;
 }
 
-.LO_buttons input,
-.LO_buttons a {
+.learning-objective-button input,
+.learning-objective-button a {
 	background-color: transparent;
 	border: 0;
 	color: #666666;
@@ -214,10 +214,10 @@ table.LO_inner_table {
 	border-radius: 0.3em;
 }
 
-.LO_buttons input:hover,
-.LO_buttons input:focus,
-.LO_buttons a:hover,
-.LO_buttons a:focus {
+.learning-objective-button input:hover,
+.learning-objective-button input:focus,
+.learning-objective-button a:hover,
+.learning-objective-button a:focus {
 	background-color: #999999;
 	color: #ffffff;
 	outline: none;
@@ -225,33 +225,33 @@ table.LO_inner_table {
 	box-shadow: none;
 }
 
-.no-borderradius .LO_buttons input:hover,
-.no-borderradius .LO_buttons input:focus,
-.no-borderradius .LO_buttons a:hover,
-.no-borderradius .LO_buttons a:focus {
+.no-borderradius .learning-objective-button input:hover,
+.no-borderradius .learning-objective-button input:focus,
+.no-borderradius .learning-objective-button a:hover,
+.no-borderradius .learning-objective-button a:focus {
 	background-color: transparent;
 	color: #444444;
 	text-decoration: underline;
 }
 
-.LO_buttons .delete,
-.LO_buttons .save {
+.learning-objective-button .delete,
+.learning-objective-button .save {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
 }
 
-.ie6 .LO_buttons input.delete,
-.ie6 .LO_buttons input.save,
-.ie7 .LO_buttons input.delete,
-.ie7 .LO_buttons input.save {
+.ie6 .learning-objective-button input.delete,
+.ie6 .learning-objective-button input.save,
+.ie7 .learning-objective-button input.delete,
+.ie7 .learning-objective-button input.save {
 	padding-left: 36px;
 }
 
-.LO_buttons .delete {
+.learning-objective-button .delete {
 	background-image: url(../../images/skin/database_delete.png);
 }
 
-.LO_buttons .save {
+.learning-objective-button .save {
 	background-image: url(../../images/skin/database_save.png);
 }

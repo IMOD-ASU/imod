@@ -44,12 +44,12 @@
 				</ul>
 			</g:hasErrors>
 			<fieldset class="form">
-				 <table  class="LO_inner_table">
+				 <table  class="LO-inner-table">
 					<tr>
-						<td id="LO_list_pane" rowspan="2">
-							<div class="learning_objectives_list">
-								<div class="form_title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
-									<span class="title_text">
+						<td id="LO-list-pane" rowspan="2">
+							<div class="learning-objectives-list">
+								<div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
+									<span class="title-text">
 										Learning Objectives
 										<a href="/imodv6/learningObjective/create/${imodInstance.id}">
 											<button>
@@ -110,8 +110,8 @@
 								</ul>
 							</div>
 						</td>
-						<td id="LO_definition_cell">
-							<div id="learning_objectives_definition" class="learning-objective-current">
+						<td id="LO-definition-cell">
+							<div id="learning-objectives-definition" class="learning-objective-current">
 								<!-- Definition of the conditions for completing a learning objective -->
 								<span class="learning-objective-condition">
 									<g:if test="${ learningObjective.condition == null }">
@@ -156,8 +156,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td id="LO_creator">
-							<div class="learning_objective_creator">
+						<td id="LO-creator">
+							<div class="learning-objective-creator">
 								<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-'+currentPage+'.png')}" alt=""/>
 
 								<div id="tabs-LO-subhead">

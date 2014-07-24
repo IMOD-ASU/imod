@@ -32,7 +32,7 @@
 					<g:hiddenField name="id" value="${imodInstance?.id}"/>
 					<g:hiddenField name="version" value="${imodInstance?.version}"/>
 					<fieldset class="form">
-						<table class="inner_table">
+						<table class="inner-table">
 							<tr height="50px">
 								<td>
 								</td>
@@ -45,9 +45,9 @@
 							</tr>
 							<tr>
 								<td>
-									<div class="course_overview_form">
-										<div class="form_title">
-											<span class="title_text">
+									<div class="course-overview-form">
+										<div class="form-title">
+											<span class="title-text">
 												Course Details
 											</span>
 										</div>
@@ -97,9 +97,9 @@
 									</div>
 								</td>
 								<td>
-									<div class="course_overview_form">
-										<div class="form_title">
-											<span class="title_text">
+									<div class="course-overview-form">
+										<div class="form-title">
+											<span class="title-text">
 												Schedule
 											</span>
 										</div>
@@ -141,9 +141,9 @@
 							</tr>
 							<tr>
 								<td colspan="2">
-									<div class="course_overview_form">
-										<div class="form_title">
-											<span class="title_text">
+									<div class="course-overview-form">
+										<div class="form-title">
+											<span class="title-text">
 												Instructors
 											</span>
 										</div>
@@ -151,8 +151,8 @@
 
 												<div id="clickthis">	<g:link controller="instructor" action="create" params="['imod.id': imodInstance?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="showHoverNew">${message(code: 'default.add.label', args: [message(code: 'instructor.label', default: 'Instructor')])}</g:link>
 												</div>
-													<div id="custom_instructor">
-													<table id="instructor_table">
+													<div id="custom-instructor">
+													<table id="instructor-table">
 														<thead>
 															<tr>
 																<g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="showHoverNew" titleKey="${Help.toolTip("OVERVIEW","Last Name Label")}" title="${Help.toolTip("OVERVIEW","Last Name Label")}"/>
@@ -197,9 +197,9 @@
 							</tr>
 							<tr>
 								<td>
-									<div class="course_overview_form">
-										<div class="form_title">
-											<span class="title_text">
+									<div class="course-overview-form">
+										<div class="form-title">
+											<span class="title-text">
 												Course Description
 											</span>
 										</div>
@@ -250,9 +250,9 @@
 									</div>
 								</td>
 								<td>
-									<div class="course_overview_form" id="policy">
-										<div class="form_title">
-											<span class="title_text">
+									<div class="course-overview-form" id="policy">
+										<div class="form-title">
+											<span class="title-text">
 												Course Policy
 											</span>
 										</div>

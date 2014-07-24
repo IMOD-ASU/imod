@@ -41,20 +41,20 @@
 	<body>
 		<div id="imodlogo" role="banner" style="background-color:#0C1625;">
 			<a href="${createLink(uri: '/')}">
-				<img id="imod_logo" src="${resource(dir: 'images', file: 'colorsignature_sml.png')}" alt="imod"/>
+				<img id="imod-logo" src="${resource(dir: 'images', file: 'colorsignature_sml.png')}" alt="imod"/>
 			</a>
 			<span>
 				<a class="banner-imod" href="${createLink(uri: '/imod')}">
 					<g:message code="My i-mods"/>
 				</a>
 				<a class="banner-home" href="${createLink(uri: '/')}">
-					<img class="resize_home" src="${resource(dir: 'images', file: 'home_sm.png')}" alt=""/>
+					<img class="resize-home" src="${resource(dir: 'images', file: 'home_sm.png')}" alt=""/>
 					<g:message code="default.home.label"/>
 				</a>
 				<nobr>
 					<div id='loginLinkContainer' class='banner-link'>
 						<sec:ifLoggedIn>
-							<img class="resize_home" src="${resource(dir: 'images', file: 'user_sm.png')}" alt=""/>
+							<img class="resize-home" src="${resource(dir: 'images', file: 'user_sm.png')}" alt=""/>
 						<sec:username/>
 							<a href='${createLink(uri: '/logout')}' id='logoutLink' class='banner-link'>
 								Logout
