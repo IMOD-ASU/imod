@@ -63,6 +63,66 @@ $(document).ready(function() {
 			)
 		}
 	);
+
+	// when the checkbox is changed disable text box and other check box
+	$('#enable-accuracy').on(
+		'click',
+		function() {
+			$('#accuracy-text').prop(
+				'disabled',
+				$('#enable-accuracy').is(':checked')
+			);
+			$('#accuracy-hide').prop(
+				'disabled',
+				$('#enable-accuracy').is(':checked')
+			);
+		}
+	)
+
+	// when the checkbox is changed disable text box and other check box
+	$('#enable-quality').on(
+		'click',
+		function() {
+			$('#quality-text').prop(
+				'disabled',
+				$('#enable-quality').is(':checked')
+			);
+			$('#quality-hide').prop(
+				'disabled',
+				$('#enable-quality').is(':checked')
+			);
+		}
+	)
+
+	// when the checkbox is changed disable text box and other check box
+	$('#enable-quantity').on(
+		'click',
+		function() {
+			$('#quantity-text').prop(
+				'disabled',
+				$('#enable-quantity').is(':checked')
+			);
+			$('#quantity-hide').prop(
+				'disabled',
+				$('#enable-quantity').is(':checked')
+			);
+		}
+	)
+
+	// when the checkbox is changed disable text box and other check box
+	$('#enable-speed').on(
+		'click',
+		function() {
+			$('#speed-text').prop(
+				'disabled',
+				$('#enable-speed').is(':checked')
+			);
+			$('#speed-hide').prop(
+				'disabled',
+				$('#enable-speed').is(':checked')
+			);
+		}
+	)
 });
 
 /**
