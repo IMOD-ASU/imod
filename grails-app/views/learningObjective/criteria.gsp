@@ -9,6 +9,16 @@
 	<body>
 		<form>
 			<section>
+				<g:actionSubmit
+					class="save showHoverNew"
+					action="save"
+					value="${message(code: 'Save', default: 'Save')}"
+					id="${imodInstance.id }"
+					learningObjectiveID="${learningObjective.id }"
+					type="criteria"
+				/>
+			</section>
+			<section>
 				<input type="checkbox" name="enableAccuracy" value="enableAccuracy" >
 				<label for="accuracy-text">
 					Accuracy
