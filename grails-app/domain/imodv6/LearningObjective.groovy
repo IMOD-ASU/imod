@@ -18,6 +18,7 @@ class LearningObjective {
 	String criteria
 	String indicator
 	String performance
+	// Hide condition from objective
 	Boolean hideFromObjective
 
 	/**
@@ -27,6 +28,7 @@ class LearningObjective {
 	LearningDomain					learningDomain
 	DomainCategory					domainCategory
 	ActionWord						actionWord
+	// Learning Objective has many criteria, each  criteria has an enumerated type and hidden or not
 	LearningObjectiveCriteriaType	criteriaType
 
 	/**
@@ -61,7 +63,7 @@ class LearningObjective {
 		learningDomain	nullable: true
 		performance		nullable: true
 		hideFromObjective	nullable:true
-		
+
 	}
 
 	//TODO: What does this do?
