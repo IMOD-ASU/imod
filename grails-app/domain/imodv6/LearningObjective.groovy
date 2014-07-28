@@ -21,15 +21,15 @@ class LearningObjective {
 	// Hide condition from objective
 	Boolean hideFromObjective
 
-	/**
-	 * Linkers to other domain objects (?)
-	 * TODO: double check this is really what is going on
-	 */
-	LearningDomain					learningDomain
-	DomainCategory					domainCategory
-	ActionWordCategory						actionWordCategory
 	// Learning Objective has many criteria, each  criteria has an enumerated type and hidden or not
-	LearningObjectiveCriteriaType	criteriaType
+	criteriaType: LearningObjectiveCriteriaType
+
+	/**
+	 * Linkers to other domain objects
+	 */
+	static static hasOne = [
+		actionWordCategory: ActionWordCategory
+	]
 
 	/**
 	 * Relationships to other domain objects
@@ -43,12 +43,15 @@ class LearningObjective {
 		pedogoyTechniques: PedagogyTechnique
 	]
 
-	public static final List genericConditions=[
-						'Given a program specification',
-						'Students completing this course will be able to',
-						'After completing the course, the student will be able to'
-						]
-	static transients = ['name']
+	public static final List genericConditions = [
+		'Given a program specification',
+		'Students completing this course will be able to',
+		'After completing the course, the student will be able to'
+	]
+
+	static transients = [
+		'name'
+	]
 
 	/**
 	 * Constraints on the fields of Learning Objective
@@ -57,7 +60,6 @@ class LearningObjective {
 		actionWordCategory		nullable: true
 		condition		nullable: true
 		criteria		nullable: true
-		criteriaType	nullable: true
 		domainCategory	nullable: true
 		indicator		nullable: true
 		learningDomain	nullable: true
