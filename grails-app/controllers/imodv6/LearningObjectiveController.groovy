@@ -109,10 +109,11 @@ class LearningObjectiveController {
 		def imodInstance = Imod.get(id)
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def contentList=imodInstance.contents
+		def contentList=imodInstance.contents.sort(){it.id}
 		if (contentList.size()==0){
 			contentList.add(new Content(imod:imodInstance, failOnError:true))
 		}
+
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,

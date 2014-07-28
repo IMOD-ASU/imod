@@ -1,10 +1,10 @@
 package imodv6
 
 public enum KnowledgeDimensionEnum {
-	FACTUAL('Factual'),
 	CONCEPTUAL('Conceptual'),
-	PROCEDUAL('Procedural'),
-	METACOGNITIVE('Metacognitive')
+	FACTUAL('Factual'),
+	METACOGNITIVE('Metacognitive'),
+	PROCEDURAL('Procedural')
 	private final String value
 	KnowledgeDimensionEnum(String value){
 		this.value=value
@@ -17,5 +17,8 @@ public enum KnowledgeDimensionEnum {
 	}
 	String getKey(){
 		name()
+	}
+	String getValue(){
+		value
 	}
 }

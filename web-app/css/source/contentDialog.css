@@ -1,5 +1,10 @@
-.no-title .ui-dialog-titlebar{
-	display: none;
+#contentDialog{
+	border:1px solid #C4C2C2;
+	background:#EDEDEF;
+	position:absolute;
+	width:70%;
+	top:30%;
+	left: 15%;
 }
 .contentButtonField{
 	top:initial;
@@ -9,7 +14,7 @@
 	box-shadow:none;
 	background:linear-gradient(#FEFEFE,#EDEDEF);
 	height:3em;
-	border: 1px solid #C4C2C2
+	margin:0px;
 }
 .contentButton{
 	height:2.9em;
@@ -31,23 +36,87 @@
 	float:right;
 }
 #contentList{
-	border: 1px solid #C4C2C2;
+	width:100%;
+	margin:0px
+}
+#contentList tbody *{
+	vertical-align:middle;
+}
+#contentList tbody:last-child{
+	border-bottom:0px
 }
 #contentList tr{
 	border-top:1px solid #C4C2C2;
 	border-bottom:1px solid #C4C2C2;
 }
-#contentList .ui-selected{
-	background:-webkit-linear-gradient(#E0E0E1,white);
-	background:-o-linear-gradient(#E0E0E1,white);
-	background:-moz-linear-gradient(#E0E0E1,white);
-	background:linear-gradient(#E0E0E1,white);
+
+#contentList td{
+	padding:5px;
 }
-#contentList .unsaved{
+#contentList input, #contentList select, #contentList button{
+	width:95%;
+	height:inherit;
+	min-height:inherit;
+}
+#contentList .hidden{
+	display:none;
+}
+#contentList .unsaved
 	background:white;
 }
-input{
-	min-height:1em;
+#contentList .contentDimensions{
+	width:25%;
+}
+#contentList .contentPriority{
+	width:20%;
+}
+#contentList .contentResources{
+	width:15%
+}
+#contentList .contentPreReq{
+	width:1em;
+	padding-left:.5em;
+	padding-right:.5em;
+}
+
+#contentList .saveIcon{
+	width:1em;
+	padding-left:.5em;
+	padding-right:.5em;
+}
+#contentList .knowledgeDimensionButton{
+	width:85%;
+}
+
+#selectKnowledgeDimensions{
+	display:none;
+	border:1px solid #C4C2C2 ;
+	background:white;
+	position:absolute;
+	width:20%;
+	min-height:20%;
+	top:33%;
+	left:40%;
+	padding:10px;
+}
+#selectKnowledgeDimensions li *{
 	height:inherit;
-	vertical-align:middle;
+}
+#selectKnowledgeDimensions ul {
+	list-style-type:none;
+	margin-right:10px;
+	margin-bottom:10px;
+	vertical-align:top;
+	display:inline-block;
+	
+}
+#selectKnowledgeDimensions #dimImage{
+	display:inline-block;
+	margin-left:10px;
+	margin-bottom:10px;
+}
+#selectKnowledgeDimensions #knowDimFinished{
+	width:80%;
+	position:relative;
+	left:10%;
 }
