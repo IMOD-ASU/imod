@@ -27,7 +27,7 @@ class LearningObjective {
 	 */
 	LearningDomain					learningDomain
 	DomainCategory					domainCategory
-	ActionWord						actionWord
+	ActionWordCategory						actionWordCategory
 	// Learning Objective has many criteria, each  criteria has an enumerated type and hidden or not
 	LearningObjectiveCriteriaType	criteriaType
 
@@ -54,7 +54,7 @@ class LearningObjective {
 	 * Constraints on the fields of Learning Objective
 	 */
 	static constraints = {
-		actionWord		nullable: true
+		actionWordCategory		nullable: true
 		condition		nullable: true
 		criteria		nullable: true
 		criteriaType	nullable: true

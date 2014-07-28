@@ -6,7 +6,7 @@ class LearningObjectiveController {
 	static allowedMethods = [
 		create: "GET",
 		getDomainCategories: "GET",
-		getActionWords: "GET",
+		getActionWordCategories: "GET",
 		updateDefinition: "POST",
 		performance: "GET",
 		condition: "GET",
@@ -57,7 +57,7 @@ class LearningObjectiveController {
 		switch (pageType) {
 			// if the user is saving performance page
 			case 'performance':
-				learningObjectiveInstance.actionWord = ActionWord.findByActionWord(params.actionWord)
+				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				redirect(
 					action: "performance",
 					id: id,
@@ -122,25 +122,25 @@ class LearningObjectiveController {
 
 		// get all performance data to set in the Performance page
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def selectedActionWord = learningObjective.actionWord
-		def selectedDomainCategory = selectedActionWord?.category
+		def selectedActionWordCategory = learningObjective.actionWordCategory
+		def selectedDomainCategory = selectedActionWordCategory?.category
 		def selectedDomain = selectedDomainCategory?.domain
 
 		// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
 		def domainList = LearningDomain.list()
 		def categoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
-		def actionWordList = selectedDomainCategory?.actionWords?:categoriesList[0].actionWords.asList().sort {it.actionWord}
+		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:categoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
 			currentPage: "performance",
 			learningObjective: learningObjective,
-			selectedActionWord: selectedActionWord,
+			selectedActionWordCategory: selectedActionWordCategory,
 			selectedDomainCategory: selectedDomainCategory,
 			selectedDomain: selectedDomain,
 			domainList: domainList,
 			categoriesList: categoriesList,
-			actionWordList: actionWordList,
+			actionWordCategoryList: actionWordCategoryList,
 		]
 	}
 
@@ -232,15 +232,15 @@ class LearningObjectiveController {
 	 * @param  domainName String that is the contents (or name) of a Domain Category
 	 * @return            sorted list of Action Words
 	 */
-	def getActionWords(String domainName) {
+	def getActionWordCategories(String domainName) {
 		// Find the selected learning domain
 		def domainCategory = DomainCategory.findByName(domainName)
 		// get all related domain categories and sort by name
-		def actionWords = domainCategory.actionWords.sort {it.actionWord}
+		def actionWordCategories = domainCategory.actionWordCategories.sort {it.actionWordCategory}
 		// pass back domain categories as a json data structure
 		render (
 			[
-				value: actionWords
+				value: actionWordCategories
 			] as JSON
 		)
 	}

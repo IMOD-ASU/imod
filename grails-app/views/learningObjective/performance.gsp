@@ -43,9 +43,9 @@
 		<br />
 
 		<ol id="action-words">
-			<g:each var="actionWord" in="${actionWordList.actionWord}">
+			<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">
 				<li class="action-word ui-state-default">
-					${actionWord}
+					${actionWordCategory}
 				</li>
 			</g:each>
 		</ol>

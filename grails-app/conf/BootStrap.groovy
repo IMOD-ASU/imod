@@ -1,4 +1,4 @@
-import imodv6.ActionWord
+import imodv6.ActionWordCategory
 import imodv6.ContentKnowledgeDomainCode
 import imodv6.ContentPriorityCode
 import imodv6.ContentResourceType
@@ -551,21 +551,21 @@ class BootStrap {
 			/**
 			 * creating action words for remembering category
 			 */
-			def actionWordRemembering = new ActionWord(
+			def actionWordCategoryRemembering = new ActionWordCategory(
 				category: domainCategoryRemembering,
-				actionWord: "Recognizing"
+				actionWordCategory: "Recognizing"
 			)
 
-			def actionWordRecalling = new ActionWord(
+			def actionWordCategoryRecalling = new ActionWordCategory(
 				category: domainCategoryRemembering,
-				actionWord: "Recalling"
+				actionWordCategory: "Recalling"
 			)
 
 			/**
 			 * relating the words to the category
 			 */
-			domainCategoryRemembering.addToActionWords(actionWordRemembering)
-			domainCategoryRemembering.addToActionWords(actionWordRecalling)
+			domainCategoryRemembering.addToActionWordCategories(actionWordCategoryRemembering)
+			domainCategoryRemembering.addToActionWordCategories(actionWordCategoryRecalling)
 
 			/**
 			 * Saving the action words and the domain category
@@ -575,51 +575,51 @@ class BootStrap {
 			/**
 			 * creating action words for understanding category
 			 */
-			def actionWordInterpreting = new ActionWord(
+			def actionWordCategoryInterpreting = new ActionWordCategory(
 				category: domainCategoryUnderstanding,
-				actionWord: "Interpreting"
+				actionWordCategory: "Interpreting"
 			)
 
-			def actionWordExemplifying = new ActionWord(
+			def actionWordCategoryExemplifying = new ActionWordCategory(
 				category: domainCategoryUnderstanding,
-				actionWord: "Exemplifying"
+				actionWordCategory: "Exemplifying"
 			)
 
-			def actionWordClassifying = new ActionWord(
+			def actionWordCategoryClassifying = new ActionWordCategory(
 				category: domainCategoryUnderstanding,
-				actionWord: "Classifying"
+				actionWordCategory: "Classifying"
 			)
 
-			def actionWordSummarizing = new ActionWord(
+			def actionWordCategorySummarizing = new ActionWordCategory(
 				category: domainCategoryUnderstanding,
-				actionWord: "Summarizing"
+				actionWordCategory: "Summarizing"
 			)
 
-			def actionWordInferring = new ActionWord(
+			def actionWordCategoryInferring = new ActionWordCategory(
 				category: domainCategoryUnderstanding,
-				actionWord: "Inferring"
+				actionWordCategory: "Inferring"
 			)
 
-			def actionWordComparing = new ActionWord(
+			def actionWordCategoryComparing = new ActionWordCategory(
 				category: domainCategoryUnderstanding,
-				actionWord: "Comparing"
+				actionWordCategory: "Comparing"
 			)
 
-			def actionWordExplaining = new ActionWord(
+			def actionWordCategoryExplaining = new ActionWordCategory(
 				category: domainCategoryUnderstanding,
-				actionWord: "Explaining"
+				actionWordCategory: "Explaining"
 			)
 
 			/**
 			 * relating the words to the category
 			 */
-			domainCategoryUnderstanding.addToActionWords(actionWordInterpreting)
-			domainCategoryUnderstanding.addToActionWords(actionWordExemplifying)
-			domainCategoryUnderstanding.addToActionWords(actionWordClassifying)
-			domainCategoryUnderstanding.addToActionWords(actionWordSummarizing)
-			domainCategoryUnderstanding.addToActionWords(actionWordInferring)
-			domainCategoryUnderstanding.addToActionWords(actionWordComparing)
-			domainCategoryUnderstanding.addToActionWords(actionWordExplaining)
+			domainCategoryUnderstanding.addToActionWordCategories(actionWordCategoryInterpreting)
+			domainCategoryUnderstanding.addToActionWordCategories(actionWordCategoryExemplifying)
+			domainCategoryUnderstanding.addToActionWordCategories(actionWordCategoryClassifying)
+			domainCategoryUnderstanding.addToActionWordCategories(actionWordCategorySummarizing)
+			domainCategoryUnderstanding.addToActionWordCategories(actionWordCategoryInferring)
+			domainCategoryUnderstanding.addToActionWordCategories(actionWordCategoryComparing)
+			domainCategoryUnderstanding.addToActionWordCategories(actionWordCategoryExplaining)
 
 			/**
 			 * Saving the action words and the domain category
@@ -629,21 +629,21 @@ class BootStrap {
 			/**
 			 * creating action words for applying category
 			 */
-			def actionWordExecuting = new ActionWord(
+			def actionWordCategoryExecuting = new ActionWordCategory(
 				category: domainCategoryApplying,
-				actionWord: "Executing"
+				actionWordCategory: "Executing"
 			)
 
-			def actionWordImplementing = new ActionWord(
+			def actionWordCategoryImplementing = new ActionWordCategory(
 				category: domainCategoryApplying,
-				actionWord: "Implementing"
+				actionWordCategory: "Implementing"
 			)
 
 			/**
 			 * relating the words to the category
 			 */
-			domainCategoryApplying.addToActionWords(actionWordExecuting)
-			domainCategoryApplying.addToActionWords(actionWordImplementing)
+			domainCategoryApplying.addToActionWordCategories(actionWordCategoryExecuting)
+			domainCategoryApplying.addToActionWordCategories(actionWordCategoryImplementing)
 
 			/**
 			 * Saving the action words and the domain category
@@ -653,27 +653,27 @@ class BootStrap {
 			/**
 			 * creating action words for analyzing category
 			 */
-			def actionWordDifferentiating = new ActionWord(
+			def actionWordCategoryDifferentiating = new ActionWordCategory(
 				category: domainCategoryAnalyzing,
-				actionWord: "Differentiating"
+				actionWordCategory: "Differentiating"
 			)
 
-			def actionWordOrganizing = new ActionWord(
+			def actionWordCategoryOrganizing = new ActionWordCategory(
 				category: domainCategoryAnalyzing,
-				actionWord: "Organizing"
+				actionWordCategory: "Organizing"
 			)
 
-			def actionWordAttributing = new ActionWord(
+			def actionWordCategoryAttributing = new ActionWordCategory(
 				category: domainCategoryAnalyzing,
-				actionWord: "Attributing"
+				actionWordCategory: "Attributing"
 			)
 
 			/**
 			 * relating the words to the category
 			 */
-			domainCategoryAnalyzing.addToActionWords(actionWordDifferentiating)
-			domainCategoryAnalyzing.addToActionWords(actionWordOrganizing)
-			domainCategoryAnalyzing.addToActionWords(actionWordAttributing)
+			domainCategoryAnalyzing.addToActionWordCategories(actionWordCategoryDifferentiating)
+			domainCategoryAnalyzing.addToActionWordCategories(actionWordCategoryOrganizing)
+			domainCategoryAnalyzing.addToActionWordCategories(actionWordCategoryAttributing)
 
 			/**
 			 * Saving the action words and the domain category
@@ -683,21 +683,21 @@ class BootStrap {
 			/**
 			 * creating action words for evaluating category
 			 */
-			def actionWordChecking = new ActionWord(
+			def actionWordCategoryChecking = new ActionWordCategory(
 				category: domainCategoryEvaluating,
-				actionWord: "Checking"
+				actionWordCategory: "Checking"
 			)
 
-			def actionWordCritiquing = new ActionWord(
+			def actionWordCategoryCritiquing = new ActionWordCategory(
 				category: domainCategoryEvaluating,
-				actionWord: "Critiquing"
+				actionWordCategory: "Critiquing"
 			)
 
 			/**
 			 * relating the words to the category
 			 */
-			domainCategoryEvaluating.addToActionWords(actionWordChecking)
-			domainCategoryEvaluating.addToActionWords(actionWordCritiquing)
+			domainCategoryEvaluating.addToActionWordCategories(actionWordCategoryChecking)
+			domainCategoryEvaluating.addToActionWordCategories(actionWordCategoryCritiquing)
 
 			/**
 			 * Saving the action words and the domain category
@@ -707,27 +707,27 @@ class BootStrap {
 			/**
 			 * creating action words for evaluating category
 			 */
-			def actionWordGenerating = new ActionWord(
+			def actionWordCategoryGenerating = new ActionWordCategory(
 				category: domainCategoryCreating,
-				actionWord: "Generating"
+				actionWordCategory: "Generating"
 			)
 
-			def actionWordPlanning = new ActionWord(
+			def actionWordCategoryPlanning = new ActionWordCategory(
 				category: domainCategoryCreating,
-				actionWord: "Planning"
+				actionWordCategory: "Planning"
 			)
 
-			def actionWordProducing = new ActionWord(
+			def actionWordCategoryProducing = new ActionWordCategory(
 				category: domainCategoryCreating,
-				actionWord: "Producing"
+				actionWordCategory: "Producing"
 			)
 
 			/**
 			 * relating the words to the category
 			 */
-			domainCategoryCreating.addToActionWords(actionWordGenerating)
-			domainCategoryCreating.addToActionWords(actionWordPlanning)
-			domainCategoryCreating.addToActionWords(actionWordProducing)
+			domainCategoryCreating.addToActionWordCategories(actionWordCategoryGenerating)
+			domainCategoryCreating.addToActionWordCategories(actionWordCategoryPlanning)
+			domainCategoryCreating.addToActionWordCategories(actionWordCategoryProducing)
 
 			/**
 			 * Saving the action words and the domain category
