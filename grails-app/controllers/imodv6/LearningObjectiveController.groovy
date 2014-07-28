@@ -122,7 +122,7 @@ class LearningObjectiveController {
 
 		// get all performance data to set in the Performance page
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def selectedActionWordCategory = learningObjective.actionWordCategory
+		def selectedActionWordCategory = learningObjective?.actionWordCategory
 		def selectedDomainCategory = selectedActionWordCategory?.category
 		def selectedDomain = selectedDomainCategory?.domain
 
