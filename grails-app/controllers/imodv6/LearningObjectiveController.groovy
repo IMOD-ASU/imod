@@ -128,8 +128,8 @@ class LearningObjectiveController {
 
 		// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
 		def domainList = LearningDomain.list()
-		def categoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
-		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:categoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
+		def domainCategoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
+		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:domainCategoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
@@ -139,7 +139,7 @@ class LearningObjectiveController {
 			selectedDomainCategory: selectedDomainCategory,
 			selectedDomain: selectedDomain,
 			domainList: domainList,
-			categoriesList: categoriesList,
+			categoriesList: domainCategoriesList,
 			actionWordCategoryList: actionWordCategoryList,
 		]
 	}

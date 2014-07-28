@@ -22,20 +22,14 @@ class LearningObjective {
 	Boolean hideFromObjective
 
 	// Learning Objective has many criteria, each  criteria has an enumerated type and hidden or not
-	criteriaType: LearningObjectiveCriteriaType
-
-	/**
-	 * Linkers to other domain objects
-	 */
-	static static hasOne = [
-		actionWordCategory: ActionWordCategory
-	]
+	LearningObjectiveCriteriaType criteriaType
 
 	/**
 	 * Relationships to other domain objects
 	 */
 	static belongsTo = [
-		imod: Imod
+		imod: Imod,
+		actionWordCategory: ActionWordCategory
 	]
 
 	static hasMany = [
@@ -57,12 +51,9 @@ class LearningObjective {
 	 * Constraints on the fields of Learning Objective
 	 */
 	static constraints = {
-		actionWordCategory		nullable: true
 		condition		nullable: true
 		criteria		nullable: true
-		domainCategory	nullable: true
 		indicator		nullable: true
-		learningDomain	nullable: true
 		performance		nullable: true
 		hideFromObjective	nullable:true
 
