@@ -62,10 +62,13 @@ class LearningObjective {
 	 * Constraints on the fields of Learning Objective
 	 */
 	static constraints = {
-		condition		nullable: true
-		criteria		nullable: true
-		indicator		nullable: true
-		performance		nullable: true
+		condition			nullable: true
+		criteriaAccuracy	nullable: true
+		criteriaQuality		nullable: true
+		criteriaQuantity	nullable: true
+		criteriaSpeed		nullable: true
+		indicator			nullable: true
+		performance			nullable: true
 		hideFromLearningObjectiveCondition	nullable:true
 
 	}
@@ -73,6 +76,10 @@ class LearningObjective {
 	//TODO: What does this do?
 	static mapping = {
 		version false
-		hideFromLearningObjectiveCondition defaultValue:"'false'"
+		hideFromLearningObjectiveCondition defaultValue: 'false'
+		hideCriteriaAccuracy defaultValue: 'true'
+		hideCriteriaQuality defaultValue: 'true'
+		hideCriteriaQuantity defaultValue: 'true'
+		hideCriteriaSpeed defaultValue: 'true'
 	}
 }
