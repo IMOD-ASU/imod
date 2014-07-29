@@ -15,11 +15,22 @@ class LearningObjective {
 	 * Boolean to keep track of whether or not to hide the Condition from the Learning Objective
 	 */
 	String condition
-	String criteria
 	String indicator
 	String performance
 	// Hide condition from objective
-	Boolean hideFromObjective
+	Boolean hideFromLearningObjectiveCondition
+
+	/**
+	 * the four criteriae of success are stored here
+	 */
+	String criteriaAccuracy
+	Boolean hideCriteriaAccuracy
+	String criteriaQuality
+	Boolean hideCriteriaQuality
+	String criteriaQuantity
+	Boolean hideCriteriaQuantity
+	String criteriaSpeed
+	Boolean hideCriteriaSpeed
 
 	// Learning Objective has many criteria, each  criteria has an enumerated type and hidden or not
 	LearningObjectiveCriteriaType criteriaType
@@ -55,13 +66,13 @@ class LearningObjective {
 		criteria		nullable: true
 		indicator		nullable: true
 		performance		nullable: true
-		hideFromObjective	nullable:true
+		hideFromLearningObjectiveCondition	nullable:true
 
 	}
 
 	//TODO: What does this do?
 	static mapping = {
 		version false
-		hideFromObjective defaultValue:"'false'"
+		hideFromLearningObjectiveCondition defaultValue:"'false'"
 	}
 }

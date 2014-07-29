@@ -73,7 +73,7 @@ class LearningObjectiveController {
 				if (params.LO_condition_type == 'Custom') {
 					learningObjectiveInstance.condition = params.LO_custom
 				}
-				learningObjectiveInstance.hideFromObjective = (params.LO_hide_from_Objective == 'on' ? true : false)
+				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.LO_hide_from_Objective == 'on' ? true : false)
 				redirect(
 					action: "condition",
 					id: id,
@@ -176,7 +176,7 @@ class LearningObjectiveController {
 		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		def currentCondition = learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
 		def isCustom =! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
-		def hideCondition = learningObjectiveInstance.hideFromObjective
+		def hideCondition = learningObjectiveInstance.hideFromLearningObjectiveCondition
 
 		[
 			imodInstance: imodInstance,
