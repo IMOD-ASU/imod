@@ -9,13 +9,23 @@
 	margin: 3px;
 	padding: 1px;
 	text-align: center;
+
+	background-color: #FFF;
+	background-image: url("../../../static/images/unassign.png");
+	background-repeat: no-repeat;
+	background-position: right top;
 }
 #action-words > .ui-selecting {
-	background: #FECA40;
+	background-color: #FECA40;
+	background-image: url("../../../static/images/assign.png");
+	background-repeat: no-repeat;
+	background-position: right top;
 }
 #action-words > .ui-selected {
-	background: #F39814;
-	color: white;
+	background-color: #F39814;
+	background-image: url("../../../static/images/assign.png");
+	background-repeat: no-repeat;
+	background-position: right top;
 }
 
 /* learning objective left panel */
