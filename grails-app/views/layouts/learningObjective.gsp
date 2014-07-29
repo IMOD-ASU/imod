@@ -87,11 +87,32 @@
 												<!-- Definition of the criteria for understanding a learning objective -->
 
 												<span class="learning-objective-criteria">
-													<g:if test="${ learningObjective.criteria == null }">
-														No Criteria
+													<g:if test="${ learningObjective.criteriaAccuracy == null }">
+														No Accuracy Criteria
 													</g:if>
 													<g:else>
-														${ learningObjective.criteria }
+														${ learningObjective.criteriaAccuracy }
+													</g:else>
+
+													<g:if test="${ learningObjective.criteriaQuality == null }">
+														No Quality Criteria
+													</g:if>
+													<g:else>
+														${ learningObjective.criteriaQuality }
+													</g:else>
+
+													<g:if test="${ learningObjective.criteriaQuantity == null }">
+														No Quantity Criteria
+													</g:if>
+													<g:else>
+														${ learningObjective.criteriaQuantity }
+													</g:else>
+
+													<g:if test="${ learningObjective.criteriaSpeed == null }">
+														No Speed Criteria
+													</g:if>
+													<g:else>
+														${ learningObjective.criteriaSpeed }
 													</g:else>
 												</span>
 
@@ -135,11 +156,32 @@
 								<!-- Definition of the criteria for understanding a learning objective -->
 
 								<span class="learning-objective-criteria">
-									<g:if test="${ learningObjective.criteria == null }">
-										No Criteria
+									<g:if test="${ learningObjective.criteriaAccuracy == null }">
+										No Accuracy Criteria
 									</g:if>
 									<g:else>
-										${ learningObjective.criteria }
+										${ learningObjective.criteriaAccuracy }
+									</g:else>
+
+									<g:if test="${ learningObjective.criteriaQuality == null }">
+										No Quality Criteria
+									</g:if>
+									<g:else>
+										${ learningObjective.criteriaQuality }
+									</g:else>
+
+									<g:if test="${ learningObjective.criteriaQuantity == null }">
+										No Quantity Criteria
+									</g:if>
+									<g:else>
+										${ learningObjective.criteriaQuantity }
+									</g:else>
+
+									<g:if test="${ learningObjective.criteriaSpeed == null }">
+										No Speed Criteria
+									</g:if>
+									<g:else>
+										${ learningObjective.criteriaSpeed }
 									</g:else>
 								</span>
 
