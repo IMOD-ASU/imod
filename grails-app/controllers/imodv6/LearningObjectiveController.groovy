@@ -6,7 +6,7 @@ class LearningObjectiveController {
 	static allowedMethods = [
 		create: "GET",
 		getDomainCategories: "GET",
-		getActionWords: "GET",
+		getActionWordCategories: "GET",
 		updateDefinition: "POST",
 		performance: "GET",
 		condition: "GET",
@@ -57,7 +57,7 @@ class LearningObjectiveController {
 		switch (pageType) {
 			// if the user is saving performance page
 			case 'performance':
-				learningObjectiveInstance.actionWord = ActionWord.findByActionWord(params.actionWord)
+				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				redirect(
 					action: "performance",
 					id: id,
@@ -73,7 +73,7 @@ class LearningObjectiveController {
 				if (params.LO_condition_type == 'Custom') {
 					learningObjectiveInstance.condition = params.LO_custom
 				}
-				learningObjectiveInstance.hideFromObjective = (params.LO_hide_from_Objective == 'on' ? true : false)
+				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.LO_hide_from_Objective == 'on' ? true : false)
 				redirect(
 					action: "condition",
 					id: id,
@@ -122,25 +122,25 @@ class LearningObjectiveController {
 
 		// get all performance data to set in the Performance page
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def selectedActionWord = learningObjective.actionWord
-		def selectedDomainCategory = selectedActionWord?.category
+		def selectedActionWordCategory = learningObjective?.actionWordCategory
+		def selectedDomainCategory = selectedActionWordCategory?.category
 		def selectedDomain = selectedDomainCategory?.domain
 
 		// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
 		def domainList = LearningDomain.list()
-		def categoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
-		def actionWordList = selectedDomainCategory?.actionWords?:categoriesList[0].actionWords.asList().sort {it.actionWord}
+		def domainCategoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
+		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:domainCategoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
 			currentPage: "performance",
 			learningObjective: learningObjective,
-			selectedActionWord: selectedActionWord,
+			selectedActionWordCategory: selectedActionWordCategory,
 			selectedDomainCategory: selectedDomainCategory,
 			selectedDomain: selectedDomain,
 			domainList: domainList,
-			categoriesList: categoriesList,
-			actionWordList: actionWordList,
+			categoriesList: domainCategoriesList,
+			actionWordCategoryList: actionWordCategoryList,
 		]
 	}
 
@@ -176,7 +176,7 @@ class LearningObjectiveController {
 		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		def currentCondition = learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
 		def isCustom =! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
-		def hideCondition = learningObjectiveInstance.hideFromObjective
+		def hideCondition = learningObjectiveInstance.hideFromLearningObjectiveCondition
 
 		[
 			imodInstance: imodInstance,
@@ -232,15 +232,15 @@ class LearningObjectiveController {
 	 * @param  domainName String that is the contents (or name) of a Domain Category
 	 * @return            sorted list of Action Words
 	 */
-	def getActionWords(String domainName) {
+	def getActionWordCategories(String domainName) {
 		// Find the selected learning domain
 		def domainCategory = DomainCategory.findByName(domainName)
 		// get all related domain categories and sort by name
-		def actionWords = domainCategory.actionWords.sort {it.actionWord}
+		def actionWordCategories = domainCategory.actionWordCategories.sort {it.actionWordCategory}
 		// pass back domain categories as a json data structure
 		render (
 			[
-				value: actionWords
+				value: actionWordCategories
 			] as JSON
 		)
 	}

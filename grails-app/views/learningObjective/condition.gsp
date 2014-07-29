@@ -60,7 +60,7 @@
 			</div>
 			<g:checkBox
 				name="LO_hide_from_Objective"
-				title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Hide from Objective')}"
+				title="${Help.toolTip('LEARNINGOBJECTIVE', 'Hide from Objective')}"
 				checked="${hideCondition}"
 			/> Hide from Objective
 		</g:form>

@@ -55,7 +55,6 @@ class Imod {
 	Schedule		schedule
 	ScheduleDate	scheduleDate
 	ScheduleRepeats	repeats
-	Collection		learningObjectives
 	ScheduleRepeatsEvery	repeatsEvery
 
 	static belongsTo = ImodUser

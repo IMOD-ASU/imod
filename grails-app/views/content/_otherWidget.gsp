@@ -30,7 +30,7 @@
 								<div style="margin-top: 10px;margin-bottom: 10px;" class="" title="${Help.toolTip("CONTENT", "Topic Map")}">
 									<div class="form_title removeBorder">
 										<span style="font-size: 15px;font-weight: bold;">Topic Map</span>
-										<input type="button" name="distributionWidget" value="Topic Distributions" class="add showHover" onclick="openTopicDistributionPopup()" title="${imodv6.Help.toolTip("CONTENT", "Topic Distributions")}">
+										<input type="button" name="distributionWidget" value="Topic Distributions" class="add showHover" onclick="openTopicDistributionPopup()" title="${Help.toolTip("CONTENT", "Topic Distributions")}">
 									</div>
 									<p>
 										Coming soon...

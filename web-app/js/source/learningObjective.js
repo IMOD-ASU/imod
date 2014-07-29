@@ -9,7 +9,7 @@ $(document).ready(function() {
 	// listen for the selected domain category to change, when it does call ajax
 	$('#domain-category-list').on(
 		'click',
-		populateActionWords
+		populateActionWordCategories
 	);
 
 	// if the condition is set to hidden do not display it in the definition box above
@@ -159,21 +159,21 @@ function populateDomainCategories(event) {
  * @param  {String} domain text from the domain category select box
  * @return {XML}        Populates the page with action words
  */
-function populateActionWords(event) {
+function populateActionWordCategories(event) {
 	$.ajax({
-		url: "/imodv6/learningObjective/getActionWords",
+		url: "/imodv6/learningObjective/getActionWordCategories",
 		type: "GET",
 		dataType: "json",
 		data: {
 			domainName: this.value
 		},
 		success: function(data){
-			var actionWords = data.value;
-			var actionWordsHTML = '';
-			for (var i = 0; i < actionWords.length; i++){
-				actionWordsHTML += '<li class="action-word ui-state-default">' + actionWords[i].actionWord + '</li>'
+			var actionWordCategories = data.value;
+			var actionWordCategoriesHTML = '';
+			for (var i = 0; i < actionWordCategories.length; i++){
+				actionWordCategoriesHTML += '<li class="action-word ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>'
 			}
-			$('#action-words').html(actionWordsHTML);
+			$('#action-words').html(actionWordCategoriesHTML);
 		},
 		error: function(xhr){
 			console.log(xhr.responseText);

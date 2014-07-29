@@ -18,9 +18,9 @@
 #action-words > .ui-selecting,
 #action-words > .ui-selected {
 	background-color: #FFFFCC;
-	background-image: url("../../../static/images/assign.png");
-	background-repeat: no-repeat;
-	background-position: right top;
+	background-image: url("../../../static/images/assign.png"), url("../../../static/images/thesaurus.png");
+	background-repeat: no-repeat, no-repeat;
+	background-position: right top, right bottom;
 }
 
 /* learning objective left panel */

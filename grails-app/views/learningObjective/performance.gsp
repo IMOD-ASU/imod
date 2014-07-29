@@ -20,7 +20,7 @@
 			/>
 		</fieldset>
 
-		<label for="learning-domain-list" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
+		<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 			Learning Domain
 		</label>
 		<g:select
@@ -31,7 +31,7 @@
 		/>
 		<br />
 
-		<label for="domain-category-list" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
+		<label for="domain-category-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
 			Domain Category
 		</label>
 		<g:select
@@ -43,9 +43,9 @@
 		<br />
 
 		<ol id="action-words">
-			<g:each var="actionWord" in="${actionWordList.actionWord}">
+			<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">
 				<li class="action-word ui-state-default">
-					${actionWord}
+					${actionWordCategory}
 				</li>
 			</g:each>
 		</ol>

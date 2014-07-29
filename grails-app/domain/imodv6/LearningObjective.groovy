@@ -15,25 +15,32 @@ class LearningObjective {
 	 * Boolean to keep track of whether or not to hide the Condition from the Learning Objective
 	 */
 	String condition
-	String criteria
 	String indicator
 	String performance
-	Boolean hideFromObjective
+	// Hide condition from objective
+	Boolean hideFromLearningObjectiveCondition
 
 	/**
-	 * Linkers to other domain objects (?)
-	 * TODO: double check this is really what is going on
+	 * the four criteriae of success are stored here
 	 */
-	LearningDomain					learningDomain
-	DomainCategory					domainCategory
-	ActionWord						actionWord
-	LearningObjectiveCriteriaType	criteriaType
+	String criteriaAccuracy
+	Boolean hideCriteriaAccuracy
+	String criteriaQuality
+	Boolean hideCriteriaQuality
+	String criteriaQuantity
+	Boolean hideCriteriaQuantity
+	String criteriaSpeed
+	Boolean hideCriteriaSpeed
+
+	// Learning Objective has many criteria, each  criteria has an enumerated type and hidden or not
+	LearningObjectiveCriteriaType criteriaType
 
 	/**
 	 * Relationships to other domain objects
 	 */
 	static belongsTo = [
-		imod: Imod
+		imod: Imod,
+		actionWordCategory: ActionWordCategory
 	]
 
 	static hasMany = [
@@ -41,32 +48,38 @@ class LearningObjective {
 		pedogoyTechniques: PedagogyTechnique
 	]
 
-	public static final List genericConditions=[
-						'Given a program specification',
-						'Students completing this course will be able to',
-						'After completing the course, the student will be able to'
-						]
-	static transients = ['name']
+	public static final List genericConditions = [
+		'Given a program specification',
+		'Students completing this course will be able to',
+		'After completing the course, the student will be able to'
+	]
+
+	static transients = [
+		'name'
+	]
 
 	/**
 	 * Constraints on the fields of Learning Objective
 	 */
 	static constraints = {
-		actionWord		nullable: true
-		condition		nullable: true
-		criteria		nullable: true
-		criteriaType	nullable: true
-		domainCategory	nullable: true
-		indicator		nullable: true
-		learningDomain	nullable: true
-		performance		nullable: true
-		hideFromObjective	nullable:true
-		
+		condition			nullable: true
+		criteriaAccuracy	nullable: true
+		criteriaQuality		nullable: true
+		criteriaQuantity	nullable: true
+		criteriaSpeed		nullable: true
+		indicator			nullable: true
+		performance			nullable: true
+		hideFromLearningObjectiveCondition	nullable:true
+
 	}
 
 	//TODO: What does this do?
 	static mapping = {
 		version false
-		hideFromObjective defaultValue:"'false'"
+		hideFromLearningObjectiveCondition defaultValue: 'false'
+		hideCriteriaAccuracy defaultValue: 'true'
+		hideCriteriaQuality defaultValue: 'true'
+		hideCriteriaQuantity defaultValue: 'true'
+		hideCriteriaSpeed defaultValue: 'true'
 	}
 }
