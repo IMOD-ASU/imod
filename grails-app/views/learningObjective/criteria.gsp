@@ -1,3 +1,4 @@
+<%@ page import="imodv6.Help" %>
 <html>
 	<head>
 		<title>
