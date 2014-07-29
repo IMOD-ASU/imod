@@ -12,6 +12,7 @@
 				<g:actionSubmit
 					class="save showHoverNew"
 					action="save"
+					title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}"
 					value="${message(code: 'Save', default: 'Save')}"
 					id="${imodInstance.id }"
 					learningObjectiveID="${learningObjective.id }"
@@ -19,7 +20,7 @@
 				/>
 			</section>
 			<section>
-				<input id="enable-accuracy" type="checkbox" name="enableAccuracy" value="enableAccuracy" >
+				<input id="enable-accuracy" type="checkbox" name="enableAccuracy" value="enableAccuracy">
 				<label for="accuracy-text">
 					Accuracy
 				</label>
@@ -31,7 +32,7 @@
 		 	</section>
 
 		 	<section>
-				<input id="enable-quality" type="checkbox" name="enableQuality" value="enableQuality" >
+				<input id="enable-quality" type="checkbox" name="enableQuality" value="enableQuality">
 				<label for="quality-text">
 					Quality
 				</label>
@@ -43,7 +44,7 @@
 		 	</section>
 
 		 	<section>
-				<input id="enable-quantity" type="checkbox" name="enableQuantity" value="enableQuantity" >
+				<input id="enable-quantity" type="checkbox" name="enableQuantity" value="enableQuantity">
 				<label for="quantity-text">
 					Quantity
 				</label>
@@ -55,7 +56,7 @@
 		 	</section>
 
 		 	<section>
-				<input id="enable-speed" type="checkbox" name="enableSpeed" value="enableSpeed" >
+				<input id="enable-speed" type="checkbox" name="enableSpeed" value="enableSpeed">
 				<label for="quantity-text">
 					Speed
 				</label>
