@@ -3,26 +3,21 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	width: 450px;
 }
 #action-words > li {
-	margin: 3px;
-	padding: 1px;
+	padding: 45px 0;
+	width: 100px;
 	text-align: center;
 
-	background-color: #FFF;
+	background-color: #FFFFCC;
 	background-image: url("../../../static/images/unassign.png");
 	background-repeat: no-repeat;
 	background-position: right top;
 }
-#action-words > .ui-selecting {
-	background-color: #FECA40;
-	background-image: url("../../../static/images/assign.png");
-	background-repeat: no-repeat;
-	background-position: right top;
-}
+
+#action-words > .ui-selecting,
 #action-words > .ui-selected {
-	background-color: #F39814;
+	background-color: #FFFFCC;
 	background-image: url("../../../static/images/assign.png");
 	background-repeat: no-repeat;
 	background-position: right top;
