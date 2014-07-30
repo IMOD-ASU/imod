@@ -24,48 +24,96 @@
 				<input type="hidden" name="pageType" value="criteria">
 			</section>
 			<section>
-				<input id="enable-accuracy" name="enableAccuracy" type="checkbox" value="enableAccuracy">
+				<g:checkBox
+					id="enable-accuracy"
+					name="enableAccuracy"
+					value="${learningObjective.criteriaAccuracyEnabled}"
+				/>
 				<label for="accuracy-text">
 					Accuracy
 				</label>
-				<input id="accuracy-text" name="accuracy" type="text">
-				<input id="accuracy-hide" name="hideAccuracy" type="checkbox" value="hideAccuracy">
+				<g:textField
+					id="accuracy-text"
+					name="accuracy"
+					value="${learningObjective.criteriaAccuracy}"
+				/>
+				<g:checkBox
+					id="accuracy-hide"
+					name="hideAccuracy"
+					value="${learningObjective.criteriaAccuracyHidden}"
+				/>
 				<label for="accuracy-hide">
 					hide
 			 	</label>
 		 	</section>
 
 		 	<section>
-				<input id="enable-quality" name="enableQuality"  type="checkbox" value="enableQuality">
+		 		<g:checkBox
+		 			id="enable-quality"
+		 			name="enableQuality"
+		 			value="${learningObjective.criteriaQualityEnabled}"
+		 		/>
 				<label for="quality-text">
 					Quality
 				</label>
-				<input id="quality-text" name="quality" type="text">
-				<input id="quality-hide" name="hideQuality" type="checkbox"  value="hideQuality">
+				<g:textField
+					id="quality-text"
+					name="quality"
+					value="${learningObjective.criteriaQuality}"
+				/>
+				<g:checkBox
+					id="quality-hide"
+					name="hideQuality"
+					value="${learningObjective.criteriaQualityHidden}"
+				/>
 				<label for="quality-hide">
 					hide
 			 	</label>
 		 	</section>
 
 		 	<section>
-				<input id="enable-quantity" name="enableQuantity" type="checkbox" value="enableQuantity">
+		 		<g:checkBox
+					id="enable-quantity"
+					name="enableQuantity"
+					value="${learningObjective.criteriaQuantityEnabled}"
+				/>
 				<label for="quantity-text">
 					Quantity
 				</label>
-				<input id="quantity-text" name="quantity" type="text">
-				<input id="quantity-hide" name="hideQuantity" type="checkbox" value="hideQuantity">
+				<g:textField
+					id="quantity-text"
+					name="quantity"
+					value="${learningObjective.criteriaQuantity}"
+				/>
+				<g:checkBox
+					id="quantity-hide"
+					name="hideQuantity"
+					value="${learningObjective.criteriaQuantityHidden}"
+				/>
 				<label for="quantity-hide">
 					hide
 			 	</label>
 		 	</section>
 
 		 	<section>
-				<input id="enable-speed" name="enableSpeed" type="checkbox" value="enableSpeed">
+		 		<g:checkBox
+					id="enable-speed"
+					name="enableSpeed"
+					value="${learningObjective.criteriaSpeedEnabled}"
+				/>
 				<label for="quantity-text">
 					Speed
 				</label>
-				<input id="speed-text" name="speed" type="text">
-				<input id="speed-hide" name="hideSpeed" type="checkbox" value="hideSpeed">
+				<g:textField
+					id="speed-text"
+					name="speed"
+					value="${learningObjective.criteriaSpeed}"
+				/>
+				<g:checkBox
+					id="speed-hide"
+					name="hideSpeed"
+					value="${learningObjective.criteriaSpeedHidden}"
+				/>
 				<label for="speed-hide">
 					hide
 			 	</label>

@@ -35,7 +35,7 @@ class LearningObjective {
 	Boolean criteriaQuantityEnabled
 	Boolean criteriaSpeedEnabled
 
-	//
+	// if the criteria should be hidden from the definition of the learning objective
 	Boolean criteriaAccuracyHidden
 	Boolean criteriaQualityHidden
 	Boolean criteriaQuantityHidden
@@ -71,6 +71,8 @@ class LearningObjective {
 	 * Constraints on the fields of Learning Objective
 	 */
 	static constraints = {
+		criteriaType		nullable: true
+		actionWordCategory	nullable: true
 		condition			nullable: true
 		criteriaAccuracy	nullable: true
 		criteriaQuality		nullable: true

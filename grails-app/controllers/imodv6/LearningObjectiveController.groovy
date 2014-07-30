@@ -4,15 +4,15 @@ import grails.converters.JSON
 class LearningObjectiveController {
 
 	static allowedMethods = [
-		create: 'GET',
-		getDomainCategories: 'GET',
-		getActionWordCategories: 'GET',
-		updateDefinition: 'POST',
-		performance: 'GET',
-		condition: 'GET',
-		criteria: 'GET',
-		content: 'GET',
-		save: 'POST',
+		create: 					'GET',
+		getDomainCategories: 		'GET',
+		getActionWordCategories:	'GET',
+		updateDefinition:			'POST',
+		performance: 				'GET',
+		condition: 					'GET',
+		criteria: 					'GET',
+		content: 					'GET',
+		save: 						'POST',
 	]
 
 	// same as having index action redirect to performance tab
@@ -100,6 +100,9 @@ class LearningObjectiveController {
 				learningObjectiveInstance.criteriaQualityHidden		= params.hideQuality
 				learningObjectiveInstance.criteriaQuantityHidden	= params.hideQuantity
 				learningObjectiveInstance.criteriaSpeedHidden		= params.hideSpeed
+
+				// save all of the changes
+				learningObjectiveInstance.save(flush: true)
 
 				// refresh criteria page after saving criteriae
 				redirect(
