@@ -4,19 +4,19 @@ import grails.converters.JSON
 class LearningObjectiveController {
 
 	static allowedMethods = [
-		create: "GET",
-		getDomainCategories: "GET",
-		getActionWordCategories: "GET",
-		updateDefinition: "POST",
-		performance: "GET",
-		condition: "GET",
-		criteria: "GET",
-		content: "GET",
-		save: "POST",
+		create: 'GET',
+		getDomainCategories: 'GET',
+		getActionWordCategories: 'GET',
+		updateDefinition: 'POST',
+		performance: 'GET',
+		condition: 'GET',
+		criteria: 'GET',
+		content: 'GET',
+		save: 'POST',
 	]
 
 	// same as having index action redirect to performance tab
-	static defaultAction = "performance"
+	static defaultAction = 'performance'
 
 	/**
 	 * Creates a Learning Objective
@@ -34,7 +34,7 @@ class LearningObjectiveController {
 		imodInstance.save(flush: true)
 		// redirects to the performance page to allow for newly created learning objective to be edited
 		redirect(
-			action: "performance",
+			action: 'performance',
 			id: id,
 			learningObjectiveID: learningObjectiveInstance.id,
 		)
@@ -59,7 +59,7 @@ class LearningObjectiveController {
 			case 'performance':
 				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				redirect(
-					action: "performance",
+					action: 'performance',
 					id: id,
 					learningObjectiveID: learningObjectiveID
 				)
@@ -75,7 +75,7 @@ class LearningObjectiveController {
 				}
 				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.LO_hide_from_Objective == 'on' ? true : false)
 				redirect(
-					action: "condition",
+					action: 'condition',
 					id: id,
 					learningObjectiveID: learningObjectiveID
 				)
@@ -83,15 +83,27 @@ class LearningObjectiveController {
 
 			// if the user is saving the criteria page
 			case 'criteria':
+				// check if the field is enabled
+				learningObjectiveInstance.criteriaAccuracyEnabled	= params.enableAccuracy
+				learningObjectiveInstance.criteriaQualityEnabled	= params.enableQuality
+				learningObjectiveInstance.criteriaQuantityEnabled	= params.enableQuantity
+				learningObjectiveInstance.criteriaSpeedEnabled		= params.enableSpeed
+
 				// store the text content of each of the learning objective criteriae
-				learningObjectiveInstance.criteriaAccuracy = params.accuracy
-				learningObjectiveInstance.criteriaQuality = params.quality
-				learningObjectiveInstance.criteriaQuantity = params.quantity
-				learningObjectiveInstance.criteriaSpeed = params.speed
+				learningObjectiveInstance.criteriaAccuracy	= params.accuracy
+				learningObjectiveInstance.criteriaQuality	= params.quality
+				learningObjectiveInstance.criteriaQuantity	= params.quantity
+				learningObjectiveInstance.criteriaSpeed		= params.speed
+
+				// check if the field is enabled
+				learningObjectiveInstance.criteriaAccuracyHidden	= params.hideAccuracy
+				learningObjectiveInstance.criteriaQualityHidden		= params.hideQuality
+				learningObjectiveInstance.criteriaQuantityHidden	= params.hideQuantity
+				learningObjectiveInstance.criteriaSpeedHidden		= params.hideSpeed
 
 				// refresh criteria page after saving criteriae
 				redirect(
-					action: "criteria",
+					action: 'criteria',
 					id: id,
 					learningObjectiveID: learningObjectiveID
 				)
@@ -101,7 +113,7 @@ class LearningObjectiveController {
 			// TODO: add an error message
 			default:
 				redirect(
-					action: "performance",
+					action: 'performance',
 					id: id,
 					learningObjectiveID: learningObjectiveID
 				)
@@ -117,7 +129,7 @@ class LearningObjectiveController {
 	 */
 	def edit (Long id) {
 		render(
-			action: "perfomance",
+			action: 'perfomance',
 			learningObjectiveID: id
 		)
 	}
@@ -149,7 +161,7 @@ class LearningObjectiveController {
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage: "performance",
+			currentPage: 'performance',
 			learningObjective: learningObjective,
 			selectedActionWordCategory: selectedActionWordCategory,
 			selectedDomainCategory: selectedDomainCategory,
@@ -174,7 +186,7 @@ class LearningObjectiveController {
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		[
 			imodInstance: imodInstance,
-			currentPage: "content",
+			currentPage: 'content',
 			learningObjective: learningObjective,
 			learningObjectivesList: learningObjectivesList,
 		]
@@ -197,7 +209,7 @@ class LearningObjectiveController {
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage: "condition",
+			currentPage: 'condition',
 			learningObjective: learningObjectiveInstance,
 			currentCondition: currentCondition,
 			isCustom: isCustom,
@@ -218,7 +230,7 @@ class LearningObjectiveController {
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		[
 			imodInstance: imodInstance,
-			currentPage: "criteria",
+			currentPage: 'criteria',
 			learningObjective: learningObjective,
 			learningObjectivesList: learningObjectivesList,
 		]
