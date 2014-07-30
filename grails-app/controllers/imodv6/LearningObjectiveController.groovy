@@ -84,10 +84,11 @@ class LearningObjectiveController {
 			// if the user is saving the criteria page
 			case 'criteria':
 				// check if the field is enabled
-				learningObjectiveInstance.criteriaAccuracyEnabled	= params.enableAccuracy
-				learningObjectiveInstance.criteriaQualityEnabled	= params.enableQuality
-				learningObjectiveInstance.criteriaQuantityEnabled	= params.enableQuantity
-				learningObjectiveInstance.criteriaSpeedEnabled		= params.enableSpeed
+				// NOTE: when a check box is unchecked it returns null, hence the conditional
+				learningObjectiveInstance.criteriaAccuracyEnabled	= (params.enableAccuracy	== null ? false : true)
+				learningObjectiveInstance.criteriaQualityEnabled	= (params.enableQuality		== null ? false : true)
+				learningObjectiveInstance.criteriaQuantityEnabled	= (params.enableQuantity	== null ? false : true)
+				learningObjectiveInstance.criteriaSpeedEnabled		= (params.enableSpeed		== null ? false : true)
 
 				// store the text content of each of the learning objective criteriae
 				learningObjectiveInstance.criteriaAccuracy	= params.accuracy
@@ -96,10 +97,11 @@ class LearningObjectiveController {
 				learningObjectiveInstance.criteriaSpeed		= params.speed
 
 				// check if the field is enabled
-				learningObjectiveInstance.criteriaAccuracyHidden	= params.hideAccuracy
-				learningObjectiveInstance.criteriaQualityHidden		= params.hideQuality
-				learningObjectiveInstance.criteriaQuantityHidden	= params.hideQuantity
-				learningObjectiveInstance.criteriaSpeedHidden		= params.hideSpeed
+				// NOTE: when a check box is unchecked it returns null, hence the conditional
+				learningObjectiveInstance.criteriaAccuracyHidden	= (params.hideAccuracy	== null ? false : true)
+				learningObjectiveInstance.criteriaQualityHidden		= (params.hideQuality	== null ? false : true)
+				learningObjectiveInstance.criteriaQuantityHidden	= (params.hideQuantity	== null ? false : true)
+				learningObjectiveInstance.criteriaSpeedHidden		= (params.hideSpeed		== null ? false : true)
 
 				// save all of the changes
 				learningObjectiveInstance.save(flush: true)
