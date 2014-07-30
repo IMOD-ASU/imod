@@ -19,6 +19,9 @@
 					learningObjectiveID="${learningObjective.id }"
 					type="criteria"
 				/>
+				<input type="hidden" name="id" value="${imodInstance.id}">
+				<input type="hidden" name="learningObjectiveID" value="${learningObjective.id}">
+				<input type="hidden" name="pageType" value="criteria">
 			</section>
 			<section>
 				<input id="enable-accuracy" name="enableAccuracy" type="checkbox" value="enableAccuracy">

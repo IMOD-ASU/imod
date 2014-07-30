@@ -89,12 +89,6 @@ class LearningObjectiveController {
 				learningObjectiveInstance.criteriaQuantity = params.quantity
 				learningObjectiveInstance.criteriaSpeed = params.speed
 
-				// debug statements for criteria
-				println params.accuracy
-				println params.quality
-				println params.quantity
-				println params.speed
-
 				// refresh criteria page after saving criteriae
 				redirect(
 					action: "criteria",
