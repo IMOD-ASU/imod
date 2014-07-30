@@ -1,17 +1,19 @@
-grails.servlet.version = '2.5' // Change depending on target container compliance (2.5 or 3.0)
+// This controls what level of features the grails server supports
+grails.servlet.version = '3.0' // Change depending on target container compliance (2.5 or 3.0)
+// This controls where grails builds the class files to
 grails.project.class.dir = 'target/classes'
 grails.project.test.class.dir = 'target/test-classes'
 grails.project.test.reports.dir = 'target/test-reports'
-grails.project.target.level = 1.6
-grails.project.source.level = 1.6
-//grails.project.war.file = 'target/${appName}-${appVersion}.war'
 grails.project.war.file = 'target/${appName}.war'
 
-// uncomment (and adjust settings) to fork the JVM to isolate classpaths
-//grails.project.fork = [
-//   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
-//]
-grails.project.dependency.resolver='maven'
+// This controls what java version is required to be able to run grails
+grails.project.target.level = 1.7
+grails.project.source.level = 1.7
+
+// This tells grails to grails to build the pages as part of the build
+grails.views.gsp.sitemesh.preprocess = true
+
+grails.project.dependency.resolver = 'maven'
 grails.project.dependency.resolution = {
 	// inherit Grails' default dependencies
 	inherits('global') {
