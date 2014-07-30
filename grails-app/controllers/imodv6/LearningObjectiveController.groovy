@@ -68,7 +68,7 @@ class LearningObjectiveController {
 			// if the user is saving the condition page
 			case 'condition':
 				if (params.LO_condition_type == 'Generic') {
-					learningObjectiveInstance.condition=params.LO_generic
+					learningObjectiveInstance.condition = params.LO_generic
 				}
 				if (params.LO_condition_type == 'Custom') {
 					learningObjectiveInstance.condition = params.LO_custom
@@ -76,6 +76,28 @@ class LearningObjectiveController {
 				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.LO_hide_from_Objective == 'on' ? true : false)
 				redirect(
 					action: "condition",
+					id: id,
+					learningObjectiveID: learningObjectiveID
+				)
+				break
+
+			// if the user is saving the criteria page
+			case 'criteria':
+				// store the text content of each of the learning objective criteriae
+				learningObjectiveInstance.criteriaAccuracy = params.accuracy
+				learningObjectiveInstance.criteriaQuality = params.quality
+				learningObjectiveInstance.criteriaQuantity = params.quantity
+				learningObjectiveInstance.criteriaSpeed = params.speed
+
+				// debug statements for criteria
+				println params.accuracy
+				println params.quality
+				println params.quantity
+				println params.speed
+
+				// refresh criteria page after saving criteriae
+				redirect(
+					action: "criteria",
 					id: id,
 					learningObjectiveID: learningObjectiveID
 				)
