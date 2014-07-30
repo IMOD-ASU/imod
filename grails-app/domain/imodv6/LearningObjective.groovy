@@ -23,14 +23,23 @@ class LearningObjective {
 	/**
 	 * the four criteriae of success are stored here
 	 */
+	// text value of each criteria type
 	String criteriaAccuracy
-	Boolean hideCriteriaAccuracy
 	String criteriaQuality
-	Boolean hideCriteriaQuality
 	String criteriaQuantity
-	Boolean hideCriteriaQuantity
 	String criteriaSpeed
-	Boolean hideCriteriaSpeed
+
+	// if the criteria is enabled or not
+	Boolean criteriaAccuracyEnabled
+	Boolean criteriaQualityEnabled
+	Boolean criteriaQuantityEnabled
+	Boolean criteriaSpeedEnabled
+
+	// if the criteria should be hidden from the definition of the learning objective
+	Boolean criteriaAccuracyHidden
+	Boolean criteriaQualityHidden
+	Boolean criteriaQuantityHidden
+	Boolean criteriaSpeedHidden
 
 	// Learning Objective has many criteria, each  criteria has an enumerated type and hidden or not
 	LearningObjectiveCriteriaType criteriaType
@@ -62,6 +71,8 @@ class LearningObjective {
 	 * Constraints on the fields of Learning Objective
 	 */
 	static constraints = {
+		criteriaType		nullable: true
+		actionWordCategory	nullable: true
 		condition			nullable: true
 		criteriaAccuracy	nullable: true
 		criteriaQuality		nullable: true
@@ -77,9 +88,15 @@ class LearningObjective {
 	static mapping = {
 		version false
 		hideFromLearningObjectiveCondition defaultValue: 'false'
-		hideCriteriaAccuracy defaultValue: 'true'
-		hideCriteriaQuality defaultValue: 'true'
-		hideCriteriaQuantity defaultValue: 'true'
-		hideCriteriaSpeed defaultValue: 'true'
+
+		criteriaAccuracyHidden	defaultValue: 'true'
+		criteriaQualityHidden	defaultValue: 'true'
+		criteriaQuantityHidden	defaultValue: 'true'
+		criteriaSpeedHidden		defaultValue: 'true'
+
+		criteriaAccuracyEnabled	defaultValue: 'true'
+		criteriaQualityEnabled	defaultValue: 'true'
+		criteriaQuantityEnabled	defaultValue: 'true'
+		criteriaSpeedEnabled	defaultValue: 'true'
 	}
 }
