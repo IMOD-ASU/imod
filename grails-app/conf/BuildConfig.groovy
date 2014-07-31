@@ -47,7 +47,7 @@ grails.project.dependency.resolution = {
 		//mavenRepo 'http://download.java.net/maven/2/'
 		//mavenRepo 'http://repository.jboss.com/maven2/'
 		mavenRepo 'http://download.java.net/maven/2/'
-		mavenRepo System.getenv().LOCAL_REPOSITORY
+		mavenRepo 'file:' + System.getenv().LOCAL_REPOSITORY
 	}
 
 	dependencies {
