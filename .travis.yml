@@ -3,6 +3,4 @@ jdk:
   - openjdk7
   - oraclejdk7
 
-script:
-  - . ./setLocalRepository
-  - ./grailsw compile
+script: ./grailsw compile

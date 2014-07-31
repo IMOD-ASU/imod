@@ -13,12 +13,6 @@ grails.project.source.level = 1.7
 // This tells grails to grails to build the pages as part of the build
 grails.views.gsp.sitemesh.preprocess = true
 
-if (System.getenv().LOCAL_REPOSITORY == null) {
-	println '*'
-	println '* ERROR - LOCAL_REPOSITORY environment variable is undefined.'
-	println '*'
-	System.exit(1)
-}
 
 grails.project.dependency.resolver = 'maven'
 grails.project.dependency.resolution = {
@@ -47,13 +41,11 @@ grails.project.dependency.resolution = {
 		//mavenRepo 'http://download.java.net/maven/2/'
 		//mavenRepo 'http://repository.jboss.com/maven2/'
 		mavenRepo 'http://download.java.net/maven/2/'
-		mavenRepo 'file:' + System.getenv().LOCAL_REPOSITORY
 	}
 
 	dependencies {
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 		runtime 'org.postgresql:postgresql:9.3-1102-jdbc41'
-		compile 'rita:rita:1.0.65'
 	}
 
 	plugins {
