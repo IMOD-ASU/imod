@@ -5,13 +5,7 @@ Contributing Guidelines
 Please install the [Editor Config plugin](http://editorconfig.org/#download) for your prefered editor to assist with uniform code style
 
 ### Git Guidelines
-- Always work from a separate branch
-  * user branch is okay
-  * feature branches are better
-  * commits to master will be reverted
-- Open a pull request to master on Github when branch is stable
-  * merge latest master code into branch before opening PR
-  * wait to the Travis CI build to pass before merging a pull request
+Please follow the [Git Flow branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 
 ### Issue Guidelines
 A bug is a demonstrable problem that is caused by the code in the repository.

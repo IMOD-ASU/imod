@@ -6,7 +6,7 @@ a semantic web-based tool that guides STEM educators through the complex task of
 ### What is an IMOD?
 ![PC cubed model](http://imod-asu.weebly.com/uploads/2/9/6/3/29635095/1400168368.jpg "PC cubed model")
 
-An IMOD is a course that uses Pedagogy, Content, and Assessment to generate Learning Objectives. This creates a clearly focused course.
+An IMODS is a course that uses Pedagogy, Content, and Assessment to generate Learning Objectives. This creates a clearly focused course.
 
 ### How to contribute
 - Read the [Contributing Guidelines](https://github.com/IMOD-ASU/imod/blob/master/CONTRIBUTING.md)
