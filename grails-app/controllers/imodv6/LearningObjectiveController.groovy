@@ -1,5 +1,6 @@
 package imodv6
 import grails.converters.JSON
+import rita.*
 
 class LearningObjectiveController {
 
@@ -163,6 +164,12 @@ class LearningObjectiveController {
 		def domainList = LearningDomain.list()
 		def domainCategoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
 		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:domainCategoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
+		
+		// import the wordnet database
+		RiWordNet wordnet = new RiWordNet('/WordNet3.1')
+		// print all synonyms for success in the terminal
+		println wordnet.getAllSynonyms('success')
+		
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
