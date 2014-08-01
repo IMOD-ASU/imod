@@ -5,10 +5,19 @@ $(function(){
 	$("#addTopicModal").click(showTopicDialog)
 	$("#addTopic").click(addTopic)
 	$('#saveTopic').click(saveTopic)
-	$('#cancelTopic').click(hideTopicDialog)
+	$('#cancelTopic').click(function(){
+		revertChanges()
+		hideTopicDialog()
+	})
 	$('.knowledgeDimensionButton').click(openDimModal)
 	$('#knowDimFinished').click(closeDimModal)
-	$('#removeTopic').click(deleteTopic)
+	$('#removeTopic').click(function(){
+		var contentIDs=[]
+		$("#topicList .selected").each(function(){ 
+			contentIDs.push(this.id)
+		})
+		deleteTopic(contentIDs)
+	})
 	$("#topicList > tbody").on("click","tr",toggleSelected)
 	$('#selectKnowledgeDimensions').on('change','input:checkbox',changePic)
 	$("#topicList > tbody").on("change","input",function(){
@@ -26,26 +35,7 @@ function showTopicDialog(){
 	$("#topicDialog").css("display","block")
 }
 function hideTopicDialog(){
-	var topicList=[]
-	var hasError=false;
-	$("#topicList tbody tr").each(function(){ 
-		var contentID=this.id
-		var topicTitle=$("#topicTitle"+contentID).val()
-		var dimensions=$("#knowDimensionList"+contentID).val()
-		if (dimensions==""){
-			errorMessage("Topic: "+topicTitle+" must have a Knowledge Dimension!")
-			hasError=true
-		}
-		topicList.push({
-			contentID: contentID,
-			dimensions: dimensions,
-			topicTitle: topicTitle
-		})
-	})
-	if (hasError){
-		return
-	}
-	populateTopics(topicList)
+
 	$("#topicDialogBackground").css("display","none")
 	$("#topicDialog").css("display","none")
 
@@ -67,7 +57,7 @@ function flashError(){
 		}
 	})
 }
-function changePic(){
+function changePic(imageToChange){
 	var iconName=""
 	$('#selectKnowledgeDimensions').find('input:checkbox').each(function(){
 		if ($(this).prop('checked')){
@@ -123,7 +113,7 @@ function closeDimModal(){
 }
 function openDimModal(){
 	var contentID=$(this).parents('.topicItem').attr('id')
-	var dimString=$(this).siblings('input').val()
+	var dimString=$("#knowDimensionList"+contentID).val()
 	var dimensionList=[]
 	var dialog=	$("#selectKnowledgeDimensions")
 	var background=$("#selectKnowledgeDimensionBackground")
@@ -146,12 +136,8 @@ function openDimModal(){
 function highlightUnsaved(id){
 	$("#"+id).addClass("unsaved")
 }
-function deleteTopic(){
+function deleteTopic(contentIDs){
 	var imodID=$("#imodID").val()
-	var contentIDs=[]
-	$("#topicList .selected").each(function(){ 
-		contentIDs.push(this.id)
-	})
 	contentIDs=JSON.stringify(contentIDs)
 	$.ajax({
 		url:"../../content/deleteTopic/",
@@ -172,6 +158,7 @@ function saveTopic(){
 	var imodID=$("#imodID").val()
 	var contentData=[]
 	var hasError=false
+	var topicList=[]
 	$("#topicList tbody tr").each(function(){ 
 		var contentID=this.id
 		var topicTitle=$("#topicTitle"+contentID).val()
@@ -182,6 +169,11 @@ function saveTopic(){
 			errorMessage("Topic: "+topicTitle+" must have a Knowledge Dimension!")
 			hasError=true
 		}
+		topicList.push({
+			contentID: contentID,
+			dimensions: dimensions,
+			topicTitle: topicTitle			
+		})
 		contentData.push({
 			contentID: contentID,
 			dimensions: dimensions,
@@ -204,6 +196,8 @@ function saveTopic(){
 		success: function(data){
 			data.success.forEach(function(element){
 				$("#"+element).removeClass("unsaved")
+				refreshSaves()
+				populateTopics(topicList)
 				hideTopicDialog()
 			})
 		},
@@ -212,6 +206,62 @@ function saveTopic(){
 		}
 	})
 
+}
+function refreshSaves(){
+	$("#topicList tbody tr").each(function(){ 
+		var rowData=getTopicSavedItems(this)
+		$(rowData.titleSaved).val($(rowData.title).val())
+		$(rowData.dimensionsSaved).val($(rowData.dimensions).val())
+		$(rowData.prioritySaved).val($(rowData.priority).val())
+		$(rowData.preReqSaved).val($(rowData.preReq).val())
+	})
+}
+function revertChanges(){
+	$("#topicList tbody tr").each(function(){ 
+		var rowData=getTopicSavedItems(this)
+		var dimensions=[]
+		var dimensionShort=""
+		var icon=""
+		var contentIDs=[]
+		
+		if($(rowData.dimensionsSaved).val()==""){
+			contentIDs.push(this.id)
+		}
+		else{
+			$(rowData.title).val($(rowData.titleSaved).val())
+			$(rowData.dimensions).val($(rowData.dimensionsSaved).val())
+			$(rowData.priority).val($(rowData.prioritySaved).val())
+			$(rowData.preReq).val($(rowData.preReqSaved).val())
+			$("#"+this.id).removeClass("unsaved")
+			dimensions=$(rowData.dimensions).val().split(",")
+			$(dimensions).each(function(){
+				dimensionShort+=this.charAt(0)
+			})
+			if (dimensionShort==""){
+				icon=$("#imgNone").attr('href')
+			}
+			else{
+				icon=$("#img"+dimensionShort).attr('href')
+			}
+			$(rowData.dimensions).siblings("img").attr("src",icon)
+		}
+		deleteTopic(contentIDs)
+
+	})
+}
+function getTopicSavedItems(currentRow){
+	var topicID=currentRow.id
+	var rowData={
+		title: $("#topicTitle"+topicID),
+		titleSaved: $("#topicTitleSaved"+topicID),
+		dimensions: $("#knowDimensionList"+topicID),
+		dimensionsSaved: $("#knowDimensionListSaved"+topicID),
+		priority: $("#topicPriority"+topicID),
+		prioritySaved: $("#topicPrioritySaved"+topicID),
+		preReq: $("#topicPreReq"+topicID),
+		preReqSaved: $("#topicPreReq"+topicID),
+	}
+	return rowData
 }
 function addTopic(){
 	var imodID=$("#imodID").val()
@@ -234,27 +284,40 @@ function addTopic(){
 			for (var i=0;i<priorities.length;i++){
 				prioritiesOptions+='<option value="'+priorities[i]+'">'+priorities[i]+'</option>'
 			}
-			$('<tr id="'+id+'">'+
-				'<td>'+
-					'<i class="hidden fa fa-check"></i>'+
-				'</td><td>'+
-					'<input type="text" name="topicTitle'+id+'"> '+
-				'</td><td>'+
-					'<select size="1" multiple="true" name="topicDimensions'+id+' id="topicDimensions'+id+'"> '+
-					dimensionOptions+
-					'</select> '+
-				'</td><td>'+
-					'<select size="3" name="topicPriority'+id+' id="topicPriority'+id+'"> '+
+			$('<tr id="'+id+'" class="topicItem">'+
+				'<td class="saveIcon">'+
+					'<i class="hidden fa fa-eraser"></i>'+
+				'</td><td class="topicTitle">'+
+					'<input type="text" id="topicTitle'+id+'"> '+
+					'<input type="hidden" id="topicTitleSaved'+id+'"> '+
+				'</td><td class="topicDimensions">'+
+					'<span>'+
+						'<img src="'+$("#imgNone").attr('href')+'"/> '+
+						'<button '+
+							'class="knowledgeDimensionButton" '+ 
+							'value="" '+
+							'type="button" '+
+							'id="knowDimensionList'+id+'" '+
+						'> '+
+							' Knowledge Dimensions '+
+						'</button> '+
+						'<input type="hidden" id="knowDimensionListSaved'+id+'" value=""> '+
+					'</span> '+
+				'</td><td class="topicPriority">'+
+					'<select size="1" name="topicPriority'+id+' id="topicPriority'+id+'"> '+
 					prioritiesOptions+
 					'</select> '+
-				'</td><td>'+
+					'<input type="hidden" name="topicPrioritySaved'+id+'"> '+
+				'</td><td class="topicResources">'+
 					'<button type="button" id="topicResource'+id+'">Resources</button> '+
-				'</td><td>'+
+				'</td><td class="topicPreReq">'+
 					'<input type="checkbox" name="topicPreReq'+id+'"> '+
+					'<input type="hidden" name="topicPreReqSaved'+id+'"> '+
 				'</td>'+
 			'</tr>'
 			).appendTo(topicDiv)
-			
+			$('#topicTitle'+id).focus()
+			$('.knowledgeDimensionButton').click(openDimModal)
 		},
 		error: function(xhr){
 			alert(xhr.responseText);

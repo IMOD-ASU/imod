@@ -3,8 +3,9 @@
 		<title>
 			Learning Objective - Content
 		</title>
-		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'contentDialog.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'topicDialog.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'contentSubtab.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css/jstree', file: 'style.min.css')}" type="text/css">
 		<link id="imgNone" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimNone.png')}">
 		<link id="imgC" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimC.png')}">
 		<link id="imgF" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimF.png')}">
@@ -21,15 +22,21 @@
 		<link id="imgCMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCMP.png')}">
 		<link id="imgFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFMP.png')}">
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
-		<script src="${resource(dir: 'js/source', file: 'contentDialog.js')}" defer></script>
+		<script src="${resource(dir: 'js/source', file: 'topicDialog.js')}" defer></script>
 		<script src="${resource(dir: 'js/source', file: 'learningObjectiveContent.js')}" defer></script>
+		<script src="${resource(dir: 'js/jstree', file: 'jstree.js')}" defer></script>
 
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
 		<g:render template="../content/topicForm"/>
-		<span class="topicModalButtonGradient">
-			<button id="addTopicModal" class="topicModalButton"><i class="fa fa-plus"></i>Add Topics</button>
-		</span>
+		<fieldset>
+			<span class="topicModalButtonGradient">
+				<button id="addTopicModal" class="topicModalButton"><i class="fa fa-plus"></i>Add Topics</button>
+			</span>
+		</fieldset>
+		<input type="hidden" id="treeData" value="${contentList}">
+		<div id="contentTree">
+		</div>
 	</body>
 </html>

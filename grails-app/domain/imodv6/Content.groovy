@@ -15,6 +15,7 @@ class Content {
 	String priority
 	Boolean preReq
 	Imod imod
+	Content parentContent
 
 
 	static hasMany = [
@@ -22,9 +23,12 @@ class Content {
 		resources: ContentResource,
 		subTopic: String,
 		objectives: LearningObjective,
+		subContents: Content,
 	]
 
-	static belongsTo = LearningObjective
+	static belongsTo = [
+		LearningObjective, Content
+	]
 	
 	static List priorities(){
 		def priorityList=[
@@ -41,10 +45,20 @@ class Content {
 		priority nullable: true
 		topicTitle nullable: true
 		objectives nullable: true
+		subContents nullable: true
 	}
 
 	static mapping = {
 		version false
 	}
 	static transients=['priorities']
+	public boolean isPartOfLearningObjective(id){
+		def objective=LearningObjective.get(id)
+		if (LearningObjectiveContents.findByObjectiveAndContent(objective,this)==null){
+			return false
+		}
+		else{
+			return true
+		}
+	}
 }

@@ -8,12 +8,14 @@ class ContentController {
 		addNewTopic:"GET",
 		saveTopic:"POST",
 		deleteTopic:"GET",
+		updateHierarchy:"POST",
+		setLearningObjective:"POST",
 	]
 	def addNewTopic(Long id)
 	{
 		def imodInstance=Imod.get(id)
-		def contentInstance=new Content(imod:imodInstance)
-		contentInstance.save(flush:true, failOnError:true)
+		def contentInstance=new Content(imod:imodInstance, failOnError:true)
+		contentInstance.save(flush:true)
 		if (!contentInstance){
 			contentInstance.errors.allErrors.each{
 				log.error messageSource.getMessage(it,null)
@@ -79,6 +81,23 @@ class ContentController {
 		}
 		render([result:success] as JSON)
 	}
-
+	def updateHierarchy(Long contentID, Long parentID){
+		if (parentID=="#"){
+			
+		}
+		def parentContent=Content.get(parentID)
+		def childContent=Content.get(contentID)
+		parentContent.addToSubContents(childContent)
+	}
+	def setLearningObjective(Long contentID, Long objectiveID, Boolean toAdd){
+		def learningObjectiveInstance=LearningObjective.get(objectiveID)
+		def contentInstance=Content.get(contentID)
+		if (toAdd){
+			//learningObjectiveInstance.addToContents(contentInstance)
+		}
+		else{
+			//learningObjectiveInstance.removeFromContents(contentInstance)
+		}
+	}
 	
 }

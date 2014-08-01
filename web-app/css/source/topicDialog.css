@@ -61,7 +61,8 @@
 }
 #topicList{
 	width:100%;
-	margin:0px
+	margin:0px;
+	margin-bottom:1px;
 }
 #topicList thead tr:last-child{
 	width:4em;
@@ -70,9 +71,7 @@
 #topicList tbody *{
 	vertical-align:middle;
 }
-#topicList tbody:last-child{
-	border-bottom:0px
-}
+
 #topicList tbody img{
 	height:20px;
 	width:20px;

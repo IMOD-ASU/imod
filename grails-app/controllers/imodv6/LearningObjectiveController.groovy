@@ -108,18 +108,23 @@ class LearningObjectiveController {
 	def content(Long id, Long learningObjectiveID) {
 		def imodInstance = Imod.get(id)
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
-		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def contentList=imodInstance.contents.sort(){it.id}
+		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def contentList=imodInstance.contents.findAll(){it.parentContent==null}.sort(){it.id}
+		def contents=[];
 		if (contentList.size()==0){
-			contentList.add(new Content(imod:imodInstance, failOnError:true))
+			contentList.add(new Content(imod:imodInstance))
 		}
-
+		contentList.collect(contents) {
+			getSubContent(it,learningObjectiveInstance)
+		}
+		contents=new groovy.json.JsonBuilder(contents).toString()
+		contents=contents.replaceAll('"', /'/)
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
 			currentPage: "content",
-			learningObjective: learningObjective,
-			contentList: contentList,
+			learningObjective: learningObjectiveInstance,
+			contentList: contents,
 		]
 	}
 
@@ -157,13 +162,37 @@ class LearningObjectiveController {
 	def getDomainCategories(String domainName) {
 		def domain=LearningDomain.findByName(domainName)
 		def value=domain.domainCategories.asList().sort {it.name}
-		render (
-			[
-				value:value
-			] as JSON
-		)
+		render ([
+			value:value
+		] as JSON)
 	}
 
+	private def getSubContent(Content current, LearningObjective objective){
+		def listChildren=[]
+		def topicSelected=false
+		def currentID =current.id
+		def idValue="content"+currentID
+		def topicTitle=current.topicTitle
+		def returnValue={}
+		if (current.subContents!=null){
+			current.subContents.collect(listChildren){
+				getSubContent(it,objective)
+			}
+			
+		}
+		topicSelected=current.isPartOfLearningObjective(objective.id) as Boolean
+		returnValue=[
+			id: idValue,
+			text: topicTitle,
+			state:[
+				selected: topicSelected,
+			],
+			children:listChildren,
+		]
+		return returnValue
+
+					
+	}
 	private def learningObjectiveManager(Imod imodInstance) {
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = imodInstance.learningObjectives.asList()
