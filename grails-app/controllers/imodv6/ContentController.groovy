@@ -82,21 +82,28 @@ class ContentController {
 		render([result:success] as JSON)
 	}
 	def updateHierarchy(Long contentID, Long parentID){
-		if (parentID=="#"){
-			
-		}
-		def parentContent=Content.get(parentID)
 		def childContent=Content.get(contentID)
-		parentContent.addToSubContents(childContent)
-	}
-	def setLearningObjective(Long contentID, Long objectiveID, Boolean toAdd){
-		def learningObjectiveInstance=LearningObjective.get(objectiveID)
-		def contentInstance=Content.get(contentID)
-		if (toAdd){
-			//learningObjectiveInstance.addToContents(contentInstance)
+		if (parentID!="#"){
+			def parentContent=Content.get(parentID)
+			parentContent.addToSubContents(childContent)
 		}
 		else{
-			//learningObjectiveInstance.removeFromContents(contentInstance)
+			childContent.parentContent=null
+		}
+	}
+	def setLearningObjective(String contentIDs, Long objectiveID, Boolean toAdd){
+		def jsonParser=new JsonSlurper()
+		def contentIDList=jsonParser.parseText(contentIDs)
+		def learningObjectiveInstance=LearningObjective.get(objectiveID)
+		
+		contentIDList.each {
+			def contentInstance=Content.get(this.id)
+			if (toAdd){
+				learningObjectiveInstance.addToContents(contentInstance)
+			}
+			else{
+				learningObjectiveInstance.removeFromContents(contentInstance)
+			}
 		}
 	}
 	

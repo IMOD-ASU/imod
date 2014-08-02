@@ -29,6 +29,7 @@
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
+		<input type="hidden" id="learningObjectiveID" value="${learningObjective.id}">
 		<g:render template="../content/topicForm"/>
 		<fieldset>
 			<span class="topicModalButtonGradient">

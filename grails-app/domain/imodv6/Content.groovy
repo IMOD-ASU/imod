@@ -45,20 +45,25 @@ class Content {
 		priority nullable: true
 		topicTitle nullable: true
 		objectives nullable: true
-		subContents nullable: true
+		subContents nullable: true, validator:{ val, obj, errors->
+			checkrecursion(val.parentContent,obj,errors)
+		}
 	}
 
 	static mapping = {
 		version false
 	}
 	static transients=['priorities']
-	public boolean isPartOfLearningObjective(id){
-		def objective=LearningObjective.get(id)
-		if (LearningObjectiveContents.findByObjectiveAndContent(objective,this)==null){
-			return false
-		}
-		else{
+	def checkRecursion(currentContent, contentToAdd, errors){
+		if (currentContent==null){
 			return true
 		}
+		if (currentContent==contentToAdd){
+			errors.rejectValue('subContents','Cannot contain self')
+		}
+		else{
+			return checkRecursion(currentContent.parentContent,contentToAdd,errors)
+		}
+		
 	}
 }

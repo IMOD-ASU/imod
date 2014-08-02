@@ -169,10 +169,16 @@ class LearningObjectiveController {
 
 	private def getSubContent(Content current, LearningObjective objective){
 		def listChildren=[]
-		def topicSelected=false
+		def topicSelected=''
+		if (objective.contents.contains(current) as Boolean){
+			topicSelected='fa-check' 
+		}
 		def currentID =current.id
 		def idValue="content"+currentID
-		def topicTitle=current.topicTitle
+		def topicTitle='<span class="fa-stack">'+
+			'<i class="checkboxBackground"></i>'+
+			'<i class="fa fa-stack-1x checkbox '+topicSelected+'" id="select'+currentID+'"></i> '+
+			'</span> '+current.topicTitle
 		def returnValue={}
 		if (current.subContents!=null){
 			current.subContents.collect(listChildren){
@@ -180,13 +186,10 @@ class LearningObjectiveController {
 			}
 			
 		}
-		topicSelected=current.isPartOfLearningObjective(objective.id) as Boolean
+
 		returnValue=[
 			id: idValue,
 			text: topicTitle,
-			state:[
-				selected: topicSelected,
-			],
 			children:listChildren,
 		]
 		return returnValue
