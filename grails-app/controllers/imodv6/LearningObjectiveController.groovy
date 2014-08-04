@@ -164,12 +164,15 @@ class LearningObjectiveController {
 		def domainList = LearningDomain.list()
 		def domainCategoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
 		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:domainCategoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
-		
+
 		// import the wordnet database
-		RiWordNet wordnet = new RiWordNet('/WordNet3.1')
+		def wordNetAbsolutePath = request.getSession().getServletContext().getRealPath('/lib/WordNet-3.1')
+		RiWordNet wordnet = new RiWordNet(wordNetAbsolutePath)
+
 		// print all synonyms for success in the terminal
-		println wordnet.getAllSynonyms('success')
-		
+		println wordnet.NOUN
+		println wordnet.getAllSynonyms('success', wordnet.NOUN)
+
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
