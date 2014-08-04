@@ -67,9 +67,13 @@ environments {
 		grails.logging.jul.usebridge = true
 		grails.gorm.failOnError = true
 	}
+    test {
+        grails.logging.jul.usebridge = false
+        grails.serverURL = "http://imoddev:8080/imod-test"
+    }
 	production {
 		grails.logging.jul.usebridge = false
-		grails.serverURL = "http://localhost:8080/imodv6"
+		grails.serverURL = "http://imoddev:8080/imod-demo"
 	}
 }
 
