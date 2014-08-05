@@ -46,10 +46,10 @@ class Content {
 		topicTitle nullable: true
 		objectives nullable: true
 		subContents nullable: true, validator:{ val, obj, errors->
-			checkrecursion(val.parentContent,obj,errors)
+			checkRecursion(val.parentContent,obj,errors)
 		}
 	}
-
+ 
 	static mapping = {
 		version false
 	}

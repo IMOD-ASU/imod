@@ -1,13 +1,17 @@
 #contentTree .checkboxBackground{
-	height:20px;
-	width:20px;
+	height:17px;
+	width:17px;
 	background-image:url(../../images/checkboxBG.png);
 	display:inline-block;
 }
+#contentTree .rootNode{
+	font-weight:bold;
+	text-transform:capitalize;]
+}
+
 #contentTree .checkbox{
-	line-height:1.4em;
+	line-height:1.5em;
 	width:1.3em;
-	font-size:1.3em;
 }
 #addTopicModal i{
 	color:darkblue;

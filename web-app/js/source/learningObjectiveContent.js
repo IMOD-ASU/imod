@@ -1,18 +1,23 @@
 $(function(){
+	var jsonData=eval($("#treeData").val())
+	buildContentTree(jsonData,false)
+})
+
+function buildContentTree(jsonData, refreshDB){
 	$("#contentTree").jstree({
 		"core": {
-			"data":eval($("#treeData").val()),
+			"data":jsonData,
 			"check_callback": true,
 			"themes":{
 				"icons":false
-			}
+			},
 		},
 		"dnd":{
 			"copy":false,
 		},
-		"plugins":["wholerow", "dnd"],
+		"plugins":["wholerow", "dnd", "types"],
 	})
-	$("#contentTree").on('loaded.jstree', function(){
+	$("#contentTree").on('ready.jstree', function(){
 		$("#contentTree").jstree('open_all')
 		$("#contentTree .jstree-wholerow").on("click", function(e){
 			selectCheckboxes(this)
@@ -20,123 +25,145 @@ $(function(){
 		$("#contentTree .jstree-anchor").on("click", function(e){
 			selectCheckboxes(this)
 		})
+		refreshCheckboxes(refreshDB)
 	})
 	$("#contentTree").on("move_node.jstree",function(e,data){
-		refreshTreeValues($("#"+data.node.id+" li").children('a'))
 		$("#contentTree").jstree("open_node","#"+data.node.parent)
+		refreshTreeValues($("#"+data.node.id).children("a"))
 		moveContent(data.node.id.substr(7),data.node.parent.substr(7))
-
 	})
 	$("#contentTree").off("click.jstree")
 
-})
+}
 
 function selectCheckboxes(currentRow){
-	var contentID=$(currentRow).parent("li").attr('id').substr(7)
-	var checkbox=$("#select"+contentID)
-	var testingObject=$("#content"+contentID)
-	if (!(checkbox.hasClass("fa-plus"))||(checkbox.hasClass("fa-minus"))){
-		checkbox.addClass("fa-plus")
-		testingObject.find("i.checkbox").each(function(){
-			$(this).addClass("fa-plus")
+	var contentID=$(currentRow).parent("li").attr('id')
+	var contentNode=$('#contentTree').jstree(true).get_node(contentID)
+	var contentNodeClass=contentNode.li_attr["class"]
+	var testingObject=$("#"+contentID)
+	var newJSONData
+	if ((contentNodeClass=="topicNotSelected")||(contentNodeClass=="topicIndeterminate")){
+		contentNode.li_attr["class"]="topicSelected"
+		testingObject.find("li").each(function(){
+			var childNode=$('#contentTree').jstree(true).get_node($(this).attr('id'))
+			childNode.li_attr["class"]="topicSelected"
 		})
 	}
 	else{
-		checkbox.removeClass("fa-plus fa-minus")
-		testingObject.find("i.checkbox").each(function(){
-			$(this).removeClass("fa-plus fa-minus")
+		contentNode.li_attr["class"]="topicNotSelected"
+		testingObject.find("li").each(function(){
+			var childNode=$('#contentTree').jstree(true).get_node($(this).attr('id'))
+			childNode.li_attr["class"]="topicNotSelected"
 		})
 	}
 	refreshTreeValues(currentRow)
 }
 function refreshTreeValues(currentRow){
-	var contentID=$(currentRow).parent("li").attr('id').substr(7)
-	var checkbox=$("#select"+contentID)
-	var testingObject=$("#content"+contentID)
+	var contentID=$(currentRow).parent("li").attr('id')
+	var contentNode=$('#contentTree').jstree(true).get_node(contentID)
+	var testingObject=$("#"+contentID)
+	var newJSONdata
 	var indeterminate=false
-	var nodeList=[]
-	while ($(testingObject).parents("li").length>0){
-		testingObject=$(testingObject).parents("li")[0]
-		var currentID=testingObject.id.substr(7)
+	var currentNode=$('#contentTree').jstree(true).get_node(contentNode)
+	while (currentNode.parents.length>1){
+		currentNode=$('#contentTree').jstree(true).get_node(currentNode.parent)
+		if(currentNode.parents.length==1){
+			currentNode.a_attr["class"]="rootNode"
+		}
+		else{
+			currentNode.a_attr["class"]=""
+		}
 		if (!indeterminate){
-			if($(testingObject).children("ul").find("i.fa-minus").length>0){
+			var numIndeterminate
+			$(currentNode.children_d).each(function(){
+				if ($('#contentTree').jstree(true).get_node(this).li_attr["class"]=="topicIndeterminate"){
+					numIndeterminate++
+				}
+			})
+			if(numIndeterminate>0){
 				indeterminate=true
-				$("#select"+currentID).addClass("fa-minus")
+				currentNode.li_attr["class"]="topicIndeterminate"
 			}
 			else{
-				var treeDepth=$(testingObject).children("ul").find("i.fa").length
-				var numChecked=$(testingObject).children("ul").find("i.fa-plus").length
-				$("#select"+currentID).removeClass("fa-plus fa-minus")
-				if ((treeDepth!=numChecked)&&(numChecked>0)){
+				var treeSize=currentNode.children_d.length
+				var numSelected=0
+				$(currentNode.children_d).each(function(){
+					if ($('#contentTree').jstree(true).get_node(this).li_attr["class"]=="topicSelected"){
+						numSelected++
+					}
+				})
+				if ((treeSize!=numSelected)&&(numSelected>0)){
 					indeterminate=true
-					$("#select"+currentID).addClass("fa-minus")
+					currentNode.li_attr["class"]="topicIndeterminate"
 				}
-				else if ((treeDepth==numChecked)&&(numChecked>0)){
-					$("#select"+currentID).addClass("fa-plus")
+				else if ((treeSize==numSelected)&&(numSelected>0)){
+					currentNode.li_attr["class"]="topicSelected"
+				}
+				else{
+					currentNode.li_attr["class"]="topicNotSelected"
 				}
 			}
 		}
 		else{
-			$("#select"+currentID).addClass("fa-minus")
+			currentNode.li_attr["class"]="topicIndeterminate"
 		}
-		nodeList.push(currentID)
 	}
-	$(nodeList).each(function(){
-		var checkboxHTML=$("#select"+this).parent().prop("outerHTML")
-		var nodeText=$("#select"+this).parents("a").text()
-		var nodeContents=checkboxHTML+nodeText
-		var currentNode=$('#content'+this)
-		$("#contentTree").jstree('rename_node',currentNode,nodeContents)
-	})
-
-	$("#contentTree .jstree-wholerow").on("click", function(e){
-		selectCheckboxes(this)
-	})
-	$("#contentTree .jstree-anchor").on("click", function(e){
-		selectCheckboxes(this)
-	})
+	newJSONdata=$("#contentTree").jstree(true).get_json()
+	$("#contentTree").jstree("destroy")
+	buildContentTree(newJSONdata, true)
 }
 
+
+function refreshCheckboxes(refreshDB){
+	var nodeArray=$("#contentTree").jstree(true)._model.data["#"].children_d
+	var defaultClass="fa fa-stack-1x checkbox"
+	var idArray=[]
+	$(nodeArray).each(function(){
+		var icon=$("#select"+this.substr(7))
+		if ($("#"+this).hasClass("topicSelected")){
+			icon.attr("class",defaultClass+" fa-check")
+			idArray.push(this.substr(7))
+		}
+		else if ($("#"+this).hasClass("topicIndeterminate")){
+			icon.attr("class",defaultClass+" fa-minus")
+		}
+		else{
+			icon.attr("class",defaultClass)
+		}
+	})
+	if (refreshDB){
+		setContents(idArray)
+	}
+}
 function moveContent(contentID, parentID){
-//	$.ajax({
-//		url:"../../content/updateHierarchy/",
-//		type:"POST",
-//		dataType:"json",
-//		data: {
-//			contentID:contentID,
-//			parentID:parentID
-//			},
-//		success: function(data){
-//		},
-//		error: function(xhr){
-//			alert(xhr.responseText);
-//		}
-//	})
-}
-function toggleLearningObjective(contentID, toAdd){
-	var contentIDs=[]
-	var objectiveID=$("#learningObjectiveID").val()
-
-	contentIDs.push({id:contentID})
-	$("#content"+contentID).find("li").each(function(){
-		contentIDs.push({id:this.id.substr(7)})
+	$.ajax({
+		url:"../../content/updateHierarchy",
+		type:"POST",
+		dataType:"json",
+		data: {
+			contentID:contentID,
+			parentID:parentID,
+		},
+		error: function(xhr){
+			alert(xhr.responseText);
+		}
 	})
-	contentIDs=JSON.stringify(contentIDs)
-//	$.ajax({
-//		url:"../../content/setLearningObjective/",
-//		type:"POST",
-//		dataType:"json",
-//		data: {
-//			contentIDs:contentIDs,
-//			objectiveID:objectiveID,
-//			toAdd:toAdd
-//			},
-//		success: function(data){
-//		},
-//		error: function(xhr){
-//			alert(xhr.responseText);
-//		}
-//	})
+}
+function setContents(idArray){
+	var objectiveID=$("#learningObjectiveID").val()
+	idArray=JSON.stringify(idArray)
+	$.ajax({
+		url:"../../content/setLearningObjective",
+		type:"POST",
+		dataType:"json",
+		data: {
+			objectiveID: objectiveID,
+			idArray: idArray,
+		},
+		error: function(xhr){
+			alert(xhr.responseText);
+		}
+	})
 }
 function populateTopics(topicList){
 	var contentTree=$.jstree.reference("#contentTree")
