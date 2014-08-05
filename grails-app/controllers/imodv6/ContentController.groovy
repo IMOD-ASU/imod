@@ -103,7 +103,11 @@ class ContentController {
 			def jsonParser=new JsonSlurper()
 			def contentIDList=jsonParser.parseText(idArray)
 			def contentList=contentIDList.collect{Content.get(it)}
-			learningObjectiveInstance.contents=contentList
+			learningObjectiveInstance.contents.clear()
+			contentList.each (){
+				learningObjectiveInstance.addToContents(it)
+			}
+			learningObjectiveInstance.save(flush:true, failOnError:true)
 		}
 		else{
 			learningObjectiveInstance.contents=null

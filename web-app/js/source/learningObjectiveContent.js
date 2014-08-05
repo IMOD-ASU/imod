@@ -1,6 +1,15 @@
 $(function(){
 	var jsonData=eval($("#treeData").val())
 	buildContentTree(jsonData,false)
+	$("#contentTree").on("ready.jstree",function(e){
+		var idList=$("#contentTree").find("li.topicSelected")
+		$(idList).each(function(){
+			refreshTreeValues($(this).children("a"),false)
+		})
+		newJSONdata=$("#contentTree").jstree(true).get_json()
+		$("#contentTree").jstree("destroy")
+		buildContentTree(newJSONdata, true)
+	})
 })
 
 function buildContentTree(jsonData, refreshDB){
@@ -19,6 +28,7 @@ function buildContentTree(jsonData, refreshDB){
 	})
 	$("#contentTree").on('ready.jstree', function(){
 		$("#contentTree").jstree('open_all')
+
 		$("#contentTree .jstree-wholerow").on("click", function(e){
 			selectCheckboxes(this)
 		})
@@ -29,7 +39,7 @@ function buildContentTree(jsonData, refreshDB){
 	})
 	$("#contentTree").on("move_node.jstree",function(e,data){
 		$("#contentTree").jstree("open_node","#"+data.node.parent)
-		refreshTreeValues($("#"+data.node.id).children("a"))
+		refreshTreeValues($("#"+data.node.id).children("a"),true)
 		moveContent(data.node.id.substr(7),data.node.parent.substr(7))
 	})
 	$("#contentTree").off("click.jstree")
@@ -56,9 +66,9 @@ function selectCheckboxes(currentRow){
 			childNode.li_attr["class"]="topicNotSelected"
 		})
 	}
-	refreshTreeValues(currentRow)
+	refreshTreeValues(currentRow,true)
 }
-function refreshTreeValues(currentRow){
+function refreshTreeValues(currentRow, doRefresh){
 	var contentID=$(currentRow).parent("li").attr('id')
 	var contentNode=$('#contentTree').jstree(true).get_node(contentID)
 	var testingObject=$("#"+contentID)
@@ -108,9 +118,11 @@ function refreshTreeValues(currentRow){
 			currentNode.li_attr["class"]="topicIndeterminate"
 		}
 	}
-	newJSONdata=$("#contentTree").jstree(true).get_json()
-	$("#contentTree").jstree("destroy")
-	buildContentTree(newJSONdata, true)
+	if(doRefresh){
+		newJSONdata=$("#contentTree").jstree(true).get_json()
+		$("#contentTree").jstree("destroy")
+		buildContentTree(newJSONdata, true)
+	}
 }
 
 
