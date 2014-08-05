@@ -1,10 +1,10 @@
 /* Styling for the action words */
-#action-words {
+#action-word-categories {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
-#action-words > li {
+#action-word-categories > li {
 	padding: 45px 0;
 	width: 100px;
 	text-align: center;
@@ -15,8 +15,8 @@
 	background-position: right top;
 }
 
-#action-words > .ui-selecting,
-#action-words > .ui-selected {
+#action-word-categories > .ui-selecting,
+#action-word-categories > .ui-selected {
 	background-color: #FFFFCC;
 	background-image: url("../../../static/images/assign.png"), url("../../../static/images/thesaurus.png");
 	background-repeat: no-repeat, no-repeat;

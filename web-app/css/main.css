@@ -542,7 +542,8 @@ th.desc a {
 }
 
 .buttons input,
-.buttons a {
+.buttons a,
+.buttons button {
 	background-color: transparent;
 	border: 0;
 	color: #666666;

@@ -23,3 +23,4 @@ An IMODS is a course that uses Pedagogy, Content, and Assessment to generate Lea
 [(linux)](https://help.ubuntu.com/community/PostgreSQL)
 * For develop ensure postgres user is "postres" with password "postres"
 * Create a database named "sample"
+* unzip ```/lib/WordNet-3.1.zip``` and ensure that ```/lib/WordNet-3.1/dict``` now exists in the project (Do Not Delete this Zip File)
