@@ -57,9 +57,7 @@ $(document).ready(function() {
 	$('.action-word-category').on(
 		'change',
 		function() {
-			$('.learning-objective-performance').html(
-				populateActionWordCategories($('.ui-selected').innerHTML)
-			)
+			populateActionWordCategories
 		}
 	);
 
@@ -186,7 +184,7 @@ function populateActionWordCategories(event) {
  * @param  {String} domain text from the action word category boxes
  * @return {XML}        Populates the page with action words
  */
-function populateActionWordCategories(actionWordCategory) {
+function populateActionWords(actionWordCategory) {
 	$.ajax({
 		url: "/imodv6/learningObjective/getActionWords",
 		type: "GET",
