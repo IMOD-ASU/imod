@@ -58,8 +58,7 @@ $(document).ready(function() {
 		'change',
 		function() {
 			$('.learning-objective-performance').html(
-				$('.ui-selected').innerHTML
-				//TODO create some sort of save
+				populateActionWordCategories($('.ui-selected').innerHTML)
 			)
 		}
 	);
@@ -187,13 +186,13 @@ function populateActionWordCategories(event) {
  * @param  {String} domain text from the action word category boxes
  * @return {XML}        Populates the page with action words
  */
-function populateActionWordCategories(event) {
+function populateActionWordCategories(actionWordCategory) {
 	$.ajax({
 		url: "/imodv6/learningObjective/getActionWords",
 		type: "GET",
 		dataType: "json",
 		data: {
-			domainName: this.value
+			domainName: actionWordCategory
 		},
 		success: function(data){
 			var actionWords = data.value;
