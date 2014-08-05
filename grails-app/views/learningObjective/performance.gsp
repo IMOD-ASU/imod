@@ -42,12 +42,18 @@
 		/>
 		<br />
 
-		<ol id="action-words">
+		<ol id="action-word-categories">
 			<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">
-				<li class="action-word ui-state-default">
+				<li class="action-word-category ui-state-default">
 					${actionWordCategory}
 				</li>
 			</g:each>
 		</ol>
+
+		<select id="action-words">
+			<option>
+				null
+			</option>
+		</select>
 	</body>
 </html>

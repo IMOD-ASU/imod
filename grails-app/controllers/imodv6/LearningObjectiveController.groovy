@@ -1,5 +1,6 @@
 package imodv6
 import grails.converters.JSON
+import rita.*
 
 class LearningObjectiveController {
 
@@ -163,6 +164,7 @@ class LearningObjectiveController {
 		def domainList = LearningDomain.list()
 		def domainCategoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
 		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:domainCategoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
+
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
@@ -307,7 +309,7 @@ class LearningObjectiveController {
 
 	/**
 	 * gather the Action Words for selected Domain Category
-	 * @param  domainName String that is the contents (or name) of a Domain Category
+	 * @param  domainName String that is the contents (or name) of a Action Word Category
 	 * @return            sorted list of Action Words
 	 */
 	def getActionWordCategories(String domainName) {
@@ -319,6 +321,28 @@ class LearningObjectiveController {
 		render (
 			[
 				value: actionWordCategories
+			] as JSON
+		)
+	}
+
+	/**
+	 * gather the Action Words for selected Domain Category
+	 * @param  actionWordCategory String that is the contents (or name) of a Domain Category
+	 * @return            sorted list of Action Words
+	 */
+	def getActionWords(String actionWordCategory) {
+		// import the wordnet database
+		def wordNetAbsolutePath = request.getSession().getServletContext().getRealPath('../lib/WordNet-3.1')
+		RiWordNet wordnet = new RiWordNet(wordNetAbsolutePath)
+
+		// print all debug information for word in the terminal
+		println wordnet.exists(actionWordCategory)
+		println wordnet.getDescription(actionWordCategory, wordnet.getBestPos(actionWordCategory))
+		def actionWords = wordnet.getAllSimilar(actionWordCategory, wordnet.getBestPos(actionWordCategory))
+		println actionWords
+		render (
+			[
+				value: actionWords
 			] as JSON
 		)
 	}

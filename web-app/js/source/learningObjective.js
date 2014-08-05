@@ -51,16 +51,13 @@ $(document).ready(function() {
 	$('input:radio[name=LO_condition_type]:checked').change()
 
 	// making action words selectable through jquery ui
-	$('#action-words' ).selectable();
+	$('#action-word-categories' ).selectable();
 
 	// This listens for when a learning objective is selected and saves
-	$('.action-word').on(
+	$('.action-word-category').on(
 		'change',
 		function() {
-			$('.learning-objective-performance').html(
-				$('.ui-selected').innerHTML
-				//TODO create some sort of save
-			)
+			populateActionWordCategories
 		}
 	);
 
@@ -155,9 +152,9 @@ function populateDomainCategories(event) {
 
 /**
  * ajax to pull Action Words based on which Domain Category was selected,
- * then populate page with selectable action word boxes
+ * then populate page with selectable action word category boxes
  * @param  {String} domain text from the domain category select box
- * @return {XML}        Populates the page with action words
+ * @return {XML}        Populates the page with action word categories
  */
 function populateActionWordCategories(event) {
 	$.ajax({
@@ -171,9 +168,37 @@ function populateActionWordCategories(event) {
 			var actionWordCategories = data.value;
 			var actionWordCategoriesHTML = '';
 			for (var i = 0; i < actionWordCategories.length; i++){
-				actionWordCategoriesHTML += '<li class="action-word ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>'
+				actionWordCategoriesHTML += '<li class="action-word-category ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>'
 			}
-			$('#action-words').html(actionWordCategoriesHTML);
+			$('#action-word-categories').html(actionWordCategoriesHTML);
+		},
+		error: function(xhr){
+			console.log(xhr.responseText);
+		}
+	});
+}
+
+/**
+ * ajax to pull Action Words based on which Action Word Category was selected,
+ * then populates a select tag with action words
+ * @param  {String} domain text from the action word category boxes
+ * @return {XML}        Populates the page with action words
+ */
+function populateActionWords(actionWordCategory) {
+	$.ajax({
+		url: "/imodv6/learningObjective/getActionWords",
+		type: "GET",
+		dataType: "json",
+		data: {
+			domainName: actionWordCategory
+		},
+		success: function(data){
+			var actionWords = data.value;
+			var actionWordsHTML = '';
+			for (var i = 0; i < actionWordCategories.length; i++){
+				actionWordCategoriesHTML += '<option value="' + actionWords[i].actionWord + '"/>'
+			}
+			$('#action-words').html(actionWordsHTML);
 		},
 		error: function(xhr){
 			console.log(xhr.responseText);
