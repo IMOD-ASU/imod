@@ -264,10 +264,28 @@ class LearningObjectiveController {
 
 	/**
 	 * gather the Action Words for selected Domain Category
+	 * @param  actionWordCategory String that is the contents (or name) of a Action Word Category
+	 * @return            sorted list of Action Words
+	 */
+	def getActionWordCategories(String actionWordCategory) {
+		// Find the selected learning domain
+		def domainCategory = DomainCategory.findByName(domainName)
+		// get all related domain categories and sort by name
+		def actionWordCategories = domainCategory.actionWordCategories.sort {it.actionWordCategory}
+		// pass back domain categories as a json data structure
+		render (
+			[
+				value: actionWordCategories
+			] as JSON
+		)
+	}
+
+	/**
+	 * gather the Action Words for selected Domain Category
 	 * @param  domainName String that is the contents (or name) of a Domain Category
 	 * @return            sorted list of Action Words
 	 */
-	def getActionWordCategories(String domainName) {
+	def getActionWords(String domainName) {
 		// import the wordnet database
 		def wordNetAbsolutePath = request.getSession().getServletContext().getRealPath('../lib/WordNet-3.1')
 		RiWordNet wordnet = new RiWordNet(wordNetAbsolutePath)
@@ -281,24 +299,6 @@ class LearningObjectiveController {
 		render (
 			[
 				value: actionWords
-			] as JSON
-		)
-	}
-
-	/**
-	 * gather the Action Words for selected Domain Category
-	 * @param  actionWordCategory String that is the contents (or name) of a Action Word Category
-	 * @return            sorted list of Action Words
-	 */
-	def getActionWordCategories(String actionWordCategory) {
-		// Find the selected learning domain
-		def domainCategory = DomainCategory.findByName(domainName)
-		// get all related domain categories and sort by name
-		def actionWordCategories = domainCategory.actionWordCategories.sort {it.actionWordCategory}
-		// pass back domain categories as a json data structure
-		render (
-			[
-				value: actionWordCategories
 			] as JSON
 		)
 	}
