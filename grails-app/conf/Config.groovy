@@ -69,11 +69,11 @@ environments {
 	}
     test {
         grails.logging.jul.usebridge = false
-        grails.serverURL = "http://imoddev:8080/imod-test"
+        grails.serverURL = "http://129.219.40.55:8080/imod-test"
     }
 	production {
 		grails.logging.jul.usebridge = false
-		grails.serverURL = "http://imoddev:8080/imod-demo"
+		grails.serverURL = "http://129.219.40.55:8080/imod-demo"
 	}
 }
 
