@@ -12,26 +12,58 @@ package imodv6
  */
 class Content {
 	String topicTitle
-	ContentPriorityCode priorityCode
-	ContentKnowledgeDomainCode knowledgeDomainCode
+	String priority
 	Boolean preReq
+	Imod imod
+	Content parentContent
+
 
 	static hasMany = [
+		dimensions: KnowledgeDimensionEnum,
 		resources: ContentResource,
-		subTopic: String
+		subTopic: String,
+		objectives: LearningObjective,
+		subContents: Content,
 	]
 
 	static belongsTo = [
-		objective: LearningObjective
+		LearningObjective, Content
 	]
-
-	static constraints = {
-		preReq nullable: true
-		knowledgeDomainCode nullable: true
-		priorityCode nullable: true
+	
+	static List priorities(){
+		def priorityList=[
+		'Critical',
+		'Very Important',
+		'Good to Know'
+		]
+		return priorityList
 	}
-
+	
+	static constraints = {
+		dimensions nullable: true
+		preReq nullable: true
+		priority nullable: true
+		topicTitle nullable: true
+		objectives nullable: true
+		subContents nullable: true, validator:{ val, obj, errors->
+			checkRecursion(val.parentContent,obj,errors)
+		}
+	}
+ 
 	static mapping = {
 		version false
+	}
+	static transients=['priorities']
+	def checkRecursion(currentContent, contentToAdd, errors){
+		if (currentContent==null){
+			return true
+		}
+		if (currentContent==contentToAdd){
+			errors.rejectValue('subContents','Cannot contain self')
+		}
+		else{
+			return checkRecursion(currentContent.parentContent,contentToAdd,errors)
+		}
+		
 	}
 }
