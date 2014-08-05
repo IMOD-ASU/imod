@@ -165,14 +165,6 @@ class LearningObjectiveController {
 		def domainCategoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
 		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:domainCategoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
 
-		// import the wordnet database
-		def wordNetAbsolutePath = request.getSession().getServletContext().getRealPath('../lib/WordNet-3.1')
-		RiWordNet wordnet = new RiWordNet(wordNetAbsolutePath)
-
-		// print all synonyms for success in the terminal
-		println wordnet.NOUN
-		println wordnet.getAllSimilar('success', wordnet.NOUN)
-
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
@@ -276,6 +268,29 @@ class LearningObjectiveController {
 	 * @return            sorted list of Action Words
 	 */
 	def getActionWordCategories(String domainName) {
+		// import the wordnet database
+		def wordNetAbsolutePath = request.getSession().getServletContext().getRealPath('../lib/WordNet-3.1')
+		RiWordNet wordnet = new RiWordNet(wordNetAbsolutePath)
+
+		// print all debug information for word in the terminal
+		def word = "attribute"
+		println wordnet.exists(word)
+		println wordnet.getDescription(word, wordnet.getBestPos(word))
+		def actionWords = wordnet.getAllSimilar(word, wordnet.getBestPos(word))
+		println actionWords
+		render (
+			[
+				value: actionWords
+			] as JSON
+		)
+	}
+
+	/**
+	 * gather the Action Words for selected Domain Category
+	 * @param  actionWordCategory String that is the contents (or name) of a Action Word Category
+	 * @return            sorted list of Action Words
+	 */
+	def getActionWordCategories(String actionWordCategory) {
 		// Find the selected learning domain
 		def domainCategory = DomainCategory.findByName(domainName)
 		// get all related domain categories and sort by name
