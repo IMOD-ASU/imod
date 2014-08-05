@@ -21,13 +21,18 @@ environments {
 	test {
 		dataSource {
 			dbCreate = 'update'
-			url = 'jdbc:postgresql:sample'
+			url = 'jdbc:postgresql:imod-test'
+            username = 'imod'
+            password = 'imod4u'
 		}
 	}
+
 	production {
 		dataSource {
 			dbCreate = 'update'
-			url = 'jdbc:postgresql:sample'
+			url = 'jdbc:postgresql:imod-demo'
+            username = 'imod'
+            password = 'imod4u'
 			pooled = true
 			properties {
 				maxActive = -1
