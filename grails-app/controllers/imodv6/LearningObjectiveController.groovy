@@ -185,15 +185,24 @@ class LearningObjectiveController {
 	 */
 	def content(Long id, Long learningObjectiveID) {
 		def imodInstance = Imod.get(id)
-		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-
-		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
+		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def contentList=imodInstance.contents.findAll(){it.parentContent==null}.sort(){it.id}
+		def contents=[];
+		if (contentList.size()==0){
+			contentList.add(new Content(imod:imodInstance))
+		}
+		contentList.collect(contents) {
+			getSubContent(it,learningObjectiveInstance)
+		}
+		contents=new groovy.json.JsonBuilder(contents).toString()
+		contents=contents.replaceAll('"', /'/)
 		[
 			imodInstance: imodInstance,
-			currentPage: 'content',
-			learningObjective: learningObjective,
 			learningObjectivesList: learningObjectivesList,
+			currentPage: "content",
+			learningObjective: learningObjectiveInstance,
+			contentList: contents,
 		]
 	}
 
@@ -219,6 +228,7 @@ class LearningObjectiveController {
 			currentCondition: currentCondition,
 			isCustom: isCustom,
 			hideCondition: hideCondition,
+
 		]
 	}
 
@@ -241,13 +251,48 @@ class LearningObjectiveController {
 		]
 	}
 
+	private def getSubContent(Content current, LearningObjective objective){
+		def listChildren=[]
+		def topicSelected="topicNotSelected"
+		if (objective.contents.contains(current) as Boolean){
+			topicSelected="topicSelected" 
+		}
+		def currentID =current.id
+		def idValue="content"+currentID
+		def topicTitle='<span class="fa-stack">'+
+			'<i class="checkboxBackground"></i>'+
+			'<i class="fa fa-stack-1x checkbox" id="select'+currentID+'"></i> '+
+			'</span> '+current.topicTitle
+		def returnValue={}
+		def rootNode=""
+		if (current.parentContent==null){
+			rootNode="rootNode"
+		}
+		if (current.subContents!=null){
+			current.subContents.collect(listChildren){
+				getSubContent(it,objective)
+			}
+			
+		}
+ 
+		returnValue=[
+			id: idValue,
+			text: topicTitle,
+			li_attr:["class": topicSelected],
+			a_attr:["class":rootNode],
+			children:listChildren,
+		]
+		return returnValue
 
+					
+	}
 	/**
 	 * gather the Domain Categories for selected Learning Domain
 	 * @param  domainName String that is the contents (or name) of a Learning Domain
 	 * @return            sorted list of Domain Categories
 	 */
 	def getDomainCategories(String domainName) {
+
 		// Find the selected learning domain
 		def domain = LearningDomain.findByName(domainName)
 		// get all related domain categories and sort by name
