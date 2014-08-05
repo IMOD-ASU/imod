@@ -14,7 +14,7 @@ class DomainCategory {
 	]
 
 	static hasMany = [
-		actionWords: ActionWord
+		actionWordCategories: ActionWordCategory
 	]
 
 	static constraints = {

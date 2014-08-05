@@ -26,7 +26,6 @@ package imodv6
  * @param scedule TODO How are these supposed to work?
  * @param scheduleDate TODO How are these supposed to work?
  * @param repeats TODO How are these supposed to work?
- * @param piechart TODO What is this?
  * @param learningObjectives a collection of all of the learning objectives that will be used in the IMOD
  * @param repeatsEvery TODO How are these supposed to work?
  *
@@ -56,18 +55,17 @@ class Imod {
 	Schedule		schedule
 	ScheduleDate	scheduleDate
 	ScheduleRepeats	repeats
-	Collection		learningObjectives
 	ScheduleRepeatsEvery	repeatsEvery
 
 	static belongsTo = ImodUser
 
 	static hasMany = [
 		learningObjectives:	LearningObjective,
-		sharedOwners: 		ImodUser,
-		instructors: 		Instructor,
-		courseComponents: 	CourseComponentCode,
-		audience: 			Audience,
-		contents: 			Content
+		sharedOwners:		ImodUser,
+		instructors:		Instructor,
+		courseComponents:	CourseComponentCode,
+		audience:			Audience,
+		contents:			Content
 	]
 
 	static constraints = {

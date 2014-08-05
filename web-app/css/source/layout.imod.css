@@ -6,7 +6,8 @@
 	background-color: #d3d3d3;
 }
 
-#learningObjectiveType, #contentSelect {
+#learningObjectiveType,
+#contentSelect {
 	padding: 0;
 }
 
@@ -53,7 +54,7 @@
 	margin-bottom: 25.1%;
 }
 
-table.inner_table {
+table.inner-table {
 	position: relative;
 	left: -62.5px;
 	width: 113%;
@@ -69,14 +70,19 @@ td {
 	right: 25px;
 }
 
-.course_overview_form, .topic_hierarchy_widget, .topic_information_widget, .chapter_addition_widget, .topic_addition_widget, .topic_schedule_widget {
+.course-overview-form,
+.topic-hierarchy-widget,
+.topic-information-widget,
+.chapter-addition-widget,
+.topic-addition-widget,
+.topic-schedule-widget {
 	padding: 0px 0px 20px 0px;
 	border: solid 1px #C0C0C0;
 	border-radius: 15px;
 	height: 100%;
 }
 
-.form_title {
+.form-title {
 	background: #0A1629;
 	top: 0;
 	color: #ffffff;
@@ -91,7 +97,8 @@ td {
 	border-top-right-radius: 0 !important;
 }
 
-.fieldcontain label, .fieldcontain .property-label {
+.fieldcontain label,
+.fieldcontain .property-label {
 	text-align: left;
 	margin-left: 40px;
 }
@@ -101,11 +108,11 @@ td {
 	margin-right: -5em;
 }
 
-.title_text {
+.title-text {
 	padding-left: 10px;
 }
 
-img.tab_icon {
+img.tab-icon {
 	width: 20%;
 	height: auto;
 }
@@ -114,29 +121,29 @@ a.ui-tabs-anchor {
 	width: 181.953px;
 }
 
-#overview_tab_title {
+#overview-tab-title {
 	position: absolute;
 	top: 10px;
 }
 
-#lo_tab_title {
+#lo-tab-title {
 	position: absolute;
 	top: 10px;
 }
 
-#content_tab_title {
-	position: absolute;
-	top: 10px;
-	left: 80px;
-}
-
-#assess_tab_title {
+#content-tab-title {
 	position: absolute;
 	top: 10px;
 	left: 80px;
 }
 
-#pedagogy_tab_title {
+#assess-tab-title {
+	position: absolute;
+	top: 10px;
+	left: 80px;
+}
+
+#pedagogy-tab-title {
 	position: absolute;
 	top: 10px;
 	left: 70px;
@@ -148,7 +155,7 @@ a.ui-tabs-anchor {
 	border-top-right-radius: 5px;
 }
 
-#help_placeholder {
+#help-placeholder {
 	width:12em;
 	height: 9em;
 	position: absolute;
@@ -163,7 +170,7 @@ a.ui-tabs-anchor {
 	z-index:10;
 }
 
-#open_help {
+#open-help {
 	width:12em;
 	height: 1em;
 	position: absolute;
@@ -183,14 +190,15 @@ a.ui-tabs-anchor {
 	float: right;
 }
 
-#resize_quicktip {
+#resize-quicktip {
 	width: 20px;
 	height: auto;
 	position: relative;
 	top: 5px;
 }
 
-.fieldcontain label, .fieldcontain .property-label {
+.fieldcontain label,
+.fieldcontain .property-label {
 	text-align: left;
 	margin-left: 40px;
 }
@@ -199,12 +207,12 @@ a.ui-tabs-anchor {
 	margin-right: 0em;
 }
 
-#custom_instructor {
+#custom-instructor {
 	height: 127px;
 	overflow-y: scroll;
 }
 
-#instructor_table {
+#instructor-table {
 	width: 858px;
 }
 #audience {

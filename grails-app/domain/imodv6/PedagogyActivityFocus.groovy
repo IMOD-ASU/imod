@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * Type of activity that needs to be done
  */
 class PedagogyActivityFocus {
 	String focus

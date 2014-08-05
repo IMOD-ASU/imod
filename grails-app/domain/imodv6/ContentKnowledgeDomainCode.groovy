@@ -1,7 +1,8 @@
 package imodv6
 
 /**
- * TODO What is this?
+ * TODO this is a content knowledge dimension
+ * Describes the type of knowledge that this contains
  * @param description TODO what is this?
  */
 class ContentKnowledgeDomainCode {

@@ -59,9 +59,13 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+// simplify testing for empty strings
+grails.databinding.convertEmptyStringsToNull = true
+
 environments {
 	development {
 		grails.logging.jul.usebridge = true
+		grails.gorm.failOnError = true
 	}
 	production {
 		grails.logging.jul.usebridge = false
@@ -101,6 +105,7 @@ grails.plugin.springsecurity.authority.className = 'imodv6.Role'
 grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugin.springsecurity.interceptUrlMap = [
 	'/':							['permitAll'],
+	'/assets/**':					['permitAll'],
 	'/index':						['permitAll'],
 	'/index.gsp':					['permitAll'],
 	'/**/js/**':					['permitAll'],

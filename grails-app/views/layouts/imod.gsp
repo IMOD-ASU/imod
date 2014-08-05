@@ -26,8 +26,8 @@
 		</head>
 
 		<body>
-			<div id="help_placeholder"  >
-				<img id="resize_quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
+			<div id="help-placeholder"  >
+				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
 				<span>
 					Quick tip
 				</Span>
@@ -38,7 +38,7 @@
 				<div id="qtipPlace" style="float: right; text-align: right; position: absolute; right: 0;">
 				</div>
 			</div>
-			<div id="open_help" >
+			<div id="open-help" >
 				<Span>
 					Quick Tip
 				</Span>
@@ -50,40 +50,40 @@
 				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 					<li class="ui-state-default ui-corner-top">
 						<g:link controller="courseOverview" action="index" id="${imodInstance?.id}" class="ui-tabs-anchor">
-							<img class="tab_icon" src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/>
-							<span id="overview_tab_title">
+							<img class="tab-icon" src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/>
+							<span id="overview-tab-title">
 								Course Overview
 							</span>
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top">
 						<g:link controller="learningObjective" action="performance" id="${imodInstance?.id}" class="ui-tabs-anchor">
-							<img class="tab_icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
-							<span id="lo_tab_title">
+							<img class="tab-icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
+							<span id="lo-tab-title">
 								Learning Objectives
 							</span>
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top">
 						<g:link controller="content" action="contentTab" id="${imodInstance?.id}" params=" [ ${objectiveId: params.objectiveId} ] " class="ui-tabs-anchor">
-							<img class="tab_icon" src="${resource(dir: 'images', file: 'content_icon.png')}" alt=""/>
-							<span id="content_tab_title">
+							<img class="tab-icon" src="${resource(dir: 'images', file: 'content_icon.png')}" alt=""/>
+							<span id="content-tab-title">
 								Content
 							</span>
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top">
 						<g:link controller="assessment" action="index" class="ui-tabs-anchor">
-							<img class="tab_icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
-							<span id="assess_tab_title">
+							<img class="tab-icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
+							<span id="assess-tab-title">
 								Assessment
 							</span>
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top">
 						<g:link controller="pedagogy" action="pedagogyTab" class="ui-tabs-anchor">
-							<img class="tab_icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
-							<span id="pedagogy_tab_title">
+							<img class="tab-icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
+							<span id="pedagogy-tab-title">
 								Pedagogy
 							</span>
 						</g:link>

@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * these are activities that are needed complete the pedagogy
  */
 class PedagogyActivity {
 	String description

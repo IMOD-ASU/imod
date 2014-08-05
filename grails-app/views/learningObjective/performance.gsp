@@ -8,11 +8,11 @@
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
-		<fieldset class="LO_buttons">
-			<g:actionSubmit 
-				class="save showHoverNew" 
-				action="save" 
-				title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}"  
+		<fieldset class="learning-objective-button">
+			<g:actionSubmit
+				class="save showHoverNew"
+				action="save"
+				title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}"
 				value="${message(code: 'Save', default: 'Save')}"
 				id="${imodInstance.id }"
 				learningObjectiveID="${learningObjective.id }"
@@ -20,32 +20,32 @@
 			/>
 		</fieldset>
 
-		<label for="learning-domain-list" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
+		<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 			Learning Domain
 		</label>
-		<g:select 
-			name="LDL" 
-			id="learning-domain-list" 
-			from="${domainList.name}" 
+		<g:select
+			name="LDL"
+			id="learning-domain-list"
+			from="${domainList.name}"
 			value="${selectedDomain?.name?:""}"
 		/>
 		<br />
 
-		<label for="domain-category-list" title="${imodv6.Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
+		<label for="domain-category-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
 			Domain Category
 		</label>
-		<g:select 
-			name="DCL" 
-			id="domain-category-list" 
-			from="${categoriesList.name}" 
-			value="${selectedDomainCategory?.name?:"" }" 
+		<g:select
+			name="DCL"
+			id="domain-category-list"
+			from="${categoriesList.name}"
+			value="${selectedDomainCategory?.name?:"" }"
 		/>
 		<br />
 
 		<ol id="action-words">
-			<g:each var="actionWord" in="${actionWordList.actionWord}">
+			<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">
 				<li class="action-word ui-state-default">
-					${actionWord}
+					${actionWordCategory}
 				</li>
 			</g:each>
 		</ol>

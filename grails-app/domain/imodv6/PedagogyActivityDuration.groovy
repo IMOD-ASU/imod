@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * how long the the activity should be practived
  */
 class PedagogyActivityDuration {
 	String duration
