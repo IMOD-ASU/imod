@@ -25,12 +25,20 @@
 
 /* learning objective left panel */
 .learning-objective-list-wrapper {
-	border-radius: 10px;
-	border: 1px solid black;
+	background-color: #fff;
+	border-radius: 4px;
+	border: 1px solid #707070;
+	margin: 5px;
 }
 
 .learning-objective-list-item {
+	padding: 5px;
 	list-style-type: none;
+	border-bottom: 1px solid #707070;
+}
+
+.learning-objective-list-item:last-child {
+	border-bottom: none;
 }
 
 .learning-objective-list-link {
