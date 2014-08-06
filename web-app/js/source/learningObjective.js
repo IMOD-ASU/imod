@@ -15,10 +15,10 @@ $(document).ready(function() {
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO-hide-from-Objective').change(function(){
 		if(this.checked) {
-			$('.learning-objective-current .learning-objective-condition').css("display","none")
+			$('.learning-objective-current .learning-objective-condition').css("display","inline")
 		}
 		else {
-			$('.learning-objective-current .learning-objective-condition').css("display","inline")
+			$('.learning-objective-current .learning-objective-condition').css("display","none")
 		}
 	});
 
@@ -67,11 +67,11 @@ $(document).ready(function() {
 		function() {
 			$('#accuracy-text').prop(
 				'disabled',
-				$('#enable-accuracy').is(':checked')
+				! $('#enable-accuracy').is(':checked')
 			);
 			$('#accuracy-hide').prop(
 				'disabled',
-				$('#enable-accuracy').is(':checked')
+				! $('#enable-accuracy').is(':checked')
 			);
 		}
 	)
@@ -82,11 +82,11 @@ $(document).ready(function() {
 		function() {
 			$('#quality-text').prop(
 				'disabled',
-				$('#enable-quality').is(':checked')
+				! $('#enable-quality').is(':checked')
 			);
 			$('#quality-hide').prop(
 				'disabled',
-				$('#enable-quality').is(':checked')
+				! $('#enable-quality').is(':checked')
 			);
 		}
 	)
@@ -97,11 +97,11 @@ $(document).ready(function() {
 		function() {
 			$('#quantity-text').prop(
 				'disabled',
-				$('#enable-quantity').is(':checked')
+				! $('#enable-quantity').is(':checked')
 			);
 			$('#quantity-hide').prop(
 				'disabled',
-				$('#enable-quantity').is(':checked')
+				! $('#enable-quantity').is(':checked')
 			);
 		}
 	)
@@ -112,11 +112,11 @@ $(document).ready(function() {
 		function() {
 			$('#speed-text').prop(
 				'disabled',
-				$('#enable-speed').is(':checked')
+				! $('#enable-speed').is(':checked')
 			);
 			$('#speed-hide').prop(
 				'disabled',
-				$('#enable-speed').is(':checked')
+				! $('#enable-speed').is(':checked')
 			);
 		}
 	)
