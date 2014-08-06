@@ -66,64 +66,43 @@
 											<g:link action="edit" id="${learningObjective.id}" class="learning-objective-list-link">
 												<!-- Definition of the conditions for completing a learning objective -->
 												<span class="learning-objective-condition">
-													<g:if test="${ learningObjective.condition == null }">
-														No Condition
-													</g:if>
-													<g:else>
+													<g:if test="${ learningObjective.condition != null }">
 														${ learningObjective.condition }
-													</g:else>
+													</g:if>
 												</span>
 
 												<!-- Definition of the perfomance evaulations for a learning objective -->
 												<span class="learning-objective-performance">
-													<g:if test="${ learningObjective.performance == null }">
-														No Performance
-													</g:if>
-													<g:else>
+													<g:if test="${ learningObjective.performance != null }">
 														${ learningObjective.performance }
-													</g:else>
+													</g:if>
 												</span>
 
 												<!-- Definition of the criteria for understanding a learning objective -->
 
 												<span class="learning-objective-criteria">
-													<g:if test="${ learningObjective.criteriaAccuracy == null }">
-														No Accuracy Criteria
-													</g:if>
-													<g:else>
+													<g:if test="${ learningObjective.criteriaAccuracy != null }">
 														${ learningObjective.criteriaAccuracy }
-													</g:else>
-
-													<g:if test="${ learningObjective.criteriaQuality == null }">
-														No Quality Criteria
 													</g:if>
-													<g:else>
+
+													<g:if test="${ learningObjective.criteriaQuality != null }">
 														${ learningObjective.criteriaQuality }
-													</g:else>
-
-													<g:if test="${ learningObjective.criteriaQuantity == null }">
-														No Quantity Criteria
 													</g:if>
-													<g:else>
+
+													<g:if test="${ learningObjective.criteriaQuantity != null }">
 														${ learningObjective.criteriaQuantity }
-													</g:else>
-
-													<g:if test="${ learningObjective.criteriaSpeed == null }">
-														No Speed Criteria
 													</g:if>
-													<g:else>
+
+													<g:if test="${ learningObjective.criteriaSpeed != null }">
 														${ learningObjective.criteriaSpeed }
-													</g:else>
+													</g:if>
 												</span>
 
 												<!-- Definition of the indicators used to measure progress through learning objective -->
 												<span class="learning-objective-indicator">
-													<g:if test="${ learningObjective.indicator == null }">
-														No Indicator
-													</g:if>
-													<g:else>
+													<g:if test="${ learningObjective.indicator != null }">
 														${ learningObjective.indicator }
-													</g:else>
+													</g:if>
 												</span>
 											</g:link>
 										</li>
@@ -135,64 +114,43 @@
 							<div id="learning-objectives-definition" class="learning-objective-current">
 								<!-- Definition of the conditions for completing a learning objective -->
 								<span class="learning-objective-condition">
-									<g:if test="${ learningObjective.condition == null }">
-										No Condition
-									</g:if>
-									<g:else>
+									<g:if test="${ learningObjective.condition != null }">
 										${ learningObjective.condition }
-									</g:else>
+									</g:if>
 								</span>
 
 								<!-- Definition of the perfomance evaulations for a learning objective -->
 								<span class="learning-objective-performance">
-									<g:if test="${ learningObjective.performance == null }">
-										No Performance
-									</g:if>
-									<g:else>
+									<g:if test="${ learningObjective.performance != null }">
 										${ learningObjective.performance }
-									</g:else>
+									</g:if>
 								</span>
 
 								<!-- Definition of the criteria for understanding a learning objective -->
 
 								<span class="learning-objective-criteria">
-									<g:if test="${ learningObjective.criteriaAccuracy == null }">
-										No Accuracy Criteria
-									</g:if>
-									<g:else>
+									<g:if test="${ learningObjective.criteriaAccuracy != null }">
 										${ learningObjective.criteriaAccuracy }
-									</g:else>
-
-									<g:if test="${ learningObjective.criteriaQuality == null }">
-										No Quality Criteria
 									</g:if>
-									<g:else>
+
+									<g:if test="${ learningObjective.criteriaQuality != null }">
 										${ learningObjective.criteriaQuality }
-									</g:else>
-
-									<g:if test="${ learningObjective.criteriaQuantity == null }">
-										No Quantity Criteria
 									</g:if>
-									<g:else>
+
+									<g:if test="${ learningObjective.criteriaQuantity != null }">
 										${ learningObjective.criteriaQuantity }
-									</g:else>
-
-									<g:if test="${ learningObjective.criteriaSpeed == null }">
-										No Speed Criteria
 									</g:if>
-									<g:else>
+
+									<g:if test="${ learningObjective.criteriaSpeed != null }">
 										${ learningObjective.criteriaSpeed }
-									</g:else>
+									</g:if>
 								</span>
 
 								<!-- Definition of the indicators used to measure progress through learning objective -->
 								<span class="learning-objective-indicator">
-									<g:if test="${ learningObjective.indicator == null }">
-										No Indicator
-									</g:if>
-									<g:else>
+									<g:if test="${ learningObjective.indicator != null }">
 										${ learningObjective.indicator }
-									</g:else>
+									</g:if>
 								</span>
 							</div>
 						</td>
