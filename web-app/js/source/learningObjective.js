@@ -15,10 +15,10 @@ $(document).ready(function() {
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO-hide-from-Objective').change(function(){
 		if(this.checked) {
-			$('.learning-objective-current .learning-objective-condition').css("display","inline")
+			$('.learning-objective-current .learning-objective-condition').css("display","none")
 		}
 		else {
-			$('.learning-objective-current .learning-objective-condition').css("display","none")
+			$('.learning-objective-current .learning-objective-condition').css("display","inline")
 		}
 	});
 
