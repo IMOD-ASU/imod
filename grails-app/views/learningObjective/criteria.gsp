@@ -36,11 +36,13 @@
 					id="accuracy-text"
 					name="accuracy"
 					value="${learningObjective.criteriaAccuracy}"
+					disabled="${!learningObjective.criteriaAccuracyEnabled}"
 				/>
 				<g:checkBox
 					id="accuracy-hide"
 					name="hideAccuracy"
 					value="${learningObjective.criteriaAccuracyHidden}"
+					disabled="${!learningObjective.criteriaAccuracyEnabled}"
 				/>
 				<label for="accuracy-hide">
 					hide
@@ -60,11 +62,13 @@
 					id="quality-text"
 					name="quality"
 					value="${learningObjective.criteriaQuality}"
+					disabled="${!learningObjective.criteriaQualityEnabled}"
 				/>
 				<g:checkBox
 					id="quality-hide"
 					name="hideQuality"
 					value="${learningObjective.criteriaQualityHidden}"
+					disabled="${!learningObjective.criteriaQualityEnabled}"
 				/>
 				<label for="quality-hide">
 					hide
@@ -84,11 +88,13 @@
 					id="quantity-text"
 					name="quantity"
 					value="${learningObjective.criteriaQuantity}"
+					disabled="${!learningObjective.criteriaQuantityEnabled}"
 				/>
 				<g:checkBox
 					id="quantity-hide"
 					name="hideQuantity"
 					value="${learningObjective.criteriaQuantityHidden}"
+					disabled="${!learningObjective.criteriaQuantityEnabled}"
 				/>
 				<label for="quantity-hide">
 					hide
@@ -108,11 +114,13 @@
 					id="speed-text"
 					name="speed"
 					value="${learningObjective.criteriaSpeed}"
+					disabled="${!learningObjective.criteriaSpeedEnabled}"
 				/>
 				<g:checkBox
 					id="speed-hide"
 					name="hideSpeed"
 					value="${learningObjective.criteriaSpeedHidden}"
+					disabled="${!learningObjective.criteriaSpeedEnabled}"
 				/>
 				<label for="speed-hide">
 					hide
