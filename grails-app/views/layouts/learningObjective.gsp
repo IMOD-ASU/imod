@@ -61,47 +61,47 @@
 									</span>
 								</div>
 								<ul class="learning-objective-list-wrapper">
-									<g:each in="${learningObjectivesList}" status="i" var="learningObjective">
+									<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
 										<li class="learning-objective-list-item">
-											<g:link action="edit" id="${learningObjective.id}" class="learning-objective-list-link">
+											<g:link action="edit" id="${learningObjectiveItem.id}" class="learning-objective-list-link">
 												<!-- Definition of the conditions for completing a learning objective -->
 												<span class="learning-objective-condition">
-													<g:if test="${ learningObjective.condition != null }">
-														${ learningObjective.condition }
+													<g:if test="${ learningObjectiveItem.condition != null }">
+														${ learningObjectiveItem.condition }
 													</g:if>
 												</span>
 
 												<!-- Definition of the perfomance evaulations for a learning objective -->
 												<span class="learning-objective-performance">
-													<g:if test="${ learningObjective.performance != null }">
-														${ learningObjective.performance }
+													<g:if test="${ learningObjectiveItem.performance != null }">
+														${ learningObjectiveItem.performance }
 													</g:if>
 												</span>
 
 												<!-- Definition of the criteria for understanding a learning objective -->
 
 												<span class="learning-objective-criteria">
-													<g:if test="${ learningObjective.criteriaAccuracy != null }">
-														${ learningObjective.criteriaAccuracy }
+													<g:if test="${ learningObjectiveItem.criteriaAccuracy != null && learningObjectiveItem.criteriaAccuracyHidden == false }">
+														${ learningObjectiveItem.criteriaAccuracy }
 													</g:if>
 
-													<g:if test="${ learningObjective.criteriaQuality != null }">
-														${ learningObjective.criteriaQuality }
+													<g:if test="${ learningObjectiveItem.criteriaQuality != null && learningObjectiveItem.criteriaQualityHidden == false }">
+														${ learningObjectiveItem.criteriaQuality }
 													</g:if>
 
-													<g:if test="${ learningObjective.criteriaQuantity != null }">
-														${ learningObjective.criteriaQuantity }
+													<g:if test="${ learningObjectiveItem.criteriaQuantity != null && learningObjectiveItem.criteriaQuantityHidden == false }">
+														${ learningObjectiveItem.criteriaQuantity }
 													</g:if>
 
-													<g:if test="${ learningObjective.criteriaSpeed != null }">
-														${ learningObjective.criteriaSpeed }
+													<g:if test="${ learningObjectiveItem.criteriaSpeed != null && learningObjectiveItem.criteriaSpeedHidden == false }">
+														${ learningObjectiveItem.criteriaSpeed }
 													</g:if>
 												</span>
 
 												<!-- Definition of the indicators used to measure progress through learning objective -->
 												<span class="learning-objective-indicator">
-													<g:if test="${ learningObjective.indicator != null }">
-														${ learningObjective.indicator }
+													<g:if test="${ learningObjectiveItem.indicator != null }">
+														${ learningObjectiveItem.indicator }
 													</g:if>
 												</span>
 											</g:link>
@@ -129,19 +129,19 @@
 								<!-- Definition of the criteria for understanding a learning objective -->
 
 								<span class="learning-objective-criteria">
-									<g:if test="${ learningObjective.criteriaAccuracy != null }">
+									<g:if test="${ learningObjective.criteriaAccuracy != null && learningObjective.criteriaAccuracyHidden == false }">
 										${ learningObjective.criteriaAccuracy }
 									</g:if>
 
-									<g:if test="${ learningObjective.criteriaQuality != null }">
+									<g:if test="${ learningObjective.criteriaQuality != null && learningObjective.criteriaQualityHidden == false }">
 										${ learningObjective.criteriaQuality }
 									</g:if>
 
-									<g:if test="${ learningObjective.criteriaQuantity != null }">
+									<g:if test="${ learningObjective.criteriaQuantity != null && learningObjective.criteriaQuantityHidden == false }">
 										${ learningObjective.criteriaQuantity }
 									</g:if>
 
-									<g:if test="${ learningObjective.criteriaSpeed != null }">
+									<g:if test="${ learningObjective.criteriaSpeed != null && learningObjective.criteriaSpeedHidden == false }">
 										${ learningObjective.criteriaSpeed }
 									</g:if>
 								</span>

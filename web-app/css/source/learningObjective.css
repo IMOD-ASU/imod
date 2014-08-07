@@ -1,3 +1,7 @@
+input[disabled='disabled'] {
+	background: #CCC;
+}
+
 /* Styling for the action words */
 #action-word-categories {
 	list-style-type: none;
@@ -123,6 +127,10 @@ table.LO-inner-table {
 }
 
 /* manage the style for the Learning Objective Progress, Content, Condition and Criteria tabs */
+.criteria-label-equal-width {
+	width: 60px;
+}
+
 #tabs-LO-subhead {
 	height: 2.4em;
 	background: transparent;
