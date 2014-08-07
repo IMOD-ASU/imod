@@ -39,8 +39,6 @@ package imodv6
  * - Topic Content
  */
 class Imod {
-
-	ImodUser		owner
 	String			name
 	String			url
 	String			overview
@@ -57,11 +55,14 @@ class Imod {
 	ScheduleRepeats	repeats
 	ScheduleRepeatsEvery	repeatsEvery
 
-	static belongsTo = ImodUser
+	static belongsTo = [
+		owner: ImodUser
+	]
 
 	static hasMany = [
 		learningObjectives:	LearningObjective,
-		sharedOwners:		ImodUser,
+		// disable this until it is actually used
+		// sharedOwners:		ImodUser,
 		instructors:		Instructor,
 		courseComponents:	CourseComponentCode,
 		audience:			Audience,
@@ -82,7 +83,6 @@ class Imod {
 		imodNumber		nullable: true
 		repeats			nullable: true
 		repeatsEvery	nullable: true
-
 	}
 
 	static mapping = {

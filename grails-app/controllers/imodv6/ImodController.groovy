@@ -36,10 +36,7 @@ class ImodController {
 	}
 
 	def create() {
-		redirect(
-			controller: "courseOverview",
-			action: "create"
-		)
+		new Imod(params)
 	}
 
 	def save() {
