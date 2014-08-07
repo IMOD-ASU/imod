@@ -29,7 +29,7 @@
 					name="enableAccuracy"
 					value="${learningObjective.criteriaAccuracyEnabled}"
 				/>
-				<label for="accuracy-text">
+				<label for="accuracy-text" class="criteria-label-equal-width">
 					Accuracy
 				</label>
 				<g:textField
@@ -55,7 +55,7 @@
 		 			name="enableQuality"
 		 			value="${learningObjective.criteriaQualityEnabled}"
 		 		/>
-				<label for="quality-text">
+				<label for="quality-text" class="criteria-label-equal-width">
 					Quality
 				</label>
 				<g:textField
@@ -81,7 +81,7 @@
 					name="enableQuantity"
 					value="${learningObjective.criteriaQuantityEnabled}"
 				/>
-				<label for="quantity-text">
+				<label for="quantity-text" class="criteria-label-equal-width">
 					Quantity
 				</label>
 				<g:textField
@@ -107,7 +107,7 @@
 					name="enableSpeed"
 					value="${learningObjective.criteriaSpeedEnabled}"
 				/>
-				<label for="quantity-text">
+				<label for="quantity-text" class="criteria-label-equal-width">
 					Speed
 				</label>
 				<g:textField
