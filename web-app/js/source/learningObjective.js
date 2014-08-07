@@ -69,6 +69,7 @@ $(document).ready(function() {
 				'disabled',
 				! $('#enable-accuracy').is(':checked')
 			);
+			$('#accuracy-text').value('');
 			$('#accuracy-hide').prop(
 				'disabled',
 				! $('#enable-accuracy').is(':checked')
@@ -84,6 +85,7 @@ $(document).ready(function() {
 				'disabled',
 				! $('#enable-quality').is(':checked')
 			);
+			$('#quality-text').value('');
 			$('#quality-hide').prop(
 				'disabled',
 				! $('#enable-quality').is(':checked')
@@ -99,6 +101,7 @@ $(document).ready(function() {
 				'disabled',
 				! $('#enable-quantity').is(':checked')
 			);
+			$('#quantity-text').value('');
 			$('#quantity-hide').prop(
 				'disabled',
 				! $('#enable-quantity').is(':checked')
@@ -114,6 +117,7 @@ $(document).ready(function() {
 				'disabled',
 				! $('#enable-speed').is(':checked')
 			);
+			$('#speed-text').value('');
 			$('#speed-hide').prop(
 				'disabled',
 				! $('#enable-speed').is(':checked')

@@ -1,3 +1,7 @@
+input[disabled='disabled'] {
+	background: #CCC;
+}
+
 /* Styling for the action words */
 #action-word-categories {
 	list-style-type: none;
