@@ -54,10 +54,10 @@ grails.project.dependency.resolution = {
 
 		compile ':console:1.4.4'
 		compile ':scaffolding:2.1.2'
-		compile ':postgresql-extensions:4.1.0'
+		compile ':postgresql-extensions:4.2.0'
 		compile ':cache:1.1.7'
 		compile ':spring-security-core:2.0-RC4'
-		compile ':mail:1.0.6'
+		compile ':mail:1.0.7'
 		compile ':jquery-ui:1.10.3'
 		compile ':famfamfam:1.0.1'
 		compile ':spring-security-ui:1.0-RC2'
