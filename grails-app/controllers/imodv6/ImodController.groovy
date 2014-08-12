@@ -36,7 +36,29 @@ class ImodController {
 	}
 
 	def create() {
-		new Imod(params)
+		// get the current user
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
+		// create a new imod
+		def newImod = new Imod(
+			owner: currentUser,
+			name: "New Imod",
+			url: "example.com",
+			subjectArea: "sample"
+		)
+
+		// update current user
+		currentUser.addToImods(newImod)
+
+		// save new imod and the updated user to database
+		currentUser.save(flush: true)
+
+		// redirect to editing new Imod
+		redirect(
+			controller: "CourseOverview",
+			action: "index",
+			id: newImod.id
+		)
 	}
 
 	def save() {
