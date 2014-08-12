@@ -3,6 +3,12 @@ jdk:
   - openjdk7
   - oraclejdk7
 
+addons:
+  postgresql: "9.3"
+
+before_script:
+  - psql -c 'create database sample;' -U postgres
+
 script:
   - ./grailsw compile
   - ./grailsw bootstrap -DnoTomcat=true
