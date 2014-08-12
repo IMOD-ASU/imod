@@ -48,7 +48,9 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ':tomcat:7.0.54'
+		if (System.getProperty("noTomcat") == null) {
+			build ':tomcat:7.0.54'
+		}
 
 		compile ':console:1.4.4'
 		compile ':scaffolding:2.1.2'
