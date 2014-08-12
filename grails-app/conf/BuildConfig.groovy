@@ -48,7 +48,9 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
+		// This check is only needed if `grails bootstrap` is being called during testing
 		if (System.getProperty("noTomcat") == null) {
+			// This plugin is needed for all other types of builds
 			build ':tomcat:7.0.54'
 		}
 
