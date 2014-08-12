@@ -35,9 +35,9 @@ class ImodUser {
 
 
 	static constraints = {
-		username blank: false, unique: true
-		password blank: false
-		profile nullable: true
+		username 	blank: false,	unique: true
+		password 	blank: false
+		profile 	nullable: true
 		preferences nullable: true
 	}
 
@@ -52,8 +52,9 @@ class ImodUser {
 
 	// TODO this probably should be replaced by Spring Security users default implementation
 	def beforeInsert() {
-		profile =new UserProfile().save()
-		preferences = new UserPreferences().save()
+		// Currently these next two lines cause a database constraint error on creating user
+		//profile = new UserProfile().save()
+		//preferences = new UserPreferences().save()
 		encodePassword()
 	}
 

@@ -39,29 +39,38 @@ package imodv6
  * - Topic Content
  */
 class Imod {
-
-	ImodUser		owner
+	// These are required to create an IMOD
 	String			name
 	String			url
+	String			subjectArea
+
+	// These are optional atrributes of an IMOD
 	String			overview
 	String			courseSemester
 	String			courseLocation
 	String			timeRatio
-	Integer			numberOfSeats
-	String			subjectArea
-	Integer			creditHours
 	String			imodNumber
-	CoursePolicy	coursePolicy
-	Schedule		schedule
-	ScheduleDate	scheduleDate
-	ScheduleRepeats	repeats
+
+	// These are optional Integer attributes of an IMOD
+	Integer			numberOfSeats
+	Integer			creditHours
+
+	// Domains belonging to an IMOD
+	// TODO make these relationships?
+	CoursePolicy			coursePolicy
+	Schedule				schedule
+	ScheduleDate			scheduleDate
+	ScheduleRepeats			repeats
 	ScheduleRepeatsEvery	repeatsEvery
 
-	static belongsTo = ImodUser
+	static belongsTo = [
+		owner: ImodUser
+	]
 
 	static hasMany = [
 		learningObjectives:	LearningObjective,
-		sharedOwners:		ImodUser,
+		// disable this until it is actually used
+		// sharedOwners:		ImodUser,
 		instructors:		Instructor,
 		courseComponents:	CourseComponentCode,
 		audience:			Audience,
@@ -69,20 +78,29 @@ class Imod {
 	]
 
 	static constraints = {
+		// These are required to create an IMOD
 		name			nullable: false,	blank: false
-		creditHours		nullable: true
+		url				nullable: false,	blank: false
+		subjectArea		nullable: false,	blank: false
+
+		// These are optional string atrributes of an IMOD
+		overview		nullable: true
+		courseSemester	nullable: true
+		courseLocation	nullable: true
+		timeRatio		nullable: true
+		imodNumber		nullable: true
+
+		// These are optional Integer attributes of an IMOD
 		numberOfSeats	nullable: true
+		creditHours		nullable: true
+
+		// Domains belonging to an IMOD
+		// TODO make these relationships?
 		coursePolicy	nullable: true
 		schedule		nullable: true
 		scheduleDate	nullable: true
-		timeRatio		nullable: true
-		overview		nullable: true
-		courseLocation	nullable: true
-		courseSemester	nullable: true
-		imodNumber		nullable: true
 		repeats			nullable: true
 		repeatsEvery	nullable: true
-
 	}
 
 	static mapping = {
