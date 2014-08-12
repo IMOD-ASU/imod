@@ -29,18 +29,20 @@
 					name="enableAccuracy"
 					value="${learningObjective.criteriaAccuracyEnabled}"
 				/>
-				<label for="accuracy-text">
+				<label for="accuracy-text" class="criteria-label-equal-width">
 					Accuracy
 				</label>
 				<g:textField
 					id="accuracy-text"
 					name="accuracy"
 					value="${learningObjective.criteriaAccuracy}"
+					disabled="${!learningObjective.criteriaAccuracyEnabled}"
 				/>
 				<g:checkBox
 					id="accuracy-hide"
 					name="hideAccuracy"
 					value="${learningObjective.criteriaAccuracyHidden}"
+					disabled="${!learningObjective.criteriaAccuracyEnabled}"
 				/>
 				<label for="accuracy-hide">
 					hide
@@ -53,18 +55,20 @@
 		 			name="enableQuality"
 		 			value="${learningObjective.criteriaQualityEnabled}"
 		 		/>
-				<label for="quality-text">
+				<label for="quality-text" class="criteria-label-equal-width">
 					Quality
 				</label>
 				<g:textField
 					id="quality-text"
 					name="quality"
 					value="${learningObjective.criteriaQuality}"
+					disabled="${!learningObjective.criteriaQualityEnabled}"
 				/>
 				<g:checkBox
 					id="quality-hide"
 					name="hideQuality"
 					value="${learningObjective.criteriaQualityHidden}"
+					disabled="${!learningObjective.criteriaQualityEnabled}"
 				/>
 				<label for="quality-hide">
 					hide
@@ -77,18 +81,20 @@
 					name="enableQuantity"
 					value="${learningObjective.criteriaQuantityEnabled}"
 				/>
-				<label for="quantity-text">
+				<label for="quantity-text" class="criteria-label-equal-width">
 					Quantity
 				</label>
 				<g:textField
 					id="quantity-text"
 					name="quantity"
 					value="${learningObjective.criteriaQuantity}"
+					disabled="${!learningObjective.criteriaQuantityEnabled}"
 				/>
 				<g:checkBox
 					id="quantity-hide"
 					name="hideQuantity"
 					value="${learningObjective.criteriaQuantityHidden}"
+					disabled="${!learningObjective.criteriaQuantityEnabled}"
 				/>
 				<label for="quantity-hide">
 					hide
@@ -101,18 +107,20 @@
 					name="enableSpeed"
 					value="${learningObjective.criteriaSpeedEnabled}"
 				/>
-				<label for="quantity-text">
+				<label for="quantity-text" class="criteria-label-equal-width">
 					Speed
 				</label>
 				<g:textField
 					id="speed-text"
 					name="speed"
 					value="${learningObjective.criteriaSpeed}"
+					disabled="${!learningObjective.criteriaSpeedEnabled}"
 				/>
 				<g:checkBox
 					id="speed-hide"
 					name="hideSpeed"
 					value="${learningObjective.criteriaSpeedHidden}"
+					disabled="${!learningObjective.criteriaSpeedEnabled}"
 				/>
 				<label for="speed-hide">
 					hide
