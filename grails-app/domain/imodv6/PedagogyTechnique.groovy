@@ -12,7 +12,7 @@ class PedagogyTechnique {
 	static hasMany = [
 		domain: LearningDomain,
 		category: DomainCategory,
-		knowledge: ContentKnowledgeDomainCode,
+		knowledge: KnowledgeDimension,
 		focus: PedagogyActivityFocus
 	]
 

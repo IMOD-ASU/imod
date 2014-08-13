@@ -1,13 +1,11 @@
 package imodv6
 
 /**
- * Gives a
+ * TODO: What is this?
+ * It is used by Pedagogy somehow
  */
 class ContentPriorityCode {
 	String description
-
-	static constraints = {
-	}
 
 	static mapping = {
 		version false

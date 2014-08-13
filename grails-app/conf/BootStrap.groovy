@@ -1,7 +1,7 @@
 import imodv6.ActionWordCategory
-import imodv6.ContentKnowledgeDomainCode
+import imodv6.KnowledgeDimension
 import imodv6.ContentPriorityCode
-import imodv6.ContentResourceType
+import imodv6.ResourceType
 import imodv6.DomainCategory
 import imodv6.Help
 import imodv6.Imod
@@ -716,38 +716,38 @@ class BootStrap {
 			domainCategoryCreating.save(flush: true)
 		}
 
-		if (ContentKnowledgeDomainCode.count() < 1) {
-			new ContentKnowledgeDomainCode(
+		if (KnowledgeDimension.count() < 1) {
+			new KnowledgeDimension(
 				description: "Factual"
 			).save(flush: true)
 
-			new ContentKnowledgeDomainCode(
+			new KnowledgeDimension(
 				description: "Conceptual"
 			).save(flush: true)
 
-			new ContentKnowledgeDomainCode(
+			new KnowledgeDimension(
 				description: "Procedural"
 			).save(flush: true)
 
-			new ContentKnowledgeDomainCode(
+			new KnowledgeDimension(
 				description: "Metacognitive"
 			).save(flush: true)
 		}
 
-		if (ContentResourceType.count() == 0) {
-			new ContentResourceType(
+		if (ResourceType.count() == 0) {
+			new ResourceType(
 				description: "Document"
 			).save(flush: true)
 
-			new ContentResourceType(
+			new ResourceType(
 				description: "Book"
 			).save(flush: true)
 
-			new ContentResourceType(
+			new ResourceType(
 				description: "Chapter"
 			).save(flush: true)
 
-			new ContentResourceType(
+			new ResourceType(
 				description: "URL"
 			).save(flush: true)
 		}
@@ -818,7 +818,7 @@ class BootStrap {
 				category:DomainCategory.findAllByNameInList([
 					'Remembering'
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge:KnowledgeDimension.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual",
 					"Procedural",
@@ -863,7 +863,7 @@ class BootStrap {
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge:KnowledgeDimension.findAllByDescriptionInList([
 					"Metacognitive"
 				]),
 				focus: PedagogyActivityFocus.findAllByFocusInList([
@@ -921,7 +921,7 @@ class BootStrap {
 					'Remembering',
 					"Understanding"
 				]),
-				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: KnowledgeDimension.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual"
 				]),
@@ -944,7 +944,7 @@ class BootStrap {
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: KnowledgeDimension.findAllByDescriptionInList([
 					"Conceptual",
 					"Procedural"
 				]),
@@ -970,7 +970,7 @@ class BootStrap {
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: KnowledgeDimension.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual",
 					"Procedural",
@@ -1040,7 +1040,7 @@ class BootStrap {
 					"Analyzing",
 					"Evaluating"
 				]),
-				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge: KnowledgeDimension.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual",
 					"Procedural",
@@ -1105,7 +1105,7 @@ class BootStrap {
 				pedagogyDescription: "Students collect and organize lecture notes, essay responses to prompts presented in class, summaries of discussions, personal reflections into a portfolio and submit for evaluation two to three times during the academic year.",
 				domain: LearningDomain.findAllByNameInList(['Cognitive']),
 				category: DomainCategory.findAllByNameInList(["Applying","Analyzing"]),
-				knowledge: ContentKnowledgeDomainCode.findAllByDescriptionInList(["Factual", "Conceptual", "Procedural", "Metacognitive"]),
+				knowledge: KnowledgeDimension.findAllByDescriptionInList(["Factual", "Conceptual", "Procedural", "Metacognitive"]),
 				focus: PedagogyActivityFocus.findAllByFocusInList(["Writing", "Discussing"]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")
 			).save(flush:true)
@@ -1167,7 +1167,7 @@ class BootStrap {
 					"Understanding",
 					"Remembering"
 				]),
-				knowledge:ContentKnowledgeDomainCode.findAllByDescriptionInList([
+				knowledge:KnowledgeDimension.findAllByDescriptionInList([
 					"Factual",
 					"Conceptual"
 				]),
