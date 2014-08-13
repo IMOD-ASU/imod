@@ -31,19 +31,19 @@ class Schedule {
 	Integer saturday
 
 	static belongsTo = [
-		imod:Imod
+		imod: Imod
 	]
 
     static constraints = {
-		endOccurences nullable: true
-		sunday nullable: true
-		monday nullable: true
-		tuesday nullable: true
-		wednesday nullable: true
-		thursday nullable: true
-		friday nullable: true
-		saturday nullable: true
-		repeatsDays nullable: true
+		endOccurences 	nullable: true
+		sunday 			nullable: true
+		monday 			nullable: true
+		tuesday 		nullable: true
+		wednesday 		nullable: true
+		thursday 		nullable: true
+		friday 			nullable: true
+		saturday 		nullable: true
+		repeatsDays 	nullable: true
     }
 
 	static mapping = {

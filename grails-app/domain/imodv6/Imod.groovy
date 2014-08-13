@@ -81,32 +81,70 @@ class Imod {
 	 * Relationships *
 	 *****************
 	 */
+
 	/**
-	 * @param owner instructor that owns the course
-	 * @param coursePolicy TODO What is this?
-	 * @param scedule TODO How are these supposed to work?
-	 * @param scheduleDate TODO How are these supposed to work?
-	 * @param repeats TODO How are these supposed to work?
-	 * @param learningObjectives a collection of all of the learning objectives that will be used in the IMOD
-	 * @param repeatsEvery TODO How are these supposed to work?
+	 * Gives information about Grading Policy, Attendacy policy etc
 	 */
 	CoursePolicy			coursePolicy
+
+	/**
+	 * What days and times the course occurs on
+	 */
 	Schedule				schedule
+
+	/**
+	 * Special dates in the course (holidays, exams, etc)
+	 * TODO: should this be related only to the schedule and not to the course?
+	 */
 	ScheduleDate			scheduleDate
+
+	/**
+	 * How often the schedule repeats (weekly, semi-weekly, monthly)
+	 * TODO: should this be related only to the schedule and not to the course?
+	 */
 	ScheduleRepeats			repeats
+
+	/**
+	 * TODO: How is this different from repeats?
+	 * TODO: should this be related only to the schedule and not to the course?
+	 */
 	ScheduleRepeatsEvery	repeatsEvery
 
 	static belongsTo = [
+		/**
+		 * instructor that owns the course
+		 */
 		owner: ImodUser
 	]
 
 	static hasMany = [
+		/**
+		 * all of the learning objectives that will be used in this IMOD
+		 */
 		learningObjectives:	LearningObjective,
+
 		// disable this until it is actually used
 		// sharedOwners:		ImodUser,
+
+		/**
+		 * All instructors who have access this couse
+		 */
 		instructors:		Instructor,
+
+		/**
+		 * Components of the course
+		 * TODO: what is a component?
+		 */
 		courseComponents:	CourseComponentCode,
+
+		/**
+		 * People that is course caters to
+		 */
 		audience:			Audience,
+
+		/**
+		 * All of the Topics and Resources to be covered in the course
+		 */
 		contents:			Content
 	]
 
@@ -115,6 +153,10 @@ class Imod {
 	 *****************
 	 * Configuration *
 	 *****************
+	 */
+
+	/**
+	 * Which attributes are optional or required
 	 */
 	static constraints = {
 		// These are required to create an IMOD
@@ -139,6 +181,9 @@ class Imod {
 		repeatsEvery	nullable: true
 	}
 
+	/**
+	 * Courses are not versioned
+	 */
 	static mapping = {
 		version false
 	}
