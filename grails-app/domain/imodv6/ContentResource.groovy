@@ -2,47 +2,103 @@ package imodv6
 
 /**
  * Stores information of a document or other resource relevant to teaching a topic in a course
- * TODO review this Dr. Bansal is not sure about these fields
- * @param name TODO what is this?
- * @param resourceType TODO what is this?
- * @param file TODO what is this?
- * @param resourceUrl link to the location of an online resource
- * @param fileName name of resource (TODO is this a duplicate of URL/ could this be replaced with path?)
- * @param fileContentType The mime type of the resource
- * @param description a short explanation of how to resource relates to the topic
- *
- * @param content topic that this resource belongs to
  */
 class ContentResource {
+	/*
+	 ***********************
+	 * Required Attributes *
+	 ***********************
+	 */
+
+	/**
+	 * A display name for the resource
+	 */
 	String name
-	ContentResourceType resourceType
-	byte[] file
-	String resourceURL
-	String fileName
-	String fileContentType
+
+
+	/*
+	 ***********************
+	 * Optional Attributes *
+	 ***********************
+	 */
+
+	/**
+	 * A short description of what this resource covers, or how it relates to the content
+	 */
 	String description
 
+	/**
+	 * What type of content the resource contains
+	 * e.g. video, pdf, interactive content
+	 */
+	ContentResourceType resourceType
+
+	/**
+	 *
+	 */
+	String resourceURL
+
+	//This was earlier developers attempt at storing a file
+	//byte[] file
+	//String fileName
+	//String fileContentType
+
+
+	/*
+	 *****************
+	 * Relationships *
+	 *****************
+	 */
+
+	/**
+	 * Each resource belong to one content topic
+	 */
 	static belongsTo = [
 		content: Content
 	]
 
+
+	/*
+	 *****************
+	 * Configuration *
+	 *****************
+	 */
+
+	/**
+	 * Describes what attributes are optional
+	 */
 	static constraints = {
 		description nullable: true
-		fileName nullable: true
-		fileContentType nullable: true
 		resourceURL nullable: true
 		resourceType nullable: true
-		file(
-			size: 0..20000000,
-			nullable: true
-		)
+
+		//fileName nullable: true
+		//fileContentType nullable: true
+		//file(
+		//	size: 0..20000000,
+		//	nullable: true
+		//)
 	}
 
+	/**
+	 * This is not versioned
+	 * description is a LONGVARCHAR or a large variable sized text field
+	 */
 	static mapping = {
 		version false
 		description type: 'text'
 	}
 
+	/*
+	 *************
+	 * Functions *
+	 *************
+	 */
+
+	/**
+	 * printing the Resource will give the resource's display name
+	 * @return display name for resource
+	 */
 	def String toString() {
 		return name
 	}
