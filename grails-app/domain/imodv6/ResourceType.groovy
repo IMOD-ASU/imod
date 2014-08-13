@@ -1,6 +1,9 @@
 package imodv6
 
-class ContentResourceType {
+/**
+ * Describes presentation format (video, text, slides) of a Resource
+ */
+class ResourceType {
 	String description
 
 	static mapping = {

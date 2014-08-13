@@ -59,7 +59,7 @@ class Content {
 		/**
 		 * the materials for this content topic
 		 */
-		resources:		ContentResource,
+		resources:		Resource,
 
 		/**
 		 * A more specific topic pertaining to this general topic

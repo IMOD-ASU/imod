@@ -1,7 +1,7 @@
 import imodv6.ActionWordCategory
 import imodv6.KnowledgeDimension
 import imodv6.ContentPriorityCode
-import imodv6.ContentResourceType
+import imodv6.ResourceType
 import imodv6.DomainCategory
 import imodv6.Help
 import imodv6.Imod
@@ -734,20 +734,20 @@ class BootStrap {
 			).save(flush: true)
 		}
 
-		if (ContentResourceType.count() == 0) {
-			new ContentResourceType(
+		if (ResourceType.count() == 0) {
+			new ResourceType(
 				description: "Document"
 			).save(flush: true)
 
-			new ContentResourceType(
+			new ResourceType(
 				description: "Book"
 			).save(flush: true)
 
-			new ContentResourceType(
+			new ResourceType(
 				description: "Chapter"
 			).save(flush: true)
 
-			new ContentResourceType(
+			new ResourceType(
 				description: "URL"
 			).save(flush: true)
 		}

@@ -3,7 +3,7 @@ package imodv6
 /**
  * Stores information of a document or other resource relevant to teaching a topic in a course
  */
-class ContentResource {
+class Resource {
 	/*
 	 ***********************
 	 * Required Attributes *
@@ -31,7 +31,7 @@ class ContentResource {
 	 * What type of content the resource contains
 	 * e.g. video, pdf, interactive content
 	 */
-	ContentResourceType resourceType
+	ResourceType resourceType
 
 	/**
 	 *
