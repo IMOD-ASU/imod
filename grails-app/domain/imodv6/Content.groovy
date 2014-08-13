@@ -11,59 +11,62 @@ package imodv6
  * @param subTopic another topic that falls under the general over-arching topic
  */
 class Content {
-	String topicTitle
-	String priority
-	Boolean preReq
-	Imod imod
-	Content parentContent
+	String	topicTitle
+	String	priority
+	Boolean	preReq
+	Imod	imod
+	Content	parentContent
 
 
 	static hasMany = [
-		dimensions: KnowledgeDimensionEnum,
-		resources: ContentResource,
-		subTopic: String,
-		objectives: LearningObjective,
-		subContents: Content,
+		dimensions:		KnowledgeDimensionEnum,
+		resources:		ContentResource,
+		subTopic:		String,
+		objectives:		LearningObjective,
+		subContents:	Content,
 	]
 
 	static belongsTo = [
-		LearningObjective, Content
+		LearningObjective,
+		Content
 	]
-	
+
 	static List priorities(){
-		def priorityList=[
-		'Critical',
-		'Very Important',
-		'Good to Know'
+		def priorityList = [
+			'Critical',
+			'Very Important',
+			'Good to Know'
 		]
 		return priorityList
 	}
-	
+
 	static constraints = {
-		dimensions nullable: true
-		preReq nullable: true
-		priority nullable: true
-		topicTitle nullable: true
-		objectives nullable: true
-		subContents nullable: true, validator:{ val, obj, errors->
-			checkRecursion(val.parentContent,obj,errors)
+		dimensions	nullable:	true
+		preReq		nullable:	true
+		priority	nullable:	true
+		topicTitle	nullable:	true
+		objectives	nullable:	true
+		subContents	nullable:	true, validator: {
+			val,
+			obj,
+			errors -> checkRecursion(val.parentContent,obj,errors)
 		}
 	}
- 
+
 	static mapping = {
 		version false
 	}
-	static transients=['priorities']
+	static transients = ['priorities']
 	def checkRecursion(currentContent, contentToAdd, errors){
-		if (currentContent==null){
+		if (currentContent == null){
 			return true
 		}
 		if (currentContent==contentToAdd){
-			errors.rejectValue('subContents','Cannot contain self')
+			errors.rejectValue('subContents', 'Cannot contain self')
 		}
 		else{
-			return checkRecursion(currentContent.parentContent,contentToAdd,errors)
+			return checkRecursion(currentContent.parentContent, contentToAdd, errors)
 		}
-		
+
 	}
 }
