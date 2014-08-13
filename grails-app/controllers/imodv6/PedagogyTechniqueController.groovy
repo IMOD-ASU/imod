@@ -31,7 +31,7 @@ class PedagogyTechniqueController {
 		def domainList = DomainCategory.findAllByDomain(domain);
 
 		//To get the Knowledge Dimension
-		def KnowledgeDomainlist = ContentKnowledgeDomainCode.list()
+		def KnowledgeDomainlist = KnowledgeDimension.list()
 
 		return [domains : domains, domainList: domainList, KnowledgeDomainlist: KnowledgeDomainlist]
 

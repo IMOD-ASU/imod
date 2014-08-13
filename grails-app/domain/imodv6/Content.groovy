@@ -2,22 +2,53 @@ package imodv6
 
 /**
  * Describes a content topic that will be covered in the IMODS
- * @param topicTitle the title of the content to be covered
- * @param piorityCode gives a text description of the important of a topic
- * @param knowledgeDomainCode TODO what is this?
- * @param preReq TODO: what is the boolean for?
- *
- * @param ContentResource a reference to the actual content for this topic ( TODO ? )
- * @param subTopic another topic that falls under the general over-arching topic
  */
 class Content {
-	String	topicTitle
-	String	priority
-	Boolean	preReq
-	Imod	imod
-	Content	parentContent
+	/*
+	 ***********************
+	 * Required Attributes *
+	 ***********************
+	 */
+
+	/**
+	 * TODO: What is this doing?
+	 */
+	Content parentContent
 
 
+	/*
+	 ***********************
+	 * Optional Attributes *
+	 ***********************
+	 */
+
+	/**
+	 * title of the content to be covered
+	 */
+	String topicTitle
+
+	/**
+	 * gives a text description of the important of a topic
+	 */
+	String priority
+
+	/**
+	 * TODO: what is the boolean for?
+	 * Should this be ```Boolean externalPreprerequisite
+	 */
+	Boolean preReq
+
+	/**
+	 * Todo: Why is Content Directly related to an Imod?
+	 * If this is required why is it not a belongs to relationship?
+	 */
+	Imod imod
+
+	/*
+	 *****************
+	 * Relationships *
+	 *****************
+	 */
 	static hasMany = [
 		dimensions:		KnowledgeDimensionEnum,
 		resources:		ContentResource,
@@ -31,15 +62,15 @@ class Content {
 		Content
 	]
 
-	static List priorities() {
-		def priorityList = [
-			'Critical',
-			'Very Important',
-			'Good to Know'
-		]
-		return priorityList
-	}
+	/*
+	 *****************
+	 * Configuration *
+	 *****************
+	 */
 
+	/**
+	 * Describes which attributes an contain a null (empty) value
+	 */
 	static constraints = {
 		dimensions	nullable:	true
 		preReq		nullable:	true
@@ -53,12 +84,42 @@ class Content {
 		}
 	}
 
+	/**
+	 * This is not versioned
+	 */
 	static mapping = {
 		version false
 	}
 
 	static transients = ['priorities']
 
+
+	/*
+	 *************
+	 * Functions *
+	 *************
+	 */
+
+	/**
+	 * Lists all of the possible priorities that a content could have
+	 * @return array of priorities
+	 */
+	static List priorities() {
+		def priorityList = [
+			'Critical',
+			'Very Important',
+			'Good to Know'
+		]
+		return priorityList
+	}
+
+	/**
+	 * [checkRecursion description]
+	 * @param  currentContent [description]
+	 * @param  contentToAdd   [description]
+	 * @param  errors         [description]
+	 * @return                [description]
+	 */
 	def checkRecursion(currentContent, contentToAdd, errors) {
 		if (currentContent == null) {
 			return true
