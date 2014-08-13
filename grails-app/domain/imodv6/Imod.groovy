@@ -8,55 +8,88 @@ package imodv6
  * - Learning Objectives - What this course will teach
  * - Content - resources that will be used to cover these topics
  * - Assessment - How student progress will be measured through the course
- * - Pedagogy - TODO what is this?
- *
- * IMOD attributes
- * @param owner instructor that owns the course
- * @param name Course title
- * @param url link to the course website
- * @param overview a short description of the course
- * @param courseSemenster semester that the course will be taught in (TODO should this be an object)
- * @param courseLocation Campus, Room and Building where course will be taught
- * @param timeRatio TODO what is this?
- * @param numberOfSeats number of students enrolled in course (Should this and course enrollment be seperate?)
- * @param subjectArea General subject area that course will be covering
- * @param creditHours number of credit hours that course is awarded
- * @param imodNumber TODO What is this?
- * @param coursePolicy TODO What is this?
- * @param scedule TODO How are these supposed to work?
- * @param scheduleDate TODO How are these supposed to work?
- * @param repeats TODO How are these supposed to work?
- * @param learningObjectives a collection of all of the learning objectives that will be used in the IMOD
- * @param repeatsEvery TODO How are these supposed to work?
- *
- * IMOD relationships
- * an IMOD belongs to an instructor
- * each IMOD can have several
- * - Learning Objectives
- * - Partnered Instructors
- * - Instructors
- * - Course Components
- * - Topic Content
+ * - Pedagogy - How a Learning Objective will be taught
  */
 class Imod {
-	// These are required to create an IMOD
+	/*
+	 ***********************
+	 * Required Attributes *
+	 ***********************
+	 */
+
+	/**
+	 * Course title
+	 */
 	String			name
+
+	/**
+	 * link to the course website
+	 */
 	String			url
+
+	/**
+	 * General subject area that course will be covering
+	 */
 	String			subjectArea
 
-	// These are optional atrributes of an IMOD
+
+	/*
+	 ***********************
+	 * Optional Attributes *
+	 ***********************
+	 */
+
+	/**
+	 * a short description of the course
+	 */
 	String			overview
+
+	/**
+	 * semester that the course will be taught in
+	 * TODO: should this be an object?
+	 */
 	String			courseSemester
+
+	/**
+	 * Campus, Room and Building where course will be taught
+	 */
 	String			courseLocation
+
+	/**
+	 * TODO what is this?
+	 */
 	String			timeRatio
+
+	/**
+	 * TODO What is this?
+	 */
 	String			imodNumber
 
-	// These are optional Integer attributes of an IMOD
+	/**
+	 * number of students enrolled in course
+	 */
 	Integer			numberOfSeats
+
+	/**
+	 * number of credit hours that course is awarded
+	 */
 	Integer			creditHours
 
-	// Domains belonging to an IMOD
-	// TODO make these relationships?
+
+	/*
+	 *****************
+	 * Relationships *
+	 *****************
+	 */
+	/**
+	 * @param owner instructor that owns the course
+	 * @param coursePolicy TODO What is this?
+	 * @param scedule TODO How are these supposed to work?
+	 * @param scheduleDate TODO How are these supposed to work?
+	 * @param repeats TODO How are these supposed to work?
+	 * @param learningObjectives a collection of all of the learning objectives that will be used in the IMOD
+	 * @param repeatsEvery TODO How are these supposed to work?
+	 */
 	CoursePolicy			coursePolicy
 	Schedule				schedule
 	ScheduleDate			scheduleDate
@@ -77,6 +110,12 @@ class Imod {
 		contents:			Content
 	]
 
+
+	/*
+	 *****************
+	 * Configuration *
+	 *****************
+	 */
 	static constraints = {
 		// These are required to create an IMOD
 		name			nullable: false,	blank: false
@@ -89,13 +128,10 @@ class Imod {
 		courseLocation	nullable: true
 		timeRatio		nullable: true
 		imodNumber		nullable: true
-
-		// These are optional Integer attributes of an IMOD
 		numberOfSeats	nullable: true
 		creditHours		nullable: true
 
 		// Domains belonging to an IMOD
-		// TODO make these relationships?
 		coursePolicy	nullable: true
 		schedule		nullable: true
 		scheduleDate	nullable: true
@@ -107,6 +143,17 @@ class Imod {
 		version false
 	}
 
+
+	/*
+	 *************
+	 * Functions *
+	 *************
+	 */
+
+	/**
+	 * printing the Help will give the tool tip text
+	 * @return tool tip text
+	 */
 	def String toString() {
 		return name
 	}

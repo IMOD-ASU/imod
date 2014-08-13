@@ -7,23 +7,36 @@ package imodv6
  * @param domain Learning Domain that this category belongs to
  */
 class DomainCategory {
+	/**
+	 * Name for the Category
+	 */
 	String name
 
 	static belongsTo = [
+		/**
+		 * This is the overarching domain that this category falls under
+		 */
 		learningDomain: LearningDomain
 	]
 
 	static hasMany = [
+		/**
+		 * These are the action words that fall under this domain
+		 */
 		actionWordCategories: ActionWordCategory
 	]
 
-	static constraints = {
-	}
-
+	/**
+	 * Categories are not versioned
+	 */
 	static mapping = {
 		version false
 	}
 
+	/**
+	 * printing the Domain Category will give the display name for the category
+	 * @return display name
+	 */
 	def String toString(){
 		return name
 	}

@@ -38,18 +38,18 @@ class Content {
 	 */
 	Boolean preReq
 
+	/*
+	 *****************
+	 * Relationships *
+	 *****************
+	 */
+
 	/**
 	 * Todo: Why is Content Directly related to an Imod?
 	 * If this is required why is it not a belongs to relationship?
 	 */
 	Imod imod
 
-
-	/*
-	 *****************
-	 * Relationships *
-	 *****************
-	 */
 	static hasMany = [
 		/**
 		 * These are the various Knowledge Dimensio categories that a Content topic can belong to (many)
