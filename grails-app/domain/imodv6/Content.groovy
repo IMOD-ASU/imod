@@ -44,23 +44,53 @@ class Content {
 	 */
 	Imod imod
 
+
 	/*
 	 *****************
 	 * Relationships *
 	 *****************
 	 */
 	static hasMany = [
+		/**
+		 * These are the various Knowledge Dimensio categories that a Content topic can belong to (many)
+		 */
 		dimensions:		KnowledgeDimensionEnum,
+
+		/**
+		 * the materials for this content topic
+		 */
 		resources:		ContentResource,
+
+		/**
+		 * A more specific topic pertaining to this general topic
+		 * TODO: How is this different than sub contents?
+		 * TODO: Should this be renamed ```externalSubtopic```?
+		 */
 		subTopic:		String,
+
+		/**
+		 * These are the learning objectives that this content topic tries to teach
+		 */
 		objectives:		LearningObjective,
+
+		/**
+		 * A more specific content topic pertaining to this general topic
+		 */
 		subContents:	Content,
 	]
 
 	static belongsTo = [
+		/**
+		 * TODO: why does content belong to one learning objective, while having many learning objectives?
+		 */
 		LearningObjective,
+
+		/**
+		 * Todo: why does content belong to content? Is this the content's parent?
+		 */
 		Content
 	]
+
 
 	/*
 	 *****************
@@ -91,6 +121,9 @@ class Content {
 		version false
 	}
 
+	/**
+	 * Priorities are read only, they cannot be written
+	 */
 	static transients = ['priorities']
 
 

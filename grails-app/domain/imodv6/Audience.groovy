@@ -16,6 +16,10 @@ class Audience {
 		version false
 	}
 
+	/**
+	 * printing the Audience object will give the instance's description
+	 * @return the description of the audience
+	 */
 	def String toString(){
 		return description
 	}
