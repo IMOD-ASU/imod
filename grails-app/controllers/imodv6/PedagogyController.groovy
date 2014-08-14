@@ -153,7 +153,7 @@ class PedagogyController {
 				learningObjectiveDates.add(today + it)
 			}
 			remainingContent.removeAll(contentList ? contentList.toList() : [])
-			List<ContentKnowledgeDomainCode> knowledgeDomainCodes = ContentKnowledgeDomainCode.values()
+			List<KnowledgeDimension> knowledgeDomainCodes = KnowledgeDimension.values()
 			List<ContentPriorityCode> contentPriorityCodeTypeList = ContentPriorityCode.values()
 
 			//To get the Domain Category
@@ -162,7 +162,7 @@ class PedagogyController {
 
 
 			//To get the Knowledge Dimension
-			def KnowledgeDomainlist = ContentKnowledgeDomainCode.list(sort:'id')
+			def KnowledgeDomainlist = KnowledgeDimension.list(sort:'id')
 			Map<String, String> mapkdList = new HashMap<String,String>()
 			def kdmnList = []
 
@@ -288,7 +288,7 @@ class PedagogyController {
 		def domainList = DomainCategory.findAllByDomain(domain);
 
 		//To get the Knowledge Dimension
-		def KnowledgeDomainlist = ContentKnowledgeDomainCode.list()
+		def KnowledgeDomainlist = KnowledgeDimension.list()
 
 
 		return [
@@ -301,7 +301,7 @@ class PedagogyController {
 	 * To open Pedagogy Technique clone popup
 	 */
 	def clonePedagogyTech={
-		render template:"pedagogyCloneTechnique", model:[pedagogyTech:PedagogyTechnique.get(params.techId),lrnDomainlist:LearningDomain.list(),domainList:DomainCategory.list(),KnowledgeDomainlist:ContentKnowledgeDomainCode.list()]
+		render template:"pedagogyCloneTechnique", model:[pedagogyTech:PedagogyTechnique.get(params.techId),lrnDomainlist:LearningDomain.list(),domainList:DomainCategory.list(),KnowledgeDomainlist:KnowledgeDimension.list()]
 	}
 	/**
 	 * cloneSaveTech, This action is used for validating cloned Technique.
@@ -355,7 +355,7 @@ class PedagogyController {
 		}
 		if(flag){
 			println message
-			render template:"pedagogyCloneTechnique", model:[errorMsg:message,pedagogyTech:PedagogyTechnique.get(params.pedagogy_tech_id),lrnDomainlist:LearningDomain.list(),domainList:DomainCategory.list(),KnowledgeDomainlist:ContentKnowledgeDomainCode.list()]
+			render template:"pedagogyCloneTechnique", model:[errorMsg:message,pedagogyTech:PedagogyTechnique.get(params.pedagogy_tech_id),lrnDomainlist:LearningDomain.list(),domainList:DomainCategory.list(),KnowledgeDomainlist:KnowledgeDimension.list()]
 //			render template:"pedagogyCloneTechnique",status:HttpServletResponse.SC_INTERNAL_SERVER_ERROR
 		}else{
 			cloneNewTechnique(params)

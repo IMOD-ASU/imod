@@ -4,7 +4,7 @@ import grails.validation.Validateable
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 @Validateable
-class ContentResourceCO {
+class ResourceCO {
     Long id
     Long currentContentIdForResource
     List<Long> resourceIds = []
@@ -13,5 +13,5 @@ class ContentResourceCO {
     List<CommonsMultipartFile> files = []
     List<String> types = []
 
-    ContentResourceCO() {}
+    ResourceCO() {}
 }
