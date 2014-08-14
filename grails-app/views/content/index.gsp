@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>
-			Assessment
+			Content
 		</title>
 		<meta name="layout" content="imod">
 	</head>
