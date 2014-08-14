@@ -12,14 +12,14 @@ class PedagogyReference {
 
 	static belongsTo =[
 		referenceType: PedagogyReferenceType,
-		pedagogyTechnique:PedagogyTechnique
+		pedagogyTechnique: PedagogyTechnique
 	]
 
 	static mapping = {
-		description type:'text'
+		description type: 'text'
 	}
     static constraints = {
-		description nullable:true
-		author nullable:true
+		description nullable: true
+		author nullable: true
     }
 }
