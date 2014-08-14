@@ -73,7 +73,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top">
-						<g:link controller="assessment" action="index" class="ui-tabs-anchor">
+						<g:link controller="assessment" action="index" id="${imodInstance?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
 							<span id="assess-tab-title">
 								Assessment
@@ -81,7 +81,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top">
-						<g:link controller="pedagogy" action="index" class="ui-tabs-anchor">
+						<g:link controller="pedagogy" action="index" id="${imodInstance?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
 							<span id="pedagogy-tab-title">
 								Pedagogy

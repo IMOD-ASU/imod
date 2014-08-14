@@ -21,7 +21,7 @@ class PedagogyTechniqueController {
 	}
 
 
-	def index() {
+	def index(Long id) {
 
 		//To get Learning Domain
 		def domains = LearningDomain.list()
@@ -33,7 +33,11 @@ class PedagogyTechniqueController {
 		//To get the Knowledge Dimension
 		def KnowledgeDomainlist = KnowledgeDimension.list()
 
-		return [domains : domains, domainList: domainList, KnowledgeDomainlist: KnowledgeDomainlist]
-
+		[
+			imodInstance: Imod.get(id),
+			domains : domains,
+			domainList: domainList,
+			KnowledgeDomainlist: KnowledgeDomainlist
+		]
 	}
 }

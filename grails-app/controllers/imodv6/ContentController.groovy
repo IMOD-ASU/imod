@@ -13,7 +13,11 @@ class ContentController {
 		setLearningObjective: 'POST',
 	]
 
-	def index() {}
+	def index(Long id) {
+		[
+			imodInstance: Imod.get(id)
+		]
+	}
 
 	def addNewTopic(Long id) {
 		def imodInstance = Imod.get(id)
