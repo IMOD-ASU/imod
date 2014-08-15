@@ -6,6 +6,6 @@
 		<meta name="layout" content="imod">
 	</head>
 	<body>
-		Coming Soon
+		<h1 class="text-centered">Coming Soon</h1>
 	</body>
 </html>

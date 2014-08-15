@@ -56,8 +56,7 @@
 
 table.inner-table {
 	position: relative;
-	left: -62.5px;
-	width: 113%;
+	width: 100%;
 	height: 100%;
 }
 
