@@ -1,3 +1,6 @@
+// start at the beggining of the path, get the first '/' then and all the characters between that and the second '/'
+var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0]
+
 //on page load
 $(document).ready(function() {
 	// listen for the selected learning domain to change, when it does call ajax
@@ -134,7 +137,7 @@ $(document).ready(function() {
  */
 function populateDomainCategories(event) {
 	$.ajax({
-		url: '/imodv6/learningObjective/getDomainCategories',
+		url: baseUrl + 'learningObjective/getDomainCategories',
 		type: 'GET',
 		dataType: 'json',
 		data: {
@@ -162,7 +165,7 @@ function populateDomainCategories(event) {
  */
 function populateActionWordCategories(event) {
 	$.ajax({
-		url: '/imodv6/learningObjective/getActionWordCategories',
+		url: baseUrl + 'learningObjective/getActionWordCategories',
 		type: 'GET',
 		dataType: 'json',
 		data: {
@@ -190,7 +193,7 @@ function populateActionWordCategories(event) {
  */
 function populateActionWords(actionWordCategory) {
 	$.ajax({
-		url: '/imodv6/learningObjective/getActionWords',
+		url: baseUrl + 'learningObjective/getActionWords',
 		type: 'GET',
 		dataType: 'json',
 		data: {
