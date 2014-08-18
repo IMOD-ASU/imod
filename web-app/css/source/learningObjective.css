@@ -51,7 +51,7 @@ input[disabled='disabled'] {
 }
 
 /* managing the page layout */
-table.LO-inner-table {
+.LO-inner-table {
 	width: 100%;
 }
 
@@ -137,43 +137,40 @@ table.LO-inner-table {
 }
 
 #tabs-LO-subhead {
-	height: 2.4em;
-	background: transparent;
 	border: 0px;
 }
 
 #tabs-LO-subhead .tabs-background {
-	height: 4.5em;
+	height: 100%;
 }
 
 #tabs-LO-subhead .ui-tabs-nav {
-	padding: 0em;
-	border-width: 0px;
-	float: right;
+	margin: 0 auto;
+	padding: 0;
+	border-width: 0;
 	background: transparent;
-	margin: 10px;
 	border-collapse: collapse;
 }
 
-#tabs-LO-subhead .ui-tabs-nav li.active a {
+#tabs-LO-subhead .active a {
 	height: 1.35em;
 	border-radius: 2.6em / 1.2em;
 	background: linear-gradient(to right, transparent, #F5F5F5, transparent);
 }
 
-#tabs-LO-subhead .ui-tabs-nav li.active a.performance {
+#tabs-LO-subhead .active .performance {
 	color: #3BA8DE;
 }
 
-#tabs-LO-subhead .ui-tabs-nav li.active a.content {
+#tabs-LO-subhead .active .content {
 	color: #F7941D;
 }
 
-#tabs-LO-subhead .ui-tabs-nav li.active a.condition {
+#tabs-LO-subhead .active .condition {
 	color: #EC008C;
 }
 
-#tabs-LO-subhead .ui-tabs-nav li.active a.criteria {
+#tabs-LO-subhead .active .criteria {
 	color: #EC008C;
 }
 
@@ -188,12 +185,12 @@ table.LO-inner-table {
 	padding-right: 0;
 }
 
-#tabs-LO-subhead .ui-tabs-nav li a.ui-tabs-anchor{
+#tabs-LO-subhead .ui-tabs-nav li .ui-tabs-anchor {
 	width: 5.2em;
 	text-align: center
 }
 
-#tabs-LO-subhead .ui-tabs-nav li{
+#tabs-LO-subhead .ui-tabs-nav li {
 	background: linear-gradient(#FDFDFD, #DDDDDD);
 	position: static;
 	margin: 0px;
@@ -224,7 +221,7 @@ table.LO-inner-table {
 	border-top: 1px solid #C4C2C2
 }
 
-#LO-hide-from-Objective{
+#LO-hide-from-Objective {
 	height: 1em;
 }
 
