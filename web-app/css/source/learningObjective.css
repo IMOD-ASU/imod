@@ -4,14 +4,14 @@ input[disabled='disabled'] {
 
 /* Styling for the action words */
 #action-word-categories {
-	list-style-type: none;
-	margin: 0;
 	padding: 0;
+	margin: 0;
+	list-style-type: none;
 }
 
 #action-word-categories > li {
-	padding: 45px 0;
 	width: 100px;
+	padding: 45px 0;
 	text-align: center;
 
 	background-color: #FFFFCC;
@@ -30,16 +30,16 @@ input[disabled='disabled'] {
 
 /* learning objective left panel */
 .learning-objective-list-wrapper {
-	background-color: #fff;
-	border-radius: 4px;
 	border: 1px solid #707070;
+	border-radius: 4px;
 	margin: 5px;
+	background-color: #fff;
 }
 
 .learning-objective-list-item {
 	padding: 5px;
-	list-style-type: none;
 	border-bottom: 1px solid #707070;
+	list-style-type: none;
 }
 
 .learning-objective-list-item:last-child {
@@ -57,35 +57,30 @@ input[disabled='disabled'] {
 
 #LO-list-pane {
 	width: 30%;
-	background-color: #EDEDEF;
-	border: 1px;
-	border-color: #C4C2C2;
+	border: 1px solid #C4C2C2;
 	border-radius: 5px;
-	border-style: solid;
 }
 
 #LO-definition-cell {
-	min-height: 2em;
 	height: 5em;
+	min-height: 2em;
 	width: 70%;
-	background-color: #EDEDEF;
 	border: 1px solid #C4C2C2;
 	border-radius: 5px;
 }
 
 #LO-creator {
-	background-color: #EDEDEF;
 	border: 1px solid #C4C2C2;
 	border-radius: 5px;
 }
 
 #LO-condition-radio-form {
 	height: 1.5em;
-	font-size: 1.3em;
-	font-weight: bold;
-	margin: 0 auto;
 	width: 15em;
 	padding: 1em;
+	margin: 0 auto;
+	font-size: 1.3em;
+	font-weight: bold;
 }
 
 #LO-condition-radio-form span {
@@ -103,8 +98,7 @@ input[disabled='disabled'] {
 #LO-condition-custom {
 	display: none;
 	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
 }
 
 #LO-generic {
@@ -114,16 +108,15 @@ input[disabled='disabled'] {
 #LO-condition-generic {
 	display: block;
 	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
 }
 
 #LO-type-icon {
 	display: inline-block;
+	position: relative;
 	float: left;
 	top: 10px;
 	left: 15px;
-	position: relative;
 }
 
 /* manage the style for the Learning Objective Progress, Content, Condition and Criteria tabs */
@@ -140,11 +133,11 @@ input[disabled='disabled'] {
 }
 
 #tabs-LO-subhead .ui-tabs-nav {
-	margin: 0 auto;
 	padding: 0;
 	border-width: 0;
-	background: transparent;
 	border-collapse: collapse;
+	margin: 0 auto;
+	background: transparent;
 }
 
 #tabs-LO-subhead .active a {
@@ -170,14 +163,13 @@ input[disabled='disabled'] {
 }
 
 #tabs-LO-subhead .ui-tabs-nav li a {
+	width: 100%;
+	padding: 5px 0;
 	color: #B6B6B6;
 	outline-color: transparent;
 	font-weight: bold;
 	font-size: 1.1em;
-	width: 100%;
 	text-align: center;
-	padding-left: 0;
-	padding-right: 0;
 }
 
 #tabs-LO-subhead .ui-tabs-nav li .ui-tabs-anchor {
@@ -186,14 +178,14 @@ input[disabled='disabled'] {
 }
 
 #tabs-LO-subhead .ui-tabs-nav li {
-	background: linear-gradient(#FDFDFD, #DDDDDD);
 	position: static;
-	margin: 0px;
-	border: 1px solid #C4C2C2 none;
-	border-radius: 0px;
-	padding-bottom: 0px;
 	width: 9em;
 	height: 2.6em;
+	padding-bottom: 0px;
+	border: 1px solid #C4C2C2 none;
+	border-radius: 0px;
+	margin: 0px;
+	background: linear-gradient(#FDFDFD, #DDDDDD);
 	text-shadow: 2px 2px 1px white
 }
 
@@ -220,26 +212,27 @@ input[disabled='disabled'] {
 /* save and delete buttons */
 .learning-objective-button {
 	float: right;
+	padding: 0.3em;
+	border: none;
+	margin: 0.1em 0 0 0;
 	background-color: #efefef;
 	overflow: hidden;
-	padding: 0.3em;
 	box-shadow: 0 0 3px 1px #aaaaaa;
-	margin: 0.1em 0 0 0;
-	border: none;
 }
 
 .learning-objective-button input,
 .learning-objective-button a {
-	background-color: transparent;
+	display: inline-block;
+	padding: 0.25em 0.7em;
 	border: 0;
+	border-radius: 0.3em;
+	background-color: transparent;
+	margin: 0 0.25em 0;
 	color: #666666;
 	cursor: pointer;
-	display: inline-block;
-	margin: 0 0.25em 0;
 	overflow: visible;
-	padding: 0.25em 0.7em;
 	text-decoration: none;
-	border-radius: 0.3em;
+
 }
 
 .learning-objective-button input:hover,
