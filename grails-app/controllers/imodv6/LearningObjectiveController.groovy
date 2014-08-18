@@ -199,20 +199,20 @@ class LearningObjectiveController {
 		def imodInstance = Imod.get(id)
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def contentList=imodInstance.contents.findAll(){it.parentContent==null}.sort(){it.id}
-		def contents=[];
-		if (contentList.size()==0){
-			contentList.add(new Content(imod:imodInstance))
+		def contentList = imodInstance.contents.findAll(){it.parentContent == null}.sort() {it.id}
+		def contents = [];
+		if (contentList.size() == 0) {
+			contentList.add(new Content(imod: imodInstance))
 		}
 		contentList.collect(contents) {
 			getSubContent(it,learningObjectiveInstance)
 		}
-		contents=new groovy.json.JsonBuilder(contents).toString()
-		contents=contents.replaceAll('"', /'/)
+		contents = new groovy.json.JsonBuilder(contents).toString()
+		contents = contents.replaceAll('"', /'/)
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage: "content",
+			currentPage: 'content',
 			learningObjective: learningObjectiveInstance,
 			contentList: contents,
 		]

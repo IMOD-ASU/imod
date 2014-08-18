@@ -1,4 +1,4 @@
-<g:render template="/content/contentTabScript"/>
+<%-- <g:render template="/content/contentTabScript"/> --%>
 <div id="edit-imod" class="content scaffold-edit" role="main">
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
@@ -15,11 +15,11 @@
 
         <tr>
             <td style="vertical-align: top;padding:-50;">
-                <g:render template="/pedagogy/pedagogyLearningObjectiveTemplate"/>
+                <%--<g:render template="/pedagogy/pedagogyLearningObjectiveTemplate"/>--%>
             </td>
 
             <td style="vertical-align: top;padding:-50;">
-                <g:render template="/pedagogy/pedagogyBodyTemplate"/>
+                <%--<g:render template="/pedagogy/pedagogyBodyTemplate"/>--%>
             </td>
         </tr>
     </table>
