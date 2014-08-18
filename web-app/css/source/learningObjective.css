@@ -124,45 +124,40 @@ input[disabled='disabled'] {
 	width: 60px;
 }
 
-#tabs-LO-subhead {
+.learning-objectives.sub-nav {
+	text-align: center;
 	border: 0px;
+	list-style: none;
 }
 
-#tabs-LO-subhead .tabs-background {
+.learning-objectives.sub-nav li {
+	display: inline-block;
+	width: 9em;
+	height: 2.6em;
+	padding-bottom: 0;
+	border: 1px solid #C4C2C2 none;
+	border-radius: 0px;
+	margin: 0;
+	margin-left: -3px;
+	background: linear-gradient(#FDFDFD, #DDDDDD);
+	text-shadow: 2px 2px 1px white
+}
+
+.learning-objectives.sub-nav li:first-child {
+	border-left: 1px solid #C4C2C2;
+	border-radius: 1.5em 0px 0px 1.5em;
+}
+
+.learning-objectives.sub-nav li:last-child {
+	border-right: 1px solid #C4C2C2;
+	border-radius: 0px 1.5em 1.5em 0px;
+}
+
+.learning-objectives.sub-nav .tabs-background {
 	height: 100%;
 }
 
-#tabs-LO-subhead .ui-tabs-nav {
-	padding: 0;
-	border-width: 0;
-	border-collapse: collapse;
-	margin: 0 auto;
-	background: transparent;
-}
-
-#tabs-LO-subhead .active a {
-	height: 1.35em;
-	border-radius: 2.6em / 1.2em;
-	background: linear-gradient(to right, transparent, #F5F5F5, transparent);
-}
-
-#tabs-LO-subhead .active .performance {
-	color: #3BA8DE;
-}
-
-#tabs-LO-subhead .active .content {
-	color: #F7941D;
-}
-
-#tabs-LO-subhead .active .condition {
-	color: #EC008C;
-}
-
-#tabs-LO-subhead .active .criteria {
-	color: #EC008C;
-}
-
-#tabs-LO-subhead .ui-tabs-nav li a {
+.learning-objectives.sub-nav  li a {
 	width: 100%;
 	padding: 5px 0;
 	color: #B6B6B6;
@@ -172,37 +167,31 @@ input[disabled='disabled'] {
 	text-align: center;
 }
 
-#tabs-LO-subhead .ui-tabs-nav li .ui-tabs-anchor {
+.learning-objectives.sub-nav .active a {
+	height: 1.35em;
+	border-radius: 2.6em / 1.2em;
+	background: linear-gradient(to right, transparent, #F5F5F5, transparent);
+}
+
+.learning-objectives.sub-nav .active .performance {
+	color: #3BA8DE;
+}
+
+.learning-objectives.sub-nav .active .content {
+	color: #F7941D;
+}
+
+.learning-objectives.sub-nav .active .condition {
+	color: #EC008C;
+}
+
+.learning-objectives.sub-nav .active .criteria {
+	color: #EC008C;
+}
+
+.learning-objectives.sub-nav li .ui-tabs-anchor {
 	width: 5.2em;
 	text-align: center
-}
-
-#tabs-LO-subhead .ui-tabs-nav li {
-	position: static;
-	width: 9em;
-	height: 2.6em;
-	padding-bottom: 0px;
-	border: 1px solid #C4C2C2 none;
-	border-radius: 0px;
-	margin: 0px;
-	background: linear-gradient(#FDFDFD, #DDDDDD);
-	text-shadow: 2px 2px 1px white
-}
-
-#tabs-LO-subhead .ui-tabs-nav li:first-child {
-	border-left: 1px solid #C4C2C2;
-	border-radius: 1.5em 0px 0px 1.5em;
-}
-
-#tabs-LO-subhead .ui-tabs-nav li:last-child {
-	border-right: 1px solid #C4C2C2;
-	border-radius: 0px 1.5em 1.5em 0px;
-}
-
-#tabs-LO-subhead .ui-tabs-nav li:ui.tabs-selected {
-	padding-bottom: 0px;
-	border-bottom: 1px solid #C4C2C2;
-	border-top: 1px solid #C4C2C2
 }
 
 #LO-hide-from-Objective {
@@ -226,9 +215,9 @@ input[disabled='disabled'] {
 	padding: 0.25em 0.7em;
 	border: 0;
 	border-radius: 0.3em;
-	background-color: transparent;
 	margin: 0 0.25em 0;
 	color: #666666;
+	background-color: transparent;
 	cursor: pointer;
 	overflow: visible;
 	text-decoration: none;
