@@ -160,50 +160,48 @@
 							<div class="learning-objective-creator">
 								<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-'+currentPage+'.png')}" alt=""/>
 
-								<div id="tabs-LO-subhead">
-									<ul class="ui-tabs-nav">
-										<li <g:if test="${currentPage=='performance'}">class="active" </g:if>>
-											<g:link
-												action="performance"
-												learningObjectiveID="${learningObjective.id}"
-												id="${imodInstance?.id}"
-												class="performance"
-											>
-												Performance
-											</g:link>
-										</li>
-										<li <g:if test="${currentPage=='content'}">class="active" </g:if>>
-											<g:link
-												action="content"
-												learningObjectiveID="${learningObjective.id}"
-												id="${imodInstance?.id}"
-												class="content"
-											>
-												Content
-											</g:link>
-										</li>
-										<li <g:if test="${currentPage=='condition'}">class="active" </g:if>>
-											<g:link
-												action="condition"
-												learningObjectiveID="${learningObjective.id}"
-												id="${imodInstance?.id}"
-												class="condition"
-											>
-												Condition
-											</g:link>
-										</li>
-										<li <g:if test="${currentPage=='criteria'}">class="active" </g:if>>
-											<g:link
-												action="criteria"
-												learningObjectiveID="${learningObjective.id}"
-												id="${imodInstance?.id}"
-												class="criteria"
-											>
-												Criteria
-											</g:link>
-										</li>
-									</ul>
-								</div>
+								<ul class="learning-objectives sub-nav">
+									<li <g:if test="${currentPage=='performance'}">class="active" </g:if>>
+										<g:link
+											action="performance"
+											learningObjectiveID="${learningObjective.id}"
+											id="${imodInstance?.id}"
+											class="performance"
+										>
+											Performance
+										</g:link>
+									</li>
+									<li <g:if test="${currentPage=='content'}">class="active" </g:if>>
+										<g:link
+											action="content"
+											learningObjectiveID="${learningObjective.id}"
+											id="${imodInstance?.id}"
+											class="content"
+										>
+											Content
+										</g:link>
+									</li>
+									<li <g:if test="${currentPage=='condition'}">class="active" </g:if>>
+										<g:link
+											action="condition"
+											learningObjectiveID="${learningObjective.id}"
+											id="${imodInstance?.id}"
+											class="condition"
+										>
+											Condition
+										</g:link>
+									</li>
+									<li <g:if test="${currentPage=='criteria'}">class="active" </g:if>>
+										<g:link
+											action="criteria"
+											learningObjectiveID="${learningObjective.id}"
+											id="${imodInstance?.id}"
+											class="criteria"
+										>
+											Criteria
+										</g:link>
+									</li>
+								</ul>
 								<div class="tabs-background">
 								</div>
 								<hr />
