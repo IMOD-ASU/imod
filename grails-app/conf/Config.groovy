@@ -62,6 +62,9 @@ grails.hibernate.cache.queries = false
 // simplify testing for empty strings
 grails.databinding.convertEmptyStringsToNull = true
 
+// automatically flush the database
+grails.gorm.autoFlush = true
+
 environments {
 	development {
 		grails.logging.jul.usebridge = true

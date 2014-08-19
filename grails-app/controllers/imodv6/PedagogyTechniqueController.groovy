@@ -10,7 +10,7 @@ class PedagogyTechniqueController {
 	def save() {
 		def imodInstance = Imod.get(48)
 		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
-		if (!pedagogyTechniqueInstance.save(flush: true)) {
+		if (!pedagogyTechniqueInstance.save()) {
 			render(view: 'create', model: [pedagogyTechniqueInstance: pedagogyTechniqueInstance])
 			return
 		}

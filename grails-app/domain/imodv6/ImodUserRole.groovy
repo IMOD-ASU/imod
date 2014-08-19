@@ -35,7 +35,7 @@ class ImodUserRole implements Serializable {
 	}
 
 	static ImodUserRole create(ImodUser imodUser, Role role, boolean flush = false) {
-		new ImodUserRole(imodUser: imodUser, role: role).save(flush: flush, insert: true)
+		new ImodUserRole(imodUser: imodUser, role: role).save( insert: true)
 	}
 
 	static boolean remove(ImodUser imodUser, Role role, boolean flush = false) {
@@ -44,7 +44,7 @@ class ImodUserRole implements Serializable {
 			return false
 		}
 
-		instance.delete(flush: flush)
+		instance.delete()
 		true
 	}
 
