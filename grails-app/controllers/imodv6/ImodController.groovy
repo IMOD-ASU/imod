@@ -51,7 +51,7 @@ class ImodController {
 		currentUser.addToImods(newImod)
 
 		// save new imod and the updated user to database
-		currentUser.save(flush: true)
+		currentUser.save()
 
 		// redirect to editing new Imod
 		redirect(
@@ -69,7 +69,7 @@ class ImodController {
 			springSecurityService.currentUser.id
 		)
 		def imodInstance = new Imod(params)
-		if (!imodInstance.save(flush: true)) {
+		if (!imodInstance.save()) {
 			render(
 				view: 'create',
 				model: [
@@ -138,7 +138,7 @@ class ImodController {
 
 		imodInstance.properties = params
 
-		if (!imodInstance.save(flush: true)) {
+		if (!imodInstance.save()) {
 			render(
 				view: 'edit',
 				model: [
@@ -183,7 +183,7 @@ class ImodController {
 		}
 
 		try {
-			imodInstance.delete(flush: true)
+			imodInstance.delete()
 			flash.message = message (
 				code: 'default.deleted.message',
 				args: [

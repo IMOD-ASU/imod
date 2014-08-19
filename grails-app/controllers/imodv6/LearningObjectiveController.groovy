@@ -42,7 +42,7 @@ class LearningObjectiveController {
 		// add the learning objective to the collection of learning objectives in the imod
 		imodInstance.addToLearningObjectives(learningObjectiveInstance)
 		// saves the imod and the learning objective
-		imodInstance.save(flush: true)
+		imodInstance.save()
 		// redirects to the performance page to allow for newly created learning objective to be edited
 		redirect(
 			action: 'performance',
@@ -115,7 +115,7 @@ class LearningObjectiveController {
 				learningObjectiveInstance.criteriaSpeedHidden		= (params.hideSpeed		== null ? false : true)
 
 				// save all of the changes
-				learningObjectiveInstance.save(flush: true)
+				learningObjectiveInstance.save()
 
 				// refresh criteria page after saving criteriae
 				redirect(
