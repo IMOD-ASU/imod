@@ -89,7 +89,7 @@ class PedagogyController {
 
 		pedTecInstance = new PedagogyTechnique(params)
 		pedTecInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
-		if (!pedTecInstance.save(flush: true)) {
+		if (!pedTecInstance.save()) {
 			render(view: 'error', model: [pedagogyTechniqueInstance: pedTecInstance])
 			return
 		}
@@ -98,13 +98,13 @@ class PedagogyController {
 				pedagogyActivity = new PedagogyActivity(it.value)
 				pedagogyActivity.pedagogyTechnique = pedTecInstance
 				pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
-				pedagogyActivity.save(flush:true)
+				pedagogyActivity.save()
 			}
 			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')){
 				pedagogyReference = new PedagogyReference(it.value)
 				pedagogyReference.pedagogyTechnique = pedTecInstance
 				pedagogyReference.referenceType = PedagogyReferenceType.get(it.value.refeType)
-				pedagogyReference.save(flush:true)
+				pedagogyReference.save()
 			}
 		}
 		redirect(controller: 'imod', action: 'edit', id: params.id, params: [loadPedagogyTab: true])
@@ -246,9 +246,9 @@ class PedagogyController {
 			fav.pedagogyTechnique = pedagogyTech
 			fav.imodUser = imodUser
 			if(favTech){
-				fav.delete(flush:true)
+				fav.delete()
 			}else{
-				fav.save(flush:true)
+				fav.save()
 			}
 		}
 		if(params.assign == 'true'){
@@ -258,9 +258,9 @@ class PedagogyController {
 			assign.pedagogyTechnique = pedagogyTech
 			assign.learningObjective = learningObjective
 			if(assingTech){
-				assign.delete(flush:true)
+				assign.delete()
 			}else{
-				assign.save(flush:true)
+				assign.save()
 			}
 		}
 		redirect(
@@ -374,7 +374,7 @@ class PedagogyController {
 
 		pedTecInstance = new PedagogyTechnique(params)
 		pedTecInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
-		if (!pedTecInstance.save(flush: true)) {
+		if (!pedTecInstance.save()) {
 			render(view: 'error', model: [pedagogyTechniqueInstance: pedTecInstance])
 			return
 		}
@@ -383,13 +383,13 @@ class PedagogyController {
 				pedagogyActivity = new PedagogyActivity(it.value)
 				pedagogyActivity.pedagogyTechnique = pedTecInstance
 				pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
-				pedagogyActivity.save(flush:true)
+				pedagogyActivity.save()
 			}
 			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')){
 				pedagogyReference = new PedagogyReference(it.value)
 				pedagogyReference.pedagogyTechnique = pedTecInstance
 				pedagogyReference.referenceType = PedagogyReferenceType.get(it.value.refeType)
-				pedagogyReference.save(flush:true)
+				pedagogyReference.save()
 			}
 		}
 	}
