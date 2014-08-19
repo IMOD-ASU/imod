@@ -51,13 +51,13 @@
 								<div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 									<span class="title-text">
 										Learning Objectives
-										<a href="/imodv6/learningObjective/create/${imodInstance.id}">
+										<g:link action="create" id="${imodInstance.id}">
 											<button>
 												<span class="fa fa-plus">
 												</span>
 												Add
 											</button>
-										</a>
+										</g:link>
 									</span>
 								</div>
 								<ul class="learning-objective-list-wrapper">
