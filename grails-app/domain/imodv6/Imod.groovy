@@ -170,8 +170,8 @@ class Imod {
 		courseLocation	nullable: true
 		timeRatio		nullable: true
 		imodNumber		nullable: true
-		numberOfSeats	nullable: true
-		creditHours		nullable: true
+		numberOfSeats	nullable: true,		min: 1,		scale: 1
+		creditHours		nullable: true,		min: 1		scale: 1
 
 		// Domains belonging to an IMOD
 		coursePolicy	nullable: true
