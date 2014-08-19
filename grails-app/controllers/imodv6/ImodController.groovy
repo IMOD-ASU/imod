@@ -5,9 +5,9 @@ import org.springframework.dao.DataIntegrityViolationException
 class ImodController {
 
 	static allowedMethods = [
-		save: "POST",
-		update: "POST",
-		delete: "POST"
+		save: 'POST',
+		update: 'POST',
+		delete: 'POST'
 	]
 
 	def springSecurityService
@@ -15,7 +15,7 @@ class ImodController {
 
 	def index() {
 		redirect(
-			action: "list",
+			action: 'list',
 			params: params
 		)
 	}
@@ -31,14 +31,33 @@ class ImodController {
 		[
 			imodInstanceList: displayList,
 			imodInstanceTotal: displayList.size(),
-			sort: "name"
+			sort: 'name'
 		]
 	}
 
 	def create() {
+		// get the current user
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
+		// create a new imod
+		def newImod = new Imod(
+			owner: currentUser,
+			name: 'New Imod',
+			url: 'example.com',
+			subjectArea: 'sample'
+		)
+
+		// update current user
+		currentUser.addToImods(newImod)
+
+		// save new imod and the updated user to database
+		currentUser.save(flush: true)
+
+		// redirect to editing new Imod
 		redirect(
-			controller: "courseOverview",
-			action: "create"
+			controller: 'CourseOverview',
+			action: 'index',
+			id: newImod.id
 		)
 	}
 
@@ -52,7 +71,7 @@ class ImodController {
 		def imodInstance = new Imod(params)
 		if (!imodInstance.save(flush: true)) {
 			render(
-				view: "create",
+				view: 'create',
 				model: [
 					imodInstance: imodInstance
 				]
@@ -71,7 +90,7 @@ class ImodController {
 			]
 		)
 		redirect(
-			action: "list"
+			action: 'list'
 		)
 	}
 
@@ -89,7 +108,7 @@ class ImodController {
 				]
 			)
 			redirect(
-				action: "list"
+				action: 'list'
 			)
 			return
 		}
@@ -97,18 +116,18 @@ class ImodController {
 		if (version != null) {
 			if (imodInstance.version > version) {
 				imodInstance.errors.rejectValue(
-					"version",
-					"default.optimistic.locking.failure",
+					'version',
+					'default.optimistic.locking.failure',
 					[
 						message(
 							code: 'imod.label',
 							default: 'Imod'
 						)
 					] as Object[],
-					"Another user has updated this Imod while you were editing"
+					'Another user has updated this Imod while you were editing'
 				)
 				render (
-					view: "edit",
+					view: 'edit',
 					model: [
 						imodInstance: imodInstance
 					]
@@ -121,7 +140,7 @@ class ImodController {
 
 		if (!imodInstance.save(flush: true)) {
 			render(
-				view: "edit",
+				view: 'edit',
 				model: [
 					imodInstance: imodInstance
 				]
@@ -140,7 +159,7 @@ class ImodController {
 			]
 		)
 		redirect(
-			action: "list"
+			action: 'list'
 		)
 	}
 
@@ -158,7 +177,7 @@ class ImodController {
 				]
 			)
 			redirect(
-				action: "list"
+				action: 'list'
 			)
 			return
 		}
@@ -176,7 +195,7 @@ class ImodController {
 				]
 			)
 			redirect(
-				action: "list"
+				action: 'list'
 			)
 		}
 		catch (DataIntegrityViolationException e) {
@@ -191,7 +210,7 @@ class ImodController {
 				]
 			)
 			redirect(
-				action: "show",
+				action: 'show',
 				id: id
 			)
 		}

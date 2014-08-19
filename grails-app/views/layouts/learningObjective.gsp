@@ -61,69 +61,48 @@
 									</span>
 								</div>
 								<ul class="learning-objective-list-wrapper">
-									<g:each in="${learningObjectivesList}" status="i" var="learningObjective">
+									<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
 										<li class="learning-objective-list-item">
-											<g:link action="edit" id="${learningObjective.id}" class="learning-objective-list-link">
+											<g:link action="edit" id="${learningObjectiveItem.id}" class="learning-objective-list-link">
 												<!-- Definition of the conditions for completing a learning objective -->
 												<span class="learning-objective-condition">
-													<g:if test="${ learningObjective.condition == null }">
-														No Condition
+													<g:if test="${ learningObjectiveItem.condition != null }">
+														${ learningObjectiveItem.condition }
 													</g:if>
-													<g:else>
-														${ learningObjective.condition }
-													</g:else>
 												</span>
 
 												<!-- Definition of the perfomance evaulations for a learning objective -->
 												<span class="learning-objective-performance">
-													<g:if test="${ learningObjective.performance == null }">
-														No Performance
+													<g:if test="${ learningObjectiveItem.performance != null }">
+														${ learningObjectiveItem.performance }
 													</g:if>
-													<g:else>
-														${ learningObjective.performance }
-													</g:else>
 												</span>
 
 												<!-- Definition of the criteria for understanding a learning objective -->
 
 												<span class="learning-objective-criteria">
-													<g:if test="${ learningObjective.criteriaAccuracy == null }">
-														No Accuracy Criteria
+													<g:if test="${ learningObjectiveItem.criteriaAccuracy != null && learningObjectiveItem.criteriaAccuracyHidden == false }">
+														${ learningObjectiveItem.criteriaAccuracy }
 													</g:if>
-													<g:else>
-														${ learningObjective.criteriaAccuracy }
-													</g:else>
 
-													<g:if test="${ learningObjective.criteriaQuality == null }">
-														No Quality Criteria
+													<g:if test="${ learningObjectiveItem.criteriaQuality != null && learningObjectiveItem.criteriaQualityHidden == false }">
+														${ learningObjectiveItem.criteriaQuality }
 													</g:if>
-													<g:else>
-														${ learningObjective.criteriaQuality }
-													</g:else>
 
-													<g:if test="${ learningObjective.criteriaQuantity == null }">
-														No Quantity Criteria
+													<g:if test="${ learningObjectiveItem.criteriaQuantity != null && learningObjectiveItem.criteriaQuantityHidden == false }">
+														${ learningObjectiveItem.criteriaQuantity }
 													</g:if>
-													<g:else>
-														${ learningObjective.criteriaQuantity }
-													</g:else>
 
-													<g:if test="${ learningObjective.criteriaSpeed == null }">
-														No Speed Criteria
+													<g:if test="${ learningObjectiveItem.criteriaSpeed != null && learningObjectiveItem.criteriaSpeedHidden == false }">
+														${ learningObjectiveItem.criteriaSpeed }
 													</g:if>
-													<g:else>
-														${ learningObjective.criteriaSpeed }
-													</g:else>
 												</span>
 
 												<!-- Definition of the indicators used to measure progress through learning objective -->
 												<span class="learning-objective-indicator">
-													<g:if test="${ learningObjective.indicator == null }">
-														No Indicator
+													<g:if test="${ learningObjectiveItem.indicator != null }">
+														${ learningObjectiveItem.indicator }
 													</g:if>
-													<g:else>
-														${ learningObjective.indicator }
-													</g:else>
 												</span>
 											</g:link>
 										</li>
@@ -135,64 +114,43 @@
 							<div id="learning-objectives-definition" class="learning-objective-current">
 								<!-- Definition of the conditions for completing a learning objective -->
 								<span class="learning-objective-condition">
-									<g:if test="${ learningObjective.condition == null }">
-										No Condition
-									</g:if>
-									<g:else>
+									<g:if test="${ learningObjective.condition != null }">
 										${ learningObjective.condition }
-									</g:else>
+									</g:if>
 								</span>
 
 								<!-- Definition of the perfomance evaulations for a learning objective -->
 								<span class="learning-objective-performance">
-									<g:if test="${ learningObjective.performance == null }">
-										No Performance
-									</g:if>
-									<g:else>
+									<g:if test="${ learningObjective.performance != null }">
 										${ learningObjective.performance }
-									</g:else>
+									</g:if>
 								</span>
 
 								<!-- Definition of the criteria for understanding a learning objective -->
 
 								<span class="learning-objective-criteria">
-									<g:if test="${ learningObjective.criteriaAccuracy == null }">
-										No Accuracy Criteria
-									</g:if>
-									<g:else>
+									<g:if test="${ learningObjective.criteriaAccuracy != null && learningObjective.criteriaAccuracyHidden == false }">
 										${ learningObjective.criteriaAccuracy }
-									</g:else>
-
-									<g:if test="${ learningObjective.criteriaQuality == null }">
-										No Quality Criteria
 									</g:if>
-									<g:else>
+
+									<g:if test="${ learningObjective.criteriaQuality != null && learningObjective.criteriaQualityHidden == false }">
 										${ learningObjective.criteriaQuality }
-									</g:else>
-
-									<g:if test="${ learningObjective.criteriaQuantity == null }">
-										No Quantity Criteria
 									</g:if>
-									<g:else>
+
+									<g:if test="${ learningObjective.criteriaQuantity != null && learningObjective.criteriaQuantityHidden == false }">
 										${ learningObjective.criteriaQuantity }
-									</g:else>
-
-									<g:if test="${ learningObjective.criteriaSpeed == null }">
-										No Speed Criteria
 									</g:if>
-									<g:else>
+
+									<g:if test="${ learningObjective.criteriaSpeed != null && learningObjective.criteriaSpeedHidden == false }">
 										${ learningObjective.criteriaSpeed }
-									</g:else>
+									</g:if>
 								</span>
 
 								<!-- Definition of the indicators used to measure progress through learning objective -->
 								<span class="learning-objective-indicator">
-									<g:if test="${ learningObjective.indicator == null }">
-										No Indicator
-									</g:if>
-									<g:else>
+									<g:if test="${ learningObjective.indicator != null }">
 										${ learningObjective.indicator }
-									</g:else>
+									</g:if>
 								</span>
 							</div>
 						</td>
@@ -202,50 +160,48 @@
 							<div class="learning-objective-creator">
 								<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-'+currentPage+'.png')}" alt=""/>
 
-								<div id="tabs-LO-subhead">
-									<ul class="ui-tabs-nav">
-										<li <g:if test="${currentPage=='performance'}">class="active" </g:if>>
-											<g:link
-												action="performance"
-												learningObjectiveID="${learningObjective.id}"
-												id="${imodInstance?.id}"
-												class="performance"
-											>
-												Performance
-											</g:link>
-										</li>
-										<li <g:if test="${currentPage=='content'}">class="active" </g:if>>
-											<g:link
-												action="content"
-												learningObjectiveID="${learningObjective.id}"
-												id="${imodInstance?.id}"
-												class="content"
-											>
-												Content
-											</g:link>
-										</li>
-										<li <g:if test="${currentPage=='condition'}">class="active" </g:if>>
-											<g:link
-												action="condition"
-												learningObjectiveID="${learningObjective.id}"
-												id="${imodInstance?.id}"
-												class="condition"
-											>
-												Condition
-											</g:link>
-										</li>
-										<li <g:if test="${currentPage=='criteria'}">class="active" </g:if>>
-											<g:link
-												action="criteria"
-												learningObjectiveID="${learningObjective.id}"
-												id="${imodInstance?.id}"
-												class="criteria"
-											>
-												Criteria
-											</g:link>
-										</li>
-									</ul>
-								</div>
+								<ul class="learning-objectives sub-nav">
+									<li <g:if test="${currentPage=='performance'}">class="active" </g:if>>
+										<g:link
+											action="performance"
+											learningObjectiveID="${learningObjective.id}"
+											id="${imodInstance?.id}"
+											class="performance"
+										>
+											Performance
+										</g:link>
+									</li>
+									<li <g:if test="${currentPage=='content'}">class="active" </g:if>>
+										<g:link
+											action="content"
+											learningObjectiveID="${learningObjective.id}"
+											id="${imodInstance?.id}"
+											class="content"
+										>
+											Content
+										</g:link>
+									</li>
+									<li <g:if test="${currentPage=='condition'}">class="active" </g:if>>
+										<g:link
+											action="condition"
+											learningObjectiveID="${learningObjective.id}"
+											id="${imodInstance?.id}"
+											class="condition"
+										>
+											Condition
+										</g:link>
+									</li>
+									<li <g:if test="${currentPage=='criteria'}">class="active" </g:if>>
+										<g:link
+											action="criteria"
+											learningObjectiveID="${learningObjective.id}"
+											id="${imodInstance?.id}"
+											class="criteria"
+										>
+											Criteria
+										</g:link>
+									</li>
+								</ul>
 								<div class="tabs-background">
 								</div>
 								<hr />

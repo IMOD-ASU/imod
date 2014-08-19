@@ -11,17 +11,17 @@ class PedagogyTechniqueController {
 		def imodInstance = Imod.get(48)
 		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
 		if (!pedagogyTechniqueInstance.save(flush: true)) {
-			render(view: "create", model: [pedagogyTechniqueInstance: pedagogyTechniqueInstance])
+			render(view: 'create', model: [pedagogyTechniqueInstance: pedagogyTechniqueInstance])
 			return
 		}
 
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-		redirect(action: "list")
+		redirect(action: 'list')
 	}
 
 
-	def index() {
+	def index(Long id) {
 
 		//To get Learning Domain
 		def domains = LearningDomain.list()
@@ -31,9 +31,13 @@ class PedagogyTechniqueController {
 		def domainList = DomainCategory.findAllByDomain(domain);
 
 		//To get the Knowledge Dimension
-		def KnowledgeDomainlist = ContentKnowledgeDomainCode.list()
+		def KnowledgeDomainlist = KnowledgeDimension.list()
 
-		return [domains : domains, domainList: domainList, KnowledgeDomainlist: KnowledgeDomainlist]
-
+		[
+			imodInstance: Imod.get(id),
+			domains : domains,
+			domainList: domainList,
+			KnowledgeDomainlist: KnowledgeDomainlist
+		]
 	}
 }

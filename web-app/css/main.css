@@ -24,7 +24,6 @@ html {
 	background-color: #ddd;
 	background-image: linear-gradient(top, #aaa, #ddd);
 	background-repeat: no-repeat;
-	/*height: 100%;*/
 	overflow-y: scroll;
 	/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
 	box-sizing: border-box;
@@ -32,10 +31,6 @@ html {
 
 html.no-cssgradients {
 	background-color: #aaa;
-}
-
-.ie6 html {
-	height: 100%;
 }
 
 html * {
@@ -57,17 +52,16 @@ body {
 	  linear-gradient(to bottom, #12223A 0%, #0A1629 100%);
 }
 
+.text-centered {
+	text-align: center;
+}
+
 /* replace with .no-boxshadow body if you have modernizr available */
-.ie6 body,
 .ie7 body,
 .ie8 body {
 	border-color: #2B3856;
 	border-style: solid;
 	border-width: 0 1px;
-}
-
-.ie6 body {
-	height: 100%;
 }
 
 a:link,
@@ -225,8 +219,6 @@ img {
 
 fieldset,
 .property-list {
-	margin: 0.6em 1.25em 0 1.25em;
-	padding: 0.3em 1.8em 1.25em;
 	position: relative;
 	zoom: 1;
 	border: none;
@@ -312,7 +304,7 @@ ul.one-to-many {
 	vertical-align: top;
 }
 
-.ie6 ul.one-to-many, .ie7 ul.one-to-many {
+.ie7 ul.one-to-many {
 	display: inline;
 	zoom: 1;
 }
@@ -420,11 +412,6 @@ tr {
 	border: 0;
 }
 
-tr>td:first-child,
-tr>th:first-child {
-	/*padding-left: 1.25em;*/
-}
-
 tr>td:last-child,
 tr>th:last-child {
 	padding-right: 1.25em;
@@ -433,10 +420,8 @@ tr>th:last-child {
 td,
 th {
 	line-height: 1.5em;
-	/*padding: 0.5em 0.6em;*/
 	text-align: left;
 	vertical-align: top;
-	/*width:70%;*/
 }
 
 th {
@@ -584,9 +569,6 @@ th.desc a {
 	text-indent: 25px;
 }
 
-.ie6 .buttons input.delete,
-.ie6 .buttons input.edit,
-.ie6 .buttons input.save,
 .ie7 .buttons input.delete,
 .ie7 .buttons input.edit,
 .ie7 .buttons input.save {

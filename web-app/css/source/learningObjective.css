@@ -1,12 +1,17 @@
+input[disabled='disabled'] {
+	background: #CCC;
+}
+
 /* Styling for the action words */
 #action-word-categories {
-	list-style-type: none;
-	margin: 0;
 	padding: 0;
+	margin: 0;
+	list-style-type: none;
 }
+
 #action-word-categories > li {
-	padding: 45px 0;
 	width: 100px;
+	padding: 45px 0;
 	text-align: center;
 
 	background-color: #FFFFCC;
@@ -25,12 +30,20 @@
 
 /* learning objective left panel */
 .learning-objective-list-wrapper {
-	border-radius: 10px;
-	border: 1px solid black;
+	border: 1px solid #707070;
+	border-radius: 4px;
+	margin: 5px;
+	background-color: #fff;
 }
 
 .learning-objective-list-item {
+	padding: 5px;
+	border-bottom: 1px solid #707070;
 	list-style-type: none;
+}
+
+.learning-objective-list-item:last-child {
+	border-bottom: none;
 }
 
 .learning-objective-list-link {
@@ -38,52 +51,42 @@
 }
 
 /* managing the page layout */
-table.LO-inner-table {
-	position: relative;
-	left: -5%;
-	width: 110%;
-	height: 100%;
-	min-height: 40em;
-	border-spacing: 10px 5px;
-	border-collapse: separate;
+.LO-inner-table {
+	width: 100%;
 }
+
 #LO-list-pane {
 	width: 30%;
-	background-color: #EDEDEF;
-	border: 1px;
-	border-color: #C4C2C2;
+	border: 1px solid #C4C2C2;
 	border-radius: 5px;
-	border-style: solid;
 }
+
 #LO-definition-cell {
-	min-height: 2em;
 	height: 5em;
+	min-height: 2em;
 	width: 70%;
-	background-color: #EDEDEF;
-	border: 1px;
-	border-color: #C4C2C2;
+	border: 1px solid #C4C2C2;
 	border-radius: 5px;
-	border-style: solid;
 }
+
 #LO-creator {
-	background-color: #EDEDEF;
-	border: 1px;
-	border-color: #C4C2C2;
+	border: 1px solid #C4C2C2;
 	border-radius: 5px;
-	border-style: solid;
 }
+
 #LO-condition-radio-form {
 	height: 1.5em;
-	font-size: 1.3em;
-	font-weight: bold;
-	margin-left: auto;
-	margin-right: auto;
 	width: 15em;
 	padding: 1em;
+	margin: 0 auto;
+	font-size: 1.3em;
+	font-weight: bold;
 }
+
 #LO-condition-radio-form span {
 	margin-left: 2em;
 }
+
 .LO-condition-radio {
 	height: 1.3em;
 	width: 1.3em;
@@ -91,132 +94,134 @@ table.LO-inner-table {
 	margin-left: 5px;
 	vertical-align: middle;
 }
+
 #LO-condition-custom {
 	display: none;
 	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
 }
+
 #LO-generic {
 	width: 100%;
 }
+
 #LO-condition-generic {
 	display: block;
 	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
 }
+
 #LO-type-icon {
 	display: inline-block;
+	position: relative;
 	float: left;
 	top: 10px;
 	left: 15px;
-	position: relative;
 }
 
 /* manage the style for the Learning Objective Progress, Content, Condition and Criteria tabs */
-#tabs-LO-subhead {
-	height: 2.4em;
-	background: transparent;
-	border: 0px;
-}
-#tabs-LO-subhead .tabs-background {
-	height: 4.5em;
-}
-#tabs-LO-subhead .ui-tabs-nav {
-	padding: 0em;
-	border-width: 0px;
-	float: right;
-	background: transparent;
-	margin: 10px;
-	border-collapse: collapse;
-}
-#tabs-LO-subhead .ui-tabs-nav li.active a {
-	height: 1.35em;
-	border-radius: 2.6em / 1.2em;
-	background: linear-gradient(to right, transparent, #F5F5F5, transparent);
-}
-#tabs-LO-subhead .ui-tabs-nav li.active a.performance {
-	color: #3BA8DE;
-}
-#tabs-LO-subhead .ui-tabs-nav li.active a.content {
-	color: #F7941D;
-}
-#tabs-LO-subhead .ui-tabs-nav li.active a.condition {
-	color: #EC008C;
-}
-#tabs-LO-subhead .ui-tabs-nav li.active a.criteria {
-	color: #EC008C;
+.criteria-label-equal-width {
+	width: 60px;
 }
 
-#tabs-LO-subhead .ui-tabs-nav li a {
+.learning-objectives.sub-nav {
+	text-align: center;
+	border: 0px;
+	list-style: none;
+}
+
+.learning-objectives.sub-nav li {
+	display: inline-block;
+	width: 9em;
+	height: 2.6em;
+	padding-bottom: 0;
+	border: 1px solid #C4C2C2 none;
+	border-radius: 0px;
+	margin: 0;
+	margin-left: -3px;
+	background: linear-gradient(#FDFDFD, #DDDDDD);
+	text-shadow: 2px 2px 1px white
+}
+
+.learning-objectives.sub-nav li:first-child {
+	border-left: 1px solid #C4C2C2;
+	border-radius: 1.5em 0px 0px 1.5em;
+}
+
+.learning-objectives.sub-nav li:last-child {
+	border-right: 1px solid #C4C2C2;
+	border-radius: 0px 1.5em 1.5em 0px;
+}
+
+.learning-objectives.sub-nav .tabs-background {
+	height: 100%;
+}
+
+.learning-objectives.sub-nav  li a {
+	width: 100%;
+	padding: 5px 0;
 	color: #B6B6B6;
 	outline-color: transparent;
 	font-weight: bold;
 	font-size: 1.1em;
-	width: 100%;
 	text-align: center;
-	padding-left: 0;
-	padding-right: 0;
 }
-#tabs-LO-subhead .ui-tabs-nav li a.ui-tabs-anchor{
+
+.learning-objectives.sub-nav .active a {
+	height: 1.35em;
+	border-radius: 2.6em / 1.2em;
+	background: linear-gradient(to right, transparent, #F5F5F5, transparent);
+}
+
+.learning-objectives.sub-nav .active .performance {
+	color: #3BA8DE;
+}
+
+.learning-objectives.sub-nav .active .content {
+	color: #F7941D;
+}
+
+.learning-objectives.sub-nav .active .condition {
+	color: #EC008C;
+}
+
+.learning-objectives.sub-nav .active .criteria {
+	color: #EC008C;
+}
+
+.learning-objectives.sub-nav li .ui-tabs-anchor {
 	width: 5.2em;
 	text-align: center
 }
-#tabs-LO-subhead .ui-tabs-nav li{
-	background: linear-gradient(#FDFDFD, #DDDDDD);
-	position: static;
-	margin: 0px;
-	border-right-style: none;
-	border-left-style: none;
-	border-bottom: 1px solid #C4C2C2;
-	border-top: 1px solid #C4C2C2;
-	border-radius: 0px;
-	padding-bottom: 0px;
-	width: 9em;
-	height: 2.6em;
-	text-shadow: 2px 2px 1px white
-}
-#tabs-LO-subhead .ui-tabs-nav li:first-child {
-	border-left: 1px solid #C4C2C2;
-	border-radius: 1.5em 0px 0px 1.5em;
-}
-#tabs-LO-subhead .ui-tabs-nav li:last-child {
-	border-right: 1px solid #C4C2C2;
-	border-radius: 0px 1.5em 1.5em 0px;
-}
-#tabs-LO-subhead .ui-tabs-nav li:ui.tabs-selected {
-	padding-bottom: 0px;
-	border-bottom: 1px solid #C4C2C2;
-	border-top: 1px solid #C4C2C2
-}
-#LO-hide-from-Objective{
+
+#LO-hide-from-Objective {
 	height: 1em;
 }
 
 /* save and delete buttons */
 .learning-objective-button {
 	float: right;
+	padding: 0.3em;
+	border: none;
+	margin: 0.1em 0 0 0;
 	background-color: #efefef;
 	overflow: hidden;
-	padding: 0.3em;
 	box-shadow: 0 0 3px 1px #aaaaaa;
-	margin: 0.1em 0 0 0;
-	border: none;
 }
 
 .learning-objective-button input,
 .learning-objective-button a {
-	background-color: transparent;
-	border: 0;
-	color: #666666;
-	cursor: pointer;
 	display: inline-block;
-	margin: 0 0.25em 0;
-	overflow: visible;
 	padding: 0.25em 0.7em;
-	text-decoration: none;
+	border: 0;
 	border-radius: 0.3em;
+	margin: 0 0.25em 0;
+	color: #666666;
+	background-color: transparent;
+	cursor: pointer;
+	overflow: visible;
+	text-decoration: none;
+
 }
 
 .learning-objective-button input:hover,
@@ -244,13 +249,6 @@ table.LO-inner-table {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
-}
-
-.ie6 .learning-objective-button input.delete,
-.ie6 .learning-objective-button input.save,
-.ie7 .learning-objective-button input.delete,
-.ie7 .learning-objective-button input.save {
-	padding-left: 36px;
 }
 
 .learning-objective-button .delete {

@@ -1,3 +1,6 @@
+// start at the beggining of the path, get the first '/' then and all the characters between that and the second '/'
+var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0]
+
 //on page load
 $(document).ready(function() {
 	// listen for the selected learning domain to change, when it does call ajax
@@ -13,36 +16,36 @@ $(document).ready(function() {
 	);
 
 	// if the condition is set to hidden do not display it in the definition box above
-	$('#LO-hide-from-Objective').change(function(){
+	$('#LO-hide-from-Objective').change(function() {
 		if(this.checked) {
-			$('.learning-objective-current .learning-objective-condition').css("display","none")
+			$('.learning-objective-current .learning-objective-condition').css('display', 'none')
 		}
 		else {
-			$('.learning-objective-current .learning-objective-condition').css("display","inline")
+			$('.learning-objective-current .learning-objective-condition').css('display', 'inline')
 		}
 	});
 
 	// when a custom condition is added, display in the definition box above
 	$('#LO-condition-custom').keyup(
-		propagateToDefinition(this.value, "condition")
+		propagateToDefinition(this.value, 'condition')
 	);
 
 	// when a standard condition is added, display in the definition box above
-	$(".LO-condition-data").change(
-		propagateToDefinition(this.value, "condition")
+	$('.LO-condition-data').change(
+		propagateToDefinition(this.value, 'condition')
 	);
 
 	// TODO no idea what this is doing
 	$('input:radio[name=LO_condition_type]').on(
 		'change',
 		function() {
-			if(this.value == 'Generic'){
-				$('#LO-condition-custom').css("display","none")
-				$('#LO-condition-generic').css("display","block")
+			if(this.value == 'Generic') {
+				$('#LO-condition-custom').css('display', 'none')
+				$('#LO-condition-generic').css('display', 'block')
 			}
 			else{
-				$('#LO-condition-generic').css("display","none")
-				$('#LO-condition-custom').css("display","block")
+				$('#LO-condition-generic').css('display', 'none')
+				$('#LO-condition-custom').css('display', 'block')
 			}
 		}
 	);
@@ -67,11 +70,12 @@ $(document).ready(function() {
 		function() {
 			$('#accuracy-text').prop(
 				'disabled',
-				$('#enable-accuracy').is(':checked')
+				! $('#enable-accuracy').is(':checked')
 			);
+			$('#accuracy-text').value('');
 			$('#accuracy-hide').prop(
 				'disabled',
-				$('#enable-accuracy').is(':checked')
+				! $('#enable-accuracy').is(':checked')
 			);
 		}
 	)
@@ -82,11 +86,12 @@ $(document).ready(function() {
 		function() {
 			$('#quality-text').prop(
 				'disabled',
-				$('#enable-quality').is(':checked')
+				! $('#enable-quality').is(':checked')
 			);
+			$('#quality-text').value('');
 			$('#quality-hide').prop(
 				'disabled',
-				$('#enable-quality').is(':checked')
+				! $('#enable-quality').is(':checked')
 			);
 		}
 	)
@@ -97,11 +102,12 @@ $(document).ready(function() {
 		function() {
 			$('#quantity-text').prop(
 				'disabled',
-				$('#enable-quantity').is(':checked')
+				! $('#enable-quantity').is(':checked')
 			);
+			$('#quantity-text').value('');
 			$('#quantity-hide').prop(
 				'disabled',
-				$('#enable-quantity').is(':checked')
+				! $('#enable-quantity').is(':checked')
 			);
 		}
 	)
@@ -112,11 +118,12 @@ $(document).ready(function() {
 		function() {
 			$('#speed-text').prop(
 				'disabled',
-				$('#enable-speed').is(':checked')
+				! $('#enable-speed').is(':checked')
 			);
+			$('#speed-text').value('');
 			$('#speed-hide').prop(
 				'disabled',
-				$('#enable-speed').is(':checked')
+				! $('#enable-speed').is(':checked')
 			);
 		}
 	)
@@ -130,21 +137,21 @@ $(document).ready(function() {
  */
 function populateDomainCategories(event) {
 	$.ajax({
-		url: "/imodv6/learningObjective/getDomainCategories",
-		type: "GET",
-		dataType: "json",
+		url: baseUrl + 'learningObjective/getDomainCategories',
+		type: 'GET',
+		dataType: 'json',
 		data: {
 			domainName: this.value
 		},
 		success: function(data){
 			var categories = data.value
 			var options = '';
-			for (var i = 0; i < categories.length; i++){
+			for (var i = 0; i < categories.length; i++) {
 				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>'
 			}
 			$('#domain-category-list').html(options);
 		},
-		error: function(xhr){
+		error: function(xhr) {
 			console.log(xhr.responseText);
 		}
 	});
@@ -158,16 +165,16 @@ function populateDomainCategories(event) {
  */
 function populateActionWordCategories(event) {
 	$.ajax({
-		url: "/imodv6/learningObjective/getActionWordCategories",
-		type: "GET",
-		dataType: "json",
+		url: baseUrl + 'learningObjective/getActionWordCategories',
+		type: 'GET',
+		dataType: 'json',
 		data: {
 			domainName: this.value
 		},
-		success: function(data){
+		success: function(data) {
 			var actionWordCategories = data.value;
 			var actionWordCategoriesHTML = '';
-			for (var i = 0; i < actionWordCategories.length; i++){
+			for (var i = 0; i < actionWordCategories.length; i++) {
 				actionWordCategoriesHTML += '<li class="action-word-category ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>'
 			}
 			$('#action-word-categories').html(actionWordCategoriesHTML);
@@ -186,13 +193,13 @@ function populateActionWordCategories(event) {
  */
 function populateActionWords(actionWordCategory) {
 	$.ajax({
-		url: "/imodv6/learningObjective/getActionWords",
-		type: "GET",
-		dataType: "json",
+		url: baseUrl + 'learningObjective/getActionWords',
+		type: 'GET',
+		dataType: 'json',
 		data: {
 			domainName: actionWordCategory
 		},
-		success: function(data){
+		success: function(data) {
 			var actionWords = data.value;
 			var actionWordsHTML = '';
 			for (var i = 0; i < actionWordCategories.length; i++){
@@ -200,14 +207,14 @@ function populateActionWords(actionWordCategory) {
 			}
 			$('#action-words').html(actionWordsHTML);
 		},
-		error: function(xhr){
+		error: function(xhr) {
 			console.log(xhr.responseText);
 		}
 	});
 }
 
 // add the data to the definition box, depending on which type of data it is
-function propagateToDefinition(value, type){
-	var definitionType = ".learning-objective-current .learning-objective-" + type
+function propagateToDefinition(value, type) {
+	var definitionType = '.learning-objective-current .learning-objective-' + type
 	$(definitionType).text(value)
 }

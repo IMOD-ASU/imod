@@ -37,8 +37,8 @@ class Instructor {
 
 	def String toString(){
 		def displayName = lastName
-		if(firstName != null){ displayName = displayName + " " + firstName}
-		if(middleInitial != null){ displayName = displayName + " " + middleInitial}
+		if(firstName != null){ displayName = displayName + ' ' + firstName}
+		if(middleInitial != null){ displayName = displayName + ' ' + middleInitial}
 		return displayName
 	}
 }

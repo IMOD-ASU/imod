@@ -28,7 +28,17 @@ class LearningObjectiveController {
 		// get the IMOD that this learning objective will be associated with
 		def imodInstance = Imod.get(id)
 		// create a learning objective, linked to the imod
-		def learningObjectiveInstance = new LearningObjective(imod: imodInstance)
+		def learningObjectiveInstance = new LearningObjective(
+			imod: imodInstance,
+			criteriaAccuracyEnabled: true,
+			criteriaQualityEnabled: true,
+			criteriaQuantityEnabled: true,
+			criteriaSpeedEnabled: true,
+			criteriaAccuracyHidden: true,
+			criteriaQualityHidden: true,
+			criteriaQuantityHidden: true,
+			criteriaSpeedHidden: true,
+		)
 		// add the learning objective to the collection of learning objectives in the imod
 		imodInstance.addToLearningObjectives(learningObjectiveInstance)
 		// saves the imod and the learning objective
@@ -189,20 +199,20 @@ class LearningObjectiveController {
 		def imodInstance = Imod.get(id)
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def contentList=imodInstance.contents.findAll(){it.parentContent==null}.sort(){it.id}
-		def contents=[];
-		if (contentList.size()==0){
-			contentList.add(new Content(imod:imodInstance))
+		def contentList = imodInstance.contents.findAll(){it.parentContent == null}.sort() {it.id}
+		def contents = [];
+		if (contentList.size() == 0) {
+			contentList.add(new Content(imod: imodInstance))
 		}
 		contentList.collect(contents) {
 			getSubContent(it,learningObjectiveInstance)
 		}
-		contents=new groovy.json.JsonBuilder(contents).toString()
-		contents=contents.replaceAll('"', /'/)
+		contents = new groovy.json.JsonBuilder(contents).toString()
+		contents = contents.replaceAll('"', /'/)
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage: "content",
+			currentPage: 'content',
 			learningObjective: learningObjectiveInstance,
 			contentList: contents,
 		]
@@ -257,7 +267,7 @@ class LearningObjectiveController {
 		def listChildren=[]
 		def topicSelected="topicNotSelected"
 		if (objective.contents.contains(current) as Boolean){
-			topicSelected="topicSelected" 
+			topicSelected="topicSelected"
 		}
 		def currentID =current.id
 		def idValue="content"+currentID
@@ -274,9 +284,9 @@ class LearningObjectiveController {
 			current.subContents.collect(listChildren){
 				getSubContent(it,objective)
 			}
-			
+
 		}
- 
+
 		returnValue=[
 			id: idValue,
 			text: topicTitle,
@@ -286,7 +296,7 @@ class LearningObjectiveController {
 		]
 		return returnValue
 
-					
+
 	}
 	/**
 	 * gather the Domain Categories for selected Learning Domain

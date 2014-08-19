@@ -8,7 +8,7 @@ class UserPreferences {
 	String dateRepresentation
 	boolean showHelp
 	ImodUser user
-	
+
 	static belongsTo = ImodUser
 
     static constraints = {
@@ -16,8 +16,8 @@ class UserPreferences {
 		showHelp nullable: true
 		}
 	static mapping = {
-		showHelp defaultValue: "'true'"
-		dateRepresentation defaultValue: "'mm/dd/yy'"
+		showHelp defaultValue: 'true'
+		dateRepresentation defaultValue: 'mm/dd/yy'
 		version false
 	}
 
