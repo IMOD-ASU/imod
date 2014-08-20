@@ -26,7 +26,7 @@
 		</head>
 
 		<body>
-			<div id="help-placeholder"  >
+			<div id="help-placeholder">
 				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
 				<span>
 					Quick tip
