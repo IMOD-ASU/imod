@@ -204,6 +204,7 @@ class PedagogyController {
 				}
 			}
 			[
+				currentPage: 'pedagogy',
 				topicDateForCurrentLearningObjectiveList: topicDateForCurrentLearningObjectiveList,
 				learningObjectiveDates: learningObjectiveDates,
 				remainingContent: remainingContent,
