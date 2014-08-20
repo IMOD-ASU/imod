@@ -33,11 +33,7 @@
 			<g:hasErrors bean="${imodInstance}">
 				<ul class="errors" role="alert">
 					<g:eachError bean="${imodInstance}" var="error">
-						<li
-							<g:if test="${error in org.springframework.validation.FieldError}">
-								data-field-id="${error.field}"
-							</g:if>
-						>
+						<li data-field-id="${ error in org.springframework.validation.FieldError ? error.field : '' }">
 							<g:message error="${error}"/>
 						</li>
 					</g:eachError>
@@ -53,8 +49,7 @@
 										Learning Objectives
 										<g:link action="create" id="${imodInstance.id}">
 											<button>
-												<span class="fa fa-plus">
-												</span>
+												<span class="fa fa-plus"></span>
 												Add
 											</button>
 										</g:link>
@@ -80,10 +75,10 @@
 					<tr>
 						<td id="LO-creator">
 							<div class="learning-objective-creator">
-								<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-'+currentPage+'.png')}" alt=""/>
+								<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-' + currentPage.find(/\w+$/) + '.png')}" alt=""/>
 
 								<ul class="learning-objectives sub-nav">
-									<li <g:if test="${currentPage=='performance'}">class="active" </g:if>>
+									<li class="${ currentPage.find(/learning objective performance/) == null ? '' : 'active' }">
 										<g:link
 											action="performance"
 											learningObjectiveID="${learningObjective.id}"
@@ -93,7 +88,7 @@
 											Performance
 										</g:link>
 									</li>
-									<li <g:if test="${currentPage=='content'}">class="active" </g:if>>
+									<li class="${ currentPage.find(/learning objective content/) == null ? '' : 'active' }">
 										<g:link
 											action="content"
 											learningObjectiveID="${learningObjective.id}"
@@ -103,7 +98,7 @@
 											Content
 										</g:link>
 									</li>
-									<li <g:if test="${currentPage=='condition'}">class="active" </g:if>>
+									<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
 										<g:link
 											action="condition"
 											learningObjectiveID="${learningObjective.id}"
@@ -113,7 +108,7 @@
 											Condition
 										</g:link>
 									</li>
-									<li <g:if test="${currentPage=='criteria'}">class="active" </g:if>>
+									<li class="${ currentPage.find(/learning objective criteria/) == null ? '' : 'active' }">
 										<g:link
 											action="criteria"
 											learningObjectiveID="${learningObjective.id}"

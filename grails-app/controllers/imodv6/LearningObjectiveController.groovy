@@ -178,7 +178,7 @@ class LearningObjectiveController {
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage: 'performance',
+			currentPage: 'learning objective performance',
 			learningObjective: learningObjective,
 			selectedActionWordCategory: selectedActionWordCategory,
 			selectedDomainCategory: selectedDomainCategory,
@@ -212,7 +212,7 @@ class LearningObjectiveController {
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage: 'content',
+			currentPage: 'learning objective content',
 			learningObjective: learningObjectiveInstance,
 			contentList: contents,
 		]
@@ -235,7 +235,7 @@ class LearningObjectiveController {
 		[
 			imodInstance: imodInstance,
 			learningObjectivesList: learningObjectivesList,
-			currentPage: 'condition',
+			currentPage: 'learning objective condition',
 			learningObjective: learningObjectiveInstance,
 			currentCondition: currentCondition,
 			isCustom: isCustom,
@@ -257,7 +257,7 @@ class LearningObjectiveController {
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		[
 			imodInstance: imodInstance,
-			currentPage: 'criteria',
+			currentPage: 'learning objective criteria',
 			learningObjective: learningObjective,
 			learningObjectivesList: learningObjectivesList,
 		]

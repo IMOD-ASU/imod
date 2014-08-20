@@ -15,7 +15,8 @@ class ContentController {
 
 	def index(Long id) {
 		[
-			imodInstance: Imod.get(id)
+			imodInstance: Imod.get(id),
+			currentPage: 'content'
 		]
 	}
 
