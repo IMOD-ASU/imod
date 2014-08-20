@@ -99,4 +99,19 @@ class LearningObjective {
 		criteriaQuantityEnabled	defaultValue: 'true'
 		criteriaSpeedEnabled	defaultValue: 'true'
 	}
+
+
+	public isEmpty() {
+		// check each of the criteria attributes
+		boolean criteriaAccuracyEmpty = criteriaAccuracyEnabled == false || criteriaAccuracy == null || criteriaAccuracyHidden == true
+		boolean criteriaQualityEmpty = criteriaQualityEnabled == false || criteriaQuality == null || criteriaQualityHidden == true
+		boolean criteriaQuantityEmpty = criteriaQuantityEnabled == false || criteriaQuantity == null || criteriaQuantityHidden == true
+		boolean criteriaSpeedEmpty = criteriaSpeedEnabled == false || criteriaSpeed == null || criteriaSpeedHidden == true
+		// check the complete criteria page
+		boolean criteriaPageEmpty =  criteriaAccuracyEmpty && criteriaQualityEmpty && criteriaQuantityEmpty && criteriaSpeedEmpty
+		// check all the other attributes
+		boolean otherPagesEmpty = condition == null && indicator == null && performance == null
+		// put it all together
+		return otherPagesEmpty && criteriaPageEmpty
+	}
 }
