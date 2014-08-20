@@ -53,8 +53,7 @@
 										Learning Objectives
 										<g:link action="create" id="${imodInstance.id}">
 											<button>
-												<span class="fa fa-plus">
-												</span>
+												<span class="fa fa-plus"></span>
 												Add
 											</button>
 										</g:link>
@@ -83,7 +82,7 @@
 								<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-'+currentPage+'.png')}" alt=""/>
 
 								<ul class="learning-objectives sub-nav">
-									<li <g:if test="${currentPage=='performance'}">class="active" </g:if>>
+									<li <g:if test="${ currentPage.find(/performance/) == 'performance' }">class="active"</g:if>>
 										<g:link
 											action="performance"
 											learningObjectiveID="${learningObjective.id}"
@@ -93,7 +92,7 @@
 											Performance
 										</g:link>
 									</li>
-									<li <g:if test="${currentPage=='content'}">class="active" </g:if>>
+									<li <g:if test="${ currentPage.find(/content/) == 'content' }">class="active"</g:if>>
 										<g:link
 											action="content"
 											learningObjectiveID="${learningObjective.id}"
@@ -103,7 +102,7 @@
 											Content
 										</g:link>
 									</li>
-									<li <g:if test="${currentPage=='condition'}">class="active" </g:if>>
+									<li <g:if test="${ currentPage.find(/condition/) == 'condition' }">class="active"</g:if>>
 										<g:link
 											action="condition"
 											learningObjectiveID="${learningObjective.id}"
@@ -113,7 +112,7 @@
 											Condition
 										</g:link>
 									</li>
-									<li <g:if test="${currentPage=='criteria'}">class="active" </g:if>>
+									<li <g:if test="${ currentPage.find(/criteria/) == 'criteria' }">class="active"</g:if>>
 										<g:link
 											action="criteria"
 											learningObjectiveID="${learningObjective.id}"
