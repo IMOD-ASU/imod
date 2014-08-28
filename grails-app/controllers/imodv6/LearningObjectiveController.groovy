@@ -60,7 +60,6 @@ class LearningObjectiveController {
 	 * @return                     redirects back to the page that user was just on
 	 */
 	//TODO: add confirmation that the content was successfully saved
-	//TODO: actually save the Domain after editing it
 	def save (Long id, Long learningObjectiveID, String pageType){
 		//gets the learning objective to be updated
 		def learningObjectiveInstance = LearningObjective.get(learningObjectiveID)
@@ -69,11 +68,6 @@ class LearningObjectiveController {
 			// if the user is saving performance page
 			case 'performance':
 				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
-				redirect(
-					action: 'performance',
-					id: id,
-					learningObjectiveID: learningObjectiveID
-				)
 				break
 
 			// if the user is saving the condition page
@@ -85,11 +79,6 @@ class LearningObjectiveController {
 					learningObjectiveInstance.condition = params.LO_custom
 				}
 				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.LO_hide_from_Objective == 'on' ? true : false)
-				redirect(
-					action: 'condition',
-					id: id,
-					learningObjectiveID: learningObjectiveID
-				)
 				break
 
 			// if the user is saving the criteria page
@@ -113,27 +102,22 @@ class LearningObjectiveController {
 				learningObjectiveInstance.criteriaQualityHidden		= (params.hideQuality	== null ? false : true)
 				learningObjectiveInstance.criteriaQuantityHidden	= (params.hideQuantity	== null ? false : true)
 				learningObjectiveInstance.criteriaSpeedHidden		= (params.hideSpeed		== null ? false : true)
-
-				// save all of the changes
-				learningObjectiveInstance.save()
-
-				// refresh criteria page after saving criteriae
-				redirect(
-					action: 'criteria',
-					id: id,
-					learningObjectiveID: learningObjectiveID
-				)
 				break
 
 			// if page type is not recognized
 			// TODO: add an error message
 			default:
-				redirect(
-					action: 'performance',
-					id: id,
-					learningObjectiveID: learningObjectiveID
-				)
+				pageType = 'performance'
 		}
+		// save all of the changes
+		learningObjectiveInstance.save()
+
+		// redirect to the correct page
+		redirect(
+			action: pageType,
+			id: id,
+			learningObjectiveID: learningObjectiveID
+		)
 	}
 
 	// TODO: Why does this action exist? What is wrong with just redirecting to performance?
