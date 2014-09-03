@@ -144,14 +144,20 @@ function populateDomainCategories(event) {
 			domainName: this.value
 		},
 		success: function(data){
+			// stores the data from the call back
 			var categories = data.value
+			// this stores the new html that will be added
 			var options = '';
+			// for each of the categories
 			for (var i = 0; i < categories.length; i++) {
+				// create the html for the category
 				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>'
 			}
+			// store this to the page
 			$('#domain-category-list').html(options);
 		},
 		error: function(xhr) {
+			// when something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
 	});
@@ -172,14 +178,20 @@ function populateActionWordCategories(event) {
 			domainName: this.value
 		},
 		success: function(data) {
+			// store the data from the call back
 			var actionWordCategories = data.value;
+			// this will temporarily store the html for the categories
 			var actionWordCategoriesHTML = '';
+			// for each category
 			for (var i = 0; i < actionWordCategories.length; i++) {
+				// create the html
 				actionWordCategoriesHTML += '<li class="action-word-category ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>'
 			}
+			// display the html on the page
 			$('#action-word-categories').html(actionWordCategoriesHTML);
 		},
 		error: function(xhr){
+			// when something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
 	});
@@ -200,22 +212,35 @@ function populateActionWords(actionWordCategory) {
 			domainName: actionWordCategory
 		},
 		success: function(data) {
+			// store the data from the call back
 			var actionWords = data.value;
+			// this will store the html for the action words
 			var actionWordsHTML = '';
+			// for each action word
 			for (var i = 0; i < actionWordCategories.length; i++) {
+				// create the html for the action word
 				actionWordCategoriesHTML += '<option value="' + actionWords[i].actionWord + '"/>';
 			}
+			// display the html for the action words
 			$('#action-words').html(actionWordsHTML);
 		},
 		error: function(xhr) {
+			// when something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
 	});
 }
 
+/**
+ * ajax action to store the currently selected word,
+ * @param  {String} value to save to the database
+ */
 function savePerformance(value) {
+	// get the imod id from the url
 	var imodId = window.location.pathname.match(/\d+$/)[0];
+	// create the full url that will be called
 	var fullURL = baseUrl + 'learningObjective/save/' + imodId;
+	// actually send the data to the backend
 	$.post(fullURL, {value: value, learningObjectiveID : 1});
 }
 
@@ -224,4 +249,3 @@ function propagateToDefinition(value, type) {
 	var definitionType = '.learning-objective-current .learning-objective-' + type;
 	$(definitionType).text(value);
 }
-
