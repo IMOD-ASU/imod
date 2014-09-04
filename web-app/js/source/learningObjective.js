@@ -1,5 +1,5 @@
 // start at the beggining of the path, get the first '/' then and all the characters between that and the second '/'
-var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0]
+var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 
 //on page load
 $(document).ready(function() {
@@ -18,10 +18,10 @@ $(document).ready(function() {
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO-hide-from-Objective').change(function() {
 		if(this.checked) {
-			$('.learning-objective-current .learning-objective-condition').css('display', 'none')
+			$('.learning-objective-current .learning-objective-condition').css('display', 'none');
 		}
 		else {
-			$('.learning-objective-current .learning-objective-condition').css('display', 'inline')
+			$('.learning-objective-current .learning-objective-condition').css('display', 'inline');
 		}
 	});
 
@@ -54,7 +54,7 @@ $(document).ready(function() {
 	$('input:radio[name=LO_condition_type]:checked').change()
 
 	// making action words selectable through jquery ui
-	$('#action-word-categories' ).selectable();
+	$('#action-word-categories' ).selectable({selected: populateActionWords});
 
 	// This listens for when a learning objective is selected and saves
 	$('.action-word-category').on(
@@ -144,14 +144,20 @@ function populateDomainCategories(event) {
 			domainName: this.value
 		},
 		success: function(data){
+			// stores the data from the call back
 			var categories = data.value
+			// this stores the new html that will be added
 			var options = '';
+			// for each of the categories
 			for (var i = 0; i < categories.length; i++) {
+				// create the html for the category
 				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>'
 			}
+			// store this to the page
 			$('#domain-category-list').html(options);
 		},
 		error: function(xhr) {
+			// when something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
 	});
@@ -164,6 +170,7 @@ function populateDomainCategories(event) {
  * @return {XML}        Populates the page with action word categories
  */
 function populateActionWordCategories(event) {
+	updatePerformanceText(this.value);
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWordCategories',
 		type: 'GET',
@@ -172,14 +179,20 @@ function populateActionWordCategories(event) {
 			domainName: this.value
 		},
 		success: function(data) {
+			// store the data from the call back
 			var actionWordCategories = data.value;
+			// this will temporarily store the html for the categories
 			var actionWordCategoriesHTML = '';
+			// for each category
 			for (var i = 0; i < actionWordCategories.length; i++) {
+				// create the html
 				actionWordCategoriesHTML += '<li class="action-word-category ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>'
 			}
+			// display the html on the page
 			$('#action-word-categories').html(actionWordCategoriesHTML);
 		},
 		error: function(xhr){
+			// when something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
 	});
@@ -191,30 +204,41 @@ function populateActionWordCategories(event) {
  * @param  {String} domain text from the action word category boxes
  * @return {XML}        Populates the page with action words
  */
-function populateActionWords(actionWordCategory) {
+function populateActionWords(event) {
+	updatePerformanceText(this.value);
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: actionWordCategory
+			domainName: this.value
 		},
 		success: function(data) {
+			// store the data from the call back
 			var actionWords = data.value;
+			// this will store the html for the action words
 			var actionWordsHTML = '';
-			for (var i = 0; i < actionWordCategories.length; i++){
-				actionWordCategoriesHTML += '<option value="' + actionWords[i].actionWord + '"/>'
+			// for each action word
+			for (var i = 0; i < actionWordCategories.length; i++) {
+				// create the html for the action word
+				actionWordCategoriesHTML += '<option value="' + actionWords[i].actionWord + '"/>';
 			}
+			// display the html for the action words
 			$('#action-words').html(actionWordsHTML);
 		},
 		error: function(xhr) {
+			// when something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
 	});
 }
 
+function updatePerformanceText(text) {
+	document.querySelector('#performance-text').value = text;
+}
+
 // add the data to the definition box, depending on which type of data it is
 function propagateToDefinition(value, type) {
-	var definitionType = '.learning-objective-current .learning-objective-' + type
-	$(definitionType).text(value)
+	var definitionType = '.learning-objective-current .learning-objective-' + type;
+	$(definitionType).text(value);
 }

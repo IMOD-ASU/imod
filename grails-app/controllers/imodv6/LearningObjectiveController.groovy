@@ -30,14 +30,14 @@ class LearningObjectiveController {
 		// create a learning objective, linked to the imod
 		def learningObjectiveInstance = new LearningObjective(
 			imod: imodInstance,
-			criteriaAccuracyEnabled: true,
-			criteriaQualityEnabled: true,
-			criteriaQuantityEnabled: true,
-			criteriaSpeedEnabled: true,
-			criteriaAccuracyHidden: true,
-			criteriaQualityHidden: true,
-			criteriaQuantityHidden: true,
-			criteriaSpeedHidden: true,
+			criteriaAccuracyEnabled:	true,
+			criteriaQualityEnabled:		true,
+			criteriaQuantityEnabled:	true,
+			criteriaSpeedEnabled:		true,
+			criteriaAccuracyHidden:		true,
+			criteriaQualityHidden:		true,
+			criteriaQuantityHidden:		true,
+			criteriaSpeedHidden:		true,
 		)
 		// add the learning objective to the collection of learning objectives in the imod
 		imodInstance.addToLearningObjectives(learningObjectiveInstance)
@@ -49,7 +49,6 @@ class LearningObjectiveController {
 			id: id,
 			learningObjectiveID: learningObjectiveInstance.id,
 		)
-
 	}
 
 	/**
@@ -60,7 +59,6 @@ class LearningObjectiveController {
 	 * @return                     redirects back to the page that user was just on
 	 */
 	//TODO: add confirmation that the content was successfully saved
-	//TODO: actually save the Domain after editing it
 	def save (Long id, Long learningObjectiveID, String pageType){
 		//gets the learning objective to be updated
 		def learningObjectiveInstance = LearningObjective.get(learningObjectiveID)
@@ -69,11 +67,7 @@ class LearningObjectiveController {
 			// if the user is saving performance page
 			case 'performance':
 				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
-				redirect(
-					action: 'performance',
-					id: id,
-					learningObjectiveID: learningObjectiveID
-				)
+				learningObjectiveInstance.performance = params.performance
 				break
 
 			// if the user is saving the condition page
@@ -85,11 +79,6 @@ class LearningObjectiveController {
 					learningObjectiveInstance.condition = params.LO_custom
 				}
 				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.LO_hide_from_Objective == 'on' ? true : false)
-				redirect(
-					action: 'condition',
-					id: id,
-					learningObjectiveID: learningObjectiveID
-				)
 				break
 
 			// if the user is saving the criteria page
@@ -113,27 +102,22 @@ class LearningObjectiveController {
 				learningObjectiveInstance.criteriaQualityHidden		= (params.hideQuality	== null ? false : true)
 				learningObjectiveInstance.criteriaQuantityHidden	= (params.hideQuantity	== null ? false : true)
 				learningObjectiveInstance.criteriaSpeedHidden		= (params.hideSpeed		== null ? false : true)
-
-				// save all of the changes
-				learningObjectiveInstance.save()
-
-				// refresh criteria page after saving criteriae
-				redirect(
-					action: 'criteria',
-					id: id,
-					learningObjectiveID: learningObjectiveID
-				)
 				break
 
 			// if page type is not recognized
 			// TODO: add an error message
 			default:
-				redirect(
-					action: 'performance',
-					id: id,
-					learningObjectiveID: learningObjectiveID
-				)
+				pageType = 'performance'
 		}
+		// save all of the changes
+		learningObjectiveInstance.save()
+
+		// redirect to the correct page
+		redirect(
+			action:					pageType,
+			id:						id,
+			learningObjectiveID:	learningObjectiveID
+		)
 	}
 
 	// TODO: Why does this action exist? What is wrong with just redirecting to performance?
@@ -145,8 +129,8 @@ class LearningObjectiveController {
 	 */
 	def edit (Long id) {
 		render(
-			action: 'perfomance',
-			learningObjectiveID: id
+			action:					'perfomance',
+			learningObjectiveID:	id
 		)
 	}
 
@@ -176,16 +160,16 @@ class LearningObjectiveController {
 		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:domainCategoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
 
 		[
-			imodInstance: imodInstance,
-			learningObjectivesList: learningObjectivesList,
-			currentPage: 'learning objective performance',
-			learningObjective: learningObjective,
-			selectedActionWordCategory: selectedActionWordCategory,
-			selectedDomainCategory: selectedDomainCategory,
-			selectedDomain: selectedDomain,
-			domainList: domainList,
-			categoriesList: domainCategoriesList,
-			actionWordCategoryList: actionWordCategoryList,
+			imodInstance:				imodInstance,
+			learningObjectivesList:		learningObjectivesList,
+			currentPage:				'learning objective performance',
+			learningObjective:			learningObjective,
+			selectedActionWordCategory:	selectedActionWordCategory,
+			selectedDomainCategory:		selectedDomainCategory,
+			selectedDomain:				selectedDomain,
+			domainList:					domainList,
+			categoriesList:				domainCategoriesList,
+			actionWordCategoryList:		actionWordCategoryList,
 		]
 	}
 
@@ -209,12 +193,13 @@ class LearningObjectiveController {
 		}
 		contents = new groovy.json.JsonBuilder(contents).toString()
 		contents = contents.replaceAll('"', /'/)
+
 		[
-			imodInstance: imodInstance,
-			learningObjectivesList: learningObjectivesList,
-			currentPage: 'learning objective content',
-			learningObjective: learningObjectiveInstance,
-			contentList: contents,
+			imodInstance:			imodInstance,
+			learningObjectivesList:	learningObjectivesList,
+			currentPage:			'learning objective content',
+			learningObjective:		learningObjectiveInstance,
+			contentList:			contents,
 		]
 	}
 
@@ -225,21 +210,21 @@ class LearningObjectiveController {
 	 * @return                     [description]
 	 */
 	def condition(Long id, Long learningObjectiveID) {
-		def imodInstance = Imod.get(id)
-		def learningObjectivesList = learningObjectiveManager(imodInstance)
-		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def currentCondition = learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
-		def isCustom =! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
-		def hideCondition = learningObjectiveInstance.hideFromLearningObjectiveCondition
+		def imodInstance				=  Imod.get(id)
+		def learningObjectivesList		=  learningObjectiveManager(imodInstance)
+		def learningObjectiveInstance	=  getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def currentCondition			=  learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
+		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
+		def hideCondition				=  learningObjectiveInstance.hideFromLearningObjectiveCondition
 
 		[
-			imodInstance: imodInstance,
-			learningObjectivesList: learningObjectivesList,
-			currentPage: 'learning objective condition',
-			learningObjective: learningObjectiveInstance,
-			currentCondition: currentCondition,
-			isCustom: isCustom,
-			hideCondition: hideCondition,
+			imodInstance:			imodInstance,
+			learningObjectivesList:	learningObjectivesList,
+			currentPage:			'learning objective condition',
+			learningObjective:		learningObjectiveInstance,
+			currentCondition:		currentCondition,
+			isCustom:				isCustom,
+			hideCondition:			hideCondition,
 
 		]
 	}
@@ -255,56 +240,60 @@ class LearningObjectiveController {
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
+
 		[
-			imodInstance: imodInstance,
-			currentPage: 'learning objective criteria',
-			learningObjective: learningObjective,
-			learningObjectivesList: learningObjectivesList,
+			imodInstance:			imodInstance,
+			currentPage:			'learning objective criteria',
+			learningObjective:		learningObjective,
+			learningObjectivesList:	learningObjectivesList,
 		]
 	}
 
 	private def getSubContent(Content current, LearningObjective objective){
-		def listChildren=[]
-		def topicSelected="topicNotSelected"
+		def listChildren = []
+		def topicSelected = "topicNotSelected"
 		if (objective.contents.contains(current) as Boolean){
-			topicSelected="topicSelected"
+			topicSelected = "topicSelected"
 		}
-		def currentID =current.id
-		def idValue="content"+currentID
-		def topicTitle='<span class="fa-stack">'+
+		def currentID = current.id
+		def idValue = "content" + currentID
+		def topicTitle = '<span class="fa-stack">'+
 			'<i class="checkboxBackground"></i>'+
-			'<i class="fa fa-stack-1x checkbox" id="select'+currentID+'"></i> '+
-			'</span> '+current.topicTitle
-		def returnValue={}
-		def rootNode=""
-		if (current.parentContent==null){
-			rootNode="rootNode"
+			'<i class="fa fa-stack-1x checkbox" id="select' + currentID + '"></i> ' +
+			'</span> ' + current.topicTitle
+		def returnValue = {}
+		def rootNode = ""
+		if (current.parentContent == null){
+			rootNode = "rootNode"
 		}
-		if (current.subContents!=null){
+		if (current.subContents != null){
 			current.subContents.collect(listChildren){
 				getSubContent(it,objective)
 			}
 
 		}
 
-		returnValue=[
+		returnValue = [
 			id: idValue,
 			text: topicTitle,
-			li_attr:["class": topicSelected],
-			a_attr:["class":rootNode],
-			children:listChildren,
+			li_attr: [
+				"class": topicSelected
+			],
+			a_attr: [
+				"class":rootNode
+			],
+			children: listChildren
 		]
 		return returnValue
-
-
 	}
+
+
 	/**
 	 * gather the Domain Categories for selected Learning Domain
 	 * @param  domainName String that is the contents (or name) of a Learning Domain
 	 * @return            sorted list of Domain Categories
 	 */
 	def getDomainCategories(String domainName) {
-
 		// Find the selected learning domain
 		def domain = LearningDomain.findByName(domainName)
 		// get all related domain categories and sort by name

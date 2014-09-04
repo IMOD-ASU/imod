@@ -16,9 +16,9 @@
 					title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}"
 					value="${message(code: 'Save', default: 'Save')}"
 				/>
-				<input type="hidden" name="id" value="${imodInstance.id}">
-				<input type="hidden" name="learningObjectiveID" value="${learningObjective.id}">
-				<input type="hidden" name="pageType" value="condition">
+				<g:hiddenField name="id" value="${imodInstance.id}" />
+				<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
+				<g:hiddenField name="pageType" value="condition" />
 			</fieldset>
 			<div id="LO-condition-radio-form">
 				<input
