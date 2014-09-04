@@ -54,7 +54,7 @@ $(document).ready(function() {
 	$('input:radio[name=LO_condition_type]:checked').change()
 
 	// making action words selectable through jquery ui
-	$('#action-word-categories' ).selectable();
+	$('#action-word-categories' ).selectable({selected: populateActionWords});
 
 	// This listens for when a learning objective is selected and saves
 	$('.action-word-category').on(
@@ -170,6 +170,7 @@ function populateDomainCategories(event) {
  * @return {XML}        Populates the page with action word categories
  */
 function populateActionWordCategories(event) {
+	updatePerformanceText(this.value);
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWordCategories',
 		type: 'GET',
@@ -203,13 +204,14 @@ function populateActionWordCategories(event) {
  * @param  {String} domain text from the action word category boxes
  * @return {XML}        Populates the page with action words
  */
-function populateActionWords(actionWordCategory) {
+function populateActionWords(event) {
+	updatePerformanceText(this.value);
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: actionWordCategory
+			domainName: this.value
 		},
 		success: function(data) {
 			// store the data from the call back
@@ -229,6 +231,10 @@ function populateActionWords(actionWordCategory) {
 			console.log(xhr.responseText);
 		}
 	});
+}
+
+function updatePerformanceText(text) {
+	document.querySelector('#performance-text').value = text;
 }
 
 // add the data to the definition box, depending on which type of data it is
