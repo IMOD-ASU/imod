@@ -79,7 +79,7 @@
 				<g:each in="${topicDateForCurrentLearningObjectiveList}" var="topicDateForCurrentLearningObjective">
 					<tr style="border:1px solid #000" class='contentTopicSchedule' id="${topicDateForCurrentLearningObjective?.id}" dir="${topicDateForCurrentLearningObjective?.id}">
 						<td>
-							<input type="hidden" name="topicScheduleIds" value="${topicDateForCurrentLearningObjective?.id}"/>
+							<g:hiddenField name="topicScheduleIds" value="${topicDateForCurrentLearningObjective?.id}" />
 							<g:select name="scheduleTopicList" class="scheduleTopicList" from="${contentList}" optionKey="id" value="${topicDateForCurrentLearningObjective?.content?.id}" style="padding: 0;"/>
 						</td>
 						<td>
@@ -103,7 +103,7 @@
 	<table border="1">
 		<tr class='contentResources' dir="0" style="border: 1px solid #000;">
 			<td>
-				<input type="hidden" name="topicScheduleIds" value="0"/>
+				<g:hiddenField name="topicScheduleIds" value="0" />
 				<g:select name="scheduleTopicList" class="scheduleTopicList" from="${contentList}" optionKey="id" value="" style="padding: 0;"/>
 			</td>
 			<td>

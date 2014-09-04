@@ -52,12 +52,12 @@ class BootStrap {
 				accountExpired: false,
 				accountLocked: false,
 				passwordExpired: false
-			).save(flush: true)
+			).save()
 
 			new ImodUserRole(
 				imodUser: developer,
 				role: tempRole
-			).save(flush: true)
+			).save()
 		}
 
 
@@ -82,7 +82,7 @@ class BootStrap {
 				tabFieldId: 1,
 				tabFieldName: "Save Course Overview",
 				text: "Click on this button to save a Course overview"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Delete Course Overview",
@@ -90,7 +90,7 @@ class BootStrap {
 				tabFieldId: 2,
 				tabFieldName: "Delete Course Overview",
 				text: "Click on this button to remove a Course overview"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Schedule start Date",
@@ -98,7 +98,7 @@ class BootStrap {
 				tabFieldId: 3,
 				tabFieldName: "Schedule start Date",
 				text: "Click on this button to select a Schedule start date"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Schedule end Date",
@@ -106,7 +106,7 @@ class BootStrap {
 				tabFieldId: 4,
 				tabFieldName: "Schedule end Date",
 				text: "Click on this button to select a Schedule end date"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Add instructor",
@@ -114,7 +114,7 @@ class BootStrap {
 				tabFieldId: 5,
 				tabFieldName: "Add instructor",
 				text: "Click on this button to add a Instructor"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Last Name Label",
@@ -122,7 +122,7 @@ class BootStrap {
 				tabFieldId: 6,
 				tabFieldName: "Last Name",
 				text: "Last Name"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "First Name Label",
@@ -130,7 +130,7 @@ class BootStrap {
 				tabFieldId: 7,
 				tabFieldName: "First Name",
 				text: "First Name"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Email Label",
@@ -138,7 +138,7 @@ class BootStrap {
 				tabFieldId: 8,
 				tabFieldName: "Email",
 				text: "Email"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Office Hours Label",
@@ -146,7 +146,7 @@ class BootStrap {
 				tabFieldId: 9,
 				tabFieldName: "Office Hours",
 				text: "Office Hours"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Web Page Label",
@@ -154,7 +154,7 @@ class BootStrap {
 				tabFieldId: 10,
 				tabFieldName: "Web Page",
 				text: "Web Page"
-			).save(flush: true)
+			).save()
 
 
 			/**
@@ -169,7 +169,7 @@ class BootStrap {
 				tabFieldId: 2,
 				tabFieldName: "Add Learning Objective",
 				text: "Click on this button to add a Learning Objective"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Learning Domain",
@@ -177,7 +177,7 @@ class BootStrap {
 				tabFieldId: 2,
 				tabFieldName: "Learning Domain",
 				text: "Select a Domain for student to Learn"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Learning Category",
@@ -185,7 +185,7 @@ class BootStrap {
 				tabFieldId: 2,
 				tabFieldName: "Learning Category",
 				text: "Select a Category for student to Learn"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Hide from Objective",
@@ -193,7 +193,7 @@ class BootStrap {
 				tabFieldId: 2,
 				tabFieldName: "Hide from Objective",
 				text: "Hides this custom condition from the Learning Objective"
-			).save(flush: true)
+			).save()
 
 			/**
 			 *
@@ -207,7 +207,7 @@ class BootStrap {
 				tabFieldId: 1,
 				tabFieldName: "Add Learning Objective",
 				text: "Click on this button to add a Learning Objective"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Remove Learning Objective",
@@ -215,7 +215,7 @@ class BootStrap {
 				tabFieldId: 2,
 				tabFieldName: "Remove Learning Objective",
 				text: "Click on this button to remove a Learning Objective"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Add Objective",
@@ -223,7 +223,7 @@ class BootStrap {
 				tabFieldId: 3,
 				tabFieldName: "Add Objective",
 				text: "Add Objective"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Topic Schedule",
@@ -231,7 +231,7 @@ class BootStrap {
 				tabFieldId: 4,
 				tabFieldName: "Topic Schedule",
 				text: "Click on this button to add a Topic Schedule"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Topic Map",
@@ -239,7 +239,7 @@ class BootStrap {
 				tabFieldId: 5,
 				tabFieldName: "Topic Map",
 				text: "Topic Map"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Add topic schedule",
@@ -247,7 +247,7 @@ class BootStrap {
 				tabFieldId: 6,
 				tabFieldName: "Add topic schedule",
 				text: "Add topic schedule"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Add Topic Form",
@@ -255,7 +255,7 @@ class BootStrap {
 				tabFieldId: 7,
 				tabFieldName: "Add Topic",
 				text: "Add Topic"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Remove Topic Widget",
@@ -263,7 +263,7 @@ class BootStrap {
 				tabFieldId: 8,
 				tabFieldName: "Remove Topic Widget",
 				text: "Remove Topic"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Add Topic",
@@ -271,7 +271,7 @@ class BootStrap {
 				tabFieldId: 9,
 				tabFieldName: "Add Topic",
 				text: "Click on this button to add a Topic"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Remove Topic",
@@ -279,7 +279,7 @@ class BootStrap {
 				tabFieldId: 10,
 				tabFieldName: "Remove Topic",
 				text: "Click on this button to remove a Topic"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Add Resource",
@@ -287,7 +287,7 @@ class BootStrap {
 				tabFieldId: 11,
 				tabFieldName: "Add Resource",
 				text: "Add Resource"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Topic Distributions",
@@ -295,7 +295,7 @@ class BootStrap {
 				tabFieldId: 12,
 				tabFieldName: "Topic Distributions",
 				text: "Click on this button to display topic distributions"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Topic Label",
@@ -303,7 +303,7 @@ class BootStrap {
 				tabFieldId: 13,
 				tabFieldName: "Topic",
 				text: "Topic"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Knowledge Dimension Label",
@@ -311,7 +311,7 @@ class BootStrap {
 				tabFieldId: 14,
 				tabFieldName: "Knowledge Dimension",
 				text: "Knowledge Dimension"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Priority Label",
@@ -319,7 +319,7 @@ class BootStrap {
 				tabFieldId: 15,
 				tabFieldName: "Priority Label",
 				text: "Priority"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Resources Label",
@@ -327,7 +327,7 @@ class BootStrap {
 				tabFieldId: 16,
 				tabFieldName: "Resources Label",
 				text: "Resources"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Pre-Req Label",
@@ -335,7 +335,7 @@ class BootStrap {
 				tabFieldId: 17,
 				tabFieldName: "Pre-Req Label",
 				text: "Pre-Req"
-			).save(flush: true)
+			).save()
 
 			/**
 			 *
@@ -349,7 +349,7 @@ class BootStrap {
 				tabFieldId: 1,
 				tabFieldName: "Add New Technique",
 				text: "Click on this button to add a new technique"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Clone technique",
@@ -357,7 +357,7 @@ class BootStrap {
 				tabFieldId: 2,
 				tabFieldName: "Clone technique",
 				text: "Click on this button to clone a technique"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Favorites",
@@ -365,7 +365,7 @@ class BootStrap {
 				tabFieldId: 3,
 				tabFieldName: "Favorites",
 				text: "Favorites displays the techniques that have be made the user's favorites"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Instructional Plan",
@@ -373,7 +373,7 @@ class BootStrap {
 				tabFieldId: 4,
 				tabFieldName: "Instructional Plan",
 				text: "Yet to be implemented"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Ideal Match",
@@ -381,7 +381,7 @@ class BootStrap {
 				tabFieldId: 5,
 				tabFieldName: "Ideal Match",
 				text: "Ideal Match displays the techniques that exactly match the Domain, Domain Category and Knowledge Dimension of the objective selected."
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Extended Match",
@@ -389,7 +389,7 @@ class BootStrap {
 				tabFieldId: 6,
 				tabFieldName: "Extended Match",
 				text: "Extended Match displays the techniques that match the Domain, Domain Category and Knowledge Dimension of the selections made in the Filter Options"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Domain",
@@ -397,7 +397,7 @@ class BootStrap {
 				tabFieldId: 7,
 				tabFieldName: "Domain",
 				text: "Bloom's Taxonomy definition the domains of educational activities or learning (Cognitive, Affective and Psychomotive)"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Domain Category",
@@ -405,7 +405,7 @@ class BootStrap {
 				tabFieldId: 8,
 				tabFieldName: "Domain Category",
 				text: "The categories were expressed as verbs rather than nouns as Remembering, Understanding, Applying, Analyzing, Evaluating, and Creating"
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Knowledge Dimension",
@@ -413,7 +413,7 @@ class BootStrap {
 				tabFieldId: 9,
 				tabFieldName: "Knowledge Dimension",
 				text: "The Knowledge Dimension embodied both noun and verb aspects and categorized as Factual, Conceptual, Procedural and Metacognitive Knowledge "
-			).save(flush: true)
+			).save()
 
 			new Help(
 				tabFieldUiId: "Refresh",
@@ -421,7 +421,7 @@ class BootStrap {
 				tabFieldId: 10,
 				tabFieldName: "Web Page",
 				text: "Clicking on Refresh displays the techniques that belongs the selections on the Domain, Domain Category and Knowledge Dimension in the Extended match."
-			).save(flush: true)
+			).save()
 		}
 
 
@@ -432,17 +432,17 @@ class BootStrap {
 			def learningDomainCognitive = new LearningDomain(
 				name: "Cognitive"
 			)
-			learningDomainCognitive.save(flush: true)
+			learningDomainCognitive.save()
 
 			def learningDomainAffective = new LearningDomain(
 				name: "Affective"
 			)
-			learningDomainAffective.save(flush: true)
+			learningDomainAffective.save()
 
 			def learningDomainPsychomotor = new LearningDomain(
 				name: "Psychomotor"
 			)
-			learningDomainPsychomotor.save(flush: true)
+			learningDomainPsychomotor.save()
 
 			/**
 			 * This creates the domain Category instances,
@@ -551,7 +551,7 @@ class BootStrap {
 			/**
 			 * Saving the action words and the domain category
 			 */
-			domainCategoryRemembering.save(flush: true)
+			domainCategoryRemembering.save()
 
 			/**
 			 * creating action words for understanding category
@@ -605,7 +605,7 @@ class BootStrap {
 			/**
 			 * Saving the action words and the domain category
 			 */
-			domainCategoryUnderstanding.save(flush: true)
+			domainCategoryUnderstanding.save()
 
 			/**
 			 * creating action words for applying category
@@ -629,7 +629,7 @@ class BootStrap {
 			/**
 			 * Saving the action words and the domain category
 			 */
-			domainCategoryApplying.save(flush: true)
+			domainCategoryApplying.save()
 
 			/**
 			 * creating action words for analyzing category
@@ -659,7 +659,7 @@ class BootStrap {
 			/**
 			 * Saving the action words and the domain category
 			 */
-			domainCategoryAnalyzing.save(flush: true)
+			domainCategoryAnalyzing.save()
 
 			/**
 			 * creating action words for evaluating category
@@ -683,7 +683,7 @@ class BootStrap {
 			/**
 			 * Saving the action words and the domain category
 			 */
-			domainCategoryEvaluating.save(flush: true)
+			domainCategoryEvaluating.save()
 
 			/**
 			 * creating action words for evaluating category
@@ -713,98 +713,98 @@ class BootStrap {
 			/**
 			 * Saving the action words and the domain category
 			 */
-			domainCategoryCreating.save(flush: true)
+			domainCategoryCreating.save()
 		}
 
 		if (KnowledgeDimension.count() < 1) {
 			new KnowledgeDimension(
 				description: "Factual"
-			).save(flush: true)
+			).save()
 
 			new KnowledgeDimension(
 				description: "Conceptual"
-			).save(flush: true)
+			).save()
 
 			new KnowledgeDimension(
 				description: "Procedural"
-			).save(flush: true)
+			).save()
 
 			new KnowledgeDimension(
 				description: "Metacognitive"
-			).save(flush: true)
+			).save()
 		}
 
 		if (ResourceType.count() == 0) {
 			new ResourceType(
 				description: "Document"
-			).save(flush: true)
+			).save()
 
 			new ResourceType(
 				description: "Book"
-			).save(flush: true)
+			).save()
 
 			new ResourceType(
 				description: "Chapter"
-			).save(flush: true)
+			).save()
 
 			new ResourceType(
 				description: "URL"
-			).save(flush: true)
+			).save()
 		}
 
 		if(PedagogyMode.count() == 0){
 			new PedagogyMode(
 				name:"online"
-			).save(flush:true)
+			).save()
 
 			new PedagogyMode(
 				name:"in-person"
-			).save(flush:true)
+			).save()
 
 			new PedagogyMode(
 				name:"hybrid"
-			).save(flush:true)
+			).save()
 		}
 
 		if(PedagogyReferenceType.count() == 0){
 			new PedagogyReferenceType(
 				description:"Book"
-			).save(flush:true)
+			).save()
 
 			new PedagogyReferenceType(
 				description:"Web"
-			).save(flush:true)
+			).save()
 		}
 
 		if(PedagogyActivityDuration.count() == 0){
 			new PedagogyActivityDuration(
 				duration:"Single Session"
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivityDuration(
 				duration:"Multiple Session"
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivityDuration(
 				duration:"Both Session"
-			).save(flush:true)
+			).save()
 		}
 		if(PedagogyActivityFocus.count() == 0){
 			new PedagogyActivityFocus(
 				focus:"Reading"
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivityFocus(
 				focus:"Writing"
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivityFocus(
 				focus:"Discussing"
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivityFocus(
 				focus:"Presenting"
-			).save(flush:true)
+			).save()
 		}
 
 		if(PedagogyTechnique.count() == 0){
@@ -831,7 +831,7 @@ class BootStrap {
 					"Presenting"
 				]),
 				pedagogyMode: PedagogyMode.findByName("in-person")
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title:"jigsaw",
@@ -840,7 +840,7 @@ class BootStrap {
 				material:"clicker, paper",
 				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique:pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyReference(
 				title:"Student_Engagement_Techniques",
@@ -848,7 +848,7 @@ class BootStrap {
 				referenceLinkISBN:"978-0-470-28191-8",
 				referenceType:PedagogyReferenceType.findByDescription("Book"),
 				pedagogyTechnique:pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -871,7 +871,7 @@ class BootStrap {
 					"Presenting"
 				]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -881,7 +881,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-3",
@@ -890,7 +890,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-1",
@@ -899,7 +899,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
@@ -908,7 +908,7 @@ class BootStrap {
 				referenceLinkISBN: "978-0-470-28191-8",
 				referenceType: PedagogyReferenceType.findByDescription("Book"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -929,7 +929,7 @@ class BootStrap {
 					"Presenting"
 				]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -955,7 +955,7 @@ class BootStrap {
 					"Presenting"
 				]),
 				pedagogyMode: PedagogyMode.findByName("in-person")
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -981,7 +981,7 @@ class BootStrap {
 					"Presenting"
 				]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -991,7 +991,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-2",
@@ -1000,7 +1000,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-3",
@@ -1009,7 +1009,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-4",
@@ -1018,7 +1018,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
@@ -1027,7 +1027,7 @@ class BootStrap {
 				referenceLinkISBN: "978-0-470-28191-8",
 				referenceType: PedagogyReferenceType.findByDescription("Book"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -1051,7 +1051,7 @@ class BootStrap {
 					"Writing"
 				]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -1061,7 +1061,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-2",
@@ -1070,7 +1070,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-3",
@@ -1079,7 +1079,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-4",
@@ -1088,7 +1088,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
@@ -1097,7 +1097,7 @@ class BootStrap {
 				referenceLinkISBN: "978-0-470-28191-8",
 				referenceType: PedagogyReferenceType.findByDescription("Book"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -1108,7 +1108,7 @@ class BootStrap {
 				knowledge: KnowledgeDimension.findAllByDescriptionInList(["Factual", "Conceptual", "Procedural", "Metacognitive"]),
 				focus: PedagogyActivityFocus.findAllByFocusInList(["Writing", "Discussing"]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -1118,7 +1118,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-2",
@@ -1127,7 +1127,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-3",
@@ -1136,7 +1136,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-4",
@@ -1145,7 +1145,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
@@ -1154,7 +1154,7 @@ class BootStrap {
 				referenceLinkISBN: "978-0-470-28191-8",
 				referenceType: PedagogyReferenceType.findByDescription("Book"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -1178,7 +1178,7 @@ class BootStrap {
 					"Presenting"
 				]),
 				pedagogyMode: PedagogyMode.findByName("hybrid")
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -1188,7 +1188,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-2",
@@ -1197,7 +1197,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			new PedagogyActivity(
 				title: "Step-3",
@@ -1206,7 +1206,7 @@ class BootStrap {
 				material: "",
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration("Single Session"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
@@ -1215,7 +1215,7 @@ class BootStrap {
 				referenceLinkISBN: "978-0-470-28191-8",
 				referenceType: PedagogyReferenceType.findByDescription("Book"),
 				pedagogyTechnique: pedagogyTech
-			).save(flush:true)
+			).save()
 		}
 	}
 	def destroy = {

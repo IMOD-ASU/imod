@@ -15,14 +15,15 @@ class ContentController {
 
 	def index(Long id) {
 		[
-			imodInstance: Imod.get(id)
+			imodInstance: Imod.get(id),
+			currentPage: 'content'
 		]
 	}
 
 	def addNewTopic(Long id) {
 		def imodInstance = Imod.get(id)
 		def contentInstance = new Content(imod:imodInstance, failOnError:true)
-		contentInstance.save(flush:true)
+		contentInstance.save()
 		if (!contentInstance) {
 			contentInstance.errors.allErrors.each {
 				log.error messageSource.getMessage(it,null)
@@ -129,7 +130,7 @@ class ContentController {
 			contentList.each() {
 				learningObjectiveInstance.addToContents(it)
 			}
-			learningObjectiveInstance.save(flush:true, failOnError:true)
+			learningObjectiveInstance.save(failOnError:true)
 		}
 		else {
 			learningObjectiveInstance.contents = null

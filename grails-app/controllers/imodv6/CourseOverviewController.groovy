@@ -5,7 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException
 class CourseOverviewController {
 	def index(Long id) {
 		[
-			imodInstance: Imod.get(id)
+			imodInstance: Imod.get(id),
+			currentPage: 'course overview'
 		]
 	}
 }
