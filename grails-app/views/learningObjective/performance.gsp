@@ -8,17 +8,13 @@
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
-		<fieldset class="learning-objective-button">
-			<g:actionSubmit
-				class="save showHoverNew"
-				action="save"
-				title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}"
-				value="${message(code: 'Save', default: 'Save')}"
-				id="${imodInstance.id }"
-				learningObjectiveID="${learningObjective.id }"
-				type="performance"
-			/>
-		</fieldset>
+		<g:form name="performance" action="save" id="${imodInstance.id}">
+			<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
+			<g:hiddenField name="pageType" value="performance" />
+			<g:hiddenField name="performance" value="test" />
+			<g:submitButton class="learning-objective-button save showHoverNew" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
+		</g:form>
+
 
 		<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 			Learning Domain

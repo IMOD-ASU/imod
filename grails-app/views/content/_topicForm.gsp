@@ -1,7 +1,7 @@
 <%@ page import="imodv6.Content; imodv6.Help; imodv6.KnowledgeDimensionEnum"%>
 <div id="topicDialogBackground" class="modalBackground"></div>
 <div id="topicDialog">
-	<input type="hidden" id="imodID" value="${imodInstance.id}">
+	<g:hiddenField name="imodID" value="${imodInstance.id}" />
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
 			<g:actionSubmit

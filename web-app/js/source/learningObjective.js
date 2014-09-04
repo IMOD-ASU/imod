@@ -231,19 +231,6 @@ function populateActionWords(actionWordCategory) {
 	});
 }
 
-/**
- * ajax action to store the currently selected word,
- * @param  {String} value to save to the database
- */
-function savePerformance(value) {
-	// get the imod id from the url
-	var imodId = window.location.pathname.match(/\d+$/)[0];
-	// create the full url that will be called
-	var fullURL = baseUrl + 'learningObjective/save/' + imodId;
-	// actually send the data to the backend
-	$.post(fullURL, {value: value, learningObjectiveID : 1});
-}
-
 // add the data to the definition box, depending on which type of data it is
 function propagateToDefinition(value, type) {
 	var definitionType = '.learning-objective-current .learning-objective-' + type;
