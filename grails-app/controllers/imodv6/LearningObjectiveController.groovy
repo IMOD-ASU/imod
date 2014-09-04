@@ -30,14 +30,14 @@ class LearningObjectiveController {
 		// create a learning objective, linked to the imod
 		def learningObjectiveInstance = new LearningObjective(
 			imod: imodInstance,
-			criteriaAccuracyEnabled: true,
-			criteriaQualityEnabled: true,
-			criteriaQuantityEnabled: true,
-			criteriaSpeedEnabled: true,
-			criteriaAccuracyHidden: true,
-			criteriaQualityHidden: true,
-			criteriaQuantityHidden: true,
-			criteriaSpeedHidden: true,
+			criteriaAccuracyEnabled:	true,
+			criteriaQualityEnabled:		true,
+			criteriaQuantityEnabled:	true,
+			criteriaSpeedEnabled:		true,
+			criteriaAccuracyHidden:		true,
+			criteriaQualityHidden:		true,
+			criteriaQuantityHidden:		true,
+			criteriaSpeedHidden:		true,
 		)
 		// add the learning objective to the collection of learning objectives in the imod
 		imodInstance.addToLearningObjectives(learningObjectiveInstance)
@@ -49,7 +49,6 @@ class LearningObjectiveController {
 			id: id,
 			learningObjectiveID: learningObjectiveInstance.id,
 		)
-
 	}
 
 	/**
@@ -160,16 +159,16 @@ class LearningObjectiveController {
 		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:domainCategoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
 
 		[
-			imodInstance: imodInstance,
-			learningObjectivesList: learningObjectivesList,
-			currentPage: 'learning objective performance',
-			learningObjective: learningObjective,
-			selectedActionWordCategory: selectedActionWordCategory,
-			selectedDomainCategory: selectedDomainCategory,
-			selectedDomain: selectedDomain,
-			domainList: domainList,
-			categoriesList: domainCategoriesList,
-			actionWordCategoryList: actionWordCategoryList,
+			imodInstance:				imodInstance,
+			learningObjectivesList:		learningObjectivesList,
+			currentPage:				'learning objective performance',
+			learningObjective:			learningObjective,
+			selectedActionWordCategory:	selectedActionWordCategory,
+			selectedDomainCategory:		selectedDomainCategory,
+			selectedDomain:				selectedDomain,
+			domainList:					domainList,
+			categoriesList:				domainCategoriesList,
+			actionWordCategoryList:		actionWordCategoryList,
 		]
 	}
 
@@ -194,11 +193,11 @@ class LearningObjectiveController {
 		contents = new groovy.json.JsonBuilder(contents).toString()
 		contents = contents.replaceAll('"', /'/)
 		[
-			imodInstance: imodInstance,
-			learningObjectivesList: learningObjectivesList,
-			currentPage: 'learning objective content',
-			learningObjective: learningObjectiveInstance,
-			contentList: contents,
+			imodInstance:			imodInstance,
+			learningObjectivesList:	learningObjectivesList,
+			currentPage:			'learning objective content',
+			learningObjective:		learningObjectiveInstance,
+			contentList:			contents,
 		]
 	}
 
@@ -209,21 +208,21 @@ class LearningObjectiveController {
 	 * @return                     [description]
 	 */
 	def condition(Long id, Long learningObjectiveID) {
-		def imodInstance = Imod.get(id)
-		def learningObjectivesList = learningObjectiveManager(imodInstance)
-		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def currentCondition = learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
-		def isCustom =! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
-		def hideCondition = learningObjectiveInstance.hideFromLearningObjectiveCondition
+		def imodInstance				=  Imod.get(id)
+		def learningObjectivesList		=  learningObjectiveManager(imodInstance)
+		def learningObjectiveInstance	=  getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def currentCondition			=  learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
+		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
+		def hideCondition				=  learningObjectiveInstance.hideFromLearningObjectiveCondition
 
 		[
-			imodInstance: imodInstance,
-			learningObjectivesList: learningObjectivesList,
-			currentPage: 'learning objective condition',
-			learningObjective: learningObjectiveInstance,
-			currentCondition: currentCondition,
-			isCustom: isCustom,
-			hideCondition: hideCondition,
+			imodInstance:			imodInstance,
+			learningObjectivesList:	learningObjectivesList,
+			currentPage:			'learning objective condition',
+			learningObjective:		learningObjectiveInstance,
+			currentCondition:		currentCondition,
+			isCustom:				isCustom,
+			hideCondition:			hideCondition,
 
 		]
 	}
@@ -240,43 +239,47 @@ class LearningObjectiveController {
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		[
-			imodInstance: imodInstance,
-			currentPage: 'learning objective criteria',
-			learningObjective: learningObjective,
-			learningObjectivesList: learningObjectivesList,
+			imodInstance:			imodInstance,
+			currentPage:			'learning objective criteria',
+			learningObjective:		learningObjective,
+			learningObjectivesList:	learningObjectivesList,
 		]
 	}
 
 	private def getSubContent(Content current, LearningObjective objective){
-		def listChildren=[]
-		def topicSelected="topicNotSelected"
+		def listChildren = []
+		def topicSelected = "topicNotSelected"
 		if (objective.contents.contains(current) as Boolean){
-			topicSelected="topicSelected"
+			topicSelected = "topicSelected"
 		}
-		def currentID =current.id
-		def idValue="content"+currentID
-		def topicTitle='<span class="fa-stack">'+
+		def currentID = current.id
+		def idValue = "content" + currentID
+		def topicTitle = '<span class="fa-stack">'+
 			'<i class="checkboxBackground"></i>'+
-			'<i class="fa fa-stack-1x checkbox" id="select'+currentID+'"></i> '+
-			'</span> '+current.topicTitle
-		def returnValue={}
-		def rootNode=""
-		if (current.parentContent==null){
-			rootNode="rootNode"
+			'<i class="fa fa-stack-1x checkbox" id="select' + currentID + '"></i> ' +
+			'</span> ' + current.topicTitle
+		def returnValue = {}
+		def rootNode = ""
+		if (current.parentContent == null){
+			rootNode = "rootNode"
 		}
-		if (current.subContents!=null){
+		if (current.subContents != null){
 			current.subContents.collect(listChildren){
 				getSubContent(it,objective)
 			}
 
 		}
 
-		returnValue=[
+		returnValue = [
 			id: idValue,
 			text: topicTitle,
-			li_attr:["class": topicSelected],
-			a_attr:["class":rootNode],
-			children:listChildren,
+			li_attr: [
+				"class": topicSelected
+			],
+			a_attr: [
+				"class":rootNode
+			],
+			children: listChildren
 		]
 		return returnValue
 
