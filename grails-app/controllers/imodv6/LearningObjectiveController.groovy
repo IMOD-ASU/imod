@@ -113,9 +113,9 @@ class LearningObjectiveController {
 
 		// redirect to the correct page
 		redirect(
-			action: pageType,
-			id: id,
-			learningObjectiveID: learningObjectiveID
+			action:					pageType,
+			id:						id,
+			learningObjectiveID:	learningObjectiveID
 		)
 	}
 
@@ -128,8 +128,8 @@ class LearningObjectiveController {
 	 */
 	def edit (Long id) {
 		render(
-			action: 'perfomance',
-			learningObjectiveID: id
+			action:					'perfomance',
+			learningObjectiveID:	id
 		)
 	}
 
@@ -192,6 +192,7 @@ class LearningObjectiveController {
 		}
 		contents = new groovy.json.JsonBuilder(contents).toString()
 		contents = contents.replaceAll('"', /'/)
+
 		[
 			imodInstance:			imodInstance,
 			learningObjectivesList:	learningObjectivesList,
@@ -238,6 +239,7 @@ class LearningObjectiveController {
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
+
 		[
 			imodInstance:			imodInstance,
 			currentPage:			'learning objective criteria',
@@ -282,16 +284,15 @@ class LearningObjectiveController {
 			children: listChildren
 		]
 		return returnValue
-
-
 	}
+
+
 	/**
 	 * gather the Domain Categories for selected Learning Domain
 	 * @param  domainName String that is the contents (or name) of a Learning Domain
 	 * @return            sorted list of Domain Categories
 	 */
 	def getDomainCategories(String domainName) {
-
 		// Find the selected learning domain
 		def domain = LearningDomain.findByName(domainName)
 		// get all related domain categories and sort by name
