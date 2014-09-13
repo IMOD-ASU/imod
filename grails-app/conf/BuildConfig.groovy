@@ -54,9 +54,9 @@ grails.project.dependency.resolution = {
 			build ':tomcat:7.0.54'
 		}
 
-		compile ':console:1.4.4'
+		compile ':console:1.4.5'
 		compile ':scaffolding:2.1.2'
-		compile ':postgresql-extensions:4.2.0'
+		compile ':postgresql-extensions:4.3.0'
 		compile ':cache:1.1.7'
 		compile ':spring-security-core:2.0-RC4'
 		compile ':mail:1.0.7'

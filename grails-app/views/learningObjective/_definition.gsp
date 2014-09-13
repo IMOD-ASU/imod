@@ -1,3 +1,7 @@
+<g:if test="${ it.isEmpty() }">
+	Empty Learning Objective
+</g:if>
+
 <!-- Definition of the conditions for completing a learning objective -->
 <span class="learning-objective-condition">
 	<g:if test="${ it.condition != null }">

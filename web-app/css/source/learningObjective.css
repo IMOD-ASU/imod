@@ -159,12 +159,13 @@ input[disabled='disabled'] {
 
 .learning-objectives.sub-nav  li a {
 	width: 100%;
-	padding: 5px 0;
+	padding: 15px 0;
 	color: #B6B6B6;
 	outline-color: transparent;
 	font-weight: bold;
 	font-size: 1.1em;
 	text-align: center;
+	text-decoration: none;
 }
 
 .learning-objectives.sub-nav .active a {
