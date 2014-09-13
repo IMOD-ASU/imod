@@ -359,10 +359,10 @@ class LearningObjectiveController {
 		if (learningObjectivesList.size() < 1) {
 			create(imodInstance.id)
 			// updates the list of all of the learning objectives for this imod
-			learningObjectivesList = imodInstance.learningObjectives.asList().sort{it.id}
+			learningObjectivesList = imodInstance.learningObjectives.asList()
 		}
 
-		return learningObjectivesList
+		return learningObjectivesList.sort{it.id}
 	}
 
 	/**
