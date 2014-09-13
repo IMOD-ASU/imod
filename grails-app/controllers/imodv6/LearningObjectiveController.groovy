@@ -359,7 +359,7 @@ class LearningObjectiveController {
 		if (learningObjectivesList.size() < 1) {
 			create(imodInstance.id)
 			// updates the list of all of the learning objectives for this imod
-			learningObjectivesList = imodInstance.learningObjectives.asList(sort: 'id')
+			learningObjectivesList = imodInstance.learningObjectives.asList().sort{it.id}
 		}
 
 		return learningObjectivesList
@@ -375,7 +375,7 @@ class LearningObjectiveController {
 		// get a list of all of the learning objectives for this imod
 
 		// TODO: use GORM first() instead of listing all learning objectives [https://stackoverflow.com/questions/2987931/grails-find-first]
-		def learningObjectivesList = imodInstance.learningObjectives.asList(sort: 'id')
+		def learningObjectivesList = imodInstance.learningObjectives.asList().sort{it.id}
 		if (learningObjectiveID == null) {
 			learningObjectiveID = learningObjectivesList[0].id
 		}
