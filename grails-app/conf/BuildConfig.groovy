@@ -53,8 +53,6 @@ grails.project.dependency.resolution = {
 			// This plugin is needed for all other types of builds
 			build ':tomcat:7.0.54'
 		}
-
-		compile ':console:1.5.0'
 		compile ':scaffolding:2.1.2'
 		compile ':postgresql-extensions:4.3.0'
 		compile ':cache:1.1.7'
@@ -63,7 +61,6 @@ grails.project.dependency.resolution = {
 		compile ':jquery-ui:1.10.3'
 		compile ':famfamfam:1.0.1'
 		compile ':spring-security-ui:1.0-RC2'
-		compile ':google-visualization:0.7'
 
 		runtime ':hibernate4:4.3.5.5'
 		runtime ':jquery:1.11.1'
