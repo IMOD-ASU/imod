@@ -58,13 +58,14 @@ grails.project.dependency.resolution = {
 		compile ':cache:1.1.7'
 		compile ':spring-security-core:2.0-RC4'
 		compile ':mail:1.0.7'
-		compile ':jquery-ui:1.10.3'
+		compile ':jquery-ui:1.10.4'
 		compile ':famfamfam:1.0.1'
 		compile ':spring-security-ui:1.0-RC2'
+		// compile ':google-visualization:0.7'
 
 		runtime ':hibernate4:4.3.5.5'
 		runtime ':jquery:1.11.1'
 		runtime ':resources:1.2.8'
-		runtime ':database-migration:1.4.0'
+		// runtime ':database-migration:1.4.0'
 	}
 }
