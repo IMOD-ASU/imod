@@ -175,6 +175,7 @@ class Imod {
 		courseLocation	nullable: true
 		timeRatio		nullable: true
 		imodNumber		nullable: true
+		gradingProcedure nullable: true
 		numberOfSeats	nullable: true,		min: 1,		scale: 1
 		creditHours		nullable: true,		min: 1,		scale: 1
 
