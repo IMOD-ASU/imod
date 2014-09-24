@@ -56,6 +56,11 @@ class Imod {
 	String			courseLocation
 
 	/**
+	 *
+	 */
+	String			gradingProcedure
+
+	/**
 	 * TODO what is this?
 	 */
 	String			timeRatio
