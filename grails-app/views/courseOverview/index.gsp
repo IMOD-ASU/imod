@@ -261,7 +261,7 @@
 												Grading procedure
 											</h3>
 											<div>
-												<textarea name="gradingProcedure" rows="3" cols="30">
+												<textarea name="gradingProcedure" value="${imodInstance?.gradingProcedure}" rows="3" cols="30">
 												</textarea>
 											</div>
 											<h3>

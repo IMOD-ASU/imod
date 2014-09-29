@@ -65,7 +65,7 @@ grails.project.dependency.resolution = {
 
 		runtime ':hibernate4:4.3.5.5'
 		runtime ':jquery:1.11.1'
-		runtime ':resources:1.2.8' // version 1.2.9 is availible but it break spring security ui
+		runtime ':resources:1.2.8' // version 1.2.9 is availible but it breaks spring security ui
 		// runtime ':database-migration:1.4.0'
 	}
 }
