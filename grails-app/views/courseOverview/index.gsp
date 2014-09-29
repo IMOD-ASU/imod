@@ -261,43 +261,43 @@
 												Grading procedure
 											</h3>
 											<div>
-												<textarea name="gradingProcedure" value="${imodInstance?.gradingProcedure}" rows="3" cols="30">
-												</textarea>
+												<g:textArea name="gradingProcedure" value="${imodInstance?.gradingProcedure}" rows="3" cols="30">
+												</g:textArea>
 											</div>
 											<h3>
 												Attendance and tardiness
 											</h3>
 											<div>
-												<textarea name="attendance" rows="3" cols="30">
-												</textarea>
+												<g:textArea name="attendance" rows="3" cols="30">
+												</g:textArea>
 											</div>
 											<h3>
 												Class participation
 											</h3>
 											<div>
-												<textarea rows="2" cols="30">
-												</textarea>
+												<g:textArea name="name" rows="2" cols="30">
+												</g:textArea>
 											</div>
 											<h3>
 												Classroom decorum
 											</h3>
 											<div>
-												<textarea rows="2" cols="30">
-												</textarea>
+												<g:textArea name="name" rows="2" cols="30">
+												</g:textArea>
 											</div>
 											<h3>
 												Missed exams/Make-up exams
 											</h3>
 											<div>
-												<textarea rows="2" cols="30">
-												</textarea>
+												<g:textArea name="name" rows="2" cols="30">
+												</g:textArea>
 											</div>
 											<h3>
 												Missed Assignments
 											</h3>
 											<div>
-												<textarea rows="2" cols="30">
-												</textarea>
+												<g:textArea name="name" rows="2" cols="30">
+												</g:textArea>
 											</div>
 										</div>
 									</div>
