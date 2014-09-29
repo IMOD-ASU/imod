@@ -55,7 +55,7 @@ grails.project.dependency.resolution = {
 		}
 		compile ':scaffolding:2.1.2'
 		compile ':postgresql-extensions:4.3.0'
-		compile ':cache:1.1.7'
+		compile ':cache:1.1.8'
 		compile ':spring-security-core:2.0-RC4'
 		compile ':mail:1.0.7'
 		compile ':jquery-ui:1.10.4'
@@ -65,7 +65,7 @@ grails.project.dependency.resolution = {
 
 		runtime ':hibernate4:4.3.5.5'
 		runtime ':jquery:1.11.1'
-		runtime ':resources:1.2.8'
+		runtime ':resources:1.2.8' // version 1.2.9 is availible but it breaks spring security ui
 		// runtime ':database-migration:1.4.0'
 	}
 }
