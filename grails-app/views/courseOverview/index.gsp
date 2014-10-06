@@ -275,28 +275,28 @@
 												Class participation
 											</h3>
 											<div>
-												<g:textArea name="name" rows="2" cols="30">
+												<g:textArea name="classParticipation" rows="2" cols="30">
 												</g:textArea>
 											</div>
 											<h3>
 												Classroom decorum
 											</h3>
 											<div>
-												<g:textArea name="name" rows="2" cols="30">
+												<g:textArea name="classroomDecorum" rows="2" cols="30">
 												</g:textArea>
 											</div>
 											<h3>
 												Missed exams/Make-up exams
 											</h3>
 											<div>
-												<g:textArea name="name" rows="2" cols="30">
+												<g:textArea name="missedExams" rows="2" cols="30">
 												</g:textArea>
 											</div>
 											<h3>
 												Missed Assignments
 											</h3>
 											<div>
-												<g:textArea name="name" rows="2" cols="30">
+												<g:textArea name="missedAssignments" rows="2" cols="30">
 												</g:textArea>
 											</div>
 										</div>
