@@ -59,6 +59,7 @@ class Imod {
 	 *
 	 */
 	String			gradingProcedure
+	String 			attendance
 	String			classParticipation
 	String 			classroomDecorum
 	String 			missedExams
@@ -180,10 +181,11 @@ class Imod {
 		timeRatio		nullable: true
 		imodNumber		nullable: true
 		gradingProcedure nullable: true
+		attendance 		nullable: true
 		classParticipation nullable: true
 		classroomDecorum nullable: true
 		missedExams		nullable: true
-		missedAssignments
+		missedAssignments nullable: true
 		numberOfSeats	nullable: true,		min: 1,		scale: 1
 		creditHours		nullable: true,		min: 1,		scale: 1
 
