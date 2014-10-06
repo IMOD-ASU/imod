@@ -27,6 +27,7 @@
 							size='40' labelCodeDefault='Password (again)' value="${command.password2}"/>
 						</tbody>
 					</table>
+					<p>Password must be at least eight characters long, and have a letter, a number and a special character  !@#$%^&</p>
 					<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
 				</g:else>
 			</g:form>
