@@ -22,6 +22,7 @@
 			name="LDL"
 			id="learning-domain-list"
 			from="${domainList.name}"
+			noSelection="${['null':'Nothing Selected']}"
 			value="${selectedDomain?.name?:""}"
 		/>
 		<br />
@@ -33,6 +34,7 @@
 			name="DCL"
 			id="domain-category-list"
 			from="${categoriesList.name}"
+			noSelection="${['null':'Nothing Selected']}"
 			value="${selectedDomainCategory?.name?:"" }"
 		/>
 		<br />
