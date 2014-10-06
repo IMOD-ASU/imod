@@ -53,21 +53,19 @@ grails.project.dependency.resolution = {
 			// This plugin is needed for all other types of builds
 			build ':tomcat:7.0.54'
 		}
-
-		compile ':console:1.4.5'
 		compile ':scaffolding:2.1.2'
 		compile ':postgresql-extensions:4.3.0'
-		compile ':cache:1.1.7'
+		compile ':cache:1.1.8'
 		compile ':spring-security-core:2.0-RC4'
 		compile ':mail:1.0.7'
-		compile ':jquery-ui:1.10.3'
+		compile ':jquery-ui:1.10.4'
 		compile ':famfamfam:1.0.1'
 		compile ':spring-security-ui:1.0-RC2'
-		compile ':google-visualization:0.7'
+		// compile ':google-visualization:0.7'
 
 		runtime ':hibernate4:4.3.5.5'
 		runtime ':jquery:1.11.1'
-		runtime ':resources:1.2.8'
-		runtime ':database-migration:1.4.0'
+		runtime ':resources:1.2.8' // version 1.2.9 is availible but it breaks spring security ui
+		// runtime ':database-migration:1.4.0'
 	}
 }

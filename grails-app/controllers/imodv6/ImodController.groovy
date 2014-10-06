@@ -62,12 +62,14 @@ class ImodController {
 	}
 
 	def save() {
+		// get the correct owner id from Spring Security
 		params.remove('owner')
 		params.remove('owner.id')
 		params.put(
 			'owner.id',
 			springSecurityService.currentUser.id
 		)
+
 		def imodInstance = new Imod(params)
 		if (!imodInstance.save()) {
 			render(
