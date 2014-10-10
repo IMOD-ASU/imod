@@ -120,20 +120,6 @@ class LearningObjectiveController {
 		)
 	}
 
-	// TODO: Why does this action exist? What is wrong with just redirecting to performance?
-	// TODO: Where is it called from? not seeing any references in the controller or in the Learning Objective views
-	/**
-	 * begin editing a Learning Objective
-	 * @param  id [description]
-	 * @return    [description]
-	 */
-	def edit (Long id) {
-		render(
-			action:					'perfomance',
-			learningObjectiveID:	id
-		)
-	}
-
 	/**
 	 * This allows the user to set Performance measures for their learning objectives
 	 * Peformance measures are created through action words

@@ -58,7 +58,12 @@
 								<ul class="learning-objective-list-wrapper">
 									<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
 										<li class="learning-objective-list-item">
-											<g:link action="edit" id="${learningObjectiveItem.id}" class="learning-objective-list-link">
+											<g:link
+												action="performance"
+												id="${imodInstance.id}"
+												params="[learningObjectiveID: learningObjectiveItem.id]"
+												class="learning-objective-list-link"
+											>
 												<g:render template="/learningObjective/definition" bean="${learningObjectiveItem}" />
 											</g:link>
 										</li>
@@ -81,7 +86,7 @@
 									<li class="${ currentPage.find(/learning objective performance/) == null ? '' : 'active' }">
 										<g:link
 											action="performance"
-											learningObjectiveID="${learningObjective.id}"
+											params="[learningObjectiveID: learningObjective.id]"
 											id="${imodInstance?.id}"
 											class="performance"
 										>
@@ -91,7 +96,7 @@
 									<li class="${ currentPage.find(/learning objective content/) == null ? '' : 'active' }">
 										<g:link
 											action="content"
-											learningObjectiveID="${learningObjective.id}"
+											params="[learningObjectiveID: learningObjective.id]"
 											id="${imodInstance?.id}"
 											class="content"
 										>
@@ -101,7 +106,7 @@
 									<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
 										<g:link
 											action="condition"
-											learningObjectiveID="${learningObjective.id}"
+											params="[learningObjectiveID: learningObjective.id]"
 											id="${imodInstance?.id}"
 											class="condition"
 										>
@@ -111,7 +116,7 @@
 									<li class="${ currentPage.find(/learning objective criteria/) == null ? '' : 'active' }">
 										<g:link
 											action="criteria"
-											learningObjectiveID="${learningObjective.id}"
+											params="[learningObjectiveID: learningObjective.id]"
 											id="${imodInstance?.id}"
 											class="criteria"
 										>
