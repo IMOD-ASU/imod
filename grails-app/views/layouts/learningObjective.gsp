@@ -58,7 +58,12 @@
 								<ul class="learning-objective-list-wrapper">
 									<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
 										<li class="learning-objective-list-item">
-											<g:link action="edit" id="${learningObjectiveItem.id}" class="learning-objective-list-link">
+											<g:link
+												action="performance"
+												id="${imodInstance.id}"
+												params="[learningObjectiveID: learningObjectiveItem.id]"
+												class="learning-objective-list-link"
+											>
 												<g:render template="/learningObjective/definition" bean="${learningObjectiveItem}" />
 											</g:link>
 										</li>
