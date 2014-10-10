@@ -86,7 +86,7 @@
 									<li class="${ currentPage.find(/learning objective performance/) == null ? '' : 'active' }">
 										<g:link
 											action="performance"
-											learningObjectiveID="${learningObjective.id}"
+											params="[learningObjectiveID: learningObjective.id]"
 											id="${imodInstance?.id}"
 											class="performance"
 										>
@@ -96,7 +96,7 @@
 									<li class="${ currentPage.find(/learning objective content/) == null ? '' : 'active' }">
 										<g:link
 											action="content"
-											learningObjectiveID="${learningObjective.id}"
+											params="[learningObjectiveID: learningObjective.id]"
 											id="${imodInstance?.id}"
 											class="content"
 										>
@@ -106,7 +106,7 @@
 									<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
 										<g:link
 											action="condition"
-											learningObjectiveID="${learningObjective.id}"
+											params="[learningObjectiveID: learningObjective.id]"
 											id="${imodInstance?.id}"
 											class="condition"
 										>
@@ -116,7 +116,7 @@
 									<li class="${ currentPage.find(/learning objective criteria/) == null ? '' : 'active' }">
 										<g:link
 											action="criteria"
-											learningObjectiveID="${learningObjective.id}"
+											params="[learningObjectiveID: learningObjective.id]"
 											id="${imodInstance?.id}"
 											class="criteria"
 										>
