@@ -57,7 +57,7 @@
 								</div>
 								<ul class="learning-objective-list-wrapper">
 									<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
-										<li class="learning-objective-list-item">
+										<li class="learning-objective-list-item ${(learningObjectiveItem.id == learningObjective.id) ? 'active' : ''  }">
 											<g:link
 												action="performance"
 												id="${imodInstance.id}"
