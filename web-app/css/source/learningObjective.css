@@ -42,6 +42,10 @@ input[disabled='disabled'] {
 	list-style-type: none;
 }
 
+.learning-objective-list-item.active {
+	background-color: #808080;
+}
+
 .learning-objective-list-item:last-child {
 	border-bottom: none;
 }

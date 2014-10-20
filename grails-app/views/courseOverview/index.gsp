@@ -268,35 +268,35 @@
 												Attendance and tardiness
 											</h3>
 											<div>
-												<g:textArea name="attendance" rows="3" cols="30">
+												<g:textArea name="attendance" value="${imodInstance?.attendance}" rows="3" cols="30">
 												</g:textArea>
 											</div>
 											<h3>
 												Class participation
 											</h3>
 											<div>
-												<g:textArea name="name" rows="2" cols="30">
+												<g:textArea name="classParticipation" value="${imodInstance?.classParticipation}" rows="2" cols="30">
 												</g:textArea>
 											</div>
 											<h3>
 												Classroom decorum
 											</h3>
 											<div>
-												<g:textArea name="name" rows="2" cols="30">
+												<g:textArea name="classroomDecorum" value="${imodInstance?.classroomDecorum}" rows="2" cols="30">
 												</g:textArea>
 											</div>
 											<h3>
 												Missed exams/Make-up exams
 											</h3>
 											<div>
-												<g:textArea name="name" rows="2" cols="30">
+												<g:textArea name="missedExams" value="${imodInstance?.missedExams}" rows="2" cols="30">
 												</g:textArea>
 											</div>
 											<h3>
 												Missed Assignments
 											</h3>
 											<div>
-												<g:textArea name="name" rows="2" cols="30">
+												<g:textArea name="missedAssignments" value="${imodInstance?.missedAssignments}" rows="2" cols="30">
 												</g:textArea>
 											</div>
 										</div>
