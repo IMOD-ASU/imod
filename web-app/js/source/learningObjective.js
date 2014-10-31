@@ -207,7 +207,6 @@ function populateActionWordCategories(event) {
  * @param  {String} domain text from the action word category boxes
  * @return {XML}        Populates the page with action words
  */
- var count = 0
 function populateActionWords(event, ui) {
 	updatePerformanceText(this.value);
 	$.ajax({
