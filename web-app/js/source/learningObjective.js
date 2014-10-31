@@ -54,7 +54,10 @@ $(document).ready(function() {
 	$('input:radio[name=LO_condition_type]:checked').change()
 
 	// making action words selectable through jquery ui
-	$('#action-word-categories' ).selectable({selected: populateActionWords});
+	$('#action-word-categories' )
+	.bind("mousedown", function ( e ) {
+    	e.metaKey = true;})
+    .selectable({selected: populateActionWords});
 
 	// This listens for when a learning objective is selected and saves
 	$('.action-word-category').on(
@@ -204,7 +207,7 @@ function populateActionWordCategories(event) {
  * @param  {String} domain text from the action word category boxes
  * @return {XML}        Populates the page with action words
  */
-function populateActionWords(event) {
+function populateActionWords(event, ui) {
 	updatePerformanceText(this.value);
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
@@ -231,6 +234,7 @@ function populateActionWords(event) {
 			console.log(xhr.responseText);
 		}
 	});
+
 }
 
 function updatePerformanceText(text) {
