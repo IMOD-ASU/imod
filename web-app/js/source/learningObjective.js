@@ -3,15 +3,21 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 
 //on page load
 $(document).ready(function() {
+	
+	// Initially domain categories and action words will not be displayed as learning domain is null
+	$('label[for="domain-category-list"]').css('visibility', 'hidden');	
+	$('#domain-category-list').css('visibility', 'hidden');
+	$('#action-word-categories').css('visibility', 'hidden');
+
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
-		'click',
+		'change',
 		populateDomainCategories
 	);
 
 	// listen for the selected domain category to change, when it does call ajax
 	$('#domain-category-list').on(
-		'click',
+		'change',
 		populateActionWordCategories
 	);
 
@@ -139,6 +145,19 @@ $(document).ready(function() {
  * @return {XML}        Populates the domain category box with options
  */
 function populateDomainCategories(event) {
+	if($('#learning-domain-list').val() != 'null')
+	{
+		$('label[for="domain-category-list"]').css('visibility', 'visible');
+		$('#domain-category-list').css('visibility', 'visible');
+		$('#action-word-categories').css('visibility', 'visible');
+	}
+	else
+	{
+		$('label[for="domain-category-list"]').css('visibility', 'hidden');
+		$('#domain-category-list').css('visibility', 'hidden');
+		$('#action-word-categories').css('visibility', 'hidden');
+	}
+	
 	$.ajax({
 		url: baseUrl + 'learningObjective/getDomainCategories',
 		type: 'GET',
@@ -147,6 +166,7 @@ function populateDomainCategories(event) {
 			domainName: this.value
 		},
 		success: function(data){
+			
 			// stores the data from the call back
 			var categories = data.value
 			// this stores the new html that will be added
