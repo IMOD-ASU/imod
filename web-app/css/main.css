@@ -7,6 +7,21 @@ textarea {
 	font-family: "Ubuntu";
 }
 
+.pedTech table th td {
+		border: 1px solid black;
+}
+
+#list-imod {
+	margin-left: 5%;
+	margin-right: 15%;
+	max-width: 80%;
+}
+
+.tabs-background {
+	height: 4em;
+}
+
+
 h1,
 h2,
 h3,
