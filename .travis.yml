@@ -12,4 +12,5 @@ before_script:
 
 script:
   - ./grailsw compile
-  - ./grailsw bootstrap -DnoTomcat=true
+  - ./grailsw codenarc
+  - cat static-analysis.txt

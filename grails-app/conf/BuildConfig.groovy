@@ -14,6 +14,19 @@ grails.project.source.level = 1.7
 grails.views.gsp.sitemesh.preprocess = true
 
 grails.project.dependency.resolver = 'maven'
+
+codenarc.reports = {
+    TextReport('text') {
+        outputFile = 'static-analysis.txt'
+        title = 'Code Report'
+    }
+    HtmlReport('html') {
+        outputFile = 'static-analysis.html'
+        title = 'Code Report'
+    }
+}
+
+
 grails.project.dependency.resolution = {
 	// inherit Grails' default dependencies
 	inherits('global') {
@@ -48,11 +61,8 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		// This check is only needed if `grails bootstrap` is being called during testing
-		if (System.getProperty("noTomcat") == null) {
-			// This plugin is needed for all other types of builds
-			build ':tomcat:7.0.55'
-		}
+		build ':tomcat:7.0.55'
+
 		compile ':scaffolding:2.1.2'
 		compile ':postgresql-extensions:4.3.0'
 		compile ':cache:1.1.8'
@@ -61,6 +71,8 @@ grails.project.dependency.resolution = {
 		compile ':jquery-ui:1.10.4'
 		compile ':famfamfam:1.0.1'
 		compile ':spring-security-ui:1.0-RC2'
+
+		provided ':codenarc:0.22'
 
 		runtime ':hibernate4:4.3.6.1'
 		runtime ':jquery:1.11.1'
