@@ -2,6 +2,7 @@ language: groovy
 jdk:
   - openjdk7
   - oraclejdk7
+  - oraclejdk8
 
 addons:
   postgresql: "9.3"
@@ -11,4 +12,5 @@ before_script:
 
 script:
   - ./grailsw compile
-  - ./grailsw bootstrap -DnoTomcat=true
+  - ./grailsw codenarc
+  - cat static-analysis.txt
