@@ -34,7 +34,7 @@ $(document).ready(function() {
 function showHelp(displayHelp){
 
 	if (displayHelp!="true"){
-		$("#help-placeholder").css("display","none")
+		$("#help-placeholder").css("display","none");
 	}
 
 }
@@ -43,7 +43,7 @@ function updateDatePicker (dateFormat) {
 		var name = $(this).attr('name');
 		var id = name.replace(".", "_").replace("[", "_").replace("]", "_") + "_input"; // Create JQuery Friendly ID
 
-		if ($('#'+id).length == 0) {
+		if ($('#'+id).length === 0) {
 
 			// Find the Select Elements
 			var selectDay= $(this).nextAll("select:eq(0)").hide();
@@ -57,7 +57,7 @@ function updateDatePicker (dateFormat) {
 
 			// Calculate the Current Input Value
 			var val = "";
-			if (dateDay != "" && dateYear != "" && dateMonth != "") { // If there is a date in the Selects then use it otherwise it's empty
+			if (dateDay !== "" && dateYear !== "" && dateMonth !== "") { // If there is a date in the Selects then use it otherwise it's empty
 				var date = new Date (dateYear, dateMonth-1, dateDay);
 				val = $.datepicker.formatDate(dateFormat, date);
 			}
@@ -76,7 +76,7 @@ function updateDatePicker (dateFormat) {
 			displayWidget.blur(function() {
 				var date = $.datepicker.parseDate(dateFormat, $(this).val());
 
-				if (date == null) {
+				if (date === null) {
 					$(selectDay).val("");
 					$(selectMonth).val("");
 					$(selectYear).val("");
@@ -102,7 +102,7 @@ function updateDatePicker (dateFormat) {
 				showWeeks: true,
 				showOn: 'button',
 				onSelect: function(dateText, inst) {
-					if (inst == null) {
+					if (inst === null) {
 						$(selectDay).val("");
 						$(selectMonth).val("");
 						$(selectYear).val("");
@@ -120,23 +120,23 @@ function updateDatePicker (dateFormat) {
 
 
 function toggleHelp(){
-	var helpbox=$("#help-placeholder")
-	var openbox=$("#open-help")
-	if (helpbox.css("display")=="block"){
-		boxtop=helpbox.css("top")
-		boxleft=helpbox.css("left")
-		helpbox.css("display","none")
-		openbox.css("display","block")
-		openbox.css("top",boxtop)
-		openbox.css("left",boxleft)
+	var helpbox=$("#help-placeholder");
+	var openbox=$("#open-help");
+	if (helpbox.css("display")=="block") {
+		boxtop=helpbox.css("top");
+		boxleft=helpbox.css("left");
+		helpbox.css("display","none");
+		openbox.css("display","block");
+		openbox.css("top",boxtop);
+		openbox.css("left",boxleft);
 	}
 	else {
-		boxtop=openbox.css("top")
-		boxleft=openbox.css("left")
-		helpbox.css("display","block")
-		openbox.css("display","none")
-		helpbox.css("top",boxtop)
-		helpbox.css("left",boxleft)
+		boxtop=openbox.css("top");
+		boxleft=openbox.css("left");
+		helpbox.css("display","block");
+		openbox.css("display","none");
+		helpbox.css("top",boxtop);
+		helpbox.css("left",boxleft);
 	}
 
 }
