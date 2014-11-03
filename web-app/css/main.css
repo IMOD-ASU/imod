@@ -21,6 +21,10 @@ textarea {
 	height: 4em;
 }
 
+.ui-widget-header {
+	background: none;
+	border: none;
+}
 
 h1,
 h2,

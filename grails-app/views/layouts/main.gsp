@@ -25,13 +25,18 @@
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}" sizes="114x114">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/ui-lightness/jquery-ui.css">
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}">
+		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'layout.imod.css')}">
 
 		<script src="//code.jquery.com/jquery-2.1.1.min.js" defer></script>
 		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" defer></script>
+		<script src="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js" defer></script>
+		<script src="${resource(dir: 'js/source', file: 'layout.imod.js')}" defer></script>
 		<script src="${resource(dir: 'js/source', file: 'application.js')}" defer></script>
 
 		<g:layoutHead/>
