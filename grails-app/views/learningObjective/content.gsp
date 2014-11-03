@@ -19,6 +19,7 @@
 		<link id="imgCMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCMP.png')}">
 		<link id="imgFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFMP.png')}">
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
+		<script src="${resource(dir: 'js/source', file: 'topicDialog.js')}" defer></script>
 		<script src="${resource(dir: 'js/source', file: 'learningObjectiveContent.js')}" defer></script>
 
 		<meta name="layout" content="learningObjective">
