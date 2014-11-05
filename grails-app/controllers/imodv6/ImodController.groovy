@@ -161,7 +161,9 @@ class ImodController {
 			]
 		)
 		redirect(
-			action: 'list'
+			controller: 'courseOverview',
+			action: 'index',
+			id: imodInstance.id
 		)
 	}
 
