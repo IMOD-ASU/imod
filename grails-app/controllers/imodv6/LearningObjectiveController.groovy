@@ -358,13 +358,19 @@ class LearningObjectiveController {
 	 * @return                     [description]
 	 */
 	private def getDefaultLearningObjective(Imod imodInstance, Long learningObjectiveID) {
-		// get a list of all of the learning objectives for this imod
-
-		// TODO: use GORM first() instead of listing all learning objectives [https://stackoverflow.com/questions/2987931/grails-find-first]
-		def learningObjectivesList = imodInstance.learningObjectives.asList().sort{it.id}
+		def objective
+		// when there is not objective specified, pick first
 		if (learningObjectiveID == null) {
-			learningObjectiveID = learningObjectivesList[0].id
+			objective = imodInstance.learningObjectives.first()
 		}
-		return LearningObjective.get(learningObjectiveID)
+		// otherwise get that objective
+		else {
+			objective = LearningObjective.findWhere(imod: imodInstance, id: learningObjectiveID)
+			// if that objective doesn't exist, get first
+			if (objective == null) {
+				objective = imodInstance.learningObjectives.first()
+			}
+		}
+		return objective
 	}
 }
