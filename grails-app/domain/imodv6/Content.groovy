@@ -118,6 +118,7 @@ class Content {
 	 * This is not versioned
 	 */
 	static mapping = {
+		sort 'id'
 		version false
 	}
 
