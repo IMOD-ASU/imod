@@ -15,11 +15,6 @@
 			</title>
 
 			<g:layoutHead/>
-
-			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'layout.imod.css')}">
-			<link rel="stylesheet" href="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css">
-			<script src="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js" defer></script>
-			<script src="${resource(dir: 'js/source', file: 'layout.imod.js')}" defer></script>
 		</head>
 
 		<body>
