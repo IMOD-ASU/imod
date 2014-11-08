@@ -30,7 +30,6 @@ class ImodController {
 		def displayList = Imod.findAllWhere(owner: currentUser)
 		[
 			imodInstanceList: displayList,
-			imodInstanceTotal: displayList.size(),
 			sort: 'name'
 		]
 	}

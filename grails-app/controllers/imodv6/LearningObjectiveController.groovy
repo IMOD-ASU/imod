@@ -136,14 +136,14 @@ class LearningObjectiveController {
 
 		// get all performance data to set in the Performance page
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def selectedActionWordCategory = learningObjective?.actionWordCategory
+		def selectedActionWordCategory = learningObjective.actionWordCategory
 		def selectedDomainCategory = selectedActionWordCategory?.category
 		def selectedDomain = selectedDomainCategory?.domain
 
 		// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
 		def domainList = LearningDomain.list()
-		def domainCategoriesList = selectedDomain?.domainList?:domainList[0].domainCategories.asList().sort {it.name}
-		def actionWordCategoryList = selectedDomainCategory?.actionWordCategories?:domainCategoriesList[0].actionWordCategories.asList().sort {it.actionWordCategory}
+		def domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
+		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByCategory(selectedDomainCategory) : ActionWordCategory.findAllByCategory(domainCategoriesList.first())
 
 		[
 			imodInstance:				imodInstance,
@@ -169,9 +169,9 @@ class LearningObjectiveController {
 		def imodInstance = Imod.get(id)
 		def learningObjectivesList = learningObjectiveManager(imodInstance)
 		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def contentList = imodInstance.contents.findAll(){it.parentContent == null}.sort() {it.id}
+		def contentList = Content.findAllWhere(imod: imodInstance, parentContent: null)
 		def contents = [];
-		if (contentList.size() == 0) {
+		if (contentList.size() < 1) {
 			contentList.add(new Content(imod: imodInstance))
 		}
 		contentList.collect(contents) {
@@ -235,7 +235,8 @@ class LearningObjectiveController {
 		]
 	}
 
-	private def getSubContent(Content current, LearningObjective objective){
+	private def getSubContent(Content current, LearningObjective objective) {
+		// TODO remove html from controller
 		def listChildren = []
 		def topicSelected = "topicNotSelected"
 		if (objective.contents.contains(current) as Boolean){
@@ -243,7 +244,7 @@ class LearningObjectiveController {
 		}
 		def currentID = current.id
 		def idValue = "content" + currentID
-		def topicTitle = '<span class="fa-stack">'+
+		def topicTitle = '<span class="fa-stack">' +
 			'<i class="checkboxBackground"></i>'+
 			'<i class="fa fa-stack-1x checkbox" id="select' + currentID + '"></i> ' +
 			'</span> ' + current.topicTitle
@@ -283,7 +284,7 @@ class LearningObjectiveController {
 		// Find the selected learning domain
 		def domain = LearningDomain.findByName(domainName)
 		// get all related domain categories and sort by name
-		def domainCategories = domain.domainCategories.sort {it.name}
+		def domainCategories = DomainCategory.findAllByLearningDomain(domain)
 		// pass back domain categories as a json data structure
 		render (
 			[
@@ -301,7 +302,7 @@ class LearningObjectiveController {
 		// Find the selected learning domain
 		def domainCategory = DomainCategory.findByName(domainName)
 		// get all related domain categories and sort by name
-		def actionWordCategories = domainCategory.actionWordCategories.sort {it.actionWordCategory}
+		def actionWordCategories = ActionWordCategory.findAllByCategory(domainCategory)
 		// pass back domain categories as a json data structure
 		render (
 			[
@@ -339,16 +340,16 @@ class LearningObjectiveController {
 	 */
 	private def learningObjectiveManager(Imod imodInstance) {
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = imodInstance.learningObjectives.asList()
+		def learningObjectivesList = LearningObjective.findAllByImod(imodInstance)
 
 		// if there are no learning objectives create one
 		if (learningObjectivesList.size() < 1) {
 			create(imodInstance.id)
 			// updates the list of all of the learning objectives for this imod
-			learningObjectivesList = imodInstance.learningObjectives.asList()
+			learningObjectivesList = LearningObjective.findAllByImod(imodInstance)
 		}
 
-		return learningObjectivesList.sort{it.id}
+		return learningObjectivesList
 	}
 
 	/**
