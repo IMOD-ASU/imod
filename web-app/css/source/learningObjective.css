@@ -15,7 +15,7 @@ input[disabled='disabled'] {
 	text-align: center;
 
 	background-color: #FFFFCC;
-	background-image: url("../../../static/images/unassign.png");
+	background-image: url("../../images/unassign.png");
 	background-repeat: no-repeat;
 	background-position: right top;
 }
@@ -23,7 +23,7 @@ input[disabled='disabled'] {
 #action-word-categories > .ui-selecting,
 #action-word-categories > .ui-selected {
 	background-color: #FFFFCC;
-	background-image: url("../../../static/images/assign.png"), url("../../../static/images/thesaurus.png");
+	background-image: url("../../images/assign.png"), url("../../images/thesaurus.png");
 	background-repeat: no-repeat, no-repeat;
 	background-position: right top, right bottom;
 }
