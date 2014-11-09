@@ -87,6 +87,8 @@ class LearningObjective {
 	//TODO: What does this do?
 	static mapping = {
 		version false
+		sort 'id'
+		
 		hideFromLearningObjectiveCondition defaultValue: 'false'
 
 		criteriaAccuracyHidden	defaultValue: 'true'

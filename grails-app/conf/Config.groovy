@@ -2,13 +2,13 @@
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
 
-// grails.config.locations = [ "classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
+// grails.config.locations = [ 'classpath:${appName}-config.properties',
+//                             'classpath:${appName}-config.groovy',
+//                             'file:${userHome}/.grails/${appName}-config.properties',
+//                             'file:${userHome}/.grails/${appName}-config.groovy']
 
-// if (System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
+// if (System.properties['${appName}.config.location']) {
+//    grails.config.locations << 'file:' + System.properties['${appName}.config.location']
 // }
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
@@ -36,9 +36,9 @@ grails.mime.types = [
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
 
 // The default codec used to encode data with ${}
-grails.views.default.codec = "none" // none, html, base64
-grails.views.gsp.encoding = "UTF-8"
-grails.converters.encoding = "UTF-8"
+grails.views.default.codec = 'none' // none, html, base64
+grails.views.gsp.encoding = 'UTF-8'
+grails.converters.encoding = 'UTF-8'
 // enable Sitemesh preprocessing of GSP pages
 grails.views.gsp.sitemesh.preprocess = true
 // scaffolding templates configuration
@@ -72,11 +72,11 @@ environments {
 	}
     test {
         grails.logging.jul.usebridge = false
-        grails.serverURL = "http://129.219.40.55:8080/imod-test"
+        grails.serverURL = 'http://129.219.40.55:8080/imod-test'
     }
 	production {
 		grails.logging.jul.usebridge = false
-		grails.serverURL = "http://129.219.40.55:8080/imod-demo"
+		grails.serverURL = 'http://129.219.40.55:8080/imod-demo'
 	}
 }
 
@@ -109,7 +109,7 @@ grails.plugin.springsecurity.authority.className = 'imodv6.Role'
 
 //InterceptUrlMap to make all links secure
 //InterceptUrlMap to make all links secure
-grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
 grails.plugin.springsecurity.interceptUrlMap = [
 	'/':							['permitAll'],
 	'/**/css/**':					['permitAll'],
@@ -139,15 +139,15 @@ grails.plugin.springsecurity.ui.encodePassword = false
 //mail configuration
 grails {
 	mail {
-		host = "smtp.gmail.com"
+		host = 'smtp.gmail.com'
 		port = 465
-		username = "imod.grails@gmail.com"
-		password = "B0bblegum"
+		username = 'imod.grails@gmail.com'
+		password = 'B0bblegum'
 		props =	[
-					"mail.smtp.auth":"true",
-					"mail.smtp.socketFactory.port":"465",
-					"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
-					"mail.smtp.socketFactory.fallback":"false"
+					'mail.smtp.auth':'true',
+					'mail.smtp.socketFactory.port':'465',
+					'mail.smtp.socketFactory.class':'javax.net.ssl.SSLSocketFactory',
+					'mail.smtp.socketFactory.fallback':'false'
 				]
 	}
  }

@@ -512,12 +512,12 @@ class BootStrap {
 
 			def domainCategoryOrganisation = new DomainCategory(
 				domain: learningDomainAffective,
-				name: "Organisation"
+				name: "Organization"
 			)
 
 			def domainCategoryInternalisingValues = new DomainCategory(
 				domain: learningDomainAffective,
-				name: "Internalising Values"
+				name: "Internalizing Values"
 			)
 
 			/**

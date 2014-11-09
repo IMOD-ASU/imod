@@ -30,7 +30,6 @@ class ImodController {
 		def displayList = Imod.findAllWhere(owner: currentUser)
 		[
 			imodInstanceList: displayList,
-			imodInstanceTotal: displayList.size(),
 			sort: 'name'
 		]
 	}
@@ -161,7 +160,9 @@ class ImodController {
 			]
 		)
 		redirect(
-			action: 'list'
+			controller: 'courseOverview',
+			action: 'index',
+			id: imodInstance.id
 		)
 	}
 

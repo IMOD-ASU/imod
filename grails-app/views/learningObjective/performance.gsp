@@ -11,33 +11,34 @@
 		<g:form name="performance" action="save" id="${imodInstance.id}">
 			<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
 			<g:hiddenField name="pageType" value="performance" />
-			<g:hiddenField id="performance-text" name="performance" value="" />
+			%{-- <g:hiddenField id="performance-text" name="performance" value="" /> --}%
 			<g:submitButton class="learning-objective-button save showHoverNew" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
+
+			<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
+				Learning Domain
+			</label>
+			<g:select
+				name="LDL"
+				id="learning-domain-list"
+				from="${domainList.name}"
+				noSelection="${['null':'Nothing Selected']}"
+				value="${selectedDomain?.name?:""}"
+			/>
+			<br />
+
+			<label for="domain-category-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
+				Domain Category
+			</label>
+			<g:select
+				name="DCL"
+				id="domain-category-list"
+				from="${categoriesList.name}"
+				noSelection="${['null':'Nothing Selected']}"
+				value="${selectedDomainCategory?.name?:"" }"
+			/>
+			<br />
+
 		</g:form>
-
-		<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
-			Learning Domain
-		</label>
-		<g:select
-			name="LDL"
-			id="learning-domain-list"
-			from="${domainList.name}"
-			noSelection="${['null':'Nothing Selected']}"
-			value="${selectedDomain?.name?:""}"
-		/>
-		<br />
-
-		<label for="domain-category-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
-			Domain Category
-		</label>
-		<g:select
-			name="DCL"
-			id="domain-category-list"
-			from="${categoriesList.name}"
-			noSelection="${['null':'Nothing Selected']}"
-			value="${selectedDomainCategory?.name?:"" }"
-		/>
-		<br />
 
 		<ol id="action-word-categories">
 			<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">

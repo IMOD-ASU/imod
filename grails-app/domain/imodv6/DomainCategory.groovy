@@ -30,6 +30,7 @@ class DomainCategory {
 	 * Categories are not versioned
 	 */
 	static mapping = {
+		sort 'name'
 		version false
 	}
 
