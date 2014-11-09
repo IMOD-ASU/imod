@@ -67,7 +67,7 @@ class LearningObjectiveController {
 			// if the user is saving performance page
 			case 'performance':
 				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
-				learningObjectiveInstance.performance = params.performance
+				learningObjectiveInstance.performance = params.DCL
 				break
 
 			// if the user is saving the condition page

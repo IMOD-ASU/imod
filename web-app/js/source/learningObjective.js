@@ -191,7 +191,7 @@ function populateDomainCategories(event) {
  * @return {XML}        Populates the page with action word categories
  */
 function populateActionWordCategories(event) {
-	updatePerformanceText(this.value);
+	// updatePerformanceText(this.value); //unnecessary
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWordCategories',
 		type: 'GET',
@@ -255,9 +255,10 @@ function populateActionWords(event, ui) {
 
 }
 
-function updatePerformanceText(text) {
-	document.querySelector('#performance-text').value = text;
-}
+// unnecessary as we can directly take the value from the dropdown
+// function updatePerformanceText(text) {
+// 	document.querySelector('#performance-text').value = text;
+// }
 
 // add the data to the definition box, depending on which type of data it is
 function propagateToDefinition(value, type) {
