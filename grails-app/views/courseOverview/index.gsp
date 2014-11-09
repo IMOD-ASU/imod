@@ -78,7 +78,7 @@
 													*
 												</span>
 											</label>
-											<g:textField name="url" value="${imodInstance?.url}"/>
+											<g:textField required="" name="url" value="${imodInstance?.url}"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'courseLocation', 'error')} ">
@@ -217,7 +217,7 @@
 														*
 													</span>
 												</label>
-												<g:textField name="subjectArea" value="${imodInstance?.subjectArea}"/>
+												<g:textField name="subjectArea" required="" value="${imodInstance?.subjectArea}"/>
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'audience', 'error')} ">
