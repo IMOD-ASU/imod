@@ -16,6 +16,7 @@ class ImodUser {
 
 	transient springSecurityService
 
+	String email
 	String username
 	String password
 	boolean enabled
@@ -37,6 +38,7 @@ class ImodUser {
 	static constraints = {
 		username 	blank: false,	unique: true
 		password 	blank: false
+		email	 	nullable: true
 		profile 	nullable: true
 		preferences nullable: true
 	}
