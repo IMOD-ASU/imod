@@ -26,30 +26,30 @@ function closeCloneTechniqueTable(data) {
 	if(data=="done"){
 		jQuery("#cloneTechnique").dialog("close");
 		var test = 4;
-		location.href = "44?loadPedagogyTab=true&objectiveId=4"
+		location.href = "44?loadPedagogyTab=true&objectiveId=4";
 			return false;
 	}
 }
 
 // To Validate while creating a new technique
 function onSubmitValidate(){
-	if($("#pedagogyTitle_dialog").val()==''){
+	if($("#pedagogyTitle_dialog").val()===''){
 		alert("Please provide title");
 		return false;
 	}
-	if($("#pedagogyModeId_dialog option:selected").val()==''){
+	if($("#pedagogyModeId_dialog option:selected").val()===''){
 		alert("Please select Mode");
 		return false;
 	}
-	if($("#domain_dialog").val()==null){
+	if($("#domain_dialog").val()===null){
 		alert("Please select Domain");
 		return false;
 	}
-	if($("#category_dialog").val()==null){
+	if($("#category_dialog").val()===null){
 		alert("Please select Category");
 		return false;
 	}
-	if($("#knowledge_dialog").val()==null){
+	if($("#knowledge_dialog").val()===null){
 		alert("Please select Knowledge Dimension");
 		return false;
 	}
@@ -128,6 +128,7 @@ $(function() {
 						}
 					}
 				});
+		//TODO Fix mixed logic and markup and grails code
 			referenceTypeOptions = "<option value=''>Select one</option>"
 				<g:each var="referenceType" in="${referenceTypeList}">
 					referenceTypeOptions += "<option value='${referenceType.id}'>${referenceType.description}</option>"

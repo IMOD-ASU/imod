@@ -3,15 +3,21 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 
 //on page load
 $(document).ready(function() {
+
+	// Initially domain categories and action words will not be displayed as learning domain is null
+	$('label[for="domain-category-list"]').css('visibility', 'hidden');
+	$('#domain-category-list').css('visibility', 'hidden');
+	$('#action-word-categories').css('visibility', 'hidden');
+
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
-		'click',
+		'change',
 		populateDomainCategories
 	);
 
 	// listen for the selected domain category to change, when it does call ajax
 	$('#domain-category-list').on(
-		'click',
+		'change',
 		populateActionWordCategories
 	);
 
@@ -40,28 +46,29 @@ $(document).ready(function() {
 		'change',
 		function() {
 			if(this.value == 'Generic') {
-				$('#LO-condition-custom').css('display', 'none')
-				$('#LO-condition-generic').css('display', 'block')
+				$('#LO-condition-custom').css('display', 'none');
+				$('#LO-condition-generic').css('display', 'block');
 			}
 			else{
-				$('#LO-condition-generic').css('display', 'none')
-				$('#LO-condition-custom').css('display', 'block')
+				$('#LO-condition-generic').css('display', 'none');
+				$('#LO-condition-custom').css('display', 'block');
 			}
 		}
 	);
 
 	// manually tiggers the radio box change event
-	$('input:radio[name=LO_condition_type]:checked').change()
+	$('input:radio[name=LO_condition_type]:checked').change();
 
 	// making action words selectable through jquery ui
-	$('#action-word-categories' ).selectable({selected: populateActionWords});
+	$('#action-word-categories' )
+	.bind("mousedown", function ( e ) {
+    	e.metaKey = true;})
+    .selectable({selected: populateActionWords});
 
 	// This listens for when a learning objective is selected and saves
 	$('.action-word-category').on(
 		'change',
-		function() {
-			populateActionWordCategories
-		}
+		populateActionWordCategories()
 	);
 
 	// when the checkbox is changed disable text box and other check box
@@ -78,7 +85,7 @@ $(document).ready(function() {
 				! $('#enable-accuracy').is(':checked')
 			);
 		}
-	)
+	);
 
 	// when the checkbox is changed disable text box and other check box
 	$('#enable-quality').on(
@@ -94,7 +101,7 @@ $(document).ready(function() {
 				! $('#enable-quality').is(':checked')
 			);
 		}
-	)
+	);
 
 	// when the checkbox is changed disable text box and other check box
 	$('#enable-quantity').on(
@@ -110,7 +117,7 @@ $(document).ready(function() {
 				! $('#enable-quantity').is(':checked')
 			);
 		}
-	)
+	);
 
 	// when the checkbox is changed disable text box and other check box
 	$('#enable-speed').on(
@@ -126,7 +133,7 @@ $(document).ready(function() {
 				! $('#enable-speed').is(':checked')
 			);
 		}
-	)
+	);
 });
 
 /**
@@ -136,6 +143,19 @@ $(document).ready(function() {
  * @return {XML}        Populates the domain category box with options
  */
 function populateDomainCategories(event) {
+	if($('#learning-domain-list').val() != 'null')
+	{
+		$('label[for="domain-category-list"]').css('visibility', 'visible');
+		$('#domain-category-list').css('visibility', 'visible');
+		$('#action-word-categories').css('visibility', 'visible');
+	}
+	else
+	{
+		$('label[for="domain-category-list"]').css('visibility', 'hidden');
+		$('#domain-category-list').css('visibility', 'hidden');
+		$('#action-word-categories').css('visibility', 'hidden');
+	}
+
 	$.ajax({
 		url: baseUrl + 'learningObjective/getDomainCategories',
 		type: 'GET',
@@ -144,14 +164,15 @@ function populateDomainCategories(event) {
 			domainName: this.value
 		},
 		success: function(data){
+
 			// stores the data from the call back
-			var categories = data.value
+			var categories = data.value;
 			// this stores the new html that will be added
 			var options = '';
 			// for each of the categories
 			for (var i = 0; i < categories.length; i++) {
 				// create the html for the category
-				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>'
+				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>';
 			}
 			// store this to the page
 			$('#domain-category-list').html(options);
@@ -170,7 +191,6 @@ function populateDomainCategories(event) {
  * @return {XML}        Populates the page with action word categories
  */
 function populateActionWordCategories(event) {
-	updatePerformanceText(this.value);
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWordCategories',
 		type: 'GET',
@@ -186,7 +206,7 @@ function populateActionWordCategories(event) {
 			// for each category
 			for (var i = 0; i < actionWordCategories.length; i++) {
 				// create the html
-				actionWordCategoriesHTML += '<li class="action-word-category ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>'
+				actionWordCategoriesHTML += '<li class="action-word-category ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>';
 			}
 			// display the html on the page
 			$('#action-word-categories').html(actionWordCategoriesHTML);
@@ -204,7 +224,7 @@ function populateActionWordCategories(event) {
  * @param  {String} domain text from the action word category boxes
  * @return {XML}        Populates the page with action words
  */
-function populateActionWords(event) {
+function populateActionWords(event, ui) {
 	updatePerformanceText(this.value);
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
@@ -231,10 +251,7 @@ function populateActionWords(event) {
 			console.log(xhr.responseText);
 		}
 	});
-}
 
-function updatePerformanceText(text) {
-	document.querySelector('#performance-text').value = text;
 }
 
 // add the data to the definition box, depending on which type of data it is

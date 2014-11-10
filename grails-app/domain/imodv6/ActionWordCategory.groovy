@@ -15,4 +15,9 @@ class ActionWordCategory {
 		 */
 		category: DomainCategory
 	]
+
+	static mapping = {
+		sort 'actionWordCategory'
+		version false
+	}
 }

@@ -20,9 +20,6 @@ class ImodController {
 		)
 	}
 
-	/**
-	 * TODO: This appears to be written without using GORM
-	 */
 	def list(Integer max) {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
@@ -30,7 +27,6 @@ class ImodController {
 		def displayList = Imod.findAllWhere(owner: currentUser)
 		[
 			imodInstanceList: displayList,
-			imodInstanceTotal: displayList.size(),
 			sort: 'name'
 		]
 	}
@@ -161,7 +157,9 @@ class ImodController {
 			]
 		)
 		redirect(
-			action: 'list'
+			controller: 'courseOverview',
+			action: 'index',
+			id: imodInstance.id
 		)
 	}
 
