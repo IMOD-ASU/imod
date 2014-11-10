@@ -33,7 +33,7 @@
 
 <g:javascript src='jquery/jquery.jgrowl.js' plugin='spring-security-ui'/>
 <g:javascript src='jquery/jquery.checkbox.js' plugin='spring-security-ui'/>
-<g:javascript src='spring-security-ui.js' plugin='spring-security-ui'/>
+<g:javascript src='plugins/spring-security-ui.js'/> %{-- overrides the default plugin file --}%
 
 
 <s2ui:showFlash/>
