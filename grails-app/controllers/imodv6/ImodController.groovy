@@ -20,9 +20,6 @@ class ImodController {
 		)
 	}
 
-	/**
-	 * TODO: This appears to be written without using GORM
-	 */
 	def list(Integer max) {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
