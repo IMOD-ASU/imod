@@ -18,29 +18,33 @@ class PedagogyController {
 		def domain = []
 		def domainCategory = []
 		def kdomain = []
-		if(params.domain.toString().contains('[')){
+		if(params.domain.toString().contains('[')) {
 			params.domain.each{
 				domain.add(it)
 			}
-		}else{
+		}
+		else {
 			domain.add(params.domain)
 		}
 
-		if(params.domainCategory.toString().contains('[')){
+		if(params.domainCategory.toString().contains('[')) {
 			params.domainCategory.each{
 				domainCategory.add(it)
 			}
-		}else{
+		}
+		else {
 			domainCategory.add(params.domainCategory)
 		}
 
-		if(params.kdomain.toString().contains('[')){
+		if(params.kdomain.toString().contains('[')) {
 			params.kdomain.each{
 				kdomain.add(it)
 			}
-		}else if(params.kdomain){
+		}
+		else if(params.kdomain) {
 			kdomain.add(params.kdomain)
 		}
+
 		LinkedHashSet pedaTechList
 		if(kdomain.size() > 0)
 			pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd)) order by p.pedagogyTitle', [dc: domain,ld: domainCategory,kd: kdomain])
@@ -49,34 +53,45 @@ class PedagogyController {
 
 		def selectionLine = ''
 		if(domain.size() > 0){
-			if(domain.size() == 1){
+			if(domain.size() == 1) {
 				selectionLine += '${domain.get(0)}'
-			}else if(domain.size() == 2){
+			}
+			else if(domain.size() == 2) {
 				selectionLine += '${domain.get(0)} or ${domain.get(1)}'
-			}else{
+			}
+			else {
 				selectionLine += 'Domain (${domain.size()} Selections)'
 			}
 		}
 		if(domainCategory.size() > 0){
-			if(domainCategory.size() == 1){
+			if(domainCategory.size() == 1) {
 				selectionLine += ' > ${domainCategory.get(0)}'
-			}else if(domainCategory.size() == 2){
+			}
+			else if(domainCategory.size() == 2) {
 				selectionLine += ' > ${domainCategory.get(0)} or ${domainCategory.get(1)}'
-			}else{
+			}
+			else {
 				selectionLine += ' > Domain Category (${domainCategory.size()} Selections)'
 			}
 		}
-		if(kdomain.size() > 0){
-			if(kdomain.size() == 1){
+		if(kdomain.size() > 0) {
+			if(kdomain.size() == 1) {
 				selectionLine += ' > ${kdomain.get(0)}'
-			}else if(kdomain.size() == 2){
+			}
+			else if(kdomain.size() == 2) {
 				selectionLine += ' > ${kdomain.get(0)} or ${kdomain.get(1)}'
-			}else{
+			}
+			else {
 				selectionLine += ' > Knowledge Dimension (${kdomain.size()} Selections)'
 			}
 		}
 
-		render view:'_pedagogyExtendedMatch', model:[selectionLine:selectionLine, pedaTechList:pedaTechList,objectiveId:params.objectiveId,userId:ImodUser.get(springSecurityService.principal.id)]
+		render view:'_pedagogyExtendedMatch', model:[
+			selectionLine: selectionLine,
+			pedaTechList: pedaTechList,
+			objectiveId: params.objectiveId,
+			userId: ImodUser.get(springSecurityService.principal.id)
+		]
 	}
 	/**
 	 * addNewTechnique, is used to create new Technique
@@ -90,24 +105,38 @@ class PedagogyController {
 		pedTecInstance = new PedagogyTechnique(params)
 		pedTecInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
 		if (!pedTecInstance.save()) {
-			render(view: 'error', model: [pedagogyTechniqueInstance: pedTecInstance])
+			render(
+				view: 'error',
+				model: [
+					pedagogyTechniqueInstance: pedTecInstance
+				]
+			)
 			return
 		}
 		params.each{
-			if(it.key.startsWith('pedagogyActivity') && it.toString().contains(':')){
+			if(it.key.startsWith('pedagogyActivity') && it.toString().contains(':')) {
 				pedagogyActivity = new PedagogyActivity(it.value)
 				pedagogyActivity.pedagogyTechnique = pedTecInstance
 				pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
 				pedagogyActivity.save()
 			}
-			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')){
+
+			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')) {
 				pedagogyReference = new PedagogyReference(it.value)
 				pedagogyReference.pedagogyTechnique = pedTecInstance
 				pedagogyReference.referenceType = PedagogyReferenceType.get(it.value.refeType)
 				pedagogyReference.save()
 			}
 		}
-		redirect(controller: 'imod', action: 'edit', id: params.id, params: [loadPedagogyTab: true])
+
+		redirect(
+			controller: 'imod',
+			action: 'edit',
+			id: params.id,
+			params: [
+				loadPedagogyTab: true
+			]
+		)
 	}
 
 	/**
@@ -173,33 +202,38 @@ class PedagogyController {
 				strkdList.each{ strkd ->
 					def sStrKD = '${strkd}'
 					//println sKD + '  ' + sStrKD
-					if(sKD.equals(sStrKD)){
+					if(sKD.equals(sStrKD)) {
 						flag = true
 					}
 				}
-				if(flag){
+
+				if(flag) {
 					mapkdList.put(sKD, 'true')
 					kdmnList.add(sKD.toString())
 				}
-				else{
+				else {
 					mapkdList.put(sKD, 'false')
 				}
 			}
 
 			LinkedHashSet pedaTechList
-			if(kdmnList.size() > 0)
+			if(kdmnList.size() > 0) {
 				pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString(),kd: kdmnList])
-			else
+			}
+			else {
 				pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString()])
+			}
 
 			def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
 			def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
-			if(kdmnList.size() > 0){
-				if(kdmnList.size() == 1){
+			if(kdmnList.size() > 0) {
+				if(kdmnList.size() == 1) {
 					selectionLine += ' > ${kdmnList.get(0)}'
-				}else if(kdmnList.size() == 2){
+				}
+				else if(kdmnList.size() == 2) {
 					selectionLine += ' > ${kdmnList.get(0)} or ${kdmnList.get(1)}'
-				}else{
+				}
+				else {
 					selectionLine += ' > Knowledge Dimension (${kdmnList.size()} Selections)'
 				}
 			}
@@ -241,14 +275,15 @@ class PedagogyController {
 	def reloadPedagogyTab(Long id, Long objectiveId) {
 		def imodUser = ImodUser.get(springSecurityService.principal.id)
 		def pedagogyTech = PedagogyTechnique.get(params.pedtecID)
-		if(params.fav == 'true'){
+		if(params.fav == 'true') {
 			def favTech = ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(imodUser,pedagogyTech)
 			ImodUserPedagogyFavorite fav = favTech ? favTech :new ImodUserPedagogyFavorite()
 			fav.pedagogyTechnique = pedagogyTech
 			fav.imodUser = imodUser
-			if(favTech){
+			if(favTech) {
 				fav.delete()
-			}else{
+			}
+			else {
 				fav.save()
 			}
 		}
@@ -258,9 +293,10 @@ class PedagogyController {
 			ImodPedagogyAssign assign = assingTech ? assingTech : new ImodPedagogyAssign()
 			assign.pedagogyTechnique = pedagogyTech
 			assign.learningObjective = learningObjective
-			if(assingTech){
+			if(assingTech) {
 				assign.delete()
-			}else{
+			}
+			else {
 				assign.save()
 			}
 		}
@@ -278,7 +314,7 @@ class PedagogyController {
 	/**
 	 * Index, This action will used to load left panel on Pedagogy
 	 */
-	def index ={
+	def index = {
 
 		// TO get the Learning Objectives
 		Imod imod = Imod.get(48)
@@ -301,13 +337,18 @@ class PedagogyController {
 	/**
 	 * To open Pedagogy Technique clone popup
 	 */
-	def clonePedagogyTech={
-		render template:'pedagogyCloneTechnique', model:[pedagogyTech:PedagogyTechnique.get(params.techId),lrnDomainlist:LearningDomain.list(),domainList:DomainCategory.list(),KnowledgeDomainlist:KnowledgeDimension.list()]
+	def clonePedagogyTech = {
+		render template:'pedagogyCloneTechnique', model: [
+			pedagogyTech: PedagogyTechnique.get(params.techId),
+			lrnDomainlist: LearningDomain.list(),
+			domainList: DomainCategory.list(),
+			KnowledgeDomainlist: KnowledgeDimension.list()
+		]
 	}
 	/**
 	 * cloneSaveTech, This action is used for validating cloned Technique.
 	 */
-	def cloneSaveTech={
+	def cloneSaveTech = {
 		def flag = false
 		def message = 'other'
 		def pedagogyTechnique = PedagogyTechnique.read(params.pedagogy_tech_id)
@@ -315,50 +356,59 @@ class PedagogyController {
 		def pedagogyReference
 		def activityList = new ArrayList<PedagogyActivity>()
 		def referenceList = new ArrayList<PedagogyReference>()
-		params.each{
+		params.each {
+
 			if(it.key.startsWith('pedagogyActivity') && it.toString().contains(':')){
 				pedagogyActivity = new PedagogyActivity(it.value)
 				pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
 				activityList.add(pedagogyActivity)
 			}
+
 			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')){
 				pedagogyReference = new PedagogyReference(it.value)
 				pedagogyReference.referenceType = PedagogyReferenceType.get(it.value.refeType)
 				referenceList.add(pedagogyReference)
 			}
 		}
+
 		if(PedagogyTechnique.findByPedagogyTitle(params.pedagogyTitle)?.pedagogyTitle.equals(params.pedagogyTitle)){
 			flag = true
 			message = 'title'
 		}
-		if(flag==false){
+
+		if(flag == false){
 			println 'title changed'
 			def activity = PedagogyActivity.findAllByPedagogyTechnique(pedagogyTechnique)
 			def reference = PedagogyReference.findAllByPedagogyTechnique(pedagogyTechnique)
 			if(pedagogyTechnique.pedagogyDescription.equals(params.pedagogyDescription)
 				&& pedagogyTechnique.focus.sort() == PedagogyActivityFocus.getAll(params.list('focus')).sort()
 				&& pedagogyTechnique.pedagogyMode.id.toString().equals(params.pedagogyModeId)
-				&& activityList.size()==activity.size()
-				&& referenceList.size()==reference.size()){
+				&& activityList.size() == activity.size()
+				&& referenceList.size() == reference.size()
+			) {
 				println 'check'
 				flag = true
 			}
-			if(flag){
+
+			if(flag) {
 				activityList.eachWithIndex {ele,index ->
 					flag = ele.title.equals(activity.get(index).title) && ele.description.equals(activity.get(index).description) && ele.example.equals(activity.get(index).example)  && ele.material.equals(activity.get(index).material) && activity.get(index).pedagogyActivityDuration.id.toString().equals(ele.pedagogyActivityDuration.id.toString())?true:false
 				}
 			}
-			if(flag){
+
+			if(flag) {
 				referenceList.eachWithIndex {ele,index ->
 					flag = ele.title.equals(reference.get(index).title) && ele.description.equals(reference.get(index).description) && ele.referenceLinkISBN.equals(reference.get(index).referenceLinkISBN) && ele.author.equals(reference.get(index).author) && reference.get(index).referenceType.id.toString().equals(ele.referenceType.id.toString())?true:false
 				}
 			}
 		}
-		if(flag){
+
+		if(flag) {
 			println message
 			render template:'pedagogyCloneTechnique', model:[errorMsg:message,pedagogyTech:PedagogyTechnique.get(params.pedagogy_tech_id),lrnDomainlist:LearningDomain.list(),domainList:DomainCategory.list(),KnowledgeDomainlist:KnowledgeDimension.list()]
 //			render template:'pedagogyCloneTechnique',status:HttpServletResponse.SC_INTERNAL_SERVER_ERROR
-		}else{
+		}
+		else {
 			cloneNewTechnique(params)
 			render 'done'
 		}
@@ -380,13 +430,13 @@ class PedagogyController {
 			return
 		}
 		params.each{
-			if(it.key.startsWith('pedagogyActivity') && it.toString().contains(':')){
+			if(it.key.startsWith('pedagogyActivity') && it.toString().contains(':')) {
 				pedagogyActivity = new PedagogyActivity(it.value)
 				pedagogyActivity.pedagogyTechnique = pedTecInstance
 				pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
 				pedagogyActivity.save()
 			}
-			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')){
+			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')) {
 				pedagogyReference = new PedagogyReference(it.value)
 				pedagogyReference.pedagogyTechnique = pedTecInstance
 				pedagogyReference.referenceType = PedagogyReferenceType.get(it.value.refeType)
