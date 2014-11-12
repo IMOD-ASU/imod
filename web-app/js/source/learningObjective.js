@@ -134,6 +134,14 @@ $(document).ready(function() {
 			);
 		}
 	);
+
+	//when learning domain isn't selected, do not save learning objective
+	$('.learning-objective-button.save').click(function(){
+		if($('#learning-domain-list').val() == "null"){
+			alert("Learning Domain is required");
+			return false;	
+		}		
+	});
 });
 
 /**
