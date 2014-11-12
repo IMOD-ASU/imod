@@ -498,7 +498,7 @@ class BootStrap {
 			 */
 			def domainCategoryReceivingPhenomena = new DomainCategory(
 				domain: learningDomainAffective,
-				name: "Receiving Phenomena"
+				name: "ReceivingPhenomena"
 			)
 
 			def domainCategoryResponding = new DomainCategory(
@@ -529,11 +529,61 @@ class BootStrap {
 			learningDomainAffective.addToDomainCategories(domainCategoryValuing)
 			learningDomainAffective.addToDomainCategories(domainCategoryOrganisation)
 			learningDomainAffective.addToDomainCategories(domainCategoryInternalisingValues)
+			
+			/**
+			 * These are the Categories for the Psychomotor Domain
+			 */
+			def domainCategoryPerception = new DomainCategory(
+				domain: learningDomainPsychomotor,
+				name: "Perception"
+			)
+
+			def domainCategorySet = new DomainCategory(
+				domain: learningDomainPsychomotor,
+				name: "Set"
+			)
+
+			def domainCategoryGuidedResponse = new DomainCategory(
+				domain: learningDomainPsychomotor,
+				name: "GuidedResponse"
+			)
+
+			def domainCategoryMechanism = new DomainCategory(
+				domain: learningDomainPsychomotor,
+				name: "Mechanism"
+			)
+
+			def domainCategoryComplexOvertResponse = new DomainCategory(
+				domain: learningDomainPsychomotor,
+				name: "ComplexOvertResponse"
+			)
+			
+			def domainCategoryAdaptation = new DomainCategory(
+				domain: learningDomainPsychomotor,
+				name: "Adaptation"
+			)
+
+			def domainCategoryOrigination = new DomainCategory(
+				domain: learningDomainPsychomotor,
+				name: "Origination"
+			)
+
+			/**
+			 * This Links each Domain Category to its Learning Domain
+			 */
+			learningDomainPsychomotor.addToDomainCategories(domainCategoryPerception)
+			learningDomainPsychomotor.addToDomainCategories(domainCategorySet)
+			learningDomainPsychomotor.addToDomainCategories(domainCategoryGuidedResponse)
+			learningDomainPsychomotor.addToDomainCategories(domainCategoryMechanism)
+			learningDomainPsychomotor.addToDomainCategories(domainCategoryComplexOvertResponse)
+			learningDomainPsychomotor.addToDomainCategories(domainCategoryAdaptation)
+			learningDomainPsychomotor.addToDomainCategories(domainCategoryOrigination)
+	
 
 			/**
 			 * creating action words for remembering category
 			 */
-			def actionWordCategoryRemembering = new ActionWordCategory(
+			def actionWordCategoryRecognizing = new ActionWordCategory(
 				category: domainCategoryRemembering,
 				actionWordCategory: "Recognizing"
 			)
@@ -546,7 +596,7 @@ class BootStrap {
 			/**
 			 * relating the words to the category
 			 */
-			domainCategoryRemembering.addToActionWordCategories(actionWordCategoryRemembering)
+			domainCategoryRemembering.addToActionWordCategories(actionWordCategoryRecognizing)
 			domainCategoryRemembering.addToActionWordCategories(actionWordCategoryRecalling)
 
 			/**
@@ -715,9 +765,351 @@ class BootStrap {
 			 * Saving the action words and the domain category
 			 */
 			domainCategoryCreating.save()
-		}
+			
+			/**
+			 * creating action words for ReceivingPhenomena category
+			 */
+			def actionWordCategoryListens = new ActionWordCategory(
+				category: domainCategoryReceivingPhenomena,
+				actionWordCategory: "Listens"
+			)
 
-		if (KnowledgeDimension.count() < 1) {
+			def actionWordCategoryRemembers = new ActionWordCategory(
+				category: domainCategoryReceivingPhenomena,
+				actionWordCategory: "Remembers"
+			)
+
+			def actionWordCategoryNames = new ActionWordCategory(
+				category: domainCategoryReceivingPhenomena,
+				actionWordCategory: "Names"
+			)
+
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryReceivingPhenomena.addToActionWordCategories(actionWordCategoryListens)
+			domainCategoryReceivingPhenomena.addToActionWordCategories(actionWordCategoryRemembers)
+			domainCategoryReceivingPhenomena.addToActionWordCategories(actionWordCategoryNames)
+
+			domainCategoryReceivingPhenomena.save()
+
+			/**
+			 * creating action words for Responding category
+			 */
+			def actionWordCategoryParticipates = new ActionWordCategory(
+				category: domainCategoryResponding,
+				actionWordCategory: "Participates"
+			)
+
+			def actionWordCategoryDiscusses = new ActionWordCategory(
+				category: domainCategoryResponding,
+				actionWordCategory: "Discusses"
+			)
+
+			def actionWordCategoryPractices = new ActionWordCategory(
+				category: domainCategoryResponding,
+				actionWordCategory: "Practices"
+			)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryResponding.addToActionWordCategories(actionWordCategoryParticipates)
+			domainCategoryResponding.addToActionWordCategories(actionWordCategoryDiscusses)
+			domainCategoryResponding.addToActionWordCategories(actionWordCategoryPractices)
+
+			domainCategoryResponding.save()
+
+			/**
+			 * creating action words for Valuing category
+			 */
+			def actionWordCategoryDemonstrates = new ActionWordCategory(
+				category: domainCategoryValuing,
+				actionWordCategory: "Demonstrates"
+			)
+
+			def actionWordCategoryFollows = new ActionWordCategory(
+				category: domainCategoryValuing,
+				actionWordCategory: "Follows"
+			)
+
+			def actionWordCategoryProposes = new ActionWordCategory(
+				category: domainCategoryValuing,
+				actionWordCategory: "Proposes"
+			)
+			def actionWordCategoryInforms = new ActionWordCategory(
+				category: domainCategoryValuing,
+				actionWordCategory: "Informs"
+			)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryValuing.addToActionWordCategories(actionWordCategoryDemonstrates)
+			domainCategoryValuing.addToActionWordCategories(actionWordCategoryFollows)
+			domainCategoryValuing.addToActionWordCategories(actionWordCategoryProposes)
+			domainCategoryValuing.addToActionWordCategories(actionWordCategoryInforms)
+			domainCategoryValuing.save()
+
+			/**
+			 * creating action words for Organisation category
+			 */
+			def actionWordCategoryRecognizes = new ActionWordCategory(
+				category: domainCategoryOrganisation,
+				actionWordCategory: "Recognizes"
+			)
+
+			def actionWordCategoryExplains = new ActionWordCategory(
+				category: domainCategoryOrganisation,
+				actionWordCategory: "Explains"
+			)
+
+			def actionWordCategoryCreates = new ActionWordCategory(
+				category: domainCategoryOrganisation,
+				actionWordCategory: "Creates"
+			)
+			def actionWordCategoryAlters = new ActionWordCategory(
+				category: domainCategoryOrganisation,
+				actionWordCategory: "Alters"
+			)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryOrganisation.addToActionWordCategories(actionWordCategoryRecognizes)
+			domainCategoryOrganisation.addToActionWordCategories(actionWordCategoryExplains)
+			domainCategoryOrganisation.addToActionWordCategories(actionWordCategoryCreates)
+			domainCategoryOrganisation.addToActionWordCategories(actionWordCategoryAlters)
+			domainCategoryOrganisation.save()
+
+			/**
+			 * creating action words for Internalising Values category
+			 */
+			def actionWordCategoryCooperates = new ActionWordCategory(
+				category: domainCategoryInternalisingValues,
+				actionWordCategory: "Cooperates"
+			)
+
+			def actionWordCategoryDisplays = new ActionWordCategory(
+				category: domainCategoryInternalisingValues,
+				actionWordCategory: "Displays"
+			)
+
+			def actionWordCategoryRevises = new ActionWordCategory(
+				category: domainCategoryInternalisingValues,
+				actionWordCategory: "Revises"
+			)
+			def actionWordCategoryUses = new ActionWordCategory(
+				category: domainCategoryInternalisingValues,
+				actionWordCategory: "Uses"
+			)
+			def actionWordCategoryValues = new ActionWordCategory(
+				category: domainCategoryInternalisingValues,
+				actionWordCategory: "Values"
+			)
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryInternalisingValues.addToActionWordCategories(actionWordCategoryCooperates)
+			domainCategoryInternalisingValues.addToActionWordCategories(actionWordCategoryDisplays)
+			domainCategoryInternalisingValues.addToActionWordCategories(actionWordCategoryRevises)
+			domainCategoryInternalisingValues.addToActionWordCategories(actionWordCategoryUses)
+			domainCategoryInternalisingValues.addToActionWordCategories(actionWordCategoryValues)
+			domainCategoryInternalisingValues.save()
+
+			/**
+			 * creating action words for Perception category
+			 */
+			def actionWordCategoryDetects = new ActionWordCategory(
+				category: domainCategoryPerception,
+				actionWordCategory: "Detects"
+			)
+
+			def actionWordCategoryAdjusts = new ActionWordCategory(
+				category: domainCategoryPerception,
+				actionWordCategory: "Adjusts"
+			)
+
+			def actionWordCategoryEstimates = new ActionWordCategory(
+				category: domainCategoryPerception,
+				actionWordCategory: "Estimates"
+			)
+			
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryPerception.addToActionWordCategories(actionWordCategoryDetects)
+			domainCategoryPerception.addToActionWordCategories(actionWordCategoryAdjusts)
+			domainCategoryPerception.addToActionWordCategories(actionWordCategoryEstimates)
+			
+			domainCategoryPerception.save()
+
+			/**
+			 * creating action words for Set category
+			 */
+			def actionWordCategoryKnows = new ActionWordCategory(
+				category: domainCategorySet,
+				actionWordCategory: "Knows"
+			)
+
+			def actionWordCategoryRecognises = new ActionWordCategory(
+				category: domainCategorySet,
+				actionWordCategory: "Recognises"
+			)
+
+			def actionWordCategoryShows = new ActionWordCategory(
+				category: domainCategorySet,
+				actionWordCategory: "Shows"
+			)
+			
+			/**
+			 * relating the words to the category
+			 */
+			domainCategorySet.addToActionWordCategories(actionWordCategoryKnows)
+			domainCategorySet.addToActionWordCategories(actionWordCategoryRecognises)
+			domainCategorySet.addToActionWordCategories(actionWordCategoryShows)
+			
+			domainCategorySet.save()
+
+			/**
+			 * creating action words for GuidedResponse category
+			 */
+			def actionWordCategoryPerforms = new ActionWordCategory(
+				category: domainCategoryGuidedResponse,
+				actionWordCategory: "Performs"
+			)
+
+			def actionWordCategoryFollowing = new ActionWordCategory(
+				category: domainCategoryGuidedResponse,
+				actionWordCategory: "Following"
+			)
+
+			def actionWordCategoryResponds = new ActionWordCategory(
+				category: domainCategoryGuidedResponse,
+				actionWordCategory: "Responds"
+			)
+			
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryGuidedResponse.addToActionWordCategories(actionWordCategoryPerforms)
+			domainCategoryGuidedResponse.addToActionWordCategories(actionWordCategoryFollowing)
+			domainCategoryGuidedResponse.addToActionWordCategories(actionWordCategoryResponds)
+			
+			domainCategoryGuidedResponse.save()
+			
+			/**
+			 * creating action words for Mechanism category
+			 */
+			def actionWordCategoryUsing = new ActionWordCategory(
+				category: domainCategoryMechanism,
+				actionWordCategory: "Using"
+			)
+
+			def actionWordCategoryRepairs = new ActionWordCategory(
+				category: domainCategoryMechanism,
+				actionWordCategory: "Repairs"
+			)
+
+			def actionWordCategoryDrives = new ActionWordCategory(
+				category: domainCategoryMechanism,
+				actionWordCategory: "Drives"
+			)
+			
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryMechanism.addToActionWordCategories(actionWordCategoryUsing)
+			domainCategoryMechanism.addToActionWordCategories(actionWordCategoryRepairs)
+			domainCategoryMechanism.addToActionWordCategories(actionWordCategoryDrives)
+			
+			domainCategoryMechanism.save()
+
+			
+			/**
+			 * creating action words for ComplexOvertResponse category
+			 */
+			def actionWordCategoryManeuvers = new ActionWordCategory(
+				category: domainCategoryComplexOvertResponse,
+				actionWordCategory: "Maneuvers"
+			)
+
+			def actionWordCategoryOperates = new ActionWordCategory(
+				category: domainCategoryComplexOvertResponse,
+				actionWordCategory: "Operates"
+			)
+
+			def actionWordCategoryDisplaying = new ActionWordCategory(
+				category: domainCategoryComplexOvertResponse,
+				actionWordCategory: "Displaying"
+			)
+			
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryComplexOvertResponse.addToActionWordCategories(actionWordCategoryManeuvers)
+			domainCategoryComplexOvertResponse.addToActionWordCategories(actionWordCategoryOperates)
+			domainCategoryComplexOvertResponse.addToActionWordCategories(actionWordCategoryDisplaying)
+			
+			domainCategoryComplexOvertResponse.save()
+
+			/**
+			 * creating action words for Adaptation category
+			 */
+			def actionWordCategoryResponse = new ActionWordCategory(
+				category: domainCategoryAdaptation,
+				actionWordCategory: "Response"
+			)
+
+			def actionWordCategoryPerforming = new ActionWordCategory(
+				category: domainCategoryAdaptation,
+				actionWordCategory: "Performing"
+			)
+
+			def actionWordCategoryModifies = new ActionWordCategory(
+				category: domainCategoryAdaptation,
+				actionWordCategory: "Modifies"
+			)
+			
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryAdaptation.addToActionWordCategories(actionWordCategoryResponse)
+			domainCategoryAdaptation.addToActionWordCategories(actionWordCategoryPerforming)
+			domainCategoryAdaptation.addToActionWordCategories(actionWordCategoryModifies)
+			
+			domainCategoryAdaptation.save()
+			
+			/**
+			 * creating action words for Origination category
+			 */
+			def actionWordCategoryConstructs = new ActionWordCategory(
+				category: domainCategoryOrigination,
+				actionWordCategory: "Constructs"
+			)
+
+			def actionWordCategoryDevelops = new ActionWordCategory(
+				category: domainCategoryOrigination,
+				actionWordCategory: "Develops"
+			)
+
+			def actionWordCategoryCreating = new ActionWordCategory(
+				category: domainCategoryOrigination,
+				actionWordCategory: "Creating"
+			)
+			
+			/**
+			 * relating the words to the category
+			 */
+			domainCategoryOrigination.addToActionWordCategories(actionWordCategoryConstructs)
+			domainCategoryOrigination.addToActionWordCategories(actionWordCategoryDevelops)
+			domainCategoryOrigination.addToActionWordCategories(actionWordCategoryCreating)
+			
+			domainCategoryOrigination.save()
+
+
+		}
+						
+									
+
+if (KnowledgeDimension.count() < 1) {
 			new KnowledgeDimension(
 				description: "Factual"
 			).save()
