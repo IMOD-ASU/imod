@@ -19,6 +19,7 @@
 	<g:message code='spring.security.ui.forgotPassword.sent'/>
 	</g:if>
 
+
 	<g:else>
 
 	<br/>
@@ -35,7 +36,10 @@
 
 	</g:else>
 
+	<br><br><a id="loginButton" href="/imod/auth" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
+
 	</g:form>
+
 </s2ui:form>
 
 <script>
