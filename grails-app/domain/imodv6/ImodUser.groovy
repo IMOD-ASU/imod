@@ -38,7 +38,7 @@ class ImodUser {
 	static constraints = {
 		username 	blank: false,	unique: true
 		password 	blank: false
-		email	 	nullable: true
+		email	 	unique: true, email: true
 		profile 	nullable: true
 		preferences nullable: true
 	}

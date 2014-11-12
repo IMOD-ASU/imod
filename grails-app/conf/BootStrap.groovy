@@ -51,7 +51,8 @@ class BootStrap {
 				enabled: true,
 				accountExpired: false,
 				accountLocked: false,
-				passwordExpired: false
+				passwordExpired: false,
+				email: 'imod.grails@gmail.com'
 			).save()
 
 			new ImodUserRole(
