@@ -12,7 +12,7 @@
 				<g:if test='${emailSent}'>
 					<br/>
 					<g:message code='spring.security.ui.register.sent'/>
-					<br><br><a id="loginButton" href="/imod/auth" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
+					<br><br><a id="loginButton" href="/${meta(name:"app.name")}/auth" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
 				</g:if>
 				<g:else>
 					<br/>
@@ -30,7 +30,7 @@
 					</table>
 					<p>Password must be at least eight characters long, and have a letter, a number and a special character  !@#$%^&</p>
 					<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
-					<a id="loginButton" href="/imod/auth" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
+					<a id="loginButton" href="/${meta(name:"app.name")}/auth" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
 				</g:else>
 			</g:form>
 		</s2ui:form>
