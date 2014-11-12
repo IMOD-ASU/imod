@@ -65,17 +65,16 @@ $(document).ready(function() {
  	//reset radio buttons if a selected radio button is clicked again
  	$(document).on('click', '#action-word-categories label', function(){
  		if($(this).hasClass('is-active')){
- 			$(this).removeClass('is-active');
+ 			$('#action-word-categories label').removeClass('is-active');
  			setTimeout(function(){
-	 			$('#action-word-categories input')
+	 			$('#action-word-categories input:checked')
 	 				.removeAttr('checked').button('refresh');
-	        	$('#action-word-categories').buttonset('refresh');
-	        	console.log("Test");
-	        },4);
+	        },0);
  		}else{
+ 			$('#action-word-categories label').removeClass('is-active');
  			$(this).addClass('is-active');
  		}
- 	}); 	
+ 	});  	
 
 	// This listens for when a learning objective is selected and saves
 	$('.action-word-category').on(
