@@ -38,14 +38,11 @@
 			<br />
 
 		</g:form>
-
-		<ol id="action-word-categories">
+		<div id="action-word-categories">
 			<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">
-				<li class="action-word-category ui-state-default">
-					${actionWordCategory}
-				</li>
+				<input type="radio" id="radio1" name="radio"><label for="radio1">${actionWordCategory}</label>
 			</g:each>
-		</ol>
+		</div>
 
 		<select id="action-words">
 			<option>
