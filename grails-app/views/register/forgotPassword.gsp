@@ -17,7 +17,7 @@
 	<g:if test='${emailSent}'>
 	<br/>
 	<g:message code='spring.security.ui.forgotPassword.sent'/>
-	<br><br><a id="loginButton" href="/${meta(name:"app.name")}/auth" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
+	<br><br><a id="loginButton" href="auth" class="login-back ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
 	</g:if>
 
 
@@ -34,7 +34,7 @@
 	</table>
 
 	<s2ui:submitButton elementId='reset' form='forgotPasswordForm' messageCode='spring.security.ui.forgotPassword.submit'/>
-	<a id="loginButton" href="/${meta(name:"app.name")}/auth" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
+	<a id="loginButton" href="auth" class="login-back ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
 
 	</g:else>
 
@@ -45,6 +45,7 @@
 <script>
 $(document).ready(function() {
 	$('#username').focus();
+	$('.login-back').prop('href',window.location.pathname.match(/\/[^\/]+\//)[0]+'login/auth');
 });
 </script>
 
