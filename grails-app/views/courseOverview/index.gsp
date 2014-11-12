@@ -68,7 +68,7 @@
 													*
 												</span>
 											</label>
-											<g:textField name="imodNumber" value="${imodInstance?.imodNumber}"/>
+											<g:textField name="imodNumber" required="" value="${imodInstance?.imodNumber}"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'url', 'error')} ">
