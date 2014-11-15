@@ -145,97 +145,96 @@ class PedagogyController {
 	 * @return
 	 */
 	def index(Long id) {
-		Imod imod = id ? Imod.get(id) : null
-		if (imod) {
-			Long objectiveId = params.objectiveId ? params.long('objectiveId') : null
-			def lrnDomainlist = LearningDomain.list(sort:'id');
+		def imod = Imod.get(id)
 
-			List<LearningObjective> objectiveList = LearningObjective.findAllByImod(imod)
-			Set<Content> remainingContent = []
-			Set<Content> currentImodContentList = []
-			objectiveList.each {
-				currentImodContentList.addAll(it.contents);
-				remainingContent.addAll(it.contents);
-			}
-			LearningObjective objective = objectiveId ? LearningObjective.get(objectiveId) : objectiveList ? objectiveList?.first() : null
+		Long objectiveId = params.objectiveId ? params.long('objectiveId') : null
+		def learningDomainList = LearningDomain.list();
 
-			List<Content> kdList = Content.findAllByObjective(objective)
-			def strkdList = []
-			def contentTitle = []
-			def performanceTitle = '${objective.performance}'
+		List<LearningObjective> objectiveList = LearningObjective.findAllByImod(imod)
+		Set<Content> remainingContent = []
+		Set<Content> currentImodContentList = []
+		objectiveList.each {
+			currentImodContentList.addAll(it.contents);
+			remainingContent.addAll(it.contents);
+		}
+		LearningObjective objective = objectiveId ? LearningObjective.get(objectiveId) : objectiveList ? objectiveList?.first() : null
 
-			kdList.each{
-				print '${it.knowledgeDomainCode}'
-				strkdList.add('${it.knowledgeDomainCode}')
-				contentTitle.add('${it.topicTitle}')
-			}
+		List<Content> kdList = Content.findAllByObjective(objective)
+		def strkdList = []
+		def contentTitle = []
+		def performanceTitle = '${objective.performance}'
 
-			List<imodv6.ContentSchedule> topicDateForCurrentLearningObjectiveList = []
-			Set<Content> contentList = objective ? objective.contents : []
-			topicDateForCurrentLearningObjectiveList.addAll(imodv6.ContentSchedule.findAllByContentInList(contentList))
-			topicDateForCurrentLearningObjectiveList = topicDateForCurrentLearningObjectiveList.flatten()
-			List<Date> learningObjectiveDates = []
-			Date today = new Date()
-			today.clearTime()
-			learningObjectiveDates.add(today)
-			(1..30).each {
-				learningObjectiveDates.add(today + it)
-			}
-			remainingContent.removeAll(contentList ? contentList.toList() : [])
-			List<KnowledgeDimension> knowledgeDomainCodes = KnowledgeDimension.values()
-			List<ContentPriorityCode> contentPriorityCodeTypeList = ContentPriorityCode.values()
+		kdList.each{
+			print '${it.knowledgeDomainCode}'
+			strkdList.add('${it.knowledgeDomainCode}')
+			contentTitle.add('${it.topicTitle}')
+		}
 
-			//To get the Domain Category
-			LearningDomain domain = LearningDomain.get(1)
-			def domainList = DomainCategory.findAllByDomain(domain,[sort:'id']);
+		List<imodv6.ContentSchedule> topicDateForCurrentLearningObjectiveList = []
+		Set<Content> contentList = objective ? objective.contents : []
+		topicDateForCurrentLearningObjectiveList.addAll(imodv6.ContentSchedule.findAllByContentInList(contentList))
+		topicDateForCurrentLearningObjectiveList = topicDateForCurrentLearningObjectiveList.flatten()
+		List<Date> learningObjectiveDates = []
+		Date today = new Date()
+		today.clearTime()
+		learningObjectiveDates.add(today)
+		for (number in 1..30) {
+			learningObjectiveDates.add(today + number)
+		}
+		remainingContent.removeAll(contentList ? contentList.toList() : [])
+		List<KnowledgeDimension> knowledgeDomainCodes = KnowledgeDimension.values()
+		List<ContentPriorityCode> contentPriorityCodeTypeList = ContentPriorityCode.values()
+
+		//To get the Domain Category
+		LearningDomain domain = LearningDomain.get(1)
+		def domainList = DomainCategory.findAllByDomain(domain);
 
 
-			//To get the Knowledge Dimension
-			def KnowledgeDomainlist = KnowledgeDimension.list(sort:'id')
-			Map<String, String> mapkdList = new HashMap<String,String>()
-			def kdmnList = []
+		//To get the Knowledge Dimension
+		def KnowledgeDomainlist = KnowledgeDimension.list()
+		Map<String, String> mapkdList = new HashMap<String,String>()
+		def kdmnList = []
 
-			KnowledgeDomainlist.each{ kd ->
-				def flag = false
-				def sKD = '${kd}'
-				//println sKD
-				strkdList.each{ strkd ->
-					def sStrKD = '${strkd}'
-					//println sKD + '  ' + sStrKD
-					if(sKD.equals(sStrKD)) {
-						flag = true
-					}
-				}
-
-				if(flag) {
-					mapkdList.put(sKD, 'true')
-					kdmnList.add(sKD.toString())
-				}
-				else {
-					mapkdList.put(sKD, 'false')
+		KnowledgeDomainlist.each{ kd ->
+			def flag = false
+			def sKD = '${kd}'
+			//println sKD
+			strkdList.each{ strkd ->
+				def sStrKD = '${strkd}'
+				//println sKD + '  ' + sStrKD
+				if(sKD.equals(sStrKD)) {
+					flag = true
 				}
 			}
 
-			LinkedHashSet pedaTechList
-			if(kdmnList.size() > 0) {
-				pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString(),kd: kdmnList])
+			if(flag) {
+				mapkdList.put(sKD, 'true')
+				kdmnList.add(sKD.toString())
 			}
 			else {
-				pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString()])
+				mapkdList.put(sKD, 'false')
 			}
+		}
 
-			def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
-			def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
-			if(kdmnList.size() > 0) {
-				if(kdmnList.size() == 1) {
-					selectionLine += ' > ${kdmnList.get(0)}'
-				}
-				else if(kdmnList.size() == 2) {
-					selectionLine += ' > ${kdmnList.get(0)} or ${kdmnList.get(1)}'
-				}
-				else {
-					selectionLine += ' > Knowledge Dimension (${kdmnList.size()} Selections)'
-				}
+		LinkedHashSet pedaTechList
+		if(kdmnList.size() > 0) {
+			pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString(),kd: kdmnList])
+		}
+		else {
+			pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString()])
+		}
+
+		def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
+		def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
+		if(kdmnList.size() > 0) {
+			if(kdmnList.size() == 1) {
+				selectionLine += ' > ${kdmnList.get(0)}'
+			}
+			else if(kdmnList.size() == 2) {
+				selectionLine += ' > ${kdmnList.get(0)} or ${kdmnList.get(1)}'
+			}
+			else {
+				selectionLine += ' > Knowledge Dimension (${kdmnList.size()} Selections)'
 			}
 			[
 				currentPage: 'pedagogy',
@@ -258,7 +257,7 @@ class PedagogyController {
 				learningObjectiveTypeList: knowledgeDomainCodes,
 				domainList: domainList,
 				KnowledgeDomainlist: KnowledgeDomainlist,
-				lrnDomainlist: lrnDomainlist,
+				learningDomainList: learningDomainList,
 				pedaTechList: pedaTechList,
 				userId: ImodUser.get(springSecurityService.principal.id),
 				favPedaTechList: favPedaTechList,
@@ -340,7 +339,7 @@ class PedagogyController {
 	def clonePedagogyTechnique() {
 		[
 			pedagogyTech: PedagogyTechnique.get(params.techId),
-			lrnDomainlist: LearningDomain.list(),
+			learningDomainList: LearningDomain.list(),
 			domainList: DomainCategory.list(),
 			KnowledgeDomainlist: KnowledgeDimension.list()
 		]
@@ -371,7 +370,7 @@ class PedagogyController {
 			render template:'pedagogyCloneTechnique', model: [
 				errorMsg: 'title',
 				pedagogyTech: PedagogyTechnique.get(params.pedagogy_tech_id),
-				lrnDomainlist: LearningDomain.list(),
+				learningDomainList: LearningDomain.list(),
 				domainList: DomainCategory.list(),
 				KnowledgeDomainlist: KnowledgeDimension.list()
 			]
@@ -380,7 +379,7 @@ class PedagogyController {
 		else {
 			println 'title changed'
 			def activity = PedagogyActivity.findAllByPedagogyTechnique(pedagogyTechnique)
-			def reference = .findAllByPedagogyTechnique(pedagogyTechnique)
+			def reference = PedagogyReference.findAllByPedagogyTechnique(pedagogyTechnique)
 		}
 
 		cloneNewTechnique(params)
