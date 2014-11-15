@@ -311,34 +311,34 @@ class PedagogyController {
 		)
 	}
 
-	/**
-	 * Index, This action will used to load left panel on Pedagogy
-	 */
-	def index() {
-
-		// TO get the Learning Objectives
-		Imod imod = Imod.get(48)
-		def objectiveList = LearningObjective.findAllByImod(imod)
-
-		//To get the Domain Category
-		LearningDomain domain = LearningDomain.get(1)
-		def domainList = DomainCategory.findAllByDomain(domain);
-
-		//To get the Knowledge Dimension
-		def KnowledgeDomainlist = KnowledgeDimension.list()
-
-
-		return [
-			objectiveList : objectiveList,
-			domainList: domainList,
-			KnowledgeDomainlist: KnowledgeDomainlist
-		]
-	}
+	// /**
+	//  * Index, This action will used to load left panel on Pedagogy
+	//  */
+	// def index() {
+	//
+	// 	// TO get the Learning Objectives
+	// 	Imod imod = Imod.get(48)
+	// 	def objectiveList = LearningObjective.findAllByImod(imod)
+	//
+	// 	//To get the Domain Category
+	// 	LearningDomain domain = LearningDomain.get(1)
+	// 	def domainList = DomainCategory.findAllByDomain(domain);
+	//
+	// 	//To get the Knowledge Dimension
+	// 	def KnowledgeDomainlist = KnowledgeDimension.list()
+	//
+	//
+	// 	[
+	// 		objectiveList : objectiveList,
+	// 		domainList: domainList,
+	// 		KnowledgeDomainlist: KnowledgeDomainlist
+	// 	]
+	// }
 	/**
 	 * To open Pedagogy Technique clone popup
 	 */
 	def clonePedagogyTechnique() {
-		render template:'pedagogyCloneTechnique', model: [
+		[
 			pedagogyTech: PedagogyTechnique.get(params.techId),
 			lrnDomainlist: LearningDomain.list(),
 			domainList: DomainCategory.list(),
@@ -423,25 +423,34 @@ class PedagogyController {
 		def pedagogyReference
 		def pedTecInstance
 
-		pedTecInstance = new PedagogyTechnique(params)
-		pedTecInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
-		if (!pedTecInstance.save()) {
-			render(view: 'error', model: [pedagogyTechniqueInstance: pedTecInstance])
+		pedagogyTechniqueInstance = new PedagogyTechnique(params)
+		pedagogyTechniqueInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
+		// save the new instance
+		if (!pedagogyTechniqueInstance.save()) {
+			// if it failed to save, show error page and break out of function
+			render(
+				view: 'error',
+				model: [
+					pedagogyTechniqueInstance: pedTecInstance
+				]
+			)
 			return
 		}
-		params.each{
-			if(it.key.startsWith('pedagogyActivity') && it.toString().contains(':')) {
-				pedagogyActivity = new PedagogyActivity(it.value)
-				pedagogyActivity.pedagogyTechnique = pedTecInstance
-				pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
-				pedagogyActivity.save()
-			}
-			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')) {
-				pedagogyReference = new PedagogyReference(it.value)
-				pedagogyReference.pedagogyTechnique = pedTecInstance
-				pedagogyReference.referenceType = PedagogyReferenceType.get(it.value.refeType)
-				pedagogyReference.save()
-			}
+
+		// if there a pedegogy activity refrenced in the request link new instance to activity
+		if (params.containsKey('pedagogyActivity')) {
+			pedagogyActivity = new PedagogyActivity(it.value)
+			pedagogyActivity.pedagogyTechnique = pedagogyTechniqueInstance
+			pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
+			pedagogyActivity.save()
+		}
+
+		// if there a refrence objective id in the request link new instance to activity
+		if (params.containsKey('pedagogyReference')) {
+			pedagogyReference = new PedagogyReference(params.pedagogyReference)
+			pedagogyReference.pedagogyTechnique = pedagogyTechniqueInstance
+			pedagogyReference.referenceType = PedagogyReferenceType.get(params.pedagogyReference.refeType)
+			pedagogyReference.save()
 		}
 	}
 }
