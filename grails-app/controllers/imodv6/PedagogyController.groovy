@@ -133,32 +133,28 @@ class PedagogyController {
 	 * @return
 	 */
 	def addNewTechnique() {
-		def pedagogyActivity
-		def pedagogyReference
-		def pedTecInstance
-
-		pedTecInstance = new PedagogyTechnique(params)
-		pedTecInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
-		if (!pedTecInstance.save()) {
+		def pedagogyTechniqueList = new PedagogyTechnique(params)
+		pedagogyTechniqueList.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
+		if (!pedagogyTechniqueList.save()) {
 			render(
 				view: 'error',
 				model: [
-					pedagogyTechniqueInstance: pedTecInstance
+					pedagogyTechniqueInstance: pedagogyTechniqueList
 				]
 			)
 			return
 		}
 		params.each{
 			if(it.key.startsWith('pedagogyActivity') && it.toString().contains(':')) {
-				pedagogyActivity = new PedagogyActivity(it.value)
-				pedagogyActivity.pedagogyTechnique = pedTecInstance
+				def pedagogyActivity = new PedagogyActivity(it.value)
+				pedagogyActivity.pedagogyTechnique = pedagogyTechniqueList
 				pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
 				pedagogyActivity.save()
 			}
 
 			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')) {
-				pedagogyReference = new PedagogyReference(it.value)
-				pedagogyReference.pedagogyTechnique = pedTecInstance
+				def pedagogyReference = new PedagogyReference(it.value)
+				pedagogyReference.pedagogyTechnique = pedagogyTechniqueList
 				pedagogyReference.referenceType = PedagogyReferenceType.get(it.value.refeType)
 				pedagogyReference.save()
 			}
