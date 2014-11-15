@@ -48,15 +48,18 @@ class PedagogyController {
 		LinkedHashSet pedagogyTechniqueList
 		if(kdomain.size() > 0) {
 			def query = """
-			select p
-			from PedagogyTechnique as p
-			inner join p.domain as dm
-			join p.category as ct
-			join p.knowledge kn
+				SELECT p
+				FROM PedagogyTechnique AS p
+				INNER JOIN p.domain AS dm
+				JOIN p.category AS ct
+				JOIN p.knowledge kn
 
-			where dm.name in (:dc)
-			AND (ct.name in (:ld)
-			AND kn.description in (:kd)) order by p.pedagogyTitle
+				WHERE dm.name IN (:dc)
+				AND (
+					ct.name IN (:ld)
+					AND kn.description IN (:kd)
+				)
+				ORDER BY p.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
@@ -69,14 +72,14 @@ class PedagogyController {
 		}
 		else {
 			def query = """
-			select p
-			from PedagogyTechnique as p
-			inner join p.domain as dm
-			join p.category as ct
+				SELECT p
+				FROM PedagogyTechnique AS p
+				INNER JOIN p.domain AS dm
+				JOIN p.category AS ct
 
-			where dm.name in (:dc)
-			AND (ct.name in (:ld))
-			order by p.pedagogyTitle
+				WHERE dm.name IN (:dc)
+				AND ct.name IN (:ld)
+				ORDER BY p.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
@@ -251,16 +254,18 @@ class PedagogyController {
 		def pedagogyTechniqueList
 		if(kdmnList.size() > 0) {
 			def query = """
-				select p
-				from PedagogyTechnique as p
-				inner join p.domain as dm
-				join p.category as ct
-				join p.knowledge kn
+				SELECT p
+				FROM PedagogyTechnique AS p
+				INNER JOIN p.domain AS dm
+				JOIN p.category AS ct
+				JOIN p.knowledge kn
 
-				where dm.name in (:dc)
-				AND (ct.name in (:ld)
-				AND kn.description in (:kd))
-				order by p.pedagogyTitle'
+				WHERE dm.name IN (:dc)
+				AND (
+					ct.name IN (:ld)
+					AND kn.description IN (:kd)
+				)
+				ORDER BY p.pedagogyTitle'
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
@@ -273,14 +278,14 @@ class PedagogyController {
 		}
 		else {
 			def query = """
-				select p
-				from PedagogyTechnique as p
-				inner join p.domain as dm
-				join p.category as ct
+				SELECT p
+				FROM PedagogyTechnique AS p
+				INNER JOIN p.domain AS dm
+				JOIN p.category AS ct
 
-				where dm.name in (:dc)
-				AND (ct.name in (:ld))
-				order by p.pedagogyTitle
+				WHERE dm.name IN (:dc)
+				AND ct.name IN (:ld)
+				ORDER BY p.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
