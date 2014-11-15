@@ -356,27 +356,31 @@ class PedagogyController {
 		def pedagogyReference
 		def activityList = new ArrayList<PedagogyActivity>()
 		def referenceList = new ArrayList<PedagogyReference>()
-		params.each {
 
-			if(it.key.startsWith('pedagogyActivity') && it.toString().contains(':')){
-				pedagogyActivity = new PedagogyActivity(it.value)
-				pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
-				activityList.add(pedagogyActivity)
-			}
-
-			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')){
-				pedagogyReference = new PedagogyReference(it.value)
-				pedagogyReference.referenceType = PedagogyReferenceType.get(it.value.refeType)
-				referenceList.add(pedagogyReference)
-			}
+		// check if there should be a linked activity
+		if (params.containsKey('pedagogyActivity')) {
+			// create the link
+			pedagogyActivity = new PedagogyActivity(params.pedagogyActivity)
+			pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(params.pedagogyActivity.duration)
+			activityList.add(pedagogyActivity)
 		}
 
-		if(PedagogyTechnique.findByPedagogyTitle(params.pedagogyTitle)?.pedagogyTitle.equals(params.pedagogyTitle)){
+		// checks if there should be a linked reference object
+		if (params.containsKey('pedagogyReference')) {
+			// create a link between technique and reference
+			pedagogyReference = new PedagogyReference(params.pedagogyReference)
+			pedagogyReference.referenceType = PedagogyReferenceType.get(params.pedagogyReference.refeType)
+			referenceList.add(pedagogyReference)
+		}
+
+		// if there is not technique by this name
+		if(PedagogyTechnique.findByPedagogyTitle(params.pedagogyTitle) == null) {
+			// throw error
 			flag = true
 			message = 'title'
 		}
-
-		if(flag == false){
+		// it is okay to change title
+		else {
 			println 'title changed'
 			def activity = PedagogyActivity.findAllByPedagogyTechnique(pedagogyTechnique)
 			def reference = PedagogyReference.findAllByPedagogyTechnique(pedagogyTechnique)
@@ -405,8 +409,13 @@ class PedagogyController {
 
 		if(flag) {
 			println message
-			render template:'pedagogyCloneTechnique', model:[errorMsg:message,pedagogyTech:PedagogyTechnique.get(params.pedagogy_tech_id),lrnDomainlist:LearningDomain.list(),domainList:DomainCategory.list(),KnowledgeDomainlist:KnowledgeDimension.list()]
-//			render template:'pedagogyCloneTechnique',status:HttpServletResponse.SC_INTERNAL_SERVER_ERROR
+			render template:'pedagogyCloneTechnique', model: [
+				errorMsg: message,
+				pedagogyTech: PedagogyTechnique.get(params.pedagogy_tech_id),
+				lrnDomainlist: LearningDomain.list(),
+				domainList: DomainCategory.list(),
+				KnowledgeDomainlist: KnowledgeDimension.list()
+			]
 		}
 		else {
 			cloneNewTechnique(params)
@@ -439,9 +448,9 @@ class PedagogyController {
 
 		// if there a pedegogy activity refrenced in the request link new instance to activity
 		if (params.containsKey('pedagogyActivity')) {
-			pedagogyActivity = new PedagogyActivity(it.value)
+			pedagogyActivity = new PedagogyActivity(params.pedagogyActivity.value)
 			pedagogyActivity.pedagogyTechnique = pedagogyTechniqueInstance
-			pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
+			pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(params.pedagogyActivity.duration)
 			pedagogyActivity.save()
 		}
 
