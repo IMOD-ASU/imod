@@ -348,7 +348,7 @@ class PedagogyController {
 	/**
 	 * cloneSaveTech, This action is used for validating cloned Technique.
 	 */
-	def cloneSaveTech() {
+	def cloneSaveTechnqiue() {
 		def flag = false
 		def message = 'other'
 		def pedagogyTechnique = PedagogyTechnique.read(params.pedagogy_tech_id)
@@ -392,18 +392,6 @@ class PedagogyController {
 			) {
 				println 'check'
 				flag = true
-			}
-
-			if(flag) {
-				activityList.eachWithIndex {ele,index ->
-					flag = ele.title.equals(activity.get(index).title) && ele.description.equals(activity.get(index).description) && ele.example.equals(activity.get(index).example)  && ele.material.equals(activity.get(index).material) && activity.get(index).pedagogyActivityDuration.id.toString().equals(ele.pedagogyActivityDuration.id.toString())?true:false
-				}
-			}
-
-			if(flag) {
-				referenceList.eachWithIndex {ele,index ->
-					flag = ele.title.equals(reference.get(index).title) && ele.description.equals(reference.get(index).description) && ele.referenceLinkISBN.equals(reference.get(index).referenceLinkISBN) && ele.author.equals(reference.get(index).author) && reference.get(index).referenceType.id.toString().equals(ele.referenceType.id.toString())?true:false
-				}
 			}
 		}
 
