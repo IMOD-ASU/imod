@@ -349,66 +349,42 @@ class PedagogyController {
 	 * cloneSaveTech, This action is used for validating cloned Technique.
 	 */
 	def cloneSaveTechnqiue() {
-		def flag = false
-		def message = 'other'
 		def pedagogyTechnique = PedagogyTechnique.read(params.pedagogy_tech_id)
-		def pedagogyActivity
-		def pedagogyReference
-		def activityList = new ArrayList<PedagogyActivity>()
-		def referenceList = new ArrayList<PedagogyReference>()
 
 		// check if there should be a linked activity
 		if (params.containsKey('pedagogyActivity')) {
 			// create the link
-			pedagogyActivity = new PedagogyActivity(params.pedagogyActivity)
+			def pedagogyActivity = new PedagogyActivity(params.pedagogyActivity)
 			pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(params.pedagogyActivity.duration)
-			activityList.add(pedagogyActivity)
 		}
 
 		// checks if there should be a linked reference object
 		if (params.containsKey('pedagogyReference')) {
 			// create a link between technique and reference
-			pedagogyReference = new PedagogyReference(params.pedagogyReference)
+			def pedagogyReference = new PedagogyReference(params.pedagogyReference)
 			pedagogyReference.referenceType = PedagogyReferenceType.get(params.pedagogyReference.refeType)
-			referenceList.add(pedagogyReference)
 		}
 
 		// if there is not technique by this name
 		if(PedagogyTechnique.findByPedagogyTitle(params.pedagogyTitle) == null) {
-			// throw error
-			flag = true
-			message = 'title'
-		}
-		// it is okay to change title
-		else {
-			println 'title changed'
-			def activity = PedagogyActivity.findAllByPedagogyTechnique(pedagogyTechnique)
-			def reference = PedagogyReference.findAllByPedagogyTechnique(pedagogyTechnique)
-			if(pedagogyTechnique.pedagogyDescription.equals(params.pedagogyDescription)
-				&& pedagogyTechnique.focus.sort() == PedagogyActivityFocus.getAll(params.list('focus')).sort()
-				&& pedagogyTechnique.pedagogyMode.id.toString().equals(params.pedagogyModeId)
-				&& activityList.size() == activity.size()
-				&& referenceList.size() == reference.size()
-			) {
-				println 'check'
-				flag = true
-			}
-		}
-
-		if(flag) {
-			println message
+			// go back to edit page and show error message
 			render template:'pedagogyCloneTechnique', model: [
-				errorMsg: message,
+				errorMsg: 'title',
 				pedagogyTech: PedagogyTechnique.get(params.pedagogy_tech_id),
 				lrnDomainlist: LearningDomain.list(),
 				domainList: DomainCategory.list(),
 				KnowledgeDomainlist: KnowledgeDimension.list()
 			]
 		}
+		// it is okay to change title
 		else {
-			cloneNewTechnique(params)
-			render 'done'
+			println 'title changed'
+			def activity = PedagogyActivity.findAllByPedagogyTechnique(pedagogyTechnique)
+			def reference = .findAllByPedagogyTechnique(pedagogyTechnique)
 		}
+
+		cloneNewTechnique(params)
+		render 'done'
 	}
 	/**
 	 * cloneNewTechnique, This method is used to Save cloned Technique
@@ -416,11 +392,7 @@ class PedagogyController {
 	 * @return
 	 */
 	def cloneNewTechnique(params){
-		def pedagogyActivity
-		def pedagogyReference
-		def pedTecInstance
-
-		pedagogyTechniqueInstance = new PedagogyTechnique(params)
+		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
 		pedagogyTechniqueInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
 		// save the new instance
 		if (!pedagogyTechniqueInstance.save()) {
@@ -428,7 +400,7 @@ class PedagogyController {
 			render(
 				view: 'error',
 				model: [
-					pedagogyTechniqueInstance: pedTecInstance
+					pedagogyTechniqueInstance: pedagogyTechniqueInstance
 				]
 			)
 			return
@@ -436,7 +408,7 @@ class PedagogyController {
 
 		// if there a pedegogy activity refrenced in the request link new instance to activity
 		if (params.containsKey('pedagogyActivity')) {
-			pedagogyActivity = new PedagogyActivity(params.pedagogyActivity.value)
+			def pedagogyActivity = new PedagogyActivity(params.pedagogyActivity.value)
 			pedagogyActivity.pedagogyTechnique = pedagogyTechniqueInstance
 			pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(params.pedagogyActivity.duration)
 			pedagogyActivity.save()
@@ -444,7 +416,7 @@ class PedagogyController {
 
 		// if there a refrence objective id in the request link new instance to activity
 		if (params.containsKey('pedagogyReference')) {
-			pedagogyReference = new PedagogyReference(params.pedagogyReference)
+			def pedagogyReference = new PedagogyReference(params.pedagogyReference)
 			pedagogyReference.pedagogyTechnique = pedagogyTechniqueInstance
 			pedagogyReference.referenceType = PedagogyReferenceType.get(params.pedagogyReference.refeType)
 			pedagogyReference.save()
