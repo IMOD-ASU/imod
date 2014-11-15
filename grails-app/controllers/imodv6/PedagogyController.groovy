@@ -45,11 +45,11 @@ class PedagogyController {
 			kdomain.add(params.kdomain)
 		}
 
-		LinkedHashSet pedaTechList
+		LinkedHashSet pedagogyTechniqueList
 		if(kdomain.size() > 0)
-			pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd)) order by p.pedagogyTitle', [dc: domain,ld: domainCategory,kd: kdomain])
+			pedagogyTechniqueList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd)) order by p.pedagogyTitle', [dc: domain,ld: domainCategory,kd: kdomain])
 		else
-			pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld)) order by p.pedagogyTitle', [dc: domain,ld: domainCategory])
+			pedagogyTechniqueList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld)) order by p.pedagogyTitle', [dc: domain,ld: domainCategory])
 
 		def selectionLine = ''
 		if(domain.size() > 0){
@@ -88,7 +88,7 @@ class PedagogyController {
 
 		[
 			selectionLine: selectionLine,
-			pedaTechList: pedaTechList,
+			pedagogyTechniqueList: pedagogyTechniqueList,
 			objectiveId: params.objectiveId,
 			userId: ImodUser.get(springSecurityService.principal.id)
 		]
@@ -157,9 +157,9 @@ class PedagogyController {
 			currentImodContentList.addAll(it.contents);
 			remainingContent.addAll(it.contents);
 		}
-		LearningObjective objective = objectiveId ? LearningObjective.get(objectiveId) : objectiveList ? objectiveList?.first() : null
+		def objective = objectiveId ? LearningObjective.get(objectiveId) : objectiveList ? objectiveList?.first() : null
 
-		List<Content> kdList = Content.findAllByObjective(objective)
+		def kdList = objective.contents
 		def strkdList = []
 		def contentTitle = []
 		def performanceTitle = '${objective.performance}'
@@ -175,7 +175,7 @@ class PedagogyController {
 		topicDateForCurrentLearningObjectiveList.addAll(imodv6.ContentSchedule.findAllByContentInList(contentList))
 		topicDateForCurrentLearningObjectiveList = topicDateForCurrentLearningObjectiveList.flatten()
 		List<Date> learningObjectiveDates = []
-		Date today = new Date()
+		def today = new Date()
 		today.clearTime()
 		learningObjectiveDates.add(today)
 		for (number in 1..30) {
@@ -186,8 +186,9 @@ class PedagogyController {
 		List<ContentPriorityCode> contentPriorityCodeTypeList = ContentPriorityCode.values()
 
 		//To get the Domain Category
-		LearningDomain domain = LearningDomain.get(1)
-		def domainList = DomainCategory.findAllByDomain(domain);
+		// TODO why is this always the first?
+		def domain = LearningDomain.first()
+		def domainList = DomainCategory.findAllByLearningDomain(domain);
 
 
 		//To get the Knowledge Dimension
@@ -216,12 +217,12 @@ class PedagogyController {
 			}
 		}
 
-		LinkedHashSet pedaTechList
+		def pedagogyTechniqueList
 		if(kdmnList.size() > 0) {
-			pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString(),kd: kdmnList])
+			pedagogyTechniqueList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString(),kd: kdmnList])
 		}
 		else {
-			pedaTechList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString()])
+			pedagogyTechniqueList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString()])
 		}
 
 		def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
@@ -258,7 +259,7 @@ class PedagogyController {
 				domainList: domainList,
 				KnowledgeDomainlist: KnowledgeDomainlist,
 				learningDomainList: learningDomainList,
-				pedaTechList: pedaTechList,
+				pedagogyTechniqueList: pedagogyTechniqueList,
 				userId: ImodUser.get(springSecurityService.principal.id),
 				favPedaTechList: favPedaTechList,
 				referenceTypeList: PedagogyReferenceType.list()
