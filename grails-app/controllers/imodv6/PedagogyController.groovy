@@ -179,24 +179,37 @@ class PedagogyController {
 	 * @return
 	 */
 	def index(Long id) {
+		// get the selected imod
 		def imod = Imod.get(id)
 
-		Long objectiveId = params.objectiveId ? params.long('objectiveId') : null
+		// get all the learning domains
 		def learningDomainList = LearningDomain.list();
 
-		List<LearningObjective> objectiveList = LearningObjective.findAllByImod(imod)
+		// finds all the learning objective linked to this imod
+		def objectiveList = LearningObjective.findAllByImod(imod)
+
+		// lists for content
 		Set<Content> remainingContent = []
 		Set<Content> currentImodContentList = []
 		objectiveList.each {
-			currentImodContentList.addAll(it.contents);
-			remainingContent.addAll(it.contents);
+			currentImodContentList.addAll(it.contents)
+			remainingContent.addAll(it.contents)
 		}
-		def objective = objectiveId ? LearningObjective.get(objectiveId) : objectiveList ? objectiveList?.first() : null
 
+		def objective
+		// if there is a selected objective get it
+		if(params.containsKey('objectiveId')) {
+			objective = LearningObjective.get(params.long('objectiveId'))
+		}
+		// otherwise get the first objective
+		else {
+			objective = objectiveList.first()
+		}
+
+		//
 		def kdList = objective.contents
 		def strkdList = []
 		def contentTitle = []
-		def performanceTitle = '${objective.performance}'
 
 		kdList.each{
 			print '${it.knowledgeDomainCode}'
@@ -204,8 +217,8 @@ class PedagogyController {
 			contentTitle.add('${it.topicTitle}')
 		}
 
-		List<imodv6.ContentSchedule> topicDateForCurrentLearningObjectiveList = []
-		Set<Content> contentList = objective ? objective.contents : []
+		def topicDateForCurrentLearningObjectiveList = []
+		def contentList = objective ? objective.contents : []
 		topicDateForCurrentLearningObjectiveList.addAll(imodv6.ContentSchedule.findAllByContentInList(contentList))
 		topicDateForCurrentLearningObjectiveList = topicDateForCurrentLearningObjectiveList.flatten()
 		List<Date> learningObjectiveDates = []
@@ -265,7 +278,7 @@ class PedagogyController {
 					ct.name IN (:ld)
 					AND kn.description IN (:kd)
 				)
-				ORDER BY p.pedagogyTitle'
+				ORDER BY p.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
@@ -290,8 +303,8 @@ class PedagogyController {
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
 				[
-					dc: objective.learningDomain.toString(),
-					ld: objective.domainCategory.toString()
+					dc: objective.actionWordCategory.category.learningDomain.toString(),
+					ld: objective.actionWordCategory.category.toString()
 				]
 			)
 		}
@@ -309,31 +322,31 @@ class PedagogyController {
 				selectionLine += ' > Knowledge Dimension (${kdmnList.size()} Selections)'
 			}
 			[
-				currentPage: 'pedagogy',
-				topicDateForCurrentLearningObjectiveList: topicDateForCurrentLearningObjectiveList,
-				learningObjectiveDates: learningObjectiveDates,
-				remainingContent: remainingContent,
-				imod: imod,
-				mapkdList: mapkdList,
-				currentImodContentList: currentImodContentList,
-				contentTitle: contentTitle,
-				selectionLine:selectionLine,
-				currentChapterContentList: contentList,
 				chapter: objective,
-				dmn: objective.learningDomain,
-				dc: objective.domainCategory,
 				chapterCount: (objectiveList?.size() > 1),
-				contentPriorityCodeTypeList: contentPriorityCodeTypeList,
-				objectiveList: objectiveList,
 				contentList: contentList,
-				learningObjectiveTypeList: knowledgeDomainCodes,
+				contentPriorityCodeTypeList: contentPriorityCodeTypeList,
+				contentTitle: contentTitle,
+				currentChapterContentList: contentList,
+				currentImodContentList: currentImodContentList,
+				currentPage: 'pedagogy',
+				dc: objective.domainCategory,
+				dmn: objective.learningDomain,
 				domainList: domainList,
+				favPedaTechList: favPedaTechList,
+				imod: imod,
 				KnowledgeDomainlist: KnowledgeDomainlist,
 				learningDomainList: learningDomainList,
+				learningObjectiveDates: learningObjectiveDates,
+				learningObjectiveTypeList: knowledgeDomainCodes,
+				mapkdList: mapkdList,
+				objectiveList: objectiveList,
 				pedagogyTechniqueList: pedagogyTechniqueList,
-				userId: ImodUser.get(springSecurityService.principal.id),
-				favPedaTechList: favPedaTechList,
-				referenceTypeList: PedagogyReferenceType.list()
+				referenceTypeList: PedagogyReferenceType.list(),
+				remainingContent: remainingContent,
+				selectionLine:selectionLine,
+				topicDateForCurrentLearningObjectiveList: topicDateForCurrentLearningObjectiveList,
+				userId: ImodUser.get(springSecurityService.principal.id)
 			]
 		}
 	}
