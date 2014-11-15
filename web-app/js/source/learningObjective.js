@@ -59,11 +59,22 @@ $(document).ready(function() {
 	// manually tiggers the radio box change event
 	$('input:radio[name=LO_condition_type]:checked').change();
 
-	// making action words selectable through jquery ui
-	$('#action-word-categories' )
-	.bind("mousedown", function ( e ) {
-    	e.metaKey = true;})
-    .selectable({selected: populateActionWords});
+	//trigger jquery ui button for better radio buttons
+ 	$('#action-word-categories2').buttonset();
+
+ 	//reset radio buttons if a selected radio button is clicked again
+ 	$(document).on('click', '#action-word-categories label', function(){
+ 		if($(this).hasClass('is-active')){
+ 			$('#action-word-categories label').removeClass('is-active');
+ 			setTimeout(function(){
+	 			$('#action-word-categories input:checked')
+	 				.removeAttr('checked').button('refresh');
+	        },0);
+ 		}else{
+ 			$('#action-word-categories label').removeClass('is-active');
+ 			$(this).addClass('is-active');
+ 		}
+ 	});  	
 
 	// This listens for when a learning objective is selected and saves
 	$('.action-word-category').on(
@@ -134,6 +145,14 @@ $(document).ready(function() {
 			);
 		}
 	);
+
+	//when learning domain isn't selected, do not save learning objective
+	$('.learning-objective-button.save').click(function(){
+		if($('#learning-domain-list').val() == "null"){
+			alert("Learning Domain is required");
+			return false;	
+		}		
+	});
 });
 
 /**
@@ -206,10 +225,12 @@ function populateActionWordCategories(event) {
 			// for each category
 			for (var i = 0; i < actionWordCategories.length; i++) {
 				// create the html
-				actionWordCategoriesHTML += '<li class="action-word-category ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>';
+				actionWordCategoriesHTML += '<input type="radio" id="radio'+i+'" name="radio" value="'+actionWordCategories[i].actionWordCategory+'"><label for="radio'+i+'">' + actionWordCategories[i].actionWordCategory + '</label>';
 			}
 			// display the html on the page
 			$('#action-word-categories').html(actionWordCategoriesHTML);
+			// since the markup is reloaded, re-initiate buttonset
+			$('#action-word-categories').buttonset();
 		},
 		error: function(xhr){
 			// when something goes wrong log to the browser console

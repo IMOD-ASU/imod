@@ -28,6 +28,7 @@
 	</table>
 
 	<s2ui:submitButton elementId='reset' form='resetPasswordForm' messageCode='spring.security.ui.resetPassword.submit'/>
+	<a id="loginButton" href="auth" class="login-back ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Back to log in</span></a>
 
 	</div>
 	</g:form>
@@ -37,6 +38,7 @@
 <script>
 $(document).ready(function() {
 	$('#password').focus();
+	$('.login-back').prop('href',window.location.pathname.match(/\/[^\/]+\//)[0]+'login/auth');
 });
 </script>
 
