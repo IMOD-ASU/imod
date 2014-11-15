@@ -46,11 +46,46 @@ class PedagogyController {
 		}
 
 		LinkedHashSet pedagogyTechniqueList
-		if(kdomain.size() > 0)
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd)) order by p.pedagogyTitle', [dc: domain,ld: domainCategory,kd: kdomain])
-		else
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld)) order by p.pedagogyTitle', [dc: domain,ld: domainCategory])
+		if(kdomain.size() > 0) {
+			def query = """
+			select p
+			from PedagogyTechnique as p
+			inner join p.domain as dm
+			join p.category as ct
+			join p.knowledge kn
 
+			where dm.name in (:dc)
+			AND (ct.name in (:ld)
+			AND kn.description in (:kd)) order by p.pedagogyTitle
+			"""
+			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
+				query,
+				[
+					dc: domain,
+					ld: domainCategory,
+					kd: kdomain
+				]
+			)
+		}
+		else {
+			def query = """
+			select p
+			from PedagogyTechnique as p
+			inner join p.domain as dm
+			join p.category as ct
+
+			where dm.name in (:dc)
+			AND (ct.name in (:ld))
+			order by p.pedagogyTitle
+			"""
+			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
+				query,
+				[
+					dc: domain,
+					ld: domainCategory
+				]
+			)
+		}
 		def selectionLine = ''
 		if(domain.size() > 0){
 			if(domain.size() == 1) {
@@ -219,10 +254,45 @@ class PedagogyController {
 
 		def pedagogyTechniqueList
 		if(kdmnList.size() > 0) {
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct join p.knowledge kn where dm.name in (:dc) AND (ct.name in (:ld) AND kn.description in (:kd))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString(),kd: kdmnList])
+			def query = """
+				select p
+				from PedagogyTechnique as p
+				inner join p.domain as dm
+				join p.category as ct
+				join p.knowledge kn
+
+				where dm.name in (:dc)
+				AND (ct.name in (:ld)
+				AND kn.description in (:kd))
+				order by p.pedagogyTitle'
+			"""
+			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
+				query,
+				[
+					dc: objective.learningDomain.toString(),
+					ld: objective.domainCategory.toString(),
+					kd: kdmnList
+				]
+			)
 		}
 		else {
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery('select p from PedagogyTechnique as p inner join p.domain as dm join p.category as ct where dm.name in (:dc) AND (ct.name in (:ld))  order by p.pedagogyTitle', [dc: objective.learningDomain.toString(),ld: objective.domainCategory.toString()])
+			def query = """
+				select p
+				from PedagogyTechnique as p
+				inner join p.domain as dm
+				join p.category as ct
+
+				where dm.name in (:dc)
+				AND (ct.name in (:ld))
+				order by p.pedagogyTitle
+			"""
+			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
+				query,
+				[
+					dc: objective.learningDomain.toString(),
+					ld: objective.domainCategory.toString()
+				]
+			)
 		}
 
 		def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
