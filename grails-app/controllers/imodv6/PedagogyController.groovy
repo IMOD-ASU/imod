@@ -14,7 +14,7 @@ class PedagogyController {
 	 * updateExtendedTechnique action used to updated Extended Match
 	 * @return
 	 */
-	def updateExtendedTechnique(){
+	def updateExtendedTechnique() {
 		def domain = []
 		def domainCategory = []
 		def kdomain = []
@@ -86,7 +86,7 @@ class PedagogyController {
 			}
 		}
 
-		render view:'_pedagogyExtendedMatch', model:[
+		[
 			selectionLine: selectionLine,
 			pedaTechList: pedaTechList,
 			objectiveId: params.objectiveId,
@@ -97,7 +97,7 @@ class PedagogyController {
 	 * addNewTechnique, is used to create new Technique
 	 * @return
 	 */
-	def addNewTechnique(){
+	def addNewTechnique() {
 		def pedagogyActivity
 		def pedagogyReference
 		def pedTecInstance
@@ -314,7 +314,7 @@ class PedagogyController {
 	/**
 	 * Index, This action will used to load left panel on Pedagogy
 	 */
-	def index = {
+	def index() {
 
 		// TO get the Learning Objectives
 		Imod imod = Imod.get(48)
@@ -337,7 +337,7 @@ class PedagogyController {
 	/**
 	 * To open Pedagogy Technique clone popup
 	 */
-	def clonePedagogyTech = {
+	def clonePedagogyTechnique() {
 		render template:'pedagogyCloneTechnique', model: [
 			pedagogyTech: PedagogyTechnique.get(params.techId),
 			lrnDomainlist: LearningDomain.list(),
@@ -348,7 +348,7 @@ class PedagogyController {
 	/**
 	 * cloneSaveTech, This action is used for validating cloned Technique.
 	 */
-	def cloneSaveTech = {
+	def cloneSaveTech() {
 		def flag = false
 		def message = 'other'
 		def pedagogyTechnique = PedagogyTechnique.read(params.pedagogy_tech_id)
