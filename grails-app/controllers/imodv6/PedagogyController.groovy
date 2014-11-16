@@ -48,44 +48,44 @@ class PedagogyController {
 		LinkedHashSet pedagogyTechniqueList
 		if(kdomain.size() > 0) {
 			def query = """
-				SELECT p
-				FROM PedagogyTechnique AS p
-				INNER JOIN p.domain AS dm
-				JOIN p.category AS ct
-				JOIN p.knowledge kn
+				SELECT PedagogyTechnique
+				FROM PedagogyTechnique
+				INNER JOIN PedagogyTechnique.domain AS domain
+				JOIN PedagogyTechnique.category AS category
+				JOIN PedagogyTechnique.knowledge as knowledge
 
-				WHERE dm.name IN (:dc)
+				WHERE domain.name IN (:domainCategory)
 				AND (
-					ct.name IN (:ld)
-					AND kn.description IN (:kd)
+					category.name IN (:learningDomain)
+					AND knowledge.description IN (:knowledgeDomain)
 				)
-				ORDER BY p.pedagogyTitle
+				ORDER BY PedagogyTechnique.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
 				[
-					dc: domain,
-					ld: domainCategory,
-					kd: kdomain
+					domainCategory: domain,
+					learningDomain: domainCategory,
+					knowledgeDomain: kdomain
 				]
 			)
 		}
 		else {
 			def query = """
-				SELECT p
-				FROM PedagogyTechnique AS p
-				INNER JOIN p.domain AS dm
-				JOIN p.category AS ct
+				SELECT PedagogyTechnique
+				FROM PedagogyTechnique
+				INNER JOIN PedagogyTechnique.domain AS domain
+				JOIN PedagogyTechnique.category AS category
 
-				WHERE dm.name IN (:dc)
-				AND ct.name IN (:ld)
-				ORDER BY p.pedagogyTitle
+				WHERE domain.name IN (:domainCategory)
+				AND category.name IN (:learningDomain)
+				ORDER BY PedagogyTechnique.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
 				[
-					dc: domain,
-					ld: domainCategory
+					domainCategory: domain,
+					learningDomain: domainCategory
 				]
 			)
 		}
@@ -191,9 +191,11 @@ class PedagogyController {
 		// lists for content
 		Set<Content> remainingContent = []
 		Set<Content> currentImodContentList = []
-		objectiveList.each {
-			currentImodContentList.addAll(it.contents)
-			remainingContent.addAll(it.contents)
+
+		// for each objective add the content to a list
+		for (def objective in objectiveList) {
+			currentImodContentList.addAll(objective.contents)
+			remainingContent.addAll(objective.contents)
 		}
 
 		def objective
@@ -206,22 +208,23 @@ class PedagogyController {
 			objective = objectiveList.first()
 		}
 
-		//
-		def kdList = objective.contents
-		def strkdList = []
-		def contentTitle = []
+		// TODO why is knowledge domain list same as content list?
+		def knowledgeDomainList = objective.contents
+		def knowledgeDomainListAsStrings = []
+		def contentTitles = []
 
-		kdList.each{
-			print '${it.knowledgeDomainCode}'
-			strkdList.add('${it.knowledgeDomainCode}')
-			contentTitle.add('${it.topicTitle}')
+		// add the strings to the arrays
+		for (def content in knowledgeDomainList) {
+			knowledgeDomainListAsStrings.add('${content.knowledgeDomainCode}')
+			contentTitles.add('${content.topicTitle}')
 		}
 
 		def topicDateForCurrentLearningObjectiveList = []
-		def contentList = objective ? objective.contents : []
+		def contentList = objective.contents
 		topicDateForCurrentLearningObjectiveList.addAll(imodv6.ContentSchedule.findAllByContentInList(contentList))
 		topicDateForCurrentLearningObjectiveList = topicDateForCurrentLearningObjectiveList.flatten()
-		List<Date> learningObjectiveDates = []
+
+		def learningObjectiveDates = []
 		def today = new Date()
 		today.clearTime()
 		learningObjectiveDates.add(today)
@@ -240,14 +243,14 @@ class PedagogyController {
 
 		//To get the Knowledge Dimension
 		def KnowledgeDomainlist = KnowledgeDimension.list()
-		Map<String, String> mapkdList = new HashMap<String,String>()
+		Map<String, String> mapKnowledgeDomainList = new HashMap<String,String>()
 		def kdmnList = []
 
 		KnowledgeDomainlist.each{ kd ->
 			def flag = false
 			def sKD = '${kd}'
 			//println sKD
-			strkdList.each{ strkd ->
+			knowledgeDomainListAsStrings.each{ strkd ->
 				def sStrKD = '${strkd}'
 				//println sKD + '  ' + sStrKD
 				if(sKD.equals(sStrKD)) {
@@ -256,55 +259,55 @@ class PedagogyController {
 			}
 
 			if(flag) {
-				mapkdList.put(sKD, 'true')
+				mapKnowledgeDomainList.put(sKD, 'true')
 				kdmnList.add(sKD.toString())
 			}
 			else {
-				mapkdList.put(sKD, 'false')
+				mapKnowledgeDomainList.put(sKD, 'false')
 			}
 		}
 
 		def pedagogyTechniqueList
 		if(kdmnList.size() > 0) {
 			def query = """
-				SELECT p
-				FROM PedagogyTechnique AS p
-				INNER JOIN p.domain AS dm
-				JOIN p.category AS ct
-				JOIN p.knowledge kn
+				SELECT PedagogyTechnique
+				FROM PedagogyTechnique
+				INNER JOIN PedagogyTechnique.domain AS domain
+				JOIN PedagogyTechnique.category AS category
+				JOIN PedagogyTechnique.knowledge as knowledge
 
-				WHERE dm.name IN (:dc)
+				WHERE domain.name IN (:domainCategory)
 				AND (
-					ct.name IN (:ld)
-					AND kn.description IN (:kd)
+					category.name IN (:learningDomain)
+					AND knowledge.description IN (:knowledgeDomain)
 				)
-				ORDER BY p.pedagogyTitle
+				ORDER BY PedagogyTechnique.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
 				[
-					dc: objective.learningDomain.toString(),
-					ld: objective.domainCategory.toString(),
-					kd: kdmnList
+					domainCategory: objective.learningDomain.toString(),
+					learningDomain: objective.domainCategory.toString(),
+					knowledgeDomain: kdmnList
 				]
 			)
 		}
 		else {
 			def query = """
-				SELECT p
-				FROM PedagogyTechnique AS p
-				INNER JOIN p.domain AS dm
-				JOIN p.category AS ct
+				SELECT PedagogyTechnique
+				FROM PedagogyTechnique
+				INNER JOIN PedagogyTechnique.domain AS domain
+				JOIN PedagogyTechnique.category AS category
 
-				WHERE dm.name IN (:dc)
-				AND ct.name IN (:ld)
-				ORDER BY p.pedagogyTitle
+				WHERE domain.name IN (:domainCategory)
+				AND category.name IN (:learningDomain)
+				ORDER BY PedagogyTechnique.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
 				[
-					dc: objective.actionWordCategory.category.learningDomain.toString(),
-					ld: objective.actionWordCategory.category.toString()
+					domainCategory: objective.actionWordCategory.category.learningDomain.toString(),
+					learningDomain: objective.actionWordCategory.category.toString()
 				]
 			)
 		}
@@ -326,7 +329,7 @@ class PedagogyController {
 				chapterCount: (objectiveList?.size() > 1),
 				contentList: contentList,
 				contentPriorityCodeTypeList: contentPriorityCodeTypeList,
-				contentTitle: contentTitle,
+				contentTitles: contentTitles,
 				currentChapterContentList: contentList,
 				currentImodContentList: currentImodContentList,
 				currentPage: 'pedagogy',
@@ -339,7 +342,7 @@ class PedagogyController {
 				learningDomainList: learningDomainList,
 				learningObjectiveDates: learningObjectiveDates,
 				learningObjectiveTypeList: knowledgeDomainCodes,
-				mapkdList: mapkdList,
+				mapKnowledgeDomainList: mapKnowledgeDomainList,
 				objectiveList: objectiveList,
 				pedagogyTechniqueList: pedagogyTechniqueList,
 				referenceTypeList: PedagogyReferenceType.list(),
