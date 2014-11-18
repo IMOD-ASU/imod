@@ -317,6 +317,7 @@ class LearningObjectiveController {
 	 * @return            sorted list of Action Words
 	 */
 	def getActionWords(String actionWordCategory) {
+
 		// import the wordnet database
 		def wordNetAbsolutePath = request.getSession().getServletContext().getRealPath('../lib/WordNet-3.1')
 		RiWordNet wordnet = new RiWordNet(wordNetAbsolutePath)

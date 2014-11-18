@@ -21,6 +21,12 @@ $(document).ready(function() {
 		populateActionWordCategories
 	);
 
+	// listen for change in action word categories, when it does call ajax
+	$('#action-word-categories').on(
+		'click',
+		populateActionWords
+	);
+
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO-hide-from-Objective').change(function() {
 		if(this.checked) {
@@ -246,13 +252,12 @@ function populateActionWordCategories(event) {
  * @return {XML}        Populates the page with action words
  */
 function populateActionWords(event, ui) {
-	updatePerformanceText(this.value);
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: this.value
+			actionWordCategory: $('#action-word-categories').find('.ui-state-active').text()
 		},
 		success: function(data) {
 			// store the data from the call back
