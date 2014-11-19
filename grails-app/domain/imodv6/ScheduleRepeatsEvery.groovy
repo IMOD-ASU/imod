@@ -12,6 +12,8 @@ class ScheduleRepeatsEvery {
 	static mapping = {
 		version false
 	}
+	
+	static belongsTo = Schedule
 
 	def String toString(){
 		return description

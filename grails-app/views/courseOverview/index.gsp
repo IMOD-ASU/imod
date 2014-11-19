@@ -1,3 +1,5 @@
+<%@page import="imodv6.ScheduleWeekDays"%>
+<%@page import="imodv6.ScheduleRepeatsEvery"%>
 <%@ page import="imodv6.Help; imodv6.Imod; imodv6.ImodUser" %>
 <!DOCTYPE html>
 <html>
@@ -6,6 +8,7 @@
 			Course Overview
 		</title>
 		<meta name="layout" content="imod">
+		<script src="${resource(dir: 'js/source', file: 'courseOverview.js')}" defer></script>
 	</head>
 	<body>
 		<div id="tabs-1">
@@ -123,19 +126,41 @@
 											<g:datePicker name="schedule.endDate" precision="day"  value="${imodInstance?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="showHoverNew"/>
 										</div>
 
+										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'startTime', 'error')} ">
+											<label for="startTime">
+												<g:message code="imod.schedule.startTime.label" default="Start Time" />
+											</label>
+										<joda:timePicker name="schedule.startTime" value="${imodInstance?.schedule?.startTime}" />
+										</div>
+										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'endTime', 'error')} ">
+											<label for="endTime">
+												<g:message code="imod.schedule.endTime.label" default="End Time" />
+											</label>
+										<joda:timePicker name="schedule.endTime" value="${imodInstance?.schedule?.endTime}" />
+										</div>
 										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'repeats', 'error')} ">
 											<label for="repeats">
-												<g:message code="imod.repeats.label" default="Repeats" />
+												<g:message code="imod.schedule.repeats.label" default="Repeats" />
 											</label>
-											<g:select id="repeats" name="repeats.id" from="${imodv6.ScheduleRepeats.list()}" optionKey="id" value="${imodInstance?.repeats*.id}" class="many-to-one"/>
+											<g:select id="repeats" name="schedule.repeats.id" from="${imodv6.ScheduleRepeats.list()}" optionKey="id" value="${imodInstance?.schedule?.repeats?.id}" class="many-to-one"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'repeatsEvery', 'error')} ">
 											<label for="repeatsEvery">
 												<g:message code="imod.repeatsEvery.label" default="Repeats Every" />
 											</label>
-											<g:select id="repeatsEvery" name="repeatsEvery.id" from="${imodv6.ScheduleRepeatsEvery.list()}" optionKey="id" value="${imodInstance?.repeatsEvery*.id}" class="many-to-one"/>
+											<g:select id="repeatsEvery" name="schedule.repeatsEvery.id" from="${imodv6.ScheduleRepeatsEvery.list()}" optionKey="id" value="${imodInstance?.schedule?.repeatsEvery?.id}" noSelection="${['null':'Nothing Selected']}" class="many-to-one"/>
+											<label id="duration"></label>
 										</div>
+										
+										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'schedule.scheduleWeekDays', 'error')} ">
+										<label for="scheduleWeekDays">
+												<g:message code="imod.scheduleWeekDays.label" default="Repeats On" />
+											</label>
+										<g:each in="${imodv6.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
+										    <g:checkBox name="scheduleWeekDays_${scheduleWeekDays.id}" value="${scheduleWeekDays.description == imodInstance?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}" />
+										    <label for="weekdays">${scheduleWeekDays.description}</label>
+										</g:each>
 									</div>
 								</td>
 							</tr>
