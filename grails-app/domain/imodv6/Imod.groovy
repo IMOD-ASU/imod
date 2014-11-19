@@ -102,23 +102,6 @@ class Imod {
 	 */
 	Schedule				schedule
 
-	/**
-	 * Special dates in the course (holidays, exams, etc)
-	 * TODO: should this be related only to the schedule and not to the course?
-	 */
-	ScheduleDate			scheduleDate
-
-	/**
-	 * How often the schedule repeats (weekly, semi-weekly, monthly)
-	 * TODO: should this be related only to the schedule and not to the course?
-	 */
-	ScheduleRepeats			repeats
-
-	/**
-	 * TODO: How is this different from repeats?
-	 * TODO: should this be related only to the schedule and not to the course?
-	 */
-	ScheduleRepeatsEvery	repeatsEvery
 
 	static belongsTo = [
 		/**
@@ -192,9 +175,6 @@ class Imod {
 		// Domains belonging to an IMOD
 		coursePolicy	nullable: true
 		schedule		nullable: true
-		scheduleDate	nullable: true
-		repeats			nullable: true
-		repeatsEvery	nullable: true
 	}
 
 	/**

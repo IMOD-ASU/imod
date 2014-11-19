@@ -16,6 +16,9 @@ import imodv6.PedagogyReference
 import imodv6.PedagogyReferenceType
 import imodv6.PedagogyTechnique
 import imodv6.Role
+import imodv6.ScheduleRepeats;
+import imodv6.ScheduleRepeatsEvery
+import imodv6.ScheduleWeekDays
 
 
 class BootStrap {
@@ -423,6 +426,82 @@ class BootStrap {
 				tabFieldName: "Web Page",
 				text: "Clicking on Refresh displays the techniques that belongs the selections on the Domain, Domain Category and Knowledge Dimension in the Extended match."
 			).save()
+		}
+		
+		if(ScheduleRepeats.count() < 1)
+		{
+			def ScheduleRepeatsDaily = new ScheduleRepeats(
+				description: "Daily"
+				)
+			ScheduleRepeatsDaily.save()
+			
+			def ScheduleRepeatsWeekDay = new ScheduleRepeats(
+				description: "Every Weekday (Monday to Friday)"
+				)
+			ScheduleRepeatsWeekDay.save()
+			
+			def ScheduleRepeatsMW = new ScheduleRepeats(
+				description: "Every Monday and Wednesday"
+				)
+			ScheduleRepeatsMW.save()
+			
+			def ScheduleRepeatsTTh = new ScheduleRepeats(
+				description: "Every Tuesday and Thursday"
+				)
+			ScheduleRepeatsTTh.save()
+			
+			def ScheduleRepeatsWeekly = new ScheduleRepeats(
+				description: "Weekly"
+				)
+			ScheduleRepeatsWeekly.save()
+		}
+		
+		if(ScheduleRepeatsEvery.count() < 1)
+		{
+			for(int i =1; i <= 30; i++)
+			{
+				def ScheduleRepeatsE = new ScheduleRepeatsEvery(
+					description: i)
+				ScheduleRepeatsE.save()
+			}
+		}
+		
+		if(ScheduleWeekDays.count() < 1)
+		{
+			def ScheduleSunday = new ScheduleWeekDays(
+				description:"Sunday"
+				)
+			ScheduleSunday.save()
+			
+			def ScheduleMonday = new ScheduleWeekDays(
+				description:"Monday"
+				)
+			ScheduleMonday.save()
+			
+			def ScheduleTuesday = new ScheduleWeekDays(
+				description:"Tuesday"
+				)
+			ScheduleTuesday.save()
+			
+			def ScheduleWednesday = new ScheduleWeekDays(
+				description:"Wednesday"
+				)
+			ScheduleWednesday.save()
+			
+			def ScheduleThursday = new ScheduleWeekDays(
+				description:"Thursday"
+				)
+			ScheduleThursday.save()
+			
+			def ScheduleFriday = new ScheduleWeekDays(
+				description:"Friday"
+				)
+			ScheduleFriday.save()
+			
+			def ScheduleSaturday = new ScheduleWeekDays(
+				description:"Saturday"
+				)
+			ScheduleSaturday.save()
 		}
 
 
