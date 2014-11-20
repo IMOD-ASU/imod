@@ -52,13 +52,11 @@ class PedagogyController {
 				FROM PedagogyTechnique
 				INNER JOIN PedagogyTechnique.domain AS domain
 				JOIN PedagogyTechnique.category AS category
-				JOIN PedagogyTechnique.knowledge as knowledge
+				JOIN PedagogyTechnique.knowledge AS knowledge
 
 				WHERE domain.name IN (:domainCategory)
-				AND (
-					category.name IN (:learningDomain)
-					AND knowledge.description IN (:knowledgeDomain)
-				)
+				AND	category.name IN (:learningDomain)
+				AND knowledge.description IN (:knowledgeDomain)
 				ORDER BY PedagogyTechnique.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
@@ -274,13 +272,11 @@ class PedagogyController {
 				FROM PedagogyTechnique
 				INNER JOIN PedagogyTechnique.domain AS domain
 				JOIN PedagogyTechnique.category AS category
-				JOIN PedagogyTechnique.knowledge as knowledge
+				JOIN PedagogyTechnique.knowledge AS knowledge
 
 				WHERE domain.name IN (:domainCategory)
-				AND (
-					category.name IN (:learningDomain)
-					AND knowledge.description IN (:knowledgeDomain)
-				)
+				AND category.name IN (:learningDomain)
+				AND knowledge.description IN (:knowledgeDomain)
 				ORDER BY PedagogyTechnique.pedagogyTitle
 			"""
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
