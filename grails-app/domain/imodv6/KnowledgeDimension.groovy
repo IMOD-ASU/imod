@@ -14,6 +14,7 @@ class KnowledgeDimension {
 	 */
 	static mapping = {
 		version false
+		sort 'id'
 	}
 
 	/**

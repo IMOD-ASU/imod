@@ -16,6 +16,7 @@ class LearningDomain {
 
 	static mapping = {
 		version false
+		sort 'id'
 	}
 
 	String toString(){
