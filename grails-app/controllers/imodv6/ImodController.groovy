@@ -161,6 +161,31 @@ class ImodController {
 			action: 'index',
 			id: imodInstance.id
 		)
+		
+		
+		def schedule = Schedule.findById(imodInstance.properties.get("scheduleId"))
+		
+		schedule.scheduleWeekDays = null
+		
+		params.each{
+			
+			if(it.key.contains("scheduleWeekDays_"))
+			{
+				if (it.value.contains("on")){
+					if(schedule.scheduleWeekDays == null)
+					{
+						imodInstance.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - "scheduleWeekDays_") as Integer))
+					}
+					else
+					{
+						imodInstance.schedule.scheduleWeekDays << ScheduleWeekDays.get((it.key - "scheduleWeekDays_") as Integer)
+						
+					}
+					imodInstance.schedule.save()
+					imodInstance.save()
+				}
+			}
+		}
 	}
 
 	def delete(Long id) {

@@ -100,11 +100,7 @@ class Content {
 		priority	nullable:	true
 		topicTitle	nullable:	true
 		objectives	nullable:	true
-		subContents	nullable:	true, validator: {
-			val,
-			obj,
-			errors -> checkRecursion(val.parentContent,obj,errors)
-		}
+		subContents	nullable:	true
 	}
 
 	/**

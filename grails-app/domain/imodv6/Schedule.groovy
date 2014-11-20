@@ -1,52 +1,52 @@
 package imodv6
 
+import org.joda.time.LocalTime;
+import org.jadira.usertype.dateandtime.joda.*
 /**
  * TODO the schedule section may need to be refactored
  */
 
 /**
  * Store all of the general information on when the course will happen
- * @param repeateDays days that course occurs on
  * @param startDate first date classes occur
  * @param endDate last date classes occur
- * @param sunday start time on sunday
- * @param monday start time on sunday
- * @param tuesday start time on tuesday
- * @param wednesday start time on wednesday
- * @param thursday start time on thursday
- * @param friday start time on friday
- * @param saturday start time on saturday
+ * @param startTime start time of class
+ * @param endDate end time of class
+ * @param repeats Schedule repeats id 
+ * @param repeatsEvery schedule repeats every for weekly schedule repeats value
  */
 class Schedule {
-	String repeatsDays
 	Date startDate
 	Date endDate
-	Integer endOccurences
-	Integer sunday
-	Integer monday
-	Integer tuesday
-	Integer wednesday
-	Integer thursday
-	Integer friday
-	Integer saturday
+	LocalTime startTime
+	LocalTime endTime
+	ScheduleRepeats repeats
+	ScheduleRepeatsEvery repeatsEvery
 
 	static belongsTo = [
 		imod: Imod
 	]
+	
+	static hasMany = [
+		scheduleWeekDays: ScheduleWeekDays
+		]
 
     static constraints = {
-		endOccurences 	nullable: true
-		sunday 			nullable: true
-		monday 			nullable: true
-		tuesday 		nullable: true
-		wednesday 		nullable: true
-		thursday 		nullable: true
-		friday 			nullable: true
-		saturday 		nullable: true
-		repeatsDays 	nullable: true
+		startTime		nullable: true
+		endTime			nullable: true
+		repeats			nullable: true
+		repeatsEvery	nullable: true
+		endDate         validator: {endDate, schedule -> return endDate >= schedule.startDate}
+		
     }
 
 	static mapping = {
 		version false
+		repeats lazy:false
+		repeatsEvery lazy:false
+		startTime type: PersistentLocalTime
+		endTime   type: PersistentLocalTime
 	}
+	
+	
 }
