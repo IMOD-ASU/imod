@@ -66,7 +66,7 @@ class LearningObjectiveController {
 		switch (pageType) {
 			// if the user is saving performance page
 			case 'performance':
-				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
+				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.radio)
 				learningObjectiveInstance.performance = params.DCL
 				break
 
@@ -138,7 +138,7 @@ class LearningObjectiveController {
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		def selectedActionWordCategory = learningObjective.actionWordCategory
 		def selectedDomainCategory = selectedActionWordCategory?.category
-		def selectedDomain = selectedDomainCategory?.domain
+		def selectedDomain = selectedDomainCategory?.learningDomain
 
 		// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
 		def domainList = LearningDomain.list()

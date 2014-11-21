@@ -37,17 +37,27 @@
 			/>
 			<br />
 
-		</g:form>
-		<div id="action-word-categories">
-			<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">
-				<input type="radio" id="radio1" name="radio"><label for="radio1">${actionWordCategory}</label>
-			</g:each>
-		</div>
+		
+			<div id="action-word-categories">
+				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">
 
-		<select id="action-words">
-			<option>
-				null
-			</option>
-		</select>
+					${selectedActionWordCategory} == ${actionWordCategory}
+
+					<g:if test="${actionWordCategory == selectedActionWordCategory}">
+						<input type="radio" id="radio1" name="actionWordCategory"><label for="radio1" checked>${actionWordCategory}</label>
+					</g:if>
+					<g:else>
+						<input type="radio" id="radio1" name="actionWordCategory"><label for="radio1">${actionWordCategory}</label>
+					</g:else>					
+				</g:each>
+			</div>
+
+			<select id="action-words">
+				<option>
+					null
+				</option>
+			</select>
+
+		</g:form>
 	</body>
 </html>

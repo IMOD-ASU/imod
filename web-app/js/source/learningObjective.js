@@ -5,9 +5,12 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 $(document).ready(function() {
 
 	// Initially domain categories and action words will not be displayed as learning domain is null
-	$('label[for="domain-category-list"]').css('visibility', 'hidden');
-	$('#domain-category-list').css('visibility', 'hidden');
-	$('#action-word-categories').css('visibility', 'hidden');
+	if($('#domain-category-list').val() == 'null'){
+		$('label[for="domain-category-list"]').css('visibility', 'hidden');
+
+		$('#domain-category-list').css('visibility', 'hidden');
+		$('#action-word-categories').css('visibility', 'hidden');
+	}
 
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
