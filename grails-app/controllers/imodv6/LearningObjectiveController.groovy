@@ -137,13 +137,13 @@ class LearningObjectiveController {
 		// get all performance data to set in the Performance page
 		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
 		def selectedActionWordCategory = learningObjective.actionWordCategory
-		def selectedDomainCategory = selectedActionWordCategory?.category
+		def selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		def selectedDomain = selectedDomainCategory?.learningDomain
 
 		// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
 		def domainList = LearningDomain.list()
 		def domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
-		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByCategory(selectedDomainCategory) : ActionWordCategory.findAllByCategory(domainCategoriesList.first())
+		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
 
 		[
 			imodInstance:				imodInstance,
@@ -302,7 +302,7 @@ class LearningObjectiveController {
 		// Find the selected learning domain
 		def domainCategory = DomainCategory.findByName(domainName)
 		// get all related domain categories and sort by name
-		def actionWordCategories = ActionWordCategory.findAllByCategory(domainCategory)
+		def actionWordCategories = ActionWordCategory.findAllByDomainCategory(domainCategory)
 		// pass back domain categories as a json data structure
 		render (
 			[
