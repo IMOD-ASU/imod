@@ -174,7 +174,8 @@
 										</div>
 											<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'instructors', 'error')} ">
 
-												<div id="clickthis">	<g:link controller="instructor" action="create" params="['imod.id': imodInstance?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="showHoverNew">${message(code: 'default.add.label', args: [message(code: 'instructor.label', default: 'Instructor')])}</g:link>
+												<div id="clickthis">	<g:link controller="courseOverview" action="add" params="['imod.id': imodInstance?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="showHoverNew">${message(code: 'default.add.label', args: [message(code: 'instructor.label', default: 'Instructor')])}</g:link>
+													<g:link controller="courseOverview" action="delete" params="['imod.id': imodInstance?.id]" title="${Help.toolTip("OVERVIEW", "Delete instructor")}" class="showHoverNew">${message(code: 'Delete Instructor', args: [message(code: 'instructor.label', default: 'Delete Instructor')])}</g:link>
 												</div>
 													<div id="custom-instructor">
 													<table id="instructor-table">
@@ -185,6 +186,8 @@
 																<g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Email Label")}"/>
 																<g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Office Hours Label")}"/>
 																<g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Last Name Label")}"/>
+																<g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Role Label")}"/>
+																<g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Location')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Location Label")}"/>
 															</tr>
 														</thead>
 														<tbody>
