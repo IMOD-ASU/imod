@@ -32,11 +32,10 @@ class Schedule {
 		]
 
     static constraints = {
-		startTime		nullable: true
-		endTime			nullable: true
 		repeats			nullable: true
 		repeatsEvery	nullable: true
 		endDate         validator: {endDate, schedule -> return endDate >= schedule.startDate}
+		endTime			validator: {endTime, schedule -> return endTime > schedule.startTime}
 		
     }
 
