@@ -20,4 +20,8 @@ class ActionWordCategory {
 		sort 'actionWordCategory'
 		version false
 	}
+
+	String toString() {
+	    return actionWordCategory
+	}
 }

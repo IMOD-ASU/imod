@@ -37,18 +37,13 @@
 			/>
 			<br />
 
-		
+			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" />
+
 			<div id="action-word-categories">
-				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">
+				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}" status="i">
+					
+					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"><label for="radio${i}">${actionWordCategory}</label>
 
-					${selectedActionWordCategory} == ${actionWordCategory}
-
-					<g:if test="${actionWordCategory == selectedActionWordCategory}">
-						<input type="radio" id="radio1" name="actionWordCategory"><label for="radio1" checked>${actionWordCategory}</label>
-					</g:if>
-					<g:else>
-						<input type="radio" id="radio1" name="actionWordCategory"><label for="radio1">${actionWordCategory}</label>
-					</g:else>					
 				</g:each>
 			</div>
 
