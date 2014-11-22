@@ -66,7 +66,6 @@ class LearningObjectiveController {
 		switch (pageType) {
 			// if the user is saving performance page
 			case 'performance':
-				print params
 				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				learningObjectiveInstance.performance = params.DCL
 				break
