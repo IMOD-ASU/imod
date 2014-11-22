@@ -13,8 +13,6 @@ class ScheduleRepeatsEvery {
 		version false
 	}
 	
-	static belongsTo = Schedule
-
 	def String toString(){
 		return description
 	}
