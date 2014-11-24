@@ -299,11 +299,12 @@ class PedagogyController {
 				AND category.name IN (:learningDomain)
 				ORDER BY PedagogyTechnique.pedagogyTitle
 			"""
+			// TODO check to ensure that an objective has an action word category
 			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
 				query,
 				[
-					domainCategory: objective.actionWordCategory.category.learningDomain.toString(),
-					learningDomain: objective.actionWordCategory.category.toString()
+					domainCategory: objective.actionWordCategory.domainCategory.learningDomain.toString(),
+					learningDomain: objective.actionWordCategory.domainCategory.toString()
 				]
 			)
 		}

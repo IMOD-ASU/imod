@@ -10,10 +10,10 @@ class PedagogyTechnique {
 	String pedagogyDescription
 
 	static hasMany = [
-		domain: LearningDomain,
-		category: DomainCategory,
-		knowledge: KnowledgeDimension,
-		focus: PedagogyActivityFocus
+		learningDomain: LearningDomain,
+		domainCategory: DomainCategory,
+		knowledgeDimension: KnowledgeDimension,
+		activityFocus: PedagogyActivityFocus
 	]
 
 	static belongsTo = [
@@ -26,8 +26,6 @@ class PedagogyTechnique {
 
     static constraints = {
 		pedagogyDescription nullable: true, blank: true
-		focus nullable: true
+		activityFocus nullable: true
     }
-
-
 }
