@@ -5,9 +5,12 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 $(document).ready(function() {
 
 	// Initially domain categories and action words will not be displayed as learning domain is null
-	$('label[for="domain-category-list"]').css('visibility', 'hidden');
-	$('#domain-category-list').css('visibility', 'hidden');
-	$('#action-word-categories').css('visibility', 'hidden');
+	if($('#domain-category-list').val() == 'null'){
+		$('label[for="domain-category-list"]').css('visibility', 'hidden');
+
+		$('#domain-category-list').css('visibility', 'hidden');
+		$('#action-word-categories').css('visibility', 'hidden');
+	}
 
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
@@ -19,6 +22,12 @@ $(document).ready(function() {
 	$('#domain-category-list').on(
 		'change',
 		populateActionWordCategories
+	);
+
+	// listen for change in action word categories, when it does call ajax
+	$('#action-word-categories').on(
+		'click',
+		populateActionWords
 	);
 
 	// if the condition is set to hidden do not display it in the definition box above
@@ -59,17 +68,30 @@ $(document).ready(function() {
 	// manually tiggers the radio box change event
 	$('input:radio[name=LO_condition_type]:checked').change();
 
-	// making action words selectable through jquery ui
-	$('#action-word-categories' )
-	.bind("mousedown", function ( e ) {
-    	e.metaKey = true;})
-    .selectable({selected: populateActionWords});
+	//trigger jquery ui button for better radio buttons
+	var category = $('input[name=selectedActionWordCategory]').val();
+	$('#action-word-categories input[value="'+category+'"]').prop('checked',true)
+ 	$('#action-word-categories').buttonset();
+
+ 	//reset radio buttons if a selected radio button is clicked again
+ 	$(document).on('click', '#action-word-categories label', function(){
+ 		if($(this).hasClass('is-active')){
+ 			$('#action-word-categories label').removeClass('is-active');
+ 			setTimeout(function(){
+	 			$('#action-word-categories input:checked')
+	 				.removeAttr('checked').button('refresh');
+	        },0);
+ 		}else{
+ 			$('#action-word-categories label').removeClass('is-active');
+ 			$(this).addClass('is-active');
+ 		}
+ 	});  	
 
 	// This listens for when a learning objective is selected and saves
-	$('.action-word-category').on(
-		'change',
-		populateActionWordCategories()
-	);
+	// $('.action-word-category').on(
+	// 	'change',
+	// 	populateActionWordCategories()
+	// );
 
 	// when the checkbox is changed disable text box and other check box
 	$('#enable-accuracy').on(
@@ -134,6 +156,16 @@ $(document).ready(function() {
 			);
 		}
 	);
+
+	//when learning domain isn't selected, do not save learning objective
+	$('.learning-objective-button.save').click(function(){
+		if($('#learning-domain-list').val() == "null" ||
+			$('#domain-category-list').val() == "null" ||
+			$('input[name=actionWordCategory]').is(':checked') == false){
+			alert("Learning Domain, Domain Category and Action Word Categories are required");
+			return false;	
+		}		
+	});
 });
 
 /**
@@ -191,6 +223,7 @@ function populateDomainCategories(event) {
  * @return {XML}        Populates the page with action word categories
  */
 function populateActionWordCategories(event) {
+
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWordCategories',
 		type: 'GET',
@@ -206,10 +239,12 @@ function populateActionWordCategories(event) {
 			// for each category
 			for (var i = 0; i < actionWordCategories.length; i++) {
 				// create the html
-				actionWordCategoriesHTML += '<li class="action-word-category ui-state-default">' + actionWordCategories[i].actionWordCategory + '</li>';
+				actionWordCategoriesHTML += '<input type="radio" id="radio'+i+'" name="actionWordCategory" value="'+actionWordCategories[i].actionWordCategory+'"><label for="radio'+i+'">' + actionWordCategories[i].actionWordCategory + '</label>';
 			}
 			// display the html on the page
 			$('#action-word-categories').html(actionWordCategoriesHTML);
+			// since the markup is reloaded, re-initiate buttonset
+			$('#action-word-categories').buttonset();
 		},
 		error: function(xhr){
 			// when something goes wrong log to the browser console
@@ -225,13 +260,12 @@ function populateActionWordCategories(event) {
  * @return {XML}        Populates the page with action words
  */
 function populateActionWords(event, ui) {
-	updatePerformanceText(this.value);
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: this.value
+			actionWordCategory: $('#action-word-categories').find('.ui-state-active').text()
 		},
 		success: function(data) {
 			// store the data from the call back

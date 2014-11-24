@@ -63,10 +63,6 @@ class LearningObjective {
 		'After completing the course, the student will be able to'
 	]
 
-	static transients = [
-		'name'
-	]
-
 	/**
 	 * Constraints on the fields of Learning Objective
 	 */
@@ -88,7 +84,7 @@ class LearningObjective {
 	static mapping = {
 		version false
 		sort 'id'
-		
+
 		hideFromLearningObjectiveCondition defaultValue: 'false'
 
 		criteriaAccuracyHidden	defaultValue: 'true'
@@ -101,7 +97,6 @@ class LearningObjective {
 		criteriaQuantityEnabled	defaultValue: 'true'
 		criteriaSpeedEnabled	defaultValue: 'true'
 	}
-
 
 	public isEmpty() {
 		// check each of the criteria attributes

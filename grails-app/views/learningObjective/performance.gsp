@@ -37,20 +37,22 @@
 			/>
 			<br />
 
+			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" />
+
+			<div id="action-word-categories">
+				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}" status="i">
+					
+					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"><label for="radio${i}">${actionWordCategory}</label>
+
+				</g:each>
+			</div>
+
+			<select id="action-words">
+				<option>
+					null
+				</option>
+			</select>
+
 		</g:form>
-
-		<ol id="action-word-categories">
-			<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}">
-				<li class="action-word-category ui-state-default">
-					${actionWordCategory}
-				</li>
-			</g:each>
-		</ol>
-
-		<select id="action-words">
-			<option>
-				null
-			</option>
-		</select>
 	</body>
 </html>

@@ -6,18 +6,30 @@ class PedagogyTechniqueController {
 
 	static scaffold = PedagogyTechnique
 
-
 	def save() {
+		// TODO: why is imod instance hard coded?
 		def imodInstance = Imod.get(48)
 		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
+
 		if (!pedagogyTechniqueInstance.save()) {
 			render(view: 'create', model: [pedagogyTechniqueInstance: pedagogyTechniqueInstance])
 			return
 		}
 
+		flash.message = message(
+			code: 'default.created.message',
+			args: [
+				message(
+					code: 'imod.label',
+					default: 'Imod'
+				),
+				imodInstance
+			]
+		)
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'imod.label', default: 'Imod'), imodInstance])
-		redirect(action: 'list')
+		redirect(
+			action: 'list'
+		)
 	}
 
 
@@ -27,6 +39,7 @@ class PedagogyTechniqueController {
 		def domains = LearningDomain.list()
 
 		//To get the Domain Category
+		//TODO: why is Imod hardcoded?
 		LearningDomain domain = LearningDomain.get(1)
 		def domainList = DomainCategory.findAllByDomain(domain);
 

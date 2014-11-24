@@ -12,7 +12,7 @@ class ScheduleRepeatsEvery {
 	static mapping = {
 		version false
 	}
-
+	
 	def String toString(){
 		return description
 	}

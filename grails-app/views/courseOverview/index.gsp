@@ -1,3 +1,5 @@
+<%@page import="imodv6.ScheduleWeekDays"%>
+<%@page import="imodv6.ScheduleRepeatsEvery"%>
 <%@ page import="imodv6.Help; imodv6.Imod; imodv6.ImodUser" %>
 <!DOCTYPE html>
 <html>
@@ -6,6 +8,7 @@
 			Course Overview
 		</title>
 		<meta name="layout" content="imod">
+		<script src="${resource(dir: 'js/source', file: 'courseOverview.js')}" defer></script>
 	</head>
 	<body>
 		<div id="tabs-1">
@@ -68,7 +71,7 @@
 													*
 												</span>
 											</label>
-											<g:textField name="imodNumber" value="${imodInstance?.imodNumber}"/>
+											<g:textField name="imodNumber" required="" value="${imodInstance?.imodNumber}"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'url', 'error')} ">
@@ -123,19 +126,41 @@
 											<g:datePicker name="schedule.endDate" precision="day"  value="${imodInstance?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="showHoverNew"/>
 										</div>
 
+										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'startTime', 'error')} ">
+											<label for="startTime">
+												<g:message code="imod.schedule.startTime.label" default="Start Time" />
+											</label>
+										<joda:timePicker name="schedule.startTime" value="${imodInstance?.schedule?.startTime}" />
+										</div>
+										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'endTime', 'error')} ">
+											<label for="endTime">
+												<g:message code="imod.schedule.endTime.label" default="End Time" />
+											</label>
+										<joda:timePicker name="schedule.endTime" value="${imodInstance?.schedule?.endTime}" />
+										</div>
 										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'repeats', 'error')} ">
 											<label for="repeats">
-												<g:message code="imod.repeats.label" default="Repeats" />
+												<g:message code="imod.schedule.repeats.label" default="Repeats" />
 											</label>
-											<g:select id="repeats" name="repeats.id" from="${imodv6.ScheduleRepeats.list()}" optionKey="id" value="${imodInstance?.repeats*.id}" class="many-to-one"/>
+											<g:select id="repeats" name="schedule.repeats.id" from="${imodv6.ScheduleRepeats.list()}" optionKey="id" value="${imodInstance?.schedule?.repeats?.id}" class="many-to-one"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'repeatsEvery', 'error')} ">
 											<label for="repeatsEvery">
 												<g:message code="imod.repeatsEvery.label" default="Repeats Every" />
 											</label>
-											<g:select id="repeatsEvery" name="repeatsEvery.id" from="${imodv6.ScheduleRepeatsEvery.list()}" optionKey="id" value="${imodInstance?.repeatsEvery*.id}" class="many-to-one"/>
+											<g:select id="repeatsEvery" name="schedule.repeatsEvery.id" from="${imodv6.ScheduleRepeatsEvery.list()}" optionKey="id" value="${imodInstance?.schedule?.repeatsEvery?.id}" noSelection="${['null':'Nothing Selected']}" class="many-to-one"/>
+											<label id="duration"></label>
 										</div>
+										
+										<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'schedule.scheduleWeekDays', 'error')} ">
+										<label for="scheduleWeekDays">
+												<g:message code="imod.scheduleWeekDays.label" default="Repeats On" />
+											</label>
+										<g:each in="${imodv6.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
+										    <g:checkBox name="scheduleWeekDays_${scheduleWeekDays.id}" value="${scheduleWeekDays.description == imodInstance?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}" />
+										    <label for="weekdays">${scheduleWeekDays.description}</label>
+										</g:each>
 									</div>
 								</td>
 							</tr>
@@ -149,7 +174,8 @@
 										</div>
 											<div class="fieldcontain ${hasErrors(bean: imodInstance, field: 'instructors', 'error')} ">
 
-												<div id="clickthis">	<g:link controller="instructor" action="create" params="['imod.id': imodInstance?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="showHoverNew">${message(code: 'default.add.label', args: [message(code: 'instructor.label', default: 'Instructor')])}</g:link>
+												<div id="clickthis">	<g:link controller="courseOverview" action="add" params="['imod.id': imodInstance?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="showHoverNew">${message(code: 'default.add.label', args: [message(code: 'instructor.label', default: 'Instructor')])}</g:link>
+													<g:link controller="courseOverview" action="delete" params="['imod.id': imodInstance?.id]" title="${Help.toolTip("OVERVIEW", "Delete instructor")}" class="showHoverNew">${message(code: 'Delete Instructor', args: [message(code: 'instructor.label', default: 'Delete Instructor')])}</g:link>
 												</div>
 													<div id="custom-instructor">
 													<table id="instructor-table">
@@ -160,6 +186,8 @@
 																<g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Email Label")}"/>
 																<g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Office Hours Label")}"/>
 																<g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Last Name Label")}"/>
+																<g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Role Label")}"/>
+																<g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Location')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Location Label")}"/>
 															</tr>
 														</thead>
 														<tbody>

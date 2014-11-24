@@ -58,6 +58,7 @@ grails.project.dependency.resolution = {
 	dependencies {
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 		runtime 'org.postgresql:postgresql:9.3-1102-jdbc41'
+		compile 'org.jadira.usertype:usertype.core:3.2.0.GA'
 	}
 
 	plugins {
@@ -71,6 +72,7 @@ grails.project.dependency.resolution = {
 		compile ':jquery-ui:1.10.4'
 		compile ':famfamfam:1.0.1'
 		compile ':spring-security-ui:1.0-RC2'
+		compile ':joda-time:1.5'
 
 		provided ':codenarc:0.22'
 

@@ -80,14 +80,7 @@ class Content {
 	]
 
 	static belongsTo = [
-		/**
-		 * TODO: why does content belong to one learning objective, while having many learning objectives?
-		 */
 		LearningObjective,
-
-		/**
-		 * Todo: why does content belong to content? Is this the content's parent?
-		 */
 		Content
 	]
 
@@ -107,11 +100,7 @@ class Content {
 		priority	nullable:	true
 		topicTitle	nullable:	true
 		objectives	nullable:	true
-		subContents	nullable:	true, validator: {
-			val,
-			obj,
-			errors -> checkRecursion(val.parentContent,obj,errors)
-		}
+		subContents	nullable:	true
 	}
 
 	/**

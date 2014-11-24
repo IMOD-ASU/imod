@@ -13,11 +13,15 @@ class ActionWordCategory {
 		/**
 		 * specific learning domain category that will pull up this action word category
 		 */
-		category: DomainCategory
+		domainCategory: DomainCategory
 	]
 
 	static mapping = {
 		sort 'actionWordCategory'
 		version false
+	}
+
+	String toString() {
+	    return actionWordCategory
 	}
 }
