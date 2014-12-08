@@ -194,10 +194,11 @@ function saveTopic(){
 			},
 		success: function(data){
 			data.success.forEach(function(element){
-				$("#"+element).removeClass("unsaved");
+				location.reload();
+				/*$("#"+element).removeClass("unsaved");
 				refreshSaves();
 				populateTopics(topicList);
-				hideTopicDialog();
+				hideTopicDialog();*/
 			});
 		},
 		error: function(xhr){
