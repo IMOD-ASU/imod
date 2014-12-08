@@ -74,6 +74,9 @@ $(document).ready(function() {
 	$('#action-word-categories input[value="'+category+'"]').prop('checked',true)
  	$('#action-word-categories').buttonset();
 
+ 	// populate action words if a category is already selected
+ 	populateActionWords(true);
+
  	//reset radio buttons if a selected radio button is clicked again
  	$(document).on('click', '#action-word-categories label', function(){
  		if($(this).hasClass('is-active')){
@@ -268,7 +271,6 @@ function populateActionWords(event, ui) {
 		prevKeyword = $('#action-word-categories').find('.ui-state-active').text();
 	}
 	
-
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
 		type: 'GET',
@@ -278,6 +280,12 @@ function populateActionWords(event, ui) {
 		},
 		success: function(data) {
 			var actionWordsHTML = '';
+
+			if(event = true){
+				var originalActionWord = $('#action-words').val();		
+			}
+
+			console.log(originalActionWord);
 
 			// store the data from the call back
 			if(data.value != null){
@@ -289,7 +297,12 @@ function populateActionWords(event, ui) {
 					// for each action word
 					for (var i = 0; i < actionWordsVerb.length; i++) {
 						// create the html for the action word
-						actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
+						if(actionWordsVerb[i] == originalActionWord){
+							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
+						}else{
+							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';	
+						}
+						
 					}
 				}
 
@@ -298,7 +311,11 @@ function populateActionWords(event, ui) {
 					var actionWordsNoun = data.value.noun.syn;
 					for (var i = 0; i < actionWordsNoun.length; i++) {
 						// create the html for the action word
-						actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
+						if(actionWordsNoun[i] == originalActionWord){
+							actionWordsHTML += '<option selected value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
+						}else{
+							actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
+						}
 					}
 				}
 			}		

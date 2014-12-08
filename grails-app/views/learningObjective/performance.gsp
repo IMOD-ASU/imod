@@ -47,9 +47,9 @@
 				</g:each>
 			</div>
 
-			<select id="action-words">
+			<select name="actionWord" id="action-words">
 				<option>
-					null
+					${actionWord}
 				</option>
 			</select>
 

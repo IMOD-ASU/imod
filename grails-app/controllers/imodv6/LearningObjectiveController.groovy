@@ -70,6 +70,7 @@ class LearningObjectiveController {
 			case 'performance':
 				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				learningObjectiveInstance.performance = params.DCL
+				learningObjectiveInstance.actionWord = params.actionWord
 				break
 
 			// if the user is saving the condition page
@@ -147,6 +148,8 @@ class LearningObjectiveController {
 		def domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
 		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
 
+
+
 		[
 			imodInstance:				imodInstance,
 			learningObjectivesList:		learningObjectivesList,
@@ -158,6 +161,7 @@ class LearningObjectiveController {
 			domainList:					domainList,
 			categoriesList:				domainCategoriesList,
 			actionWordCategoryList:		actionWordCategoryList,
+			actionWord: 				learningObjective.actionWord,
 		]
 	}
 
