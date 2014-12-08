@@ -1,5 +1,6 @@
 // start at the beggining of the path, get the first '/' then and all the characters between that and the second '/'
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+var prevKeyword = ''
 
 //on page load
 $(document).ready(function() {
@@ -260,6 +261,14 @@ function populateActionWordCategories(event) {
  * @return {XML}        Populates the page with action words
  */
 function populateActionWords(event, ui) {
+
+	if(prevKeyword == $('#action-word-categories').find('.ui-state-active').text()){
+		return;			
+	}else{
+		prevKeyword = $('#action-word-categories').find('.ui-state-active').text();
+	}
+	
+
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
 		type: 'GET',
@@ -302,8 +311,7 @@ function populateActionWords(event, ui) {
 			console.log(xhr.responseText);
 		}
 	});
-	
-	return false;
+
 }
 
 // add the data to the definition box, depending on which type of data it is
