@@ -193,13 +193,13 @@ function saveTopic(){
 			JSONData:contentData
 			},
 		success: function(data){
-			data.success.forEach(function(element){
-				location.reload();
-				/*$("#"+element).removeClass("unsaved");
-				refreshSaves();
-				populateTopics(topicList);
-				hideTopicDialog();*/
-			});
+			location.reload();
+			// data.success.forEach(function(element){
+			// 	$("#"+element).removeClass("unsaved");
+			// 	refreshSaves();
+			// 	populateTopics(topicList);
+			// 	hideTopicDialog();
+			// });
 		},
 		error: function(xhr){
 			alert(xhr.responseText);
