@@ -28,6 +28,7 @@ class LearningObjective {
 	String criteriaQuality
 	String criteriaQuantity
 	String criteriaSpeed
+	String actionWord
 
 	// if the criteria is enabled or not
 	Boolean criteriaAccuracyEnabled
@@ -76,6 +77,7 @@ class LearningObjective {
 		criteriaSpeed		nullable: true
 		indicator			nullable: true
 		performance			nullable: true
+		actionWord			nullable: true
 		hideFromLearningObjectiveCondition	nullable:true
 
 	}
