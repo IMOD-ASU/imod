@@ -268,15 +268,32 @@ function populateActionWords(event, ui) {
 			actionWordCategory: $('#action-word-categories').find('.ui-state-active').text()
 		},
 		success: function(data) {
-			// store the data from the call back
-			var actionWords = data.value;
-			// this will store the html for the action words
 			var actionWordsHTML = '';
-			// for each action word
-			for (var i = 0; i < actionWordCategories.length; i++) {
-				// create the html for the action word
-				actionWordCategoriesHTML += '<option value="' + actionWords[i].actionWord + '"/>';
-			}
+
+			// store the data from the call back
+			if(data.value != null){
+				if(data.value.verb !== undefined && data.value.verb !== null && data.value.verb !== ''){
+
+					var actionWordsVerb = data.value.verb.syn;
+					
+					// this will store the html for the action words
+					// for each action word
+					for (var i = 0; i < actionWordsVerb.length; i++) {
+						// create the html for the action word
+						actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
+					}
+				}
+
+				if(data.value.noun !== undefined && data.value.noun !== null && data.value.noun !== ''){
+
+					var actionWordsNoun = data.value.noun.syn;
+					for (var i = 0; i < actionWordsNoun.length; i++) {
+						// create the html for the action word
+						actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
+					}
+				}
+			}		
+
 			// display the html for the action words
 			$('#action-words').html(actionWordsHTML);
 		},
@@ -285,7 +302,8 @@ function populateActionWords(event, ui) {
 			console.log(xhr.responseText);
 		}
 	});
-
+	
+	return false;
 }
 
 // add the data to the definition box, depending on which type of data it is

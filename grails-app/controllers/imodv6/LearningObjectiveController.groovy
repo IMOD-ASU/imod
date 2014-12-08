@@ -1,5 +1,7 @@
 package imodv6
 import grails.converters.JSON
+import grails.plugins.rest.client.RestBuilder
+import org.codehaus.groovy.grails.web.json.JSONObject
 import rita.*
 
 class LearningObjectiveController {
@@ -318,18 +320,28 @@ class LearningObjectiveController {
 	 */
 	def getActionWords(String actionWordCategory) {
 
-		// import the wordnet database
-		def wordNetAbsolutePath = request.getSession().getServletContext().getRealPath('../lib/WordNet-3.1')
-		RiWordNet wordnet = new RiWordNet(wordNetAbsolutePath)
+		// // import the wordnet database
+		// def wordNetAbsolutePath = request.getSession().getServletContext().getRealPath('../lib/WordNet-3.1')
+		// RiWordNet wordnet = new RiWordNet(wordNetAbsolutePath)
 
-		// print all debug information for word in the terminal
-		println wordnet.exists(actionWordCategory)
-		println wordnet.getDescription(actionWordCategory, wordnet.getBestPos(actionWordCategory))
-		def actionWords = wordnet.getAllSimilar(actionWordCategory, wordnet.getBestPos(actionWordCategory))
-		println actionWords
+		// // print all debug information for word in the terminal
+		// println wordnet.exists(actionWordCategory)
+		// println wordnet.getDescription(actionWordCategory, wordnet.getBestPos(actionWordCategory))
+		// def actionWords = wordnet.getAllSimilar(actionWordCategory, wordnet.getBestPos(actionWordCategory))
+		// println actionWords
+		// render (
+		// 	[
+		// 		value: actionWords
+		// 	] as JSON
+		// )
+		
+		// temporarily replace the WordNet API with BigHugeLabsAPI
+		def rest = new RestBuilder()
+		def resp = rest.get("http://words.bighugelabs.com/api/2/2bbfecfa6c5f51f4cd4ff4562b75bdc5/"+actionWordCategory+"/json")
+
 		render (
 			[
-				value: actionWords
+				value: resp.json
 			] as JSON
 		)
 	}
