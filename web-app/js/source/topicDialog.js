@@ -168,6 +168,10 @@ function saveTopic(){
 			errorMessage("Topic: "+topicTitle+" must have a Knowledge Dimension!");
 			hasError=true;
 		}
+		if (topicTitle===""){
+			errorMessage("Topic title is required");
+			hasError=true;
+		}
 		topicList.push({
 			contentID: contentID,
 			dimensions: dimensions,
