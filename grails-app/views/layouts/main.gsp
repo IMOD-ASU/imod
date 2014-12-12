@@ -34,7 +34,7 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}">
 
 		<script src="//code.jquery.com/jquery-2.1.1.min.js" defer></script>
-		<script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" defer></script>
+		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js" defer></script>
 		<script src="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js" defer></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.8/jstree.min.js" defer></script>
 		<script src="${resource(dir: 'js/source', file: 'application.js')}" defer></script>
