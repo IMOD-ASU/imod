@@ -87,6 +87,7 @@ class PedagogyController {
 				]
 			)
 		}
+
 		def selectionLine = ''
 		if(domain.size() > 0){
 			if(domain.size() == 1) {
@@ -243,26 +244,10 @@ class PedagogyController {
 		def KnowledgeDomainlist = KnowledgeDimension.list()
 		Map<String, String> mapKnowledgeDomainList = new HashMap<String,String>()
 		def kdmnList = []
-
-		KnowledgeDomainlist.each{ kd ->
-			def flag = false
-			def sKD = '${kd}'
-			//println sKD
-			knowledgeDomainListAsStrings.each{ strkd ->
-				def sStrKD = '${strkd}'
-				//println sKD + '  ' + sStrKD
-				if(sKD.equals(sStrKD)) {
-					flag = true
-				}
-			}
-
-			if(flag) {
-				mapKnowledgeDomainList.put(sKD, 'true')
-				kdmnList.add(sKD.toString())
-			}
-			else {
-				mapKnowledgeDomainList.put(sKD, 'false')
-			}
+		
+		for (knowledgeDomain in knowledgeDomainList) {
+			mapKnowledgeDomainList.put(knowledgeDomain.toString(), 'true')
+			kdmnList.add(knowledgeDomain.toString().toString())
 		}
 
 		def pedagogyTechniqueList
