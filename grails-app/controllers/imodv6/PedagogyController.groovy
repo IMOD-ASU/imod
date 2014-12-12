@@ -203,8 +203,8 @@ class PedagogyController {
 		}
 
 		def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
-		def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
-		selectionLine += ' > Knowledge Dimension (${kdmnList.size()} Selections)'
+		// def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
+		def selectionLine = ' > Knowledge Dimension (${kdmnList.size()} Selections)'
 
 		[
 			chapter: objective,
@@ -215,8 +215,8 @@ class PedagogyController {
 			currentChapterContentList: contentList,
 			currentImodContentList: currentImodContentList,
 			currentPage: 'pedagogy',
-			dc: objective.domainCategory,
-			dmn: objective.learningDomain,
+			// dc: objective.domainCategory,
+			// dmn: objective.learningDomain,
 			domainList: domainList,
 			favPedaTechList: favPedaTechList,
 			imod: imod,
