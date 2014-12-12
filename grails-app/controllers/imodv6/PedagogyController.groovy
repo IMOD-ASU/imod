@@ -88,40 +88,9 @@ class PedagogyController {
 			)
 		}
 
-		def selectionLine = ''
-		if(domain.size() > 0){
-			if(domain.size() == 1) {
-				selectionLine += '${domain.get(0)}'
-			}
-			else if(domain.size() == 2) {
-				selectionLine += '${domain.get(0)} or ${domain.get(1)}'
-			}
-			else {
-				selectionLine += 'Domain (${domain.size()} Selections)'
-			}
-		}
-		if(domainCategory.size() > 0){
-			if(domainCategory.size() == 1) {
-				selectionLine += ' > ${domainCategory.get(0)}'
-			}
-			else if(domainCategory.size() == 2) {
-				selectionLine += ' > ${domainCategory.get(0)} or ${domainCategory.get(1)}'
-			}
-			else {
-				selectionLine += ' > Domain Category (${domainCategory.size()} Selections)'
-			}
-		}
-		if(kdomain.size() > 0) {
-			if(kdomain.size() == 1) {
-				selectionLine += ' > ${kdomain.get(0)}'
-			}
-			else if(kdomain.size() == 2) {
-				selectionLine += ' > ${kdomain.get(0)} or ${kdomain.get(1)}'
-			}
-			else {
-				selectionLine += ' > Knowledge Dimension (${kdomain.size()} Selections)'
-			}
-		}
+		def selectionLine = 'Domain (${domain.size()} Selections)'
+		selectionLine += ' > Domain Category (${domainCategory.size()} Selections)'
+		selectionLine += ' > Knowledge Dimension (${kdomain.size()} Selections)'
 
 		[
 			selectionLine: selectionLine,
@@ -244,7 +213,7 @@ class PedagogyController {
 		def KnowledgeDomainlist = KnowledgeDimension.list()
 		Map<String, String> mapKnowledgeDomainList = new HashMap<String,String>()
 		def kdmnList = []
-		
+
 		for (knowledgeDomain in knowledgeDomainList) {
 			mapKnowledgeDomainList.put(knowledgeDomain.toString(), 'true')
 			kdmnList.add(knowledgeDomain.toString().toString())
