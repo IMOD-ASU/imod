@@ -266,34 +266,34 @@ class PedagogyController {
 		def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
 		def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
 		selectionLine += ' > Knowledge Dimension (${kdmnList.size()} Selections)'
-			[
-				chapter: objective,
-				chapterCount: (objectiveList?.size() > 1),
-				contentList: contentList,
-				contentPriorityCodeTypeList: contentPriorityCodeTypeList,
-				contentTitles: contentTitles,
-				currentChapterContentList: contentList,
-				currentImodContentList: currentImodContentList,
-				currentPage: 'pedagogy',
-				dc: objective.domainCategory,
-				dmn: objective.learningDomain,
-				domainList: domainList,
-				favPedaTechList: favPedaTechList,
-				imod: imod,
-				KnowledgeDomainlist: KnowledgeDomainlist,
-				learningDomainList: learningDomainList,
-				learningObjectiveDates: learningObjectiveDates,
-				learningObjectiveTypeList: knowledgeDomainCodes,
-				mapKnowledgeDomainList: mapKnowledgeDomainList,
-				objectiveList: objectiveList,
-				pedagogyTechniqueList: pedagogyTechniqueList,
-				referenceTypeList: PedagogyReferenceType.list(),
-				remainingContent: remainingContent,
-				selectionLine:selectionLine,
-				topicDateForCurrentLearningObjectiveList: topicDateForCurrentLearningObjectiveList,
-				userId: ImodUser.get(springSecurityService.principal.id)
-			]
-		}
+		
+		[
+			chapter: objective,
+			chapterCount: (objectiveList?.size() > 1),
+			contentList: contentList,
+			contentPriorityCodeTypeList: contentPriorityCodeTypeList,
+			contentTitles: contentTitles,
+			currentChapterContentList: contentList,
+			currentImodContentList: currentImodContentList,
+			currentPage: 'pedagogy',
+			dc: objective.domainCategory,
+			dmn: objective.learningDomain,
+			domainList: domainList,
+			favPedaTechList: favPedaTechList,
+			imod: imod,
+			KnowledgeDomainlist: KnowledgeDomainlist,
+			learningDomainList: learningDomainList,
+			learningObjectiveDates: learningObjectiveDates,
+			learningObjectiveTypeList: knowledgeDomainCodes,
+			mapKnowledgeDomainList: mapKnowledgeDomainList,
+			objectiveList: objectiveList,
+			pedagogyTechniqueList: pedagogyTechniqueList,
+			referenceTypeList: PedagogyReferenceType.list(),
+			remainingContent: remainingContent,
+			selectionLine:selectionLine,
+			topicDateForCurrentLearningObjectiveList: topicDateForCurrentLearningObjectiveList,
+			userId: ImodUser.get(springSecurityService.principal.id)
+		]
 	}
 	/**
 	 * reloadPedagogyTab, This action is used for Assign and Favorite Technique and reload page after that.
