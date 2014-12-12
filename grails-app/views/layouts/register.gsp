@@ -26,9 +26,6 @@
 
 <body>
 
-<%-- This might also be a problem
-<s2ui:layoutResources module='register' />
---%>
 <g:layoutBody/>
 
 <g:javascript src='jquery/jquery.jgrowl.js' plugin='spring-security-ui'/>
