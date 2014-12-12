@@ -45,47 +45,17 @@ class PedagogyController {
 			kdomain.add(params.kdomain)
 		}
 
-		LinkedHashSet pedagogyTechniqueList
-		if(kdomain.size() > 0) {
-			def query = """
-				SELECT PedagogyTechnique
-				FROM PedagogyTechnique
-				INNER JOIN PedagogyTechnique.domain AS domain
-				JOIN PedagogyTechnique.category AS category
-				JOIN PedagogyTechnique.knowledge AS knowledge
-
-				WHERE domain.name IN (:domainCategory)
-				AND	category.name IN (:learningDomain)
-				AND knowledge.description IN (:knowledgeDomain)
-				ORDER BY PedagogyTechnique.pedagogyTitle
-			"""
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
-				query,
-				[
-					domainCategory: domain,
-					learningDomain: domainCategory,
-					knowledgeDomain: kdomain
-				]
-			)
-		}
-		else {
-			def query = """
-				SELECT PedagogyTechnique
-				FROM PedagogyTechnique
-				INNER JOIN PedagogyTechnique.domain AS domain
-				JOIN PedagogyTechnique.category AS category
-
-				WHERE domain.name IN (:domainCategory)
-				AND category.name IN (:learningDomain)
-				ORDER BY PedagogyTechnique.pedagogyTitle
-			"""
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
-				query,
-				[
-					domainCategory: domain,
-					learningDomain: domainCategory
-				]
-			)
+		// find all techniques where the Domain Category or the Learning Domain
+		// is the same fo the learning objective
+		def pedagogyTechniqueList = PedagogyTechnique.withCriteria(uniqueResult: true) {
+			or {
+				domainCategory {
+					eq("name", objective.actionWordCategory.domainCategory.learningDomain.toString())
+				}
+				learningDomain {
+					eq("name", objective.actionWordCategory.domainCategory.toString())
+				}
+			}
 		}
 
 		def selectionLine = 'Domain (${domain.size()} Selections)'
@@ -219,54 +189,23 @@ class PedagogyController {
 			kdmnList.add(knowledgeDomain.toString().toString())
 		}
 
-		def pedagogyTechniqueList
-		if(kdmnList.size() > 0) {
-			def query = """
-				SELECT PedagogyTechnique
-				FROM PedagogyTechnique
-				INNER JOIN PedagogyTechnique.domain AS domain
-				JOIN PedagogyTechnique.category AS category
-				JOIN PedagogyTechnique.knowledge AS knowledge
-
-				WHERE domain.name IN (:domainCategory)
-				AND category.name IN (:learningDomain)
-				AND knowledge.description IN (:knowledgeDomain)
-				ORDER BY PedagogyTechnique.pedagogyTitle
-			"""
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
-				query,
-				[
-					domainCategory: objective.learningDomain.toString(),
-					learningDomain: objective.domainCategory.toString(),
-					knowledgeDomain: kdmnList
-				]
-			)
-		}
-		else {
-			def query = """
-				SELECT PedagogyTechnique
-				FROM PedagogyTechnique
-				INNER JOIN PedagogyTechnique.domain AS domain
-				JOIN PedagogyTechnique.category AS category
-
-				WHERE domain.name IN (:domainCategory)
-				AND category.name IN (:learningDomain)
-				ORDER BY PedagogyTechnique.pedagogyTitle
-			"""
-			// TODO check to ensure that an objective has an action word category
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
-				query,
-				[
-					domainCategory: objective.actionWordCategory.domainCategory.learningDomain.toString(),
-					learningDomain: objective.actionWordCategory.domainCategory.toString()
-				]
-			)
+		// find all techniques where the Domain Category or the Learning Domain
+		// is the same fo the learning objective
+		def pedagogyTechniqueList = PedagogyTechnique.withCriteria(uniqueResult: true) {
+			or {
+				domainCategory {
+					eq("name", objective.actionWordCategory.domainCategory.learningDomain.toString())
+				}
+				learningDomain {
+					eq("name", objective.actionWordCategory.domainCategory.toString())
+				}
+			}
 		}
 
 		def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
 		def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
 		selectionLine += ' > Knowledge Dimension (${kdmnList.size()} Selections)'
-		
+
 		[
 			chapter: objective,
 			chapterCount: (objectiveList?.size() > 1),
