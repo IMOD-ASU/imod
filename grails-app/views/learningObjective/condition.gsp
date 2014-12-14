@@ -25,7 +25,7 @@
 					id="LO-condition-rd-generic"
 					class="LO-condition-radio"
 					type="radio"
-					name="LO-condition-type"
+					name="LO_condition_type"
 					<g:if test="${!isCustom}">checked="checked"</g:if>
 					value="Generic"
 				>
@@ -39,7 +39,7 @@
 					id="LO-condition-rd-custom"
 					class="LO-condition-radio"
 					type="radio"
-					name="LO-condition-type"
+					name="LO_condition_type"
 					<g:if test="${isCustom}">checked="checked"</g:if>
 					value="Custom"
 				>
