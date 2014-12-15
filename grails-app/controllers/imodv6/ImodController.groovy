@@ -66,12 +66,12 @@ class ImodController {
 			springSecurityService.currentUser.id
 		)
 
-		def imodInstance = new Imod(params)
-		if (!imodInstance.save()) {
+		def currentImod = new Imod(params)
+		if (!currentImod.save()) {
 			render(
 				view: 'create',
 				model: [
-					imodInstance: imodInstance
+					currentImod: currentImod
 				]
 			)
 			return
@@ -84,7 +84,7 @@ class ImodController {
 					code: 'imod.label',
 					default: 'Imod'
 				),
-				imodInstance
+				currentImod
 			]
 		)
 		redirect(
@@ -93,8 +93,8 @@ class ImodController {
 	}
 
 	def update(Long id, Long version) {
-		def imodInstance = Imod.get(id)
-		if (!imodInstance) {
+		def currentImod = Imod.get(id)
+		if (!currentImod) {
 			flash.message = message(
 				code: 'default.not.found.message',
 				args: [
@@ -102,7 +102,7 @@ class ImodController {
 						code: 'imod.label',
 						default: 'Imod'
 					),
-					imodInstance
+					currentImod
 				]
 			)
 			redirect(
@@ -112,8 +112,8 @@ class ImodController {
 		}
 
 		if (version != null) {
-			if (imodInstance.version > version) {
-				imodInstance.errors.rejectValue(
+			if (currentImod.version > version) {
+				currentImod.errors.rejectValue(
 					'version',
 					'default.optimistic.locking.failure',
 					[
@@ -127,20 +127,20 @@ class ImodController {
 				render (
 					view: 'edit',
 					model: [
-						imodInstance: imodInstance
+						currentImod: currentImod
 					]
 				)
 				return
 			}
 		}
 
-		imodInstance.properties = params
+		currentImod.properties = params
 
-		if (!imodInstance.save()) {
+		if (!currentImod.save()) {
 			render(
 				view: 'edit',
 				model: [
-					imodInstance: imodInstance
+					currentImod: currentImod
 				]
 			)
 			return
@@ -153,44 +153,44 @@ class ImodController {
 					code: 'imod.label',
 					default: 'Imod'
 				),
-				imodInstance
+				currentImod
 			]
 		)
 		redirect(
 			controller: 'courseOverview',
 			action: 'index',
-			id: imodInstance.id
+			id: currentImod.id
 		)
-		
-		
-		def schedule = Schedule.findById(imodInstance.properties.get("scheduleId"))
-		
+
+
+		def schedule = Schedule.findById(currentImod.properties.get("scheduleId"))
+
 		schedule.scheduleWeekDays = null
-		
+
 		params.each{
-			
+
 			if(it.key.contains("scheduleWeekDays_"))
 			{
 				if (it.value.contains("on")){
 					if(schedule.scheduleWeekDays == null)
 					{
-						imodInstance.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - "scheduleWeekDays_") as Integer))
+						currentImod.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - "scheduleWeekDays_") as Integer))
 					}
 					else
 					{
-						imodInstance.schedule.scheduleWeekDays << ScheduleWeekDays.get((it.key - "scheduleWeekDays_") as Integer)
-						
+						currentImod.schedule.scheduleWeekDays << ScheduleWeekDays.get((it.key - "scheduleWeekDays_") as Integer)
+
 					}
-					imodInstance.schedule.save()
-					imodInstance.save()
+					currentImod.schedule.save()
+					currentImod.save()
 				}
 			}
 		}
 	}
 
 	def delete(Long id) {
-		def imodInstance = Imod.get(id)
-		if (!imodInstance) {
+		def currentImod = Imod.get(id)
+		if (!currentImod) {
 			flash.message = message(
 				code: 'default.not.found.message',
 				args: [
@@ -198,7 +198,7 @@ class ImodController {
 						code: 'imod.label',
 						default: 'Imod'
 					),
-					imodInstance
+					currentImod
 				]
 			)
 			redirect(
@@ -208,7 +208,7 @@ class ImodController {
 		}
 
 		try {
-			imodInstance.delete()
+			currentImod.delete()
 			flash.message = message (
 				code: 'default.deleted.message',
 				args: [
@@ -216,7 +216,7 @@ class ImodController {
 						code: 'imod.label',
 						default: 'Imod'
 					),
-					imodInstance
+					currentImod
 				]
 			)
 			redirect(
@@ -231,7 +231,7 @@ class ImodController {
 						code: 'imod.label',
 						default: 'Imod'
 					),
-					imodInstance
+					currentImod
 				]
 			)
 			redirect(

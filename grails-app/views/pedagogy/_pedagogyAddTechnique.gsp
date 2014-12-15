@@ -6,7 +6,7 @@
 
 <%--To render the add new Technique dialog box--%>
 <g:form controller="pedagogy" action="addNewTechnique" name="newTechniqueForm" onsubmit="return onSubmitValidate();">
-	<g:hiddenField name="id" value="${params.id ?: imod?.id}" />
+	<g:hiddenField name="id" value="${params.id ?: currentImod?.id}" />
 	<g:render template="pedagogyTechniqueForm" />
 	<div align="center" style="padding-top:10px">
 		<input type="submit" class="showHover" value="Save" name="addNewSubmit" style="padding: 0; font-size: 16px; Background: #D0D0D0;" />

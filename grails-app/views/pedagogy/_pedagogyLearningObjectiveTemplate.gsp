@@ -1,4 +1,5 @@
 <!--  To display Learning Objectives and the Filter Options -->
+<%@ page import="imodv6.Help" %>
 <table style="padding-top: 0;">
     <tbody>
         <tr>
@@ -6,14 +7,14 @@
                 <div class="chapter_addition_widget" style="width: 310px; min-height: 654px;margin-right:10px;">
                     <div class="form_title removeBorder" >
                         <span class="title_text">
-                            <g:message code="imod.objectives.widget.title2"/>
+                            <g:message code="currentImod.objectives.widget.title2"/>
                         </span>
                         <span style="float: right">
                             %{--
-                                <button id="createChapter" class="add showHover" title="${Help.toolTip("CONTENT", "Add Learning Objective")}" onclick="showObjective()">
+                                <button id="createChapter" class="add showHover" title="${Help.toolTip('CONTENT', 'Add Learning Objective')}" onclick="showObjective()">
                                     <g:message code="chapter.addition.widget.add.button"/>
                                 </button>
-                                <button id="deleteChapter" class="remove showHover" onclick="removeAllObjective()" title="${Help.toolTip("CONTENT", "Remove Learning Objective")}">
+                                <button id="deleteChapter" class="remove showHover" onclick="removeAllObjective()" title="${Help.toolTip('CONTENT', 'Remove Learning Objective')}">
                                     <g:message code="learning.objectives..widget.remove.button"/>
                                 </button>
                             --}%
@@ -25,8 +26,8 @@
                             <p>
                                 <ul style="margin-left: 10px;" id="chapterListUL">
                                     <g:if test="${objectiveList}">
-                                        <g:each in="${objectiveList}" var="chapter" status="count">
-                                            <g:render template="/pedagogy/chapterListTableTemplate" model="[chapter: chapter, count: count]"/>
+                                        <g:each in="${objectiveList}" var="learningObjectiveItem" status="count">
+                                            <g:render template="/learningObjective/definition" bean="${learningObjectiveItem}"/>
                                         </g:each>
                                     </g:if>
                                     <g:else>
@@ -45,14 +46,14 @@
                                     <g:message code="Filter Options"/>
                                 </span>
                                 <span style="float: right;padding-right: 7px;" class="title_text">
-                                    <a href="javascript:" style="text-decoration:none;color:#FFFFFF" onclick="submitRefresh();" title="${Help.toolTip("PEDAGOGY", "Refresh")}" class="showHover">
+                                    <a href="javascript:" style="text-decoration:none;color:#FFFFFF" onclick="submitRefresh();" title="${Help.toolTip('PEDAGOGY', 'Refresh')}" class="showHover">
                                         Refresh
                                     </a>
                                     %{--
-                                        <button id="createChapter" class="add showHover" title="${Help.toolTip("CONTENT", "Add Filter options")}" onclick="showObjective()">
+                                        <button id="createChapter" class="add showHover" title="${Help.toolTip('CONTENT', 'Add Filter options')}" onclick="showObjective()">
                                             <g:message code="chapter.addition.widget.add.button"/>
                                         </button>
-                                        <button id="deleteChapter" class="remove showHover" onclick="removeAllObjective()" title="${Help.toolTip("CONTENT", "Remove Filter options")}">
+                                        <button id="deleteChapter" class="remove showHover" onclick="removeAllObjective()" title="${Help.toolTip('CONTENT', 'Remove Filter options')}">
                                             <g:message code="learning.objectives..widget.remove.button"/>
                                         </button>
                                     --}%
@@ -61,7 +62,7 @@
 
                             <g:formRemote name="pedAccordion" id="pedAccordion" url="[action:'updateExtendedTechnique',controller:'pedagogy']" update="extendedMatchDiv">
                                 <div id="ped_accordion">
-                                    <h3 title="${Help.toolTip("PEDAGOGY", "Domain")}" class="showHover">
+                                    <h3 title="${Help.toolTip('PEDAGOGY', 'Domain')}" class="showHover">
                                         Domain
                                     </h3>
                                     <div>
@@ -80,7 +81,7 @@
                                             </g:each>
                                         </p>
                                     </div>
-                                    <h3 title="${Help.toolTip("PEDAGOGY", "Domain Category")}" class="showHover">
+                                    <h3 title="${Help.toolTip('PEDAGOGY', 'Domain Category')}" class="showHover">
                                         Domain Category
                                     </h3>
                                     <div>
@@ -100,12 +101,12 @@
                                         </p>
                                     </div>
 
-                                    <h3 title="${Help.toolTip("PEDAGOGY", "Knowledge Dimension")}" class="showHover">
+                                    <h3 title="${Help.toolTip('PEDAGOGY', 'Knowledge Dimension')}" class="showHover">
                                         Knowledge Dimension
                                     </h3>
                                     <div>
                                         <p>
-                                            <g:each in="${mapkdList.entrySet()}" var="kdomain">
+                                            <g:each in="${mapkdList}" var="kdomain">
                                                 <input type="checkbox" name="kdomain" value="${kdomain.key.toString()}" ${kdomain.value.toString().equals('true')?'checked':''}>
                                                 <label>
                                                     ${kdomain.key.toString()}
@@ -123,7 +124,7 @@
         </tr>
     </tbody>
 </table>
-<table id="addLearningObjectiveDiv" title="${Help.toolTip("CONTENT", "Add Objective")}">
+<table id="addLearningObjectiveDiv" title="${Help.toolTip('CONTENT', 'Add Objective')}">
     <tr>
         <td></td>
         <td>

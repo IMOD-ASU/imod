@@ -41,7 +41,7 @@
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/course overview/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link controller="courseOverview" action="index" id="${imodInstance?.id}" class="ui-tabs-anchor">
+						<g:link controller="courseOverview" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/>
 							<span id="overview-tab-title">
 								Course Overview
@@ -49,7 +49,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/learning objective/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link controller="learningObjective" action="performance" id="${imodInstance?.id}" class="ui-tabs-anchor">
+						<g:link controller="learningObjective" action="performance" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
 							<span id="lo-tab-title">
 								Learning Objectives
@@ -57,7 +57,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/^content/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link controller="content" action="index" id="${imodInstance?.id}" params=" [ ${objectiveId: params.objectiveId} ] " class="ui-tabs-anchor">
+						<g:link controller="content" action="index" id="${currentImod?.id}" params=" [ ${objectiveId: params.objectiveId} ] " class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'content_icon.png')}" alt=""/>
 							<span id="content-tab-title">
 								Content
@@ -65,7 +65,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link controller="assessment" action="index" id="${imodInstance?.id}" class="ui-tabs-anchor">
+						<g:link controller="assessment" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
 							<span id="assess-tab-title">
 								Assessment
@@ -73,7 +73,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/pedagogy/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link controller="pedagogy" action="index" id="${imodInstance?.id}" class="ui-tabs-anchor">
+						<g:link controller="pedagogy" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
 							<span id="pedagogy-tab-title">
 								Pedagogy

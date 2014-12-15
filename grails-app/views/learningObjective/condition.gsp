@@ -16,7 +16,7 @@
 					title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}"
 					value="${message(code: 'Save', default: 'Save')}"
 				/>
-				<g:hiddenField name="id" value="${imodInstance.id}" />
+				<g:hiddenField name="id" value="${currentImod.id}" />
 				<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
 				<g:hiddenField name="pageType" value="condition" />
 			</fieldset>

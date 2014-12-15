@@ -2,7 +2,7 @@
 
 <%--Clone Technique Form --%>
 <g:formRemote name="cloneTechniqueForm" id="cloneTechniqueForm" url="[controller:'pedagogy',action:'cloneSaveTech']" update="[success:'cloneTechnique',failure:'cloneTechnique']" onSuccess="closeCloneTechniqueTable(data);">
-	<g:hiddenField name="id" value="${params.id ?: imod?.id}" />
+	<g:hiddenField name="id" value="${params.id ?: currentImod?.id}" />
 	<g:hiddenField name="pedagogy_tech_id" value="${pedagogyTech?.id}" />
 	<g:if test="${errorMsg}">
 		Oops
