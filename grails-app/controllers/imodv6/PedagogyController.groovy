@@ -207,19 +207,19 @@ class PedagogyController {
 		def selectionLine = ' > Knowledge Dimension (${kdmnList.size()} Selections)'
 
 		[
+			// dc: objective.domainCategory,
+			// dmn: objective.learningDomain,
 			chapter: objective,
 			chapterCount: (objectiveList?.size() > 1),
 			contentList: contentList,
 			contentPriorityCodeTypeList: contentPriorityCodeTypeList,
 			contentTitles: contentTitles,
 			currentChapterContentList: contentList,
+			currentImod: imod,
 			currentImodContentList: currentImodContentList,
 			currentPage: 'pedagogy',
-			// dc: objective.domainCategory,
-			// dmn: objective.learningDomain,
 			domainList: domainList,
 			favPedaTechList: favPedaTechList,
-			currentImod: imod,
 			KnowledgeDomainlist: KnowledgeDomainlist,
 			learningDomainList: learningDomainList,
 			learningObjectiveDates: learningObjectiveDates,

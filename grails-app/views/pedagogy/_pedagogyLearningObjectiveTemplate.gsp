@@ -6,7 +6,7 @@
                 <div class="chapter_addition_widget" style="width: 310px; min-height: 654px;margin-right:10px;">
                     <div class="form_title removeBorder" >
                         <span class="title_text">
-                            <g:message code="imod.objectives.widget.title2"/>
+                            <g:message code="currentImod.objectives.widget.title2"/>
                         </span>
                         <span style="float: right">
                             %{--
