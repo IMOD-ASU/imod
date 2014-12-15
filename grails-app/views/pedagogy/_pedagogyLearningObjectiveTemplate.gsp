@@ -25,8 +25,8 @@
                             <p>
                                 <ul style="margin-left: 10px;" id="chapterListUL">
                                     <g:if test="${objectiveList}">
-                                        <g:each in="${objectiveList}" var="chapter" status="count">
-                                            <g:render template="/pedagogy/chapterListTableTemplate" model="[chapter: chapter, count: count]"/>
+                                        <g:each in="${objectiveList}" var="learningObjectiveItem" status="count">
+                                            <g:render template="/learningObjective/definition" bean="${learningObjectiveItem}"/>
                                         </g:each>
                                     </g:if>
                                     <g:else>
