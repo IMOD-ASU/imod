@@ -45,82 +45,22 @@ class PedagogyController {
 			kdomain.add(params.kdomain)
 		}
 
-		LinkedHashSet pedagogyTechniqueList
-		if(kdomain.size() > 0) {
-			def query = """
-				SELECT PedagogyTechnique
-				FROM PedagogyTechnique
-				INNER JOIN PedagogyTechnique.domain AS domain
-				JOIN PedagogyTechnique.category AS category
-				JOIN PedagogyTechnique.knowledge AS knowledge
+		// find all techniques where the Domain Category or the Learning Domain
+		// is the same fo the learning objective
+		def pedagogyTechniqueList = PedagogyTechnique.withCriteria(uniqueResult: true) {
+			or {
+				domainCategory {
+					eq("name", objective.actionWordCategory.domainCategory.learningDomain.toString())
+				}
+				learningDomain {
+					eq("name", objective.actionWordCategory.domainCategory.toString())
+				}
+			}
+		}
 
-				WHERE domain.name IN (:domainCategory)
-				AND	category.name IN (:learningDomain)
-				AND knowledge.description IN (:knowledgeDomain)
-				ORDER BY PedagogyTechnique.pedagogyTitle
-			"""
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
-				query,
-				[
-					domainCategory: domain,
-					learningDomain: domainCategory,
-					knowledgeDomain: kdomain
-				]
-			)
-		}
-		else {
-			def query = """
-				SELECT PedagogyTechnique
-				FROM PedagogyTechnique
-				INNER JOIN PedagogyTechnique.domain AS domain
-				JOIN PedagogyTechnique.category AS category
-
-				WHERE domain.name IN (:domainCategory)
-				AND category.name IN (:learningDomain)
-				ORDER BY PedagogyTechnique.pedagogyTitle
-			"""
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
-				query,
-				[
-					domainCategory: domain,
-					learningDomain: domainCategory
-				]
-			)
-		}
-		def selectionLine = ''
-		if(domain.size() > 0){
-			if(domain.size() == 1) {
-				selectionLine += '${domain.get(0)}'
-			}
-			else if(domain.size() == 2) {
-				selectionLine += '${domain.get(0)} or ${domain.get(1)}'
-			}
-			else {
-				selectionLine += 'Domain (${domain.size()} Selections)'
-			}
-		}
-		if(domainCategory.size() > 0){
-			if(domainCategory.size() == 1) {
-				selectionLine += ' > ${domainCategory.get(0)}'
-			}
-			else if(domainCategory.size() == 2) {
-				selectionLine += ' > ${domainCategory.get(0)} or ${domainCategory.get(1)}'
-			}
-			else {
-				selectionLine += ' > Domain Category (${domainCategory.size()} Selections)'
-			}
-		}
-		if(kdomain.size() > 0) {
-			if(kdomain.size() == 1) {
-				selectionLine += ' > ${kdomain.get(0)}'
-			}
-			else if(kdomain.size() == 2) {
-				selectionLine += ' > ${kdomain.get(0)} or ${kdomain.get(1)}'
-			}
-			else {
-				selectionLine += ' > Knowledge Dimension (${kdomain.size()} Selections)'
-			}
-		}
+		def selectionLine = 'Domain (${domain.size()} Selections)'
+		selectionLine += ' > Domain Category (${domainCategory.size()} Selections)'
+		selectionLine += ' > Knowledge Dimension (${kdomain.size()} Selections)'
 
 		[
 			selectionLine: selectionLine,
@@ -244,111 +184,55 @@ class PedagogyController {
 		Map<String, String> mapKnowledgeDomainList = new HashMap<String,String>()
 		def kdmnList = []
 
-		KnowledgeDomainlist.each{ kd ->
-			def flag = false
-			def sKD = '${kd}'
-			//println sKD
-			knowledgeDomainListAsStrings.each{ strkd ->
-				def sStrKD = '${strkd}'
-				//println sKD + '  ' + sStrKD
-				if(sKD.equals(sStrKD)) {
-					flag = true
+		for (knowledgeDomain in knowledgeDomainList) {
+			mapKnowledgeDomainList.put(knowledgeDomain.toString(), 'true')
+			kdmnList.add(knowledgeDomain.toString().toString())
+		}
+
+		// find all techniques where the Domain Category or the Learning Domain
+		// is the same fo the learning objective
+		def pedagogyTechniqueList = PedagogyTechnique.withCriteria(uniqueResult: true) {
+			or {
+				domainCategory {
+					eq("name", objective.actionWordCategory.domainCategory.learningDomain.toString())
+				}
+				learningDomain {
+					eq("name", objective.actionWordCategory.domainCategory.toString())
 				}
 			}
-
-			if(flag) {
-				mapKnowledgeDomainList.put(sKD, 'true')
-				kdmnList.add(sKD.toString())
-			}
-			else {
-				mapKnowledgeDomainList.put(sKD, 'false')
-			}
-		}
-
-		def pedagogyTechniqueList
-		if(kdmnList.size() > 0) {
-			def query = """
-				SELECT PedagogyTechnique
-				FROM PedagogyTechnique
-				INNER JOIN PedagogyTechnique.domain AS domain
-				JOIN PedagogyTechnique.category AS category
-				JOIN PedagogyTechnique.knowledge AS knowledge
-
-				WHERE domain.name IN (:domainCategory)
-				AND category.name IN (:learningDomain)
-				AND knowledge.description IN (:knowledgeDomain)
-				ORDER BY PedagogyTechnique.pedagogyTitle
-			"""
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
-				query,
-				[
-					domainCategory: objective.learningDomain.toString(),
-					learningDomain: objective.domainCategory.toString(),
-					knowledgeDomain: kdmnList
-				]
-			)
-		}
-		else {
-			def query = """
-				SELECT PedagogyTechnique
-				FROM PedagogyTechnique
-				INNER JOIN PedagogyTechnique.domain AS domain
-				JOIN PedagogyTechnique.category AS category
-
-				WHERE domain.name IN (:domainCategory)
-				AND category.name IN (:learningDomain)
-				ORDER BY PedagogyTechnique.pedagogyTitle
-			"""
-			// TODO check to ensure that an objective has an action word category
-			pedagogyTechniqueList = PedagogyTechnique.executeQuery(
-				query,
-				[
-					domainCategory: objective.actionWordCategory.domainCategory.learningDomain.toString(),
-					learningDomain: objective.actionWordCategory.domainCategory.toString()
-				]
-			)
 		}
 
 		def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
-		def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
-		if(kdmnList.size() > 0) {
-			if(kdmnList.size() == 1) {
-				selectionLine += ' > ${kdmnList.get(0)}'
-			}
-			else if(kdmnList.size() == 2) {
-				selectionLine += ' > ${kdmnList.get(0)} or ${kdmnList.get(1)}'
-			}
-			else {
-				selectionLine += ' > Knowledge Dimension (${kdmnList.size()} Selections)'
-			}
-			[
-				chapter: objective,
-				chapterCount: (objectiveList?.size() > 1),
-				contentList: contentList,
-				contentPriorityCodeTypeList: contentPriorityCodeTypeList,
-				contentTitles: contentTitles,
-				currentChapterContentList: contentList,
-				currentImodContentList: currentImodContentList,
-				currentPage: 'pedagogy',
-				dc: objective.domainCategory,
-				dmn: objective.learningDomain,
-				domainList: domainList,
-				favPedaTechList: favPedaTechList,
-				imod: imod,
-				KnowledgeDomainlist: KnowledgeDomainlist,
-				learningDomainList: learningDomainList,
-				learningObjectiveDates: learningObjectiveDates,
-				learningObjectiveTypeList: knowledgeDomainCodes,
-				mapKnowledgeDomainList: mapKnowledgeDomainList,
-				objectiveList: objectiveList,
-				pedagogyTechniqueList: pedagogyTechniqueList,
-				referenceTypeList: PedagogyReferenceType.list(),
-				remainingContent: remainingContent,
-				selectionLine:selectionLine,
-				topicDateForCurrentLearningObjectiveList: topicDateForCurrentLearningObjectiveList,
-				userId: ImodUser.get(springSecurityService.principal.id)
-			]
-		}
+		// def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
+		def selectionLine = ' > Knowledge Dimension (${kdmnList.size()} Selections)'
+
+		[
+			// dc: objective.domainCategory,
+			// dmn: objective.learningDomain,
+			chapter: objective,
+			chapterCount: (objectiveList?.size() > 1),
+			contentList: contentList,
+			contentPriorityCodeTypeList: contentPriorityCodeTypeList,
+			contentTitles: contentTitles,
+			currentChapterContentList: contentList,
+			currentImod: imod,
+			currentImodContentList: currentImodContentList,
+			currentPage: 'pedagogy',
+			domainList: domainList,
+			favPedaTechList: favPedaTechList,
+			KnowledgeDomainlist: KnowledgeDomainlist,
+			learningDomainList: learningDomainList,
+			learningObjectiveDates: learningObjectiveDates,
+			learningObjectiveTypeList: knowledgeDomainCodes,
+			mapKnowledgeDomainList: mapKnowledgeDomainList,
+			objectiveList: objectiveList,
+			pedagogyTechniqueList: pedagogyTechniqueList,
+			referenceTypeList: PedagogyReferenceType.list(),
+			remainingContent: remainingContent,
+			selectionLine:selectionLine,
+			topicDateForCurrentLearningObjectiveList: topicDateForCurrentLearningObjectiveList,
+			userId: ImodUser.get(springSecurityService.principal.id)
+		]
 	}
 	/**
 	 * reloadPedagogyTab, This action is used for Assign and Favorite Technique and reload page after that.

@@ -15,14 +15,14 @@ class ContentController {
 
 	def index(Long id) {
 		[
-			imodInstance: Imod.get(id),
+			currentImod: Imod.get(id),
 			currentPage: 'content'
 		]
 	}
 
 	def addNewTopic(Long id) {
-		def imodInstance = Imod.get(id)
-		def contentInstance = new Content(imod:imodInstance, failOnError:true)
+		def currentImod = Imod.get(id)
+		def contentInstance = new Content(imod: currentImod, failOnError: true)
 		contentInstance.save()
 		if (!contentInstance) {
 			contentInstance.errors.allErrors.each {
@@ -41,7 +41,7 @@ class ContentController {
 	def saveTopic(Long id, String JSONData) {
 		def jsonParser = new JsonSlurper()
 		def contentData = jsonParser.parseText(JSONData)
-		def imodInstance = Imod.get(id)
+		def currentImod = Imod.get(id)
 		def success = []
 		def fail = []
 		contentData.each() {
@@ -83,7 +83,7 @@ class ContentController {
 		)
 	}
 	def deleteTopic(Long id, String contentIDs) {
-		def imodInstance = Imod.get(id)
+		def currentImod = Imod.get(id)
 		def success = []
 		def contentIDList = new JsonSlurper().parseText(contentIDs)
 
@@ -142,4 +142,3 @@ class ContentController {
 		)
 	}
 }
-

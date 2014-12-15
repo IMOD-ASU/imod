@@ -8,7 +8,7 @@
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
-		<g:form name="performance" action="save" id="${imodInstance.id}">
+		<g:form name="performance" action="save" id="${currentImod.id}">
 			<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
 			<g:hiddenField name="pageType" value="performance" />
 			<g:submitButton class="learning-objective-button save showHoverNew" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
@@ -41,15 +41,15 @@
 
 			<div id="action-word-categories">
 				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}" status="i">
-					
+
 					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"><label for="radio${i}">${actionWordCategory}</label>
 
 				</g:each>
 			</div>
 
-			<select id="action-words">
+			<select name="actionWord" id="action-words">
 				<option>
-					null
+					${actionWord}
 				</option>
 			</select>
 

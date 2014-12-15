@@ -5,7 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException
 class CourseOverviewController {
 	def index(Long id) {
 		[
-			imodInstance: Imod.get(id),
+			currentImod: Imod.get(id),
 			currentPage: 'course overview'
 		]
 	}
@@ -20,11 +20,11 @@ class CourseOverviewController {
 
         // create a new instructor
         def newInstructor = new Instructor(
-            firstName:params.firstName,
-            lastName:params.lastName,
-            email:params.email,
-            role:params.role,
-            location:params.location,
+            firstName: params.firstName,
+            lastName: params.lastName,
+            email: params.email,
+            role: params.role,
+            location: params.location,
             createdBy: currentUser
         )
 

@@ -534,32 +534,32 @@ class BootStrap {
 			 */
 			def domainCategoryRemembering = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: "Remembering"
+				name: "Remember"
 			)
 
 			def domainCategoryUnderstanding = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: "Understanding"
+				name: "Understand"
 			)
 
 			def domainCategoryApplying = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: "Applying"
+				name: "Apply"
 			)
 
 			def domainCategoryAnalyzing = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: "Analyzing"
+				name: "Analyze"
 			)
 
 			def domainCategoryEvaluating = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: "Evaluating"
+				name: "Evaluate"
 			)
 
 			def domainCategoryCreating = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: "Creating"
+				name: "Create"
 			)
 
 			/**
@@ -582,12 +582,12 @@ class BootStrap {
 
 			def domainCategoryResponding = new DomainCategory(
 				domain: learningDomainAffective,
-				name: "Responding"
+				name: "Respond"
 			)
 
 			def domainCategoryValuing = new DomainCategory(
 				domain: learningDomainAffective,
-				name: "Valuing"
+				name: "Value"
 			)
 
 			def domainCategoryOrganisation = new DomainCategory(
@@ -664,12 +664,12 @@ class BootStrap {
 			 */
 			def actionWordCategoryRecognizing = new ActionWordCategory(
 				domainCategory: domainCategoryRemembering,
-				actionWordCategory: "Recognizing"
+				actionWordCategory: "Recognize"
 			)
 
 			def actionWordCategoryRecalling = new ActionWordCategory(
 				domainCategory: domainCategoryRemembering,
-				actionWordCategory: "Recalling"
+				actionWordCategory: "Recall"
 			)
 
 			/**
@@ -688,37 +688,37 @@ class BootStrap {
 			 */
 			def actionWordCategoryInterpreting = new ActionWordCategory(
 				domainCategory: domainCategoryUnderstanding,
-				actionWordCategory: "Interpreting"
+				actionWordCategory: "Interpret"
 			)
 
 			def actionWordCategoryExemplifying = new ActionWordCategory(
 				domainCategory: domainCategoryUnderstanding,
-				actionWordCategory: "Exemplifying"
+				actionWordCategory: "Exemplify"
 			)
 
 			def actionWordCategoryClassifying = new ActionWordCategory(
 				domainCategory: domainCategoryUnderstanding,
-				actionWordCategory: "Classifying"
+				actionWordCategory: "Classify"
 			)
 
 			def actionWordCategorySummarizing = new ActionWordCategory(
 				domainCategory: domainCategoryUnderstanding,
-				actionWordCategory: "Summarizing"
+				actionWordCategory: "Summarize"
 			)
 
 			def actionWordCategoryInferring = new ActionWordCategory(
 				domainCategory: domainCategoryUnderstanding,
-				actionWordCategory: "Inferring"
+				actionWordCategory: "Infer"
 			)
 
 			def actionWordCategoryComparing = new ActionWordCategory(
 				domainCategory: domainCategoryUnderstanding,
-				actionWordCategory: "Comparing"
+				actionWordCategory: "Compare"
 			)
 
 			def actionWordCategoryExplaining = new ActionWordCategory(
 				domainCategory: domainCategoryUnderstanding,
-				actionWordCategory: "Explaining"
+				actionWordCategory: "Explain"
 			)
 
 			/**
@@ -742,12 +742,12 @@ class BootStrap {
 			 */
 			def actionWordCategoryExecuting = new ActionWordCategory(
 				domainCategory: domainCategoryApplying,
-				actionWordCategory: "Executing"
+				actionWordCategory: "Execute"
 			)
 
 			def actionWordCategoryImplementing = new ActionWordCategory(
 				domainCategory: domainCategoryApplying,
-				actionWordCategory: "Implementing"
+				actionWordCategory: "Implement"
 			)
 
 			/**
@@ -766,17 +766,17 @@ class BootStrap {
 			 */
 			def actionWordCategoryDifferentiating = new ActionWordCategory(
 				domainCategory: domainCategoryAnalyzing,
-				actionWordCategory: "Differentiating"
+				actionWordCategory: "Differentiate"
 			)
 
 			def actionWordCategoryOrganizing = new ActionWordCategory(
 				domainCategory: domainCategoryAnalyzing,
-				actionWordCategory: "Organizing"
+				actionWordCategory: "Organize"
 			)
 
 			def actionWordCategoryAttributing = new ActionWordCategory(
 				domainCategory: domainCategoryAnalyzing,
-				actionWordCategory: "Attributing"
+				actionWordCategory: "Attribute"
 			)
 
 			/**
@@ -796,12 +796,12 @@ class BootStrap {
 			 */
 			def actionWordCategoryChecking = new ActionWordCategory(
 				domainCategory: domainCategoryEvaluating,
-				actionWordCategory: "Checking"
+				actionWordCategory: "Check"
 			)
 
 			def actionWordCategoryCritiquing = new ActionWordCategory(
 				domainCategory: domainCategoryEvaluating,
-				actionWordCategory: "Critiquing"
+				actionWordCategory: "Critique"
 			)
 
 			/**
@@ -820,17 +820,17 @@ class BootStrap {
 			 */
 			def actionWordCategoryGenerating = new ActionWordCategory(
 				domainCategory: domainCategoryCreating,
-				actionWordCategory: "Generating"
+				actionWordCategory: "Generate"
 			)
 
 			def actionWordCategoryPlanning = new ActionWordCategory(
 				domainCategory: domainCategoryCreating,
-				actionWordCategory: "Planning"
+				actionWordCategory: "Plan"
 			)
 
 			def actionWordCategoryProducing = new ActionWordCategory(
 				domainCategory: domainCategoryCreating,
-				actionWordCategory: "Producing"
+				actionWordCategory: "Produce"
 			)
 
 			/**
@@ -1117,7 +1117,7 @@ class BootStrap {
 
 			def actionWordCategoryDisplaying = new ActionWordCategory(
 				domainCategory: domainCategoryComplexOvertResponse,
-				actionWordCategory: "Displaying"
+				actionWordCategory: "Displays"
 			)
 
 			/**
@@ -1139,7 +1139,7 @@ class BootStrap {
 
 			def actionWordCategoryPerforming = new ActionWordCategory(
 				domainCategory: domainCategoryAdaptation,
-				actionWordCategory: "Performing"
+				actionWordCategory: "Perform"
 			)
 
 			def actionWordCategoryModifies = new ActionWordCategory(

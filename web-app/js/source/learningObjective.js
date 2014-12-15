@@ -1,5 +1,6 @@
 // start at the beggining of the path, get the first '/' then and all the characters between that and the second '/'
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+var prevKeyword = ''
 
 //on page load
 $(document).ready(function() {
@@ -14,21 +15,22 @@ $(document).ready(function() {
 
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
-		'change',
-		populateDomainCategories
-	);
+		'change', function(event){
+			populateDomainCategories();
+	});
 
 	// listen for the selected domain category to change, when it does call ajax
 	$('#domain-category-list').on(
-		'change',
-		populateActionWordCategories
-	);
+		'change', function(){
+			populateActionWordCategories();
+			
+	});
 
 	// listen for change in action word categories, when it does call ajax
 	$('#action-word-categories').on(
-		'click',
-		populateActionWords
-	);
+		'click', function(){
+			populateActionWords();
+	});
 
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO-hide-from-Objective').change(function() {
@@ -72,6 +74,9 @@ $(document).ready(function() {
 	var category = $('input[name=selectedActionWordCategory]').val();
 	$('#action-word-categories input[value="'+category+'"]').prop('checked',true)
  	$('#action-word-categories').buttonset();
+
+ 	// populate action words if a category is already selected
+ 	populateActionWords(true);
 
  	//reset radio buttons if a selected radio button is clicked again
  	$(document).on('click', '#action-word-categories label', function(){
@@ -193,7 +198,7 @@ function populateDomainCategories(event) {
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: this.value
+			domainName: $('#learning-domain-list').val()
 		},
 		success: function(data){
 
@@ -208,6 +213,8 @@ function populateDomainCategories(event) {
 			}
 			// store this to the page
 			$('#domain-category-list').html(options);
+
+			populateActionWordCategories();
 		},
 		error: function(xhr) {
 			// when something goes wrong log to the browser console
@@ -229,7 +236,7 @@ function populateActionWordCategories(event) {
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: this.value
+			domainName: $('#domain-category-list').val()
 		},
 		success: function(data) {
 			// store the data from the call back
@@ -245,6 +252,8 @@ function populateActionWordCategories(event) {
 			$('#action-word-categories').html(actionWordCategoriesHTML);
 			// since the markup is reloaded, re-initiate buttonset
 			$('#action-word-categories').buttonset();
+
+			populateActionWords();
 		},
 		error: function(xhr){
 			// when something goes wrong log to the browser console
@@ -260,6 +269,13 @@ function populateActionWordCategories(event) {
  * @return {XML}        Populates the page with action words
  */
 function populateActionWords(event, ui) {
+
+	if(prevKeyword == $('#action-word-categories').find('.ui-state-active').text()){
+		return;			
+	}else{
+		prevKeyword = $('#action-word-categories').find('.ui-state-active').text();
+	}
+	
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
 		type: 'GET',
@@ -268,15 +284,58 @@ function populateActionWords(event, ui) {
 			actionWordCategory: $('#action-word-categories').find('.ui-state-active').text()
 		},
 		success: function(data) {
-			// store the data from the call back
-			var actionWords = data.value;
-			// this will store the html for the action words
 			var actionWordsHTML = '';
-			// for each action word
-			for (var i = 0; i < actionWordCategories.length; i++) {
-				// create the html for the action word
-				actionWordCategoriesHTML += '<option value="' + actionWords[i].actionWord + '"/>';
+
+			if(event = true){
+				var originalActionWord = $('#action-words').val();		
 			}
+
+			// store the data from the call back
+			if(data.value != null){
+				if(data.value.verb !== undefined && data.value.verb !== null && data.value.verb !== ''){
+
+					var actionWordsVerb = data.value.verb.syn;
+					
+					// this will store the html for the action words
+					// for each action word
+					for (var i = 0; i < actionWordsVerb.length; i++) {
+						// create the html for the action word
+						if(actionWordsVerb[i] == originalActionWord){
+							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
+						}else{
+							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';	
+						}
+						
+					}
+				}
+
+				if(data.value.noun !== undefined && data.value.noun !== null && data.value.noun !== ''){
+
+					var actionWordsNoun = data.value.noun.syn;
+					for (var i = 0; i < actionWordsNoun.length; i++) {
+						// create the html for the action word
+						if(actionWordsNoun[i] == originalActionWord){
+							actionWordsHTML += '<option selected value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
+						}else{
+							actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
+						}
+					}
+				}
+
+				if(data.value.adjective !== undefined && data.value.adjective !== null && data.value.adjective !== ''){
+
+					var actionWordsAdj = data.value.adjective.syn;
+					for (var i = 0; i < actionWordsAdj.length; i++) {
+						// create the html for the action word
+						if(actionWordsAdj[i] == originalActionWord){
+							actionWordsHTML += '<option selected value="' + actionWordsAdj[i] + '">'+ actionWordsAdj[i] + '</option>';
+						}else{
+							actionWordsHTML += '<option value="' + actionWordsAdj[i] + '">'+ actionWordsAdj[i] + '</option>';
+						}
+					}
+				}
+			}		
+
 			// display the html for the action words
 			$('#action-words').html(actionWordsHTML);
 		},

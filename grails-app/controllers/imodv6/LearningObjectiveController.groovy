@@ -1,6 +1,7 @@
 package imodv6
 import grails.converters.JSON
-import rita.*
+import grails.plugins.rest.client.RestBuilder
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 class LearningObjectiveController {
 
@@ -26,10 +27,10 @@ class LearningObjectiveController {
 	 */
 	def create(Long id) {
 		// get the IMOD that this learning objective will be associated with
-		def imodInstance = Imod.get(id)
+		def currentImod = Imod.get(id)
 		// create a learning objective, linked to the imod
 		def learningObjectiveInstance = new LearningObjective(
-			imod: imodInstance,
+			imod: currentImod,
 			criteriaAccuracyEnabled:	true,
 			criteriaQualityEnabled:		true,
 			criteriaQuantityEnabled:	true,
@@ -40,9 +41,9 @@ class LearningObjectiveController {
 			criteriaSpeedHidden:		true,
 		)
 		// add the learning objective to the collection of learning objectives in the imod
-		imodInstance.addToLearningObjectives(learningObjectiveInstance)
+		currentImod.addToLearningObjectives(learningObjectiveInstance)
 		// saves the imod and the learning objective
-		imodInstance.save()
+		currentImod.save()
 		// redirects to the performance page to allow for newly created learning objective to be edited
 		redirect(
 			action: 'performance',
@@ -68,6 +69,7 @@ class LearningObjectiveController {
 			case 'performance':
 				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				learningObjectiveInstance.performance = params.DCL
+				learningObjectiveInstance.actionWord = params.actionWord
 				break
 
 			// if the user is saving the condition page
@@ -130,12 +132,12 @@ class LearningObjectiveController {
 	 */
 	def performance(Long id, Long learningObjectiveID) {
 		// get relevant imod
-		def imodInstance = Imod.get(id)
+		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = learningObjectiveManager(imodInstance)
+		def learningObjectivesList = learningObjectiveManager(currentImod)
 
 		// get all performance data to set in the Performance page
-		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def learningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
 		def selectedActionWordCategory = learningObjective.actionWordCategory
 		def selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		def selectedDomain = selectedDomainCategory?.learningDomain
@@ -145,8 +147,10 @@ class LearningObjectiveController {
 		def domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
 		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
 
+
+
 		[
-			imodInstance:				imodInstance,
+			currentImod:				currentImod,
 			learningObjectivesList:		learningObjectivesList,
 			currentPage:				'learning objective performance',
 			learningObjective:			learningObjective,
@@ -156,6 +160,7 @@ class LearningObjectiveController {
 			domainList:					domainList,
 			categoriesList:				domainCategoriesList,
 			actionWordCategoryList:		actionWordCategoryList,
+			actionWord: 				learningObjective.actionWord,
 		]
 	}
 
@@ -166,13 +171,13 @@ class LearningObjectiveController {
 	 * @return                     [description]
 	 */
 	def content(Long id, Long learningObjectiveID) {
-		def imodInstance = Imod.get(id)
-		def learningObjectivesList = learningObjectiveManager(imodInstance)
-		def learningObjectiveInstance = getDefaultLearningObjective(imodInstance, learningObjectiveID)
-		def contentList = Content.findAllWhere(imod: imodInstance, parentContent: null)
+		def currentImod = Imod.get(id)
+		def learningObjectivesList = learningObjectiveManager(currentImod)
+		def learningObjectiveInstance = getDefaultLearningObjective(currentImod, learningObjectiveID)
+		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 		def contents = [];
 		if (contentList.size() < 1) {
-			contentList.add(new Content(imod: imodInstance))
+			contentList.add(new Content(imod: currentImod))
 		}
 		contentList.collect(contents) {
 			getSubContent(it,learningObjectiveInstance)
@@ -181,7 +186,7 @@ class LearningObjectiveController {
 		contents = contents.replaceAll('"', /'/)
 
 		[
-			imodInstance:			imodInstance,
+			currentImod:			currentImod,
 			learningObjectivesList:	learningObjectivesList,
 			currentPage:			'learning objective content',
 			learningObjective:		learningObjectiveInstance,
@@ -196,15 +201,15 @@ class LearningObjectiveController {
 	 * @return                     [description]
 	 */
 	def condition(Long id, Long learningObjectiveID) {
-		def imodInstance				=  Imod.get(id)
-		def learningObjectivesList		=  learningObjectiveManager(imodInstance)
-		def learningObjectiveInstance	=  getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def currentImod					=  Imod.get(id)
+		def learningObjectivesList		=  learningObjectiveManager(currentImod)
+		def learningObjectiveInstance	=  getDefaultLearningObjective(currentImod, learningObjectiveID)
 		def currentCondition			=  learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
 		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
 		def hideCondition				=  learningObjectiveInstance.hideFromLearningObjectiveCondition
 
 		[
-			imodInstance:			imodInstance,
+			currentImod:			currentImod,
 			learningObjectivesList:	learningObjectivesList,
 			currentPage:			'learning objective condition',
 			learningObjective:		learningObjectiveInstance,
@@ -222,13 +227,13 @@ class LearningObjectiveController {
 	 * @return                     [description]
 	 */
 	def criteria(Long id, Long learningObjectiveID) {
-		def imodInstance = Imod.get(id)
+		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = learningObjectiveManager(imodInstance)
-		def learningObjective = getDefaultLearningObjective(imodInstance, learningObjectiveID)
+		def learningObjectivesList = learningObjectiveManager(currentImod)
+		def learningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
 
 		[
-			imodInstance:			imodInstance,
+			currentImod:			currentImod,
 			currentPage:			'learning objective criteria',
 			learningObjective:		learningObjective,
 			learningObjectivesList:	learningObjectivesList,
@@ -317,37 +322,31 @@ class LearningObjectiveController {
 	 * @return            sorted list of Action Words
 	 */
 	def getActionWords(String actionWordCategory) {
+		// temporarily replace the WordNet API with BigHugeLabsAPI
+		def rest = new RestBuilder()
+		def resp = rest.get("http://words.bighugelabs.com/api/2/2bbfecfa6c5f51f4cd4ff4562b75bdc5/"+actionWordCategory+"/json")
 
-		// import the wordnet database
-		def wordNetAbsolutePath = request.getSession().getServletContext().getRealPath('../lib/WordNet-3.1')
-		RiWordNet wordnet = new RiWordNet(wordNetAbsolutePath)
-
-		// print all debug information for word in the terminal
-		println wordnet.exists(actionWordCategory)
-		println wordnet.getDescription(actionWordCategory, wordnet.getBestPos(actionWordCategory))
-		def actionWords = wordnet.getAllSimilar(actionWordCategory, wordnet.getBestPos(actionWordCategory))
-		println actionWords
 		render (
 			[
-				value: actionWords
+				value: resp.json
 			] as JSON
 		)
 	}
 
 	/**
 	 * Gets learning objectives for an Imod, auto generates a Learning Objective if there are none
-	 * @param  imodInstance Imod that Learning Objective are linked to
+	 * @param  currentImod Imod that Learning Objective are linked to
 	 * @return              List of Learning Objective Domain Objects
 	 */
-	private def learningObjectiveManager(Imod imodInstance) {
+	private def learningObjectiveManager(Imod currentImod) {
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = LearningObjective.findAllByImod(imodInstance)
+		def learningObjectivesList = LearningObjective.findAllByImod(currentImod)
 
 		// if there are no learning objectives create one
 		if (learningObjectivesList.size() < 1) {
-			create(imodInstance.id)
+			create(currentImod.id)
 			// updates the list of all of the learning objectives for this imod
-			learningObjectivesList = LearningObjective.findAllByImod(imodInstance)
+			learningObjectivesList = LearningObjective.findAllByImod(currentImod)
 		}
 
 		return learningObjectivesList
@@ -355,22 +354,22 @@ class LearningObjectiveController {
 
 	/**
 	 * [getDefaultLearningObjective description]
-	 * @param  imodInstance        [description]
+	 * @param  currentImod         [description]
 	 * @param  learningObjectiveID [description]
 	 * @return                     [description]
 	 */
-	private def getDefaultLearningObjective(Imod imodInstance, Long learningObjectiveID) {
+	private def getDefaultLearningObjective(Imod currentImod, Long learningObjectiveID) {
 		def objective
 		// when there is not objective specified, pick first
 		if (learningObjectiveID == null) {
-			objective = imodInstance.learningObjectives.first()
+			objective = currentImod.learningObjectives.first()
 		}
 		// otherwise get that objective
 		else {
-			objective = LearningObjective.findWhere(imod: imodInstance, id: learningObjectiveID)
+			objective = LearningObjective.findWhere(imod: currentImod, id: learningObjectiveID)
 			// if that objective doesn't exist, get first
 			if (objective == null) {
-				objective = imodInstance.learningObjectives.first()
+				objective = currentImod.learningObjectives.first()
 			}
 		}
 		return objective

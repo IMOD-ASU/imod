@@ -15,7 +15,7 @@
 					action="save"
 					title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}"
 					value="${message(code: 'Save', default: 'Save')}"
-					id="${imodInstance.id }"
+					id="${currentImod.id }"
 					learningObjectiveID="${learningObjective.id }"
 					type="criteria"
 				/>
