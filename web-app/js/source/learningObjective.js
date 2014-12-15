@@ -15,21 +15,22 @@ $(document).ready(function() {
 
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
-		'change',
-		populateDomainCategories
-	);
+		'change', function(event){
+			populateDomainCategories();
+	});
 
 	// listen for the selected domain category to change, when it does call ajax
 	$('#domain-category-list').on(
-		'change',
-		populateActionWordCategories
-	);
+		'change', function(){
+			populateActionWordCategories();
+			
+	});
 
 	// listen for change in action word categories, when it does call ajax
 	$('#action-word-categories').on(
-		'click',
-		populateActionWords
-	);
+		'click', function(){
+			populateActionWords();
+	});
 
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO-hide-from-Objective').change(function() {
@@ -197,7 +198,7 @@ function populateDomainCategories(event) {
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: this.value
+			domainName: $('#learning-domain-list').val()
 		},
 		success: function(data){
 
@@ -212,6 +213,8 @@ function populateDomainCategories(event) {
 			}
 			// store this to the page
 			$('#domain-category-list').html(options);
+
+			populateActionWordCategories();
 		},
 		error: function(xhr) {
 			// when something goes wrong log to the browser console
@@ -233,7 +236,7 @@ function populateActionWordCategories(event) {
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: this.value
+			domainName: $('#domain-category-list').val()
 		},
 		success: function(data) {
 			// store the data from the call back
@@ -249,6 +252,8 @@ function populateActionWordCategories(event) {
 			$('#action-word-categories').html(actionWordCategoriesHTML);
 			// since the markup is reloaded, re-initiate buttonset
 			$('#action-word-categories').buttonset();
+
+			populateActionWords();
 		},
 		error: function(xhr){
 			// when something goes wrong log to the browser console
@@ -284,8 +289,6 @@ function populateActionWords(event, ui) {
 			if(event = true){
 				var originalActionWord = $('#action-words').val();		
 			}
-
-			console.log(originalActionWord);
 
 			// store the data from the call back
 			if(data.value != null){
