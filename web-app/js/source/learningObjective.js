@@ -321,6 +321,19 @@ function populateActionWords(event, ui) {
 						}
 					}
 				}
+
+				if(data.value.adjective !== undefined && data.value.adjective !== null && data.value.adjective !== ''){
+
+					var actionWordsAdj = data.value.adjective.syn;
+					for (var i = 0; i < actionWordsAdj.length; i++) {
+						// create the html for the action word
+						if(actionWordsAdj[i] == originalActionWord){
+							actionWordsHTML += '<option selected value="' + actionWordsAdj[i] + '">'+ actionWordsAdj[i] + '</option>';
+						}else{
+							actionWordsHTML += '<option value="' + actionWordsAdj[i] + '">'+ actionWordsAdj[i] + '</option>';
+						}
+					}
+				}
 			}		
 
 			// display the html for the action words
