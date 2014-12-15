@@ -12,7 +12,7 @@
 <!-- Definition of the perfomance evaulations for a learning objective -->
 <span class="learning-objective-performance">
 	<g:if test="${ it.performance != null }">
-		${ it.performance }
+		${ it.actionWord }
 	</g:if>
 </span>
 
