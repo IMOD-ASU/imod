@@ -18,15 +18,15 @@
                         <span style="margin-left: 5px; ">
 
                             <%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-                        	<button id="newTechnique" class="showHover" title="${Help.toolTip("PEDAGOGY", "Add New Technique")}" onclick="addNewTechnique()">
+                        	<button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Add New Technique')}" onclick="addNewTechnique()">
                                 Add New Technique
                             </button>
 
-                            <button id="newTechnique" class="showHover" title="${Help.toolTip("PEDAGOGY", "Favorites")}" onclick="expandFavorite();">
+                            <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}" onclick="expandFavorite();">
                                 Favorites
                             </button>
 
-                            <button id="newTechnique" class="showHover" title="${Help.toolTip("PEDAGOGY", "Instructional Plan")}" onclick="addNewTechnique()">
+                            <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Instructional Plan')}" onclick="addNewTechnique()">
                                 Instructional Plan
                             </button>
                         </span>
@@ -47,7 +47,7 @@
 
                                     <img id="condition-tab" style="height: 37px;" src="${resource(dir: 'images', file: 'Condition.png')}" onmouseover="this.src='${resource(dir: 'images', file: 'OrangeCondition.png')}'" onmouseout="this.src='${resource(dir: 'images', file: 'Condition.png')}'"alt="Condition" title="${chapter?.condition}"/>
 
-                                    <img id="criteria-tab" style="height: 38px;" src="${resource(dir: 'images', file: 'Criteria.png')}" onmouseover="this.src='${resource(dir: 'images', file: 'OrangeCriteria.png')}'" onmouseout="this.src='${resource(dir: 'images', file: 'Criteria.png')}'"alt="Criteria" title="${chapter?.criteria}"/>
+                                    <img id="criteria-tab" style="height: 38px;" src="${resource(dir: 'images', file: 'Criteria.png')}" onmouseover="this.src='${resource(dir: 'images', file: 'OrangeCriteria.png')}'" onmouseout="this.src='${resource(dir: 'images', file: 'Criteria.png')}'"alt="Criteria" title="${chapter?.criteriaAccuracy}"/>
                                 </div>
                             </td>
                         </tr>
@@ -57,7 +57,7 @@
                     </div>
                     <%-- Ideal match accordion --%>
         		    <div id="ped1_accordion">
-                        <h3 title="${Help.toolTip("PEDAGOGY", "Ideal Match")}" class="showHover">
+                        <h3 title="${Help.toolTip('PEDAGOGY', 'Ideal Match')}" class="showHover">
                             Ideal Match
                         </h3>
                      	<div id="idealMatchDiv">
@@ -90,15 +90,15 @@
                         </div>
 
                         <%--Extended Match Accordion --%>
-    					<h3 title="${Help.toolTip("PEDAGOGY", "Extended Match")}" class="showHover">
+    					<h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
                             Extended Match
                         </h3>
     					<div id="extendedMatchDiv">
-    						<g:render template="pedagogyExtendedMatch" />
+    						<%-- <g:render template="pedagogyExtendedMatch" /> --%>
     					</div>
 
                         <%--Favorite Accordion --%>
-    					<h3 title="${Help.toolTip("PEDAGOGY", "Favorites")}" class="showHover">
+    					<h3 title="${Help.toolTip('PEDAGOGY', 'Favorites')}" class="showHover">
                             Favorite
                         </h3>
     					<div>

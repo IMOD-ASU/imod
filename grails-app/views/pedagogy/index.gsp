@@ -33,7 +33,7 @@
                     </td>
 
                     <td style="vertical-align: top;padding:-50;">
-                        <%-- <g:render template="/pedagogy/pedagogyBodyTemplate"/> --%>
+                        <g:render template="/pedagogy/pedagogyBodyTemplate"/>
                     </td>
                 </tr>
             </table>
