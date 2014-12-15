@@ -219,7 +219,7 @@ class PedagogyController {
 			// dmn: objective.learningDomain,
 			domainList: domainList,
 			favPedaTechList: favPedaTechList,
-			imod: imod,
+			currentImod: imod,
 			KnowledgeDomainlist: KnowledgeDomainlist,
 			learningDomainList: learningDomainList,
 			learningObjectiveDates: learningObjectiveDates,

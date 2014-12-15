@@ -8,7 +8,7 @@ class PedagogyTechniqueController {
 
 	def save() {
 		// TODO: why is imod instance hard coded?
-		def imodInstance = Imod.get(48)
+		def currentImod = Imod.get(48)
 		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
 
 		if (!pedagogyTechniqueInstance.save()) {
@@ -23,7 +23,7 @@ class PedagogyTechniqueController {
 					code: 'imod.label',
 					default: 'Imod'
 				),
-				imodInstance
+				currentImod
 			]
 		)
 
@@ -47,7 +47,7 @@ class PedagogyTechniqueController {
 		def KnowledgeDomainlist = KnowledgeDimension.list()
 
 		[
-			imodInstance: Imod.get(id),
+			currentImod: Imod.get(id),
 			domains : domains,
 			domainList: domainList,
 			KnowledgeDomainlist: KnowledgeDomainlist

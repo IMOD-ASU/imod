@@ -16,9 +16,9 @@
                 </div>
             </g:if>
 
-            <g:hasErrors bean="${imodInstance}">
+            <g:hasErrors bean="${currentImod}">
                 <ul class="errors" role="alert">
-                    <g:eachError bean="${imodInstance}" var="error">
+                    <g:eachError bean="${currentImod}" var="error">
                         <li>
                             <g:message error="${error}"/>
                         </li>
@@ -29,7 +29,7 @@
             <table>
                 <tr>
                     <td style="vertical-align: top;padding:-50;">
-                        <%-- <g:render template="/pedagogy/pedagogyLearningObjectiveTemplate"/> --%>
+                        <g:render template="/pedagogy/pedagogyLearningObjectiveTemplate"/>
                     </td>
 
                     <td style="vertical-align: top;padding:-50;">

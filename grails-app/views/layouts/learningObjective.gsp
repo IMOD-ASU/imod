@@ -30,9 +30,9 @@
 					${flash.message}
 				</div>
 			</g:if>
-			<g:hasErrors bean="${imodInstance}">
+			<g:hasErrors bean="${currentImod}">
 				<ul class="errors" role="alert">
-					<g:eachError bean="${imodInstance}" var="error">
+					<g:eachError bean="${currentImod}" var="error">
 						<li data-field-id="${ error in org.springframework.validation.FieldError ? error.field : '' }">
 							<g:message error="${error}"/>
 						</li>
@@ -47,7 +47,7 @@
 								<div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 									<span class="title-text">
 										Learning Objectives
-										<g:link action="create" id="${imodInstance.id}">
+										<g:link action="create" id="${currentImod.id}">
 											<button>
 												<span class="fa fa-plus"></span>
 												Add
@@ -60,7 +60,7 @@
 										<li class="learning-objective-list-item ${(learningObjectiveItem.id == learningObjective.id) ? 'active' : ''  }">
 											<g:link
 												action="performance"
-												id="${imodInstance.id}"
+												id="${currentImod.id}"
 												params="[learningObjectiveID: learningObjectiveItem.id]"
 												class="learning-objective-list-link"
 											>
@@ -87,7 +87,7 @@
 										<g:link
 											action="performance"
 											params="[learningObjectiveID: learningObjective.id]"
-											id="${imodInstance?.id}"
+											id="${currentImod?.id}"
 											class="performance"
 										>
 											Performance
@@ -97,7 +97,7 @@
 										<g:link
 											action="content"
 											params="[learningObjectiveID: learningObjective.id]"
-											id="${imodInstance?.id}"
+											id="${currentImod?.id}"
 											class="content"
 										>
 											Content
@@ -107,7 +107,7 @@
 										<g:link
 											action="condition"
 											params="[learningObjectiveID: learningObjective.id]"
-											id="${imodInstance?.id}"
+											id="${currentImod?.id}"
 											class="condition"
 										>
 											Condition
@@ -117,7 +117,7 @@
 										<g:link
 											action="criteria"
 											params="[learningObjectiveID: learningObjective.id]"
-											id="${imodInstance?.id}"
+											id="${currentImod?.id}"
 											class="criteria"
 										>
 											Criteria
