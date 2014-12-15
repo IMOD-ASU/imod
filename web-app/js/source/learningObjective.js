@@ -17,13 +17,13 @@ $(document).ready(function() {
 	$('#learning-domain-list').on(
 		'change', function(event){
 			populateDomainCategories();
-			populateActionWordCategories();
 	});
 
 	// listen for the selected domain category to change, when it does call ajax
 	$('#domain-category-list').on(
 		'change', function(){
 			populateActionWordCategories();
+			
 	});
 
 	// listen for change in action word categories, when it does call ajax
@@ -213,6 +213,8 @@ function populateDomainCategories(event) {
 			}
 			// store this to the page
 			$('#domain-category-list').html(options);
+
+			populateActionWordCategories();
 		},
 		error: function(xhr) {
 			// when something goes wrong log to the browser console
@@ -250,6 +252,8 @@ function populateActionWordCategories(event) {
 			$('#action-word-categories').html(actionWordCategoriesHTML);
 			// since the markup is reloaded, re-initiate buttonset
 			$('#action-word-categories').buttonset();
+
+			populateActionWords();
 		},
 		error: function(xhr){
 			// when something goes wrong log to the browser console
@@ -285,8 +289,6 @@ function populateActionWords(event, ui) {
 			if(event = true){
 				var originalActionWord = $('#action-words').val();		
 			}
-
-			console.log(originalActionWord);
 
 			// store the data from the call back
 			if(data.value != null){
