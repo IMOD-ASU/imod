@@ -308,7 +308,7 @@ function addTopic(){
 						'<input type="hidden" id="knowDimensionListSaved'+id+'" value=""> '+
 					'</span> '+
 				'</td><td class="topicPriority">'+
-					'<select size="1" name="topicPriority'+id+' id="topicPriority'+id+'"> '+
+					'<select size="1" name="topicPriority'+id+'" id="topicPriority'+id+'"> '+
 					prioritiesOptions+
 					'</select> '+
 					'<input type="hidden" name="topicPrioritySaved'+id+'"> '+
