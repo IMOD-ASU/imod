@@ -1,4 +1,5 @@
-<%@ page import="imodv6.LearningObjective; imodv6.Help" %>
+<%@ page import="imodv6.LearningObjective" %>
+<%@ page import="imodv6.Help" %>
 <html>
 	<head>
 		<title>
