@@ -1,8 +1,11 @@
 <%@ page import="imodv6.Help" %>
-<%@ page import="imodv6.ImodUserPedagogyFavorite" %>
 <%@ page import="imodv6.ImodPedagogyAssign" %>
-<%@ page import="imodv6.PedagogyMode" %>
+<%@ page import="imodv6.ImodUserPedagogyFavorite" %>
+<%@ page import="imodv6.PedagogyActivity" %>
 <%@ page import="imodv6.PedagogyActivityDuration" %>
+<%@ page import="imodv6.PedagogyActivityFocus" %>
+<%@ page import="imodv6.PedagogyMode" %>
+<%@ page import="imodv6.PedagogyReference" %>
 
 <html>
     <head>
@@ -243,14 +246,6 @@
                                                     </g:each>
                                                 </div>
 
-                                                <%--Extended Match Accordion --%>
-                                                <h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
-                                                    Extended Match
-                                                </h3>
-                                                <div id="extendedMatchDiv">
-                                                    <%-- <g:render template="pedagogyExtendedMatch" /> --%>
-                                                </div>
-
                                                 <%--Favorite Accordion --%>
                                                 <h3 title="${Help.toolTip('PEDAGOGY', 'Favorites')}" class="showHover">
                                                     Favorite
@@ -292,7 +287,15 @@
 
                         <%--Dialog box for Add New Technique --%>
                         <div id="showAddNewTechnique" title="Add New Technique">
-                            <g:render template="pedagogyAddTechnique"/>
+                            <%--To render the add new Technique dialog box--%>
+                            <g:form controller="pedagogy" action="addNewTechnique" name="newTechniqueForm" onsubmit="return onSubmitValidate();">
+                                <g:hiddenField name="id" value="${params.id ?: currentImod?.id}" />
+                                <g:render template="pedagogyTechniqueForm" />
+                                <div align="center" style="padding-top:10px">
+                                    <input type="submit" class="showHover" value="Save" name="addNewSubmit" style="padding: 0; font-size: 16px; Background: #D0D0D0;" />
+                                    <input type="button" class="showHover" value="Cancel" name="addNewCancel" style="margin-left:5px;padding: 0; font-size: 16px; Background: #D0D0D0;" onclick="closeNewTechniqueTable()" />
+                                </div>
+                            </g:form>
                         </div>
 
                         <%--Dialog box for Clone Technique --%>
