@@ -30,7 +30,7 @@
 	<body>
 
 <fieldset>
-	<g:hiddenField name="imodID" value="${imodInstance.id}" />
+	<g:hiddenField name="imodID" value="${currentImod.id}" />
 	
 	
 	<div id="contentTable">
@@ -64,7 +64,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<g:each var="contentItem" in="${imodInstance.contents}">
+		<g:each var="contentItem" in="${currentImod.contents}">
 	<tr id="${contentItem.id}" class="topicItem">
 						<td class="saveIcon">
 							<i class="hidden fa fa-eraser"></i>
