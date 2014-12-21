@@ -11,15 +11,14 @@
 
 <g:applyLayout name="imod">
 	<html>
-
 		<head>
 			<title>
 				<g:layoutTitle default="Learning Objective"/>
 			</title>
 
-			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'learningObjective.css')}" type="text/css">
+			<g:external dir="css/source" file="learningObjective.css" />
 
-			<script src="${resource(dir: 'js/source', file: 'learningObjective.js')}" defer></script>
+			<g:javascript src="source/learningObjective.js" defer="defer" />
 
 			<g:layoutHead/>
 		</head>
