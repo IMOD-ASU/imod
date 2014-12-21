@@ -174,7 +174,7 @@ class PedagogyController {
 		List<ContentPriorityCode> contentPriorityCodeTypeList = ContentPriorityCode.values()
 
 		//To get the Domain Category
-		// TODO why is this always the first?
+		// FIXME Learning Domain id should be dynamically set via param
 		def domain = LearningDomain.first()
 		def domainList = DomainCategory.findAllByLearningDomain(domain);
 

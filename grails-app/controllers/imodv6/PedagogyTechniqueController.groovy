@@ -7,7 +7,7 @@ class PedagogyTechniqueController {
 	static scaffold = PedagogyTechnique
 
 	def save() {
-		// TODO: why is imod instance hard coded?
+		// FIXME imod id be dynamicly set
 		def currentImod = Imod.get(48)
 		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
 
@@ -35,11 +35,11 @@ class PedagogyTechniqueController {
 
 	def index(Long id) {
 
-		//To get Learning Domain
+		// To get Learning Domain
 		def domains = LearningDomain.list()
 
-		//To get the Domain Category
-		//TODO: why is Imod hardcoded?
+		// To get the Domain Category
+		// FIXME learning domain should be dynamically set
 		LearningDomain domain = LearningDomain.get(1)
 		def domainList = DomainCategory.findAllByDomain(domain);
 

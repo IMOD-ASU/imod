@@ -1,7 +1,7 @@
 package imodv6
 
 /**
- * TODO what is this?
+ * Describes if a schedule repeats daily, weeky, monthly etc
  */
 class ScheduleRepeatsEvery {
 	String description
@@ -12,7 +12,7 @@ class ScheduleRepeatsEvery {
 	static mapping = {
 		version false
 	}
-	
+
 	def String toString(){
 		return description
 	}

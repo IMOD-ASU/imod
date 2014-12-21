@@ -11,7 +11,7 @@ class Content {
 	 */
 
 	/**
-	 * TODO: What is this doing?
+	 * FIXME: This is correct but needs to be set by jstree
 	 */
 	Content parentContent
 

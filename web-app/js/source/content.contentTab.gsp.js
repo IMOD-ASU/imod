@@ -76,7 +76,7 @@ function addObjective() {
 
 function saveObjective() {
 	jQuery.ajax({
-		// TODO FIX THIS LINK
+		// FIXME broken link
 		url: '/',
 		method: 'POST',
 		// TODO GET THE IMOD ID
@@ -99,7 +99,7 @@ function removeTopic() {
 	if (jQuery('#removeTopicForm #contents').length) {
 		if (confirm('Are you sure?')) {
 			jQuery.ajax({
-				//TODO use actual lint
+				// FIXME use correct url
 				url: '/delete/' + jQuery('#topic_table tbody tr:first input[type="hidden"]').val(),
 				method: 'POST',
 				data: {'contents': jQuery('#removeTopicForm #contents').val()},
@@ -158,7 +158,7 @@ function changePreReq(contentId) {
 	var priorityCode = jQuery('tr#' + contentId + ' #priorityCodeType').val();
 	var learningObjectiveType = jQuery('tr#' + contentId + ' #learningObjectiveType').val();
 	jQuery.ajax({
-		// TODO FIX THIS URL
+		// FIXME use correct url
 		url: '/changePreReq',
 		method: "POST",
 		data: {topicTitle: topicTitle, contentId: contentId, priorityCode: priorityCode, learningObjectiveType: learningObjectiveType},
@@ -235,7 +235,7 @@ function showObjective() {
 function showResourcesPopup(topicId) {
 	jQuery('#currentContentIdForResource').val(topicId);
 	jQuery.ajax({
-		// TODO FIX URL
+		// FIXME use correct url
 		url: '/fetchResource',
 		method: "POST",
 		data: {topicId: topicId},
@@ -300,7 +300,7 @@ function showTopicSchedule() {
 function saveTopicScheduleTable() {
 	var id = '${params.id}';
 	jQuery.ajax({
-		// TODO FIX URL
+		// FIXME use correct url
 		url: '/saveTopicScheduleTable',
 		method: "POST",
 		data: {topicId: jQuery('#scheduleTopicSelected').val(), id: id, scheduleDate: jQuery('#scheduleTopicSelected_input').val()},
