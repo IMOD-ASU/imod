@@ -1,4 +1,5 @@
-jQuery(document).ready(function () {
+jQuery(document).ready(
+	function () {
 		jQuery.browser = {};
 		(function () {
 			jQuery.browser.msie = false;
@@ -8,15 +9,65 @@ jQuery(document).ready(function () {
 				jQuery.browser.version = RegExp.$1;
 			}
 		})();
-		jQuery("#topicTreeView").treeview({control: "#treecontrol"});
-		jQuery("#addLearningObjectiveDiv").dialog({ autoOpen: false, height: 300, width: 500, show: "fadein", hide: "fadeout", modal: true });
-		jQuery("#removeTopicForm").dialog({ autoOpen: false, height: 300, width: 500, show: "fadein", hide: "fadeout", modal: true });
-		jQuery(".topic_information_widget").dialog({ autoOpen: false, height: 400, width: 600, show: "fadein", hide: "fadeout", modal: true });
-		jQuery("#showTopicScheduleTable").dialog({ autoOpen: false, height: 350, width: 600, font-size: 14px; show: "fadein", hide: "fadeout", modal: true });
-		jQuery("#showTechniqueTable").dialog({ autoOpen: false, height: 350, width: 600, show: "fadein", hide: "fadeout", modal: true });
-		jQuery("#showResourcesDiv").dialog({ autoOpen: false, height: 400, width: 1000, show: "fadein", hide: "fadeout", modal: true });
-		jQuery("#addTopicForm").dialog({ autoOpen: false, height: 300, width: 500, show: "fadein", hide: "fadeout", modal: true });
-
+		jQuery("#topicTreeView").treeview({
+			control: "#treecontrol"
+		});
+		jQuery("#addLearningObjectiveDiv").dialog({
+			autoOpen: false,
+			height: 300,
+			width: 500,
+			show: "fadein",
+			hide: "fadeout",
+			modal: true
+		});
+		jQuery("#removeTopicForm").dialog({
+			autoOpen: false,
+			height: 300,
+			width: 500,
+			show: "fadein",
+			hide: "fadeout",
+			modal: true
+		});
+		jQuery(".topic_information_widget").dialog({
+			autoOpen: false,
+			height: 400,
+			width: 600,
+			show: "fadein",
+			hide: "fadeout",
+			modal: true
+		});
+		jQuery("#showTopicScheduleTable").dialog({
+			autoOpen: false,
+			height: 350,
+			width: 600,
+			show: "fadein",
+			hide: "fadeout",
+			modal: true
+		});
+		jQuery("#showTechniqueTable").dialog({
+			autoOpen: false,
+			height: 350,
+			width: 600,
+			show: "fadein",
+			hide: "fadeout",
+			modal: true
+		});
+		jQuery("#showResourcesDiv").dialog({
+			autoOpen: false,
+			height: 400,
+			width: 1000,
+			show: "fadein",
+			hide: "fadeout",
+			modal: true
+		});
+		jQuery("#addTopicForm").dialog({
+			autoOpen: false,
+			height: 300,
+			width: 500,
+			show: "fadein",
+			hide: "fadeout",
+			modal: true
+		});
 		jQuery('.pc3_informationIcon').pc3_hover({
 			show: 'mouseover',
 			hide: 'mouseout',
@@ -24,7 +75,12 @@ jQuery(document).ready(function () {
 				'background-color': '#efefef',
 				tip: 'bottomMiddle' // Notice the corner value is identical to the previously mentioned positioning corners
 			},
-			position: { adjust: { x: 3, y: -38 } }
+			position: {
+				adjust: {
+					x: 3,
+					y: -38
+				}
+			}
 		});
 
 		jQuery('.informationIcon').qtip({
@@ -88,9 +144,16 @@ jQuery(document).ready(function () {
 
 	function saveObjective() {
 		jQuery.ajax({
-			url: '${createLink(controller: 'learningObjective',action: 'ajaxSave')}',
+			// FIXME broken URL
+			url: '${createLink( \
+				controller: "learningObjective", \
+				action: "ajaxSave" \
+			)}',
 			method: 'POST',
-			data: {'name': jQuery('#addObjectiveName').val(), 'imod.id':${imod?.id}},
+			data: {
+				'name': jQuery('#addObjectiveName').val(),
+				'imod.id':${imod?.id}
+			},
 			success: function (data) {
 				if (data) {
 					jQuery('#chapterListUL').append(data);
@@ -140,8 +203,15 @@ jQuery(document).ready(function () {
 	function openTopicDistributionPopup() {
 		if ("${params.objectiveId?true:chapter?.id?true:false}" == "true") {
 			jQuery.ajax({
-				url: '${createLink(controller: 'content',action: 'fetchGraph')}',
-				data: {'objectiveId': '${params.objectiveId?:chapter?.id}', 'id': '${imod?.id}'},
+				// FIXME broken URL
+				url: '${createLink( \
+					controller: "content", \
+					action: "fetchGraph" \
+				)}',
+				data: {
+					'objectiveId': '${params.objectiveId?:chapter?.id}',
+					'id': '${imod?.id}'
+				},
 				success: function (data) {
 					if (data) {
 						jQuery('.topic_information_widget').append(data);
@@ -160,6 +230,7 @@ jQuery(document).ready(function () {
 	}
 
 	function addResourceField() {
+		// FIXME avoid markup in JS
 		jQuery('#showResourcesTable').append("<tr><td></td><td><input type='text' name='resource' value=''/></td></tr>");
 	}
 
@@ -168,9 +239,18 @@ jQuery(document).ready(function () {
 		var priorityCode = jQuery('tr#' + contentId + ' #priorityCodeType').val();
 		var learningObjectiveType = jQuery('tr#' + contentId + ' #learningObjectiveType').val();
 		jQuery.ajax({
-			url: '${createLink(controller: 'content',action:'changePreReq')}',
+			// FIXME broken URL
+			url: '${createLink( \
+				controller: "content", \
+				action: "changePreReq" \
+			)}',
 			method: "POST",
-			data: {topicTitle: topicTitle, contentId: contentId, priorityCode: priorityCode, learningObjectiveType: learningObjectiveType},
+			data: {
+				topicTitle: topicTitle,
+				contentId: contentId,
+				priorityCode: priorityCode,
+				learningObjectiveType: learningObjectiveType
+			},
 			success: function (data) {
 				if (data == "success") {
 					window.location.reload();
@@ -193,8 +273,14 @@ jQuery(document).ready(function () {
 		if (id) {
 			if (confirm("Are you sure?")) {
 				jQuery.ajax({
-					url: '${createLink(controller: 'content',action:'removeResource')}',
-					data: {resourceId: id},
+					// FIXME broken URL
+					url: '${createLink( \
+						controller: "content", \
+						action: "removeResource" \
+					)}',
+					data: {
+						resourceId: id
+					},
 					success: function (data) {
 						if (data == "success") {
 							jQuery('tr#' + contentResourceIdElement).remove()
@@ -212,8 +298,11 @@ jQuery(document).ready(function () {
 		if (id) {
 			if (confirm("Are you sure?")) {
 				jQuery.ajax({
+					// FIXME broken URL
 					url: '${createLink(controller: 'content',action:'removeTopicSchedule')}',
-					data: {topicScheduleId: id},
+					data: {
+						topicScheduleId: id
+					},
 					success: function (data) {
 						if (data == "success") {
 							jQuery('tr#' + topicScheduleElement).remove()
@@ -232,6 +321,7 @@ jQuery(document).ready(function () {
 	}
 
 	function addNewSubTopic() {
+		// FIXME avoid markup inside of JS
 		jQuery('#addTopicPopupTable').append('<tr><td></td><td><input type="text" name="subTopic" id="subTopic"/></td></tr>')
 	}
 
@@ -244,6 +334,7 @@ jQuery(document).ready(function () {
 	function showResourcesPopup(topicId) {
 		jQuery('#currentContentIdForResource').val(topicId);
 		jQuery.ajax({
+			// FIXME broke URL
 			url: '${createLink(controller: 'content',action: 'fetchResource')}',
 			method: "POST",
 			data: {topicId: topicId},
@@ -273,8 +364,10 @@ jQuery(document).ready(function () {
 
 	function addResourceBefore() {
 		if (jQuery('#showResourcesTable tbody tr:first').size() != 0) {
+			// FIXME avoid markup in JS
 			jQuery('#showResourcesTable tbody tr:first').before("<tr  class='contentResources' dir='0'><td><input type='hidden' value='0' name='resourceIds'/><input type='text' name='resourceNames' class='resourceNames' value=''/></td><td><input type='file' name='files' class='files' disabled='disabled' style='display: none;'/><input type='text' name='resourceURLs' class='resourceURLs' value='' style='display: none;' /></td><td><select style='padding:0;' name='types' class='types' onchange='updateResourceURL()'><option value=''>Select one</option><option value=\"Document\">Document</option><option value=\"Book\">Book</option><option value=\"Chapter\">Chapter</option><option value=\"URL\">URL</option></select></td></tr>")
 		} else {
+			// FIXME avoid markup in JS
 			jQuery('#showResourcesTable tbody').append("<tr  class='contentResources' dir='0'><td><input type='hidden' value='0' name='resourceIds'/><input type='text' name='resourceNames' class='resourceNames' value=''/></td><td><input type='file' name='files' class='files' disabled='disabled' style='display: none;'/><input type='text' name='resourceURLs' class='resourceURLs' value='' style='display: none;' /></td><td><select name='types' class='types' style='padding:0;' onchange='updateResourceURL()'><option value=''>Select one</option><option value=\"Document\">Document</option><option value=\"Book\">Book</option><option value=\"Chapter\">Chapter</option><option value=\"URL\">URL</option></select></td></tr>")
 		}
 		return false;
@@ -319,12 +412,14 @@ jQuery(document).ready(function () {
 	function saveTopicScheduleTable() {
 		var id = '${params.id}';
 		jQuery.ajax({
+			// FIXME broken URL
 			url: '${createLink(controller: 'content',action:'saveTopicSchedule')}',
 			method: "POST",
 			data: {topicId: jQuery('#scheduleTopicSelected').val(), id: id, scheduleDate: jQuery('#scheduleTopicSelected_input').val()},
 			success: function (data) {
 				if (data == "success") {
 					closeLearningObjective();
+					// FIXME broken URL
 					window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?loadContentTab=${true}"
 				}
 			}
@@ -334,12 +429,14 @@ jQuery(document).ready(function () {
 	function saveLearningObjective() {
 		var id = '${params.id}';
 		jQuery.ajax({
+			// FIXME broken URL
 			url: '${createLink(controller: 'content',action:'saveObjectives')}',
 			method: "POST",
 			data: {name: jQuery('#addObjectiveName').val(), id: id},
 			success: function (data) {
 				if (data == "success") {
 					closeLearningObjective();
+					// FIXME broken URL
 					window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?loadContentTab=${true}"
 				}
 			}
@@ -366,11 +463,13 @@ jQuery(document).ready(function () {
 		var id = '${params.id}';
 		if (confirm("Are you sure?")) {
 			jQuery.ajax({
+				// FIXME broken URL
 				url: '${createLink(controller: 'content',action:'removeAllObjectives')}',
 				method: "POST",
 				data: {id: id},
 				success: function (data) {
 					if (data == "success") {
+						// FIXME broken URL
 						window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?loadContentTab=${true}"
 					}
 				}
