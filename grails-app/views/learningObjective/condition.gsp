@@ -17,24 +17,22 @@
 				<g:hiddenField name="pageType" value="condition" />
 			</fieldset>
 			<div id="LO-condition-radio-form">
-				<!-- FIXME replace with g:radio -->
-				<input id="LO-condition-rd-generic" class="LO-condition-radio" type="radio" name="LO_condition_type" <g:if test="${!isCustom}">checked="checked"</g:if>	value="Generic" />
+				<g:radio name="LO_condition_type" checked="${!isCustom}" value="Generic" id="LO-condition-rd-generic" class="LO-condition-radio" />
 				<label for="LO_condition_rd_generic" >
 					Generic
 				</label>
 				<span>
 					&nbsp;
 				</span>
-				<!-- FIXME replace with g:radio -->
-				<input id="LO-condition-rd-custom" class="LO-condition-radio" type="radio" name="LO_condition_type" <g:if test="${isCustom}">checked="checked"</g:if> value="Custom" />
+				<g:radio name="LO_condition_type" checked="${isCustom}" value="Custom" id="LO-condition-rd-custom" class="LO-condition-radio" />
 				<label for="LO-condition-rd-custom" >
 					Custom
 				</label>
 			</div>
 			<br />
-			<textarea name="LO_custom" id="LO-condition-custom" class="LO-condition-data" rows="8" />
+			<g:textArea name="LO_custom" value="${currentCondition}" id="LO-condition-custom" class="LO-condition-data" rows="8" />
 			<div id="LO-condition-generic">
-				<g:select size="5" name="LO_generic" class="LO-condition-data" from="${LearningObjective.genericConditions }" value="${currentCondition}" />
+				<g:select size="5" name="LO_generic" class="LO-condition-data" from="${LearningObjective.genericConditions}" value="${currentCondition}" />
 			</div>
 			<g:checkBox name="LO_hide_from_Objective" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Hide from Objective')}" checked="${hideCondition}" />
 			Hide from Objective
