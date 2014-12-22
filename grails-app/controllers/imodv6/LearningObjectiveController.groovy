@@ -241,7 +241,7 @@ class LearningObjectiveController {
 	}
 
 	private def getSubContent(Content current, LearningObjective objective) {
-		// TODO remove html from controller
+		// FIXME remove html from controller
 		def listChildren = []
 		def topicSelected = "topicNotSelected"
 		if (objective.contents.contains(current) as Boolean){

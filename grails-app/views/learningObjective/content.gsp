@@ -3,6 +3,10 @@
 		<title>
 			Learning Objective - Content
 		</title>
+		<g:external dir="css/source" file="learningObjective.css" />
+		<g:external dir="css/source" file="content.css" />
+
+		<!-- FIXME These should be loaded when needed, not prefetched -->
 		<link id="imgNone" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimNone.png')}">
 		<link id="imgC" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimC.png')}">
 		<link id="imgF" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimF.png')}">
@@ -19,21 +23,26 @@
 		<link id="imgCMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCMP.png')}">
 		<link id="imgFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFMP.png')}">
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
-		<script src="${resource(dir: 'js/source', file: 'topicDialog.js')}" defer></script>
-		<script src="${resource(dir: 'js/source', file: 'learningObjectiveContent.js')}" defer></script>
+
+		<g:javascript src="source/topicDialog.js" defer="defer" />
+		<g:javascript src="source/learningObjectiveContent.js" defer="defer" />
 
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
-		<input type="hidden" id="learningObjectiveID" value="${learningObjective.id}">
-		<g:render template="../content/topicForm"/>
+		<!-- FIXME replace with g:hiddenField -->
+		<input type="hidden" id="learningObjectiveID" value="${learningObjective.id}" />
+		<g:render template="/content/topicForm"/>
 		<fieldset>
 			<span class="topicModalButtonGradient">
-				<button id="addTopicModal" class="topicModalButton"><i class="fa fa-plus"></i>Add Topics</button>
+				<button id="addTopicModal" class="topicModalButton">
+					<i class="fa fa-plus"></i>
+					Add Topics
+				</button>
 			</span>
 		</fieldset>
+		<!-- FIXME replace with g:hiddenField -->
 		<input type="hidden" id="treeData" value="${contentList}">
-		<div id="contentTree">
-		</div>
+		<div id="contentTree"></div>
 	</body>
 </html>

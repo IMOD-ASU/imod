@@ -128,7 +128,7 @@ $(function() {
 						}
 					}
 				});
-		//TODO Fix mixed logic and markup and grails code
+			//FIXME move View code into a fragment or page
 			referenceTypeOptions = "<option value=''>Select one</option>"
 				<g:each var="referenceType" in="${referenceTypeList}">
 					referenceTypeOptions += "<option value='${referenceType.id}'>${referenceType.description}</option>"

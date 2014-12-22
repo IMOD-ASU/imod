@@ -21,9 +21,9 @@
 				<g:link class="dashed-square" action="create" >
 					<br/>
 					<br/>
-					New i-mod
+					New IMOD
 				</g:link>
-				<g:each in="${imodInstanceList}" status="i" var="imodInstance">
+				<g:each in="${imodInstanceList}" var="imodInstance">
 					<g:link controller="courseOverview" action="index" id="${imodInstance.id}" class="square">
 						<br/>
 						<br/>

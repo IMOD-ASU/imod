@@ -6,7 +6,10 @@
 	- Assessments
 	- Pedagogy
 --%>
-<%@ page import="imodv6.Help; imodv6.Imod; imodv6.ImodUser" %>
+<%@ page import="imodv6.Help" %>
+<%@ page import="imodv6.Imod" %>
+<%@ page import="imodv6.ImodUser" %>
+
 <g:applyLayout name="main">
 	<html>
 		<head>

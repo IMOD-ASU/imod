@@ -26,18 +26,24 @@
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}" sizes="114x114">
 
+		<!-- style libraries provided by content delivery network -->
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/ui-lightness/jquery-ui.css">
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css">
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.8/themes/default/style.min.css">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}">
 
+		<!-- internal styling -->
+		<g:external dir="css" file="main.css" />
+
+		<!-- javascript libraries provided by content delivery network -->
 		<script src="//code.jquery.com/jquery-2.1.1.min.js" defer></script>
 		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js" defer></script>
 		<script src="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js" defer></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.8/jstree.min.js" defer></script>
-		<script src="${resource(dir: 'js/source', file: 'application.js')}" defer></script>
+
+		<!-- internal javascript -->
+		<g:javascript src="source/application.js" defer="defer" />
 
 		<g:layoutHead/>
 	</head>
@@ -45,21 +51,22 @@
 	<body>
 		<div id="imodlogo" role="banner" style="background-color:#0C1625;">
 			<a href="${createLink(uri: '/')}">
-				<img id="imod-logo" src="${resource(dir: 'images', file: 'colorsignature_sml.png')}" alt="imod"/>
+				<g:img dir="images" file="colorsignature_sml.png" id="imod-logo" alt="imod"/>
 			</a>
 			<span>
 				<a class="banner-imod" href="${createLink(uri: '/imod')}">
 					<g:message code="My i-mods"/>
 				</a>
 				<a class="banner-home" href="${createLink(uri: '/')}">
-					<img class="resize-home" src="${resource(dir: 'images', file: 'home_sm.png')}" alt=""/>
+					<g:img dir="images" file="home_sm.png" class="resize-home"/>
 					<g:message code="default.home.label"/>
 				</a>
 				<nobr>
 					<div id='loginLinkContainer' class='banner-link'>
 						<sec:ifLoggedIn>
-							<img class="resize-home" src="${resource(dir: 'images', file: 'user_sm.png')}" alt=""/>
-						<sec:username/>
+						<g:img dir="images" file="home_sm.png" class="resize-home"/>
+							<g:img dir="images" file="user_sm.png" class="resize-home"/>
+							<sec:username/>
 							<a href='${createLink(uri: '/logout')}' id='logoutLink' class='banner-link'>
 								Logout
 							</a>

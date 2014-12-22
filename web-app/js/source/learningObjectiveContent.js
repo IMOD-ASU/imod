@@ -1,5 +1,5 @@
 $(function(){
-	// TODO REMOVE UNSAVE EVAL
+	// FIXME Replace Eval with JSON Parse
 	var jsonData=eval($("#treeData").val());
 	buildContentTree(jsonData,false);
 	$("#contentTree").on("ready.jstree",function(e){

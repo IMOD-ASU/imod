@@ -4,11 +4,11 @@
 
 <!-- Definition of the conditions for completing a learning objective -->
 <g:if test="${ !it.hideFromLearningObjectiveCondition }">
-<span class="learning-objective-condition">
-	<g:if test="${ it.condition != null }">
-		${ it.condition }
-	</g:if>
-</span>
+	<span class="learning-objective-condition">
+		<g:if test="${ it.condition != null }">
+			${ it.condition }
+		</g:if>
+	</span>
 </g:if>
 
 <!-- Definition of the perfomance evaulations for a learning objective -->

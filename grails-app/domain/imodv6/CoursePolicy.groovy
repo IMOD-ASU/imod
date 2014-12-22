@@ -16,14 +16,10 @@ class CoursePolicy {
 
 	/**
 	 * What type of policy this is
-	 * TODO: Should this belong to a Category instead?
 	 */
 	CoursePolicyCategory category
 
-	/**
-	 * TODO: why is a course policy related to a user?
-	 * TODO: why is this not a relationship?
-	 */
+	// FIXME course policy should relate to Imod not User
 	ImodUser user
 
 	/**

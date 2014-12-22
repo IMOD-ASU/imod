@@ -1,8 +1,5 @@
 package imodv6
 
-/**
- * TODO what is this?
- */
 class LearningObjectiveCriteriaType {
 	String description
 

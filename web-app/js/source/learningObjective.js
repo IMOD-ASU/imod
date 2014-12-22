@@ -23,7 +23,7 @@ $(document).ready(function() {
 	$('#domain-category-list').on(
 		'change', function(){
 			populateActionWordCategories();
-			
+
 	});
 
 	// listen for change in action word categories, when it does call ajax
@@ -52,7 +52,6 @@ $(document).ready(function() {
 		propagateToDefinition(this.value, 'condition')
 	);
 
-	// TODO no idea what this is doing
 	$('input:radio[name=LO_condition_type]').on(
 		'change',
 		function() {
@@ -90,7 +89,7 @@ $(document).ready(function() {
  			$('#action-word-categories label').removeClass('is-active');
  			$(this).addClass('is-active');
  		}
- 	});  	
+ 	});
 
 	// This listens for when a learning objective is selected and saves
 	// $('.action-word-category').on(
@@ -168,8 +167,8 @@ $(document).ready(function() {
 			$('#domain-category-list').val() == "null" ||
 			$('input[name=actionWordCategory]').is(':checked') == false){
 			alert("Learning Domain, Domain Category and Action Word Categories are required");
-			return false;	
-		}		
+			return false;
+		}
 	});
 });
 
@@ -271,11 +270,11 @@ function populateActionWordCategories(event) {
 function populateActionWords(event, ui) {
 
 	if(prevKeyword == $('#action-word-categories').find('.ui-state-active').text()){
-		return;			
+		return;
 	}else{
 		prevKeyword = $('#action-word-categories').find('.ui-state-active').text();
 	}
-	
+
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
 		type: 'GET',
@@ -287,7 +286,7 @@ function populateActionWords(event, ui) {
 			var actionWordsHTML = '';
 
 			if(event = true){
-				var originalActionWord = $('#action-words').val();		
+				var originalActionWord = $('#action-words').val();
 			}
 
 			// store the data from the call back
@@ -295,7 +294,7 @@ function populateActionWords(event, ui) {
 				if(data.value.verb !== undefined && data.value.verb !== null && data.value.verb !== ''){
 
 					var actionWordsVerb = data.value.verb.syn;
-					
+
 					// this will store the html for the action words
 					// for each action word
 					for (var i = 0; i < actionWordsVerb.length; i++) {
@@ -303,9 +302,9 @@ function populateActionWords(event, ui) {
 						if(actionWordsVerb[i] == originalActionWord){
 							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
 						}else{
-							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';	
+							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
 						}
-						
+
 					}
 				}
 
@@ -334,7 +333,7 @@ function populateActionWords(event, ui) {
 						}
 					}
 				}
-			}		
+			}
 
 			// display the html for the action words
 			$('#action-words').html(actionWordsHTML);

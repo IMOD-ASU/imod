@@ -1,8 +1,5 @@
 package imodv6
 
-/**
- * TODO is this a duplicate of Spring Security Role?
- */
 class Role {
 
 	String authority

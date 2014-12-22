@@ -2,7 +2,6 @@ package imodv6
 
 /**
  * General Instructor information
- * TODO attributes
  * TODO this could be shared between instructor and user
  */
 class UserProfile {

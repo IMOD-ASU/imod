@@ -46,7 +46,6 @@ class Imod {
 
 	/**
 	 * semester that the course will be taught in
-	 * TODO: should this be an object?
 	 */
 	String			courseSemester
 
@@ -65,14 +64,8 @@ class Imod {
 	String 			missedExams
 	String 			missedAssignments
 
-	/**
-	 * TODO what is this?
-	 */
 	String			timeRatio
 
-	/**
-	 * TODO What is this?
-	 */
 	String			imodNumber
 
 	/**
@@ -126,7 +119,6 @@ class Imod {
 
 		/**
 		 * Components of the course
-		 * TODO: what is a component?
 		 */
 		courseComponents:	CourseComponentCode,
 
