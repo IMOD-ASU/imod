@@ -67,11 +67,14 @@ function addObjective() {
 	jQuery('#addObjectiveName').val('');
 	jQuery('#addObjectiveName').show();
 	jQuery('#addObjectiveName').focus();
-	jQuery('#addObjectiveName').on('keyup', function (e) {
-		if (e.keyCode == 13) {
-			saveObjective();
+	jQuery('#addObjectiveName').on(
+		'keyup',
+		function (e) {
+			if (e.keyCode == 13) {
+				saveObjective();
+			}
 		}
-	});
+	);
 }
 
 function saveObjective() {
@@ -79,8 +82,11 @@ function saveObjective() {
 		// FIXME broken link
 		url: '/',
 		method: 'POST',
-		// TODO GET THE IMOD ID
-		data: {'name': jQuery('#addObjectiveName').val(), 'imod.id':123},
+		// FIXME get the Imod ID
+		data: {
+			'name': jQuery('#addObjectiveName').val(),
+			'imod.id': 123
+		},
 		success: function (data) {
 			if (data) {
 				jQuery('#chapterListUL').append(data);

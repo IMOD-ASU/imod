@@ -3,6 +3,7 @@ package imodv6
 /**
  * Help allows properly structured title attributes in the views to enter content into the Help Tooltip
  */
+// TODO Help is poorly designed consider a complete rewrite
 class Help {
 	/**
 	 * description of what the element being hovered over does
@@ -11,26 +12,19 @@ class Help {
 
 	/**
 	 * the name of the tab that this tip will be found on
-	 * TODO: Do there really need to be this many identifying features?
 	 */
 	String tabId
 
 	/**
 	 * identifier that will link this tip directly to the html element being hovered over
-	 * TODO: Do there really need to be this many identifying features?
 	 */
 	Integer tabFieldId
 
 	/**
 	 * identifier for the field that the Tool Tip will appear over
-	 * TODO: Do there really need to be this many identifying features?
 	 */
 	String tabFieldUiId
 
-	/**
-	 * TODO: What is this?
-	 * TODO: Do there really need to be this many identifying features?
-	 */
 	String tabFieldName
 
 	/**
