@@ -4,6 +4,8 @@
 <%@ page import="imodv6.PedagogyActivity" %>
 <%@ page import="imodv6.PedagogyReference" %>
 
+<!-- FIXME remove all inline CSS from this file -->
+
 <table id="topicScheduleMainTable" style="width: 100%;" cellpadding="10px">
 	<tbody id="showTopicScheduleBody">
 		<tr>
@@ -47,7 +49,7 @@
 								<i style="font-size: 11px;font-weight:bold;">
 									<font color="#F7931D">
 										To make multiple selections on "Focus", press 'Ctrl' while choosing options.
-										<br/>
+										<br />
 										Domain, Domain Category and Knowledge Dimension cannot be changed
 									</font>
 								</i>
@@ -166,7 +168,7 @@
 										<g:field type="text" name="pedagogyActivity${i+1}.material" value="${activity?.material}"/>
 									</td>
 									<td>
-										<a href="javascript:" onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">
+										<a onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">
 											x
 										</a>
 									</td>
@@ -191,7 +193,7 @@
 									<g:field type="text" name="pedagogyActivity1.material" value=""/>
 								</td>
 								<td>
-									<a href="javascript:" onclick="removeRowActivity(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">
+									<a onclick="removeRowActivity(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">
 										x
 									</a>
 								</td>
@@ -251,7 +253,7 @@
 										<g:select name="pedagogyReference1.refeType" from="${imodv6.PedagogyReferenceType.list()}" value="${reference.referenceType?.id}" optionKey="id" optionValue="description" noSelection="['':'Select one']"/>
 									</td>
 									<td>
-										<a href="javascript:" onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">
+										<a onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">
 											x
 										</a>
 									</td>
@@ -276,7 +278,7 @@
 									<g:select name="pedagogyReference1.refeType" from="${imodv6.PedagogyReferenceType.list()}" optionKey="id" optionValue="description" noSelection="['':'Select one']"/>
 								</td>
 								<td>
-									<a href="javascript:" onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">
+									<a onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">
 										x
 									</a>
 								</td>

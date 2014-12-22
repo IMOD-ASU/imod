@@ -1,4 +1,7 @@
-<script src="${resource(dir: 'js/source', file: 'pedagogy.pedagogyCloneTechnique.gsp.js')}" defer></script>
+<!-- FIXME remove all inline CSS from file -->
+<!-- FIXME re organize template as a grails server page, instead of a fragment -->
+
+<g:javascript src="source/pedagogy.pedagogyCloneTechnique.gsp.js" defer="defer" />
 
 <%--Clone Technique Form --%>
 <g:formRemote name="cloneTechniqueForm" id="cloneTechniqueForm" url="[controller:'pedagogy',action:'cloneSaveTech']" update="[success:'cloneTechnique',failure:'cloneTechnique']" onSuccess="closeCloneTechniqueTable(data);">

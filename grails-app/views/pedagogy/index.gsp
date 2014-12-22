@@ -6,6 +6,7 @@
 <%@ page import="imodv6.PedagogyActivityFocus" %>
 <%@ page import="imodv6.PedagogyMode" %>
 <%@ page import="imodv6.PedagogyReference" %>
+<!-- FIXME remove all inline CSS from file -->
 
 <html>
     <head>
@@ -14,9 +15,11 @@
         </title>
 
         <meta name="layout" content="imod">
-        <link rel="stylesheet" href="${resource(dir: 'css/source', file: 'pedagogy.pedagogyBodyTemplate.gsp.css')}">
-        <script src="${resource(dir: 'js/source', file: 'pedagogy.pedagogyObjectiveTemplate.gsp.js')}" defer></script>
-        <script src="${resource(dir: 'js/source', file: 'pedagogy.pedagogyBodyTemplate.gsp.js')}" defer></script>
+
+        <g:external dir="css/source" file="pedagogy.pedagogyBodyTemplate.gsp.css" />
+
+        <g:javascript src="source/pedagogy.pedagogyObjectiveTemplate.gsp.js" defer="defer" />
+        <g:javascript src="source/pedagogy.pedagogyBodyTemplate.gsp.js" defer="defer" />
     </head>
     <body>
         <div id="edit-imod" class="content scaffold-edit" role="main">
@@ -77,12 +80,13 @@
                                                             <g:message code="Filter Options"/>
                                                         </span>
                                                         <span style="float: right;padding-right: 7px;" class="title_text">
-                                                            <a href="javascript:" style="text-decoration:none;color:#FFFFFF" onclick="submitRefresh();" title="${Help.toolTip('PEDAGOGY', 'Refresh')}" class="showHover">
+                                                            <a style="text-decoration:none;color:#FFFFFF" onclick="submitRefresh();" title="${Help.toolTip('PEDAGOGY', 'Refresh')}" class="showHover">
                                                                 Refresh
                                                             </a>
                                                         </span>
                                                     </div>
 
+                                                    <!-- FIXME replace url with controller and action -->
                                                     <g:formRemote name="pedAccordion" id="pedAccordion" url="[action:'updateExtendedTechnique',controller:'pedagogy']" update="extendedMatchDiv">
                                                         <div id="ped_accordion">
                                                             <h3 title="${Help.toolTip('PEDAGOGY', 'Domain')}" class="showHover">
@@ -193,17 +197,21 @@
                                                 <tr style="border-bottom: 1px solid;  color:#CACCCE;">
                                                     <td>
                                                         <div style="margin-top: 5px;margin-bottom: 5px;"  id="pc3_img">
-
+                                                            <!-- FIXME replace with g:img -->
                                                             <img style="padding-left: 50px;" src="${resource(dir: 'images', file: 'logo_orange.png')}" alt="OrangeImodLogo"/>
 
                                                             <%-- PC3 Functionality --%>
 
+                                                            <!-- FIXME replace with g:img -->
                                                             <img id="performance-tab" style="padding-left: 15px; height: 40px;" src="${resource(dir: 'images', file: 'Performance.png')}" onmouseover="this.src='${resource(dir: 'images', file: 'OrangePerformance.png')}'" onmouseout="this.src='${resource(dir: 'images', file: 'Performance.png')}'" alt="Performance" title="${chapter?.performance}"/>
 
+                                                            <!-- FIXME replace with g:img -->
                                                             <img id="content-tab" style="height: 37px;" src="${resource(dir: 'images', file: 'Content.png')}" onmouseover="this.src='${resource(dir: 'images', file: 'OrangeContent.png')}'" onmouseout="this.src='${resource(dir: 'images', file: 'Content.png')}'" alt="Content" title="${contentTitle?.join(", ")}"/>
 
+                                                            <!-- FIXME replace with g:img -->
                                                             <img id="condition-tab" style="height: 37px;" src="${resource(dir: 'images', file: 'Condition.png')}" onmouseover="this.src='${resource(dir: 'images', file: 'OrangeCondition.png')}'" onmouseout="this.src='${resource(dir: 'images', file: 'Condition.png')}'"alt="Condition" title="${chapter?.condition}"/>
 
+                                                            <!-- FIXME replace with g:img -->
                                                             <img id="criteria-tab" style="height: 38px;" src="${resource(dir: 'images', file: 'Criteria.png')}" onmouseover="this.src='${resource(dir: 'images', file: 'OrangeCriteria.png')}'" onmouseout="this.src='${resource(dir: 'images', file: 'Criteria.png')}'"alt="Criteria" title="${chapter?.criteriaAccuracy}"/>
                                                         </div>
                                                     </td>
@@ -220,25 +228,33 @@
                                                 <div id="idealMatchDiv">
                                                     <g:each in="${pedaTechList}" var="pedaTech" status="i">
                                                         <div title="${pedaTech.pedagogyDescription}" class="imgblock showHover">
+                                                            <!-- FIXME Grails should only query models from controller -->
                                                             <g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,pedaTech)}"/>
+                                                            <!-- FIXME Grails should only query models from controller -->
                                                             <g:set var="assign" value="${ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(chapter,pedaTech)}"/>
+
+                                                            <!-- FIXME long IF ELSE chain logic should be in controller or model -->
                                                             <g:if test="${fav && assign}">
+                                                                <!-- FIXME replace with g:img -->
                                                                 <img style="height: 130px;"  src="${resource(dir: 'images', file: 'fav-assign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
                                                             </g:if>
                                                             <g:elseif test="${fav}">
+                                                                <!-- FIXME replace with g:img -->
                                                                 <img style="height: 130px;"  src="${resource(dir: 'images', file: 'fav-unassign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
                                                             </g:elseif>
                                                             <g:elseif test="${assign}">
+                                                                <!-- FIXME replace with g:img -->
                                                                 <img style="height: 130px;"  src="${resource(dir: 'images', file: 'unfav-assign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
                                                             </g:elseif>
                                                             <g:else>
+                                                                <!-- FIXME replace with g:img -->
                                                                 <img style="height: 130px;"  src="${resource(dir: 'images', file: 'unfav-unassign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
                                                             </g:else>
                                                             <div class="smallblackarea">
                                                                 <map name="${pedaTech.id}">
                                                                     <area shape="rect" coords="0,0,18,18" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: pedaTech.id, fav:'true', assign:'false'])}" title="Favorite" alt="Favorite" />
                                                                     <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: pedaTech.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
-                                                                    <area shape="rect" coords="90,90,200,200" href="javascript:clonePedagogyTech(${pedaTech.id});" title="Clone" alt="Clone" />
+                                                                    <area shape="rect" coords="90,90,200,200" onclick="clonePedagogyTech(${pedaTech.id});" title="Clone" alt="Clone" />
                                                                 </map>
                                                                 ${pedaTech.pedagogyTitle}
                                                             </div>
@@ -253,25 +269,33 @@
                                                 <div>
                                                     <g:each in="${favPedaTechList}" var="favPedaTech" status="i">
                                                         <div title="${favPedaTech.pedagogyTechnique.pedagogyDescription}" class="imgblock showHover">
-                                                            <g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,favPedaTech.pedagogyTechnique)}"/>
-                                                            <g:set var="assign" value="${ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(chapter,favPedaTech.pedagogyTechnique)}"/>
+                                                            <!-- FIXME Grails should only query models from controller -->
+                                                            <g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,favPedaTech.pedagogyTechnique)}" />
+                                                            <!-- FIXME Grails should only query models from controller -->
+                                                            <g:set var="assign" value="${ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(chapter,favPedaTech.pedagogyTechnique)}" />
+
+                                                            <!-- FIXME long IF ELSE chain logic should be in controller or model -->
                                                             <g:if test="${fav && assign}">
+                                                                <!-- FIXME replace with g:img -->
                                                                 <img style="height: 130px;"  src="${resource(dir: 'images', file: 'fav-assign.png')}" alt="Criteria" usemap="#${favPedaTech.pedagogyTechnique.id}" />
                                                             </g:if>
                                                             <g:elseif test="${fav}">
+                                                                <!-- FIXME replace with g:img -->
                                                                 <img style="height: 130px;"  src="${resource(dir: 'images', file: 'fav-unassign.png')}" alt="Criteria" usemap="#${favPedaTech.pedagogyTechnique.id}"/>
                                                             </g:elseif>
                                                             <g:elseif test="${assign}">
+                                                                <!-- FIXME replace with g:img -->
                                                                 <img style="height: 130px;"  src="${resource(dir: 'images', file: 'unfav-assign.png')}" alt="Criteria" usemap="#${favPedaTech.pedagogyTechniqueh.id}" />
                                                             </g:elseif>
                                                             <g:else>
+                                                                <!-- FIXME replace with g:img -->
                                                                 <img style="height: 130px;"  src="${resource(dir: 'images', file: 'unfav-unassign.png')}" alt="Criteria" usemap="#$favPedaTech.pedagogyTechnique.id}" />
                                                             </g:else>
                                                             <div class="smallblackarea">
                                                                 <map name="${favPedaTech.pedagogyTechnique.id}">
                                                                     <area shape="rect" coords="0,0,18,18" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'true', assign:'false'])}" title="Favorite" alt="Favorite" />
                                                                     <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
-                                                                    <area shape="rect" coords="90,90,200,200" href="javascript:clonePedagogyTech(${favPedaTech.pedagogyTechnique.id});" title="Clone" alt="Clone" />
+                                                                    <area shape="rect" coords="90,90,200,200" onclick="clonePedagogyTech(${favPedaTech.pedagogyTechnique.id})" title="Clone" alt="Clone" />
                                                                 </map>
                                                                 ${favPedaTech.pedagogyTechnique.pedagogyTitle}
                                                             </div>
@@ -288,7 +312,8 @@
                         <%--Dialog box for Add New Technique --%>
                         <div id="showAddNewTechnique" title="Add New Technique">
                             <%--To render the add new Technique dialog box--%>
-                            <g:form controller="pedagogy" action="addNewTechnique" name="newTechniqueForm" onsubmit="return onSubmitValidate();">
+                            <!-- FIXME rename validation function to be more descriptive -->
+                            <g:form controller="pedagogy" action="addNewTechnique" name="newTechniqueForm" onsubmit="onSubmitValidate()">
                                 <g:hiddenField name="id" value="${params.id ?: currentImod?.id}" />
                                 <g:render template="pedagogyTechniqueForm" />
                                 <div align="center" style="padding-top:10px">
@@ -299,8 +324,7 @@
                         </div>
 
                         <%--Dialog box for Clone Technique --%>
-                        <div id="cloneTechnique" title="Clone Technique">
-                        </div>
+                        <div id="cloneTechnique" title="Clone Technique"></div>
                     </td>
                 </tr>
             </table>

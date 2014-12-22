@@ -260,25 +260,25 @@
 					<span id='s2ui_login_link_container'>
 
 					<nobr>
-					<div id='loginLinkContainer'>
-						<sec:ifLoggedIn>
-							Logged in as
-							<sec:username/>
-							(<g:link controller='logout'>Logout</g:link>)
-						</sec:ifLoggedIn>
-						<sec:ifNotLoggedIn>
-							<a href='#' id='loginLink'>
-								Login
-							</a>
-						</sec:ifNotLoggedIn>
+						<div id='loginLinkContainer'>
+							<sec:ifLoggedIn>
+								Logged in as
+								<sec:username/>
+								(<g:link controller='logout'>Logout</g:link>)
+							</sec:ifLoggedIn>
+							<sec:ifNotLoggedIn>
+								<a href='#' id='loginLink'>
+									Login
+								</a>
+							</sec:ifNotLoggedIn>
 
-						<sec:ifSwitched>
-							<a href='${request.contextPath}/j_spring_security_exit_user'>
-								Resume as
-								<sec:switchedUserOriginalUsername/>
-							</a>
-						</sec:ifSwitched>
-					</div>
+							<sec:ifSwitched>
+								<a href='${request.contextPath}/j_spring_security_exit_user'>
+									Resume as
+									<sec:switchedUserOriginalUsername/>
+								</a>
+							</sec:ifSwitched>
+						</div>
 					</nobr>
 
 					</span>
@@ -289,15 +289,15 @@
 			<div id="s2ui_main">
 				<div id="s2ui_content">
 					<s2ui:layoutResources module='spring-security-ui' />
-					<g:layoutBody/>
+					<g:layoutBody />
 				</div>
 			</div>
 
 		</div>
 
-		<g:render template='/includes/ajaxLogin' plugin='spring-security-ui'/>
+		<g:render template='/includes/ajaxLogin' plugin='spring-security-ui' />
 
-		<s2ui:showFlash/>
+		<s2ui:showFlash />
 
 	</body>
 </html>

@@ -16,34 +16,22 @@
 			<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 				Learning Domain
 			</label>
-			<g:select
-				name="LDL"
-				id="learning-domain-list"
-				from="${domainList.name}"
-				noSelection="${['null':'Nothing Selected']}"
-				value="${selectedDomain?.name?:""}"
-			/>
+			<g:select name="LDL" id="learning-domain-list" from="${domainList.name}" noSelection="${['null':'Nothing Selected']}" value="${selectedDomain?.name?:""}" />
 			<br />
 
 			<label for="domain-category-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
 				Domain Category
 			</label>
-			<g:select
-				name="DCL"
-				id="domain-category-list"
-				from="${categoriesList.name}"
-				noSelection="${['null':'Nothing Selected']}"
-				value="${selectedDomainCategory?.name?:"" }"
-			/>
+			<g:select name="DCL" id="domain-category-list" from="${categoriesList.name}" noSelection="${['null':'Nothing Selected']}" value="${selectedDomainCategory?.name?:"" }" />
 			<br />
 
 			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" />
 
 			<div id="action-word-categories">
 				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}" status="i">
-
-					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"><label for="radio${i}">${actionWordCategory}</label>
-
+					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"><label for="radio${i}">
+						${actionWordCategory}
+					</label>
 				</g:each>
 			</div>
 
