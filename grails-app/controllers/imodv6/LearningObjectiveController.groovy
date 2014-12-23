@@ -60,6 +60,7 @@ class LearningObjectiveController {
 	 * @return                     redirects back to the page that user was just on
 	 */
 	//TODO: add confirmation that the content was successfully saved
+	// FIXME each page should have its own save
 	def save (Long id, Long learningObjectiveID, String pageType){
 		//gets the learning objective to be updated
 		def learningObjectiveInstance = LearningObjective.get(learningObjectiveID)
@@ -128,7 +129,6 @@ class LearningObjectiveController {
 	 * Action Words are found by starting with a Learning Domain, choosing a domain category, the selecting an action word from a list
 	 * @param  id                  IMOD that learning objective is associated with
 	 * @param  learningObjectiveID ID of the specific learning objective being edited
-	 * @return                     Renders peformance page
 	 */
 	def performance(Long id, Long learningObjectiveID) {
 		// get relevant imod
@@ -147,8 +147,6 @@ class LearningObjectiveController {
 		def domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
 		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
 
-
-
 		[
 			currentImod:				currentImod,
 			learningObjectivesList:		learningObjectivesList,
@@ -164,12 +162,6 @@ class LearningObjectiveController {
 		]
 	}
 
-	/**
-	 * [content description]
-	 * @param  id                  [description]
-	 * @param  learningObjectiveID [description]
-	 * @return                     [description]
-	 */
 	def content(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
 		def learningObjectivesList = learningObjectiveManager(currentImod)
@@ -194,12 +186,6 @@ class LearningObjectiveController {
 		]
 	}
 
-	/**
-	 * [condition description]
-	 * @param  id                  [description]
-	 * @param  learningObjectiveID [description]
-	 * @return                     [description]
-	 */
 	def condition(Long id, Long learningObjectiveID) {
 		def currentImod					=  Imod.get(id)
 		def learningObjectivesList		=  learningObjectiveManager(currentImod)
@@ -220,12 +206,6 @@ class LearningObjectiveController {
 		]
 	}
 
-	/**
-	 * [criteria description]
-	 * @param  id                  [description]
-	 * @param  learningObjectiveID [description]
-	 * @return                     [description]
-	 */
 	def criteria(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod

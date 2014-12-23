@@ -5,4 +5,8 @@ package imodv6
  */
 class PedagogyMode {
 	String name
+
+	static mapping = {
+		version false
+	}
 }

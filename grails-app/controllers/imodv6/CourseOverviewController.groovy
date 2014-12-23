@@ -12,7 +12,7 @@ class CourseOverviewController {
 
     def springSecurityService
 
-    def create(){
+    def create() {
 
     	print params
 
@@ -41,7 +41,9 @@ class CourseOverviewController {
 
     }
 
+	// FIXME rename the action to addInstructor
     def add(){
+		// FIXME rename GSP file to addInstructor and delete this render statement
     	render(
 			view: 'addinstructor',
 		)

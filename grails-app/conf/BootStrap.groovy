@@ -29,6 +29,7 @@ class BootStrap {
 		/**
 		 * Generates the user security roles
 		 */
+		// FIXME there should be a single check to see if data exists that is shared by all domains
 		if (Role.list().size() == 0) {
 			new Role(
 				authority: "ROLE_ANONYMOUS"
@@ -67,11 +68,6 @@ class BootStrap {
 
 		/**
 		 * This is filling the information for the help box
-		 * @param tabFieldUiId [description]
-		 * @param tabId [description]
-		 * @param tabFieldId [description]
-		 * @param tabFieldName [description]
-		 * @param text [description]
 		 */
 		if (Help.count() == 0) {
 			/**

@@ -22,6 +22,7 @@ class PedagogyTechnique {
 
 	static mapping = {
 		pedagogyDescription type: 'text'
+		version false
 	}
 
     static constraints = {

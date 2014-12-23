@@ -111,6 +111,7 @@ class ImodController {
 			return
 		}
 
+		// FIXME handle a null imod seperate from handling versioning
 		if (version != null) {
 			if (currentImod.version > version) {
 				currentImod.errors.rejectValue(
