@@ -18,6 +18,7 @@ class PedagogyController {
 		def domain = []
 		def domainCategory = []
 		def kdomain = []
+		// FIXME domains should be treated as list object, not a string representing a list
 		if(params.domain.toString().contains('[')) {
 			params.domain.each{
 				domain.add(it)
@@ -27,6 +28,7 @@ class PedagogyController {
 			domain.add(params.domain)
 		}
 
+		// FIXME domain categories should be treated as list object, not a string representing a list
 		if(params.domainCategory.toString().contains('[')) {
 			params.domainCategory.each{
 				domainCategory.add(it)
@@ -36,6 +38,7 @@ class PedagogyController {
 			domainCategory.add(params.domainCategory)
 		}
 
+		// FIXME knowledge domains should be treated as list object, not a string representing a list
 		if(params.kdomain.toString().contains('[')) {
 			params.kdomain.each{
 				kdomain.add(it)
@@ -114,8 +117,9 @@ class PedagogyController {
 	/**
 	 * index action is called when used click on pedagogy tab from main page.
 	 * @param id
-	 * @return
 	 */
+	// TODO test if no learning objectives exist
+	// TODO test if no domain category is set for learning objective
 	def index(Long id) {
 		// get the selected imod
 		def imod = Imod.get(id)
@@ -278,6 +282,8 @@ class PedagogyController {
 			]
 		)
 	}
+
+	// FIXME Either use or delete this code
 
 	// /**
 	//  * Index, This action will used to load left panel on Pedagogy

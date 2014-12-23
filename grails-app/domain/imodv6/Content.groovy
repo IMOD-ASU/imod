@@ -44,10 +44,6 @@ class Content {
 	 *****************
 	 */
 
-	/**
-	 * Todo: Why is Content Directly related to an Imod?
-	 * If this is required why is it not a belongs to relationship?
-	 */
 	Imod imod
 
 	static hasMany = [

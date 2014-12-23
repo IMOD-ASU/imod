@@ -16,6 +16,7 @@ class PedagogyReference {
 	]
 
 	static mapping = {
+		version false
 		description type: 'text'
 	}
     static constraints = {

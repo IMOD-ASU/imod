@@ -38,12 +38,6 @@ class Resource {
 	 */
 	String resourceURL
 
-	//This was earlier developers attempt at storing a file
-	//byte[] file
-	//String fileName
-	//String fileContentType
-
-
 	/*
 	 *****************
 	 * Relationships *
@@ -71,13 +65,6 @@ class Resource {
 		description nullable: true
 		resourceURL nullable: true
 		resourceType nullable: true
-
-		//fileName nullable: true
-		//fileContentType nullable: true
-		//file(
-		//	size: 0..20000000,
-		//	nullable: true
-		//)
 	}
 
 	/**

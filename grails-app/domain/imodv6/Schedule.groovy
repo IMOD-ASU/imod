@@ -20,7 +20,7 @@ class Schedule {
 
 	static hasMany = [
 		scheduleWeekDays: ScheduleWeekDays
-		]
+	]
 
     static constraints = {
 		repeats			nullable: true
@@ -32,8 +32,8 @@ class Schedule {
 
 	static mapping = {
 		version false
-		repeats lazy:false
-		repeatsEvery lazy:false
+		repeats lazy: false
+		repeatsEvery lazy: false
 		startTime type: PersistentLocalTime
 		endTime   type: PersistentLocalTime
 	}
