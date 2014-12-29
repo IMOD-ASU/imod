@@ -197,7 +197,7 @@ function populateDomainCategories(event) {
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: $('#learning-domain-list').val()
+			domainName: $('#learning-domain-list').val().trim()
 		},
 		success: function(data){
 
@@ -235,7 +235,7 @@ function populateActionWordCategories(event) {
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			domainName: $('#domain-category-list').val()
+			domainName: $('#domain-category-list').val().trim()
 		},
 		success: function(data) {
 			// store the data from the call back
@@ -280,7 +280,7 @@ function populateActionWords(event, ui) {
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			actionWordCategory: $('#action-word-categories').find('.ui-state-active').text()
+			actionWordCategory: $('#action-word-categories').find('.ui-state-active').text().trim()
 		},
 		success: function(data) {
 			var actionWordsHTML = '';
