@@ -97,6 +97,7 @@ class LearningObjective {
 		criteriaQualityEnabled	defaultValue: 'true'
 		criteriaQuantityEnabled	defaultValue: 'true'
 		criteriaSpeedEnabled	defaultValue: 'true'
+		autoTimestamp true
 	}
 
 	public isEmpty() {
