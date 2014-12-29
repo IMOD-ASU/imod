@@ -140,8 +140,6 @@ class LearningObjectiveController {
 
 		if ( learningObjectiveID == null ){
 
-			print learningObjectivesList.first().id
-
 			redirect(uri: "/learningObjective/performance/"+id+"?learningObjectiveID=" + learningObjectivesList.first().id)
 		}
 

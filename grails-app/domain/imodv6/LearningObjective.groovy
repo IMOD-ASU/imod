@@ -45,8 +45,6 @@ class LearningObjective {
 	// Learning Objective has many criteria, each  criteria has an enumerated type and hidden or not
 	LearningObjectiveCriteriaType criteriaType
 
-	Date dateCreated
-
 	/**
 	 * Relationships to other domain objects
 	 */
