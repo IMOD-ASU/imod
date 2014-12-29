@@ -131,8 +131,18 @@ class LearningObjectiveController {
 	 * @param  learningObjectiveID ID of the specific learning objective being edited
 	 */
 	def performance(Long id, Long learningObjectiveID) {
+
 		// get relevant imod
 		def currentImod = Imod.get(id)
+
+		if ( learningObjectiveID == null ){
+
+			print currentImod
+			print currentImod.learningObjectives.first()
+
+			redirect(uri: "/learningObjective/performance/"+id+"?learningObjectiveID=" + currentImod.learningObjectives.first().id)
+		}
+
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = learningObjectiveManager(currentImod)
 
