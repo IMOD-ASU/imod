@@ -90,7 +90,7 @@ input[disabled='disabled'] {
 
 #LO-creator {
 	border: 1px solid #C4C2C2;
-	border-radius: 5px;
+	border-radius: 5px; padding-right: 0;
 }
 
 #LO-condition-radio-form {
@@ -134,7 +134,7 @@ input[disabled='disabled'] {
 	display: inline-block;
 	position: relative;
 	float: left;
-	top: 10px;
+	top: 0;
 	left: 15px;
 }
 
@@ -143,32 +143,41 @@ input[disabled='disabled'] {
 	width: 60px;
 }
 
-.learning-objectives.sub-nav {
+.learning-objective-creator{
+	height: 50px; 
+	padding-top: 15px;
+	margin-bottom: 10px;
 	text-align: center;
-	border: 0px;
+	border-bottom: 1px solid #C4C2C2;
+}
+
+.learning-objectives.sub-nav {
+	display: inline-block;
+	text-align: center;
+	border: 1px solid #C4C2C2;
 	list-style: none;
+	border-radius: 1.5em;
+	background: linear-gradient(#FDFDFD, #DDDDDD);
 }
 
 .learning-objectives.sub-nav li {
 	display: inline-block;
 	width: 9em;
 	height: 2.6em;
+	line-height: 2.6em;
 	padding-bottom: 0;
 	border: 1px solid #C4C2C2 none;
 	border-radius: 0px;
 	margin: 0;
-	margin-left: -3px;
-	background: linear-gradient(#FDFDFD, #DDDDDD);
-	text-shadow: 2px 2px 1px white
+	text-shadow: 2px 2px 1px white;
+	text-align: center;
 }
 
 .learning-objectives.sub-nav li:first-child {
-	border-left: 1px solid #C4C2C2;
 	border-radius: 1.5em 0px 0px 1.5em;
 }
 
 .learning-objectives.sub-nav li:last-child {
-	border-right: 1px solid #C4C2C2;
 	border-radius: 0px 1.5em 1.5em 0px;
 }
 
@@ -223,7 +232,7 @@ input[disabled='disabled'] {
 	float: right;
 	padding: 0.3em;
 	border: none;
-	margin: 0.1em 0 0 0;
+	margin: 0.1em 10px 0 0;
 	background-color: #efefef;
 	overflow: hidden;
 	box-shadow: 0 0 3px 1px #aaaaaa;

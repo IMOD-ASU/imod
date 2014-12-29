@@ -99,14 +99,9 @@
 										</g:link>
 									</li>
 								</ul>
-
-								<div class="tabs-background"></div>
-
-								<hr />
-								<br />
-
-								<g:layoutBody />
+								
 							</div>
+							<g:layoutBody />
 						</td>
 					</tr>
 				</table>
