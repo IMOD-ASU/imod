@@ -116,11 +116,7 @@ class LearningObjectiveController {
 		learningObjectiveInstance.save()
 
 		// redirect to the correct page
-		redirect(
-			action:					pageType,
-			id:						id,
-			learningObjectiveID:	learningObjectiveID
-		)
+		redirect(uri: "/learningObjective/"+pageType+"/"+id+"?learningObjectiveID=" + learningObjectiveID)
 	}
 
 	/**
@@ -138,6 +134,7 @@ class LearningObjectiveController {
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = learningObjectiveManager(currentImod)
 
+		// if no learning objective selected, select the first available
 		if ( learningObjectiveID == null ){
 
 			redirect(uri: "/learningObjective/performance/"+id+"?learningObjectiveID=" + learningObjectivesList.first().id)
