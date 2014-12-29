@@ -45,6 +45,8 @@ class LearningObjective {
 	// Learning Objective has many criteria, each  criteria has an enumerated type and hidden or not
 	LearningObjectiveCriteriaType criteriaType
 
+	Date dateCreated
+
 	/**
 	 * Relationships to other domain objects
 	 */
@@ -97,6 +99,7 @@ class LearningObjective {
 		criteriaQualityEnabled	defaultValue: 'true'
 		criteriaQuantityEnabled	defaultValue: 'true'
 		criteriaSpeedEnabled	defaultValue: 'true'
+		autoTimestamp true
 	}
 
 	public isEmpty() {
