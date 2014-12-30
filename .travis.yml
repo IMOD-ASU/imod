@@ -1,4 +1,5 @@
-language: groovy
+language: java
+
 jdk:
   - openjdk7
   - oraclejdk7
@@ -7,10 +8,16 @@ jdk:
 addons:
   postgresql: "9.3"
 
+sudo: false
+
+cache:
+  directories:
+  - ~/.grails
+
 before_script:
   - psql -c 'create database sample;' -U postgres
 
 script:
-  - ./grailsw compile
+  - ./grailsw refresh-dependencies
   - ./grailsw codenarc
   - cat static-analysis.txt
