@@ -6,7 +6,7 @@ jdk:
   - oraclejdk8
 
 addons:
-  postgresql: "9.4"
+  postgresql: "9.3"
 
 sudo: false
 
