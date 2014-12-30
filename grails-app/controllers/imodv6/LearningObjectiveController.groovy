@@ -48,7 +48,9 @@ class LearningObjectiveController {
 		redirect(
 			action: 'performance',
 			id: id,
-			learningObjectiveID: learningObjectiveInstance.id,
+			params: [
+				learningObjectiveID: learningObjectiveInstance.id
+			]
 		)
 	}
 
@@ -116,7 +118,13 @@ class LearningObjectiveController {
 		learningObjectiveInstance.save()
 
 		// redirect to the correct page
-		redirect(uri: "/learningObjective/"+pageType+"/"+id+"?learningObjectiveID=" + learningObjectiveID)
+		redirect(
+			action: pageType,
+			id: id,
+			params: [
+				learningObjectiveID: learningObjectiveID
+			]
+		)
 	}
 
 	/**
@@ -136,8 +144,13 @@ class LearningObjectiveController {
 
 		// if no learning objective selected, select the first available
 		if ( learningObjectiveID == null ){
-
-			redirect(uri: "/learningObjective/performance/"+id+"?learningObjectiveID=" + learningObjectivesList.first().id)
+			redirect(
+				action: pageType,
+				id: id,
+				params: [
+					learningObjectiveID: learningObjectivesList.first().id
+				]
+			)
 		}
 
 		// get all performance data to set in the Performance page
