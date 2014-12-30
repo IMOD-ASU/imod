@@ -145,7 +145,7 @@ class LearningObjectiveController {
 		// if no learning objective selected, select the first available
 		if ( learningObjectiveID == null ){
 			redirect(
-				action: pageType,
+				action: 'performance',
 				id: id,
 				params: [
 					learningObjectiveID: learningObjectivesList.first().id
