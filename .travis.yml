@@ -10,10 +10,6 @@ addons:
 
 sudo: false
 
-cache:
-  directories:
-  - ~/.grails
-
 before_script:
   - psql -c 'create database sample;' -U postgres
 
