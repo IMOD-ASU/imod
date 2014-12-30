@@ -17,4 +17,7 @@ script:
   - ./grailsw compile
   - ./grailsw codenarc
   - cat static-analysis.txt
+  - pwd
+  - cd ~/
+  - pwd
   - ls -lar
