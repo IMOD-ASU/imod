@@ -10,6 +10,10 @@ addons:
 
 sudo: false
 
+cache:
+  directories:
+  - ~/.grails
+
 before_script:
   - psql -c 'create database sample;' -U postgres
 
@@ -17,7 +21,3 @@ script:
   - ./grailsw compile
   - ./grailsw codenarc
   - cat static-analysis.txt
-  - pwd
-  - cd ~/
-  - pwd
-  - ls -lar
