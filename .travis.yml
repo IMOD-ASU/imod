@@ -18,5 +18,6 @@ before_script:
   - psql -c 'create database sample;' -U postgres
 
 script:
+  - ./grailsw refresh-dependencies
   - ./grailsw codenarc
   - cat static-analysis.txt
