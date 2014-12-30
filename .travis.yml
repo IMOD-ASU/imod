@@ -1,11 +1,14 @@
-language: groovy
+language: java
+
 jdk:
   - openjdk7
   - oraclejdk7
   - oraclejdk8
 
 addons:
-  postgresql: "9.3"
+  postgresql: "9.4"
+
+sudo: false
 
 before_script:
   - psql -c 'create database sample;' -U postgres
@@ -14,3 +17,4 @@ script:
   - ./grailsw compile
   - ./grailsw codenarc
   - cat static-analysis.txt
+  - ls -lar
