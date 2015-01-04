@@ -192,7 +192,6 @@ class LearningObjectiveController {
 			getSubContent(it,learningObjectiveInstance)
 		}
 		contents = new groovy.json.JsonBuilder(contents).toString()
-		contents = contents.replaceAll('"', /'/)
 
 		[
 			currentImod:			currentImod,

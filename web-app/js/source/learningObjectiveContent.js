@@ -1,6 +1,5 @@
 $(function(){
-	// FIXME Replace Eval with JSON Parse
-	var jsonData=eval($("#treeData").val());
+	var jsonData=JSON.parse($("input[name=treeData]").val());
 	buildContentTree(jsonData,false);
 	$("#contentTree").on("ready.jstree",function(e){
 		var idList=$("#contentTree").find("li.topicSelected");
@@ -162,7 +161,7 @@ function moveContent(contentID, parentID){
 	});
 }
 function setContents(idArray){
-	var objectiveID=$("#learningObjectiveID").val();
+	var objectiveID=$("input[name=learningObjectiveID]").val();
 	idArray=JSON.stringify(idArray);
 	$.ajax({
 		url:"../../content/setLearningObjective",
@@ -189,5 +188,4 @@ function populateTopics(topicList){
 		);
 	});
 	$("#contentTree").jstree('open_all');
-
 }

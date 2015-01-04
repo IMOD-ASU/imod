@@ -30,8 +30,7 @@
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
-		<!-- FIXME replace with g:hiddenField -->
-		<input type="hidden" id="learningObjectiveID" value="${learningObjective.id}" />
+		<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
 		<g:render template="/content/topicForm"/>
 		<fieldset>
 			<span class="topicModalButtonGradient">
@@ -41,8 +40,7 @@
 				</button>
 			</span>
 		</fieldset>
-		<!-- FIXME replace with g:hiddenField -->
-		<input type="hidden" id="treeData" value="${contentList}">
+		<g:hiddenField name="treeData" value='${contentList}' />
 		<div id="contentTree"></div>
 	</body>
 </html>
