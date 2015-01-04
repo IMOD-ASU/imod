@@ -288,6 +288,7 @@ function addTopic(){
 			for (i=0;i<priorities.length;i++){
 				prioritiesOptions+='<option value="'+priorities[i]+'">'+priorities[i]+'</option>';
 			}
+			// FIXME move html block out of javascript file
 			$('<tr id="'+id+'" class="topicItem">'+
 				'<td class="saveIcon">'+
 					'<i class="hidden fa fa-eraser"></i>'+

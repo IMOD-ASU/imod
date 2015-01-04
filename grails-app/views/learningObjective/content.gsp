@@ -4,7 +4,6 @@
 			Learning Objective - Content
 		</title>
 		<g:external dir="css/source" file="learningObjective.css" />
-		<g:external dir="css/source" file="content.css" />
 
 		<!-- FIXME These should be loaded when needed, not prefetched -->
 		<link id="imgNone" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimNone.png')}">

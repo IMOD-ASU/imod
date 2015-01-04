@@ -6,13 +6,17 @@ class PedagogyTechniqueController {
 
 	static scaffold = PedagogyTechnique
 
-	def save() {
-		// FIXME imod id be dynamicly set
-		def currentImod = Imod.get(48)
+	def save(Long id) {
+		def currentImod = Imod.get(id)
 		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
 
 		if (!pedagogyTechniqueInstance.save()) {
-			render(view: 'create', model: [pedagogyTechniqueInstance: pedagogyTechniqueInstance])
+			render(
+				view: 'create',
+				model: [
+					pedagogyTechniqueInstance: pedagogyTechniqueInstance
+				]
+			)
 			return
 		}
 
