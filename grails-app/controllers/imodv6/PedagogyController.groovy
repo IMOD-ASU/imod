@@ -70,19 +70,6 @@ class PedagogyController {
 			userId: ImodUser.get(springSecurityService.principal.id)
 		]
 	}
-	/**
-	 * addNewTechnique, is used to create new Technique
-	 */
-	def addNewTechnique(Long id) {
-		def pedagogyTechniqueList = new PedagogyTechnique(params)
-		pedagogyTechniqueList.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
-		pedagogyTechniqueList.save()
-
-		redirect(
-			action: 'index',
-			id: id
-		)
-	}
 
 	/**
 	 * index action is called when used click on pedagogy tab from main page.

@@ -6,6 +6,21 @@ class PedagogyTechniqueController {
 
 	static scaffold = PedagogyTechnique
 
+	/**
+	 * creates a new Pedagogy Technique
+	 */
+	def create(Long id) {
+		def newTechnique = new PedagogyTechnique()
+		newTechnique.pedagogyMode = PedagogyMode.findByName('online')
+		newTechnique.save()
+
+		redirect(
+			controller: 'pedagogy',
+			action: 'index',
+			id: id
+		)
+	}
+
 	def save(Long id) {
 		def currentImod = Imod.get(id)
 		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
