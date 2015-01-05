@@ -1,6 +1,4 @@
 select[disabled][disabled] {
-    -moz-user-input: disabled;
-    -moz-user-focus: ignore;
     color: GrayText;
     background-color: ThreeDFace;
     cursor: inherit;
@@ -35,11 +33,7 @@ select[disabled][disabled] {
 }
 .ui-tooltip {
     padding: 5px 10px;
-    //color: white;
-    //border-radius: 20px;
     font: bold 12px 'Helvetica Neue', Sans-Serif;
-    //text-transform: uppercase;
-    //box-shadow: 0 0 7px black;
 }
 .arrow {
     width: 70px;
@@ -65,13 +59,45 @@ select[disabled][disabled] {
     width: 25px;
     height: 25px;
     box-shadow: 6px 5px 9px -9px black;
-    -webkit-transform: rotate(45deg);
-       -moz-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-         -o-transform: rotate(45deg);
     tranform: rotate(45deg);
 }
 .arrow.top:after {
     bottom: -20px;
     top: auto;
+}
+
+.graphErrorMessage {
+    font-weight: bold;
+    margin: 120px;
+}
+
+.treeEmptyMessage {
+    font-weight: bold;
+    margin: 21px;
+    padding-top: 81px;
+}
+
+.topicScheduleEmptyMessage {
+    font-weight: bold;
+    margin: 15px;
+    padding-top: 107px;
+}
+
+.firstChapter {
+    background-color: #e8e8e8 !important;
+}
+
+.greyBackColor {
+    background-color: #a9a9a9;
+}
+
+.qtip {
+    width: 196px !important;
+    margin-top: 15px;
+}
+
+.pc3_hover {
+    height: 50px !important;
+    margin-top: 15px;
+    background-color: #a9a9a9;
 }

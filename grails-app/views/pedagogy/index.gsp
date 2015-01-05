@@ -16,10 +16,7 @@
 
         <meta name="layout" content="imod">
 
-        <g:external dir="css/source" file="pedagogy.pedagogyBodyTemplate.gsp.css" />
-
-        <g:javascript src="source/pedagogy.pedagogyObjectiveTemplate.gsp.js" defer="defer" />
-        <g:javascript src="source/pedagogy.pedagogyBodyTemplate.gsp.js" defer="defer" />
+        <g:external dir="css/source" file="pedagogy.css" />
     </head>
     <body>
         <div id="edit-imod" class="content scaffold-edit" role="main">
