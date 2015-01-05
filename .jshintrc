@@ -1,0 +1,10 @@
+{
+	"browser": true,
+	"curly": true,
+	"globalstrict": true,
+	"jquery": true,
+	"noempty": true,
+	"trailing": true,
+	"undef": true,
+	"unused": true
+}

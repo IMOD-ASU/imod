@@ -4,7 +4,6 @@
 			Learning Objective - Content
 		</title>
 		<g:external dir="css/source" file="learningObjective.css" />
-		<g:external dir="css/source" file="content.css" />
 
 		<!-- FIXME These should be loaded when needed, not prefetched -->
 		<link id="imgNone" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimNone.png')}">
@@ -30,8 +29,7 @@
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
-		<!-- FIXME replace with g:hiddenField -->
-		<input type="hidden" id="learningObjectiveID" value="${learningObjective.id}" />
+		<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
 		<g:render template="/content/topicForm"/>
 		<fieldset>
 			<span class="topicModalButtonGradient">
@@ -41,8 +39,7 @@
 				</button>
 			</span>
 		</fieldset>
-		<!-- FIXME replace with g:hiddenField -->
-		<input type="hidden" id="treeData" value="${contentList}">
+		<g:hiddenField name="treeData" value='${contentList}' />
 		<div id="contentTree"></div>
 	</body>
 </html>

@@ -1016,8 +1016,7 @@ a.ui-tabs-anchor {
     box-shadow: 5px 5px 5px #888888;
 }
 
-label[for=weekdays]
-{
-	width: 10%;
-	margin-left: 1%;	
+label[for=weekdays] {
+    width: 10%;
+    margin-left: 1%;
 }

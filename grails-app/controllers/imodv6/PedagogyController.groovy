@@ -283,31 +283,6 @@ class PedagogyController {
 		)
 	}
 
-	// FIXME Either use or delete this code
-
-	// /**
-	//  * Index, This action will used to load left panel on Pedagogy
-	//  */
-	// def index() {
-	//
-	// 	// TO get the Learning Objectives
-	// 	Imod imod = Imod.get(48)
-	// 	def objectiveList = LearningObjective.findAllByImod(imod)
-	//
-	// 	//To get the Domain Category
-	// 	LearningDomain domain = LearningDomain.get(1)
-	// 	def domainList = DomainCategory.findAllByDomain(domain);
-	//
-	// 	//To get the Knowledge Dimension
-	// 	def KnowledgeDomainlist = KnowledgeDimension.list()
-	//
-	//
-	// 	[
-	// 		objectiveList : objectiveList,
-	// 		domainList: domainList,
-	// 		KnowledgeDomainlist: KnowledgeDomainlist
-	// 	]
-	// }
 	/**
 	 * To open Pedagogy Technique clone popup
 	 */
