@@ -70,19 +70,6 @@ class PedagogyController {
 			userId: ImodUser.get(springSecurityService.principal.id)
 		]
 	}
-	/**
-	 * addNewTechnique, is used to create new Technique
-	 */
-	def addNewTechnique(Long id) {
-		def pedagogyTechniqueList = new PedagogyTechnique(params)
-		pedagogyTechniqueList.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
-		pedagogyTechniqueList.save()
-
-		redirect(
-			action: 'index',
-			id: id
-		)
-	}
 
 	/**
 	 * index action is called when used click on pedagogy tab from main page.
@@ -234,17 +221,17 @@ class PedagogyController {
 	def assignTechnique(Long id, Long objectiveId) {
 		def imodUser = ImodUser.get(springSecurityService.principal.id)
 		def pedagogyTech = PedagogyTechnique.get(params.pedtecID)
-		def learningObjective = LearningObjective.get(params.objectiveId)
-		def assingTech = ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(learningObjective,pedagogyTech)
-		ImodPedagogyAssign assign = assingTech ? assingTech : new ImodPedagogyAssign()
-		assign.pedagogyTechnique = pedagogyTech
-		assign.learningObjective = learningObjective
-		if(assingTech) {
-			assign.delete()
-		}
-		else {
-			assign.save()
-		}
+		// def learningObjective = LearningObjective.get(params.objectiveId)
+		// def assingTech = ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(learningObjective,pedagogyTech)
+		// ImodPedagogyAssign assign = assingTech ? assingTech : new ImodPedagogyAssign()
+		// assign.pedagogyTechnique = pedagogyTech
+		// assign.learningObjective = learningObjective
+		// if(assingTech) {
+		// 	assign.delete()
+		// }
+		// else {
+		// 	assign.save()
+		// }
 		redirect(
 			action: 'index',
 			id: id,

@@ -167,7 +167,11 @@
                                                 <span>
 
                                                     <%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-                                                    <g:actionSubmit value="Add New Technique" action="addNewTechnique" />
+                                                    <g:link controller="pedagogyTechnique" action="create" id="${currentImod.id}">
+                                                        <button>
+                                                            Add New Technique
+                                                        </button
+                                                    </g:link>
 
                                                     <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}" onclick="expandFavorite();">
                                                         Favorites
@@ -213,7 +217,7 @@
                                                 </h3>
                                                 <div id="idealMatchDiv">
                                                     <g:each in="${pedaTechList}" var="pedaTech" status="i">
-                                                        <div title="${pedaTech.pedagogyDescription}" class="imgblock showHover">
+                                                        <div title="${pedaTech.description}" class="imgblock showHover">
                                                             <!-- FIXME Grails should only query models from controller -->
                                                             <g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,pedaTech)}"/>
                                                             <!-- FIXME Grails should only query models from controller -->
@@ -242,7 +246,7 @@
                                                                     <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: pedaTech.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
                                                                     <area shape="rect" coords="90,90,200,200" onclick="clonePedagogyTech(${pedaTech.id});" title="Clone" alt="Clone" />
                                                                 </map>
-                                                                ${pedaTech.pedagogyTitle}
+                                                                ${pedaTech.title}
                                                             </div>
                                                         </div>
                                                     </g:each>
@@ -283,7 +287,7 @@
                                                                     <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
                                                                     <area shape="rect" coords="90,90,200,200" onclick="clonePedagogyTech(${favPedaTech.pedagogyTechnique.id})" title="Clone" alt="Clone" />
                                                                 </map>
-                                                                ${favPedaTech.pedagogyTechnique.pedagogyTitle}
+                                                                ${favPedaTech.pedagogyTechnique.title}
                                                             </div>
                                                         </div>
                                                     </g:each>
