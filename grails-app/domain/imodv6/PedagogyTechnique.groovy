@@ -6,8 +6,8 @@ package imodv6
  */
 class PedagogyTechnique {
 
-	String pedagogyTitle
-	String pedagogyDescription
+	String title
+	String description
 
 	static hasMany = [
 		activityFocus: PedagogyActivityFocus,
@@ -25,14 +25,14 @@ class PedagogyTechnique {
 	]
 
 	static mapping = {
-		pedagogyDescription type: 'text'
+		description type: 'text'
 		version false
 	}
 
     static constraints = {
 		activityFocus nullable: true
 		assignedLearningObjective nullable: true
-		pedagogyDescription nullable: true, blank: true
+		description nullable: true, blank: true
 		userFavorite nullable: true
     }
 }

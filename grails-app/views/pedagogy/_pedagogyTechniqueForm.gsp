@@ -16,7 +16,7 @@
 				</span>
 			</td>
 			<td>
-				<g:field type="text" name="pedagogyTitle" id="pedagogyTitle_dialog" value="${pedagogyTech?.pedagogyTitle}" style="font-size:14px;" size="49"/>
+				<g:field type="text" name="pedagogyTitle" id="pedagogyTitle_dialog" value="${pedagogyTech?.title}" style="font-size:14px;" size="49"/>
 			</td>
 		</tr>
 		<tr>
@@ -25,7 +25,7 @@
 			</td>
 			<td>
 				<g:textArea name="pedagogyDescription" rows="5" cols="42">
-					${pedagogyTech?.pedagogyDescription}
+					${pedagogyTech?.description}
 				</g:textArea>
 			</td>
 		</tr>

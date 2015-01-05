@@ -5,7 +5,7 @@
 
 <!-- Extended Match Results on click of Refresh  -->
 <g:each in="${pedaTechList}" var="p">
-	<div title="${p.pedagogyDescription}" class="imgblock showHover">
+	<div title="${p.description}" class="imgblock showHover">
 		<!-- FIXME Grails should only query models from controller -->
 		<g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,p)}" />
 		<!-- FIXME Grails should only query models from controller -->
@@ -36,7 +36,7 @@
 		</map>
 
 		<div class="smallblackarea">
-			${p.pedagogyTitle}
+			${p.title}
 		</div>
 	</div>
 </g:each>
