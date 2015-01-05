@@ -74,43 +74,15 @@ class PedagogyController {
 	}
 	/**
 	 * addNewTechnique, is used to create new Technique
-	 * @return
 	 */
-	def addNewTechnique() {
+	def addNewTechnique(Long id) {
 		def pedagogyTechniqueList = new PedagogyTechnique(params)
 		pedagogyTechniqueList.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
-		if (!pedagogyTechniqueList.save()) {
-			render(
-				view: 'error',
-				model: [
-					pedagogyTechniqueInstance: pedagogyTechniqueList
-				]
-			)
-			return
-		}
-		params.each{
-			if(it.key.startsWith('pedagogyActivity') && it.toString().contains(':')) {
-				def pedagogyActivity = new PedagogyActivity(it.value)
-				pedagogyActivity.pedagogyTechnique = pedagogyTechniqueList
-				pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(it.value.duration)
-				pedagogyActivity.save()
-			}
-
-			if(it.key.startsWith('pedagogyReference') && it.toString().contains(':')) {
-				def pedagogyReference = new PedagogyReference(it.value)
-				pedagogyReference.pedagogyTechnique = pedagogyTechniqueList
-				pedagogyReference.referenceType = PedagogyReferenceType.get(it.value.refeType)
-				pedagogyReference.save()
-			}
-		}
+		pedagogyTechniqueList.save()
 
 		redirect(
-			controller: 'imod',
-			action: 'edit',
-			id: params.id,
-			params: [
-				loadPedagogyTab: true
-			]
+			action: 'index',
+			id: id
 		)
 	}
 
@@ -240,9 +212,7 @@ class PedagogyController {
 	}
 	/**
 	 * reloadPedagogyTab, This action is used for Assign and Favorite Technique and reload page after that.
-	 * @param id
-	 * @param objectiveId
-	 * @return
+	 * FIXME break this into assign and favorite actions
 	 */
 	def reloadPedagogyTab(Long id, Long objectiveId) {
 		def imodUser = ImodUser.get(springSecurityService.principal.id)
@@ -281,94 +251,5 @@ class PedagogyController {
 				objectiveId: objectiveId
 			]
 		)
-	}
-
-	/**
-	 * To open Pedagogy Technique clone popup
-	 */
-	def clonePedagogyTechnique() {
-		[
-			pedagogyTech: PedagogyTechnique.get(params.techId),
-			learningDomainList: LearningDomain.list(),
-			domainList: DomainCategory.list(),
-			KnowledgeDomainlist: KnowledgeDimension.list()
-		]
-	}
-	/**
-	 * cloneSaveTech, This action is used for validating cloned Technique.
-	 */
-	def cloneSaveTechnqiue() {
-		def pedagogyTechnique = PedagogyTechnique.read(params.pedagogy_tech_id)
-
-		// check if there should be a linked activity
-		if (params.containsKey('pedagogyActivity')) {
-			// create the link
-			def pedagogyActivity = new PedagogyActivity(params.pedagogyActivity)
-			pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(params.pedagogyActivity.duration)
-		}
-
-		// checks if there should be a linked reference object
-		if (params.containsKey('pedagogyReference')) {
-			// create a link between technique and reference
-			def pedagogyReference = new PedagogyReference(params.pedagogyReference)
-			pedagogyReference.referenceType = PedagogyReferenceType.get(params.pedagogyReference.refeType)
-		}
-
-		// if there is not technique by this name
-		if(PedagogyTechnique.findByPedagogyTitle(params.pedagogyTitle) == null) {
-			// go back to edit page and show error message
-			render template:'pedagogyCloneTechnique', model: [
-				errorMsg: 'title',
-				pedagogyTech: PedagogyTechnique.get(params.pedagogy_tech_id),
-				learningDomainList: LearningDomain.list(),
-				domainList: DomainCategory.list(),
-				KnowledgeDomainlist: KnowledgeDimension.list()
-			]
-		}
-		// it is okay to change title
-		else {
-			println 'title changed'
-			def activity = PedagogyActivity.findAllByPedagogyTechnique(pedagogyTechnique)
-			def reference = PedagogyReference.findAllByPedagogyTechnique(pedagogyTechnique)
-		}
-
-		cloneNewTechnique(params)
-		render 'done'
-	}
-	/**
-	 * cloneNewTechnique, This method is used to Save cloned Technique
-	 * @param params
-	 * @return
-	 */
-	def cloneNewTechnique(params){
-		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
-		pedagogyTechniqueInstance.pedagogyMode = PedagogyMode.get(params.pedagogyModeId)
-		// save the new instance
-		if (!pedagogyTechniqueInstance.save()) {
-			// if it failed to save, show error page and break out of function
-			render(
-				view: 'error',
-				model: [
-					pedagogyTechniqueInstance: pedagogyTechniqueInstance
-				]
-			)
-			return
-		}
-
-		// if there a pedegogy activity refrenced in the request link new instance to activity
-		if (params.containsKey('pedagogyActivity')) {
-			def pedagogyActivity = new PedagogyActivity(params.pedagogyActivity.value)
-			pedagogyActivity.pedagogyTechnique = pedagogyTechniqueInstance
-			pedagogyActivity.pedagogyActivityDuration = PedagogyActivityDuration.get(params.pedagogyActivity.duration)
-			pedagogyActivity.save()
-		}
-
-		// if there a refrence objective id in the request link new instance to activity
-		if (params.containsKey('pedagogyReference')) {
-			def pedagogyReference = new PedagogyReference(params.pedagogyReference)
-			pedagogyReference.pedagogyTechnique = pedagogyTechniqueInstance
-			pedagogyReference.referenceType = PedagogyReferenceType.get(params.pedagogyReference.refeType)
-			pedagogyReference.save()
-		}
 	}
 }

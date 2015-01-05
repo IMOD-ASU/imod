@@ -45,102 +45,94 @@
                                 <tr>
                                     <td>
                                         <div class="chapter_addition_widget">
-                                            <div class="form_title removeBorder" >
-                                                <span class="title_text">
-                                                    <g:message code="currentImod.objectives.widget.title2"/>
-                                                </span>
+                                            <div id="chapterListTable">
+                                                <p>
+                                                    <ul id="chapterListUL">
+                                                        <g:if test="${objectiveList}">
+                                                            <g:each in="${objectiveList}" var="learningObjectiveItem" status="count">
+                                                                <g:render template="/learningObjective/definition" bean="${learningObjectiveItem}"/>
+                                                            </g:each>
+                                                        </g:if>
+                                                        <g:else>
+                                                            <div class="graphErrorMessage">
+                                                                No learning objective available
+                                                            </div>
+                                                        </g:else>
+                                                        <div id="objectiveQtipPlace"></div>
+                                                    </ul>
+                                                </p>
                                             </div>
 
                                             <div>
-                                                <div id="chapterListTable">
-                                                    <p>
-                                                        <ul id="chapterListUL">
-                                                            <g:if test="${objectiveList}">
-                                                                <g:each in="${objectiveList}" var="learningObjectiveItem" status="count">
-                                                                    <g:render template="/learningObjective/definition" bean="${learningObjectiveItem}"/>
+                                                <div class="form_title removeBorder">
+                                                    <span class="title_text">
+                                                        <g:message code="Filter Options"/>
+                                                    </span>
+                                                    <span class="title_text">
+                                                        <a onclick="submitRefresh();" title="${Help.toolTip('PEDAGOGY', 'Refresh')}" class="showHover">
+                                                            Refresh
+                                                        </a>
+                                                    </span>
+                                                </div>
+
+                                                <!-- FIXME replace url with controller and action -->
+                                                <g:formRemote name="pedAccordion" id="pedAccordion" url="[action:'updateExtendedTechnique',controller:'pedagogy']" update="extendedMatchDiv">
+                                                    <div id="ped_accordion">
+                                                        <h3 title="${Help.toolTip('PEDAGOGY', 'Domain')}" class="showHover">
+                                                            Domain
+                                                        </h3>
+                                                        <div>
+                                                            <p>
+                                                                <g:each in="${lrnDomainlist}" var="domain">
+                                                                    <g:if test="${domain.toString().equals(dmn.toString())}">
+                                                                        <input type="checkbox" name="domain" value="${domain.toString()}" checked="checked">
+                                                                    </g:if>
+                                                                    <g:else>
+                                                                        <input type="checkbox" name="domain" value="${domain.toString()}">
+                                                                    </g:else>
+                                                                    <label>
+                                                                        ${domain.toString()}
+                                                                    </label>
+                                                                    <br>
                                                                 </g:each>
-                                                            </g:if>
-                                                            <g:else>
-                                                                <div class="graphErrorMessage">
-                                                                    No learning objective available
-                                                                </div>
-                                                            </g:else>
-                                                            <div id="objectiveQtipPlace"></div>
-                                                        </ul>
-                                                    </p>
-                                                </div>
-
-                                                <div>
-                                                    <div class="form_title removeBorder">
-                                                        <span class="title_text">
-                                                            <g:message code="Filter Options"/>
-                                                        </span>
-                                                        <span class="title_text">
-                                                            <a onclick="submitRefresh();" title="${Help.toolTip('PEDAGOGY', 'Refresh')}" class="showHover">
-                                                                Refresh
-                                                            </a>
-                                                        </span>
-                                                    </div>
-
-                                                    <!-- FIXME replace url with controller and action -->
-                                                    <g:formRemote name="pedAccordion" id="pedAccordion" url="[action:'updateExtendedTechnique',controller:'pedagogy']" update="extendedMatchDiv">
-                                                        <div id="ped_accordion">
-                                                            <h3 title="${Help.toolTip('PEDAGOGY', 'Domain')}" class="showHover">
-                                                                Domain
-                                                            </h3>
-                                                            <div>
-                                                                <p>
-                                                                    <g:each in="${lrnDomainlist}" var="domain">
-                                                                        <g:if test="${domain.toString().equals(dmn.toString())}">
-                                                                            <input type="checkbox" name="domain" value="${domain.toString()}" checked="checked">
-                                                                        </g:if>
-                                                                        <g:else>
-                                                                            <input type="checkbox" name="domain" value="${domain.toString()}">
-                                                                        </g:else>
-                                                                        <label>
-                                                                            ${domain.toString()}
-                                                                        </label>
-                                                                        <br>
-                                                                    </g:each>
-                                                                </p>
-                                                            </div>
-                                                            <h3 title="${Help.toolTip('PEDAGOGY', 'Domain Category')}" class="showHover">
-                                                                Domain Category
-                                                            </h3>
-                                                            <div>
-                                                                <p>
-                                                                    <g:each in="${domainList}" var="domain">
-                                                                        <g:if test="${domain.toString().equals(dc.toString())}">
-                                                                            <input type="checkbox" name="domainCategory" value="${domain.toString()}" checked="checked">
-                                                                        </g:if>
-                                                                        <g:else>
-                                                                            <input type="checkbox" name="domainCategory" value="${domain.toString()}">
-                                                                        </g:else>
-                                                                        <label>
-                                                                            ${domain.toString()}
-                                                                        </label>
-                                                                        <br>
-                                                                    </g:each>
-                                                                </p>
-                                                            </div>
-
-                                                            <h3 title="${Help.toolTip('PEDAGOGY', 'Knowledge Dimension')}" class="showHover">
-                                                                Knowledge Dimension
-                                                            </h3>
-                                                            <div>
-                                                                <p>
-                                                                    <g:each in="${mapkdList}" var="kdomain">
-                                                                        <input type="checkbox" name="kdomain" value="${kdomain.key.toString()}" ${kdomain.value.toString().equals('true')?'checked':''}>
-                                                                        <label>
-                                                                            ${kdomain.key.toString()}
-                                                                        </label>
-                                                                        <br>
-                                                                    </g:each>
-                                                                </p>
-                                                            </div>
+                                                            </p>
                                                         </div>
-                                                    </g:formRemote>
-                                                </div>
+                                                        <h3 title="${Help.toolTip('PEDAGOGY', 'Domain Category')}" class="showHover">
+                                                            Domain Category
+                                                        </h3>
+                                                        <div>
+                                                            <p>
+                                                                <g:each in="${domainList}" var="domain">
+                                                                    <g:if test="${domain.toString().equals(dc.toString())}">
+                                                                        <input type="checkbox" name="domainCategory" value="${domain.toString()}" checked="checked">
+                                                                    </g:if>
+                                                                    <g:else>
+                                                                        <input type="checkbox" name="domainCategory" value="${domain.toString()}">
+                                                                    </g:else>
+                                                                    <label>
+                                                                        ${domain.toString()}
+                                                                    </label>
+                                                                    <br>
+                                                                </g:each>
+                                                            </p>
+                                                        </div>
+
+                                                        <h3 title="${Help.toolTip('PEDAGOGY', 'Knowledge Dimension')}" class="showHover">
+                                                            Knowledge Dimension
+                                                        </h3>
+                                                        <div>
+                                                            <p>
+                                                                <g:each in="${mapkdList}" var="kdomain">
+                                                                    <input type="checkbox" name="kdomain" value="${kdomain.key.toString()}" ${kdomain.value.toString().equals('true')?'checked':''}>
+                                                                    <label>
+                                                                        ${kdomain.key.toString()}
+                                                                    </label>
+                                                                    <br>
+                                                                </g:each>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </g:formRemote>
                                             </div>
                                         </div>
                                     </td>
@@ -309,18 +301,14 @@
                         <div id="showAddNewTechnique" title="Add New Technique">
                             <%--To render the add new Technique dialog box--%>
                             <!-- FIXME rename validation function to be more descriptive -->
-                            <g:form controller="pedagogy" action="addNewTechnique" name="newTechniqueForm" onsubmit="onSubmitValidate()">
-                                <g:hiddenField name="id" value="${params.id ?: currentImod?.id}" />
+                            <g:form action="addNewTechnique" id="${currentImod.id}">
                                 <g:render template="pedagogyTechniqueForm" />
                                 <div align="center">
-                                    <input type="submit" class="showHover" value="Save" name="addNewSubmit" />
-                                    <input type="button" class="showHover" value="Cancel" name="addNewCancel" onclick="closeNewTechniqueTable()" />
+                                    <g:actionSubmit value="Save" />
+                                    <g:actionSubmit value="Cancel" />
                                 </div>
                             </g:form>
                         </div>
-
-                        <%--Dialog box for Clone Technique --%>
-                        <div id="cloneTechnique" title="Clone Technique"></div>
                     </td>
                 </tr>
             </table>
