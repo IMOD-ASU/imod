@@ -3,8 +3,6 @@
 <!-- FIXME remove all inline CSS from file -->
 <!-- FIXME re organize template as a grails server page, instead of a fragment -->
 
-<g:javascript src="source/pedagogy.pedagogyExtendedMatch.gsp.js" defer="defer" />
-
 <!-- Extended Match Results on click of Refresh  -->
 <g:each in="${pedaTechList}" var="p">
 	<div title="${p.pedagogyDescription}" class="imgblock showHover">

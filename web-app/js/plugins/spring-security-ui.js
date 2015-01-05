@@ -1,3 +1,6 @@
+'use strict';
+/* global SpringSecurityUI*/
+
 // SpringSecurityUI namespace
 if (typeof SpringSecurityUI == 'undefined') {
 	SpringSecurityUI = new Object();
@@ -9,7 +12,7 @@ if (typeof SpringSecurityUI == 'undefined') {
 	 * @param  duration  how long to display the message
 	 */
 	/*public*/ SpringSecurityUI.message = function(type, text, duration) {
-		var clazz = 'icon '
+		var clazz = 'icon ';
 		if (type == 'error') {
 			clazz += 'icon_error';
 		}
@@ -23,12 +26,12 @@ if (typeof SpringSecurityUI == 'undefined') {
 
 			$.jGrowl('<span class="' + clazz + '">' + text + '</span>', {
 				sticky: true
-			});	
+			});
 		}else{
 			$.jGrowl('<span class="' + clazz + '">' + text + '</span>', {
 				life: duration
-			});	
+			});
 		}
-		
+
 	};
 }

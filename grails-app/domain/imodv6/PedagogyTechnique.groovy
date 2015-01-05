@@ -13,11 +13,13 @@ class PedagogyTechnique {
 		learningDomain: LearningDomain,
 		domainCategory: DomainCategory,
 		knowledgeDimension: KnowledgeDimension,
-		activityFocus: PedagogyActivityFocus
+		activityFocus: PedagogyActivityFocus,
+		userFavorite: ImodUser
 	]
 
 	static belongsTo = [
-		pedagogyMode: PedagogyMode
+		ImodUser,
+		PedagogyMode
 	]
 
 	static mapping = {
@@ -28,5 +30,6 @@ class PedagogyTechnique {
     static constraints = {
 		pedagogyDescription nullable: true, blank: true
 		activityFocus nullable: true
+		userFavorite nullable: true
     }
 }
