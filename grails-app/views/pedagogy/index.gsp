@@ -167,7 +167,7 @@
                                                 <span>
 
                                                     <%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-                                                    <g:link controller="pedagogyTechnique" action="create" id="currentImod.id">
+                                                    <g:link controller="pedagogyTechnique" action="create" id="${currentImod.id}">
                                                         <button>
                                                             Add New Technique
                                                         </button
