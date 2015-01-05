@@ -6,6 +6,10 @@ package imodv6
 class PedagogyMode {
 	String name
 
+	static hasMany = [
+		pedagogyTechnique: PedagogyTechnique
+	]
+
 	static mapping = {
 		version false
 	}

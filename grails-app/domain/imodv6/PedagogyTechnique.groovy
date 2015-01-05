@@ -8,6 +8,7 @@ class PedagogyTechnique {
 
 	String title
 	String description
+	PedagogyMode pedagogyMode
 
 	static hasMany = [
 		activityFocus: PedagogyActivityFocus,
