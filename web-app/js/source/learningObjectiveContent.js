@@ -1,12 +1,14 @@
-$(function(){
+'use strict';
+
+$(function() {
 	var jsonData=JSON.parse($("input[name=treeData]").val());
 	buildContentTree(jsonData,false);
-	$("#contentTree").on("ready.jstree",function(e){
+	$("#contentTree").on("ready.jstree",function() {
 		var idList=$("#contentTree").find("li.topicSelected");
 		$(idList).each(function(){
 			refreshTreeValues($(this).children("a"),false);
 		});
-		newJSONdata=$("#contentTree").jstree(true).get_json();
+		var newJSONdata=$("#contentTree").jstree(true).get_json();
 		$("#contentTree").jstree("destroy");
 		buildContentTree(newJSONdata, true);
 	});
@@ -29,15 +31,15 @@ function buildContentTree(jsonData, refreshDB){
 	$("#contentTree").on('ready.jstree', function(){
 		$("#contentTree").jstree('open_all');
 
-		$("#contentTree .jstree-wholerow").on("click", function(e){
+		$("#contentTree .jstree-wholerow").on("click", function(){
 			selectCheckboxes(this);
 		});
-		$("#contentTree .jstree-anchor").on("click", function(e){
+		$("#contentTree .jstree-anchor").on("click", function(){
 			selectCheckboxes(this);
 		});
 		refreshCheckboxes(refreshDB);
 	});
-	$("#contentTree").on("move_node.jstree",function(e,data){
+	$("#contentTree").on("move_node.jstree",function(e, data){
 		$("#contentTree").jstree("open_node","#"+data.node.parent);
 		refreshTreeValues($("#"+data.node.id).children("a"),true);
 		moveContent(data.node.id.substr(7),data.node.parent.substr(7));
@@ -50,7 +52,6 @@ function selectCheckboxes(currentRow){
 	var contentNode=$('#contentTree').jstree(true).get_node(contentID);
 	var contentNodeClass=contentNode.li_attr["class"];
 	var testingObject=$("#"+contentID);
-	var newJSONData;
 	if ((contentNodeClass=="topicNotSelected")||(contentNodeClass=="topicIndeterminate")){
 		contentNode.li_attr["class"]="topicSelected";
 		testingObject.find("li").each(function(){
@@ -70,7 +71,6 @@ function selectCheckboxes(currentRow){
 function refreshTreeValues(currentRow, doRefresh){
 	var contentID=$(currentRow).parent("li").attr('id');
 	var contentNode=$('#contentTree').jstree(true).get_node(contentID);
-	var testingObject=$("#"+contentID);
 	var newJSONdata;
 	var indeterminate=false;
 	var currentNode=$('#contentTree').jstree(true).get_node(contentNode);
@@ -97,7 +97,7 @@ function refreshTreeValues(currentRow, doRefresh){
 				var treeSize=currentNode.children_d.length;
 				var numSelected=0;
 				$(currentNode.children_d).each(function(){
-					if ($('#contentTree').jstree(true).get_node(this).li_attr["class"]=="topicSelected"){
+					if ($('#contentTree').jstree(true).get_node(this).li_attr["class"] == "topicSelected") {
 						numSelected++;
 					}
 				});
@@ -176,15 +176,18 @@ function setContents(idArray){
 		}
 	});
 }
-function populateTopics(topicList){
+
+// FIXME if unused remove topicList parameter
+function populateTopics(topicList) {
 	var contentTree=$.jstree.reference("#contentTree");
 	$("#topicList tbody").html("");
 	$(topicList).each(function(){
 		contentTree.create_node(
-				"#",
-				{
-					"id":"content"+this.contentID, "text": this.topicTitle
-				}
+			"#",
+			{
+				"id": "content"+this.contentID,
+				"text": this.topicTitle
+			}
 		);
 	});
 	$("#contentTree").jstree('open_all');

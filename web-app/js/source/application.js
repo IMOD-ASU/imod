@@ -1,3 +1,5 @@
+'use strict';
+
 if (typeof jQuery !== 'undefined') {
 	(function($) {
 		$('#spinner').ajaxStart(function() {
@@ -9,17 +11,10 @@ if (typeof jQuery !== 'undefined') {
 }
 
 $(document).ready(function() {
-	jQuery.browser = {};
-	jQuery.browser.msie = false;
-	jQuery.browser.version = 0;
-	if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
-		jQuery.browser.msie = true;
-		jQuery.browser.version = RegExp.$1;
-	}
 	$("#accordion").accordion();
 	$( "#help-placeholder" ).draggable();
 	$("#open-help").draggable();
-	jQuery('.showHoverNew').qtip({
+	$('.showHoverNew').qtip({
 		style: {background: 'transparent', border: 'none', color: 'black'},
 		show: 'mouseover',
 		hide: 'mouseout',
@@ -32,13 +27,13 @@ $(document).ready(function() {
 });
 
 function showHelp(displayHelp){
-
 	if (displayHelp!="true"){
 		$("#help-placeholder").css("display","none");
 	}
 
 }
-function updateDatePicker (dateFormat) {
+
+function updateDatePicker(dateFormat) {
 	$("input[value='date.struct']:hidden").each(function() {
 		var name = $(this).attr('name');
 		var id = name.replace(".", "_").replace("[", "_").replace("]", "_") + "_input"; // Create JQuery Friendly ID
@@ -123,16 +118,16 @@ function toggleHelp(){
 	var helpbox=$("#help-placeholder");
 	var openbox=$("#open-help");
 	if (helpbox.css("display")=="block") {
-		boxtop=helpbox.css("top");
-		boxleft=helpbox.css("left");
+		var boxtop = helpbox.css("top");
+		var boxleft = helpbox.css("left");
 		helpbox.css("display","none");
 		openbox.css("display","block");
 		openbox.css("top",boxtop);
 		openbox.css("left",boxleft);
 	}
 	else {
-		boxtop=openbox.css("top");
-		boxleft=openbox.css("left");
+		var boxtop = openbox.css("top");
+		var boxleft = openbox.css("left");
 		helpbox.css("display","block");
 		openbox.css("display","none");
 		helpbox.css("top",boxtop);

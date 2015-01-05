@@ -1,14 +1,7 @@
-jQuery(document).ready(function () {
-	jQuery.browser = {};
-	(function () {
-		jQuery.browser.msie = false;
-		jQuery.browser.version = 0;
-		if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
-			jQuery.browser.msie = true;
-			jQuery.browser.version = RegExp.$1;
-		}
-	})();
-	jQuery('.showHoverNew').qtip({
+'use strict';
+
+$(document).ready(function () {
+	$('.showHoverNew').qtip({
 		show: 'mouseover',
 		hide: 'mouseout',
 		position: {
@@ -114,7 +107,7 @@ $(document).ready(function () {
 				$("#dialog").dialog();
 		});
 		updateDatePicker();
-		$("#spinner").ajaxComplete(function (event, request, settings) {
+		$("#spinner").ajaxComplete(function() {
 				updateDatePicker();
 		});
 		if ('${params.loadContentTab}' == 'true') {

@@ -1,3 +1,5 @@
+'use strict';
+
 // Initializing the Accordion for Activity & Reference
 $(function() {
 	$("form#cloneTechniqueForm").find("#ped_technique").accordion({
@@ -10,7 +12,7 @@ $(function() {
 
 //To close Clone Technique dialog box
 function closeCloneTechnique() {
-	jQuery("#cloneTechnique").dialog("close");
+	$("#cloneTechnique").dialog("close");
 		return false;
 }
 

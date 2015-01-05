@@ -1,6 +1,8 @@
+'use strict';
+
 // start at the beggining of the path, get the first '/' then and all the characters between that and the second '/'
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
-var prevKeyword = ''
+var prevKeyword = '';
 
 //on page load
 $(document).ready(function() {
@@ -15,7 +17,7 @@ $(document).ready(function() {
 
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
-		'change', function(event){
+		'change', function() {
 			populateDomainCategories();
 	});
 
@@ -71,7 +73,7 @@ $(document).ready(function() {
 
 	//trigger jquery ui button for better radio buttons
 	var category = $('input[name=selectedActionWordCategory]').val();
-	$('#action-word-categories input[value="'+category+'"]').prop('checked',true)
+	$('#action-word-categories input[value="'+category+'"]').prop('checked',true);
  	$('#action-word-categories').buttonset();
 
  	// populate action words if a category is already selected
@@ -165,7 +167,7 @@ $(document).ready(function() {
 	$('.learning-objective-button.save').click(function(){
 		if($('#learning-domain-list').val() == "null" ||
 			$('#domain-category-list').val() == "null" ||
-			$('input[name=actionWordCategory]').is(':checked') == false){
+			$('input[name=actionWordCategory]').is(':checked') === false) {
 			alert("Learning Domain, Domain Category and Action Word Categories are required");
 			return false;
 		}
@@ -178,7 +180,7 @@ $(document).ready(function() {
  * @param  {String} domain text from the domain select box
  * @return {XML}        Populates the domain category box with options
  */
-function populateDomainCategories(event) {
+function populateDomainCategories() {
 	if($('#learning-domain-list').val() != 'null')
 	{
 		$('label[for="domain-category-list"]').css('visibility', 'visible');
@@ -228,8 +230,7 @@ function populateDomainCategories(event) {
  * @param  {String} domain text from the domain category select box
  * @return {XML}        Populates the page with action word categories
  */
-function populateActionWordCategories(event) {
-
+function populateActionWordCategories() {
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWordCategories',
 		type: 'GET',
@@ -267,7 +268,7 @@ function populateActionWordCategories(event) {
  * @param  {String} domain text from the action word category boxes
  * @return {XML}        Populates the page with action words
  */
-function populateActionWords(event, ui) {
+function populateActionWords(event) {
 
 	if(prevKeyword == $('#action-word-categories').find('.ui-state-active').text()){
 		return;
@@ -285,12 +286,12 @@ function populateActionWords(event, ui) {
 		success: function(data) {
 			var actionWordsHTML = '';
 
-			if(event = true){
+			if(event === true) {
 				var originalActionWord = $('#action-words').val();
 			}
 
 			// store the data from the call back
-			if(data.value != null){
+			if(data.value !== null) {
 				if(data.value.verb !== undefined && data.value.verb !== null && data.value.verb !== ''){
 
 					var actionWordsVerb = data.value.verb.syn;
@@ -299,7 +300,7 @@ function populateActionWords(event, ui) {
 					// for each action word
 					for (var i = 0; i < actionWordsVerb.length; i++) {
 						// create the html for the action word
-						if(actionWordsVerb[i] == originalActionWord){
+						if(actionWordsVerb[i] == originalActionWord) {
 							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
 						}else{
 							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
@@ -313,7 +314,7 @@ function populateActionWords(event, ui) {
 					var actionWordsNoun = data.value.noun.syn;
 					for (var i = 0; i < actionWordsNoun.length; i++) {
 						// create the html for the action word
-						if(actionWordsNoun[i] == originalActionWord){
+						if(actionWordsNoun[i] == originalActionWord) {
 							actionWordsHTML += '<option selected value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
 						}else{
 							actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
@@ -326,7 +327,7 @@ function populateActionWords(event, ui) {
 					var actionWordsAdj = data.value.adjective.syn;
 					for (var i = 0; i < actionWordsAdj.length; i++) {
 						// create the html for the action word
-						if(actionWordsAdj[i] == originalActionWord){
+						if(actionWordsAdj[i] == originalActionWord) {
 							actionWordsHTML += '<option selected value="' + actionWordsAdj[i] + '">'+ actionWordsAdj[i] + '</option>';
 						}else{
 							actionWordsHTML += '<option value="' + actionWordsAdj[i] + '">'+ actionWordsAdj[i] + '</option>';

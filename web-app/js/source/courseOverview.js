@@ -1,16 +1,17 @@
+'use strict';
+
 $(document).ready(function() {
-	
+
 	populateRepeatsEvery();
-	
+
 	$('#repeats').on(
 			'change',
 			populateRepeatsEvery
 			);
-})
+});
 
-function populateRepeatsEvery(event){
-	if($('#repeats option:selected').text() == "Daily")
-	{
+function populateRepeatsEvery(event) {
+	if($('#repeats option:selected').text() == "Daily") {
 		$('#duration').text("days");
 		$('#duration').css('visibility','visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
@@ -21,8 +22,7 @@ function populateRepeatsEvery(event){
 		$(':checkbox').css('visibility','hidden');
 
 	}
-	else if($('#repeats option:selected').text() == "Weekly")
-		{
+	else if($('#repeats option:selected').text() == "Weekly") {
 		$('#duration').text("weeks");
 		$('#duration').css('visibility','visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
@@ -30,7 +30,7 @@ function populateRepeatsEvery(event){
 		$('label[for="scheduleWeekDays"]').css('visibility', 'visible');
 		$('label[for="weekdays"]').css('visibility', 'visible');
 		$(':checkbox').css('visibility','visible');
-		}
+	}
 	else {
 		$('label[for="repeatsEvery"]').css('visibility', 'hidden');
 		$('#repeatsEvery').css('visibility','hidden');
@@ -39,6 +39,5 @@ function populateRepeatsEvery(event){
 		$('label[for="weekdays"]').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 		$(':checkbox').css('visibility','hidden');
-		}
+	}
 }
-

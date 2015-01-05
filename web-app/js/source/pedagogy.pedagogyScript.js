@@ -1,18 +1,20 @@
-jQuery(document).ready(
+'use strict';
+
+$(document).ready(
 	function () {
-		jQuery.browser = {};
+		$.browser = {};
 		(function () {
-			jQuery.browser.msie = false;
-			jQuery.browser.version = 0;
+			$.browser.msie = false;
+			$.browser.version = 0;
 			if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
-				jQuery.browser.msie = true;
-				jQuery.browser.version = RegExp.$1;
+				$.browser.msie = true;
+				$.browser.version = RegExp.$1;
 			}
 		})();
-		jQuery("#topicTreeView").treeview({
+		$("#topicTreeView").treeview({
 			control: "#treecontrol"
 		});
-		jQuery("#addLearningObjectiveDiv").dialog({
+		$("#addLearningObjectiveDiv").dialog({
 			autoOpen: false,
 			height: 300,
 			width: 500,
@@ -20,7 +22,7 @@ jQuery(document).ready(
 			hide: "fadeout",
 			modal: true
 		});
-		jQuery("#removeTopicForm").dialog({
+		$("#removeTopicForm").dialog({
 			autoOpen: false,
 			height: 300,
 			width: 500,
@@ -28,7 +30,7 @@ jQuery(document).ready(
 			hide: "fadeout",
 			modal: true
 		});
-		jQuery(".topic_information_widget").dialog({
+		$(".topic_information_widget").dialog({
 			autoOpen: false,
 			height: 400,
 			width: 600,
@@ -36,7 +38,7 @@ jQuery(document).ready(
 			hide: "fadeout",
 			modal: true
 		});
-		jQuery("#showTopicScheduleTable").dialog({
+		$("#showTopicScheduleTable").dialog({
 			autoOpen: false,
 			height: 350,
 			width: 600,
@@ -44,7 +46,7 @@ jQuery(document).ready(
 			hide: "fadeout",
 			modal: true
 		});
-		jQuery("#showTechniqueTable").dialog({
+		$("#showTechniqueTable").dialog({
 			autoOpen: false,
 			height: 350,
 			width: 600,
@@ -52,7 +54,7 @@ jQuery(document).ready(
 			hide: "fadeout",
 			modal: true
 		});
-		jQuery("#showResourcesDiv").dialog({
+		$("#showResourcesDiv").dialog({
 			autoOpen: false,
 			height: 400,
 			width: 1000,
@@ -60,7 +62,7 @@ jQuery(document).ready(
 			hide: "fadeout",
 			modal: true
 		});
-		jQuery("#addTopicForm").dialog({
+		$("#addTopicForm").dialog({
 			autoOpen: false,
 			height: 300,
 			width: 500,
@@ -68,7 +70,7 @@ jQuery(document).ready(
 			hide: "fadeout",
 			modal: true
 		});
-		jQuery('.pc3_informationIcon').pc3_hover({
+		$('.pc3_informationIcon').pc3_hover({
 			show: 'mouseover',
 			hide: 'mouseout',
 			style: {
@@ -83,7 +85,7 @@ jQuery(document).ready(
 			}
 		});
 
-		jQuery('.informationIcon').qtip({
+		$('.informationIcon').qtip({
 			show: 'mouseover',
 			hide: 'mouseout',
 			style: {
@@ -92,8 +94,8 @@ jQuery(document).ready(
 			},
 			position: { adjust: { x: 3, y: -38 } }
 		});
-		jQuery('.showHover').qtip({
-			content: jQuery('.topic_addition_widget').attr('title'),
+		$('.showHover').qtip({
+			content: $('.topic_addition_widget').attr('title'),
 			show: 'mouseover',
 			hide: 'mouseout',
 			position: {
@@ -101,8 +103,8 @@ jQuery(document).ready(
 				container: $('div#qtipPlace')
 			}
 		});
-		jQuery('.topic_hierarchy_widget').qtip({
-			content: jQuery('.topic_hierarchy_widget').attr('title'),
+		$('.topic_hierarchy_widget').qtip({
+			content: $('.topic_hierarchy_widget').attr('title'),
 			show: 'mouseover',
 			hide: 'mouseout',
 			position: {
@@ -110,8 +112,8 @@ jQuery(document).ready(
 				container: $('div#qtipPlace')
 			}
 		});
-		jQuery('.topic_information_widget').qtip({
-			content: jQuery('.topic_information_widget').attr('title'),
+		$('.topic_information_widget').qtip({
+			content: $('.topic_information_widget').attr('title'),
 			show: 'mouseover',
 			hide: 'mouseout',
 			position: {
@@ -119,8 +121,8 @@ jQuery(document).ready(
 				container: $('div#qtipPlace')
 			}
 		});
-		jQuery('.topic_schedule_widget').qtip({
-			content: jQuery('.topic_schedule_widget').attr('title'),
+		$('.topic_schedule_widget').qtip({
+			content: $('.topic_schedule_widget').attr('title'),
 			show: 'mouseover',
 			hide: 'mouseout',
 			position: {
@@ -129,13 +131,13 @@ jQuery(document).ready(
 			}
 		});
 		updateResourceURL();
-		jQuery('.topic_information_widget2').hide();
+		$('.topic_information_widget2').hide();
 	});
 	function addObjective() {
-		jQuery('#addObjectiveName').val('');
-		jQuery('#addObjectiveName').show();
-		jQuery('#addObjectiveName').focus();
-		jQuery('#addObjectiveName').on('keyup', function (e) {
+		$('#addObjectiveName').val('');
+		$('#addObjectiveName').show();
+		$('#addObjectiveName').focus();
+		$('#addObjectiveName').on('keyup', function (e) {
 			if (e.keyCode == 13) {
 				saveObjective();
 			}
@@ -143,24 +145,26 @@ jQuery(document).ready(
 	}
 
 	function saveObjective() {
-		jQuery.ajax({
+		$.ajax({
 			// FIXME broken URL
-			url: '${createLink( \
-				controller: "learningObjective", \
-				action: "ajaxSave" \
-			)}',
+			// url: '${createLink( \
+			// 	controller: "learningObjective", \
+			// 	action: "ajaxSave" \
+			// )}',
 			method: 'POST',
 			data: {
-				'name': jQuery('#addObjectiveName').val(),
-				'imod.id':${imod?.id}
+				'name': $('#addObjectiveName').val(),
+				// FIXME get imod id
+				//'imod.id': ${imod?.id}
 			},
-			success: function (data) {
+			success: function(data) {
 				if (data) {
-					jQuery('#chapterListUL').append(data);
-					jQuery('#addObjectiveName').val('');
-					jQuery('#addObjectiveName').hide();
-					if (jQuery("#chapterListUL li").length > 0) {
-						window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?objectiveId=${params.objectiveId?:chapter?.id}&loadContentTab=${true}"
+					$('#chapterListUL').append(data);
+					$('#addObjectiveName').val('');
+					$('#addObjectiveName').hide();
+					if ($("#chapterListUL li").length > 0) {
+						// FIXME fix url
+						// window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?objectiveId=${params.objectiveId?:chapter?.id}&loadContentTab=${true}"
 					}
 				}
 			}
@@ -169,18 +173,23 @@ jQuery(document).ready(
 	}
 
 	function removeTopic() {
-		if (jQuery('#removeTopicForm #contents').length) {
+		if ($('#removeTopicForm #contents').length) {
+			// FIXME replace deprecated confirm call
 			if (confirm('Are you sure?')) {
-				jQuery.ajax({
-					url: '${createLink(controller: 'content',action:'ajaxDelete')}' + '/' + jQuery('#topic_table tbody tr:first input[type="hidden"]').val(),
+				$.ajax({
+					// FIXME fix url
+					//url: '${createLink(controller: 'content',action:'ajaxDelete')}' + '/' + $('#topic_table tbody tr:first input[type="hidden"]').val(),
 					method: 'POST',
-					data: {'contents': jQuery('#removeTopicForm #contents').val()},
+					data: {
+						'contents': $('#removeTopicForm #contents').val()
+					},
 					success: function (data) {
 						if (data == 'success') {
-							window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?objectiveId=${params.objectiveId?:chapter?.id}&loadContentTab=${true}"
+							// FIXME fix url
+							// window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?objectiveId=${params.objectiveId?:chapter?.id}&loadContentTab=${true}"
 						}
 					}
-				})
+				});
 			}
 		} else {
 			alert('No topic found');
@@ -188,62 +197,63 @@ jQuery(document).ready(
 	}
 
 	function addTopic() {
-		jQuery('#topic_table tbody tr:first').remove();
+		$('#topic_table tbody tr:first').remove();
 	}
 
 	function closeRemoveTopicPopup() {
-		jQuery("#removeTopicForm").dialog("close");
+		$("#removeTopicForm").dialog("close");
 		return false;
 	}
 
 	function openRemoveTopicPopup() {
-		jQuery("#removeTopicForm").dialog("open");
+		$("#removeTopicForm").dialog("open");
 	}
 
 	function openTopicDistributionPopup() {
 		if ("${params.objectiveId?true:chapter?.id?true:false}" == "true") {
-			jQuery.ajax({
-				// FIXME broken URL
-				url: '${createLink( \
-					controller: "content", \
-					action: "fetchGraph" \
-				)}',
+			$.ajax({
+				// FIXME fix URL
+				// url: '${createLink( \
+				// 	controller: "content", \
+				// 	action: "fetchGraph" \
+				// )}',
 				data: {
+					// FIXME get correct variables
 					'objectiveId': '${params.objectiveId?:chapter?.id}',
 					'id': '${imod?.id}'
 				},
 				success: function (data) {
 					if (data) {
-						jQuery('.topic_information_widget').append(data);
-						jQuery(".topic_information_widget").dialog("open");
+						$('.topic_information_widget').append(data);
+						$(".topic_information_widget").dialog("open");
 					}
 				}
-			})
+			});
 		}
 
-		jQuery(".topic_information_widget").dialog("open");
+		$(".topic_information_widget").dialog("open");
 	}
 
 
 	function closeTopicDistributionPopup() {
-		jQuery(".topic_information_widget").dialog("close");
+		$(".topic_information_widget").dialog("close");
 	}
 
 	function addResourceField() {
 		// FIXME avoid markup in JS
-		jQuery('#showResourcesTable').append("<tr><td></td><td><input type='text' name='resource' value=''/></td></tr>");
+		$('#showResourcesTable').append("<tr><td></td><td><input type='text' name='resource' value=''/></td></tr>");
 	}
 
 	function changePreReq(contentId) {
-		var topicTitle = jQuery('tr#' + contentId + ' #topicTitle').val();
-		var priorityCode = jQuery('tr#' + contentId + ' #priorityCodeType').val();
-		var learningObjectiveType = jQuery('tr#' + contentId + ' #learningObjectiveType').val();
-		jQuery.ajax({
-			// FIXME broken URL
-			url: '${createLink( \
-				controller: "content", \
-				action: "changePreReq" \
-			)}',
+		var topicTitle = $('tr#' + contentId + ' #topicTitle').val();
+		var priorityCode = $('tr#' + contentId + ' #priorityCodeType').val();
+		var learningObjectiveType = $('tr#' + contentId + ' #learningObjectiveType').val();
+		$.ajax({
+			// FIXME fix URL
+			// url: '${createLink( \
+			// 	controller: "content", \
+			// 	action: "changePreReq" \
+			// )}',
 			method: "POST",
 			data: {
 				topicTitle: topicTitle,
@@ -260,7 +270,7 @@ jQuery(document).ready(
 	}
 
 	function closeAddTopicPopup() {
-		jQuery("#addTopicForm").dialog("close");
+		$("#addTopicForm").dialog("close");
 		return false;
 	}
 
@@ -271,126 +281,129 @@ jQuery(document).ready(
 
 	function removeResource(id, contentResourceIdElement) {
 		if (id) {
+			// FIXME remove deprecated confirm call
 			if (confirm("Are you sure?")) {
-				jQuery.ajax({
-					// FIXME broken URL
-					url: '${createLink( \
-						controller: "content", \
-						action: "removeResource" \
-					)}',
+				$.ajax({
+					// FIXME fix URL
+					// url: '${createLink( \
+					// 	controller: "content", \
+					// 	action: "removeResource" \
+					// )}',
 					data: {
 						resourceId: id
 					},
 					success: function (data) {
 						if (data == "success") {
-							jQuery('tr#' + contentResourceIdElement).remove()
+							$('tr#' + contentResourceIdElement).remove()
 						}
 					}
 				});
 			}
 		} else {
-			alert("No resource found.")
+			alert("No resource found.");
 		}
 		return false;
 	}
 
 	function removeTopicSchedule(id, topicScheduleElement) {
 		if (id) {
+			// FIXME remove deprecated confirm call
 			if (confirm("Are you sure?")) {
-				jQuery.ajax({
-					// FIXME broken URL
-					url: '${createLink(controller: 'content',action:'removeTopicSchedule')}',
+				$.ajax({
+					// FIXME fix URL
+					//url: '${createLink(controller: 'content',action:'removeTopicSchedule')}',
 					data: {
 						topicScheduleId: id
 					},
 					success: function (data) {
 						if (data == "success") {
-							jQuery('tr#' + topicScheduleElement).remove()
+							$('tr#' + topicScheduleElement).remove()
 						}
 					}
 				});
 			}
 		} else {
-			alert("No topic schedule found.")
+			alert("No topic schedule found.");
 		}
 		return false;
 	}
 
 	function openAddTopicPopup() {
-		jQuery("#addTopicForm").dialog("open");
+		$("#addTopicForm").dialog("open");
 	}
 
 	function addNewSubTopic() {
-		// FIXME avoid markup inside of JS
-		jQuery('#addTopicPopupTable').append('<tr><td></td><td><input type="text" name="subTopic" id="subTopic"/></td></tr>')
+		// FIXME remove markup inside of JS
+		$('#addTopicPopupTable').append('<tr><td></td><td><input type="text" name="subTopic" id="subTopic"/></td></tr>');
 	}
 
 	function showObjective() {
-		jQuery('#addObjectiveName').val('');
-		jQuery("#addLearningObjectiveDiv").dialog("open");
+		$('#addObjectiveName').val('');
+		$("#addLearningObjectiveDiv").dialog("open");
 		return false;
 	}
 
 	function showResourcesPopup(topicId) {
-		jQuery('#currentContentIdForResource').val(topicId);
-		jQuery.ajax({
-			// FIXME broke URL
-			url: '${createLink(controller: 'content',action: 'fetchResource')}',
+		$('#currentContentIdForResource').val(topicId);
+		$.ajax({
+			// FIXME fix URL
+			//url: '${createLink(controller: 'content',action: 'fetchResource')}',
 			method: "POST",
 			data: {topicId: topicId},
 			success: function (data) {
-				jQuery(".existingResources").remove();
-				jQuery('#showResourcesTable tbody').append(data);
+				$(".existingResources").remove();
+				$('#showResourcesTable tbody').append(data);
 				updateResourceURL();
-				jQuery("#showResourcesDiv").dialog("open");
+				$("#showResourcesDiv").dialog("open");
 			}
 		});
 		return false;
 	}
 
 	function addTopicScheduleAfter() {
-		jQuery("tbody#showTopicScheduleBody").after(jQuery('#templateForTopicSchedule table').html());
+		$("tbody#showTopicScheduleBody").after($('#templateForTopicSchedule table').html());
 		return false;
 	}
 
 	function removeTopicScheduleBefore() {
-		var contentScheduleId = jQuery('#topicScheduleMainTable tbody tr:first').attr('dir');
+		var contentScheduleId = $('#topicScheduleMainTable tbody tr:first').attr('dir');
 		if (contentScheduleId == '0') {
-			jQuery('#topicScheduleMainTable tbody tr:first').remove();
+			$('#topicScheduleMainTable tbody tr:first').remove();
 		} else {
-			removeTopicSchedule(contentScheduleId, jQuery('#topicScheduleMainTable tbody tr:first').attr('id'));
+			removeTopicSchedule(contentScheduleId, $('#topicScheduleMainTable tbody tr:first').attr('id'));
 		}
 	}
 
 	function addResourceBefore() {
-		if (jQuery('#showResourcesTable tbody tr:first').size() != 0) {
+		if ($('#showResourcesTable tbody tr:first').size() != 0) {
 			// FIXME avoid markup in JS
-			jQuery('#showResourcesTable tbody tr:first').before("<tr  class='contentResources' dir='0'><td><input type='hidden' value='0' name='resourceIds'/><input type='text' name='resourceNames' class='resourceNames' value=''/></td><td><input type='file' name='files' class='files' disabled='disabled' style='display: none;'/><input type='text' name='resourceURLs' class='resourceURLs' value='' style='display: none;' /></td><td><select style='padding:0;' name='types' class='types' onchange='updateResourceURL()'><option value=''>Select one</option><option value=\"Document\">Document</option><option value=\"Book\">Book</option><option value=\"Chapter\">Chapter</option><option value=\"URL\">URL</option></select></td></tr>")
+			$('#showResourcesTable tbody tr:first').before("<tr  class='contentResources' dir='0'><td><input type='hidden' value='0' name='resourceIds'/><input type='text' name='resourceNames' class='resourceNames' value=''/></td><td><input type='file' name='files' class='files' disabled='disabled' style='display: none;'/><input type='text' name='resourceURLs' class='resourceURLs' value='' style='display: none;' /></td><td><select style='padding:0;' name='types' class='types' onchange='updateResourceURL()'><option value=''>Select one</option><option value=\"Document\">Document</option><option value=\"Book\">Book</option><option value=\"Chapter\">Chapter</option><option value=\"URL\">URL</option></select></td></tr>")
 		} else {
 			// FIXME avoid markup in JS
-			jQuery('#showResourcesTable tbody').append("<tr  class='contentResources' dir='0'><td><input type='hidden' value='0' name='resourceIds'/><input type='text' name='resourceNames' class='resourceNames' value=''/></td><td><input type='file' name='files' class='files' disabled='disabled' style='display: none;'/><input type='text' name='resourceURLs' class='resourceURLs' value='' style='display: none;' /></td><td><select name='types' class='types' style='padding:0;' onchange='updateResourceURL()'><option value=''>Select one</option><option value=\"Document\">Document</option><option value=\"Book\">Book</option><option value=\"Chapter\">Chapter</option><option value=\"URL\">URL</option></select></td></tr>")
+			$('#showResourcesTable tbody').append("<tr  class='contentResources' dir='0'><td><input type='hidden' value='0' name='resourceIds'/><input type='text' name='resourceNames' class='resourceNames' value=''/></td><td><input type='file' name='files' class='files' disabled='disabled' style='display: none;'/><input type='text' name='resourceURLs' class='resourceURLs' value='' style='display: none;' /></td><td><select name='types' class='types' style='padding:0;' onchange='updateResourceURL()'><option value=''>Select one</option><option value=\"Document\">Document</option><option value=\"Book\">Book</option><option value=\"Chapter\">Chapter</option><option value=\"URL\">URL</option></select></td></tr>")
 		}
 		return false;
 	}
 
 	function removeResourceBefore() {
-		var resourceId = jQuery('#showResourcesTable tbody tr:first').attr('dir');
+		var resourceId = $('#showResourcesTable tbody tr:first').attr('dir');
 		if (resourceId == '0') {
-			jQuery('#showResourcesTable tbody tr:first').remove();
+			$('#showResourcesTable tbody tr:first').remove();
 		} else {
-			removeResource(resourceId, jQuery('#showResourcesTable tbody tr:first').attr('id'));
+			removeResource(resourceId, $('#showResourcesTable tbody tr:first').attr('id'));
 		}
 	}
 
 	function closeResourcesPopup() {
-		jQuery("#showResourcesDiv").dialog("close");
+		$("#showResourcesDiv").dialog("close");
 		return false;
 	}
 
 	function showTopicSchedule() {
 		if ("${contentList ?true:false}" == "true") {
+			// FIXME function not defined in file
 			addCssToSchedule();
-			jQuery("#showTopicScheduleTable").dialog("open");
+			$("#showTopicScheduleTable").dialog("open");
 		} else {
 			alert("No topic found.")
 		}
@@ -401,7 +414,7 @@ jQuery(document).ready(
 		alert("I am here")
 		if (true) {
 			addCssToSchedule();
-			jQuery("#showTechniqueTable").dialog("open");
+			$("#showTechniqueTable").dialog("open");
 		} else {
 			alert("No topic found.")
 		}
@@ -411,16 +424,20 @@ jQuery(document).ready(
 
 	function saveTopicScheduleTable() {
 		var id = '${params.id}';
-		jQuery.ajax({
-			// FIXME broken URL
-			url: '${createLink(controller: 'content',action:'saveTopicSchedule')}',
+		$.ajax({
+			// FIXME fix URL
+			//url: '${createLink(controller: 'content',action:'saveTopicSchedule')}',
 			method: "POST",
-			data: {topicId: jQuery('#scheduleTopicSelected').val(), id: id, scheduleDate: jQuery('#scheduleTopicSelected_input').val()},
+			data: {
+				topicId: $('#scheduleTopicSelected').val(),
+				id: id,
+				scheduleDate: $('#scheduleTopicSelected_input').val()
+			},
 			success: function (data) {
 				if (data == "success") {
 					closeLearningObjective();
-					// FIXME broken URL
-					window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?loadContentTab=${true}"
+					// FIXME fix URL
+					// window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?loadContentTab=${true}"
 				}
 			}
 		});
@@ -428,64 +445,83 @@ jQuery(document).ready(
 
 	function saveLearningObjective() {
 		var id = '${params.id}';
-		jQuery.ajax({
-			// FIXME broken URL
-			url: '${createLink(controller: 'content',action:'saveObjectives')}',
+		$.ajax({
+			// FIXME fix URL
+			// url: '${createLink(controller: 'content',action:'saveObjectives')}',
 			method: "POST",
-			data: {name: jQuery('#addObjectiveName').val(), id: id},
+			data: {
+				name: $('#addObjectiveName').val(),
+				id: id
+			},
 			success: function (data) {
 				if (data == "success") {
 					closeLearningObjective();
-					// FIXME broken URL
-					window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?loadContentTab=${true}"
+					// FIXME fix URL
+					// window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?loadContentTab=${true}"
 				}
 			}
 		});
 	}
 
 	function closeTopicScheduleTable() {
-		jQuery("#showTopicScheduleTable").dialog("close");
+		$("#showTopicScheduleTable").dialog("close");
 		return false;
 	}
 
 	function closeLearningObjective() {
-		jQuery("#addLearningObjectiveDiv").dialog("close");
+		$("#addLearningObjectiveDiv").dialog("close");
 		return false;
 	}
 
 	function addCssToSchedule() {
-		jQuery.each(jQuery('select[name="scheduleDate_day"]'),function(){jQuery(this).attr('style','padding:0;')})
-		jQuery.each(jQuery('select[name="scheduleDate_month"]'),function(){jQuery(this).attr('style','padding:0;')})
-		jQuery.each(jQuery('select[name="scheduleDate_year"]'),function(){jQuery(this).attr('style','padding:0;')})
+		$.each(
+			$('select[name="scheduleDate_day"]'),
+			function(){
+				$(this).attr('style','padding:0;');
+			}
+		);
+		$.each(
+			$('select[name="scheduleDate_month"]'),
+			function(){
+				$(this).attr('style','padding:0;');
+			}
+		);
+		$.each(
+			$('select[name="scheduleDate_year"]'),
+			function(){
+				$(this).attr('style','padding:0;');
+			}
+		);
 	}
 
 	function removeAllObjective() {
 		var id = '${params.id}';
+		// FIXME remove deprecated confirm call
 		if (confirm("Are you sure?")) {
-			jQuery.ajax({
-				// FIXME broken URL
-				url: '${createLink(controller: 'content',action:'removeAllObjectives')}',
+			$.ajax({
+				// FIXME fix URL
+				// url: '${createLink(controller: 'content',action:'removeAllObjectives')}',
 				method: "POST",
 				data: {id: id},
 				success: function (data) {
 					if (data == "success") {
-						// FIXME broken URL
-						window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?loadContentTab=${true}"
+						// FIXME fix URL
+						// window.location.href = "${createLink(controller: 'imod',action: 'edit',id: params.id?:imod?.id)}?loadContentTab=${true}"
 					}
 				}
 			});
 		}
 	}
 
-	function updateResourceURL(resourceTR) {
-		jQuery.each(jQuery('.contentResources'), function (key, value) {
-			var type = jQuery(value).children().find('.types').val();
+	function updateResourceURL() {
+		$.each($('.contentResources'), function (key, value) {
+			var type = $(value).children().find('.types').val();
 			if (type == "URL") {
-				jQuery(this).children().find('.files').hide();
-				jQuery(this).children().find('.resourceURLs').show();
+				$(this).children().find('.files').hide();
+				$(this).children().find('.resourceURLs').show();
 			} else {
-				jQuery(this).children().find('.files').show();
-				jQuery(this).children().find('.resourceURLs').hide();
+				$(this).children().find('.files').show();
+				$(this).children().find('.resourceURLs').hide();
 			}
 		});
 	}
