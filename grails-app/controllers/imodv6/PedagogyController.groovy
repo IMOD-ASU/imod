@@ -1,7 +1,5 @@
 package imodv6
 
-import javax.servlet.http.HttpServletResponse
-
 class PedagogyController {
 	def springSecurityService
 	static allowedMethods = [
@@ -178,7 +176,7 @@ class PedagogyController {
 			}
 		}
 
-		def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
+		//def favPedaTechList = ImodUserPedagogyFavorite.findAllByImodUser(ImodUser.get(springSecurityService.principal.id))
 		// def selectionLine = '${objective.learningDomain} > ${objective.domainCategory}'
 		def selectionLine = ' > Knowledge Dimension (${kdmnList.size()} Selections)'
 
@@ -195,7 +193,7 @@ class PedagogyController {
 			currentImodContentList: currentImodContentList,
 			currentPage: 'pedagogy',
 			domainList: domainList,
-			favPedaTechList: favPedaTechList,
+			//favPedaTechList: favPedaTechList,
 			KnowledgeDomainlist: KnowledgeDomainlist,
 			learningDomainList: learningDomainList,
 			learningObjectiveDates: learningObjectiveDates,
@@ -210,44 +208,47 @@ class PedagogyController {
 			userId: ImodUser.get(springSecurityService.principal.id)
 		]
 	}
-	/**
-	 * reloadPedagogyTab, This action is used for Assign and Favorite Technique and reload page after that.
-	 * FIXME break this into assign and favorite actions
-	 */
-	def reloadPedagogyTab(Long id, Long objectiveId) {
+
+	def favoriteTechnique(Long id, Long objectiveId) {
 		def imodUser = ImodUser.get(springSecurityService.principal.id)
 		def pedagogyTech = PedagogyTechnique.get(params.pedtecID)
-		if(params.fav == 'true') {
-			def favTech = ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(imodUser,pedagogyTech)
-			ImodUserPedagogyFavorite fav = favTech ? favTech :new ImodUserPedagogyFavorite()
-			fav.pedagogyTechnique = pedagogyTech
-			fav.imodUser = imodUser
-			if(favTech) {
-				fav.delete()
-			}
-			else {
-				fav.save()
-			}
-		}
-		if(params.assign == 'true'){
-			def learningObjective = LearningObjective.get(params.objectiveId)
-			def assingTech = ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(learningObjective,pedagogyTech)
-			ImodPedagogyAssign assign = assingTech ? assingTech : new ImodPedagogyAssign()
-			assign.pedagogyTechnique = pedagogyTech
-			assign.learningObjective = learningObjective
-			if(assingTech) {
-				assign.delete()
-			}
-			else {
-				assign.save()
-			}
-		}
+		// def favTech = ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(imodUser,pedagogyTech)
+		// ImodUserPedagogyFavorite fav = favTech ? favTech :new ImodUserPedagogyFavorite()
+		// fav.pedagogyTechnique = pedagogyTech
+		// fav.imodUser = imodUser
+		// if(favTech) {
+		// 	fav.delete()
+		// }
+		// else {
+		// 	fav.save()
+		// }
 		redirect(
-			controller: 'imod',
-			action: 'edit',
+			action: 'index',
 			id: id,
 			params: [
-				loadPedagogyTab: true,
+				objectiveId: objectiveId
+			]
+		)
+	}
+
+	def assignTechnique(Long id, Long objectiveId) {
+		def imodUser = ImodUser.get(springSecurityService.principal.id)
+		def pedagogyTech = PedagogyTechnique.get(params.pedtecID)
+		def learningObjective = LearningObjective.get(params.objectiveId)
+		def assingTech = ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(learningObjective,pedagogyTech)
+		ImodPedagogyAssign assign = assingTech ? assingTech : new ImodPedagogyAssign()
+		assign.pedagogyTechnique = pedagogyTech
+		assign.learningObjective = learningObjective
+		if(assingTech) {
+			assign.delete()
+		}
+		else {
+			assign.save()
+		}
+		redirect(
+			action: 'index',
+			id: id,
+			params: [
 				objectiveId: objectiveId
 			]
 		)

@@ -142,17 +142,6 @@ class LearningObjectiveController {
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = learningObjectiveManager(currentImod)
 
-		// if no learning objective selected, select the first available
-		if ( learningObjectiveID == null ){
-			redirect(
-				action: 'performance',
-				id: id,
-				params: [
-					learningObjectiveID: learningObjectivesList.first().id
-				]
-			)
-		}
-
 		// get all performance data to set in the Performance page
 		def learningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
 		def selectedActionWordCategory = learningObjective.actionWordCategory

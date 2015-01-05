@@ -167,9 +167,7 @@
                                                 <span>
 
                                                     <%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-                                                    <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Add New Technique')}" onclick="addNewTechnique()">
-                                                        Add New Technique
-                                                    </button>
+                                                    <g:actionSubmit value="Add New Technique" action="addNewTechnique" />
 
                                                     <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}" onclick="expandFavorite();">
                                                         Favorites
