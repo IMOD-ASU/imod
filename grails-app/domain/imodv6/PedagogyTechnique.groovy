@@ -10,15 +10,17 @@ class PedagogyTechnique {
 	String pedagogyDescription
 
 	static hasMany = [
-		learningDomain: LearningDomain,
+		activityFocus: PedagogyActivityFocus,
+		assignedLearningObjective: LearningObjective,
 		domainCategory: DomainCategory,
 		knowledgeDimension: KnowledgeDimension,
-		activityFocus: PedagogyActivityFocus,
+		learningDomain: LearningDomain,
 		userFavorite: ImodUser
 	]
 
 	static belongsTo = [
 		ImodUser,
+		LearningObjective,
 		PedagogyMode
 	]
 
@@ -28,8 +30,9 @@ class PedagogyTechnique {
 	}
 
     static constraints = {
-		pedagogyDescription nullable: true, blank: true
 		activityFocus nullable: true
+		assignedLearningObjective nullable: true
+		pedagogyDescription nullable: true, blank: true
 		userFavorite nullable: true
     }
 }

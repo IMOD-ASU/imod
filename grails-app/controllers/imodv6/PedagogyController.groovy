@@ -234,17 +234,17 @@ class PedagogyController {
 	def assignTechnique(Long id, Long objectiveId) {
 		def imodUser = ImodUser.get(springSecurityService.principal.id)
 		def pedagogyTech = PedagogyTechnique.get(params.pedtecID)
-		def learningObjective = LearningObjective.get(params.objectiveId)
-		def assingTech = ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(learningObjective,pedagogyTech)
-		ImodPedagogyAssign assign = assingTech ? assingTech : new ImodPedagogyAssign()
-		assign.pedagogyTechnique = pedagogyTech
-		assign.learningObjective = learningObjective
-		if(assingTech) {
-			assign.delete()
-		}
-		else {
-			assign.save()
-		}
+		// def learningObjective = LearningObjective.get(params.objectiveId)
+		// def assingTech = ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(learningObjective,pedagogyTech)
+		// ImodPedagogyAssign assign = assingTech ? assingTech : new ImodPedagogyAssign()
+		// assign.pedagogyTechnique = pedagogyTech
+		// assign.learningObjective = learningObjective
+		// if(assingTech) {
+		// 	assign.delete()
+		// }
+		// else {
+		// 	assign.save()
+		// }
 		redirect(
 			action: 'index',
 			id: id,
