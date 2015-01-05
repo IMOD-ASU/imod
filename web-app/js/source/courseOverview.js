@@ -1,16 +1,14 @@
 'use strict';
 
 $(document).ready(function() {
-
 	populateRepeatsEvery();
-
 	$('#repeats').on(
-			'change',
-			populateRepeatsEvery
-			);
+		'change',
+		populateRepeatsEvery
+	);
 });
 
-function populateRepeatsEvery(event) {
+function populateRepeatsEvery() {
 	if($('#repeats option:selected').text() == "Daily") {
 		$('#duration').text("days");
 		$('#duration').css('visibility','visible');

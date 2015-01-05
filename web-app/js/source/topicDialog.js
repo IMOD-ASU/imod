@@ -88,9 +88,10 @@ function closeDimModal(){
 	var background=$("#selectKnowledgeDimensionBackground");
 	var contentDimensions=$("#knowDimensionList"+contentID);
 
-	$(this).siblings('span').find('input').each(function(){
-		if (this.checked)
+	$(this).siblings('span').find('input').each(function() {
+		if (this.checked) {
 			dimensions.push($(this).val());
+		}
 	});
 	if (dimensions.length===0){
 		dimensions="";
@@ -197,15 +198,15 @@ function saveTopic(){
 		data: {id:imodID,
 			JSONData:contentData
 			},
-		success: function(data){
-			location.reload();
-			// data.success.forEach(function(element){
-			// 	$("#"+element).removeClass("unsaved");
-			// 	refreshSaves();
-			// 	populateTopics(topicList);
-			// 	hideTopicDialog();
-			// });
-		},
+		// success: function(data) {
+		// 	location.reload();
+		// 	// data.success.forEach(function(element){
+		// 	// 	$("#"+element).removeClass("unsaved");
+		// 	// 	refreshSaves();
+		// 	// 	populateTopics(topicList);
+		// 	// 	hideTopicDialog();
+		// 	// });
+		// },
 		error: function(xhr){
 			alert(xhr.responseText);
 		}
