@@ -14,7 +14,7 @@
 	<html>
 		<head>
 			<title>
-				<g:layoutTitle default="IMOD"/>
+				<g:layoutTitle default="IMOD" />
 			</title>
 
 			<g:layoutHead/>

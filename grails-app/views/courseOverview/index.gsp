@@ -10,7 +10,7 @@
 		<title>
 			Course Overview
 		</title>
-		<meta name="layout" content="imod">
+		<meta name="layout" content="imod" />
 		<script src="${resource(dir: 'js/source', file: 'courseOverview.js')}" defer></script>
 	</head>
 	<body>
@@ -165,8 +165,8 @@
 										<g:each in="${imodv6.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
 											<!-- FIXME move complex logic to controller -->
 											<!-- FIXME all model queries should be run in controller -->
-										    <g:checkBox name="scheduleWeekDays_${scheduleWeekDays.id}" value="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}" />
-										    <label for="weekdays">
+											<g:checkBox name="scheduleWeekDays_${scheduleWeekDays.id}" value="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}" />
+											<label for="weekdays">
 												${scheduleWeekDays.description}
 											</label>
 										</g:each>
@@ -206,10 +206,10 @@
 														</thead>
 														<tbody>
 															<g:each in="${currentImod?.instructors?}" var="instructor">
-															    <tr>
-															    	<td>
-															    		<g:textField name="lastName" value="${instructor.lastName}"/>
-															    	</td>
+																<tr>
+																	<td>
+																		<g:textField name="lastName" value="${instructor.lastName}"/>
+																	</td>
 																	<td>
 																		<g:textField name="firstName" value="${instructor.firstName}"/>
 																	</td>
@@ -222,7 +222,7 @@
 																	<td>
 																		<g:textField name="webPage" value="${instructor.webPage}"/>
 																	</td>
-															    </tr>
+																</tr>
 															</g:each>
 														</tbody>
 													</table>
