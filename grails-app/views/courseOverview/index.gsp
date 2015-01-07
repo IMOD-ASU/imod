@@ -116,7 +116,7 @@
 													*
 												</span>
 											</label>
-											<g:datePicker name="schedule.startDate" precision="day"  value="${currentImod?.schedule?.startDate}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+											<g:datePicker name="schedule.startDate" id="schedule-start-date" precision="day"  value="${currentImod?.schedule?.startDate}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
@@ -126,24 +126,24 @@
 													*
 												</span>
 											</label>
-											<g:datePicker name="schedule.endDate" precision="day"  value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+											<g:datePicker name="schedule.endDate" precision="day" value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
 											<label for="startTime">
 												<g:message code="imod.schedule.startTime.label" default="Start Time" />
 											</label>
-										<joda:timePicker name="schedule.startTime" value="${currentImod?.schedule?.startTime}" />
+										<joda:timePicker name="schedule.startTime" id="schedule-start-time" value="${currentImod?.schedule?.startTime}" />
 										</div>
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'endTime', 'error')} ">
 											<label for="endTime">
 												<g:message code="imod.schedule.endTime.label" default="End Time" />
 											</label>
-										<joda:timePicker name="schedule.endTime" value="${currentImod?.schedule?.endTime}" />
+										<joda:timePicker name="schedule.endTime" id="schedule-end-time" value="${currentImod?.schedule?.endTime}" />
 										</div>
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'repeats', 'error')} ">
 											<label for="repeats">
-												<g:message code="imod.schedule.repeats.label" default="Repeats" />
+												<g:message code="imod.repeats.label" default="Repeats" />
 											</label>
 											<!-- FIXME all model queries should be run in controller -->
 											<g:select id="repeats" name="schedule.repeats.id" from="${imodv6.ScheduleRepeats.list()}" optionKey="id" value="${currentImod?.schedule?.repeats?.id}" class="many-to-one" />
@@ -154,7 +154,7 @@
 												<g:message code="imod.repeatsEvery.label" default="Repeats Every" />
 											</label>
 											<!-- FIXME all model queries should be run in controller -->
-											<g:select id="repeatsEvery" name="schedule.repeatsEvery.id" from="${imodv6.ScheduleRepeatsEvery.list()}" optionKey="id" value="${currentImod?.schedule?.repeatsEvery?.id}" noSelection="${['null':'Nothing Selected']}" class="many-to-one" />
+											<g:select id="repeats-every" name="schedule.repeatsEvery.id" from="${imodv6.ScheduleRepeatsEvery.list()}" optionKey="id" value="${currentImod?.schedule?.repeatsEvery?.id}" noSelection="${['null':'Nothing Selected']}" class="many-to-one" />
 											<label id="duration"></label>
 										</div>
 
@@ -165,7 +165,7 @@
 										<g:each in="${imodv6.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
 											<!-- FIXME move complex logic to controller -->
 											<!-- FIXME all model queries should be run in controller -->
-											<g:checkBox name="scheduleWeekDays_${scheduleWeekDays.id}" value="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}" />
+											<g:checkBox name="scheduleWeekDays_${scheduleWeekDays.id}" id="schedule-week-days-${scheduleWeekDays.id}" value="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}" />
 											<label for="weekdays">
 												${scheduleWeekDays.description}
 											</label>
@@ -254,13 +254,13 @@
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'subjectArea', 'error')} ">
-												<label for="subjectArea">
+												<label for="subject-area">
 													<g:message code="imod.subjectArea.label" default="Subject Area" />
 													<span class="required-indicator">
 														*
 													</span>
 												</label>
-												<g:textField name="subjectArea" required="" value="${currentImod?.subjectArea}" />
+												<g:textField name="subjectArea" id="subject-area" required="" value="${currentImod?.subjectArea}" />
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'audience', 'error')} ">
@@ -271,24 +271,24 @@
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'creditHours', 'error')} ">
-												<label for="creditHours">
+												<label for="credit-hours">
 													<g:message code="imod.creditHours.label" default="Credit Hours" />
 												</label>
-												<g:field name="creditHours" type="number" value="${currentImod.creditHours}"/>
+												<g:field name="creditHours" id="credit-hours" type="number" value="${currentImod.creditHours}"/>
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'timeRatio', 'error')} ">
-												<label for="timeRatio">
+												<label for="time-ratio">
 													<g:message code="imod.timeRatio.label" default="Time Ratio" />
 												</label>
-												<g:textField name="timeRatio" value="${currentImod?.timeRatio}" />
+												<g:textField name="timeRatio" id="time-ratio" value="${currentImod?.timeRatio}" />
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'numberOfSeats', 'error')} ">
-												<label for="numberOfSeats">
+												<label for="number-of-seats">
 													<g:message code="imod.numberOfSeats.label" default="Number Of Seats" />
 												</label>
-												<g:field name="numberOfSeats" type="number" value="${currentImod.numberOfSeats}" />
+												<g:field name="numberOfSeats" id="number-of-seats" type="number" value="${currentImod.numberOfSeats}" />
 											</div>
 									</div>
 								</td>
@@ -304,7 +304,7 @@
 												Grading procedure
 											</h3>
 											<div>
-												<g:textArea name="gradingProcedure" value="${currentImod?.gradingProcedure}" rows="3" cols="30" />
+												<g:textArea name="gradingProcedure" id="grading-procedure" value="${currentImod?.gradingProcedure}" rows="3" cols="30" />
 											</div>
 											<h3>
 												Attendance and tardiness
@@ -316,25 +316,25 @@
 												Class participation
 											</h3>
 											<div>
-												<g:textArea name="classParticipation" value="${currentImod?.classParticipation}" rows="2" cols="30" />
+												<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" />
 											</div>
 											<h3>
 												Classroom decorum
 											</h3>
 											<div>
-												<g:textArea name="classroomDecorum" value="${currentImod?.classroomDecorum}" rows="2" cols="30" />
+												<g:textArea name="classroomDecorum" id="classroom-decorum" value="${currentImod?.classroomDecorum}" rows="2" cols="30" />
 											</div>
 											<h3>
 												Missed exams/Make-up exams
 											</h3>
 											<div>
-												<g:textArea name="missedExams" value="${currentImod?.missedExams}" rows="2" cols="30" />
+												<g:textArea name="missedExams" id="missed-exams" value="${currentImod?.missedExams}" rows="2" cols="30" />
 											</div>
 											<h3>
 												Missed Assignments
 											</h3>
 											<div>
-												<g:textArea name="missedAssignments" value="${currentImod?.missedAssignments}" rows="2" cols="30" />
+												<g:textArea name="missedAssignments" id="missed-assignments" value="${currentImod?.missedAssignments}" rows="2" cols="30" />
 											</div>
 										</div>
 									</div>
