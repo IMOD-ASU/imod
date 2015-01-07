@@ -7,10 +7,10 @@
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
-			<g:actionSubmit class="add showHoverNew topicButton" action="add" id="addTopic" title="${Help.toolTip("OVERVIEW", "Add New Topic")}" value="${message(code: 'Add Topic', default: 'Add Topic')}" />
+			<g:actionSubmit class="add show-hover-new topicButton" action="add" id="addTopic" title="${Help.toolTip("OVERVIEW", "Add New Topic")}" value="${message(code: 'Add Topic', default: 'Add Topic')}" />
 		</span>
 		<span class="topicButtonGradient">
-			<g:actionSubmit class="remove showHoverNew topicButton" action="remove"	id="removeTopic" title="${Help.toolTip("OVERVIEW", "Delete Selected Topic")}" value="${message(code: 'Remove Topic', default: 'Remove Topic')}" />
+			<g:actionSubmit class="remove show-hover-new topicButton" action="remove"	id="removeTopic" title="${Help.toolTip("OVERVIEW", "Delete Selected Topic")}" value="${message(code: 'Remove Topic', default: 'Remove Topic')}" />
 		</span>
 		<span id="errorMessage"></span>
 	</fieldset>
@@ -81,12 +81,12 @@
 	</table>
 	<fieldset id="topicModalClose" class="buttons topicButtonField">
 		<span class="topicButtonGradient saveBG">
-			<button class="save showHoverNew topicButton" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Finish")}">
+			<button class="save show-hover-new topicButton" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Finish")}">
 				${message(code: 'Save Topic', default: ' Finish')}
 			</button>
 		</span>
 		<span class="topicButtonGradient cancelBG">
-			<button class="showHoverNew topicButton" action="cancel" id="cancelTopic" title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}">
+			<button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}">
 				<i class="fa fa-times"></i>
 				${message(code: 'Cancel Topics', default: ' Cancel')}
 			</button>

@@ -26,18 +26,18 @@
 				<span>
 					Quick tip
 				</Span>
-				<a id="closebutton" href="#" onclick="toggleHelp()">
+				<a id="open-button" href="#" onclick="toggleHelp()">
 					_
 				</a>
 
-				<div id="qtipPlace" style="float: right; text-align: right; position: absolute; right: 0;">
+				<div id="qtip-place" style="float: right; text-align: right; position: absolute; right: 0;">
 				</div>
 			</div>
 			<div id="open-help" >
 				<Span>
 					Quick Tip
 				</Span>
-				<a id="closebutton" href="#" onclick="toggleHelp()">
+				<a id="close-button" href="#" onclick="toggleHelp()">
 					_
 				</a>
 			</div>

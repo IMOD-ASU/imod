@@ -44,8 +44,8 @@
 								</td>
 								<td>
 									<fieldset class="buttons">
-										<g:actionSubmit class="save showHoverNew" action="update" title="${Help.toolTip("OVERVIEW", "Save Course Overview")}" value="${message(code: 'Save', default: 'Save')}"/>
-										<g:actionSubmit class="delete showHoverNew" action="delete" title="${Help.toolTip("OVERVIEW", "Delete Course Overview")}" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+										<g:actionSubmit class="save show-hover-new" action="update" title="${Help.toolTip("OVERVIEW", "Save Course Overview")}" value="${message(code: 'Save', default: 'Save')}"/>
+										<g:actionSubmit class="delete show-hover-new" action="delete" title="${Help.toolTip("OVERVIEW", "Delete Course Overview")}" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
 									</fieldset>
 								</td>
 							</tr>
@@ -74,7 +74,7 @@
 													*
 												</span>
 											</label>
-											<g:textField name="imodNumber" required="" value="${currentImod?.imodNumber}"/>
+											<g:textField name="imodNumber" value="${currentImod?.imodNumber}" required="" id="imod-number"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
@@ -91,14 +91,14 @@
 											<label for="courseLocation">
 												<g:message code="imod.courseLocation.label" default="Classroom Location" />
 											</label>
-											<g:textField name="courseLocation" value="${currentImod?.courseLocation}"/>
+											<g:textField name="courseLocation" value="${currentImod?.courseLocation}" id="course-location"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'courseSemester', 'error')} ">
 											<label for="courseSemester">
 												<g:message code="imod.courseSemester.label" default="Semester" />
 											</label>
-											<g:textField name="courseSemester" value="${currentImod?.courseSemester}"/>
+											<g:textField name="courseSemester" value="${currentImod?.courseSemester}" id="course-semester"/>
 										</div>
 									</div>
 								</td>
@@ -116,7 +116,7 @@
 													*
 												</span>
 											</label>
-											<g:datePicker name="schedule.startDate" precision="day"  value="${currentImod?.schedule?.startDate}" class="showHoverNew"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+											<g:datePicker name="schedule.startDate" precision="day"  value="${currentImod?.schedule?.startDate}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
@@ -126,7 +126,7 @@
 													*
 												</span>
 											</label>
-											<g:datePicker name="schedule.endDate" precision="day"  value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="showHoverNew" />
+											<g:datePicker name="schedule.endDate" precision="day"  value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
@@ -184,10 +184,10 @@
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} ">
 
 												<div id="clickthis">
-													<g:link controller="courseOverview" action="add" params="['imod.id': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="showHoverNew">
+													<g:link controller="courseOverview" action="add" params="['imod.id': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="show-hover-new">
 														${message(code: 'default.add.label', args: [message(code: 'instructor.label', default: 'Instructor')])}
 													</g:link>
-													<g:link controller="courseOverview" action="delete" params="['imod.id': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Delete instructor")}" class="showHoverNew">
+													<g:link controller="courseOverview" action="delete" params="['imod.id': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Delete instructor")}" class="show-hover-new">
 														${message(code: 'Delete Instructor', args: [message(code: 'instructor.label', default: 'Delete Instructor')])}
 													</g:link>
 												</div>
@@ -195,13 +195,13 @@
 													<table id="instructor-table">
 														<thead>
 															<tr>
-																<g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="showHoverNew" titleKey="${Help.toolTip("OVERVIEW","Last Name Label")}" title="${Help.toolTip("OVERVIEW","Last Name Label")}"/>
-																<g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="showHoverNew" titleKey="${Help.toolTip("OVERVIEW","First Name Label")}" />
-																<g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Email Label")}"/>
-																<g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Office Hours Label")}"/>
-																<g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Last Name Label")}"/>
-																<g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Role Label")}"/>
-																<g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Location')}" class="showHoverNew"  titleKey="${Help.toolTip("OVERVIEW","Location Label")}"/>
+																<g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="show-hover-new" titleKey="${Help.toolTip("OVERVIEW","Last Name Label")}" title="${Help.toolTip("OVERVIEW","Last Name Label")}"/>
+																<g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="show-hover-new" titleKey="${Help.toolTip("OVERVIEW","First Name Label")}" />
+																<g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Email Label")}"/>
+																<g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Office Hours Label")}"/>
+																<g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Last Name Label")}"/>
+																<g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Role Label")}"/>
+																<g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Location')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Location Label")}"/>
 															</tr>
 														</thead>
 														<tbody>

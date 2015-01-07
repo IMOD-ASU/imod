@@ -323,6 +323,7 @@ class LearningObjectiveController {
 	 * @param  currentImod Imod that Learning Objective are linked to
 	 * @return              List of Learning Objective Domain Objects
 	 */
+	// FIXME rename and possibly combine learningObjectiveManager and getDefaultLearningObjective
 	private def learningObjectiveManager(Imod currentImod) {
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = LearningObjective.findAllByImod(currentImod)

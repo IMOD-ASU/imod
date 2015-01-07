@@ -4,13 +4,13 @@ $(document).ready(function() {
 	$("#accordion").accordion();
 	$( "#help-placeholder" ).draggable();
 	$("#open-help").draggable();
-	$('.showHoverNew').qtip({
+	$('.show-hover-new').qtip({
 		style: {background: 'transparent', border: 'none', color: 'black'},
 		show: 'mouseover',
 		hide: 'mouseout',
 		position: {
 			type: 'static',
-			container: $('div#qtipPlace')
+			container: $('div#qtip-place')
 		}
 	});
 

@@ -61,12 +61,12 @@ this is the basic layout with only the IMOD header and footer
 					<g:message code="default.home.label"/>
 				</a>
 				<nobr>
-					<div id="loginLinkContainer" class="banner-link">
+					<div id="login-link-container" class="banner-link">
 						<sec:ifLoggedIn>
 						<g:img dir="images" file="home_sm.png" class="resize-home"/>
 							<g:img dir="images" file="user_sm.png" class="resize-home"/>
 							<sec:username/>
-							<a href='${createLink(uri: '/logout')}' id='logoutLink' class='banner-link'>
+							<a href='${createLink(uri: '/logout')}' id='logout-link' class='banner-link'>
 								Logout
 							</a>
 						</sec:ifLoggedIn>

@@ -58,7 +58,7 @@
                                                                 No learning objective available
                                                             </div>
                                                         </g:else>
-                                                        <div id="objectiveQtipPlace"></div>
+                                                        <div id="objective-qtip-place"></div>
                                                     </ul>
                                                 </p>
                                             </div>
