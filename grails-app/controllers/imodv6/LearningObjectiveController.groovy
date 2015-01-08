@@ -228,12 +228,12 @@ class LearningObjectiveController {
 	private def getSubContent(Content current, LearningObjective objective) {
 		// FIXME remove html from controller
 		def listChildren = []
-		def topicSelected = "topicNotSelected"
-		if (objective.contents.contains(current) as Boolean){
-			topicSelected = "topicSelected"
+		def topicSelected = 'topicNotSelected'
+		if (objective.contents.contains(current) as Boolean) {
+			topicSelected = 'topicSelected'
 		}
 		def currentID = current.id
-		def idValue = "content" + currentID
+		def idValue = 'content' + currentID
 		def topicTitle = '<span class="fa-stack">' +
 			'<i class="checkboxBackground"></i>'+
 			'<i class="fa fa-stack-1x checkbox" id="select' + currentID + '"></i> ' +
@@ -244,8 +244,8 @@ class LearningObjectiveController {
 			rootNode = "rootNode"
 		}
 		if (current.subContents != null){
-			current.subContents.collect(listChildren){
-				getSubContent(it,objective)
+			current.subContents.collect(listChildren) {
+				getSubContent(it, objective)
 			}
 
 		}
@@ -254,10 +254,10 @@ class LearningObjectiveController {
 			id: idValue,
 			text: topicTitle,
 			li_attr: [
-				"class": topicSelected
+				'class': topicSelected
 			],
 			a_attr: [
-				"class":rootNode
+				'class': rootNode
 			],
 			children: listChildren
 		]
@@ -309,7 +309,7 @@ class LearningObjectiveController {
 	def getActionWords(String actionWordCategory) {
 		// temporarily replace the WordNet API with BigHugeLabsAPI
 		def rest = new RestBuilder()
-		def resp = rest.get("http://words.bighugelabs.com/api/2/2bbfecfa6c5f51f4cd4ff4562b75bdc5/"+actionWordCategory+"/json")
+		def resp = rest.get('http://words.bighugelabs.com/api/2/2bbfecfa6c5f51f4cd4ff4562b75bdc5/' + actionWordCategory + '/json')
 
 		render (
 			[

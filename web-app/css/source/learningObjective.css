@@ -115,7 +115,7 @@ input[disabled='disabled'] {
 	margin-left: 2em;
 }
 
-.LO-condition-radio {
+.learning-objective.condition.radio {
 	height: 1.3em;
 	width: 1.3em;
 	margin-right: 5px;
@@ -123,7 +123,7 @@ input[disabled='disabled'] {
 	vertical-align: middle;
 }
 
-#LO-condition-custom {
+.learning-objective.condition.custom-text {
 	display: none;
 	width: 80%;
 	margin: 0 auto;
@@ -133,7 +133,7 @@ input[disabled='disabled'] {
 	width: 100%;
 }
 
-#LO-condition-generic {
+.learning-objective.condition.generic {
 	display: block;
 	width: 90%;
 	margin: 0 auto;

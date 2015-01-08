@@ -45,12 +45,12 @@ $(document).ready(function() {
 	});
 
 	// when a custom condition is added, display in the definition box above
-	$('#LO-condition-custom').keyup(
+	$('#custom-condition-text').keyup(
 		propagateToDefinition(this.value, 'condition')
 	);
 
 	// when a standard condition is added, display in the definition box above
-	$('.LO-condition-data').change(
+	$('.learning-objective.condition.generic.text').change(
 		propagateToDefinition(this.value, 'condition')
 	);
 
@@ -58,12 +58,12 @@ $(document).ready(function() {
 		'change',
 		function() {
 			if(this.value == 'Generic') {
-				$('#LO-condition-custom').css('display', 'none');
-				$('#LO-condition-generic').css('display', 'block');
+				$('#custom-condition-text').css('display', 'none');
+				$('.learning-objective.condition.generic').css('display', 'block');
 			}
 			else{
-				$('#LO-condition-generic').css('display', 'none');
-				$('#LO-condition-custom').css('display', 'block');
+				$('.learning-objective.condition.generic').css('display', 'none');
+				$('#custom-condition-text').css('display', 'block');
 			}
 		}
 	);
