@@ -10,7 +10,7 @@
 <html>
     <head>
         <title>
-            Learning Objective - Performance
+            Pedagogy
         </title>
 
         <meta name="layout" content="imod">

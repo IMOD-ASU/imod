@@ -3,12 +3,12 @@ input[disabled='disabled'] {
 }
 
 /* Styling for the action words */
-#action-word-categories {
+.action-word-categories {
 	padding: 20px;
 	margin: 0;
 	list-style-type: none;
 
-	/*prevent text selecting for better user interface while clicking 
+	/*prevent text selecting for better user interface while clicking
 	the buttons*/
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -17,7 +17,7 @@ input[disabled='disabled'] {
 	user-select: none;
 }
 
-#action-word-categories > label {
+.action-word-categories > label {
 	width: 100px;
 	padding: 45px 0;
 	text-align: center;
@@ -28,59 +28,59 @@ input[disabled='disabled'] {
 	background-position: right top;
 }
 
-#action-word-categories > .ui-selecting,
-#action-word-categories > .ui-state-active {
+.action-word-categories > .ui-selecting,
+.action-word-categories > .ui-state-active {
 	background-color: #FFFFCC;
 	background-image: url("../../images/assign.png"), url("../../images/thesaurus.png");
 	background-repeat: no-repeat, no-repeat;
 	background-position: right top, right bottom;
 }
 
-#action-word-categories > .ui-state-hover,
-#action-word-categories > .ui-state-active,
-#action-word-categories > .ui-state-focus{
-	border: 1px solid #ccc; 
+.action-word-categories > .ui-state-hover,
+.action-word-categories > .ui-state-active,
+.action-word-categories > .ui-state-focus {
+	border: 1px solid #ccc;
 	color: #1c94c4;
 }
 
 /* learning objective left panel */
-.learning-objective-list-wrapper {
+.learning-objective.list-wrapper {
 	border: 1px solid #707070;
 	border-radius: 4px;
 	margin: 5px;
 	background-color: #fff;
 }
 
-.learning-objective-list-item {
+.learning-objective.list-item {
 	padding: 5px;
 	border-bottom: 1px solid #707070;
 	list-style-type: none;
 }
 
-.learning-objective-list-item.active {
+.learning-objective.list-item.active {
 	background-color: #808080;
 }
 
-.learning-objective-list-item:last-child {
+.learning-objective.list-item:last-child {
 	border-bottom: none;
 }
 
-.learning-objective-list-link {
+.learning-objective.list-link {
 	text-decoration: none;
 }
 
 /* managing the page layout */
-.LO-inner-table {
+.learning-objective.inner-table {
 	width: 100%;
 }
 
-#LO-list-pane {
+.learning-objective.list-panel {
 	width: 30%;
 	border: 1px solid #C4C2C2;
 	border-radius: 5px;
 }
 
-#LO-definition-cell {
+.learning-objective.definition-cell {
 	height: 5em;
 	min-height: 2em;
 	width: 70%;
@@ -88,12 +88,21 @@ input[disabled='disabled'] {
 	border-radius: 5px;
 }
 
-#LO-creator {
+.learning-objective.creator-wrapper {
 	border: 1px solid #C4C2C2;
-	border-radius: 5px; padding-right: 0;
+	border-radius: 5px;
+	padding-right: 0;
 }
 
-#LO-condition-radio-form {
+.learning-objective.creator {
+	height: 50px;
+	padding-top: 15px;
+	margin-bottom: 10px;
+	text-align: center;
+	border-bottom: 1px solid #C4C2C2;
+}
+
+.learning-objective.condition.radio-form {
 	height: 1.5em;
 	width: 15em;
 	padding: 1em;
@@ -102,11 +111,11 @@ input[disabled='disabled'] {
 	font-weight: bold;
 }
 
-#LO-condition-radio-form span {
+.learning-objective.condition.radio-form span {
 	margin-left: 2em;
 }
 
-.LO-condition-radio {
+.learning-objective.condition.radio {
 	height: 1.3em;
 	width: 1.3em;
 	margin-right: 5px;
@@ -114,7 +123,7 @@ input[disabled='disabled'] {
 	vertical-align: middle;
 }
 
-#LO-condition-custom {
+.learning-objective.condition.custom-text {
 	display: none;
 	width: 80%;
 	margin: 0 auto;
@@ -124,13 +133,13 @@ input[disabled='disabled'] {
 	width: 100%;
 }
 
-#LO-condition-generic {
+.learning-objective.condition.generic {
 	display: block;
 	width: 90%;
 	margin: 0 auto;
 }
 
-#LO-type-icon {
+.learning-objective.type-icon {
 	display: inline-block;
 	position: relative;
 	float: left;
@@ -143,15 +152,7 @@ input[disabled='disabled'] {
 	width: 60px;
 }
 
-.learning-objective-creator{
-	height: 50px; 
-	padding-top: 15px;
-	margin-bottom: 10px;
-	text-align: center;
-	border-bottom: 1px solid #C4C2C2;
-}
-
-.learning-objectives.sub-nav {
+.learning-objective.sub-nav {
 	display: inline-block;
 	text-align: center;
 	border: 1px solid #C4C2C2;
@@ -160,7 +161,7 @@ input[disabled='disabled'] {
 	background: linear-gradient(#FDFDFD, #DDDDDD);
 }
 
-.learning-objectives.sub-nav li {
+.learning-objective.sub-nav li {
 	display: inline-block;
 	width: 9em;
 	height: 2.6em;
@@ -173,19 +174,19 @@ input[disabled='disabled'] {
 	text-align: center;
 }
 
-.learning-objectives.sub-nav li:first-child {
+.learning-objective.sub-nav li:first-child {
 	border-radius: 1.5em 0px 0px 1.5em;
 }
 
-.learning-objectives.sub-nav li:last-child {
+.learning-objective.sub-nav li:last-child {
 	border-radius: 0px 1.5em 1.5em 0px;
 }
 
-.learning-objectives.sub-nav .tabs-background {
+.learning-objective.sub-nav .tabs-background {
 	height: 100%;
 }
 
-.learning-objectives.sub-nav  li a {
+.learning-objective.sub-nav  li a {
 	width: 100%;
 	padding: 15px 0;
 	color: #B6B6B6;
@@ -196,29 +197,29 @@ input[disabled='disabled'] {
 	text-decoration: none;
 }
 
-.learning-objectives.sub-nav .active a {
+.learning-objective.sub-nav .active a {
 	height: 1.35em;
 	border-radius: 2.6em / 1.2em;
 	background: linear-gradient(to right, transparent, #F5F5F5, transparent);
 }
 
-.learning-objectives.sub-nav .active .performance {
+.learning-objective.sub-nav .active .performance {
 	color: #3BA8DE;
 }
 
-.learning-objectives.sub-nav .active .content {
+.learning-objective.sub-nav .active .content {
 	color: #F7941D;
 }
 
-.learning-objectives.sub-nav .active .condition {
+.learning-objective.sub-nav .active .condition {
 	color: #EC008C;
 }
 
-.learning-objectives.sub-nav .active .criteria {
+.learning-objective.sub-nav .active .criteria {
 	color: #EC008C;
 }
 
-.learning-objectives.sub-nav li .ui-tabs-anchor {
+.learning-objective.sub-nav li .ui-tabs-anchor {
 	width: 5.2em;
 	text-align: center
 }

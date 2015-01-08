@@ -5,7 +5,6 @@
 		<title>
 			Welcome to IMOD&trade;
 		</title>
-		<g:external dir="css/source" file="index.gsp.css" />
 	</head>
 	<body>
 		<a href="#page-body" class="skip">
