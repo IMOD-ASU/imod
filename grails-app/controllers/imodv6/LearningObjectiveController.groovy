@@ -77,13 +77,13 @@ class LearningObjectiveController {
 
 			// if the user is saving the condition page
 			case 'condition':
-				if (params.LO_condition_type == 'Generic') {
-					learningObjectiveInstance.condition = params.LO_generic
+				if (params.conditionType == 'Generic') {
+					learningObjectiveInstance.condition = params.genericCondition
 				}
-				if (params.LO_condition_type == 'Custom') {
-					learningObjectiveInstance.condition = params.LO_custom
+				if (params.conditionType == 'Custom') {
+					learningObjectiveInstance.condition = params.customCondition
 				}
-				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.LO_hide_from_Objective == 'on' ? true : false)
+				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.hideCondition == 'on' ? true : false)
 				break
 
 			// if the user is saving the criteria page

@@ -54,7 +54,7 @@ $(document).ready(function() {
 		propagateToDefinition(this.value, 'condition')
 	);
 
-	$('input:radio[name=LO_condition_type]').on(
+	$('input:radio[name=conditionType]').on(
 		'change',
 		function() {
 			if(this.value == 'Generic') {
@@ -69,7 +69,7 @@ $(document).ready(function() {
 	);
 
 	// manually tiggers the radio box change event
-	$('input:radio[name=LO_condition_type]:checked').change();
+	$('input:radio[name=conditionType]:checked').change();
 
 	//trigger jquery ui button for better radio buttons
 	var category = $('input[name=selectedActionWordCategory]').val();

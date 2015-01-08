@@ -22,10 +22,13 @@ var messages = HTMLHint.verify(
 	}
 );
 
-// add results to the end of the page
-document.documentElement.innerHTML += "<h3>HTML Validation Errors</h3><ul>";
-for (var i = 0; i < messages.length; i++) {
-	var current = messages[i];
-	document.documentElement.innerHTML += "<li>Line " + current.line + ": <span style='color: red;'>" + current.message + "</span>" + current.evidence.replace('<', '&lt;').replace('>', '&gt;') + "</li>";
+// if there are errors
+if (messages.length > 0) {
+	// add results to the end of the page
+	document.documentElement.innerHTML += "<h3>HTML Validation Errors</h3><ul>";
+	for (var i = 0; i < messages.length; i++) {
+		var current = messages[i];
+		document.documentElement.innerHTML += "<li>Line " + current.line + ": <span style='color: red;'>" + current.message + "</span>" + current.evidence.replace('<', '&lt;').replace('>', '&gt;') + "</li>";
+	}
+	document.documentElement.innerHTML += "</ul>";
 }
-document.documentElement.innerHTML += "</ul>";

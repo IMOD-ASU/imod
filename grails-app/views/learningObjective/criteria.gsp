@@ -11,12 +11,9 @@
 		<g:form action="save">
 			<section>
 				<g:actionSubmit action="save" type="criteria" value="${message(code: 'Save', default: 'Save')}" id="${currentImod.id }" learningObjectiveID="${learningObjective.id }" class="save show-hover-new" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
-				<!-- FIXME replace with g:hiddenField -->
-				<input type="hidden" name="id" value="${currentImod.id}">
-				<!-- FIXME replace with g:hiddenField -->
-				<input type="hidden" name="learningObjectiveID" value="${learningObjective.id}">
-				<!-- FIXME replace with g:hiddenField -->
-				<input type="hidden" name="pageType" value="criteria">
+				<g:hiddenField name="id" value="${currentImod.id}" id="current-imod-d" />
+				<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" id="learning-objective-id" />
+				<g:hiddenField name="pageType" value="criteria" id="page-type" />
 			</section>
 
 			<section>

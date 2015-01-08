@@ -42,7 +42,7 @@
 				<table class="learning-objective inner-table">
 					<tr>
 						<td class="learning-objective list-panel" rowspan="2">
-							<div class="learning-objectives-list">
+							<div class="learning-objective list">
 								<div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 									<span class="title-text">
 										Learning Objectives
@@ -65,19 +65,19 @@
 								</ul>
 							</div>
 						</td>
-						<td id="learning-objective definition-cell">
-							<div id="learning-objectives-definition" class="learning-objective-current">
+						<td class="learning-objective definition-cell">
+							<div class="learning-objective definition" class="learning-objective-current">
 								<g:render template="/learningObjective/definition" bean="${learningObjective}" />
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td id="LO-creator">
-							<div class="learning-objective-creator">
+						<td class="learning-objective creator-wrapper">
+							<div class="learning-objective creator">
 								<!-- FIXME there must be a better way to pick the correct icon for each page -->
-								<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-' + currentPage.find(/\w+$/) + '.png')}" alt=""/>
+								<img class="learning-objective type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-' + currentPage.find(/\w+$/) + '.png')}" alt=""/>
 
-								<ul class="learning-objectives sub-nav">
+								<ul class="learning-objective sub-nav">
 									<li class="${ currentPage.find(/learning objective performance/) == null ? '' : 'active' }">
 										<g:link action="performance" params="[learningObjectiveID: learningObjective.id]" id="${currentImod?.id}" class="performance">
 											Performance

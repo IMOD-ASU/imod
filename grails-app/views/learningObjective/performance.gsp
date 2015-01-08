@@ -9,8 +9,8 @@
 	</head>
 	<body>
 		<g:form name="performance" action="save" id="${currentImod.id}">
-			<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
-			<g:hiddenField name="pageType" value="performance" />
+			<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" id="learning-objective-id" />
+			<g:hiddenField name="pageType" value="performance" id="page-type" />
 			<g:submitButton class="learning-objective-button save show-hover-new" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
 
 			<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
@@ -25,7 +25,7 @@
 			<g:select name="DCL" id="domain-category-list" from="${categoriesList.name}" noSelection="${['null':'Nothing Selected']}" value="${selectedDomainCategory?.name?:"" }" />
 			<br />
 
-			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" />
+			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" id="selected-action-word-category" />
 
 			<div class="action-word-categories">
 				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}" status="i">
