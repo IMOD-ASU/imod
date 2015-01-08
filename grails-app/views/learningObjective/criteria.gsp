@@ -10,7 +10,7 @@
 	<body>
 		<g:form action="save">
 			<section>
-				<g:actionSubmit action="save" type="criteria" value="${message(code: 'Save', default: 'Save')}" id="${currentImod.id }" learningObjectiveID="${learningObjective.id }" class="save showHoverNew" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
+				<g:actionSubmit action="save" type="criteria" value="${message(code: 'Save', default: 'Save')}" id="${currentImod.id }" learningObjectiveID="${learningObjective.id }" class="save show-hover-new" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
 				<!-- FIXME replace with g:hiddenField -->
 				<input type="hidden" name="id" value="${currentImod.id}">
 				<!-- FIXME replace with g:hiddenField -->

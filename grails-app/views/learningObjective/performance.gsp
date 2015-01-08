@@ -11,7 +11,7 @@
 		<g:form name="performance" action="save" id="${currentImod.id}">
 			<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
 			<g:hiddenField name="pageType" value="performance" />
-			<g:submitButton class="learning-objective-button save showHoverNew" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
+			<g:submitButton class="learning-objective-button save show-hover-new" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
 
 			<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 				Learning Domain

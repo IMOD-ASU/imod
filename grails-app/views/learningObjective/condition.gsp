@@ -11,7 +11,7 @@
 	<body>
 		<g:form action="save" >
 			<fieldset class="learning-objective-button">
-				<g:actionSubmit action="save" value="${message(code: 'Save', default: 'Save')}" class="save showHoverNew" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
+				<g:actionSubmit action="save" value="${message(code: 'Save', default: 'Save')}" class="save show-hover-new" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
 				<g:hiddenField name="id" value="${currentImod.id}" />
 				<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
 				<g:hiddenField name="pageType" value="condition" />

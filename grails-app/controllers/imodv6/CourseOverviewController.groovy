@@ -13,9 +13,6 @@ class CourseOverviewController {
     def springSecurityService
 
     def create() {
-
-    	print params
-
         def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
         // create a new instructor
@@ -38,7 +35,6 @@ class CourseOverviewController {
             id: springSecurityService.currentUser.id
 
         )
-
     }
 
 	// FIXME rename the action to addInstructor
@@ -107,8 +103,4 @@ class CourseOverviewController {
 			)
 		}
 	}
-
-
-
-
 }

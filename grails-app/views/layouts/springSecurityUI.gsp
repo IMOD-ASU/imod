@@ -260,7 +260,7 @@
 					<span id='s2ui_login_link_container'>
 
 					<nobr>
-						<div id='loginLinkContainer'>
+						<div id='login-link-container'>
 							<sec:ifLoggedIn>
 								Logged in as
 								<sec:username/>

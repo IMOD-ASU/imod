@@ -20,7 +20,7 @@
 
 			<g:javascript src="source/learningObjective.js" defer="defer" />
 
-			<g:layoutHead/>
+			<g:layoutHead />
 		</head>
 		<body>
 
@@ -99,7 +99,7 @@
 										</g:link>
 									</li>
 								</ul>
-								
+
 							</div>
 							<g:layoutBody />
 						</td>

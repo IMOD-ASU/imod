@@ -615,7 +615,7 @@ a.skip {
     position: absolute;
     left: -9999px;
 }
-#loginLinkContainer {
+#login-link-container {
     position: absolute;
     top: 15px;
     right: 25px;
@@ -969,7 +969,8 @@ a.ui-tabs-anchor {
     background-color: #ffff5a;
 }
 
-#closebutton {
+#close-button,
+#open-button {
     float: right;
 }
 

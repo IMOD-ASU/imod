@@ -1,12 +1,12 @@
 'use strict';
 
 $(document).ready(function () {
-	$('.showHoverNew').qtip({
+	$('.show-hover-new').qtip({
 		show: 'mouseover',
 		hide: 'mouseout',
 		position: {
 			type: 'static',
-			container: $('div#qtipPlace')
+			container: $('div#qtip-place')
 		}
 	});
 });
