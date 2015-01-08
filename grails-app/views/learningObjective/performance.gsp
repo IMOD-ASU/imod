@@ -27,7 +27,7 @@
 
 			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" />
 
-			<div id="action-word-categories">
+			<div class="action-word-categories">
 				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}" status="i">
 					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"><label for="radio${i}">
 						${actionWordCategory}

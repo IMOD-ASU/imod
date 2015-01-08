@@ -28,11 +28,11 @@
 				<g:checkBox value="${learningObjective.criteriaAccuracyHidden}" disabled="${!learningObjective.criteriaAccuracyEnabled}" id="accuracy-hide" name="hideAccuracy" />
 				<label for="accuracy-hide">
 					hide
-			 	</label>
-		 	</section>
+				</label>
+			</section>
 
-		 	<section>
-		 		<g:checkBox value="${learningObjective.criteriaQualityEnabled}" id="enable-quality" name="enableQuality" />
+			<section>
+				<g:checkBox value="${learningObjective.criteriaQualityEnabled}" id="enable-quality" name="enableQuality" />
 				<label for="quality-text" class="criteria-label-equal-width">
 					Quality
 				</label>
@@ -40,11 +40,11 @@
 				<g:checkBox id="quality-hide" name="hideQuality" value="${learningObjective.criteriaQualityHidden}" disabled="${!learningObjective.criteriaQualityEnabled}" />
 				<label for="quality-hide">
 					hide
-			 	</label>
-		 	</section>
+				</label>
+			</section>
 
-		 	<section>
-		 		<g:checkBox value="${learningObjective.criteriaQuantityEnabled}" id="enable-quantity" name="enableQuantity"	/>
+			<section>
+				<g:checkBox value="${learningObjective.criteriaQuantityEnabled}" id="enable-quantity" name="enableQuantity"	/>
 				<label for="quantity-text" class="criteria-label-equal-width">
 					Quantity
 				</label>
@@ -52,11 +52,11 @@
 				<g:checkBox value="${learningObjective.criteriaQuantityHidden}" disabled="${!learningObjective.criteriaQuantityEnabled}" id="quantity-hide" name="hideQuantity" />
 				<label for="quantity-hide">
 					hide
-			 	</label>
-		 	</section>
+				</label>
+			</section>
 
-		 	<section>
-		 		<g:checkBox value="${learningObjective.criteriaSpeedEnabled}" id="enable-speed" name="enableSpeed" />
+			<section>
+				<g:checkBox value="${learningObjective.criteriaSpeedEnabled}" id="enable-speed" name="enableSpeed" />
 				<label for="quantity-text" class="criteria-label-equal-width">
 					Speed
 				</label>
@@ -64,8 +64,8 @@
 				<g:checkBox value="${learningObjective.criteriaSpeedHidden}" disabled="${!learningObjective.criteriaSpeedEnabled}" id="speed-hide" name="hideSpeed" />
 				<label for="speed-hide">
 					hide
-			 	</label>
-		 	</section>
+				</label>
+			</section>
 		</g:form>
 	</body>
 </html>

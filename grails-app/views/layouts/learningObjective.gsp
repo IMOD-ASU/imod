@@ -39,9 +39,9 @@
 				</ul>
 			</g:hasErrors>
 			<fieldset class="form">
-				 <table  class="LO-inner-table">
+				<table class="learning-objective inner-table">
 					<tr>
-						<td id="LO-list-pane" rowspan="2">
+						<td class="learning-objective list-panel" rowspan="2">
 							<div class="learning-objectives-list">
 								<div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 									<span class="title-text">
@@ -54,10 +54,10 @@
 										</g:link>
 									</span>
 								</div>
-								<ul class="learning-objective-list-wrapper">
+								<ul class="learning-objective list-wrapper">
 									<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
-										<li class="learning-objective-list-item ${(learningObjectiveItem.id == learningObjective.id) ? 'active' : ''  }">
-											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjectiveItem.id]" class="learning-objective-list-link">
+										<li class="learning-objective list-item ${(learningObjectiveItem.id == learningObjective.id) ? 'active' : ''  }">
+											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjectiveItem.id]" class="learning-objective list-link">
 												<g:render template="/learningObjective/definition" bean="${learningObjectiveItem}" />
 											</g:link>
 										</li>
@@ -65,7 +65,7 @@
 								</ul>
 							</div>
 						</td>
-						<td id="LO-definition-cell">
+						<td id="learning-objective definition-cell">
 							<div id="learning-objectives-definition" class="learning-objective-current">
 								<g:render template="/learningObjective/definition" bean="${learningObjective}" />
 							</div>
