@@ -1,7 +1,6 @@
 package imodv6
 import grails.converters.JSON
 import grails.plugins.rest.client.RestBuilder
-import org.codehaus.groovy.grails.web.json.JSONObject
 
 class LearningObjectiveController {
 

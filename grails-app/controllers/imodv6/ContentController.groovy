@@ -38,10 +38,9 @@ class ContentController {
 		] as JSON)
 	}
 
-	def saveTopic(Long id, String JSONData) {
+	def saveTopic(String JSONData) {
 		def jsonParser = new JsonSlurper()
 		def contentData = jsonParser.parseText(JSONData)
-		def currentImod = Imod.get(id)
 		def success = []
 		def fail = []
 		contentData.each() {
@@ -82,8 +81,7 @@ class ContentController {
 			] as JSON
 		)
 	}
-	def deleteTopic(Long id, String contentIDs) {
-		def currentImod = Imod.get(id)
+	def deleteTopic(String contentIDs) {
 		def success = []
 		def contentIDList = new JsonSlurper().parseText(contentIDs)
 
@@ -99,6 +97,7 @@ class ContentController {
 			] as JSON
 		)
 	}
+
 	def updateHierarchy(Long contentID, Long parentID) {
 		def childContent = Content.get(contentID)
 		def oldParent = childContent.parentContent

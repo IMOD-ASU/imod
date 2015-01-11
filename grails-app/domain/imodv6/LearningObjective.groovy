@@ -14,7 +14,9 @@ class LearningObjective {
 	 * attributes are the dynamic content from the learning objective
 	 * Boolean to keep track of whether or not to hide the Condition from the Learning Objective
 	 */
+	// FIXME condition is a SQL reserved word
 	String condition
+	// FIXME indicator is a SQL reserved word
 	String indicator
 	String performance
 	// Hide condition from objective
