@@ -1,9 +1,6 @@
 package imodv6
 
-import grails.converters.JSON
-/* scaffold controller created by Grails for Create Read Update and Delete operation */
 class PedagogyTechniqueController {
-
 	static scaffold = PedagogyTechnique
 
 	/**

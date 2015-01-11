@@ -20,7 +20,7 @@ class ImodController {
 		)
 	}
 
-	def list(Integer max) {
+	def list() {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 		// search for imods owned by current user
@@ -66,6 +66,7 @@ class ImodController {
 			springSecurityService.currentUser.id
 		)
 
+		// FIXME unbundle variable assignment
 		def currentImod = new Imod(params)
 		if (!currentImod.save()) {
 			render(
@@ -135,6 +136,7 @@ class ImodController {
 			}
 		}
 
+		// FIXME unbundle variable assignment
 		currentImod.properties = params
 
 		if (!currentImod.save()) {

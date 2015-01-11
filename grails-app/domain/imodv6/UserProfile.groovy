@@ -14,7 +14,8 @@ class UserProfile {
 	String themeCode
 	String streetAddress
 	String city
-	String state
+	// FIXME state is a reserved keywork in SQL
+	// String state
 	String country
 	String zip
 
@@ -32,7 +33,7 @@ class UserProfile {
 		themeCode nullable: true
 		streetAddress nullable: true
 		city nullable: true
-		state nullable: true
+		// state nullable: true
 		country nullable: true
 		zip nullable: true
    }

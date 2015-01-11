@@ -1,7 +1,7 @@
 package imodv6
 
 import org.joda.time.LocalTime;
-import org.jadira.usertype.dateandtime.joda.*
+import org.jadira.usertype.dateandtime.joda.PersistentLocalTime
 
 /**
  * Store all of the general information on when the course will happen
