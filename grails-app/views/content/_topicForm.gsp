@@ -68,6 +68,7 @@
 							<button id="topicResources${contentItem.id}" type="button">
 								Resources
 							</button>
+							<button class="ResourceButton" id="topicResources${contentItem.id}" type="button">Resources</button>
 						</td>
 						<td class="topicPreReq">
 							<g:checkBox name="topicPreReq${contentItem.id}" value="${contentItem.preReq }" />

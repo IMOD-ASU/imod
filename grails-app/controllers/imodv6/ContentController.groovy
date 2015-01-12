@@ -1,5 +1,7 @@
 package imodv6
 
+import javax.annotation.Resources;
+
 import grails.converters.JSON
 import groovy.json.JsonSlurper
 
@@ -11,6 +13,7 @@ class ContentController {
 		deleteTopic:'GET',
 		updateHierarchy: 'POST',
 		setLearningObjective: 'POST',
+		addResource: 'GET',
 	]
 
 	def index(Long id) {
@@ -84,8 +87,6 @@ class ContentController {
 	def deleteTopic(String contentIDs) {
 		def success = []
 		def contentIDList = new JsonSlurper().parseText(contentIDs)
-
-
 		contentIDList.each() {
 			def deletedContent = Content.get(it)
 			deletedContent.delete()
@@ -137,6 +138,81 @@ class ContentController {
 		render(
 			[
 				success: true
+			] as JSON
+		)
+	}
+	
+	def addResource(Long contentID) {
+		def contentInstance = Content.get(contentID);
+		def resourceInstance = new Resource(content: contentInstance);
+		resourceInstance.save();
+		contentInstance.addToResources(resourceInstance);
+		
+		def resources = Resource.resourceTypes();
+		render([
+			id: resourceInstance.id,
+			resources: resources,
+		] as JSON)
+		
+	}
+	
+	def getResource(Long contentID) {
+		def contentInstance = Content.get(contentID);
+		def resources = contentInstance.getResources();
+		def resourceTypes = Resource.resourceTypes();
+		render([
+			resources: resources,
+			resourceTypes: resourceTypes,
+			]as JSON)
+	}
+	
+	def saveResource(Long id, String JSONData) {
+		def jsonParser = new JsonSlurper()
+		def resourceData = jsonParser.parseText(JSONData)
+		def currentImod = Imod.get(id)
+		def success = []
+		def fail = []
+		resourceData.each() {
+			def resourceID = it.resourceID.toLong()
+			def resourceName = it.resourceName
+			def resourceDescription = it.resourceDescription
+			def resourceType = it.resourceType
+			def resourceInstance = Resource.get(resourceID)
+			resourceInstance.name = resourceName
+			resourceInstance.description = resourceDescription
+			resourceInstance.resourceType = resourceType
+			resourceInstance.save()
+
+			if (!resourceInstance) {
+				resourceInstance.errors.allErrors.each {
+					log.error messageSource.getMessage(it,null)
+				}
+				fail.add(resourceID)
+			}
+			else {
+				success.add(resourceID)
+			}
+		};
+
+		render(
+			[
+				success: success,
+				fail: fail
+			] as JSON
+		)
+	}
+	
+	def deleteResource(String resourceIDs) {
+		def success = []
+		def resourceIDList = new JsonSlurper().parseText(resourceIDs)
+		resourceIDList.each() {
+			def deletedResource = Resource.get(it)
+			deletedResource.delete()
+			success.add(it)
+		}
+		render(
+			[
+				result: success
 			] as JSON
 		)
 	}

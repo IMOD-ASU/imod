@@ -492,3 +492,91 @@ input[disabled='disabled'] {
 	position:relative;
 	left:10%;
 }
+
+#selectResourceBackground{
+	z-index: 3
+}
+#selectResource{
+	display:none;
+	border:1px solid #C4C2C2 ;
+	background:white;
+	position:absolute;
+	width:60%;
+	min-height:20%;
+	top:33%;
+	left:20%;
+	padding:10px;
+	z-index:4;
+}
+.resourceButtonField{
+	top:initial;
+	right:initial;
+	position:relative;
+	width:auto;
+	box-shadow:none;
+	background:linear-gradient(#FEFEFE,#EDEDEF);
+	height:3em;
+	margin:0px;
+}
+.resourceButton{
+	height:2.9em;
+	background-repeat: no-repeat;
+	background-position-y:center;
+}
+.resourceButtonGradient{
+	height:auto;
+	background:linear-gradient(#F0F0F0,white);
+	display:inline-block;
+	box-shadow:0px 1px 2px #888888;
+	margin-left:5px;
+	margin-right:5px;
+	border-radius:4px;
+	padding-left:5px;
+	padding-right:5px;
+}
+.resourceButtonGradient.saveBG{
+}
+.resourceButtonGradient.cancelBG{
+}
+.resourceButtonGradient.cancelBG i{
+	color: darkred;
+	font-size:1.5em;
+}
+#resourceList{
+	width:100%;
+	margin:0px;
+	margin-bottom:1px;
+}
+#resourceList thead tr:last-child{
+	width:4em;
+	padding-right:10px;
+}
+#resourceList tbody *{
+	vertical-align:middle;
+}
+
+#resourceList tbody img{
+	height:20px;
+	width:20px;
+	padding-right:5px;
+}
+#resourceList tr{
+	border-top:1px solid #C4C2C2;
+	border-bottom:1px solid #C4C2C2;
+}
+
+#resourceList td{
+	padding:5px;
+}
+#resourceList input, #resourceList select, #resourceList button{
+	width:95%;
+	height:inherit;
+	min-height:inherit;
+}
+#resourceList .hidden{
+	display:none;
+}
+#resourceList .unsaved{
+	background:white;
+}
+
