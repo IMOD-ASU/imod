@@ -14,7 +14,7 @@ hibernate {
 environments {
 	development {
 		dataSource {
-			dbCreate = 'update' // one of 'create', 'create-drop', 'update', 'validate', ''
+			dbCreate = 'create-drop' // one of 'create', 'create-drop', 'update', 'validate', ''
 			url = 'jdbc:postgresql:sample'
 		}
 	}

@@ -2,6 +2,7 @@
 
 var errorMessages=[];
 var isFlashing=null;
+var content = "";
 $(function(){
 	$("#addTopicModal").click(showTopicDialog);
 	$("#addTopic").click(addTopic);
@@ -12,6 +13,19 @@ $(function(){
 	});
 	$('.knowledgeDimensionButton').click(openDimModal);
 	$('#knowDimFinished').click(closeDimModal);
+	$('.ResourceButton').click(openResourceModal);
+	$('#addResource').click(function(){
+		addResource();
+	});
+	$('#cancelResource').click(closeResourceModal);
+	$('#saveResource').click(saveResource);
+	$('#removeResource').click(function(){
+		var resourceIDs=[];
+		$("#resourceList .selected").each(function(){
+			resourceIDs.push(this.id);
+		});
+		deleteResource(resourceIDs);
+	});
 	$('#removeTopic').click(function(){
 		var contentIDs=[];
 		$("#topicList .selected").each(function(){
@@ -20,6 +34,7 @@ $(function(){
 		deleteTopic(contentIDs);
 	});
 	$("#topicList > tbody").on("click","tr",toggleSelected);
+	$("#resourceList > tbody").on("click","tr",toggleSelected);
 	$('#selectKnowledgeDimensions').on('change','input:checkbox',changePic);
 	$("#topicList > tbody").on("change","input",function(){
 		var id=$(this).parents("tr .topicItem").attr('id');
@@ -134,6 +149,18 @@ function openDimModal(){
 	background.css("display","block");
 }
 
+function openResourceModal() {
+	content = this.id;
+	$("#selectResource").css("display", "inherit");
+	$("#selectResourceBackground").css("display", "block");
+	getResource();
+}
+
+function closeResourceModal() {
+	$("#selectResourceBackground").css("display","none");
+	$("#selectResource").css("display","none");
+	
+}
 function highlightUnsaved(id){
 	$("#"+id).addClass("unsaved");
 }
@@ -144,7 +171,7 @@ function deleteTopic(contentIDs){
 		url:"../../content/deleteTopic/",
 		type:"GET",
 		dataType:"json",
-		data: {id:imodID,
+		data: {
 			contentIDs:contentIDs
 			},
 		success: function(data){
@@ -198,15 +225,15 @@ function saveTopic(){
 		data: {id:imodID,
 			JSONData:contentData
 			},
-		// success: function(data) {
-		// 	location.reload();
+		success: function(data) {
+		 	location.reload();
 		// 	// data.success.forEach(function(element){
 		// 	// 	$("#"+element).removeClass("unsaved");
 		// 	// 	refreshSaves();
 		// 	// 	populateTopics(topicList);
 		// 	// 	hideTopicDialog();
 		// 	// });
-		// },
+		},
 		error: function(xhr){
 			alert(xhr.responseText);
 		}
@@ -316,7 +343,7 @@ function addTopic(){
 					'</select> '+
 					'<input type="hidden" name="topicPrioritySaved'+id+'"> '+
 				'</td><td class="topicResources">'+
-					'<button type="button" id="topicResource'+id+'">Resources</button> '+
+					'<button type="button" class="ResourceButton" id="topicResources'+id+'">Resources</button> '+
 				'</td><td class="topicPreReq">'+
 					'<input type="checkbox" name="topicPreReq'+id+'"> '+
 					'<input type="hidden" name="topicPreReqSaved'+id+'"> '+
@@ -325,9 +352,164 @@ function addTopic(){
 			).appendTo(topicDiv);
 			$('#topicTitle'+id).focus();
 			$('.knowledgeDimensionButton').click(openDimModal);
+			$('.ResourceButton').click(openResourceModal);
 		},
 		error: function(xhr){
 			alert(xhr.responseText);
 		}
+	});
+}
+
+function addResource() {
+	var contentID=content.split("topicResources");
+	contentID =contentID[1];
+	$.ajax({
+		url:"../../content/addResource",
+		type:"GET",
+		dataType:"json",
+		data:{contentID:contentID},
+		success:function(data){
+			var id = data.id;
+			var resources = data.resources;
+			var resourceOptions = '';
+			var resourceDiv=$('#resourceList tbody');
+			for (i=0;i<resources.length;i++){
+				resourceOptions+='<option value="'+resources[i]+'">'+resources[i]+'</option>';
+			}
+			$('<tr id="'+id+'" class="resourceItem">'+
+					'<td class="saveIcon">'+
+					'<i class="hidden fa fa-eraser"></i>'+
+				'</td><td class="resourceName">'+
+					'<input type="text" id="resourceName'+id+'"> '+
+					'<input type="hidden" id="resourceNameSaved'+id+'"> '+
+				'</td><td class="resourceDescription">'+
+					'<input type="text" id="resourceDescription'+id+'"> '+
+					'<input type="hidden" id="resourceDescriptionSaved'+id+'"> '+
+					'</td><td class="resourceType">'+
+					'<select size="1" name="resourceType'+id+'" id="resourceType'+id+'"> '+
+					resourceOptions+
+					'</select> '+
+					'<input type="hidden" name="resourceTypeSaved'+id+'"> '+
+					'</td></tr>'
+					).appendTo(resourceDiv);
+		},
+		error: function(xhr) {
+			alert(xhr.responseText);
+		}
+	});
+}
+
+function getResource() {
+	
+	var contentID=content.split("topicResources");
+	contentID = contentID[1];
+	var resourceDiv=$('#resourceList tbody');
+	resourceDiv.html("");
+	var resourceOptions="";
+	$.ajax({
+		url:"../../content/getResource",
+		type:"GET",
+		dataType:"json",
+		data:{contentID:contentID},
+		success:function(data){
+		   var resources = data.resources;
+		   var resourceTypes = data.resourceTypes
+		   for (i=0;i<resourceTypes.length;i++){
+				resourceOptions+='<option value="'+resourceTypes[i]+'">'+resourceTypes[i]+'</option>';
+			}
+		   $.each( resources, function(key, value) {
+			   var id = value.id
+			   $('<tr id="'+id+'" class="resourceItem">'+
+						'<td class="saveIcon">'+
+						'<i class="hidden fa fa-eraser"></i>'+
+					'</td><td class="resourceName">'+
+						'<input type="text" id="resourceName'+id+'" value='+value.name+'> '+
+						'<input type="hidden" id="resourceNameSaved'+id+'"> '+
+					'</td><td class="resourceDescription">'+
+						'<input type="text" id="resourceDescription'+id+'" value='+value.description+'> '+
+						'<input type="hidden" id="resourceDescriptionSaved'+id+'"> '+
+						'</td><td class="resourceType">'+
+						'<select size="1" name="resourceType'+id+'" id="resourceType'+id+'"> '+
+						resourceOptions+
+						'</select> '+
+						
+						'<input type="hidden" name="resourceTypeSaved'+id+'"> '+
+						'</td></tr>'
+						).appendTo(resourceDiv);
+			   $("#resourceType"+id).val(value.resourceType);
+			   //$("#resourceType"+id+" select.select option[value="+value.resourceType+"]").prop("selected", true);
+			   
+		   });
+		   
+		},
+		error: function(xhr) {
+			alert(xhr.responseText);
+			}
+		});
+}
+function saveResource() {
+	var imodID=$("#imodID").val();
+	var resourceData=[];
+	var hasError=false;
+	var resourceList=[];
+	$("#resourceList tbody tr").each(function(){
+		var resourceID=this.id;
+		var resourceName=$("#resourceName"+resourceID).val();
+		var resourceDescription=$("#resourceDescription"+resourceID).val();
+		var resourceType=$("#resourceType"+resourceID).val();
+		if (resourceDescription===""){
+			errorMessage("Resource: "+resourceName+" must have a Description!");
+			hasError=true;
+		}
+		if (resourceName===""){
+			errorMessage("Resource Name is required");
+			hasError=true;
+		}
+		/*resourceList.push({
+			contentID: contentID,
+			dimensions: dimensions,
+			topicTitle: topicTitle
+		});*/
+		resourceData.push({
+			resourceID: resourceID,
+			resourceName: resourceName,
+			resourceDescription: resourceDescription,
+			resourceType: resourceType
+		});
+	});
+	if (hasError){
+		return;
+	}
+	resourceData=JSON.stringify(resourceData);
+	$.ajax({
+		url:"../../content/saveResource/",
+		type:"POST",
+		dataType:"json",
+		data: {id:imodID,
+			JSONData:resourceData
+			},
+		success: function(data){
+			closeResourceModal();
+		},
+		error: function(xhr){
+			alert(xhr.responseText);
+		}
+	});	
+}
+
+function deleteResource(resourceIDs){
+	resourceIDs=JSON.stringify(resourceIDs);
+	$.ajax({
+		url:"../../content/deleteResource/",
+		type:"GET",
+		dataType:"json",
+		data: {
+			resourceIDs:resourceIDs
+			},
+		success: function(data){
+			data.result.forEach(function(element){
+				$("#"+element).remove();
+			});
+		},
 	});
 }
