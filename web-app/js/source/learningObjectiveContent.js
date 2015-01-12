@@ -19,12 +19,12 @@ function buildContentTree(jsonData, refreshDB){
 		"core": {
 			"data":jsonData,
 			"check_callback": true,
-			"themes":{
-				"icons":false
+			"themes": {
+				"icons": false
 			},
 		},
 		"dnd":{
-			"copy":false,
+			"copy": false,
 		},
 		"plugins":["wholerow", "dnd", "types"],
 	});
@@ -40,9 +40,9 @@ function buildContentTree(jsonData, refreshDB){
 		refreshCheckboxes(refreshDB);
 	});
 	$("#contentTree").on("move_node.jstree",function(e, data){
-		$("#contentTree").jstree("open_node","#"+data.node.parent);
-		refreshTreeValues($("#"+data.node.id).children("a"),true);
-		moveContent(data.node.id.substr(7),data.node.parent.substr(7));
+		$("#contentTree").jstree("open_node", "#" + data.node.parent);
+		refreshTreeValues($("#"+data.node.id).children("a"), true);
+		moveContent(data.node.id.substr(7), data.node.parent.substr(7));
 	});
 	$("#contentTree").off("click.jstree");
 }
@@ -68,6 +68,7 @@ function selectCheckboxes(currentRow){
 	}
 	refreshTreeValues(currentRow,true);
 }
+
 function refreshTreeValues(currentRow, doRefresh){
 	var contentID=$(currentRow).parent("li").attr('id');
 	var contentNode=$('#contentTree').jstree(true).get_node(contentID);
@@ -76,16 +77,16 @@ function refreshTreeValues(currentRow, doRefresh){
 	var currentNode=$('#contentTree').jstree(true).get_node(contentNode);
 	while (currentNode.parents.length>1){
 		currentNode=$('#contentTree').jstree(true).get_node(currentNode.parent);
-		if(currentNode.parents.length==1){
+		if(currentNode.parents.length == 1) {
 			currentNode.a_attr["class"]="rootNode";
 		}
-		else{
+		else {
 			currentNode.a_attr["class"]="";
 		}
-		if (!indeterminate){
+		if(!indeterminate){
 			var numIndeterminate;
 			$(currentNode.children_d).each(function(){
-				if ($('#contentTree').jstree(true).get_node(this).li_attr["class"]=="topicIndeterminate"){
+				if($('#contentTree').jstree(true).get_node(this).li_attr["class"]=="topicIndeterminate"){
 					numIndeterminate++;
 				}
 			});
@@ -124,7 +125,6 @@ function refreshTreeValues(currentRow, doRefresh){
 	}
 }
 
-
 function refreshCheckboxes(refreshDB){
 	var nodeArray=$("#contentTree").jstree(true)._model.data["#"].children_d;
 	var defaultClass="fa fa-stack-1x checkbox";
@@ -146,6 +146,7 @@ function refreshCheckboxes(refreshDB){
 		setContents(idArray);
 	}
 }
+
 function moveContent(contentID, parentID){
 	$.ajax({
 		url:"../../content/updateHierarchy",
@@ -160,6 +161,7 @@ function moveContent(contentID, parentID){
 		}
 	});
 }
+
 function setContents(idArray){
 	var objectiveID=$("input[name=learningObjectiveID]").val();
 	idArray=JSON.stringify(idArray);
