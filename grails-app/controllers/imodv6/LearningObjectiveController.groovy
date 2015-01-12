@@ -1,7 +1,6 @@
 package imodv6
 import grails.converters.JSON
 import grails.plugins.rest.client.RestBuilder
-import org.codehaus.groovy.grails.web.json.JSONObject
 
 class LearningObjectiveController {
 
@@ -48,7 +47,9 @@ class LearningObjectiveController {
 		redirect(
 			action: 'performance',
 			id: id,
-			learningObjectiveID: learningObjectiveInstance.id,
+			params: [
+				learningObjectiveID: learningObjectiveInstance.id
+			]
 		)
 	}
 
@@ -60,6 +61,7 @@ class LearningObjectiveController {
 	 * @return                     redirects back to the page that user was just on
 	 */
 	//TODO: add confirmation that the content was successfully saved
+	// FIXME each page should have its own save
 	def save (Long id, Long learningObjectiveID, String pageType){
 		//gets the learning objective to be updated
 		def learningObjectiveInstance = LearningObjective.get(learningObjectiveID)
@@ -74,13 +76,13 @@ class LearningObjectiveController {
 
 			// if the user is saving the condition page
 			case 'condition':
-				if (params.LO_condition_type == 'Generic') {
-					learningObjectiveInstance.condition = params.LO_generic
+				if (params.conditionType == 'Generic') {
+					learningObjectiveInstance.condition = params.genericCondition
 				}
-				if (params.LO_condition_type == 'Custom') {
-					learningObjectiveInstance.condition = params.LO_custom
+				if (params.conditionType == 'Custom') {
+					learningObjectiveInstance.condition = params.customCondition
 				}
-				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.LO_hide_from_Objective == 'on' ? true : false)
+				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.hideCondition == 'on' ? true : false)
 				break
 
 			// if the user is saving the criteria page
@@ -116,9 +118,11 @@ class LearningObjectiveController {
 
 		// redirect to the correct page
 		redirect(
-			action:					pageType,
-			id:						id,
-			learningObjectiveID:	learningObjectiveID
+			action: pageType,
+			id: id,
+			params: [
+				learningObjectiveID: learningObjectiveID
+			]
 		)
 	}
 
@@ -128,11 +132,12 @@ class LearningObjectiveController {
 	 * Action Words are found by starting with a Learning Domain, choosing a domain category, the selecting an action word from a list
 	 * @param  id                  IMOD that learning objective is associated with
 	 * @param  learningObjectiveID ID of the specific learning objective being edited
-	 * @return                     Renders peformance page
 	 */
 	def performance(Long id, Long learningObjectiveID) {
+
 		// get relevant imod
 		def currentImod = Imod.get(id)
+
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = learningObjectiveManager(currentImod)
 
@@ -146,8 +151,6 @@ class LearningObjectiveController {
 		def domainList = LearningDomain.list()
 		def domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
 		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
-
-
 
 		[
 			currentImod:				currentImod,
@@ -164,12 +167,6 @@ class LearningObjectiveController {
 		]
 	}
 
-	/**
-	 * [content description]
-	 * @param  id                  [description]
-	 * @param  learningObjectiveID [description]
-	 * @return                     [description]
-	 */
 	def content(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
 		def learningObjectivesList = learningObjectiveManager(currentImod)
@@ -183,7 +180,6 @@ class LearningObjectiveController {
 			getSubContent(it,learningObjectiveInstance)
 		}
 		contents = new groovy.json.JsonBuilder(contents).toString()
-		contents = contents.replaceAll('"', /'/)
 
 		[
 			currentImod:			currentImod,
@@ -194,12 +190,6 @@ class LearningObjectiveController {
 		]
 	}
 
-	/**
-	 * [condition description]
-	 * @param  id                  [description]
-	 * @param  learningObjectiveID [description]
-	 * @return                     [description]
-	 */
 	def condition(Long id, Long learningObjectiveID) {
 		def currentImod					=  Imod.get(id)
 		def learningObjectivesList		=  learningObjectiveManager(currentImod)
@@ -220,12 +210,6 @@ class LearningObjectiveController {
 		]
 	}
 
-	/**
-	 * [criteria description]
-	 * @param  id                  [description]
-	 * @param  learningObjectiveID [description]
-	 * @return                     [description]
-	 */
 	def criteria(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
@@ -241,14 +225,14 @@ class LearningObjectiveController {
 	}
 
 	private def getSubContent(Content current, LearningObjective objective) {
-		// TODO remove html from controller
+		// FIXME remove html from controller
 		def listChildren = []
-		def topicSelected = "topicNotSelected"
-		if (objective.contents.contains(current) as Boolean){
-			topicSelected = "topicSelected"
+		def topicSelected = 'topicNotSelected'
+		if (objective.contents.contains(current) as Boolean) {
+			topicSelected = 'topicSelected'
 		}
 		def currentID = current.id
-		def idValue = "content" + currentID
+		def idValue = 'content' + currentID
 		def topicTitle = '<span class="fa-stack">' +
 			'<i class="checkboxBackground"></i>'+
 			'<i class="fa fa-stack-1x checkbox" id="select' + currentID + '"></i> ' +
@@ -259,8 +243,8 @@ class LearningObjectiveController {
 			rootNode = "rootNode"
 		}
 		if (current.subContents != null){
-			current.subContents.collect(listChildren){
-				getSubContent(it,objective)
+			current.subContents.collect(listChildren) {
+				getSubContent(it, objective)
 			}
 
 		}
@@ -269,10 +253,10 @@ class LearningObjectiveController {
 			id: idValue,
 			text: topicTitle,
 			li_attr: [
-				"class": topicSelected
+				'class': topicSelected
 			],
 			a_attr: [
-				"class":rootNode
+				'class': rootNode
 			],
 			children: listChildren
 		]
@@ -324,7 +308,7 @@ class LearningObjectiveController {
 	def getActionWords(String actionWordCategory) {
 		// temporarily replace the WordNet API with BigHugeLabsAPI
 		def rest = new RestBuilder()
-		def resp = rest.get("http://words.bighugelabs.com/api/2/2bbfecfa6c5f51f4cd4ff4562b75bdc5/"+actionWordCategory+"/json")
+		def resp = rest.get('http://words.bighugelabs.com/api/2/2bbfecfa6c5f51f4cd4ff4562b75bdc5/' + actionWordCategory + '/json')
 
 		render (
 			[
@@ -338,6 +322,7 @@ class LearningObjectiveController {
 	 * @param  currentImod Imod that Learning Objective are linked to
 	 * @return              List of Learning Objective Domain Objects
 	 */
+	// FIXME rename and possibly combine learningObjectiveManager and getDefaultLearningObjective
 	private def learningObjectiveManager(Imod currentImod) {
 		// get a list of all of the learning objectives for this imod
 		def learningObjectivesList = LearningObjective.findAllByImod(currentImod)

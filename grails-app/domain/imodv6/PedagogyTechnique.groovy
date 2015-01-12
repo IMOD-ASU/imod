@@ -6,26 +6,34 @@ package imodv6
  */
 class PedagogyTechnique {
 
-	String pedagogyTitle
-	String pedagogyDescription
+	String title
+	String description
+	PedagogyMode pedagogyMode
 
 	static hasMany = [
-		learningDomain: LearningDomain,
+		activityFocus: PedagogyActivityFocus,
+		assignedLearningObjective: LearningObjective,
 		domainCategory: DomainCategory,
 		knowledgeDimension: KnowledgeDimension,
-		activityFocus: PedagogyActivityFocus
+		learningDomain: LearningDomain,
+		userFavorite: ImodUser
 	]
 
 	static belongsTo = [
-		pedagogyMode: PedagogyMode
+		ImodUser,
+		LearningObjective,
+		PedagogyMode
 	]
 
 	static mapping = {
-		pedagogyDescription type: 'text'
+		description type: 'text'
+		version false
 	}
 
     static constraints = {
-		pedagogyDescription nullable: true, blank: true
 		activityFocus nullable: true
+		assignedLearningObjective nullable: true
+		description nullable: true, blank: true
+		userFavorite nullable: true
     }
 }

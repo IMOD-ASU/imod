@@ -17,8 +17,9 @@ class PedagogyActivity {
 	static mapping = {
 		description type: 'text'
 		example type: 'text'
+		version false
 	}
-	
+
 	static constraints = {
 		example nullable: true
 		material nullable: true

@@ -72,11 +72,11 @@ environments {
 	}
     test {
         grails.logging.jul.usebridge = false
-        grails.serverURL = 'http://129.219.40.55:8080/imod-test'
+        grails.serverURL = 'http://imod.poly.asu.edu:8080/imod-test'
     }
 	production {
 		grails.logging.jul.usebridge = false
-		grails.serverURL = 'http://129.219.40.55:8080/imod-demo'
+		grails.serverURL = 'http://imod.poly.asu.edu:8080/imod-demo'
 	}
 }
 
@@ -132,6 +132,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/imod/**':						['ROLE_USER'],
 	'/learningObjective/**':		['ROLE_USER'],
 	'/pedagogy/**':					['ROLE_USER'],
+	'/pedagogyTechnique/**':		['ROLE_USER'],
 	'/console':						['ROLE_ADMIN']
 ]
 //to allow user to login, avoid double encryption
@@ -155,4 +156,5 @@ grails {
 
 //makes the imod page default url after user logs in
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/imod'
+// FIXME use this variable or delete it
 objective.length = 40

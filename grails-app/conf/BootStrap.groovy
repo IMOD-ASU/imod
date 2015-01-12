@@ -29,6 +29,7 @@ class BootStrap {
 		/**
 		 * Generates the user security roles
 		 */
+		// FIXME there should be a single check to see if data exists that is shared by all domains
 		if (Role.list().size() == 0) {
 			new Role(
 				authority: "ROLE_ANONYMOUS"
@@ -67,11 +68,6 @@ class BootStrap {
 
 		/**
 		 * This is filling the information for the help box
-		 * @param tabFieldUiId [description]
-		 * @param tabId [description]
-		 * @param tabFieldId [description]
-		 * @param tabFieldName [description]
-		 * @param text [description]
 		 */
 		if (Help.count() == 0) {
 			/**
@@ -1282,8 +1278,8 @@ if (KnowledgeDimension.count() < 1) {
 		if(PedagogyTechnique.count() == 0){
 			/*Pedagogy Technique*/
 			def pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Jigsaw",
-				pedagogyDescription: "As in a jigsaw puzzle, each piece representing each student's part is essential for the completion and full understanding of the final product. ",
+				title:"Jigsaw",
+				description: "As in a jigsaw puzzle, each piece representing each student's part is essential for the completion and full understanding of the final product. ",
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),//'Cognitive','Affective', 'Psychomotor'
@@ -1324,8 +1320,8 @@ if (KnowledgeDimension.count() < 1) {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle:"Structured Problem Solving",
-				pedagogyDescription: "Provides students with a process for solving complex, content based problems within a specified amount of time. It breaks the problem into specific steps and thus students learn to identify, analyze, and solve problems in an organized way",
+				title:"Structured Problem Solving",
+				description: "Provides students with a process for solving complex, content based problems within a specified amount of time. It breaks the problem into specific steps and thus students learn to identify, analyze, and solve problems in an organized way",
 				domain:LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),
@@ -1384,8 +1380,8 @@ if (KnowledgeDimension.count() < 1) {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle: "Face-to Face/ Video / Audio  Lectures ",
-				pedagogyDescription: "Lecture",
+				title: "Face-to Face/ Video / Audio  Lectures ",
+				description: "Lecture",
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),//'Cognitive','Affective', 'Psychomotor'
@@ -1405,8 +1401,8 @@ if (KnowledgeDimension.count() < 1) {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle: "Partially Guided Programming Exercise",
-				pedagogyDescription: "Partially Guided Programming Exercise ",
+				title: "Partially Guided Programming Exercise",
+				description: "Partially Guided Programming Exercise ",
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),//'Cognitive','Affective', 'Psychomotor'
@@ -1431,8 +1427,8 @@ if (KnowledgeDimension.count() < 1) {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle: "Think Aloud Pair Problem Solving",
-				pedagogyDescription: "Student pairs receive a series of problems as well as specific roles - problem solver and listener - then switch with each problem. The problem solver thinks aloud, talking through the steps of solving the problem, while the partner listens, following the steps, attempting to understand the reasoning behind the steps, and offering suggestions if there is a misstep.",
+				title: "Think Aloud Pair Problem Solving",
+				description: "Student pairs receive a series of problems as well as specific roles - problem solver and listener - then switch with each problem. The problem solver thinks aloud, talking through the steps of solving the problem, while the partner listens, following the steps, attempting to understand the reasoning behind the steps, and offering suggestions if there is a misstep.",
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),
@@ -1503,8 +1499,8 @@ if (KnowledgeDimension.count() < 1) {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle: "Frames",
-				pedagogyDescription: "Instructors give students a template of sentence stem that provides the shape of a short essay but not the content. Students complete the sentence, expressing their own ideas in their own words within a clear and organized framework.",
+				title: "Frames",
+				description: "Instructors give students a template of sentence stem that provides the shape of a short essay but not the content. Students complete the sentence, expressing their own ideas in their own words within a clear and organized framework.",
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),
@@ -1573,8 +1569,8 @@ if (KnowledgeDimension.count() < 1) {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle: "In-Class Portfolio",
-				pedagogyDescription: "Students collect and organize lecture notes, essay responses to prompts presented in class, summaries of discussions, personal reflections into a portfolio and submit for evaluation two to three times during the academic year.",
+				title: "In-Class Portfolio",
+				description: "Students collect and organize lecture notes, essay responses to prompts presented in class, summaries of discussions, personal reflections into a portfolio and submit for evaluation two to three times during the academic year.",
 				domain: LearningDomain.findAllByNameInList(['Cognitive']),
 				category: DomainCategory.findAllByNameInList(["Applying","Analyzing"]),
 				knowledge: KnowledgeDimension.findAllByDescriptionInList(["Factual", "Conceptual", "Procedural", "Metacognitive"]),
@@ -1630,8 +1626,8 @@ if (KnowledgeDimension.count() < 1) {
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				pedagogyTitle: "Seminar",
-				pedagogyDescription: "Students make formal presentations of an original paper to a small group of peers.",
+				title: "Seminar",
+				description: "Students make formal presentations of an original paper to a small group of peers.",
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),

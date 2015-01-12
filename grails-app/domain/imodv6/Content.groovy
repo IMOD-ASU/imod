@@ -11,7 +11,7 @@ class Content {
 	 */
 
 	/**
-	 * TODO: What is this doing?
+	 * FIXME: This is correct but needs to be set by jstree
 	 */
 	Content parentContent
 
@@ -33,9 +33,9 @@ class Content {
 	String priority
 
 	/**
-	 * TODO: what is the boolean for?
-	 * Should this be ```Boolean externalPreprerequisite
+	 * This flags that is requires knowledge from outside the course
 	 */
+	// FIXME rename to hasExternalPreRequisite
 	Boolean preReq
 
 	/*
@@ -44,10 +44,6 @@ class Content {
 	 *****************
 	 */
 
-	/**
-	 * Todo: Why is Content Directly related to an Imod?
-	 * If this is required why is it not a belongs to relationship?
-	 */
 	Imod imod
 
 	static hasMany = [
@@ -63,9 +59,8 @@ class Content {
 
 		/**
 		 * A more specific topic pertaining to this general topic
-		 * TODO: How is this different than sub contents?
-		 * TODO: Should this be renamed ```externalSubtopic```?
 		 */
+		// FIXME rename to externalSubTopic
 		subTopic:		String,
 
 		/**

@@ -1,5 +1,7 @@
 package imodv6
 
+import java.util.List;
+
 /**
  * Stores information of a document or other resource relevant to teaching a topic in a course
  */
@@ -31,18 +33,12 @@ class Resource {
 	 * What type of content the resource contains
 	 * e.g. video, pdf, interactive content
 	 */
-	ResourceType resourceType
+	String resourceType
 
 	/**
 	 *
 	 */
-	String resourceURL
-
-	//This was earlier developers attempt at storing a file
-	//byte[] file
-	//String fileName
-	//String fileContentType
-
+	//String resourceURL
 
 	/*
 	 *****************
@@ -55,7 +51,7 @@ class Resource {
 	 */
 	static belongsTo = [
 		content: Content
-	]
+	] 
 
 
 	/*
@@ -68,16 +64,10 @@ class Resource {
 	 * Describes what attributes are optional
 	 */
 	static constraints = {
+		name nullable: true
 		description nullable: true
-		resourceURL nullable: true
+		//resourceURL nullable: true
 		resourceType nullable: true
-
-		//fileName nullable: true
-		//fileContentType nullable: true
-		//file(
-		//	size: 0..20000000,
-		//	nullable: true
-		//)
 	}
 
 	/**
@@ -94,6 +84,16 @@ class Resource {
 	 * Functions *
 	 *************
 	 */
+	
+	static List resourceTypes() {
+		def resourceList = [
+			'Book',
+			'Chapter',
+			'Document',
+			'URL'
+		]
+		return resourceList
+	}
 
 	/**
 	 * printing the Resource will give the resource's display name

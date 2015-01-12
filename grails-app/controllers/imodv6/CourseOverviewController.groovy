@@ -12,10 +12,7 @@ class CourseOverviewController {
 
     def springSecurityService
 
-    def create(){
-
-    	print params
-
+    def create() {
         def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
         // create a new instructor
@@ -38,10 +35,11 @@ class CourseOverviewController {
             id: springSecurityService.currentUser.id
 
         )
-
     }
 
+	// FIXME rename the action to addInstructor
     def add(){
+		// FIXME rename GSP file to addInstructor and delete this render statement
     	render(
 			view: 'addinstructor',
 		)
@@ -105,8 +103,4 @@ class CourseOverviewController {
 			)
 		}
 	}
-
-
-
-
 }

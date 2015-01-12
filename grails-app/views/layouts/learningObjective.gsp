@@ -11,17 +11,16 @@
 
 <g:applyLayout name="imod">
 	<html>
-
 		<head>
 			<title>
 				<g:layoutTitle default="Learning Objective"/>
 			</title>
 
-			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'learningObjective.css')}" type="text/css">
+			<g:external dir="css/source" file="learningObjective.css" />
 
-			<script src="${resource(dir: 'js/source', file: 'learningObjective.js')}" defer></script>
+			<g:javascript src="source/learningObjective.js" defer="defer" />
 
-			<g:layoutHead/>
+			<g:layoutHead />
 		</head>
 		<body>
 
@@ -40,10 +39,10 @@
 				</ul>
 			</g:hasErrors>
 			<fieldset class="form">
-				 <table  class="LO-inner-table">
+				<table class="learning-objective inner-table">
 					<tr>
-						<td id="LO-list-pane" rowspan="2">
-							<div class="learning-objectives-list">
+						<td class="learning-objective list-panel" rowspan="2">
+							<div class="learning-objective list">
 								<div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 									<span class="title-text">
 										Learning Objectives
@@ -55,15 +54,10 @@
 										</g:link>
 									</span>
 								</div>
-								<ul class="learning-objective-list-wrapper">
+								<ul class="learning-objective list-wrapper">
 									<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
-										<li class="learning-objective-list-item ${(learningObjectiveItem.id == learningObjective.id) ? 'active' : ''  }">
-											<g:link
-												action="performance"
-												id="${currentImod.id}"
-												params="[learningObjectiveID: learningObjectiveItem.id]"
-												class="learning-objective-list-link"
-											>
+										<li class="learning-objective list-item ${(learningObjectiveItem.id == learningObjective.id) ? 'active' : ''  }">
+											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjectiveItem.id]" class="learning-objective list-link">
 												<g:render template="/learningObjective/definition" bean="${learningObjectiveItem}" />
 											</g:link>
 										</li>
@@ -71,67 +65,43 @@
 								</ul>
 							</div>
 						</td>
-						<td id="LO-definition-cell">
-							<div id="learning-objectives-definition" class="learning-objective-current">
+						<td class="learning-objective definition-cell">
+							<div class="learning-objective definition" class="learning-objective-current">
 								<g:render template="/learningObjective/definition" bean="${learningObjective}" />
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td id="LO-creator">
-							<div class="learning-objective-creator">
-								<img id="LO-type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-' + currentPage.find(/\w+$/) + '.png')}" alt=""/>
+						<td class="learning-objective creator-wrapper">
+							<div class="learning-objective creator">
+								<!-- FIXME there must be a better way to pick the correct icon for each page -->
+								<img class="learning-objective type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-' + currentPage.find(/\w+$/) + '.png')}" alt=""/>
 
-								<ul class="learning-objectives sub-nav">
+								<ul class="learning-objective sub-nav">
 									<li class="${ currentPage.find(/learning objective performance/) == null ? '' : 'active' }">
-										<g:link
-											action="performance"
-											params="[learningObjectiveID: learningObjective.id]"
-											id="${currentImod?.id}"
-											class="performance"
-										>
+										<g:link action="performance" params="[learningObjectiveID: learningObjective.id]" id="${currentImod?.id}" class="performance">
 											Performance
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective content/) == null ? '' : 'active' }">
-										<g:link
-											action="content"
-											params="[learningObjectiveID: learningObjective.id]"
-											id="${currentImod?.id}"
-											class="content"
-										>
+										<g:link action="content" params="[learningObjectiveID: learningObjective.id]" id="${currentImod?.id}" class="content">
 											Content
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
-										<g:link
-											action="condition"
-											params="[learningObjectiveID: learningObjective.id]"
-											id="${currentImod?.id}"
-											class="condition"
-										>
+										<g:link action="condition" params="[learningObjectiveID: learningObjective.id]" id="${currentImod?.id}" class="condition">
 											Condition
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective criteria/) == null ? '' : 'active' }">
-										<g:link
-											action="criteria"
-											params="[learningObjectiveID: learningObjective.id]"
-											id="${currentImod?.id}"
-											class="criteria"
-										>
+										<g:link action="criteria" params="[learningObjectiveID: learningObjective.id]" id="${currentImod?.id}" class="criteria">
 											Criteria
 										</g:link>
 									</li>
 								</ul>
-								<div class="tabs-background">
-								</div>
-								<hr />
-								<br>
-								<div>
-									<g:layoutBody/>
-								</div>
+
 							</div>
+							<g:layoutBody />
 						</td>
 					</tr>
 				</table>

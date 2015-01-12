@@ -5,4 +5,8 @@ package imodv6
  */
 class PedagogyActivityFocus {
 	String focus
+
+	static mapping = {
+		version false
+	}
 }

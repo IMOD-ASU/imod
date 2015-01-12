@@ -1,9 +1,5 @@
 package imodv6
 
-/**
- * TODO: What is this?
- * It is used by Pedagogy somehow
- */
 class ContentPriorityCode {
 	String description
 

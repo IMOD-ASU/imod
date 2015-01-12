@@ -6,7 +6,6 @@ package imodv6
 class ContentSchedule {
 	/**
 	 * This is the content that is being covered
-	 * TODO: should content schedule belong to content?
 	 */
 	Content content
 
@@ -17,8 +16,8 @@ class ContentSchedule {
 
 	/**
 	 * Imod that Content and Schedule belong to
-	 * TODO: Why is this related directly to the IMOD?
 	 */
+	// FIXME remove unused attribute
 	Imod imod
 
 	/**

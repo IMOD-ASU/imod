@@ -6,12 +6,15 @@
 	- Assessments
 	- Pedagogy
 --%>
-<%@ page import="imodv6.Help; imodv6.Imod; imodv6.ImodUser" %>
+<%@ page import="imodv6.Help" %>
+<%@ page import="imodv6.Imod" %>
+<%@ page import="imodv6.ImodUser" %>
+
 <g:applyLayout name="main">
 	<html>
 		<head>
 			<title>
-				<g:layoutTitle default="IMOD"/>
+				<g:layoutTitle default="IMOD" />
 			</title>
 
 			<g:layoutHead/>
@@ -23,18 +26,18 @@
 				<span>
 					Quick tip
 				</Span>
-				<a id="closebutton" href="#" onclick="toggleHelp()">
+				<a id="open-button" href="#" onclick="toggleHelp()">
 					_
 				</a>
 
-				<div id="qtipPlace" style="float: right; text-align: right; position: absolute; right: 0;">
+				<div id="qtip-place" style="float: right; text-align: right; position: absolute; right: 0;">
 				</div>
 			</div>
 			<div id="open-help" >
 				<Span>
 					Quick Tip
 				</Span>
-				<a id="closebutton" href="#" onclick="toggleHelp()">
+				<a id="close-button" href="#" onclick="toggleHelp()">
 					_
 				</a>
 			</div>

@@ -5,8 +5,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder
 
 /**
  * This describes what permissions a User of the IMODS system has
- * TODO: is this a duplicate of Spring Security Suite Roles?
- * TODO: Revisit this is amy need to be refactored
  */
 class ImodUserRole implements Serializable {
 
@@ -34,11 +32,11 @@ class ImodUserRole implements Serializable {
 			[imodUserId: imodUserId, roleId: roleId]
 	}
 
-	static ImodUserRole create(ImodUser imodUser, Role role, boolean flush = false) {
+	static ImodUserRole create(ImodUser imodUser, Role role) {
 		new ImodUserRole(imodUser: imodUser, role: role).save( insert: true)
 	}
 
-	static boolean remove(ImodUser imodUser, Role role, boolean flush = false) {
+	static boolean remove(ImodUser imodUser, Role role) {
 		ImodUserRole instance = ImodUserRole.findByImodUserAndRole(imodUser, role)
 		if (!instance) {
 			return false

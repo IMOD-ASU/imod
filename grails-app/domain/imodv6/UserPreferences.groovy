@@ -2,7 +2,6 @@ package imodv6
 
 /**
  * These store users preferences on how the IMODS ui should be customized
- * TODO attributes
  */
 class UserPreferences {
 	String dateRepresentation

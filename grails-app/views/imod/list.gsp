@@ -8,7 +8,6 @@
 		<title>
 			<g:message code="default.list.label" args="[entityName]" />
 		</title>
-		<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'imod.list.gsp.css')}">
 	</head>
 	<body>
 		<div class="list-imod-body">
@@ -21,9 +20,9 @@
 				<g:link class="dashed-square" action="create" >
 					<br/>
 					<br/>
-					New i-mod
+					New IMOD
 				</g:link>
-				<g:each in="${imodInstanceList}" status="i" var="imodInstance">
+				<g:each in="${imodInstanceList}" var="imodInstance">
 					<g:link controller="courseOverview" action="index" id="${imodInstance.id}" class="square">
 						<br/>
 						<br/>

@@ -1,4 +1,5 @@
-<%@ page import="imodv6.LearningObjective; imodv6.Help" %>
+<%@ page import="imodv6.LearningObjective" %>
+<%@ page import="imodv6.Help" %>
 <html>
 	<head>
 		<title>
@@ -10,59 +11,31 @@
 	<body>
 		<g:form action="save" >
 			<fieldset class="learning-objective-button">
-				<g:actionSubmit
-					class="save showHoverNew"
-					action="save"
-					title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}"
-					value="${message(code: 'Save', default: 'Save')}"
-				/>
-				<g:hiddenField name="id" value="${currentImod.id}" />
-				<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" />
-				<g:hiddenField name="pageType" value="condition" />
+				<g:actionSubmit action="save" value="${message(code: 'Save', default: 'Save')}" class="save show-hover-new" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
+				<g:hiddenField name="id" value="${currentImod.id}" id="current-imod-d" />
+				<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" id="learning-objective-id" />
+				<g:hiddenField name="pageType" value="condition" id="page-type" />
 			</fieldset>
-			<div id="LO-condition-radio-form">
-				<input
-					id="LO-condition-rd-generic"
-					class="LO-condition-radio"
-					type="radio"
-					name="LO_condition_type"
-					<g:if test="${!isCustom}">checked="checked"</g:if>
-					value="Generic"
-				>
-				<label for="LO_condition_rd_generic" >
+			<div class="learning-objective condition radio-form">
+				<g:radio name="conditionType" checked="${!isCustom}" value="Generic" id="condition-generic" class="learning-objective condition radio" />
+				<label for="condition-generic" >
 					Generic
 				</label>
 				<span>
 					&nbsp;
 				</span>
-				<input
-					id="LO-condition-rd-custom"
-					class="LO-condition-radio"
-					type="radio"
-					name="LO_condition_type"
-					<g:if test="${isCustom}">checked="checked"</g:if>
-					value="Custom"
-				>
-				<label for="LO-condition-rd-custom" >
+				<g:radio name="conditionType" checked="${isCustom}" value="Custom" id="condition-custom" class="learning-objective condition radio" />
+				<label for="condition-custom" >
 					Custom
 				</label>
 			</div>
-			<br>
-			<textarea name="LO_custom" id="LO-condition-custom" class="LO-condition-data" rows="8" ><g:if test="${isCustom}">${currentCondition}</g:if></textarea>
-			<div id="LO-condition-generic">
-				<g:select
-					size="5"
-					name="LO_generic"
-					class="LO-condition-data"
-					from="${LearningObjective.genericConditions }"
-					value="${currentCondition}"
-				/>
+			<br />
+			<g:textArea name="customCondition" value="${currentCondition}" id="custom-condition-text" class="learning-objective condition custom-text" rows="8" />
+			<div class="learning-objective condition generic">
+				<g:select size="5" name="genericCondition" from="${LearningObjective.genericConditions}" value="${currentCondition}" class="learning-objective condition generic text" id="generic-condition-text" />
 			</div>
-			<g:checkBox
-				name="LO_hide_from_Objective"
-				title="${Help.toolTip('LEARNINGOBJECTIVE', 'Hide from Objective')}"
-				checked="${hideCondition}"
-			/> Hide from Objective
+			<g:checkBox name="hideCondition" checked="${hideCondition}" id="hide-condition" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Hide from Objective')}" />
+			Hide from Objective
 		</g:form>
 	</body>
 </html>

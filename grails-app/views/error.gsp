@@ -11,7 +11,7 @@
 		</title>
 		<meta name="layout" content="main">
 		<g:if env="development">
-			<link rel="stylesheet" href="${resource(dir: 'css/source', file: 'errors.css')}" type="text/css">
+			<g:external dir="css/source" file="errors.css" />
 		</g:if>
 	</head>
 	<body>
@@ -20,7 +20,9 @@
 		</g:if>
 		<g:else>
 			<ul class="errors">
-				<li>An error has occurred</li>
+				<li>
+					An error has occurred
+				</li>
 			</ul>
 		</g:else>
 	</body>
