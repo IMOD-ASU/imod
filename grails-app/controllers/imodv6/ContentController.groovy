@@ -1,7 +1,5 @@
 package imodv6
 
-import javax.annotation.Resources;
-
 import grails.converters.JSON
 import groovy.json.JsonSlurper
 
@@ -141,21 +139,21 @@ class ContentController {
 			] as JSON
 		)
 	}
-	
+
 	def addResource(Long contentID) {
 		def contentInstance = Content.get(contentID);
 		def resourceInstance = new Resource(content: contentInstance);
 		resourceInstance.save();
 		contentInstance.addToResources(resourceInstance);
-		
+
 		def resources = Resource.resourceTypes();
 		render([
 			id: resourceInstance.id,
 			resources: resources,
 		] as JSON)
-		
+
 	}
-	
+
 	def getResource(Long contentID) {
 		def contentInstance = Content.get(contentID);
 		def resources = contentInstance.getResources();
@@ -165,11 +163,10 @@ class ContentController {
 			resourceTypes: resourceTypes,
 			]as JSON)
 	}
-	
-	def saveResource(Long id, String JSONData) {
+
+	def saveResource(String JSONData) {
 		def jsonParser = new JsonSlurper()
 		def resourceData = jsonParser.parseText(JSONData)
-		def currentImod = Imod.get(id)
 		def success = []
 		def fail = []
 		resourceData.each() {
@@ -201,7 +198,7 @@ class ContentController {
 			] as JSON
 		)
 	}
-	
+
 	def deleteResource(String resourceIDs) {
 		def success = []
 		def resourceIDList = new JsonSlurper().parseText(resourceIDs)
