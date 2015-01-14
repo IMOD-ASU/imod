@@ -433,10 +433,10 @@ function getResource() {
 						'<td class="saveIcon">'+
 						'<i class="hidden fa fa-eraser"></i>'+
 					'</td><td class="resourceName">'+
-						'<input type="text" id="resourceName' + id + '" value=' + value.name + '> '+
+						'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> '+
 						'<input type="hidden" id="resourceNameSaved' + id + '"> '+
 					'</td><td class="resourceDescription">'+
-						'<input type="text" id="resourceDescription' + id + '" value=' + value.description + '> '+
+						'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> '+
 						'<input type="hidden" id="resourceDescriptionSaved'+id+'"> '+
 						'</td><td class="resourceType">'+
 						'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '"> '+
