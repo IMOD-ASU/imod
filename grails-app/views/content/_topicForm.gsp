@@ -118,3 +118,62 @@
 		Save
 	</button>
 </div>
+<div id="selectResourceBackground" class="modalBackground">
+</div>	
+<div id="selectResource">
+<fieldset class="buttons resourceButtonField">
+		<span class="resourceButtonGradient">
+			<g:actionSubmit
+				class="add showHoverNew resourceButton" action="add" id="addResource"
+				title="${Help.toolTip("OVERVIEW", "Add New Resource")}"
+				value="${message(code: 'Add Resource', default: 'Add Resource')}"
+			/>
+		</span>
+		<span class="resourceButtonGradient">
+			<g:actionSubmit
+				class="remove showHoverNew resourceButton" action="remove"
+				id="removeResource"
+				title="${Help.toolTip("OVERVIEW", "Delete Selected Resource")}"
+				value="${message(code: 'Remove Resource', default: 'Remove Resource')}"
+			/>
+		</span>
+		<span id="errorMessage"></span>
+	</fieldset>
+	<table id="resourceList">
+		<thead>
+			<tr>
+				<td></td>
+				<td>Title</td>
+				<td>Description</td>
+				<td>Resource Type</td>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+		</table>
+		<fieldset class="buttons resourceButtonField">
+		<span class="resourceButtonGradient saveBG">
+			<button
+				class="save showHoverNew resourceButton"
+				action="save"
+				id="saveResource"
+				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Finish")}"
+			>
+				${message(code: 'Save Resource', default: ' Finish')}
+			</button>
+		</span>
+		<span class="resourceButtonGradient cancelBG">
+			<button
+				class="showHoverNew resourceButton"
+				action="cancel"
+				id="cancelResource"
+				title="${Help.toolTip("OVERVIEW", "Leave Add Resources without saving")}"
+			>
+				<i class="fa fa-times"></i>
+				${message(code: 'Cancel Resources', default: ' Cancel')}
+			</button>
+		</span>
+
+
+</fieldset>
+</div>
