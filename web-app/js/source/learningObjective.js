@@ -172,6 +172,22 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	
+	//when hovered over LO side-tab list, it displays full text as tool-tip
+	var $liArray = $('ul.learning-objective.list-wrapper').children('li');
+	var height = getMinHeight($liArray);
+	
+	$liArray.each(function(){
+		$("a",this).attr('title',$("a",this).text());
+		if(Math.floor($(this).height()) != height)
+		{
+			$("a",this).text($("a",this).text().substring(0,70)+"...");
+		}
+		if($(this).hasClass("active"))
+			{
+			$("a",this).text($("a",this).attr('title'));
+			}
+	});
 });
 
 /**
@@ -351,4 +367,17 @@ function populateActionWords(event) {
 function propagateToDefinition(value, type) {
 	var definitionType = '.learning-objective-current .learning-objective-' + type;
 	$(definitionType).text(value);
+}
+
+function getMinHeight(liArray) {
+	var minHeight = Math.floor(liArray.eq(0).height());
+    liArray.each(function(){
+        if ( Math.floor($(this).height()) < minHeight ) 
+            {
+               minHeight = Math.floor($(this).height());
+    	    } 
+    	var refineText = $("a",this).text().replace(/[\s\t]+/g,' ');
+    	$("a", this).text(refineText);
+    });
+    return minHeight;
 }
