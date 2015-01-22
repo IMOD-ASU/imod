@@ -69,7 +69,7 @@
                                                         <g:message code="Filter Options"/>
                                                     </span>
                                                     <span class="title_text">
-                                                        <a onclick="submitRefresh();" title="${Help.toolTip('PEDAGOGY', 'Refresh')}" class="showHover">
+                                                        <a title="${Help.toolTip('PEDAGOGY', 'Refresh')}" class="showHover">
                                                             Refresh
                                                         </a>
                                                     </span>
@@ -148,8 +148,8 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <input type="button" name="addObjective" value="Add" onclick="saveLearningObjective()">
-                                    <input type="button" name="addObjective" value="Cancel" onclick="closeLearningObjective()">
+                                    <input type="button" name="addObjective" value="Add">
+                                    <input type="button" name="addObjective" value="Cancel">
                                 </td>
                             </tr>
                         </table>
@@ -173,11 +173,11 @@
                                                         </button
                                                     </g:link>
 
-                                                    <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}" onclick="expandFavorite();">
+                                                    <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}">
                                                         Favorites
                                                     </button>
 
-                                                    <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Instructional Plan')}" onclick="addNewTechnique()">
+                                                    <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Instructional Plan')}">
                                                         Instructional Plan
                                                     </button>
                                                 </span>
@@ -244,7 +244,7 @@
                                                                 <map name="${pedaTech.id}">
                                                                     <area shape="rect" coords="0,0,18,18" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: pedaTech.id, fav:'true', assign:'false'])}" title="Favorite" alt="Favorite" />
                                                                     <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: pedaTech.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
-                                                                    <area shape="rect" coords="90,90,200,200" onclick="clonePedagogyTech(${pedaTech.id});" title="Clone" alt="Clone" />
+                                                                    <area shape="rect" coords="90,90,200,200" title="Clone" alt="Clone" />
                                                                 </map>
                                                                 ${pedaTech.title}
                                                             </div>
@@ -285,7 +285,7 @@
                                                                 <map name="${favPedaTech.pedagogyTechnique.id}">
                                                                     <area shape="rect" coords="0,0,18,18" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'true', assign:'false'])}" title="Favorite" alt="Favorite" />
                                                                     <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
-                                                                    <area shape="rect" coords="90,90,200,200" onclick="clonePedagogyTech(${favPedaTech.pedagogyTechnique.id})" title="Clone" alt="Clone" />
+                                                                    <area shape="rect" coords="90,90,200,200" title="Clone" alt="Clone" />
                                                                 </map>
                                                                 ${favPedaTech.pedagogyTechnique.title}
                                                             </div>
