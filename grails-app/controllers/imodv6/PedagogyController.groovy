@@ -48,7 +48,7 @@ class PedagogyController {
 			currentLearningObjective: currentLearningObjective,
 			currentImod: currentImod,
 			currentPage: 'pedagogy',
-			learningObjectiveList: learningObjectivesList,
+			learningObjectivesList: learningObjectivesList,
 			extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch,
 		]
 	}

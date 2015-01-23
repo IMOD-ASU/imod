@@ -38,122 +38,23 @@
             <table>
                 <tr>
                     <td>
-
                         <!-- left panel for the page -->
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="chapter_addition_widget">
-                                            <div id="chapterListTable">
-                                                <p>
-                                                    <ul id="chapterListUL">
-                                                        <g:if test="${objectiveList}">
-                                                            <g:each in="${objectiveList}" var="learningObjectiveItem" status="count">
-                                                                <g:render template="/learningObjective/definition" bean="${learningObjectiveItem}"/>
-                                                            </g:each>
-                                                        </g:if>
-                                                        <g:else>
-                                                            <div class="graphErrorMessage">
-                                                                No learning objective available
-                                                            </div>
-                                                        </g:else>
-                                                        <div id="objective-qtip-place"></div>
-                                                    </ul>
-                                                </p>
-                                            </div>
-
-                                            <div>
-                                                <div class="form_title removeBorder">
-                                                    <span class="title_text">
-                                                        <g:message code="Filter Options"/>
-                                                    </span>
-                                                    <span class="title_text">
-                                                        <a title="${Help.toolTip('PEDAGOGY', 'Refresh')}" class="showHover">
-                                                            Refresh
-                                                        </a>
-                                                    </span>
-                                                </div>
-
-                                                <!-- FIXME replace url with controller and action -->
-                                                <g:formRemote name="pedAccordion" id="pedAccordion" url="[action:'updateExtendedTechnique',controller:'pedagogy']" update="extendedMatchDiv">
-                                                    <div id="ped_accordion">
-                                                        <h3 title="${Help.toolTip('PEDAGOGY', 'Domain')}" class="showHover">
-                                                            Domain
-                                                        </h3>
-                                                        <div>
-                                                            <p>
-                                                                <g:each in="${lrnDomainlist}" var="domain">
-                                                                    <g:if test="${domain.toString().equals(dmn.toString())}">
-                                                                        <input type="checkbox" name="domain" value="${domain.toString()}" checked="checked">
-                                                                    </g:if>
-                                                                    <g:else>
-                                                                        <input type="checkbox" name="domain" value="${domain.toString()}">
-                                                                    </g:else>
-                                                                    <label>
-                                                                        ${domain.toString()}
-                                                                    </label>
-                                                                    <br>
-                                                                </g:each>
-                                                            </p>
-                                                        </div>
-                                                        <h3 title="${Help.toolTip('PEDAGOGY', 'Domain Category')}" class="showHover">
-                                                            Domain Category
-                                                        </h3>
-                                                        <div>
-                                                            <p>
-                                                                <g:each in="${domainList}" var="domain">
-                                                                    <g:if test="${domain.toString().equals(dc.toString())}">
-                                                                        <input type="checkbox" name="domainCategory" value="${domain.toString()}" checked="checked">
-                                                                    </g:if>
-                                                                    <g:else>
-                                                                        <input type="checkbox" name="domainCategory" value="${domain.toString()}">
-                                                                    </g:else>
-                                                                    <label>
-                                                                        ${domain.toString()}
-                                                                    </label>
-                                                                    <br>
-                                                                </g:each>
-                                                            </p>
-                                                        </div>
-
-                                                        <h3 title="${Help.toolTip('PEDAGOGY', 'Knowledge Dimension')}" class="showHover">
-                                                            Knowledge Dimension
-                                                        </h3>
-                                                        <div>
-                                                            <p>
-                                                                <g:each in="${mapkdList}" var="kdomain">
-                                                                    <input type="checkbox" name="kdomain" value="${kdomain.key.toString()}" ${kdomain.value.toString().equals('true')?'checked':''}>
-                                                                    <label>
-                                                                        ${kdomain.key.toString()}
-                                                                    </label>
-                                                                    <br>
-                                                                </g:each>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </g:formRemote>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table id="addLearningObjectiveDiv" title="${Help.toolTip('CONTENT', 'Add Objective')}">
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <g:textField name="addObjectiveName" value="" placeholder="Objective name" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="button" name="addObjective" value="Add">
-                                    <input type="button" name="addObjective" value="Cancel">
-                                </td>
-                            </tr>
-                        </table>
-
+                        <div class="learning-objective list">
+                            <div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
+                                <span class="title-text">
+                                    Learning Objectives
+                                </span>
+                            </div>
+                            <ul class="learning-objective list-wrapper">
+                                <g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
+                                    <li class="learning-objective list-item ${(learningObjectiveItem.id == currentLearningObjective.id) ? 'active' : ''  }">
+                                        <g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjectiveItem.id]" class="learning-objective list-link">
+                                            <g:render template="/learningObjective/definition" bean="${learningObjectiveItem}" />
+                                        </g:link>
+                                    </li>
+                                </g:each>
+                            </ul>
+                        </div>
                     </td>
 
                     <td>
