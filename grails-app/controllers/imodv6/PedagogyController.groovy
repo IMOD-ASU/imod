@@ -5,8 +5,7 @@ class PedagogyController {
 
 	static allowedMethods = [
 		index: 'GET',
-		favoriteTechnique: 'POST',
-		assignTechnique: 'POST'
+		findMatchingTechniques: 'POST'
 	]
 
 	/**
@@ -17,11 +16,8 @@ class PedagogyController {
 		// get the selected imod
 		def currentImod = Imod.get(id)
 
-		// get all the learning domains
-		def learningDomainList = LearningDomain.list();
-
 		// finds all the learning objective linked to this imod
-		def learningObjectivesList = LearningObjective.findAllByImod(currentImod)
+		def learningObjectives = LearningObjective.findAllByImod(currentImod)
 
 		// Search for selected learning objective
 		// if there are no learning objectives set null
@@ -39,11 +35,19 @@ class PedagogyController {
 			currentLearningObjective = objectivesForCurrentImod.find { it.id == learningObjectiveID }
 		}
 
+		// get all of the filters used to find pedagogy techniques
+		def domainCategories = DomainCategory.list()
+		def knowledgeDimensions = KnowledgeDimension.list()
+		def learningDomains = LearningDomain.list()
+
 		[
-			currentLearningObjective: currentLearningObjective,
 			currentImod: currentImod,
+			currentLearningObjective: currentLearningObjective,
 			currentPage: 'pedagogy',
-			learningObjectivesList: learningObjectivesList,
+			domainCategories: domainCategories,
+			knowledgeDimensions: knowledgeDimensions,
+			learningDomains: learningDomains,
+			learningObjectives: learningObjectives,
 		]
 	}
 

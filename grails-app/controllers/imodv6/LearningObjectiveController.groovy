@@ -25,16 +25,16 @@ class LearningObjectiveController {
 	// FIXME rename and possibly combine learningObjectiveManager and getDefaultLearningObjective
 	private def learningObjectiveManager(Imod currentImod) {
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = LearningObjective.findAllByImod(currentImod)
+		def learningObjectives = LearningObjective.findAllByImod(currentImod)
 
 		// if there are no learning objectives create one
-		if (learningObjectivesList.size() < 1) {
+		if (learningObjectives.size() < 1) {
 			create(currentImod.id)
 			// updates the list of all of the learning objectives for this imod
-			learningObjectivesList = LearningObjective.findAllByImod(currentImod)
+			learningObjectives = LearningObjective.findAllByImod(currentImod)
 		}
 
-		return learningObjectivesList
+		return learningObjectives
 	}
 
 	/**
@@ -102,48 +102,48 @@ class LearningObjectiveController {
 	// FIXME each page should have its own save
 	def save (Long id, Long learningObjectiveID, String pageType){
 		//gets the learning objective to be updated
-		def learningObjectiveInstance = LearningObjective.get(learningObjectiveID)
+		def selectedLearningObjective = LearningObjective.get(learningObjectiveID)
 
 		switch (pageType) {
 			// if the user is saving performance page
 			case 'performance':
-				learningObjectiveInstance.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
-				learningObjectiveInstance.performance = params.DCL
-				learningObjectiveInstance.actionWord = params.actionWord
+				selectedLearningObjective.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
+				selectedLearningObjective.performance = params.DCL
+				selectedLearningObjective.actionWord = params.actionWord
 				break
 
 			// if the user is saving the condition page
 			case 'condition':
 				if (params.conditionType == 'Generic') {
-					learningObjectiveInstance.condition = params.genericCondition
+					selectedLearningObjective.condition = params.genericCondition
 				}
 				if (params.conditionType == 'Custom') {
-					learningObjectiveInstance.condition = params.customCondition
+					selectedLearningObjective.condition = params.customCondition
 				}
-				learningObjectiveInstance.hideFromLearningObjectiveCondition = (params.hideCondition == 'on' ? true : false)
+				selectedLearningObjective.hideFromLearningObjectiveCondition = (params.hideCondition == 'on' ? true : false)
 				break
 
 			// if the user is saving the criteria page
 			case 'criteria':
 				// check if the field is enabled
 				// NOTE: when a check box is unchecked it returns null, hence the conditional
-				learningObjectiveInstance.criteriaAccuracyEnabled	= (params.enableAccuracy	== null ? false : true)
-				learningObjectiveInstance.criteriaQualityEnabled	= (params.enableQuality		== null ? false : true)
-				learningObjectiveInstance.criteriaQuantityEnabled	= (params.enableQuantity	== null ? false : true)
-				learningObjectiveInstance.criteriaSpeedEnabled		= (params.enableSpeed		== null ? false : true)
+				selectedLearningObjective.criteriaAccuracyEnabled	= (params.enableAccuracy	== null ? false : true)
+				selectedLearningObjective.criteriaQualityEnabled	= (params.enableQuality		== null ? false : true)
+				selectedLearningObjective.criteriaQuantityEnabled	= (params.enableQuantity	== null ? false : true)
+				selectedLearningObjective.criteriaSpeedEnabled		= (params.enableSpeed		== null ? false : true)
 
 				// store the text content of each of the learning objective criteriae
-				learningObjectiveInstance.criteriaAccuracy	= params.accuracy
-				learningObjectiveInstance.criteriaQuality	= params.quality
-				learningObjectiveInstance.criteriaQuantity	= params.quantity
-				learningObjectiveInstance.criteriaSpeed		= params.speed
+				selectedLearningObjective.criteriaAccuracy	= params.accuracy
+				selectedLearningObjective.criteriaQuality	= params.quality
+				selectedLearningObjective.criteriaQuantity	= params.quantity
+				selectedLearningObjective.criteriaSpeed		= params.speed
 
 				// check if the field is enabled
 				// NOTE: when a check box is unchecked it returns null, hence the conditional
-				learningObjectiveInstance.criteriaAccuracyHidden	= (params.hideAccuracy	== null ? false : true)
-				learningObjectiveInstance.criteriaQualityHidden		= (params.hideQuality	== null ? false : true)
-				learningObjectiveInstance.criteriaQuantityHidden	= (params.hideQuantity	== null ? false : true)
-				learningObjectiveInstance.criteriaSpeedHidden		= (params.hideSpeed		== null ? false : true)
+				selectedLearningObjective.criteriaAccuracyHidden	= (params.hideAccuracy	== null ? false : true)
+				selectedLearningObjective.criteriaQualityHidden		= (params.hideQuality	== null ? false : true)
+				selectedLearningObjective.criteriaQuantityHidden	= (params.hideQuantity	== null ? false : true)
+				selectedLearningObjective.criteriaSpeedHidden		= (params.hideSpeed		== null ? false : true)
 				break
 
 			// if page type is not recognized
@@ -152,14 +152,14 @@ class LearningObjectiveController {
 				pageType = 'performance'
 		}
 		// save all of the changes
-		learningObjectiveInstance.save()
+		selectedLearningObjective.save()
 
 		// redirect to the correct page
 		redirect(
 			action: pageType,
 			id: id,
 			params: [
-				learningObjectiveID: learningObjectiveID
+				learningObjectiveID: selectedLearningObjective.id
 			]
 		)
 	}
@@ -177,11 +177,11 @@ class LearningObjectiveController {
 		def currentImod = Imod.get(id)
 
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = learningObjectiveManager(currentImod)
+		def learningObjectives = learningObjectiveManager(currentImod)
 
 		// get all performance data to set in the Performance page
-		def learningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
-		def selectedActionWordCategory = learningObjective.actionWordCategory
+		def currentLearningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
+		def selectedActionWordCategory = currentLearningObjective.actionWordCategory
 		def selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		def selectedDomain = selectedDomainCategory?.learningDomain
 
@@ -191,74 +191,73 @@ class LearningObjectiveController {
 		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
 
 		[
-			currentImod:				currentImod,
-			learningObjectivesList:		learningObjectivesList,
-			currentPage:				'learning objective performance',
-			learningObjective:			learningObjective,
-			selectedActionWordCategory:	selectedActionWordCategory,
-			selectedDomainCategory:		selectedDomainCategory,
-			selectedDomain:				selectedDomain,
-			domainList:					domainList,
-			categoriesList:				domainCategoriesList,
+			actionWord: 				currentLearningObjective.actionWord,
 			actionWordCategoryList:		actionWordCategoryList,
-			actionWord: 				learningObjective.actionWord,
+			categoriesList:				domainCategoriesList,
+			currentImod:				currentImod,
+			currentLearningObjective:	currentLearningObjective,
+			currentPage:				'learning objective performance',
+			domainList:					domainList,
+			learningObjectives:			learningObjectives,
+			selectedActionWordCategory:	selectedActionWordCategory,
+			selectedDomain:				selectedDomain,
+			selectedDomainCategory:		selectedDomainCategory,
 		]
 	}
 
 	def content(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
-		def learningObjectivesList = learningObjectiveManager(currentImod)
-		def learningObjectiveInstance = getDefaultLearningObjective(currentImod, learningObjectiveID)
+		def learningObjectives = learningObjectiveManager(currentImod)
+		def currentLearningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
 		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 		def contents = [];
 		if (contentList.size() < 1) {
 			contentList.add(new Content(imod: currentImod))
 		}
 		contentList.collect(contents) {
-			getSubContent(it,learningObjectiveInstance)
+			getSubContent(it, currentLearningObjective)
 		}
 		contents = new groovy.json.JsonBuilder(contents).toString()
 
 		[
-			currentImod:			currentImod,
-			learningObjectivesList:	learningObjectivesList,
-			currentPage:			'learning objective content',
-			learningObjective:		learningObjectiveInstance,
-			contentList:			contents,
+			contentList:				contents,
+			currentImod:				currentImod,
+			currentLearningObjective:	currentLearningObjective,
+			currentPage:				'learning objective content',
+			learningObjectives:			learningObjectives,
 		]
 	}
 
 	def condition(Long id, Long learningObjectiveID) {
 		def currentImod					=  Imod.get(id)
-		def learningObjectivesList		=  learningObjectiveManager(currentImod)
-		def learningObjectiveInstance	=  getDefaultLearningObjective(currentImod, learningObjectiveID)
-		def currentCondition			=  learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
+		def learningObjectives			=  learningObjectiveManager(currentImod)
+		def currentLearningObjective	=  getDefaultLearningObjective(currentImod, learningObjectiveID)
+		def currentCondition			=  currentLearningObjective.condition?:LearningObjective.genericConditions.first()
 		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
-		def hideCondition				=  learningObjectiveInstance.hideFromLearningObjectiveCondition
+		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
 
 		[
-			currentImod:			currentImod,
-			learningObjectivesList:	learningObjectivesList,
-			currentPage:			'learning objective condition',
-			learningObjective:		learningObjectiveInstance,
-			currentCondition:		currentCondition,
-			isCustom:				isCustom,
-			hideCondition:			hideCondition,
-
+			currentCondition:			currentCondition,
+			currentImod:				currentImod,
+			currentLearningObjective:	currentLearningObjective,
+			currentPage:				'learning objective condition',
+			hideCondition:				hideCondition,
+			isCustom:					isCustom,
+			learningObjectives:			learningObjectives,
 		]
 	}
 
 	def criteria(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = learningObjectiveManager(currentImod)
-		def learningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
+		def learningObjectives = learningObjectiveManager(currentImod)
+		def currentLearningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
 
 		[
-			currentImod:			currentImod,
-			currentPage:			'learning objective criteria',
-			learningObjective:		learningObjective,
-			learningObjectivesList:	learningObjectivesList,
+			currentImod:				currentImod,
+			currentPage:				'learning objective criteria',
+			currentLearningObjective:	currentLearningObjective,
+			learningObjectives:			learningObjectives,
 		]
 	}
 
