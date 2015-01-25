@@ -20,6 +20,44 @@ class LearningObjectiveController {
 	static defaultAction = 'performance'
 
 	/**
+	* Gets learning objectives for an Imod, auto generates a Learning Objective if there are none
+	*/
+	// FIXME rename and possibly combine learningObjectiveManager and getDefaultLearningObjective
+	private def learningObjectiveManager(Imod currentImod) {
+		// get a list of all of the learning objectives for this imod
+		def learningObjectivesList = LearningObjective.findAllByImod(currentImod)
+
+		// if there are no learning objectives create one
+		if (learningObjectivesList.size() < 1) {
+			create(currentImod.id)
+			// updates the list of all of the learning objectives for this imod
+			learningObjectivesList = LearningObjective.findAllByImod(currentImod)
+		}
+
+		return learningObjectivesList
+	}
+
+	/**
+	* Gets the default learning objective
+	*/
+	private def getDefaultLearningObjective(Imod currentImod, Long learningObjectiveID) {
+		def objective
+		// when there is not objective specified, pick first
+		if (learningObjectiveID == null) {
+			objective = currentImod.learningObjectives.first()
+		}
+		// otherwise get that objective
+		else {
+			objective = LearningObjective.findWhere(imod: currentImod, id: learningObjectiveID)
+			// if that objective doesn't exist, get first
+			if (objective == null) {
+				objective = currentImod.learningObjectives.first()
+			}
+		}
+		return objective
+	}
+
+	/**
 	 * Creates a Learning Objective
 	 * @param  id of the IMOD that learning objective will be linked to
 	 * @return    redirects to the performance tab to allow editing
@@ -315,48 +353,5 @@ class LearningObjectiveController {
 				value: resp.json
 			] as JSON
 		)
-	}
-
-	/**
-	 * Gets learning objectives for an Imod, auto generates a Learning Objective if there are none
-	 * @param  currentImod Imod that Learning Objective are linked to
-	 * @return              List of Learning Objective Domain Objects
-	 */
-	// FIXME rename and possibly combine learningObjectiveManager and getDefaultLearningObjective
-	private def learningObjectiveManager(Imod currentImod) {
-		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = LearningObjective.findAllByImod(currentImod)
-
-		// if there are no learning objectives create one
-		if (learningObjectivesList.size() < 1) {
-			create(currentImod.id)
-			// updates the list of all of the learning objectives for this imod
-			learningObjectivesList = LearningObjective.findAllByImod(currentImod)
-		}
-
-		return learningObjectivesList
-	}
-
-	/**
-	 * [getDefaultLearningObjective description]
-	 * @param  currentImod         [description]
-	 * @param  learningObjectiveID [description]
-	 * @return                     [description]
-	 */
-	private def getDefaultLearningObjective(Imod currentImod, Long learningObjectiveID) {
-		def objective
-		// when there is not objective specified, pick first
-		if (learningObjectiveID == null) {
-			objective = currentImod.learningObjectives.first()
-		}
-		// otherwise get that objective
-		else {
-			objective = LearningObjective.findWhere(imod: currentImod, id: learningObjectiveID)
-			// if that objective doesn't exist, get first
-			if (objective == null) {
-				objective = currentImod.learningObjectives.first()
-			}
-		}
-		return objective
 	}
 }

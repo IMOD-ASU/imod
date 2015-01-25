@@ -53,6 +53,28 @@ class PedagogyTechniqueController {
 		)
 	}
 
+	def favoriteByUser(Long id, Long objectiveId) {
+		// TODO link technique to imod user
+		redirect(
+			action: 'index',
+			id: id,
+			params: [
+				objectiveId: objectiveId
+			]
+		)
+	}
+
+	def assignToObjective(Long id, Long objectiveId) {
+		// TODO link technique to learning objective
+		redirect(
+			action: 'index',
+			id: id,
+			params: [
+				objectiveId: objectiveId
+			]
+		)
+	}
+
 
 	def index(Long id) {
 
