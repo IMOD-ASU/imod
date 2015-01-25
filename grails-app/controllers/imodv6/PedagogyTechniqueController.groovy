@@ -1,7 +1,13 @@
 package imodv6
 
 class PedagogyTechniqueController {
-	static scaffold = PedagogyTechnique
+
+	static allowedMethods = [
+		create: 'POST',
+		save: 'POST',
+		favoriteByUser: 'POST',
+		assignToObjective: 'POST'
+	]
 
 	/**
 	 * creates a new Pedagogy Technique

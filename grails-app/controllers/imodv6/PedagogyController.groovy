@@ -5,8 +5,7 @@ class PedagogyController {
 
 	static allowedMethods = [
 		index: 'GET',
-		favoriteTechnique: 'POST',
-		assignTechnique: 'POST'
+		findMatchingTechniques: 'POST'
 	]
 
 	/**
