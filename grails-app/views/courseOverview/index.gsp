@@ -59,7 +59,7 @@
 										</div>
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'name', 'error')} required">
 											<label for="name">
-												<g:message code="imod.name.label" default="Name" />
+												<g:message code="imod.name.label" default="Course Title" />
 												<span class="required-indicator">
 													*
 												</span>
@@ -79,7 +79,7 @@
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
 											<label for="url">
-												<g:message code="imod.url.label" default="Url" />
+												<g:message code="imod.url.label" default="Course URL" />
 												<span class="required-indicator">
 													*
 												</span>
@@ -319,10 +319,10 @@
 												<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" />
 											</div>
 											<h3>
-												Classroom decorum
+												Professional Conduct
 											</h3>
 											<div>
-												<g:textArea name="classroomDecorum" id="classroom-decorum" value="${currentImod?.classroomDecorum}" rows="2" cols="30" />
+												<g:textArea name="professionalConduct" id="professional-conduct" value="${currentImod?.professionalConduct}" rows="2" cols="30" />
 											</div>
 											<h3>
 												Missed exams/Make-up exams
