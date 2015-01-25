@@ -47,10 +47,10 @@
                                 </span>
                             </div>
                             <ul class="learning-objective list-wrapper">
-                                <g:each in="${learningObjectives}" status="i" var="learningObjectiveItem">
-                                    <li class="learning-objective list-item ${(learningObjectiveItem.id == currentLearningObjective.id) ? 'active' : ''  }">
-                                        <g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjectiveItem.id]" class="learning-objective list-link">
-                                            <g:render template="/learningObjective/definition" bean="${learningObjectiveItem}" />
+                                <g:each var="learningObjective" in="${learningObjectives}">
+                                    <li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
+                                        <g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
+                                            <g:render template="/learningObjective/definition" bean="${learningObjective}" />
                                         </g:link>
                                     </li>
                                 </g:each>
@@ -63,19 +63,32 @@
                             </h3>
                             <div>
                                 <ul>
-                                    <li>
-                                        List item one
-                                    </li>
+                                    <g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
+                                        <li>
+                                            <label for="knowledge-dimension-${index}">
+                                                ${knowledgeDimension.description}
+                                            </label>
+                                            <g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" />
+                                        </li>
+                                    </g:each>
                                 </ul>
+                                <g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
+                                    <g:checkBox name="knowledgeDimension{index}" value="${knowledgeDimension.description}" id="${knowledgeDimension.id}" />
+                                </g:each>
                             </div>
                             <h3>
                                 Learning Domains
                             </h3>
                             <div>
                                 <ul>
-                                    <li>
-                                        List item one
-                                    </li>
+                                    <g:each var="learningDomain" in="${learningDomains}" status="index">
+                                        <li>
+                                            <label for="learning-domain-${index}">
+                                                ${learningDomain.name}
+                                            </label>
+                                            <g:checkBox name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" />
+                                        </li>
+                                    </g:each>
                                 </ul>
                             </div>
                             <h3>
@@ -83,9 +96,14 @@
                             </h3>
                             <div>
                                 <ul>
-                                    <li>
-                                        List item one
-                                    </li>
+                                    <g:each var="domainCategory" in="${domainCategories}" status="index">
+                                        <li>
+                                            <label for="domain-category-${index}">
+                                                ${domainCategory.name}
+                                            </label>
+                                            <g:checkBox name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" />
+                                        </li>
+                                    </g:each>
                                 </ul>
                             </div>
                         </div>
