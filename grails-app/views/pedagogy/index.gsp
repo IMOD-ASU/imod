@@ -16,6 +16,7 @@
         <meta name="layout" content="imod">
 
         <g:external dir="css/source" file="pedagogy.css" />
+        <g:javascript src="source/pedagogy.js" defer="defer" />
     </head>
     <body>
         <div id="edit-imod" class="content scaffold-edit" role="main">
@@ -54,6 +55,35 @@
                                     </li>
                                 </g:each>
                             </ul>
+                        </div>
+
+                        <div id="filter-pedagogy-techniques">
+                            <h3>Knowledge Dimesions</h3>
+                            <div>
+                                <ul>
+                                    <li>
+                                        List item one
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3>Learning Domains</h3>
+                            <div>
+                                <ul>
+                                    <li>
+                                        List item one
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3>
+                                Domain Categories
+                            </h3>
+                            <div>
+                                <ul>
+                                    <li>
+                                        List item one
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </td>
 
