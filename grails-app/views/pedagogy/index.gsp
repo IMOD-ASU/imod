@@ -72,9 +72,6 @@
                                         </li>
                                     </g:each>
                                 </ul>
-                                <g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
-                                    <g:checkBox name="knowledgeDimension{index}" value="${knowledgeDimension.description}" id="${knowledgeDimension.id}" />
-                                </g:each>
                             </div>
                             <h3>
                                 Learning Domains
