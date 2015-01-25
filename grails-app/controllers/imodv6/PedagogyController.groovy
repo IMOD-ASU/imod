@@ -37,7 +37,7 @@ class PedagogyController {
 
 		// get all of the filters used to find pedagogy techniques
 		def domainCategories = DomainCategory.list()
-		def knowledgeDimensions = KnowledgeDimesion.list()
+		def knowledgeDimensions = KnowledgeDimension.list()
 		def learningDomains = LearningDomain.list()
 
 		[
