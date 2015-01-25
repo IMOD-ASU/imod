@@ -1,7 +1,8 @@
 package imodv6
+import grails.converters.JSON
 
 class PedagogyController {
-	def springSecurityService
+
 	static allowedMethods = [
 		index: 'GET',
 		favoriteTechnique: 'POST',
@@ -22,56 +23,59 @@ class PedagogyController {
 		// finds all the learning objective linked to this imod
 		def learningObjectivesList = LearningObjective.findAllByImod(currentImod)
 
+		// Search for selected learning objective
+		// if there are no learning objectives set null
+		// if there is no selected learning objective, pick first
+		// otherwise get the objective
 		def currentLearningObjective
-		// No learning objective is selected, choose first
-		if (learningObjectiveID == null) {
-			currentLearningObjective = currentImod.learningObjectives.first()
+		def objectivesForCurrentImod = currentImod.learningObjectives
+		if (objectivesForCurrentImod.size() < 1) {
+			currentLearningObjective = null
 		}
-		// Learning objective is selected, get it
+		else if (learningObjectiveID == null) {
+			currentLearningObjective = objectivesForCurrentImod.first()
+		}
 		else {
-			currentLearningObjective = LearningObjective.get(learningObjectiveID)
+			currentLearningObjective = objectivesForCurrentImod.find { it.id == learningObjectiveID }
 		}
 
-		// find all techniques where the Domain Category or the Learning Domain
-		// is the same fo the learning objective
-		def extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria(uniqueResult: true) {
-			or {
-				domainCategory {
-					eq("name", currentLearningObjective.actionWordCategory.domainCategory.learningDomain.toString())
-				}
-				learningDomain {
-					eq("name", currentLearningObjective.actionWordCategory.domainCategory.toString())
-				}
-			}
-		}
 		[
 			currentLearningObjective: currentLearningObjective,
 			currentImod: currentImod,
 			currentPage: 'pedagogy',
 			learningObjectivesList: learningObjectivesList,
-			extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch,
 		]
 	}
 
-	def favoriteTechnique(Long id, Long objectiveId) {
-		// TODO link technique to imod user
-		redirect(
-			action: 'index',
-			id: id,
-			params: [
-				objectiveId: objectiveId
-			]
-		)
-	}
+	/**
+	 * Finds ideal and extended matches based on learning domains and knowledge dimensions
+	 * expects params
+	 * - knowledgeDimesions: name of each selected dimension
+	 * - domain category: name of each selected category
+	 * - learning domain: name of each selected domain
+	 */
+	def findMatchingTechniques() {
+		// find all technique where both the knowledge dimension and the domain category match
+		def idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria(uniqueResult: true) {
+			and {
+				knowledgeDimension {
+					'in' ('name', params.knowledgeDimensions)
+				}
+				or {
+					domainCategory {
+						'in' ('name', params.domainCategories)
+					}
+					learningDomain {
+						'in' ('name', params.learningDomains)
+					}
+				}
+			}
+		}
 
-	def assignTechnique(Long id, Long objectiveId) {
-		// TODO link technique to learning objective
-		redirect(
-			action: 'index',
-			id: id,
-			params: [
-				objectiveId: objectiveId
-			]
+		render(
+			[
+				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch
+			] as JSON
 		)
 	}
 }
