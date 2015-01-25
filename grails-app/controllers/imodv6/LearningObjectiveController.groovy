@@ -25,16 +25,16 @@ class LearningObjectiveController {
 	// FIXME rename and possibly combine learningObjectiveManager and getDefaultLearningObjective
 	private def learningObjectiveManager(Imod currentImod) {
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = LearningObjective.findAllByImod(currentImod)
+		def learningObjectives = LearningObjective.findAllByImod(currentImod)
 
 		// if there are no learning objectives create one
-		if (learningObjectivesList.size() < 1) {
+		if (learningObjectives.size() < 1) {
 			create(currentImod.id)
 			// updates the list of all of the learning objectives for this imod
-			learningObjectivesList = LearningObjective.findAllByImod(currentImod)
+			learningObjectives = LearningObjective.findAllByImod(currentImod)
 		}
 
-		return learningObjectivesList
+		return learningObjectives
 	}
 
 	/**
@@ -177,7 +177,7 @@ class LearningObjectiveController {
 		def currentImod = Imod.get(id)
 
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = learningObjectiveManager(currentImod)
+		def learningObjectives = learningObjectiveManager(currentImod)
 
 		// get all performance data to set in the Performance page
 		def learningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
@@ -192,7 +192,7 @@ class LearningObjectiveController {
 
 		[
 			currentImod:				currentImod,
-			learningObjectivesList:		learningObjectivesList,
+			learningObjectives:		learningObjectives,
 			currentPage:				'learning objective performance',
 			learningObjective:			learningObjective,
 			selectedActionWordCategory:	selectedActionWordCategory,
@@ -207,7 +207,7 @@ class LearningObjectiveController {
 
 	def content(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
-		def learningObjectivesList = learningObjectiveManager(currentImod)
+		def learningObjectives = learningObjectiveManager(currentImod)
 		def learningObjectiveInstance = getDefaultLearningObjective(currentImod, learningObjectiveID)
 		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 		def contents = [];
@@ -221,7 +221,7 @@ class LearningObjectiveController {
 
 		[
 			currentImod:			currentImod,
-			learningObjectivesList:	learningObjectivesList,
+			learningObjectives:	learningObjectives,
 			currentPage:			'learning objective content',
 			learningObjective:		learningObjectiveInstance,
 			contentList:			contents,
@@ -230,7 +230,7 @@ class LearningObjectiveController {
 
 	def condition(Long id, Long learningObjectiveID) {
 		def currentImod					=  Imod.get(id)
-		def learningObjectivesList		=  learningObjectiveManager(currentImod)
+		def learningObjectives		=  learningObjectiveManager(currentImod)
 		def learningObjectiveInstance	=  getDefaultLearningObjective(currentImod, learningObjectiveID)
 		def currentCondition			=  learningObjectiveInstance.condition?:LearningObjective.genericConditions[0]
 		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
@@ -238,7 +238,7 @@ class LearningObjectiveController {
 
 		[
 			currentImod:			currentImod,
-			learningObjectivesList:	learningObjectivesList,
+			learningObjectives:	learningObjectives,
 			currentPage:			'learning objective condition',
 			learningObjective:		learningObjectiveInstance,
 			currentCondition:		currentCondition,
@@ -251,14 +251,14 @@ class LearningObjectiveController {
 	def criteria(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
-		def learningObjectivesList = learningObjectiveManager(currentImod)
+		def learningObjectives = learningObjectiveManager(currentImod)
 		def learningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
 
 		[
 			currentImod:			currentImod,
 			currentPage:			'learning objective criteria',
 			learningObjective:		learningObjective,
-			learningObjectivesList:	learningObjectivesList,
+			learningObjectives:	learningObjectives,
 		]
 	}
 

@@ -47,7 +47,7 @@
                                 </span>
                             </div>
                             <ul class="learning-objective list-wrapper">
-                                <g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
+                                <g:each in="${learningObjectives}" status="i" var="learningObjectiveItem">
                                     <li class="learning-objective list-item ${(learningObjectiveItem.id == currentLearningObjective.id) ? 'active' : ''  }">
                                         <g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjectiveItem.id]" class="learning-objective list-link">
                                             <g:render template="/learningObjective/definition" bean="${learningObjectiveItem}" />
@@ -58,7 +58,9 @@
                         </div>
 
                         <div id="filter-pedagogy-techniques">
-                            <h3>Knowledge Dimesions</h3>
+                            <h3>
+                                Knowledge Dimesions
+                            </h3>
                             <div>
                                 <ul>
                                     <li>
@@ -66,7 +68,9 @@
                                     </li>
                                 </ul>
                             </div>
-                            <h3>Learning Domains</h3>
+                            <h3>
+                                Learning Domains
+                            </h3>
                             <div>
                                 <ul>
                                     <li>
