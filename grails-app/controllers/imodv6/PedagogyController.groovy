@@ -59,18 +59,20 @@ class PedagogyController {
 	 * - learning domain: name of each selected domain
 	 */
 	def findMatchingTechniques() {
+		println('call grails')
+		def data = JSONObject(params)
 		// find all technique where both the knowledge dimension and the domain category match
 		def idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria(uniqueResult: true) {
 			and {
 				knowledgeDimension {
-					'in' ('name', params.knowledgeDimensions)
+					'in' ('name', data.knowledgeDimensions)
 				}
 				or {
 					domainCategory {
-						'in' ('name', params.domainCategories)
+						'in' ('name', data.domainCategories)
 					}
 					learningDomain {
-						'in' ('name', params.learningDomains)
+						'in' ('name', data.learningDomains)
 					}
 				}
 			}
