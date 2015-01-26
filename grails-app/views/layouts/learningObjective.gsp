@@ -55,10 +55,10 @@
 									</span>
 								</div>
 								<ul class="learning-objective list-wrapper">
-									<g:each in="${learningObjectivesList}" status="i" var="learningObjectiveItem">
-										<li class="learning-objective list-item ${(learningObjectiveItem.id == learningObjective.id) ? 'active' : ''  }">
-											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjectiveItem.id]" class="learning-objective list-link">
-												<g:render template="/learningObjective/definition" bean="${learningObjectiveItem}" />
+									<g:each var="learningObjective" in="${learningObjectives}">
+										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
+											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
+												<g:render template="/learningObjective/definition" bean="${learningObjective}" />
 											</g:link>
 										</li>
 									</g:each>
@@ -67,7 +67,7 @@
 						</td>
 						<td class="learning-objective definition-cell">
 							<div class="learning-objective definition" class="learning-objective-current">
-								<g:render template="/learningObjective/definition" bean="${learningObjective}" />
+								<g:render template="/learningObjective/definition" bean="${currentLearningObjective}" />
 							</div>
 						</td>
 					</tr>
@@ -79,22 +79,22 @@
 
 								<ul class="learning-objective sub-nav">
 									<li class="${ currentPage.find(/learning objective performance/) == null ? '' : 'active' }">
-										<g:link action="performance" params="[learningObjectiveID: learningObjective.id]" id="${currentImod?.id}" class="performance">
+										<g:link action="performance" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="performance">
 											Performance
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective content/) == null ? '' : 'active' }">
-										<g:link action="content" params="[learningObjectiveID: learningObjective.id]" id="${currentImod?.id}" class="content">
+										<g:link action="content" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="content">
 											Content
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
-										<g:link action="condition" params="[learningObjectiveID: learningObjective.id]" id="${currentImod?.id}" class="condition">
+										<g:link action="condition" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="condition">
 											Condition
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective criteria/) == null ? '' : 'active' }">
-										<g:link action="criteria" params="[learningObjectiveID: learningObjective.id]" id="${currentImod?.id}" class="criteria">
+										<g:link action="criteria" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="criteria">
 											Criteria
 										</g:link>
 									</li>

@@ -16,6 +16,7 @@
         <meta name="layout" content="imod">
 
         <g:external dir="css/source" file="pedagogy.css" />
+        <g:javascript src="source/pedagogy.js" defer="defer" />
     </head>
     <body>
         <div id="edit-imod" class="content scaffold-edit" role="main">
@@ -38,122 +39,71 @@
             <table>
                 <tr>
                     <td>
-
                         <!-- left panel for the page -->
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="chapter_addition_widget">
-                                            <div id="chapterListTable">
-                                                <p>
-                                                    <ul id="chapterListUL">
-                                                        <g:if test="${objectiveList}">
-                                                            <g:each in="${objectiveList}" var="learningObjectiveItem" status="count">
-                                                                <g:render template="/learningObjective/definition" bean="${learningObjectiveItem}"/>
-                                                            </g:each>
-                                                        </g:if>
-                                                        <g:else>
-                                                            <div class="graphErrorMessage">
-                                                                No learning objective available
-                                                            </div>
-                                                        </g:else>
-                                                        <div id="objective-qtip-place"></div>
-                                                    </ul>
-                                                </p>
-                                            </div>
+                        <div class="learning-objective list">
+                            <div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
+                                <span class="title-text">
+                                    Learning Objectives
+                                </span>
+                            </div>
+                            <ul class="learning-objective list-wrapper">
+                                <g:each var="learningObjective" in="${learningObjectives}">
+                                    <li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
+                                        <g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
+                                            <g:render template="/learningObjective/definition" bean="${learningObjective}" />
+                                        </g:link>
+                                    </li>
+                                </g:each>
+                            </ul>
+                        </div>
 
-                                            <div>
-                                                <div class="form_title removeBorder">
-                                                    <span class="title_text">
-                                                        <g:message code="Filter Options"/>
-                                                    </span>
-                                                    <span class="title_text">
-                                                        <a onclick="submitRefresh();" title="${Help.toolTip('PEDAGOGY', 'Refresh')}" class="showHover">
-                                                            Refresh
-                                                        </a>
-                                                    </span>
-                                                </div>
-
-                                                <!-- FIXME replace url with controller and action -->
-                                                <g:formRemote name="pedAccordion" id="pedAccordion" url="[action:'updateExtendedTechnique',controller:'pedagogy']" update="extendedMatchDiv">
-                                                    <div id="ped_accordion">
-                                                        <h3 title="${Help.toolTip('PEDAGOGY', 'Domain')}" class="showHover">
-                                                            Domain
-                                                        </h3>
-                                                        <div>
-                                                            <p>
-                                                                <g:each in="${lrnDomainlist}" var="domain">
-                                                                    <g:if test="${domain.toString().equals(dmn.toString())}">
-                                                                        <input type="checkbox" name="domain" value="${domain.toString()}" checked="checked">
-                                                                    </g:if>
-                                                                    <g:else>
-                                                                        <input type="checkbox" name="domain" value="${domain.toString()}">
-                                                                    </g:else>
-                                                                    <label>
-                                                                        ${domain.toString()}
-                                                                    </label>
-                                                                    <br>
-                                                                </g:each>
-                                                            </p>
-                                                        </div>
-                                                        <h3 title="${Help.toolTip('PEDAGOGY', 'Domain Category')}" class="showHover">
-                                                            Domain Category
-                                                        </h3>
-                                                        <div>
-                                                            <p>
-                                                                <g:each in="${domainList}" var="domain">
-                                                                    <g:if test="${domain.toString().equals(dc.toString())}">
-                                                                        <input type="checkbox" name="domainCategory" value="${domain.toString()}" checked="checked">
-                                                                    </g:if>
-                                                                    <g:else>
-                                                                        <input type="checkbox" name="domainCategory" value="${domain.toString()}">
-                                                                    </g:else>
-                                                                    <label>
-                                                                        ${domain.toString()}
-                                                                    </label>
-                                                                    <br>
-                                                                </g:each>
-                                                            </p>
-                                                        </div>
-
-                                                        <h3 title="${Help.toolTip('PEDAGOGY', 'Knowledge Dimension')}" class="showHover">
-                                                            Knowledge Dimension
-                                                        </h3>
-                                                        <div>
-                                                            <p>
-                                                                <g:each in="${mapkdList}" var="kdomain">
-                                                                    <input type="checkbox" name="kdomain" value="${kdomain.key.toString()}" ${kdomain.value.toString().equals('true')?'checked':''}>
-                                                                    <label>
-                                                                        ${kdomain.key.toString()}
-                                                                    </label>
-                                                                    <br>
-                                                                </g:each>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </g:formRemote>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table id="addLearningObjectiveDiv" title="${Help.toolTip('CONTENT', 'Add Objective')}">
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <g:textField name="addObjectiveName" value="" placeholder="Objective name" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="button" name="addObjective" value="Add" onclick="saveLearningObjective()">
-                                    <input type="button" name="addObjective" value="Cancel" onclick="closeLearningObjective()">
-                                </td>
-                            </tr>
-                        </table>
-
+                        <div id="filter-pedagogy-techniques">
+                            <h3>
+                                Knowledge Dimesions
+                            </h3>
+                            <div>
+                                <ul>
+                                    <g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
+                                        <li>
+                                            <label for="knowledge-dimension-${index}">
+                                                ${knowledgeDimension.description}
+                                            </label>
+                                            <g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" />
+                                        </li>
+                                    </g:each>
+                                </ul>
+                            </div>
+                            <h3>
+                                Learning Domains
+                            </h3>
+                            <div>
+                                <ul>
+                                    <g:each var="learningDomain" in="${learningDomains}" status="index">
+                                        <li>
+                                            <label for="learning-domain-${index}">
+                                                ${learningDomain.name}
+                                            </label>
+                                            <g:checkBox name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" />
+                                        </li>
+                                    </g:each>
+                                </ul>
+                            </div>
+                            <h3>
+                                Domain Categories
+                            </h3>
+                            <div>
+                                <ul>
+                                    <g:each var="domainCategory" in="${domainCategories}" status="index">
+                                        <li>
+                                            <label for="domain-category-${index}">
+                                                ${domainCategory.name}
+                                            </label>
+                                            <g:checkBox name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" />
+                                        </li>
+                                    </g:each>
+                                </ul>
+                            </div>
+                        </div>
                     </td>
 
                     <td>
@@ -173,11 +123,11 @@
                                                         </button
                                                     </g:link>
 
-                                                    <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}" onclick="expandFavorite();">
+                                                    <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}">
                                                         Favorites
                                                     </button>
 
-                                                    <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Instructional Plan')}" onclick="addNewTechnique()">
+                                                    <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Instructional Plan')}">
                                                         Instructional Plan
                                                     </button>
                                                 </span>
@@ -215,41 +165,8 @@
                                                 <h3 title="${Help.toolTip('PEDAGOGY', 'Ideal Match')}" class="showHover">
                                                     Ideal Match
                                                 </h3>
-                                                <div id="idealMatchDiv">
-                                                    <g:each in="${pedaTechList}" var="pedaTech" status="i">
-                                                        <div title="${pedaTech.description}" class="imgblock showHover">
-                                                            <!-- FIXME Grails should only query models from controller -->
-                                                            <g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,pedaTech)}"/>
-                                                            <!-- FIXME Grails should only query models from controller -->
-                                                            <g:set var="assign" value="${ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(chapter,pedaTech)}"/>
 
-                                                            <!-- FIXME long IF ELSE chain logic should be in controller or model -->
-                                                            <g:if test="${fav && assign}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'fav-assign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
-                                                            </g:if>
-                                                            <g:elseif test="${fav}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'fav-unassign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
-                                                            </g:elseif>
-                                                            <g:elseif test="${assign}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'unfav-assign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
-                                                            </g:elseif>
-                                                            <g:else>
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'unfav-unassign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
-                                                            </g:else>
-                                                            <div class="smallblackarea">
-                                                                <map name="${pedaTech.id}">
-                                                                    <area shape="rect" coords="0,0,18,18" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: pedaTech.id, fav:'true', assign:'false'])}" title="Favorite" alt="Favorite" />
-                                                                    <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: pedaTech.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
-                                                                    <area shape="rect" coords="90,90,200,200" onclick="clonePedagogyTech(${pedaTech.id});" title="Clone" alt="Clone" />
-                                                                </map>
-                                                                ${pedaTech.title}
-                                                            </div>
-                                                        </div>
-                                                    </g:each>
+                                                <div id="ideal-matches">
                                                 </div>
 
                                                 <%--Favorite Accordion --%>
@@ -285,7 +202,7 @@
                                                                 <map name="${favPedaTech.pedagogyTechnique.id}">
                                                                     <area shape="rect" coords="0,0,18,18" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'true', assign:'false'])}" title="Favorite" alt="Favorite" />
                                                                     <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
-                                                                    <area shape="rect" coords="90,90,200,200" onclick="clonePedagogyTech(${favPedaTech.pedagogyTechnique.id})" title="Clone" alt="Clone" />
+                                                                    <area shape="rect" coords="90,90,200,200" title="Clone" alt="Clone" />
                                                                 </map>
                                                                 ${favPedaTech.pedagogyTechnique.title}
                                                             </div>

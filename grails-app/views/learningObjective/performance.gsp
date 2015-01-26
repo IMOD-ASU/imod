@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<g:form name="performance" action="save" id="${currentImod.id}">
-			<g:hiddenField name="learningObjectiveID" value="${learningObjective.id}" id="learning-objective-id" />
+			<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 			<g:hiddenField name="pageType" value="performance" id="page-type" />
 			<g:submitButton class="learning-objective-button save show-hover-new" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
 

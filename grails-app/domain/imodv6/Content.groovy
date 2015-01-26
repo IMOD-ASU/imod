@@ -76,7 +76,8 @@ class Content {
 
 	static belongsTo = [
 		LearningObjective,
-		Content
+		Content,
+		Imod
 	]
 
 
