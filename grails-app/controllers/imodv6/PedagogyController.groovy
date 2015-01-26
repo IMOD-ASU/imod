@@ -59,18 +59,34 @@ class PedagogyController {
 	 * - learning domain: name of each selected domain
 	 */
 	def findMatchingTechniques() {
+		def data = request.JSON
+
+		// process strings to longs
+		def selectedKnowledgeDimensions = []
+		def selectedDomainCategories = []
+		def selectedLearningDomains = []
+		for (def knowledgeDimesion in data.selectedKnowledgeDimensions) {
+			selectedKnowledgeDimensions.add(knowledgeDimesion.toLong())
+		}
+		for (def domainCategory in data.selectedDomainCategories) {
+			selectedDomainCategories.add(domainCategory.toLong())
+		}
+		for (def learningDomain in data.selectedLearningDomains) {
+			selectedLearningDomains.add(learningDomain.toLong())
+		}
+
 		// find all technique where both the knowledge dimension and the domain category match
-		def idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria(uniqueResult: true) {
+		def idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
 			and {
 				knowledgeDimension {
-					'in' ('name', params.knowledgeDimensions)
+					'in' ('id', selectedKnowledgeDimensions)
 				}
 				or {
 					domainCategory {
-						'in' ('name', params.domainCategories)
+						'in' ('id', selectedDomainCategories)
 					}
 					learningDomain {
-						'in' ('name', params.learningDomains)
+						'in' ('id', selectedLearningDomains)
 					}
 				}
 			}

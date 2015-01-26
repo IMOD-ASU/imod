@@ -165,41 +165,8 @@
                                                 <h3 title="${Help.toolTip('PEDAGOGY', 'Ideal Match')}" class="showHover">
                                                     Ideal Match
                                                 </h3>
-                                                <div id="idealMatchDiv">
-                                                    <g:each in="${pedaTechList}" var="pedaTech" status="i">
-                                                        <div title="${pedaTech.description}" class="imgblock showHover">
-                                                            <!-- FIXME Grails should only query models from controller -->
-                                                            <g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,pedaTech)}"/>
-                                                            <!-- FIXME Grails should only query models from controller -->
-                                                            <g:set var="assign" value="${ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(chapter,pedaTech)}"/>
 
-                                                            <!-- FIXME long IF ELSE chain logic should be in controller or model -->
-                                                            <g:if test="${fav && assign}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'fav-assign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
-                                                            </g:if>
-                                                            <g:elseif test="${fav}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'fav-unassign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
-                                                            </g:elseif>
-                                                            <g:elseif test="${assign}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'unfav-assign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
-                                                            </g:elseif>
-                                                            <g:else>
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'unfav-unassign.png')}" alt="Criteria" usemap="#${pedaTech.id}" />
-                                                            </g:else>
-                                                            <div class="smallblackarea">
-                                                                <map name="${pedaTech.id}">
-                                                                    <area shape="rect" coords="0,0,18,18" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: pedaTech.id, fav:'true', assign:'false'])}" title="Favorite" alt="Favorite" />
-                                                                    <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: pedaTech.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
-                                                                    <area shape="rect" coords="90,90,200,200" title="Clone" alt="Clone" />
-                                                                </map>
-                                                                ${pedaTech.title}
-                                                            </div>
-                                                        </div>
-                                                    </g:each>
+                                                <div id="ideal-matches">
                                                 </div>
 
                                                 <%--Favorite Accordion --%>
