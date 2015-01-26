@@ -44,7 +44,13 @@ function filterPedagogyTechniques() {
 
 	// send the data to the find matching techniques action in grails
 	// and process the response with the display pedagogy techniques callback
-	$.post('../findMatchingTechniques', data, displayPedagogyTechniques, 'json');
+	$.ajax({
+		url: '../findMatchingTechniques',
+		method: 'post',
+		data: JSON.stringify(data),
+		contentType: 'application/json'
+	})
+	.done(displayPedagogyTechniques);
 }
 
 /**
@@ -52,5 +58,10 @@ function filterPedagogyTechniques() {
  * this takes the json data and processes it into html code
  */
 function displayPedagogyTechniques(data) {
-	console.log('callback');
+	console.log(data);
+	var text = '';
+	for(var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
+		text += '<div>' + data.idealPedagogyTechniqueMatch[index].title + '</div>';
+	}
+	$('#ideal-matches').html(text);
 }
