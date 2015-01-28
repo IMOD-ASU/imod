@@ -16,6 +16,7 @@
         <meta name="layout" content="imod">
 
         <g:external dir="css/source" file="pedagogy.css" />
+        <g:external dir="css/source" file="learningObjective.css" />
         <g:javascript src="source/pedagogy.js" defer="defer" />
     </head>
     <body>
