@@ -60,7 +60,7 @@
 
                         <div id="filter-pedagogy-techniques">
                             <h3>
-                                Knowledge Dimesions
+                                Knowledge Dimensions
                             </h3>
                             <div>
                                 <ul>
