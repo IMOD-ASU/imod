@@ -58,10 +58,11 @@ function filterPedagogyTechniques() {
  * this takes the json data and processes it into html code
  */
 function displayPedagogyTechniques(data) {
-	console.log(data);
 	var text = '';
+	// take the titles and make html code to display
 	for(var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
 		text += '<div>' + data.idealPedagogyTechniqueMatch[index].title + '</div>';
 	}
+	// add html code to the page
 	$('#ideal-matches').html(text);
 }

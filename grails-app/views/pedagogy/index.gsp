@@ -117,11 +117,9 @@
                                                 <span>
 
                                                     <%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-                                                    <g:link controller="pedagogyTechnique" action="create" id="${currentImod.id}">
-                                                        <button>
-                                                            Add New Technique
-                                                        </button
-                                                    </g:link>
+                                                    <g:form controller="PedagogyTechnique" method="post" id="${currentImod.id}" params="learningObjectiveID=${currentLearningObjective.id}">
+                                                            <g:actionSubmit value="Add New Technique" action="create" />
+                                                    </g:form>
 
                                                     <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}">
                                                         Favorites
@@ -217,14 +215,14 @@
                         </table>
 
                         <%--Dialog box for Add New Technique --%>
-                        <div id="showAddNewTechnique" title="Add New Technique">
+                        <div id="add-new-technique" title="Add New Technique">
                             <%--To render the add new Technique dialog box--%>
                             <!-- FIXME rename validation function to be more descriptive -->
-                            <g:form action="addNewTechnique" id="${currentImod.id}">
+                            <g:form controller="PedagogyTechnique" method="post" id="${currentImod.id}" params="learningObjectiveID=${currentLearningObjective.id}">
                                 <g:render template="pedagogyTechniqueForm" />
                                 <div align="center">
-                                    <g:actionSubmit value="Save" />
-                                    <g:actionSubmit value="Cancel" />
+                                    <g:actionSubmit value="Save" action="create" />
+                                    <g:actionSubmit value="Cancel" action="cancel" />
                                 </div>
                             </g:form>
                         </div>
