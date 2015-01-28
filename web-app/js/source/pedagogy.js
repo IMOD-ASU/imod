@@ -1,5 +1,8 @@
 'use strict';
 
+// load techniques on page load
+filterPedagogyTechniques();
+
 // the filters for the pedagogy technique are wrapped in a accordian
 $('#filter-pedagogy-techniques').accordion();
 
