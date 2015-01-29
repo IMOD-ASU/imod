@@ -61,11 +61,19 @@ function filterPedagogyTechniques() {
  * this takes the json data and processes it into html code
  */
 function displayPedagogyTechniques(data) {
-	var text = '';
+	var idealText = '';
 	// take the titles and make html code to display
 	for(var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
-		text += '<div>' + data.idealPedagogyTechniqueMatch[index].title + '</div>';
+		idealText += '<div>' + data.idealPedagogyTechniqueMatch[index].title + '</div>';
 	}
+
+	var extendedText = '';
+	// take the titles and make html code to display
+	for(index = 0; index < data.extendedPedagogyTechniqueMatch.length; index++) {
+		extendedText += '<div>' + data.extendedPedagogyTechniqueMatch[index].title + '</div>';
+	}
+
 	// add html code to the page
-	$('#ideal-matches').html(text);
+	$('#ideal-matches').html(idealText);
+	$('#extended-matches').html(extendedText);
 }
