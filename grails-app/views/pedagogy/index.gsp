@@ -132,74 +132,31 @@
                                                 </span>
                                             </div>
 
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <div id="pc3_img">
-                                                            <g:img dir="images" file="logo_orange.png" alt="OrangeImodLogo"/>
+                                            <div id="pc3_img">
+                                                <g:img dir="images" file="logo_orange.png" alt="OrangeImodLogo"/>
 
-                                                            <%-- PC3 Functionality --%>
-                                                            <g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
-                                                            <g:img id="content-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
-                                                            <g:img id="condition-tab" dir="images/learningObjectives" file="LO-condition.png" alt="Condition"/>
-                                                            <g:img id="criteria-tab" dir="images/learningObjectives" file="LO-criteria.png" alt="Criteria"/>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                                <%-- PC3 Functionality --%>
+                                                <g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+                                                <g:img id="content-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
+                                                <g:img id="condition-tab" dir="images/learningObjectives" file="LO-condition.png" alt="Condition"/>
+                                                <g:img id="criteria-tab" dir="images/learningObjectives" file="LO-criteria.png" alt="Criteria"/>
+                                            </div>
+
                                             <div id="selectedFilter">
                                                 ${selectionLine}
                                             </div>
-                                            <%-- Ideal match accordion --%>
-                                            <div id="ped1_accordion">
-                                                <h3 title="${Help.toolTip('PEDAGOGY', 'Ideal Match')}" class="showHover">
-                                                    Ideal Match
-                                                </h3>
 
-                                                <div id="ideal-matches">
-                                                </div>
+                                            <h3 title="${Help.toolTip('PEDAGOGY', 'Ideal Match')}" class="showHover">
+                                                Ideal Match
+                                            </h3>
 
-                                                <%--Favorite Accordion --%>
-                                                <h3 title="${Help.toolTip('PEDAGOGY', 'Favorites')}" class="showHover">
-                                                    Favorite
-                                                </h3>
-                                                <div>
-                                                    <g:each in="${favPedaTechList}" var="favPedaTech" status="i">
-                                                        <div title="${favPedaTech.pedagogyTechnique.pedagogyDescription}" class="imgblock showHover">
-                                                            <!-- FIXME Grails should only query models from controller -->
-                                                            <g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,favPedaTech.pedagogyTechnique)}" />
-                                                            <!-- FIXME Grails should only query models from controller -->
-                                                            <g:set var="assign" value="${ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(chapter,favPedaTech.pedagogyTechnique)}" />
+                                            <div id="ideal-matches"></div>
 
-                                                            <!-- FIXME long IF ELSE chain logic should be in controller or model -->
-                                                            <g:if test="${fav && assign}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'fav-assign.png')}" alt="Criteria" usemap="#${favPedaTech.pedagogyTechnique.id}" />
-                                                            </g:if>
-                                                            <g:elseif test="${fav}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'fav-unassign.png')}" alt="Criteria" usemap="#${favPedaTech.pedagogyTechnique.id}"/>
-                                                            </g:elseif>
-                                                            <g:elseif test="${assign}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'unfav-assign.png')}" alt="Criteria" usemap="#${favPedaTech.pedagogyTechniqueh.id}" />
-                                                            </g:elseif>
-                                                            <g:else>
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'unfav-unassign.png')}" alt="Criteria" usemap="#$favPedaTech.pedagogyTechnique.id}" />
-                                                            </g:else>
-                                                            <div class="smallblackarea">
-                                                                <map name="${favPedaTech.pedagogyTechnique.id}">
-                                                                    <area shape="rect" coords="0,0,18,18" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'true', assign:'false'])}" title="Favorite" alt="Favorite" />
-                                                                    <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
-                                                                    <area shape="rect" coords="90,90,200,200" title="Clone" alt="Clone" />
-                                                                </map>
-                                                                ${favPedaTech.pedagogyTechnique.title}
-                                                            </div>
-                                                        </div>
-                                                    </g:each>
-                                                </div>
-                                            </div>
+                                            <h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
+                                                Extended Match
+                                            </h3>
+
+                                            <div id="extended-matches"></div>
                                         </div>
                                     </td>
                                 </tr>
