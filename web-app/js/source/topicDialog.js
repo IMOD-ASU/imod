@@ -5,6 +5,7 @@ var isFlashing=null;
 var content = '';
 
 $(function(){
+	// attach event listeners
 	$("#addTopicModal").click(showTopicDialog);
 	$("#addTopic").click(addTopic);
 	$('#saveTopic').click(saveTopic);
@@ -20,62 +21,69 @@ $(function(){
 	});
 	$('#cancelResource').click(closeResourceModal);
 	$('#saveResource').click(saveResource);
-	$('#removeResource').click(function(){
+	$('#removeResource').click(function() {
 		var resourceIDs=[];
-		$("#resourceList .selected").each(function(){
+		$("#resourceList .selected").each(function() {
 			resourceIDs.push(this.id);
 		});
 		deleteResource(resourceIDs);
 	});
-	$('#removeTopic').click(function(){
+	$('#removeTopic').click(function() {
 		var contentIDs=[];
-		$("#topicList .selected").each(function(){
+		$('#topicList .selected').each(function() {
 			contentIDs.push(this.id);
 		});
 		deleteTopic(contentIDs);
 	});
-	$("#topicList > tbody").on("click", "tr", toggleSelected);
-	$("#resourceList > tbody").on("click", "tr", toggleSelected);
+	$('#topicList > tbody').on('click', 'tr', toggleSelected);
+	$('#resourceList > tbody').on('click', 'tr', toggleSelected);
 	$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
-	$("#topicList > tbody").on("change", "input", function(){
-		var id = $(this).parents("tr .topicItem").attr('id');
+	$('#topicList > tbody').on('change', 'input', function(){
+		var id = $(this).parents('tr .topicItem').attr('id');
 		highlightUnsaved(id);
 	});
-	$("#topicList > tbody").on("change", "select", function(){
-		var id = $(this).parents("tr .topicItem").attr('id');
+	$('#topicList > tbody').on('change', 'select', function(){
+		var id = $(this).parents('tr .topicItem').attr('id');
 		highlightUnsaved(id);
 	});
 
 });
 
 function showTopicDialog(){
-	$("#topicDialogBackground").css("display","block");
-	$("#topicDialog").css("display","block");
+	$('#topicDialogBackground').css('display', 'block');
+	$('#topicDialog').css('display', 'block');
 }
 
 function hideTopicDialog(){
-	$("#topicDialogBackground").css("display","none");
-	$("#topicDialog").css("display","none");
+	$('#topicDialogBackground').css('display', 'none');
+	$('#topicDialog').css('display', 'none');
 
 }
 
 function errorMessage(message){
 	errorMessages.push(message);
-	if (isFlashing===null){
+	if (isFlashing === null){
 		flashError();
-		isFlashing=setInterval(flashError,4000);
+		isFlashing = setInterval(flashError, 4000);
 	}
 }
 
 function flashError(){
 	var message=errorMessages.shift();
-	$("#errorMessage").text(message);
-	$("#errorMessage").fadeIn("fast").delay(3000).fadeOut("slow","swing",function(){
-		if (errorMessages.length===0){
-			clearInterval(isFlashing);
-			isFlashing=null;
-		}
-	});
+	$('#errorMessage').text(message);
+	$('#errorMessage')
+		.fadeIn('fast')
+		.delay(3000)
+		.fadeOut(
+			'slow',
+			'swing',
+			function() {
+				if (errorMessages.length===0){
+					clearInterval(isFlashing);
+					isFlashing=null;
+				}
+			}
+		);
 }
 
 function changePic(imageToChange){
@@ -95,10 +103,7 @@ function changePic(imageToChange){
 }
 
 function toggleSelected(){
-	if (!((event.target.nodeName=='OPTION')||
-			(event.target.nodeName=="INPUT")||
-			(event.target.nodeName=="BUTTON")||
-			(event.target.nodeName=="SELECT"))){
+	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON','SELECT'])){
 		$(this).find(".saveIcon > i").toggleClass("hidden");
 		$(this).toggleClass("selected");
 	}
@@ -116,7 +121,7 @@ function closeDimModal(){
 			dimensions.push($(this).val());
 		}
 	});
-	if (dimensions.length===0){
+	if (dimensions.length === 0){
 		dimensions="";
 	}
 	else{
@@ -127,7 +132,7 @@ function closeDimModal(){
 		$(this).prop('checked',false);
 	});
 
-	if (contentDimensions.val()!=dimensions){
+	if (contentDimensions.val() !== dimensions){
 		contentDimensions.val(dimensions);
 		$("#"+contentID).addClass("unsaved");
 	}
@@ -148,7 +153,7 @@ function openDimModal(){
 	}
 	for(var i=0;i<dimensionList.length;i++){
 		var findCheckBox=$(dialog).find("#"+dimensionList[i]);
-		if (findCheckBox.length==1){
+		if (findCheckBox.length === 1){
 			findCheckBox.prop('checked',true);
 		}
 	}
@@ -183,12 +188,12 @@ function deleteTopic(contentIDs){
 		dataType:"json",
 		data: {
 			contentIDs:contentIDs
-			},
+		},
 		success: function(data){
 			data.result.forEach(function(element){
 				$("#"+element).remove();
 			});
-		},
+		}
 	});
 }
 
@@ -229,12 +234,13 @@ function saveTopic(){
 	}
 	contentData=JSON.stringify(contentData);
 	$.ajax({
-		url:"../../content/saveTopic/",
-		type:"POST",
-		dataType:"json",
-		data: {id:imodID,
-			JSONData:contentData
-			},
+		url: '../../content/saveTopic/',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			id: imodID,
+			JSONData: contentData
+		},
 		success: function() {
 		 	location.reload();
 		},
@@ -246,8 +252,8 @@ function saveTopic(){
 }
 
 function refreshSaves() {
-	$('#topicList tbody tr').each(function(){
-		var rowData=getTopicSavedItems(this);
+	$('#topicList tbody tr').each(function() {
+		var rowData = getTopicSavedItems(this);
 		$(rowData.titleSaved).val($(rowData.title).val());
 		$(rowData.dimensionsSaved).val($(rowData.dimensions).val());
 		$(rowData.prioritySaved).val($(rowData.priority).val());
@@ -256,17 +262,17 @@ function refreshSaves() {
 }
 
 function revertChanges() {
-	$("#topicList tbody tr").each(function(){
+	$("#topicList tbody tr").each(function() {
 		var rowData = getTopicSavedItems(this);
 		var dimensions = [];
 		var dimensionShort = '';
 		var icon = '';
 		var contentIDs = [];
 
-		if($(rowData.dimensionsSaved).val() === ''){
+		if ($(rowData.dimensionsSaved).val() === '') {
 			contentIDs.push(this.id);
 		}
-		else{
+		else {
 			$(rowData.title).val($(rowData.titleSaved).val());
 			$(rowData.dimensions).val($(rowData.dimensionsSaved).val());
 			$(rowData.priority).val($(rowData.prioritySaved).val());
@@ -276,10 +282,10 @@ function revertChanges() {
 			$(dimensions).each(function(){
 				dimensionShort += this.charAt(0);
 			});
-			if (dimensionShort === ''){
+			if (dimensionShort === '') {
 				icon=$('#imgNone').attr('href');
 			}
-			else{
+			else {
 				icon=$('#img' + dimensionShort).attr('href');
 			}
 			$(rowData.dimensions).siblings('img').attr('src', icon);
@@ -298,7 +304,7 @@ function getTopicSavedItems(currentRow) {
 		priority: $("#topicPriority"+topicID),
 		prioritySaved: $("#topicPrioritySaved"+topicID),
 		preReq: $("#topicPreReq"+topicID),
-		preReqSaved: $("#topicPreReq"+topicID),
+		preReqSaved: $("#topicPreReq"+topicID)
 	};
 	return rowData;
 }
@@ -370,14 +376,16 @@ function addTopic() {
 }
 
 function addResource() {
-	var contentID=content.split("topicResources");
-	contentID =contentID[1];
+	var contentID=content.split('topicResources');
+	contentID = contentID[1];
 	$.ajax({
-		url:"../../content/addResource",
-		type:"GET",
-		dataType:"json",
-		data:{contentID:contentID},
-		success:function(data){
+		url: '../../content/addResource',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			contentID: contentID
+		},
+		success: function(data){
 			var id = data.id;
 			var resources = data.resources;
 			var resourceOptions = '';
@@ -422,7 +430,7 @@ function getResource() {
 		data:{contentID:contentID},
 		success:function(data){
 			var resources = data.resources;
-			var resourceTypes = data.resourceTypes
+			var resourceTypes = data.resourceTypes;
 			for (var i = 0; i < resourceTypes.length; i++){
 				resourceOptions += '<option value="' + resourceTypes[i] + '">' + resourceTypes[i] + '</option>';
 			}
@@ -514,6 +522,6 @@ function deleteResource(resourceIDs){
 			data.result.forEach(function(element) {
 				$("#"+element).remove();
 			});
-		},
+		}
 	});
 }

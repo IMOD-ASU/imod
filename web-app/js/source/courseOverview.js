@@ -9,7 +9,7 @@ $(document).ready(function() {
 });
 
 function populateRepeatsEvery() {
-	if($('#repeats option:selected').text() == "Daily") {
+	if($('#repeats option:selected').text() === "Daily") {
 		$('#duration').text("days");
 		$('#duration').css('visibility','visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
@@ -20,7 +20,7 @@ function populateRepeatsEvery() {
 		$(':checkbox').css('visibility','hidden');
 
 	}
-	else if($('#repeats option:selected').text() == "Weekly") {
+	else if($('#repeats option:selected').text() === "Weekly") {
 		$('#duration').text("weeks");
 		$('#duration').css('visibility','visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
