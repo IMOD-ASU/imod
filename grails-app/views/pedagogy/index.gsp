@@ -136,22 +136,13 @@
                                                 <tr>
                                                     <td>
                                                         <div id="pc3_img">
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img src="${resource(dir: 'images', file: 'logo_orange.png')}" alt="OrangeImodLogo"/>
+                                                            <g:img dir="images" file="logo_orange.png" alt="OrangeImodLogo"/>
 
                                                             <%-- PC3 Functionality --%>
-
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img id="performance-tab" src="${resource(dir: 'images', file: 'Performance.png')}" alt="Performance" title="${chapter?.performance}"/>
-
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img id="content-tab" src="${resource(dir: 'images', file: 'Content.png')}" alt="Content" title="${contentTitle?.join(", ")}"/>
-
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img id="condition-tab" src="${resource(dir: 'images', file: 'Condition.png')}" alt="Condition" title="${chapter?.condition}"/>
-
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img id="criteria-tab" src="${resource(dir: 'images', file: 'Criteria.png')}" alt="Criteria" title="${chapter?.criteriaAccuracy}"/>
+                                                            <g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+                                                            <g:img id="content-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
+                                                            <g:img id="condition-tab" dir="images/learningObjectives" file="LO-condition.png" alt="Condition"/>
+                                                            <g:img id="criteria-tab" dir="images/learningObjectives" file="LO-criteria.png" alt="Criteria"/>
                                                         </div>
                                                     </td>
                                                 </tr>
