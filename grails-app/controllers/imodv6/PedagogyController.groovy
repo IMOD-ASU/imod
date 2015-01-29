@@ -92,9 +92,34 @@ class PedagogyController {
 			}
 		}
 
+		// find all technique that are not ideal, but have the learning domain
+		def extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
+			and {
+				learningDomain {
+					'in' ('id', selectedLearningDomains)
+				}
+				not {
+					and {
+						knowledgeDimension {
+							'in' ('id', selectedKnowledgeDimensions)
+						}
+						or {
+							domainCategory {
+								'in' ('id', selectedDomainCategories)
+							}
+							learningDomain {
+								'in' ('id', selectedLearningDomains)
+							}
+						}
+					}
+				}
+			}
+		}
+
 		render(
 			[
-				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch
+				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch,
+				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch
 			] as JSON
 		)
 	}
