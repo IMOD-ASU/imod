@@ -75,5 +75,5 @@ function displayPedagogyTechniques(data) {
 
 	// add html code to the page
 	$('#ideal-matches').html(idealText);
-	$('#extended-matches').html(idealText);
+	$('#extended-matches').html(extendedText);
 }
