@@ -17,7 +17,7 @@ $(document).ready(function() {
 });
 
 function showHelp(displayHelp){
-	if (displayHelp!="true"){
+	if (displayHelp !== "true"){
 		$("#help-placeholder").css("display","none");
 	}
 
@@ -73,7 +73,7 @@ function updateDatePicker(dateFormat) {
 				}
 			}).keydown(function(event) {
 				// Show popup on Down Arrow
-				if (event.keyCode == 40) {
+				if (event.keyCode === 40) {
 					displayWidget.datepicker("show");
 				}
 			});
@@ -107,17 +107,19 @@ function updateDatePicker(dateFormat) {
 function toggleHelp(){
 	var helpbox=$("#help-placeholder");
 	var openbox=$("#open-help");
-	if (helpbox.css("display")=="block") {
-		var boxtop = helpbox.css("top");
-		var boxleft = helpbox.css("left");
+	var boxtop;
+	var boxleft;
+	if (helpbox.css("display")==="block") {
+		boxtop = helpbox.css("top");
+		boxleft = helpbox.css("left");
 		helpbox.css("display","none");
 		openbox.css("display","block");
 		openbox.css("top",boxtop);
 		openbox.css("left",boxleft);
 	}
 	else {
-		var boxtop = openbox.css("top");
-		var boxleft = openbox.css("left");
+		boxtop = openbox.css("top");
+		boxleft = openbox.css("left");
 		helpbox.css("display","block");
 		openbox.css("display","none");
 		helpbox.css("top",boxtop);

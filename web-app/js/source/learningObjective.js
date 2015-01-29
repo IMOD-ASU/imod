@@ -8,7 +8,7 @@ var prevKeyword = '';
 $(document).ready(function() {
 
 	// Initially domain categories and action words will not be displayed as learning domain is null
-	if($('#domain-category-list').val() == 'null'){
+	if($('#domain-category-list').val() === 'null'){
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
 
 		$('#domain-category-list').css('visibility', 'hidden');
@@ -57,7 +57,7 @@ $(document).ready(function() {
 	$('input:radio[name=conditionType]').on(
 		'change',
 		function() {
-			if(this.value == 'Generic') {
+			if(this.value === 'Generic') {
 				$('#custom-condition-text').css('display', 'none');
 				$('.learning-objective.condition.generic').css('display', 'block');
 			}
@@ -165,21 +165,21 @@ $(document).ready(function() {
 
 	//when learning domain isn't selected, do not save learning objective
 	$('.learning-objective-button.save').click(function(){
-		if($('#learning-domain-list').val() == "null" ||
-			$('#domain-category-list').val() == "null" ||
+		if($('#learning-domain-list').val() === "null" ||
+			$('#domain-category-list').val() === "null" ||
 			$('input[name=actionWordCategory]').is(':checked') === false) {
 			alert("Learning Domain, Domain Category and Action Word Categories are required");
 			return false;
 		}
 	});
-	
+
 	//when hovered over LO side-tab list, it displays full text as tool-tip
 	var $liArray = $('ul.learning-objective.list-wrapper').children('li');
 	var height = getMinHeight($liArray);
-	
+
 	$liArray.each(function(){
 		$("a",this).attr('title',$("a",this).text());
-		if(Math.floor($(this).height()) != height)
+		if(Math.floor($(this).height()) !== height)
 		{
 			$("a",this).text($("a",this).text().substring(0,70)+"...");
 		}
@@ -197,14 +197,12 @@ $(document).ready(function() {
  * @return {XML}        Populates the domain category box with options
  */
 function populateDomainCategories() {
-	if($('#learning-domain-list').val() != 'null')
-	{
+	if($('#learning-domain-list').val() !== 'null') {
 		$('label[for="domain-category-list"]').css('visibility', 'visible');
 		$('#domain-category-list').css('visibility', 'visible');
 		$('.action-word-categories').css('visibility', 'visible');
 	}
-	else
-	{
+	else {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
 		$('#domain-category-list').css('visibility', 'hidden');
 		$('.action-word-categories').css('visibility', 'hidden');
@@ -286,7 +284,7 @@ function populateActionWordCategories() {
  */
 function populateActionWords(event) {
 
-	if(prevKeyword == $('.action-word-categories').find('.ui-state-active').text()){
+	if(prevKeyword === $('.action-word-categories').find('.ui-state-active').text()){
 		return;
 	}else{
 		prevKeyword = $('.action-word-categories').find('.ui-state-active').text();
@@ -316,7 +314,7 @@ function populateActionWords(event) {
 					// for each action word
 					for (var i = 0; i < actionWordsVerb.length; i++) {
 						// create the html for the action word
-						if(actionWordsVerb[i] == originalActionWord) {
+						if(actionWordsVerb[i] === originalActionWord) {
 							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
 						}else{
 							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
@@ -328,9 +326,9 @@ function populateActionWords(event) {
 				if(data.value.noun !== undefined && data.value.noun !== null && data.value.noun !== ''){
 
 					var actionWordsNoun = data.value.noun.syn;
-					for (var i = 0; i < actionWordsNoun.length; i++) {
+					for (i = 0; i < actionWordsNoun.length; i++) {
 						// create the html for the action word
-						if(actionWordsNoun[i] == originalActionWord) {
+						if(actionWordsNoun[i] === originalActionWord) {
 							actionWordsHTML += '<option selected value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
 						}else{
 							actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
@@ -341,7 +339,7 @@ function populateActionWords(event) {
 				if(data.value.adjective !== undefined && data.value.adjective !== null && data.value.adjective !== ''){
 
 					var actionWordsAdj = data.value.adjective.syn;
-					for (var i = 0; i < actionWordsAdj.length; i++) {
+					for (i = 0; i < actionWordsAdj.length; i++) {
 						// create the html for the action word
 						if(actionWordsAdj[i] == originalActionWord) {
 							actionWordsHTML += '<option selected value="' + actionWordsAdj[i] + '">'+ actionWordsAdj[i] + '</option>';
@@ -372,10 +370,10 @@ function propagateToDefinition(value, type) {
 function getMinHeight(liArray) {
 	var minHeight = Math.floor(liArray.eq(0).height());
     liArray.each(function(){
-        if ( Math.floor($(this).height()) < minHeight ) 
+        if ( Math.floor($(this).height()) < minHeight )
             {
                minHeight = Math.floor($(this).height());
-    	    } 
+    	    }
     	var refineText = $("a",this).text().replace(/[\s\t]+/g,' ');
     	$("a", this).text(refineText);
     });

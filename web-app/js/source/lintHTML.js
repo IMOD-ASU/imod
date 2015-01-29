@@ -18,7 +18,7 @@ var messages = HTMLHint.verify(
 		"spec-char-escape": true,
 		"src-not-empty": true,
 		"tag-pair": true,
-		"tagname-lowercase": true,
+		"tagname-lowercase": true
 	}
 );
 
