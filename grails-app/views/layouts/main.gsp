@@ -89,7 +89,7 @@ this is the basic layout with only the IMOD header and footer
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
-			Copyright &copy; 2014 IMOD&trade;
+			Copyright &copy; 2015 IMOD&trade;
 		</div>
 
 		<g:if env="development">
