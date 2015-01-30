@@ -848,7 +848,7 @@ table.inner-table {
 
 
 .buttons {
-    top: 0;
+    top: 10px;
     right: 25px;
     width: auto;
 }
@@ -897,45 +897,57 @@ table.inner-table {
 
 img.tab-icon {
     width: 20%;
-    height: auto;
+    height: 43px;
+    
 }
 
 a.ui-tabs-anchor {
-    width: 181.953px;
+    width: 90%;
 }
 
 #overview-tab-title {
     position: absolute;
     top: 10px;
+    color: black;
+    font-size: 150%;
 }
 
 #lo-tab-title {
     position: absolute;
     top: 10px;
+    color: black;
+    font-size: 150%;
 }
 
 #content-tab-title {
     position: absolute;
     top: 10px;
     left: 80px;
+    color: black;
+    font-size: 150%;
 }
 
 #assess-tab-title {
     position: absolute;
     top: 10px;
     left: 80px;
+    color: black;
+    font-size: 150%;
 }
 
 #pedagogy-tab-title {
     position: absolute;
     top: 10px;
     left: 70px;
+    color: black;
+    font-size: 150%;
 }
 
 .ui-tabs-nav li {
     height: 43px;
     border-top-left-radius: 5px 5px;
     border-top-right-radius: 5px;
+    width: 19.7%;
 }
 
 #help-placeholder {
