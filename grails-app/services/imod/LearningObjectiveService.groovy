@@ -7,7 +7,7 @@ class LearningObjectiveService {
     /**
      * Ensure that the Imod has at least one learning objective
      */
-    def ensureLearningObjectiveExists(def currentImod) {
+    def ensureLearningObjectiveExists(Imod currentImod) {
         // get a list of all of the learning objectives for this imod
         def learningObjectives = LearningObjective.findAllByImod(currentImod)
 
@@ -20,7 +20,7 @@ class LearningObjectiveService {
     }
 
     /**
-     * Ensure that objective is owned by a user
+     * Gets all learning objectives linked to selected Imod
      */
     def getAllByImod(Imod currentImod) {
         ensureLearningObjectiveExists(currentImod)
@@ -28,7 +28,8 @@ class LearningObjectiveService {
     }
 
     /**
-     * Ensure that objective is owned by a user
+     * Get a learning objective by id, and ensures that objective belongs to
+     * selected Imods
      */
     def safeGet(Imod currentImod, Long learningObjectiveID) {
         ensureLearningObjectiveExists(currentImod)
