@@ -1,8 +1,8 @@
-<%@ page import="imodv6.PedagogyMode" %>
-<%@ page import="imodv6.PedagogyActivityFocus" %>
-<%@ page import="imodv6.PedagogyActivityDuration" %>
-<%@ page import="imodv6.PedagogyActivity" %>
-<%@ page import="imodv6.PedagogyReference" %>
+<%@ page import="imod.PedagogyMode" %>
+<%@ page import="imod.PedagogyActivityFocus" %>
+<%@ page import="imod.PedagogyActivityDuration" %>
+<%@ page import="imod.PedagogyActivity" %>
+<%@ page import="imod.PedagogyReference" %>
 
 <!-- FIXME remove all inline CSS from this file -->
 
@@ -250,7 +250,7 @@
 										<g:field type="text" name="pedagogyReference1.referenceLinkISBN" value="${reference.referenceLinkISBN}" />
 									</td>
 									<td>
-										<g:select name="pedagogyReference1.refeType" from="${imodv6.PedagogyReferenceType.list()}" value="${reference.referenceType?.id}" optionKey="id" optionValue="description" noSelection="['':'Select one']"/>
+										<g:select name="pedagogyReference1.refeType" from="${imod.PedagogyReferenceType.list()}" value="${reference.referenceType?.id}" optionKey="id" optionValue="description" noSelection="['':'Select one']"/>
 									</td>
 									<td>
 										<a onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">
@@ -275,7 +275,7 @@
 									<g:field type="text" name="pedagogyReference1.referenceLinkISBN" value="" />
 								</td>
 								<td>
-									<g:select name="pedagogyReference1.refeType" from="${imodv6.PedagogyReferenceType.list()}" optionKey="id" optionValue="description" noSelection="['':'Select one']"/>
+									<g:select name="pedagogyReference1.refeType" from="${imod.PedagogyReferenceType.list()}" optionKey="id" optionValue="description" noSelection="['':'Select one']"/>
 								</td>
 								<td>
 									<a onclick="removeRow(this,${pedagogyTech?true:false});" style="text-decoration:none;font-weight:bold;">

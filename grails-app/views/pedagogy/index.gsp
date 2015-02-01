@@ -1,11 +1,4 @@
-<%@ page import="imodv6.Help" %>
-<%@ page import="imodv6.ImodPedagogyAssign" %>
-<%@ page import="imodv6.ImodUserPedagogyFavorite" %>
-<%@ page import="imodv6.PedagogyActivity" %>
-<%@ page import="imodv6.PedagogyActivityDuration" %>
-<%@ page import="imodv6.PedagogyActivityFocus" %>
-<%@ page import="imodv6.PedagogyMode" %>
-<%@ page import="imodv6.PedagogyReference" %>
+<%@ page import="imod.Help" %>
 
 <html>
     <head>

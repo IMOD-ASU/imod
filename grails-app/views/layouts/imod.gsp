@@ -6,9 +6,9 @@
 	- Assessments
 	- Pedagogy
 --%>
-<%@ page import="imodv6.Help" %>
-<%@ page import="imodv6.Imod" %>
-<%@ page import="imodv6.ImodUser" %>
+<%@ page import="imod.Help" %>
+<%@ page import="imod.Imod" %>
+<%@ page import="imod.ImodUser" %>
 
 <g:applyLayout name="main">
 	<html>

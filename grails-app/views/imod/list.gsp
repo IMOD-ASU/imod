@@ -1,5 +1,5 @@
 
-<%@ page import="imodv6.Imod" %>
+<%@ page import="imod.Imod" %>
 <!DOCTYPE html>
 <html>
 	<head>

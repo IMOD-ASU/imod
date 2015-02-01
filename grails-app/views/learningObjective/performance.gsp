@@ -1,4 +1,4 @@
-<%@ page import="imodv6.Help" %>
+<%@ page import="imod.Help" %>
 <html>
 	<head>
 		<title>
