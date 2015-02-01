@@ -47,7 +47,7 @@ Grails uses Hibernate for its ORM wrapper and this project uses Postgres SQL as 
 
 Documentation for Grails Hibernate can be found [here](http://grails.org/doc/latest/ref/Domain%20Classes/Usage.html).
 
-The current models in project can be viewed [here](https://github.com/IMOD-ASU/imod/tree/master/grails-app/domain/imodv6).
+The current models in project can be viewed [here](https://github.com/IMOD-ASU/imod/tree/master/grails-app/domain/imod).
 
 ### View
 Grails uses Grails Server Pages (GSP) to preprocess HTML pages.
@@ -63,4 +63,4 @@ Controllers is the logic that holds Models and View together.
 
 Grails controllers manage state through actions, each URL is linked to an action. Documentation for Grails controllers can be found [here](http://grails.org/doc/latest/ref/Controllers/Usage.html)
 
-This project uses the URL design where `/${controller name}/${action name}/${imod id}` will trigger an action. For example `learningObjective/performance/123` will load learning objective 123 on the learning objective page, with the performance sub page open. A full list of controllers can be found [here](https://github.com/IMOD-ASU/imod/tree/development/grails-app/controllers/imodv6).
+This project uses the URL design where `/${controller name}/${action name}/${imod id}` will trigger an action. For example `learningObjective/performance/123` will load learning objective 123 on the learning objective page, with the performance sub page open. A full list of controllers can be found [here](https://github.com/IMOD-ASU/imod/tree/development/grails-app/controllers/imod).

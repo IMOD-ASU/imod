@@ -1,5 +1,5 @@
-<%@ page import="imodv6.ImodUserPedagogyFavorite" %>
-<%@ page import="imodv6.ImodPedagogyAssign" %>
+<%@ page import="imod.ImodUserPedagogyFavorite" %>
+<%@ page import="imod.ImodPedagogyAssign" %>
 <!-- FIXME remove all inline CSS from file -->
 <!-- FIXME re organize template as a grails server page, instead of a fragment -->
 

@@ -102,9 +102,9 @@ log4j = {
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'imodv6.ImodUser'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'imodv6.ImodUserRole'
-grails.plugin.springsecurity.authority.className = 'imodv6.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'imod.ImodUser'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'imod.ImodUserRole'
+grails.plugin.springsecurity.authority.className = 'imod.Role'
 
 
 //InterceptUrlMap to make all links secure
