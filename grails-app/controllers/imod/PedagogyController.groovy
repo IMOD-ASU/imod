@@ -2,6 +2,7 @@ package imod
 import grails.converters.JSON
 
 class PedagogyController {
+	def learningObjectiveService
 
 	static allowedMethods = [
 		index: 'GET',

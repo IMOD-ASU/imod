@@ -65,7 +65,8 @@ class LearningObjectiveController {
 	// FIXME each page should have its own save
 	def save (Long id, Long learningObjectiveID, String pageType){
 		//gets the learning objective to be updated
-		def selectedLearningObjective = learningObjectiveService.getLearningObjective(id, learningObjectiveID)
+		def currentImod = Imod.get(id)
+		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		switch (pageType) {
 			// if the user is saving performance page
@@ -140,11 +141,11 @@ class LearningObjectiveController {
 		def currentImod = Imod.get(id)
 
 		// get a list of all of the learning objectives for this imod
-		def learningObjectives = learningObjectiveService.getAllLearningObjectives(id)
+		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 
 
 		// get all performance data to set in the Performance page
-		def currentLearningObjective = learningObjectiveService.getLearningObjective(id, learningObjectiveID)
+		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def selectedActionWordCategory = currentLearningObjective.actionWordCategory
 		def selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		def selectedDomain = selectedDomainCategory?.learningDomain
@@ -171,8 +172,8 @@ class LearningObjectiveController {
 
 	def content(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
-		def learningObjectives = learningObjectiveService.getAllLearningObjectives(id)
-		def currentLearningObjective = learningObjectiveService.getLearningObjective(id, learningObjectiveID)
+		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 		def contents = [];
 		if (contentList.size() < 1) {
@@ -194,8 +195,8 @@ class LearningObjectiveController {
 
 	def condition(Long id, Long learningObjectiveID) {
 		def currentImod					=  Imod.get(id)
-		def learningObjectives			=  learningObjectiveService.getAllLearningObjectives(id)
-		def currentLearningObjective	=  learningObjectiveService.getLearningObjective(id, learningObjectiveID)
+		def learningObjectives			=  learningObjectiveService.getAllByImod(currentImod)
+		def currentLearningObjective	=  learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def currentCondition			=  currentLearningObjective.condition?:LearningObjective.genericConditions.first()
 		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
 		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
@@ -214,8 +215,8 @@ class LearningObjectiveController {
 	def criteria(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
-		def learningObjectives = learningObjectiveService.getAllLearningObjectives(id)
-		def currentLearningObjective = learningObjectiveService.getLearningObjective(id, learningObjectiveID)
+		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		[
 			currentImod:				currentImod,
