@@ -3,6 +3,7 @@ import grails.converters.JSON
 import grails.plugins.rest.client.RestBuilder
 
 class LearningObjectiveController {
+	def learningObjectiveService
 
 	static allowedMethods = [
 		create: 					'GET',
@@ -18,44 +19,6 @@ class LearningObjectiveController {
 
 	// same as having index action redirect to performance tab
 	static defaultAction = 'performance'
-
-	/**
-	* Gets learning objectives for an Imod, auto generates a Learning Objective if there are none
-	*/
-	// FIXME rename and possibly combine learningObjectiveManager and getDefaultLearningObjective
-	private def learningObjectiveManager(Imod currentImod) {
-		// get a list of all of the learning objectives for this imod
-		def learningObjectives = LearningObjective.findAllByImod(currentImod)
-
-		// if there are no learning objectives create one
-		if (learningObjectives.size() < 1) {
-			create(currentImod.id)
-			// updates the list of all of the learning objectives for this imod
-			learningObjectives = LearningObjective.findAllByImod(currentImod)
-		}
-
-		return learningObjectives
-	}
-
-	/**
-	* Gets the default learning objective
-	*/
-	private def getDefaultLearningObjective(Imod currentImod, Long learningObjectiveID) {
-		def objective
-		// when there is not objective specified, pick first
-		if (learningObjectiveID == null) {
-			objective = currentImod.learningObjectives.first()
-		}
-		// otherwise get that objective
-		else {
-			objective = LearningObjective.findWhere(imod: currentImod, id: learningObjectiveID)
-			// if that objective doesn't exist, get first
-			if (objective == null) {
-				objective = currentImod.learningObjectives.first()
-			}
-		}
-		return objective
-	}
 
 	/**
 	 * Creates a Learning Objective
@@ -102,7 +65,7 @@ class LearningObjectiveController {
 	// FIXME each page should have its own save
 	def save (Long id, Long learningObjectiveID, String pageType){
 		//gets the learning objective to be updated
-		def selectedLearningObjective = LearningObjective.get(learningObjectiveID)
+		def selectedLearningObjective = learningObjectiveService.getLearningObjective(id, learningObjectiveID)
 
 		switch (pageType) {
 			// if the user is saving performance page
@@ -177,10 +140,11 @@ class LearningObjectiveController {
 		def currentImod = Imod.get(id)
 
 		// get a list of all of the learning objectives for this imod
-		def learningObjectives = learningObjectiveManager(currentImod)
+		def learningObjectives = learningObjectiveService.getAllLearningObjectives(id)
+
 
 		// get all performance data to set in the Performance page
-		def currentLearningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
+		def currentLearningObjective = learningObjectiveService.getLearningObjective(id, learningObjectiveID)
 		def selectedActionWordCategory = currentLearningObjective.actionWordCategory
 		def selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		def selectedDomain = selectedDomainCategory?.learningDomain
@@ -207,8 +171,8 @@ class LearningObjectiveController {
 
 	def content(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
-		def learningObjectives = learningObjectiveManager(currentImod)
-		def currentLearningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
+		def learningObjectives = learningObjectiveService.getAllLearningObjectives(id)
+		def currentLearningObjective = learningObjectiveService.getLearningObjective(id, learningObjectiveID)
 		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 		def contents = [];
 		if (contentList.size() < 1) {
@@ -230,8 +194,8 @@ class LearningObjectiveController {
 
 	def condition(Long id, Long learningObjectiveID) {
 		def currentImod					=  Imod.get(id)
-		def learningObjectives			=  learningObjectiveManager(currentImod)
-		def currentLearningObjective	=  getDefaultLearningObjective(currentImod, learningObjectiveID)
+		def learningObjectives			=  learningObjectiveService.getAllLearningObjectives(id)
+		def currentLearningObjective	=  learningObjectiveService.getLearningObjective(id, learningObjectiveID)
 		def currentCondition			=  currentLearningObjective.condition?:LearningObjective.genericConditions.first()
 		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
 		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
@@ -250,8 +214,8 @@ class LearningObjectiveController {
 	def criteria(Long id, Long learningObjectiveID) {
 		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
-		def learningObjectives = learningObjectiveManager(currentImod)
-		def currentLearningObjective = getDefaultLearningObjective(currentImod, learningObjectiveID)
+		def learningObjectives = learningObjectiveService.getAllLearningObjectives(id)
+		def currentLearningObjective = learningObjectiveService.getLearningObjective(id, learningObjectiveID)
 
 		[
 			currentImod:				currentImod,
