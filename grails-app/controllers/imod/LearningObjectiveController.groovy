@@ -26,30 +26,15 @@ class LearningObjectiveController {
 	 * @return    redirects to the performance tab to allow editing
 	 */
 	def create(Long id) {
-		// get the IMOD that this learning objective will be associated with
 		def currentImod = Imod.get(id)
-		// create a learning objective, linked to the imod
-		def learningObjectiveInstance = new LearningObjective(
-			imod: currentImod,
-			criteriaAccuracyEnabled:	true,
-			criteriaQualityEnabled:		true,
-			criteriaQuantityEnabled:	true,
-			criteriaSpeedEnabled:		true,
-			criteriaAccuracyHidden:		true,
-			criteriaQualityHidden:		true,
-			criteriaQuantityHidden:		true,
-			criteriaSpeedHidden:		true,
-		)
-		// add the learning objective to the collection of learning objectives in the imod
-		currentImod.addToLearningObjectives(learningObjectiveInstance)
-		// saves the imod and the learning objective
-		currentImod.save()
+		def learningObjectiveId = learningObjectiveService.create(currentImod)
+
 		// redirects to the performance page to allow for newly created learning objective to be edited
 		redirect(
 			action: 'performance',
 			id: id,
 			params: [
-				learningObjectiveID: learningObjectiveInstance.id
+				learningObjectiveID: learningObjectiveId
 			]
 		)
 	}
