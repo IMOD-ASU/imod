@@ -4,6 +4,27 @@ import grails.transaction.Transactional
 
 @Transactional
 class LearningObjectiveService {
+    def create(Imod currentImod) {
+        // create a learning objective, linked to the imod
+        def newLearningObjective = new LearningObjective(
+            imod: currentImod,
+            criteriaAccuracyEnabled:	true,
+            criteriaQualityEnabled:		true,
+            criteriaQuantityEnabled:	true,
+            criteriaSpeedEnabled:		true,
+            criteriaAccuracyHidden:		true,
+            criteriaQualityHidden:		true,
+            criteriaQuantityHidden:		true,
+            criteriaSpeedHidden:		true,
+        )
+        // add the learning objective to the collection of learning objectives in the imod
+        currentImod.addToLearningObjectives(newLearningObjective)
+        // saves the imod and the learning objective
+        currentImod.save()
+
+        return newLearningObjective.id
+    }
+
     /**
      * Ensure that the Imod has at least one learning objective
      */
@@ -13,7 +34,7 @@ class LearningObjectiveService {
 
         // if there are no learning objectives create one
         if (learningObjectives.size() < 1) {
-            create(currentImod.id)
+            create(currentImod)
             // updates the list of all of the learning objectives for this imod
             learningObjectives = LearningObjective.findAllByImod(currentImod)
         }
