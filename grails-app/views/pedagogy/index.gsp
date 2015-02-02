@@ -112,7 +112,7 @@
 
                                                     <%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
                                                     <g:form controller="PedagogyTechnique" method="post" id="${currentImod.id}" params="learningObjectiveID=${currentLearningObjective.id}">
-                                                            <g:actionSubmit value="Add New Technique" action="create" />
+                                                            <g:actionSubmit value="Add New Technique" id="add-new-technique-button" action="create" />
                                                     </g:form>
 
                                                     <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}">
