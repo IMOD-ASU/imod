@@ -15,6 +15,16 @@ $('input[name=knowledgeDimension]').on('change', filterPedagogyTechniques);
 $('input[name=learningDomain]').on('change', filterPedagogyTechniques);
 $('input[name=domainCategory]').on('change', filterPedagogyTechniques);
 
+// when add new technique button is clicked open modal
+$('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
+
+/**
+ * Opens the modal to create a new pedagogy technique
+ */
+function openNewPedagogyTechniqueModal() {
+	$('#add-new-technique').dialog('open');
+}
+
 /**
  * Reads which filters are selected and sends information to server to update
  * visible pedagogy techniques
