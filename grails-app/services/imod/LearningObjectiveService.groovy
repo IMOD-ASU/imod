@@ -34,7 +34,7 @@ class LearningObjectiveService {
 
         // if there are no learning objectives create one
         if (learningObjectives.size() < 1) {
-            create(currentImod.id)
+            create(currentImod)
             // updates the list of all of the learning objectives for this imod
             learningObjectives = LearningObjective.findAllByImod(currentImod)
         }
