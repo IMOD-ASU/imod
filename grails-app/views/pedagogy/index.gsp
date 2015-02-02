@@ -159,7 +159,6 @@
                         <%--Dialog box for Add New Technique --%>
                         <div id="add-new-technique" title="Add New Technique">
                             <%--To render the add new Technique dialog box--%>
-                            <!-- FIXME rename validation function to be more descriptive -->
                             <g:form controller="PedagogyTechnique" method="post" id="${currentImod.id}" params="learningObjectiveID=${currentLearningObjective.id}">
                                 <g:render template="pedagogyTechniqueForm" />
                                 <div align="center">
