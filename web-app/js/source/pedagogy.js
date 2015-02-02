@@ -6,6 +6,9 @@ filterPedagogyTechniques();
 // the filters for the pedagogy technique are wrapped in a accordian
 $('#filter-pedagogy-techniques').accordion();
 
+// add hide the add new technique modal
+$('#add-new-technique').dialog({autoOpen: false});
+
 // attach a listener to the checkboxes, to update the pedaogy techniques
 // when the filters have been changed
 $('input[name=knowledgeDimension]').on('change', filterPedagogyTechniques);
