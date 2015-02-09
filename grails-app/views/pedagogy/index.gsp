@@ -217,7 +217,7 @@
                                     Focus
                                 </label>
                                 <g:select
-                                    name="pedagogyMode"
+                                    name="pedagogyFocus"
                                     from="${pedagogyFocuses}"
                                     optionKey="focus" />
                                 <br />

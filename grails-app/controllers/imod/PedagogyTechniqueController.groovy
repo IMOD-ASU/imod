@@ -14,12 +14,29 @@ class PedagogyTechniqueController {
 	 */
 	def create(Long id, Long objectiveId) {
 		def newTechnique = new PedagogyTechnique()
-		// FIXME replace hardcoded values with domain ids
-		newTechnique.title = 'new technique'
-		newTechnique.pedagogyMode = PedagogyMode.findByName('online')
-		newTechnique.addToDomainCategory(DomainCategory.first())
-		newTechnique.addToKnowledgeDimension(KnowledgeDimension.first())
-		newTechnique.addToLearningDomain(LearningDomain.first())
+		// Store text fields
+		newTechnique.title = params.title
+		newTechnique.description = params.activityDescription
+
+		// Store relationships
+		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
+		newTechnique.addToAssignedLearningObjective(
+			LearningObjective.get(objectiveId)
+		)
+		newTechnique.addToDomainCategory(
+			DomainCategory.findByName(params.domainCategory)
+		)
+		newTechnique.addToKnowledgeDimension(
+			KnowledgeDimension.findByDescription(params.knowledgeDimension)
+		)
+		newTechnique.addToLearningDomain(
+			LearningDomain.findByName(params.learningDomain)
+		)
+		newTechnique.addPedagogyActivityFocus(
+			PedagogyActivityFocus.findByFocus(params.pedagogyFocus)
+		)
+
+		// persist new technique to database
 		newTechnique.save()
 
 		redirect(
