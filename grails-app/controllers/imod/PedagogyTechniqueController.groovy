@@ -4,7 +4,6 @@ class PedagogyTechniqueController {
 
 	static allowedMethods = [
 		create: 'POST',
-		save: 'POST',
 		favoriteByUser: 'POST',
 		assignToObjective: 'POST'
 	]
