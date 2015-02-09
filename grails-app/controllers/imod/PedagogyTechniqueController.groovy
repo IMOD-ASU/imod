@@ -4,7 +4,6 @@ class PedagogyTechniqueController {
 
 	static allowedMethods = [
 		create: 'POST',
-		save: 'POST',
 		favoriteByUser: 'POST',
 		assignToObjective: 'POST'
 	]
@@ -12,14 +11,31 @@ class PedagogyTechniqueController {
 	/**
 	 * creates a new Pedagogy Technique
 	 */
-	def create(Long id, Long objectiveId) {
+	def create(Long id, Long learningObjectiveID) {
 		def newTechnique = new PedagogyTechnique()
-		// FIXME replace hardcoded values with domain ids
-		newTechnique.title = 'new technique'
-		newTechnique.pedagogyMode = PedagogyMode.findByName('online')
-		newTechnique.addToDomainCategory(DomainCategory.first())
-		newTechnique.addToKnowledgeDimension(KnowledgeDimension.first())
-		newTechnique.addToLearningDomain(LearningDomain.first())
+		// Store text fields
+		newTechnique.title = params.title
+		newTechnique.description = params.activityDescription
+
+		// Store relationships
+		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
+		newTechnique.addToAssignedLearningObjective(
+			LearningObjective.get(learningObjectiveID)
+		)
+		newTechnique.addToDomainCategory(
+			DomainCategory.findByName(params.domainCategory)
+		)
+		newTechnique.addToKnowledgeDimension(
+			KnowledgeDimension.findByDescription(params.knowledgeDimension)
+		)
+		newTechnique.addToLearningDomain(
+			LearningDomain.findByName(params.learningDomain)
+		)
+		newTechnique.addToActivityFocus(
+			PedagogyActivityFocus.findByFocus(params.pedagogyFocus)
+		)
+
+		// persist new technique to database
 		newTechnique.save()
 
 		redirect(
@@ -27,66 +43,31 @@ class PedagogyTechniqueController {
 			action: 'index',
 			id: id,
 			params: [
-				objectiveId: objectiveId
+				learningObjectiveID: learningObjectiveID
 			]
 		)
 	}
 
-	def save(Long id, Long objectiveId) {
-		def currentImod = Imod.get(id)
-		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
-
-		if (!pedagogyTechniqueInstance.save()) {
-			render(
-				view: 'create',
-				model: [
-					pedagogyTechniqueInstance: pedagogyTechniqueInstance
-				]
-			)
-			return
-		}
-
-		flash.message = message(
-			code: 'default.created.message',
-			args: [
-				message(
-					code: 'imod.label',
-					default: 'Imod'
-				),
-				currentImod
-			]
-		)
-
-		redirect(
-			controller: 'pedagogy',
-			action: 'index',
-			id: id,
-			params: [
-				objectiveId: objectiveId
-			]
-		)
-	}
-
-	def favoriteByUser(Long id, Long objectiveId) {
+	def favoriteByUser(Long id, Long learningObjectiveID) {
 		// TODO link technique to imod user
 		redirect(
 			controller: 'pedagogy',
 			action: 'index',
 			id: id,
 			params: [
-				objectiveId: objectiveId
+				learningObjectiveID: learningObjectiveID
 			]
 		)
 	}
 
-	def assignToObjective(Long id, Long objectiveId) {
+	def assignToObjective(Long id, Long learningObjectiveID) {
 		// TODO link technique to learning objective
 		redirect(
 			controller: 'pedagogy',
 			action: 'index',
 			id: id,
 			params: [
-				objectiveId: objectiveId
+				learningObjectiveID: learningObjectiveID
 			]
 		)
 	}
