@@ -159,13 +159,7 @@
                         <%--Dialog box for Add New Technique --%>
                         <div id="add-new-technique" title="Add New Technique">
                             <%--To render the add new Technique dialog box--%>
-                            <g:form controller="PedagogyTechnique" method="post" id="${currentImod.id}" params="learningObjectiveID=${currentLearningObjective.id}">
-                                <g:render template="pedagogyTechniqueForm" />
-                                <div align="center">
-                                    <g:actionSubmit value="Save" action="create" />
-                                    <g:actionSubmit value="Cancel" action="cancel" />
-                                </div>
-                            </g:form>
+                            <g:render template="pedagogyTechniqueForm" />
                         </div>
                     </td>
                 </tr>

@@ -1,57 +1,93 @@
-<g:form name="newTechnique" id="new-technique">
-	<label>Title</label>
+<g:form
+	controller="PedagogyTechnique"
+	action="save"
+	method="post"
+	id="${currentImod.id}"
+	params="learningObjectiveID=${currentLearningObjective.id}"
+	>
+
+	<label>
+		Title
+	</label>
 	<g:textField name="title" />
 
-	<label>Learning Domain</label>
+	<label>
+		Learning Domain
+	</label>
 	<g:select
 		name="learningDomain"
 		from="${learningDomains}"
 		optionKey="name" />
 	<br />
 
-	<label>Domain Category</label>
+	<label>
+		Domain Category
+	</label>
 	<g:select
 		name="domainCategory"
 		from="${domainCategories}"
 		optionKey="name" />
 	<br />
 
-	<label>Knowledge Dimension</label>
+	<label>
+		Knowledge Dimension
+	</label>
 	<g:select
 		name="knowledgeDimension"
 		from="${knowledgeDimensions}"
 		optionKey="description" />
 	<br />
 
-	<label>Delivery Mode</label>
+	<label>
+		Delivery Mode
+	</label>
 	<g:select
 		name="pedagogyMode"
 		from="${pedagogyModes}"
 		optionKey="name" />
 	<br />
 
-	<label>Location</label>
+	<label>
+		Location
+	</label>
 	<g:textField name="location" />
 
-	<label>Focus</label>
+	<label>
+		Focus
+	</label>
 	<g:select
 		name="pedagogyMode"
 		from="${pedagogyFocuses}"
 		optionKey="focus" />
 	<br />
 
-	<label>Direction</label>
+	<label>
+		Direction
+	</label>
 	<g:textField name="direction" />
 
-	<label>Materials Required</label>
+	<label>
+		Materials Required
+	</label>
 	<g:textField name="materials" />
 
-	<label>Reference</label>
+	<label>
+		Reference
+	</label>
 	<g:textField name="reference" />
 
-	<label>Description of Strategy</label>
+	<label>
+		Description of Strategy
+	</label>
 	<g:textField name="strategyDescription" />
 
-	<label>Description of Activity</label>
+	<label>
+		Description of Activity
+	</label>
 	<g:textField name="activityDescription" />
+
+	<g:actionSubmit value="Save" />
+	<button id="create-pedagogy-cancel">
+		Cancel
+	</button>
 </g:form>

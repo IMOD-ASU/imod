@@ -18,11 +18,21 @@ $('input[name=domainCategory]').on('change', filterPedagogyTechniques);
 // when add new technique button is clicked open modal
 $('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
 
+// when cancel button is clicked close modal
+$('#create-pedagogy-cancel').on('click', closeNewPedagogyTechniqueModal);
+
 /**
  * Opens the modal to create a new pedagogy technique
  */
 function openNewPedagogyTechniqueModal() {
 	$('#add-new-technique').dialog('open');
+}
+
+/**
+* Closes the modal to create a new pedagogy technique
+*/
+function closeNewPedagogyTechniqueModal() {
+	$('#add-new-technique').dialog('close');
 }
 
 /**
