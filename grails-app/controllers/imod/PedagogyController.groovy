@@ -27,6 +27,8 @@ class PedagogyController {
 		def domainCategories = DomainCategory.list()
 		def knowledgeDimensions = KnowledgeDimension.list()
 		def learningDomains = LearningDomain.list()
+		def pedagogyModes = PedagogyMode.list()
+		def pedagogyFocuses = PedagogyActivityFocus.list()
 
 		[
 			currentImod: currentImod,
@@ -36,6 +38,8 @@ class PedagogyController {
 			knowledgeDimensions: knowledgeDimensions,
 			learningDomains: learningDomains,
 			learningObjectives: learningObjectives,
+			pedagogyModes: pedagogyModes,
+			pedagogyFocuses: pedagogyFocuses,
 		]
 	}
 
