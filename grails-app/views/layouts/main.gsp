@@ -94,7 +94,8 @@ this is the basic layout with only the IMOD header and footer
 
 		<g:if env="development">
 			<!-- automated html style checking -->
-			<script src="https://rawgit.com/yaniswang/HTMLHint/master/lib/htmlhint.js"></script>
+			<script src="//adamschwartz.co/log/log.js"></script>
+			<script src="//rawgit.com/yaniswang/HTMLHint/master/lib/htmlhint.js"></script>
 			<g:javascript src="source/lintHTML.js" />
 		</g:if>
 	</body>
