@@ -31,7 +31,7 @@ class PedagogyTechniqueController {
 		newTechnique.addToLearningDomain(
 			LearningDomain.findByName(params.learningDomain)
 		)
-		newTechnique.addPedagogyActivityFocus(
+		newTechnique.addToActivityFocus(
 			PedagogyActivityFocus.findByFocus(params.pedagogyFocus)
 		)
 

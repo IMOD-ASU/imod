@@ -159,7 +159,7 @@
                         <%--Dialog box for Add New Technique --%>
                         <div id="add-new-technique" title="Add New Technique">
                             <%--To render the add new Technique dialog box--%>
-                            <g:form controller="PedagogyTechnique" action="create" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+                            <g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
                                 <label>
                                     Title
                                 </label>
@@ -225,7 +225,7 @@
                                 </label>
                                 <g:textField name="activityDescription" />
 
-                                <g:actionSubmit value="Save" />
+                                <g:actionSubmit value="Save" action="create" />
                                 <button id="create-pedagogy-cancel">
                                     Cancel
                                 </button>

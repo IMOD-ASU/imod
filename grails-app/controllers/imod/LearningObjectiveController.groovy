@@ -6,15 +6,15 @@ class LearningObjectiveController {
 	def learningObjectiveService
 
 	static allowedMethods = [
-		create: 					'GET',
-		getDomainCategories: 		'GET',
-		getActionWordCategories:	'GET',
-		updateDefinition:			'POST',
-		performance: 				'GET',
 		condition: 					'GET',
-		criteria: 					'GET',
 		content: 					'GET',
+		create: 					'GET',
+		criteria: 					'GET',
+		getActionWordCategories:	'GET',
+		getDomainCategories: 		'GET',
+		performance: 				'GET',
 		save: 						'POST',
+		updateDefinition:			'POST',
 	]
 
 	// same as having index action redirect to performance tab
