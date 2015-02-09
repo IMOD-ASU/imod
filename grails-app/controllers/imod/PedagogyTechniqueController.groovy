@@ -12,7 +12,7 @@ class PedagogyTechniqueController {
 	/**
 	 * creates a new Pedagogy Technique
 	 */
-	def create(Long id, Long objectiveId) {
+	def create(Long id, Long learningObjectiveID) {
 		def newTechnique = new PedagogyTechnique()
 		// Store text fields
 		newTechnique.title = params.title
@@ -21,7 +21,7 @@ class PedagogyTechniqueController {
 		// Store relationships
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
 		newTechnique.addToAssignedLearningObjective(
-			LearningObjective.get(objectiveId)
+			LearningObjective.get(learningObjectiveID)
 		)
 		newTechnique.addToDomainCategory(
 			DomainCategory.findByName(params.domainCategory)
@@ -44,31 +44,31 @@ class PedagogyTechniqueController {
 			action: 'index',
 			id: id,
 			params: [
-				objectiveId: objectiveId
+				learningObjectiveID: learningObjectiveID
 			]
 		)
 	}
 
-	def favoriteByUser(Long id, Long objectiveId) {
+	def favoriteByUser(Long id, Long learningObjectiveID) {
 		// TODO link technique to imod user
 		redirect(
 			controller: 'pedagogy',
 			action: 'index',
 			id: id,
 			params: [
-				objectiveId: objectiveId
+				learningObjectiveID: learningObjectiveID
 			]
 		)
 	}
 
-	def assignToObjective(Long id, Long objectiveId) {
+	def assignToObjective(Long id, Long learningObjectiveID) {
 		// TODO link technique to learning objective
 		redirect(
 			controller: 'pedagogy',
 			action: 'index',
 			id: id,
 			params: [
-				objectiveId: objectiveId
+				learningObjectiveID: learningObjectiveID
 			]
 		)
 	}

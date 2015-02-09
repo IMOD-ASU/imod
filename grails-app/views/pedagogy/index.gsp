@@ -35,7 +35,7 @@
                     <td>
                         <!-- left panel for the page -->
                         <div class="learning-objective list">
-                            <div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
+                            <div class="form-title">
                                 <span class="title-text">
                                     Learning Objectives
                                 </span>
@@ -164,7 +164,7 @@
                                 action="create"
                                 method="post"
                                 id="${currentImod.id}"
-                                params="learningObjectiveID=${currentLearningObjective.id}"
+                                params="[learningObjectiveID: currentLearningObjective.id]"
                                 >
 
                                 <label>
