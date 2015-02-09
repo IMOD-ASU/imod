@@ -159,14 +159,7 @@
                         <%--Dialog box for Add New Technique --%>
                         <div id="add-new-technique" title="Add New Technique">
                             <%--To render the add new Technique dialog box--%>
-                            <g:form
-                                controller="PedagogyTechnique"
-                                action="create"
-                                method="post"
-                                id="${currentImod.id}"
-                                params="[learningObjectiveID: currentLearningObjective.id]"
-                                >
-
+                            <g:form controller="PedagogyTechnique" action="create" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
                                 <label>
                                     Title
                                 </label>
@@ -175,37 +168,25 @@
                                 <label>
                                     Learning Domain
                                 </label>
-                                <g:select
-                                    name="learningDomain"
-                                    from="${learningDomains}"
-                                    optionKey="name" />
+                                <g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
                                 <br />
 
                                 <label>
                                     Domain Category
                                 </label>
-                                <g:select
-                                    name="domainCategory"
-                                    from="${domainCategories}"
-                                    optionKey="name" />
+                                <g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
                                 <br />
 
                                 <label>
                                     Knowledge Dimension
                                 </label>
-                                <g:select
-                                    name="knowledgeDimension"
-                                    from="${knowledgeDimensions}"
-                                    optionKey="description" />
+                                <g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
                                 <br />
 
                                 <label>
                                     Delivery Mode
                                 </label>
-                                <g:select
-                                    name="pedagogyMode"
-                                    from="${pedagogyModes}"
-                                    optionKey="name" />
+                                <g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
                                 <br />
 
                                 <label>
@@ -216,10 +197,7 @@
                                 <label>
                                     Focus
                                 </label>
-                                <g:select
-                                    name="pedagogyFocus"
-                                    from="${pedagogyFocuses}"
-                                    optionKey="focus" />
+                                <g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
                                 <br />
 
                                 <label>
