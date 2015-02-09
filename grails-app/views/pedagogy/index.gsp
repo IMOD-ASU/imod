@@ -161,7 +161,7 @@
                             <%--To render the add new Technique dialog box--%>
                             <g:form
                                 controller="PedagogyTechnique"
-                                action="save"
+                                action="create"
                                 method="post"
                                 id="${currentImod.id}"
                                 params="learningObjectiveID=${currentLearningObjective.id}"

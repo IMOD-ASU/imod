@@ -32,41 +32,6 @@ class PedagogyTechniqueController {
 		)
 	}
 
-	def save(Long id, Long objectiveId) {
-		def currentImod = Imod.get(id)
-		def pedagogyTechniqueInstance = new PedagogyTechnique(params)
-
-		if (!pedagogyTechniqueInstance.save()) {
-			render(
-				view: 'create',
-				model: [
-					pedagogyTechniqueInstance: pedagogyTechniqueInstance
-				]
-			)
-			return
-		}
-
-		flash.message = message(
-			code: 'default.created.message',
-			args: [
-				message(
-					code: 'imod.label',
-					default: 'Imod'
-				),
-				currentImod
-			]
-		)
-
-		redirect(
-			controller: 'pedagogy',
-			action: 'index',
-			id: id,
-			params: [
-				objectiveId: objectiveId
-			]
-		)
-	}
-
 	def favoriteByUser(Long id, Long objectiveId) {
 		// TODO link technique to imod user
 		redirect(
