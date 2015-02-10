@@ -36,7 +36,7 @@ this is the basic layout with only the IMOD header and footer
 		<g:external dir="css" file="main.css" />
 
 		<!-- javascript libraries provided by content delivery network -->
-		<script src="//code.jquery.com/jquery-2.1.1.min.js" defer></script>
+		<script src="//code.jquery.com/jquery-2.1.3.min.js" defer></script>
 		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js" defer></script>
 		<script src="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js" defer></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/jstree.min.js" defer></script>
