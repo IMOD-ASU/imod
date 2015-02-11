@@ -62,7 +62,7 @@ function updateDatePicker() {
 				}
 			}).keydown(function (event) {
 				// Show popup on Down Arrow
-				if (event.keyCode == 40) {
+				if (event.keyCode === 40) {
 					displayWidget.datepicker("show");
 				}
 			});
@@ -110,7 +110,7 @@ $(document).ready(function () {
 		$("#spinner").ajaxComplete(function() {
 				updateDatePicker();
 		});
-		if ('${params.loadContentTab}' == 'true') {
+		if ('${params.loadContentTab}' === 'true') {
 				$('#tabs').tabs("option", "active", 2);
 		}
 });

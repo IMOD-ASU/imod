@@ -1,8 +1,8 @@
-<%@page import="imodv6.Help" %>
-<%@page import="imodv6.Imod" %>
-<%@page import="imodv6.ImodUser" %>
-<%@page import="imodv6.ScheduleRepeatsEvery"%>
-<%@page import="imodv6.ScheduleWeekDays"%>
+<%@page import="imod.Help" %>
+<%@page import="imod.Imod" %>
+<%@page import="imod.ImodUser" %>
+<%@page import="imod.ScheduleRepeatsEvery"%>
+<%@page import="imod.ScheduleWeekDays"%>
 
 <!DOCTYPE html>
 <html>
@@ -64,7 +64,7 @@
 													*
 												</span>
 											</label>
-											<g:textField name="name" required="" value="${currentImod?.name}"/>
+											<g:textField name="name" required="" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
@@ -74,7 +74,7 @@
 													*
 												</span>
 											</label>
-											<g:textField name="imodNumber" value="${currentImod?.imodNumber}" required="" id="imod-number"/>
+											<g:textField name="imodNumber" value="${currentImod?.imodNumber}" required="" id="imod-number" title="${ message( code:'imod.courseOverview.courseNumber' ) }"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
@@ -84,21 +84,21 @@
 													*
 												</span>
 											</label>
-											<g:textField required="" name="url" value="${currentImod?.url}"/>
+											<g:textField required="" name="url" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'courseLocation', 'error')} ">
 											<label for="courseLocation">
 												<g:message code="imod.courseLocation.label" default="Classroom Location" />
 											</label>
-											<g:textField name="courseLocation" value="${currentImod?.courseLocation}" id="course-location"/>
+											<g:textField name="courseLocation" value="${currentImod?.courseLocation}" id="course-location" title="${ message( code:'imod.courseOverview.classLocation' ) }"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'courseSemester', 'error')} ">
 											<label for="courseSemester">
 												<g:message code="imod.courseSemester.label" default="Semester" />
 											</label>
-											<g:textField name="courseSemester" value="${currentImod?.courseSemester}" id="course-semester"/>
+											<g:textField name="courseSemester" value="${currentImod?.courseSemester}" id="course-semester" title="${ message( code:'imod.courseOverview.courseSemester' ) }"/>
 										</div>
 									</div>
 								</td>
@@ -146,7 +146,7 @@
 												<g:message code="imod.repeats.label" default="Repeats" />
 											</label>
 											<!-- FIXME all model queries should be run in controller -->
-											<g:select id="repeats" name="schedule.repeats.id" from="${imodv6.ScheduleRepeats.list()}" optionKey="id" value="${currentImod?.schedule?.repeats?.id}" class="many-to-one" />
+											<g:select id="repeats" name="schedule.repeats.id" from="${imod.ScheduleRepeats.list()}" optionKey="id" value="${currentImod?.schedule?.repeats?.id}" class="many-to-one" title="${ message( code:'imod.courseOverview.scheduleRepeats' ) }" />
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'repeatsEvery', 'error')} ">
@@ -154,7 +154,7 @@
 												<g:message code="imod.repeatsEvery.label" default="Repeats Every" />
 											</label>
 											<!-- FIXME all model queries should be run in controller -->
-											<g:select id="repeats-every" name="schedule.repeatsEvery.id" from="${imodv6.ScheduleRepeatsEvery.list()}" optionKey="id" value="${currentImod?.schedule?.repeatsEvery?.id}" noSelection="${['null':'Nothing Selected']}" class="many-to-one" />
+											<g:select id="repeats-every" name="schedule.repeatsEvery.id" from="${imod.ScheduleRepeatsEvery.list()}" optionKey="id" value="${currentImod?.schedule?.repeatsEvery?.id}" noSelection="${['null':'Nothing Selected']}" class="many-to-one" title="${ message( code:'imod.courseOverview.scheduleRepeatsEvery' ) }"/>
 											<label id="duration"></label>
 										</div>
 
@@ -162,7 +162,7 @@
 										<label for="scheduleWeekDays">
 												<g:message code="imod.scheduleWeekDays.label" default="Repeats On" />
 											</label>
-										<g:each in="${imodv6.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
+										<g:each in="${imod.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
 											<!-- FIXME move complex logic to controller -->
 											<!-- FIXME all model queries should be run in controller -->
 											<g:checkBox name="scheduleWeekDays_${scheduleWeekDays.id}" id="schedule-week-days-${scheduleWeekDays.id}" value="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}" />
@@ -232,7 +232,7 @@
 															<g:message code="imod.instructors.label" default="Select Instructors:" />
 														</label>
 														<!-- FIXME all model queries should be run in controller -->
-														<g:select name="instructors" from="${imodv6.Instructor.list()}" multiple="multiple" optionKey="id" size="5" value="${currentImod?.instructors*.id}" class="many-to-many" style="width:150px;margin-left:-110px;" />
+														<g:select name="instructors" from="${imod.Instructor.list()}" multiple="multiple" optionKey="id" size="5" value="${currentImod?.instructors*.id}" class="many-to-many" style="width:150px;margin-left:-110px;" />
 													</div>
 											</div>
 									</div>
@@ -267,7 +267,7 @@
 												<label for="audience">
 													<g:message code="imod.audience.label" default="Audience" />
 												</label>
-												<g:select name="audience" from="${imodv6.Audience.list()}" noSelection="${['none':'No Audience'] }" multiple="multiple" optionKey="id" size="5" value="${currentImod?.audience*.id}" class="many-to-many" />
+												<g:select name="audience" from="${imod.Audience.list()}" noSelection="${['none':'No Audience'] }" multiple="multiple" optionKey="id" size="5" value="${currentImod?.audience*.id}" class="many-to-many" />
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'creditHours', 'error')} ">

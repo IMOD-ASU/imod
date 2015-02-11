@@ -1,4 +1,4 @@
-<%@ page import="imodv6.Help" %>
+<%@ page import="imod.Help" %>
 <html>
 	<head>
 		<title>
@@ -11,8 +11,9 @@
 		<g:form name="performance" action="save" id="${currentImod.id}">
 			<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 			<g:hiddenField name="pageType" value="performance" id="page-type" />
-			<g:submitButton class="learning-objective-button save show-hover-new" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
-
+			<fieldset class="learning-objective-button">
+			<g:submitButton class="save show-hover-new" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
+			</fieldset>
 			<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 				Learning Domain
 			</label>

@@ -7,7 +7,7 @@
 	learning objective sections
 --%>
 
-<%@ page import="imodv6.Help" %>
+<%@ page import="imod.Help" %>
 
 <g:applyLayout name="imod">
 	<html>

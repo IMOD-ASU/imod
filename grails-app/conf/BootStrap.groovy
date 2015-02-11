@@ -1,24 +1,24 @@
-import imodv6.ActionWordCategory
-import imodv6.KnowledgeDimension
-import imodv6.ContentPriorityCode
-import imodv6.ResourceType
-import imodv6.DomainCategory
-import imodv6.Help
-import imodv6.Imod
-import imodv6.ImodUser
-import imodv6.ImodUserRole
-import imodv6.LearningDomain
-import imodv6.PedagogyActivity
-import imodv6.PedagogyActivityDuration
-import imodv6.PedagogyActivityFocus
-import imodv6.PedagogyMode
-import imodv6.PedagogyReference
-import imodv6.PedagogyReferenceType
-import imodv6.PedagogyTechnique
-import imodv6.Role
-import imodv6.ScheduleRepeats;
-import imodv6.ScheduleRepeatsEvery
-import imodv6.ScheduleWeekDays
+import imod.ActionWordCategory
+import imod.KnowledgeDimension
+import imod.ContentPriorityCode
+import imod.ResourceType
+import imod.DomainCategory
+import imod.Help
+import imod.Imod
+import imod.ImodUser
+import imod.ImodUserRole
+import imod.LearningDomain
+import imod.PedagogyActivity
+import imod.PedagogyActivityDuration
+import imod.PedagogyActivityFocus
+import imod.PedagogyMode
+import imod.PedagogyReference
+import imod.PedagogyReferenceType
+import imod.PedagogyTechnique
+import imod.Role
+import imod.ScheduleRepeats;
+import imod.ScheduleRepeatsEvery
+import imod.ScheduleWeekDays
 
 
 class BootStrap {
