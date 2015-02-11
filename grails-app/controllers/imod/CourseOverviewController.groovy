@@ -5,6 +5,11 @@ import grails.converters.JSON
 import grails.plugins.rest.client.RestBuilder
 
 class CourseOverviewController {
+
+    static allowedMethods = [
+        delete:           'POST',
+    ]
+
 	def index(Long id) {
 		[
 			currentImod: Imod.get(id),
@@ -51,14 +56,25 @@ class CourseOverviewController {
 
 
     def delete() {
-    	render (
+    	
+        def instructorList = params.list('selected[]')
+
+        instructorList.each { item ->
+            
+            def instructorInstance = Instructor.get(item)
+            instructorInstance.delete()
+
+        }
+
+        render (
             [
-                value: params.id
+                value: 'success'
             ] as JSON
         )
-        
-        def instructorInstance = Instructor.get(params.id)
 
+        // todo
+        // check if instructor doesn't exist and handle the exception
+        
 		/*def instructorInstance = Instructor.get(params.id)
 		if (!instructorInstance) {
 			flash.message = message(

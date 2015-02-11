@@ -13,6 +13,10 @@ $(document).ready(function() {
 	$('.delete-instructor').click(function(){
 		var id = $(this).data('imodid');
 
+		if (confirm("Are you sure you want to delete the instructor(s)") == false) {
+	        return false;
+	    }
+
 		$.ajax({
 			url: baseUrl + 'courseOverview/delete',
 			type: 'POST',
@@ -22,8 +26,7 @@ $(document).ready(function() {
 				selected: $('.selected-instructors').val()
 			},
 			success: function(data){
-
-				console.log(data)
+				location.reload()
 			},
 			error: function(xhr) {
 				// when something goes wrong log to the browser console
