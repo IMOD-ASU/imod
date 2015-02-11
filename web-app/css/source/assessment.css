@@ -1,0 +1,50 @@
+.no-objective-defined
+{
+	/*pointer-events: none;*/
+
+  /* for "disabled" effect */
+  opacity: 0.5;
+  background: #CCC;
+text-align: center;
+vertical-align: middle;
+}
+
+.add-objective
+{
+
+}
+
+.assessment-page-buttons
+{
+text-align: center;
+height:50px;
+}
+
+.assessment-page-buttons-disabled
+{
+	height:50px;
+	pointer-events: none;
+	opacity: 0.5;
+	background: #CCC;
+	text-align: center;
+	vertical-align: middle;
+
+}
+
+.video-control{
+	text-align:center;
+}
+
+.video-center {
+	margin: 0 auto;
+	}
+
+
+.learning-objective.definition-cell
+{
+text-align: center; padding-right:0;
+border: 1px solid #c4c2c2;
+    border-radius: 5px;
+    height: 5em;
+    min-height: 2em;
+}
