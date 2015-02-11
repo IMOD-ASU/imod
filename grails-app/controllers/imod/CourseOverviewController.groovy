@@ -3,11 +3,13 @@ package imod
 import org.springframework.dao.DataIntegrityViolationException
 import grails.converters.JSON
 import grails.plugins.rest.client.RestBuilder
+import groovy.json.JsonSlurper
 
 class CourseOverviewController {
 
     static allowedMethods = [
         delete:           'POST',
+        create:           'POST',
     ]
 
 	def index(Long id) {
@@ -19,8 +21,47 @@ class CourseOverviewController {
 
     def springSecurityService
 
-    def create() {
+    def create(String JSONData) {
+
+        def jsonParser = new JsonSlurper()
+        def parameters = jsonParser.parseText(params.parameters)
+
+        parameters.each() { 
+
+            def firstName = it.firstName
+            def lastName = it.lastName
+            def email = it.email
+            def role = it.role
+            def officeHours = it.officeHours
+            def webPage = it.webPage
+            def location = it.location
+            
+            def newInstructor = new Instructor(
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                role: role,
+                officeHours: officeHours,
+                webPage: webPage,
+                location: location,
+                createdBy: params.imod_id
+            )
+
+            // save new instructor and the updated user to database
+            newInstructor.save()
+
+        }
+
+        render (
+            [
+                value: 'success'
+            ] as JSON
+        )
         
+
+        // if no ajax
+
+        /*
         // create a new instructor
         def newInstructor = new Instructor(
             firstName: params.firstName,
@@ -30,7 +71,7 @@ class CourseOverviewController {
             officeHours: params.officeHours,
             webPage: params.webPage,
             location: params.location,
-            createdBy: params.id
+            createdBy: params.imod_id
         )
 
         // save new instructor and the updated user to database
@@ -42,7 +83,7 @@ class CourseOverviewController {
             action: 'index',
             id: springSecurityService.currentUser.id
 
-        )
+        )*/
     }
 
 	// FIXME rename the action to addInstructor
@@ -74,7 +115,7 @@ class CourseOverviewController {
 
         // todo
         // check if instructor doesn't exist and handle the exception
-        
+
 		/*def instructorInstance = Instructor.get(params.id)
 		if (!instructorInstance) {
 			flash.message = message(
