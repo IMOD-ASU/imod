@@ -1,11 +1,37 @@
 'use strict';
 
+var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+
 $(document).ready(function() {
 	populateRepeatsEvery();
 	$('#repeats').on(
 		'change',
 		populateRepeatsEvery
 	);
+
+	// delete instructor logic
+	$('.delete-instructor').click(function(){
+		var id = $(this).data('imodid');
+
+		$.ajax({
+			url: baseUrl + 'courseOverview/delete',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				imod_id: id,
+				selected: $('.selected-instructors').val()
+			},
+			success: function(data){
+
+				console.log(data)
+			},
+			error: function(xhr) {
+				// when something goes wrong log to the browser console
+				console.log(xhr.responseText);
+			}
+		});
+		return false;
+	});
 });
 
 function populateRepeatsEvery() {

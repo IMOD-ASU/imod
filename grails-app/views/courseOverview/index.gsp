@@ -189,7 +189,7 @@
 														${message(code: 'default.add.label', args: [message(code: 'instructor.label', default: 'Instructor')])}
 													</g:link>
 													&nbsp;&nbsp;
-													<g:link controller="courseOverview" action="delete" params="['imodid': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Delete instructor")}" class="show-hover-new">
+													<g:link controller="courseOverview" action="delete" params="['imodid': currentImod?.id]" data-imodid="${currentImod?.id}" title="${Help.toolTip("OVERVIEW", "Delete instructor")}" class="delete-instructor show-hover-new">
 														${message(code: 'Delete Instructor', args: [message(code: 'instructor.label', default: 'Delete Instructor')])}
 													</g:link>
 												</div>
@@ -239,8 +239,13 @@
 														<label for="instructors">
 															<g:message code="imod.instructors.label" default="Select Instructors:" />
 														</label>
-														<!-- FIXME all model queries should be run in controller -->
-														<g:select name="instructors" from="${imod.Instructor.list()}" multiple="multiple" optionKey="id" size="5" value="${currentImod?.instructors*.id}" class="many-to-many" style="width:150px;margin-left:-110px;" />
+
+														<select name="instructors" class="selected-instructors" multiple>
+															<g:each in="${currentImod?.instructors?}" var="instructor">
+																<option value="${instructor.id}">${instructor.firstName} ${instructor.lastName}</option>
+															</g:each>
+														</select>
+
 													</div>
 											</div>
 									</div>

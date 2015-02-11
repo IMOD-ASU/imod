@@ -1,6 +1,8 @@
 package imod
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
+import grails.plugins.rest.client.RestBuilder
 
 class CourseOverviewController {
 	def index(Long id) {
@@ -49,8 +51,15 @@ class CourseOverviewController {
 
 
     def delete() {
-    	print params.id
-		def instructorInstance = Instructor.get(params.id)
+    	render (
+            [
+                value: params.id
+            ] as JSON
+        )
+        
+        def instructorInstance = Instructor.get(params.id)
+
+		/*def instructorInstance = Instructor.get(params.id)
 		if (!instructorInstance) {
 			flash.message = message(
 				code: 'default.not.found.message',
@@ -103,6 +112,6 @@ class CourseOverviewController {
 				action: 'show',
 				id: id
 			)
-		}
+		}*/
 	}
 }
