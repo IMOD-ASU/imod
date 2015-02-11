@@ -23,24 +23,17 @@
 		<body>
 			<div id="help-placeholder">
 				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
-				<span>
+				<span style="font-family: fantasy;">
 					Quick tip
 				</Span>
 				<a id="open-button" href="#" onclick="toggleHelp()">
 					_
 				</a>
 
-				<div id="qtip-place" style="float: right; text-align: right; position: absolute; right: 0;">
+				<div id="qtip-place" style="float: right; text-align: left; position: absolute; margin: 20%; font-family: fantasy;">
 				</div>
 			</div>
-			<div id="open-help" >
-				<Span>
-					Quick Tip
-				</Span>
-				<a id="close-button" href="#" onclick="toggleHelp()">
-					_
-				</a>
-			</div>
+
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/course overview/) == null ? '' : 'ui-tabs-active ui-state-active'}">
@@ -87,6 +80,7 @@
 
 				<g:layoutBody/>
 			</div>
-		</body>
+			<div id="quick-tips"><button id="QuickTips"> Quick Tips</button></div>
+			</body>
 	</html>
 </g:applyLayout>
