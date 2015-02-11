@@ -13,7 +13,22 @@ $(document).ready(function() {
 			container: $('div#qtip-place')
 		}
 	});
-
+	$("*").focus(function(){
+		//alert(document.activeElement);
+		$("#qtip-place").html(document.activeElement.title);
+	});
+	$("#QuickTips").click(function(){
+		var helpbox=$("#help-placeholder");
+		var tabContainer = $("#tabs-container");
+		if (helpbox.css("display")==="block") {
+			helpbox.css("display","none");
+			tabContainer.css("margin-right", '2.5%');
+			}
+		else {
+			helpbox.css("display","block");
+			tabContainer.css("margin-right", '17.5%');
+		}
+	})
 });
 
 function showHelp(displayHelp){
