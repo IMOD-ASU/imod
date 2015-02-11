@@ -28,18 +28,18 @@ this is the basic layout with only the IMOD header and footer
 		<!-- style libraries provided by content delivery network -->
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/ui-lightness/jquery-ui.css" />
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css">
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.8/themes/default/style.min.css" />
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/themes/default/style.min.css" />
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:regular,bold&amp;subset=Latin" />
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 
 		<!-- internal styling -->
 		<g:external dir="css" file="main.css" />
 
 		<!-- javascript libraries provided by content delivery network -->
-		<script src="//code.jquery.com/jquery-2.1.1.min.js" defer></script>
+		<script src="//code.jquery.com/jquery-2.1.3.min.js" defer></script>
 		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js" defer></script>
 		<script src="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js" defer></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.8/jstree.min.js" defer></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/jstree.min.js" defer></script>
 
 		<!-- internal javascript -->
 		<g:javascript src="source/application.js" defer="defer" />
@@ -89,12 +89,13 @@ this is the basic layout with only the IMOD header and footer
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
-			Copyright &copy; 2014 IMOD&trade;
+			Copyright &copy; 2015 IMOD&trade;
 		</div>
 
 		<g:if env="development">
 			<!-- automated html style checking -->
-			<script src="https://rawgit.com/yaniswang/HTMLHint/master/lib/htmlhint.js"></script>
+			<script src="//adamschwartz.co/log/log.js"></script>
+			<script src="//rawgit.com/yaniswang/HTMLHint/master/lib/htmlhint.js"></script>
 			<g:javascript src="source/lintHTML.js" />
 		</g:if>
 	</body>

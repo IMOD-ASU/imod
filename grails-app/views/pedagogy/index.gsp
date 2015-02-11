@@ -1,11 +1,4 @@
-<%@ page import="imodv6.Help" %>
-<%@ page import="imodv6.ImodPedagogyAssign" %>
-<%@ page import="imodv6.ImodUserPedagogyFavorite" %>
-<%@ page import="imodv6.PedagogyActivity" %>
-<%@ page import="imodv6.PedagogyActivityDuration" %>
-<%@ page import="imodv6.PedagogyActivityFocus" %>
-<%@ page import="imodv6.PedagogyMode" %>
-<%@ page import="imodv6.PedagogyReference" %>
+<%@ page import="imod.Help" %>
 
 <html>
     <head>
@@ -16,6 +9,7 @@
         <meta name="layout" content="imod">
 
         <g:external dir="css/source" file="pedagogy.css" />
+        <g:external dir="css/source" file="learningObjective.css" />
         <g:javascript src="source/pedagogy.js" defer="defer" />
     </head>
     <body>
@@ -41,7 +35,7 @@
                     <td>
                         <!-- left panel for the page -->
                         <div class="learning-objective list">
-                            <div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
+                            <div class="form-title">
                                 <span class="title-text">
                                     Learning Objectives
                                 </span>
@@ -59,7 +53,7 @@
 
                         <div id="filter-pedagogy-techniques">
                             <h3>
-                                Knowledge Dimesions
+                                Knowledge Dimensions
                             </h3>
                             <div>
                                 <ul>
@@ -117,11 +111,9 @@
                                                 <span>
 
                                                     <%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-                                                    <g:link controller="pedagogyTechnique" action="create" id="${currentImod.id}">
-                                                        <button>
-                                                            Add New Technique
-                                                        </button
-                                                    </g:link>
+                                                    <button id="add-new-technique-button">
+                                                        Add New Technique
+                                                    </button>
 
                                                     <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}">
                                                         Favorites
@@ -133,83 +125,31 @@
                                                 </span>
                                             </div>
 
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <div id="pc3_img">
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img src="${resource(dir: 'images', file: 'logo_orange.png')}" alt="OrangeImodLogo"/>
+                                            <div id="pc3_img">
+                                                <g:img dir="images" file="logo_orange.png" alt="OrangeImodLogo"/>
 
-                                                            <%-- PC3 Functionality --%>
+                                                <%-- PC3 Functionality --%>
+                                                <g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+                                                <g:img id="content-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
+                                                <g:img id="condition-tab" dir="images/learningObjectives" file="LO-condition.png" alt="Condition"/>
+                                                <g:img id="criteria-tab" dir="images/learningObjectives" file="LO-criteria.png" alt="Criteria"/>
+                                            </div>
 
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img id="performance-tab" src="${resource(dir: 'images', file: 'Performance.png')}" alt="Performance" title="${chapter?.performance}"/>
-
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img id="content-tab" src="${resource(dir: 'images', file: 'Content.png')}" alt="Content" title="${contentTitle?.join(", ")}"/>
-
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img id="condition-tab" src="${resource(dir: 'images', file: 'Condition.png')}" alt="Condition" title="${chapter?.condition}"/>
-
-                                                            <!-- FIXME replace with g:img -->
-                                                            <img id="criteria-tab" src="${resource(dir: 'images', file: 'Criteria.png')}" alt="Criteria" title="${chapter?.criteriaAccuracy}"/>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
                                             <div id="selectedFilter">
                                                 ${selectionLine}
                                             </div>
-                                            <%-- Ideal match accordion --%>
-                                            <div id="ped1_accordion">
-                                                <h3 title="${Help.toolTip('PEDAGOGY', 'Ideal Match')}" class="showHover">
-                                                    Ideal Match
-                                                </h3>
 
-                                                <div id="ideal-matches">
-                                                </div>
+                                            <h3 title="${Help.toolTip('PEDAGOGY', 'Ideal Match')}" class="showHover">
+                                                Ideal Match
+                                            </h3>
 
-                                                <%--Favorite Accordion --%>
-                                                <h3 title="${Help.toolTip('PEDAGOGY', 'Favorites')}" class="showHover">
-                                                    Favorite
-                                                </h3>
-                                                <div>
-                                                    <g:each in="${favPedaTechList}" var="favPedaTech" status="i">
-                                                        <div title="${favPedaTech.pedagogyTechnique.pedagogyDescription}" class="imgblock showHover">
-                                                            <!-- FIXME Grails should only query models from controller -->
-                                                            <g:set var="fav" value="${ImodUserPedagogyFavorite.findByImodUserAndPedagogyTechnique(userId,favPedaTech.pedagogyTechnique)}" />
-                                                            <!-- FIXME Grails should only query models from controller -->
-                                                            <g:set var="assign" value="${ImodPedagogyAssign.findByLearningObjectiveAndPedagogyTechnique(chapter,favPedaTech.pedagogyTechnique)}" />
+                                            <div id="ideal-matches"></div>
 
-                                                            <!-- FIXME long IF ELSE chain logic should be in controller or model -->
-                                                            <g:if test="${fav && assign}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'fav-assign.png')}" alt="Criteria" usemap="#${favPedaTech.pedagogyTechnique.id}" />
-                                                            </g:if>
-                                                            <g:elseif test="${fav}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'fav-unassign.png')}" alt="Criteria" usemap="#${favPedaTech.pedagogyTechnique.id}"/>
-                                                            </g:elseif>
-                                                            <g:elseif test="${assign}">
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'unfav-assign.png')}" alt="Criteria" usemap="#${favPedaTech.pedagogyTechniqueh.id}" />
-                                                            </g:elseif>
-                                                            <g:else>
-                                                                <!-- FIXME replace with g:img -->
-                                                                <img src="${resource(dir: 'images', file: 'unfav-unassign.png')}" alt="Criteria" usemap="#$favPedaTech.pedagogyTechnique.id}" />
-                                                            </g:else>
-                                                            <div class="smallblackarea">
-                                                                <map name="${favPedaTech.pedagogyTechnique.id}">
-                                                                    <area shape="rect" coords="0,0,18,18" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'true', assign:'false'])}" title="Favorite" alt="Favorite" />
-                                                                    <area shape="rect" coords="90,0,126,24" href="${createLink(controller: 'pedagogy', action: 'reloadPedagogyTab', id: currentImod?.id, params: [objectiveId: params.objectiveId, pedtecID: favPedaTech.pedagogyTechnique.id, fav:'false', assign:'true'])}" title="Assign" alt="Assign" />
-                                                                    <area shape="rect" coords="90,90,200,200" title="Clone" alt="Clone" />
-                                                                </map>
-                                                                ${favPedaTech.pedagogyTechnique.title}
-                                                            </div>
-                                                        </div>
-                                                    </g:each>
-                                                </div>
-                                            </div>
+                                            <h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
+                                                Extended Match
+                                            </h3>
+
+                                            <div id="extended-matches"></div>
                                         </div>
                                     </td>
                                 </tr>
@@ -217,15 +157,78 @@
                         </table>
 
                         <%--Dialog box for Add New Technique --%>
-                        <div id="showAddNewTechnique" title="Add New Technique">
+                        <div id="add-new-technique" title="Add New Technique">
                             <%--To render the add new Technique dialog box--%>
-                            <!-- FIXME rename validation function to be more descriptive -->
-                            <g:form action="addNewTechnique" id="${currentImod.id}">
-                                <g:render template="pedagogyTechniqueForm" />
-                                <div align="center">
-                                    <g:actionSubmit value="Save" />
-                                    <g:actionSubmit value="Cancel" />
-                                </div>
+                            <g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+                                <label>
+                                    Title
+                                </label>
+                                <g:textField name="title" />
+
+                                <label>
+                                    Learning Domain
+                                </label>
+                                <g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+                                <br />
+
+                                <label>
+                                    Domain Category
+                                </label>
+                                <g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
+                                <br />
+
+                                <label>
+                                    Knowledge Dimension
+                                </label>
+                                <g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+                                <br />
+
+                                <label>
+                                    Delivery Mode
+                                </label>
+                                <g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
+                                <br />
+
+                                <label>
+                                    Location
+                                </label>
+                                <g:textField name="location" />
+
+                                <label>
+                                    Focus
+                                </label>
+                                <g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+                                <br />
+
+                                <label>
+                                    Direction
+                                </label>
+                                <g:textField name="direction" />
+
+                                <label>
+                                    Materials Required
+                                </label>
+                                <g:textField name="materials" />
+
+                                <label>
+                                    Reference
+                                </label>
+                                <g:textField name="reference" />
+
+                                <label>
+                                    Description of Strategy
+                                </label>
+                                <g:textField name="strategyDescription" />
+
+                                <label>
+                                    Description of Activity
+                                </label>
+                                <g:textField name="activityDescription" />
+
+                                <g:actionSubmit value="Save" action="create" />
+                                <button id="create-pedagogy-cancel">
+                                    Cancel
+                                </button>
                             </g:form>
                         </div>
                     </td>

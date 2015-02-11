@@ -8,7 +8,7 @@ $(function() {
 		$(idList).each(function(){
 			refreshTreeValues($(this).children("a"),false);
 		});
-		var newJSONdata=$("#contentTree").jstree(true).get_json();
+		var newJSONdata = $("#contentTree").jstree(true).get_json();
 		$("#contentTree").jstree("destroy");
 		buildContentTree(newJSONdata, true);
 	});
@@ -21,12 +21,12 @@ function buildContentTree(jsonData, refreshDB){
 			"check_callback": true,
 			"themes": {
 				"icons": false
-			},
+			}
 		},
 		"dnd":{
-			"copy": false,
+			"copy": false
 		},
-		"plugins":["wholerow", "dnd", "types"],
+		"plugins":["wholerow", "dnd", "types"]
 	});
 	$("#contentTree").on('ready.jstree', function(){
 		$("#contentTree").jstree('open_all');
@@ -48,20 +48,20 @@ function buildContentTree(jsonData, refreshDB){
 }
 
 function selectCheckboxes(currentRow){
-	var contentID=$(currentRow).parent("li").attr('id');
-	var contentNode=$('#contentTree').jstree(true).get_node(contentID);
-	var contentNodeClass=contentNode.li_attr["class"];
-	var testingObject=$("#"+contentID);
-	if ((contentNodeClass=="topicNotSelected")||(contentNodeClass=="topicIndeterminate")){
-		contentNode.li_attr["class"]="topicSelected";
+	var contentID = $(currentRow).parent("li").attr('id');
+	var contentNode = $('#contentTree').jstree(true).get_node(contentID);
+	var contentNodeClass = contentNode.li_attr["class"];
+	var testingObject = $("#"+contentID);
+	if (contentNodeClass in ["topicNotSelected", "topicIndeterminate"]){
+		contentNode.li_attr["class"] = "topicSelected";
 		testingObject.find("li").each(function(){
-			var childNode=$('#contentTree').jstree(true).get_node($(this).attr('id'));
+			var childNode = $('#contentTree').jstree(true).get_node($(this).attr('id'));
 			childNode.li_attr["class"]="topicSelected";
 		});
 	}
 	else{
 		contentNode.li_attr["class"]="topicNotSelected";
-		testingObject.find("li").each(function(){
+		testingObject.find("li").each(function() {
 			var childNode=$('#contentTree').jstree(true).get_node($(this).attr('id'));
 			childNode.li_attr["class"]="topicNotSelected";
 		});
@@ -77,7 +77,7 @@ function refreshTreeValues(currentRow, doRefresh){
 	var currentNode=$('#contentTree').jstree(true).get_node(contentNode);
 	while (currentNode.parents.length>1){
 		currentNode=$('#contentTree').jstree(true).get_node(currentNode.parent);
-		if(currentNode.parents.length == 1) {
+		if(currentNode.parents.length === 1) {
 			currentNode.a_attr["class"]="rootNode";
 		}
 		else {
@@ -86,7 +86,7 @@ function refreshTreeValues(currentRow, doRefresh){
 		if(!indeterminate){
 			var numIndeterminate;
 			$(currentNode.children_d).each(function(){
-				if($('#contentTree').jstree(true).get_node(this).li_attr["class"]=="topicIndeterminate"){
+				if($('#contentTree').jstree(true).get_node(this).li_attr["class"]==="topicIndeterminate"){
 					numIndeterminate++;
 				}
 			});
@@ -98,15 +98,15 @@ function refreshTreeValues(currentRow, doRefresh){
 				var treeSize=currentNode.children_d.length;
 				var numSelected=0;
 				$(currentNode.children_d).each(function(){
-					if ($('#contentTree').jstree(true).get_node(this).li_attr["class"] == "topicSelected") {
+					if ($('#contentTree').jstree(true).get_node(this).li_attr["class"] === "topicSelected") {
 						numSelected++;
 					}
 				});
-				if ((treeSize!=numSelected)&&(numSelected>0)){
+				if (treeSize !== numSelected && numSelected > 0){
 					indeterminate=true;
 					currentNode.li_attr["class"]="topicIndeterminate";
 				}
-				else if ((treeSize==numSelected)&&(numSelected>0)){
+				else if (treeSize === numSelected && numSelected > 0){
 					currentNode.li_attr["class"]="topicSelected";
 				}
 				else{
@@ -153,8 +153,8 @@ function moveContent(contentID, parentID){
 		type:"POST",
 		dataType:"json",
 		data: {
-			contentID:contentID,
-			parentID:parentID,
+			contentID: contentID,
+			parentID: parentID
 		},
 		error: function(xhr){
 			alert(xhr.responseText);
@@ -171,7 +171,7 @@ function setContents(idArray){
 		dataType:"json",
 		data: {
 			objectiveID: objectiveID,
-			idArray: idArray,
+			idArray: idArray
 		},
 		error: function(xhr){
 			alert(xhr.responseText);

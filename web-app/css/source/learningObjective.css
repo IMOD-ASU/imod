@@ -3,6 +3,9 @@ input[disabled='disabled'] {
 }
 
 /* Styling for the action words */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+	margin: 10px;
+}
 .action-word-categories {
 	padding: 20px;
 	margin: 0;
@@ -21,7 +24,6 @@ input[disabled='disabled'] {
 	width: 100px;
 	padding: 45px 0;
 	text-align: center;
-
 	background-color: #FFFFCC;
 	background-image: url("../../images/unassign.png");
 	background-repeat: no-repeat;
