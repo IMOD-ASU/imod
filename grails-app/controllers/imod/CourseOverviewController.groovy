@@ -13,16 +13,17 @@ class CourseOverviewController {
     def springSecurityService
 
     def create() {
-        def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
-
+        
         // create a new instructor
         def newInstructor = new Instructor(
             firstName: params.firstName,
             lastName: params.lastName,
             email: params.email,
             role: params.role,
+            officeHours: params.officeHours,
+            webPage: params.webPage,
             location: params.location,
-            createdBy: currentUser
+            createdBy: params.id
         )
 
         // save new instructor and the updated user to database
@@ -39,9 +40,10 @@ class CourseOverviewController {
 
 	// FIXME rename the action to addInstructor
     def add(){
-		// FIXME rename GSP file to addInstructor and delete this render statement
+		
     	render(
 			view: 'addinstructor',
+            model: [imodid: params.imodid]
 		)
     }
 

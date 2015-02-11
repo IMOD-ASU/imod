@@ -12,6 +12,7 @@
 		</title>
 		<meta name="layout" content="imod" />
 		<script src="${resource(dir: 'js/source', file: 'courseOverview.js')}" defer></script>
+		<g:javascript src="source/topicDialog.js" defer="defer" />
 	</head>
 	<body>
 		<div id="tabs-1">
@@ -184,10 +185,11 @@
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} ">
 
 												<div id="clickthis">
-													<g:link controller="courseOverview" action="add" params="['imod.id': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="show-hover-new">
+													<g:link controller="courseOverview" action="add" params="['imodid': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="show-hover-new">
 														${message(code: 'default.add.label', args: [message(code: 'instructor.label', default: 'Instructor')])}
 													</g:link>
-													<g:link controller="courseOverview" action="delete" params="['imod.id': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Delete instructor")}" class="show-hover-new">
+													&nbsp;&nbsp;
+													<g:link controller="courseOverview" action="delete" params="['imodid': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Delete instructor")}" class="show-hover-new">
 														${message(code: 'Delete Instructor', args: [message(code: 'instructor.label', default: 'Delete Instructor')])}
 													</g:link>
 												</div>
@@ -221,6 +223,12 @@
 																	</td>
 																	<td>
 																		<g:textField name="webPage" value="${instructor.webPage}"/>
+																	</td>
+																	<td>
+																		<g:textField name="location" value="${instructor.role}"/>
+																	</td>
+																	<td>
+																		<g:textField name="location" value="${instructor.location}"/>
 																	</td>
 																</tr>
 															</g:each>
