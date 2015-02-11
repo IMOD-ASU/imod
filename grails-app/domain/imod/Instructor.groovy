@@ -10,7 +10,8 @@ class Instructor {
 	String officeHours
 	String webPage
 	String phoneNumber
-	ImodUser createdBy
+	String role
+	Imod createdBy
 
 	static hasMany = [
 		phones: InstructorPhone
@@ -23,6 +24,7 @@ class Instructor {
 		email nullable: true
 		officeHours nullable: true
 		webPage nullable: true
+		role nullable:true
 		phoneNumber nullable: true
 	}
 
