@@ -40,7 +40,8 @@ class ImodController {
 			owner: currentUser,
 			name: 'New Imod',
 			url: 'example.com',
-			subjectArea: 'sample'
+			subjectArea: 'sample',
+			imodNumber: '1'
 		)
 
 		// update current user
