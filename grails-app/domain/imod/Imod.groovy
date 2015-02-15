@@ -46,8 +46,8 @@ class Imod {
 	 * Relationships *
 	 *****************
 	 */
-	CoursePolicy coursePolicy
-	Schedule schedule
+	CoursePolicy	coursePolicy
+	Schedule		schedule
 
 
 	static belongsTo = [
