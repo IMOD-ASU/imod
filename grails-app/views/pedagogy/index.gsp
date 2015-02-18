@@ -164,6 +164,7 @@
                                     Title
                                 </label>
                                 <g:textField name="title" />
+                                <br />
 
                                 <label>
                                     Learning Domain
@@ -193,6 +194,7 @@
                                     Location
                                 </label>
                                 <g:textField name="location" />
+                                <br />
 
                                 <label>
                                     Focus
@@ -204,26 +206,31 @@
                                     Direction
                                 </label>
                                 <g:textField name="direction" />
+                                <br />
 
                                 <label>
                                     Materials Required
                                 </label>
                                 <g:textField name="materials" />
+                                <br />
 
                                 <label>
                                     Reference
                                 </label>
                                 <g:textField name="reference" />
+                                <br />
 
                                 <label>
                                     Description of Strategy
                                 </label>
                                 <g:textField name="strategyDescription" />
+                                <br />
 
                                 <label>
                                     Description of Activity
                                 </label>
                                 <g:textField name="activityDescription" />
+                                <br />
 
                                 <g:actionSubmit value="Save" action="create" />
                                 <button id="create-pedagogy-cancel">

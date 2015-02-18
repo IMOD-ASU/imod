@@ -16,21 +16,9 @@ class Imod {
 	 * Required Attributes *
 	 ***********************
 	 */
-
-	/**
-	 * Course title
-	 */
-	String			name
-
-	/**
-	 * link to the course website
-	 */
-	String			url
-
-	/**
-	 * General subject area that course will be covering
-	 */
-	String			subjectArea
+	String	name
+	String	url
+	String	subjectArea
 
 
 	/*
@@ -38,45 +26,19 @@ class Imod {
 	 * Optional Attributes *
 	 ***********************
 	 */
-
-	/**
-	 * a short description of the course
-	 */
-	String			overview
-
-	/**
-	 * semester that the course will be taught in
-	 */
-	String			courseSemester
-
-	/**
-	 * Campus, Room and Building where course will be taught
-	 */
-	String			courseLocation
-
-	/**
-	 *
-	 */
-	String			gradingProcedure
-	String 			attendance
-	String			classParticipation
-	String 			professionalConduct
-	String 			missedExams
-	String 			missedAssignments
-
-	String			timeRatio
-
-	String			imodNumber
-
-	/**
-	 * number of students enrolled in course
-	 */
-	Integer			numberOfSeats
-
-	/**
-	 * number of credit hours that course is awarded
-	 */
-	Integer			creditHours
+	String	overview
+	String	courseSemester
+	String	courseLocation
+	String	gradingProcedure
+	String 	attendance
+	String	classParticipation
+	String 	professionalConduct
+	String 	missedExams
+	String 	missedAssignments
+	String	timeRatio
+	String	imodNumber
+	Integer	numberOfSeats
+	Integer	creditHours
 
 
 	/*
@@ -84,16 +46,8 @@ class Imod {
 	 * Relationships *
 	 *****************
 	 */
-
-	/**
-	 * Gives information about Grading Policy, Attendacy policy etc
-	 */
-	CoursePolicy			coursePolicy
-
-	/**
-	 * What days and times the course occurs on
-	 */
-	Schedule				schedule
+	CoursePolicy	coursePolicy
+	Schedule		schedule
 
 
 	static belongsTo = [
@@ -108,9 +62,6 @@ class Imod {
 		 * all of the learning objectives that will be used in this IMOD
 		 */
 		learningObjectives:	LearningObjective,
-
-		// disable this until it is actually used
-		// sharedOwners:		ImodUser,
 
 		/**
 		 * All instructors who have access this couse
@@ -150,19 +101,19 @@ class Imod {
 		subjectArea		nullable: false,	blank: false
 
 		// These are optional string atrributes of an IMOD
-		overview		nullable: true
-		courseSemester	nullable: true
-		courseLocation	nullable: true
-		timeRatio		nullable: true
-		imodNumber		nullable: true
-		gradingProcedure nullable: true
-		attendance 		nullable: true
-		classParticipation nullable: true
+		overview			nullable: true
+		courseSemester		nullable: true
+		courseLocation		nullable: true
+		timeRatio			nullable: true
+		imodNumber			nullable: true
+		gradingProcedure 	nullable: true
+		attendance 			nullable: true
+		classParticipation 	nullable: true
 		professionalConduct nullable: true
-		missedExams		nullable: true
-		missedAssignments nullable: true
-		numberOfSeats	nullable: true,		min: 1,		scale: 1
-		creditHours		nullable: true,		min: 1,		scale: 1
+		missedExams			nullable: true
+		missedAssignments 	nullable: true
+		numberOfSeats		nullable: true,		min: 1,		scale: 1
+		creditHours			nullable: true,		min: 1,		scale: 1
 
 		// Domains belonging to an IMOD
 		coursePolicy	nullable: true
