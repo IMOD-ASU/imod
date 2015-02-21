@@ -1,9 +1,5 @@
-<<<<<<< HEAD:grails-app/controllers/imodv6/AssessmentController.groovy
-package imodv6
-import grails.converters.JSON
-=======
 package imod
->>>>>>> 6bd18631b693067f02e882d30d55569328eeb34b:grails-app/controllers/imod/AssessmentController.groovy
+import grails.converters.JSON
 
 class AssessmentController {
 
