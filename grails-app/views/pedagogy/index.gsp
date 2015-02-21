@@ -1,11 +1,4 @@
-<%@ page import="imodv6.Help" %>
-<%@ page import="imodv6.ImodPedagogyAssign" %>
-<%@ page import="imodv6.ImodUserPedagogyFavorite" %>
-<%@ page import="imodv6.PedagogyActivity" %>
-<%@ page import="imodv6.PedagogyActivityDuration" %>
-<%@ page import="imodv6.PedagogyActivityFocus" %>
-<%@ page import="imodv6.PedagogyMode" %>
-<%@ page import="imodv6.PedagogyReference" %>
+<%@ page import="imod.Help" %>
 
 <html>
     <head>
@@ -42,7 +35,7 @@
                     <td>
                         <!-- left panel for the page -->
                         <div class="learning-objective list">
-                            <div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
+                            <div class="form-title">
                                 <span class="title-text">
                                     Learning Objectives
                                 </span>
@@ -118,9 +111,9 @@
                                                 <span>
 
                                                     <%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-                                                    <g:form controller="PedagogyTechnique" method="post" id="${currentImod.id}" params="learningObjectiveID=${currentLearningObjective.id}">
-                                                            <g:actionSubmit value="Add New Technique" action="create" />
-                                                    </g:form>
+                                                    <button id="add-new-technique-button">
+                                                        Add New Technique
+                                                    </button>
 
                                                     <button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}">
                                                         Favorites
@@ -166,13 +159,83 @@
                         <%--Dialog box for Add New Technique --%>
                         <div id="add-new-technique" title="Add New Technique">
                             <%--To render the add new Technique dialog box--%>
-                            <!-- FIXME rename validation function to be more descriptive -->
-                            <g:form controller="PedagogyTechnique" method="post" id="${currentImod.id}" params="learningObjectiveID=${currentLearningObjective.id}">
-                                <g:render template="pedagogyTechniqueForm" />
-                                <div align="center">
-                                    <g:actionSubmit value="Save" action="create" />
-                                    <g:actionSubmit value="Cancel" action="cancel" />
-                                </div>
+                            <g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+                                <label>
+                                    Title
+                                </label>
+                                <g:textField name="title" />
+                                <br />
+
+                                <label>
+                                    Learning Domain
+                                </label>
+                                <g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+                                <br />
+
+                                <label>
+                                    Domain Category
+                                </label>
+                                <g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
+                                <br />
+
+                                <label>
+                                    Knowledge Dimension
+                                </label>
+                                <g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+                                <br />
+
+                                <label>
+                                    Delivery Mode
+                                </label>
+                                <g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
+                                <br />
+
+                                <label>
+                                    Location
+                                </label>
+                                <g:textField name="location" />
+                                <br />
+
+                                <label>
+                                    Focus
+                                </label>
+                                <g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+                                <br />
+
+                                <label>
+                                    Direction
+                                </label>
+                                <g:textField name="direction" />
+                                <br />
+
+                                <label>
+                                    Materials Required
+                                </label>
+                                <g:textField name="materials" />
+                                <br />
+
+                                <label>
+                                    Reference
+                                </label>
+                                <g:textField name="reference" />
+                                <br />
+
+                                <label>
+                                    Description of Strategy
+                                </label>
+                                <g:textField name="strategyDescription" />
+                                <br />
+
+                                <label>
+                                    Description of Activity
+                                </label>
+                                <g:textField name="activityDescription" />
+                                <br />
+
+                                <g:actionSubmit value="Save" action="create" />
+                                <button id="create-pedagogy-cancel">
+                                    Cancel
+                                </button>
                             </g:form>
                         </div>
                     </td>

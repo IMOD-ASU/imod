@@ -57,6 +57,8 @@
 				<br />
 				<br />
 
+				<g:hiddenField name="id" value="${imodid}"/>
+
 				<g:submitButton name="add_instructor" value="Add Instructor" />
 			</g:form>
 		</formset>

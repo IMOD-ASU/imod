@@ -1,0 +1,125 @@
+#topicDialog{
+    display:none;
+    border:1px solid #C4C2C2;
+    background:#EDEDEF;
+    position:absolute;
+    width:70%;
+    top:30%;
+    left: 15%;
+    z-index:2;
+}
+#topicDialogBackground{
+    z-index:1;
+}
+#topicModalClose{
+    float:right;
+    margin-right:10px;
+    background:inherit;
+}
+.modalBackground{
+    position:fixed;
+    top:0;
+    left:0;
+    display:none;
+    height:100%;
+    width:100%;
+    background-color:rgba(0,0,0,.5);
+}
+.topicButtonField{
+    top:initial;
+    right:initial;
+    position:relative;
+    width:auto;
+    box-shadow:none;
+    background:linear-gradient(#FEFEFE,#EDEDEF);
+    height:3em;
+    margin:0px;
+}
+.topicButton{
+    height:2.9em;
+    background-repeat: no-repeat;
+    background-position-y:center;
+}
+.topicButtonGradient{
+    height:auto;
+    background:linear-gradient(#F0F0F0,white);
+    display:inline-block;
+    box-shadow:0px 1px 2px #888888;
+    margin-left:5px;
+    margin-right:5px;
+    border-radius:4px;
+    padding-left:5px;
+    padding-right:5px;
+}
+.topicButtonGradient.saveBG{
+}
+.topicButtonGradient.cancelBG{
+}
+.topicButtonGradient.cancelBG i{
+    color: darkred;
+    font-size:1.5em;
+}
+#topicList{
+    width:100%;
+    margin:0px;
+    margin-bottom:1px;
+}
+#topicList thead tr:last-child{
+    width:4em;
+    padding-right:10px;
+}
+#topicList tbody *{
+    vertical-align:middle;
+}
+
+#topicList tbody img{
+    height:20px;
+    width:20px;
+    padding-right:5px;
+}
+#topicList tr{
+    border-top:1px solid #C4C2C2;
+    border-bottom:1px solid #C4C2C2;
+}
+
+#topicList td{
+    padding:5px;
+}
+#topicList input, #topicList select, #topicList button{
+    width:95%;
+    height:inherit;
+    min-height:inherit;
+}
+#topicList .hidden{
+    display:none;
+}
+#topicList .unsaved{
+    background:white;
+}
+#topicList .topicDimensions{
+    width:25%;
+}
+#topicList .topicPriority{
+    width:20%;
+}
+#topicList .topicResources{
+    width:15%;
+    padding-right:0px
+}
+#topicList .topicPreReq{
+    padding:0px;
+}
+
+#topicList .saveIcon{
+    width:1.1em;
+    padding-left:.5em;
+    padding-right:.5em;
+    color:darkred;
+}
+#topicList .knowledgeDimensionButton{
+    width:80%;
+}
+#topicList #errorMessage{
+    font-weight:bold;
+    color:red
+}

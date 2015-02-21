@@ -6,11 +6,34 @@ filterPedagogyTechniques();
 // the filters for the pedagogy technique are wrapped in a accordian
 $('#filter-pedagogy-techniques').accordion();
 
+// add hide the add new technique modal
+$('#add-new-technique').dialog({autoOpen: false});
+
 // attach a listener to the checkboxes, to update the pedaogy techniques
 // when the filters have been changed
 $('input[name=knowledgeDimension]').on('change', filterPedagogyTechniques);
 $('input[name=learningDomain]').on('change', filterPedagogyTechniques);
 $('input[name=domainCategory]').on('change', filterPedagogyTechniques);
+
+// when add new technique button is clicked open modal
+$('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
+
+// when cancel button is clicked close modal
+$('#create-pedagogy-cancel').on('click', closeNewPedagogyTechniqueModal);
+
+/**
+ * Opens the modal to create a new pedagogy technique
+ */
+function openNewPedagogyTechniqueModal() {
+	$('#add-new-technique').dialog('open');
+}
+
+/**
+* Closes the modal to create a new pedagogy technique
+*/
+function closeNewPedagogyTechniqueModal() {
+	$('#add-new-technique').dialog('close');
+}
 
 /**
  * Reads which filters are selected and sends information to server to update

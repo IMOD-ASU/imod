@@ -1,6 +1,6 @@
-<%@ page import="imodv6.Content"%>
-<%@ page import="imodv6.Help"%>
-<%@ page import="imodv6.KnowledgeDimensionEnum"%>
+<%@ page import="imod.Content"%>
+<%@ page import="imod.Help"%>
+<%@ page import="imod.KnowledgeDimensionEnum"%>
 
 <div id="topicDialogBackground" class="modalBackground"></div>
 <div id="topicDialog">

@@ -46,7 +46,7 @@ grails.project.dependency.resolution = {
 
 		mavenLocal()
 		mavenCentral()
-        
+
 		mavenRepo 'http://download.java.net/maven/2/'
 	}
 
@@ -68,7 +68,7 @@ grails.project.dependency.resolution = {
 		compile ':famfamfam:1.0.1'
 		compile ':spring-security-ui:1.0-RC2'
 		compile ':joda-time:1.5'
-		compile ":rest-client-builder:2.0.3"
+		compile ':rest-client-builder:2.0.3'
 
 		provided ':codenarc:0.22'
 
