@@ -144,13 +144,13 @@
                                                 Ideal Match
                                             </h3>
 
-                                            <div id="ideal-matches" class="action-word-categories"></div>
+                                            <div id="ideal-matches" class="icons favorite"></div>
 
                                             <h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
                                                 Extended Match
                                             </h3>
 
-                                            <div id="extended-matches" class="action-word-categories"></div>
+                                            <div id="extended-matches" class="icons favorite"></div>
                                         </div>
                                     </td>
                                 </tr>
