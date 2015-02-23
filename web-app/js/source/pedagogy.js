@@ -87,7 +87,7 @@ function displayPedagogyTechniques(data) {
 	var idealText = '';
 	// take the titles and make html code to display
 	for(var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
-		idealText += '<div>' + data.idealPedagogyTechniqueMatch[index].title + '</div>';
+		idealText += '<input type="radio" name="actionWordCategory" value="' + data.idealPedagogyTechniqueMatch[index].title + '"><label>' + data.idealPedagogyTechniqueMatch[index].title + '</label>';
 	}
 
 	var extendedText = '';

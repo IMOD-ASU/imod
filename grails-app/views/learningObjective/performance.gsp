@@ -6,6 +6,8 @@
 		</title>
 
 		<meta name="layout" content="learningObjective">
+
+		<g:external dir="css/source" file="iconModule.css" />
 	</head>
 	<body>
 		<g:form name="performance" action="save" id="${currentImod.id}">
