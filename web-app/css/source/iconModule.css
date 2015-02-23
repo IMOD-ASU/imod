@@ -43,3 +43,16 @@
 	background-repeat: no-repeat, no-repeat;
 	background-position: right top, right bottom;
 }
+
+.icons.favorite {
+	background-image: url("../../images/pedagogy_icon.png");
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+.icons.favorite > .ui-selecting,
+.icons.favorite > .ui-state-active {
+	background-image: url("../../images/spinner.gif");
+	background-repeat: no-repeat;
+	background-position: right top;
+}
