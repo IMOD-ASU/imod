@@ -12,7 +12,7 @@ $(document).ready(function() {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
 
 		$('#domain-category-list').css('visibility', 'hidden');
-		$('.action-word-categories').css('visibility', 'hidden');
+		$('.icons').css('visibility', 'hidden');
 	}
 
 	// listen for the selected learning domain to change, when it does call ajax
@@ -29,7 +29,7 @@ $(document).ready(function() {
 	});
 
 	// listen for change in action word categories, when it does call ajax
-	$('.action-word-categories').on(
+	$('.icons').on(
 		'click', function(){
 			populateActionWords();
 	});
@@ -73,22 +73,22 @@ $(document).ready(function() {
 
 	//trigger jquery ui button for better radio buttons
 	var category = $('input[name=selectedActionWordCategory]').val();
-	$('.action-word-categories input[value="'+category+'"]').prop('checked',true);
- 	$('.action-word-categories').buttonset();
+	$('.icons input[value="'+category+'"]').prop('checked',true);
+ 	$('.icons').buttonset();
 
  	// populate action words if a category is already selected
  	populateActionWords(true);
 
  	//reset radio buttons if a selected radio button is clicked again
- 	$(document).on('click', '.action-word-categories label', function(){
+ 	$(document).on('click', '.icons label', function(){
  		if($(this).hasClass('is-active')){
- 			$('.action-word-categories label').removeClass('is-active');
+ 			$('.icons label').removeClass('is-active');
  			setTimeout(function(){
-	 			$('.action-word-categories input:checked')
+	 			$('.icons input:checked')
 	 				.removeAttr('checked').button('refresh');
 	        },0);
  		}else{
- 			$('.action-word-categories label').removeClass('is-active');
+ 			$('.icons label').removeClass('is-active');
  			$(this).addClass('is-active');
  		}
  	});
@@ -200,12 +200,12 @@ function populateDomainCategories() {
 	if($('#learning-domain-list').val() !== 'null') {
 		$('label[for="domain-category-list"]').css('visibility', 'visible');
 		$('#domain-category-list').css('visibility', 'visible');
-		$('.action-word-categories').css('visibility', 'visible');
+		$('.icons').css('visibility', 'visible');
 	}
 	else {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
 		$('#domain-category-list').css('visibility', 'hidden');
-		$('.action-word-categories').css('visibility', 'hidden');
+		$('.icons').css('visibility', 'hidden');
 	}
 
 	$.ajax({
@@ -263,9 +263,9 @@ function populateActionWordCategories() {
 				actionWordCategoriesHTML += '<input type="radio" id="radio'+i+'" name="actionWordCategory" value="'+actionWordCategories[i].actionWordCategory+'"><label for="radio'+i+'">' + actionWordCategories[i].actionWordCategory + '</label>';
 			}
 			// display the html on the page
-			$('.action-word-categories').html(actionWordCategoriesHTML);
+			$('.icons').html(actionWordCategoriesHTML);
 			// since the markup is reloaded, re-initiate buttonset
-			$('.action-word-categories').buttonset();
+			$('.icons').buttonset();
 
 			populateActionWords();
 		},
@@ -284,10 +284,10 @@ function populateActionWordCategories() {
  */
 function populateActionWords(event) {
 
-	if(prevKeyword === $('.action-word-categories').find('.ui-state-active').text()){
+	if(prevKeyword === $('.icons').find('.ui-state-active').text()){
 		return;
 	}else{
-		prevKeyword = $('.action-word-categories').find('.ui-state-active').text();
+		prevKeyword = $('.icons').find('.ui-state-active').text();
 	}
 
 	$.ajax({
@@ -295,7 +295,7 @@ function populateActionWords(event) {
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			actionWordCategory: $('.action-word-categories').find('.ui-state-active').text().trim()
+			actionWordCategory: $('.icons').find('.ui-state-active').text().trim()
 		},
 		success: function(data) {
 			var actionWordsHTML = '';
