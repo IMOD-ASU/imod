@@ -9,6 +9,9 @@ $('#filter-pedagogy-techniques').accordion();
 // add hide the add new technique modal
 $('#add-new-technique').dialog({autoOpen: false});
 
+// icons are managed as a button set
+$('.icons').buttonset();
+
 // attach a listener to the checkboxes, to update the pedaogy techniques
 // when the filters have been changed
 $('input[name=knowledgeDimension]').on('change', filterPedagogyTechniques);
@@ -87,7 +90,7 @@ function displayPedagogyTechniques(data) {
 	var idealText = '';
 	// take the titles and make html code to display
 	for(var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
-		idealText += '<div>' + data.idealPedagogyTechniqueMatch[index].title + '</div>';
+		idealText += '<input type="radio" name="actionWordCategory" value="' + data.idealPedagogyTechniqueMatch[index].title + '"><label>' + data.idealPedagogyTechniqueMatch[index].title + '</label>';
 	}
 
 	var extendedText = '';

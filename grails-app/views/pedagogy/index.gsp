@@ -10,6 +10,7 @@
 
         <g:external dir="css/source" file="pedagogy.css" />
         <g:external dir="css/source" file="learningObjective.css" />
+        <g:external dir="css/source" file="iconModule.css" />
         <g:javascript src="source/pedagogy.js" defer="defer" />
     </head>
     <body>
@@ -143,13 +144,13 @@
                                                 Ideal Match
                                             </h3>
 
-                                            <div id="ideal-matches"></div>
+                                            <div id="ideal-matches" class="icons favorite"></div>
 
                                             <h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
                                                 Extended Match
                                             </h3>
 
-                                            <div id="extended-matches"></div>
+                                            <div id="extended-matches" class="icons favorite"></div>
                                         </div>
                                     </td>
                                 </tr>
