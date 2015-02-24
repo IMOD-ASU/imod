@@ -167,19 +167,23 @@ input[disabled='disabled'] {
 	background: linear-gradient(to right, transparent, #F5F5F5, transparent);
 }
 
-.learning-objective.sub-nav .active .performance {
+.learning-objective.sub-nav .active .performance,
+.learning-objective.sub-nav .active.performance {
 	color: #3BA8DE;
 }
 
-.learning-objective.sub-nav .active .content {
+.learning-objective.sub-nav .active .content,
+.learning-objective.sub-nav .active.content {
 	color: #F7941D;
 }
 
-.learning-objective.sub-nav .active .condition {
+.learning-objective.sub-nav .active .condition,
+.learning-objective.sub-nav .active.condition {
 	color: #EC008C;
 }
 
-.learning-objective.sub-nav .active .criteria {
+.learning-objective.sub-nav .active .criteria,
+.learning-objective.sub-nav .active.criteria {
 	color: #EC008C;
 }
 
