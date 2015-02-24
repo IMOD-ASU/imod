@@ -49,7 +49,18 @@ class PedagogyTechniqueController {
 	}
 
 	def favoriteByUser(Long id, Long learningObjectiveID) {
-		// TODO link technique to imod user
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
+		// get the selected technique
+		def currentTechnique = PedagogyTechnique.findById(params.techniqueID)
+
+		// add the technique to the user's favorite list
+		currentUser.addToFavoriteTechnique(currentTechnique)
+
+		// store relationship
+		currentUser.save()
+
 		redirect(
 			controller: 'pedagogy',
 			action: 'index',
@@ -61,7 +72,18 @@ class PedagogyTechniqueController {
 	}
 
 	def assignToObjective(Long id, Long learningObjectiveID) {
-		// TODO link technique to learning objective
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
+
+		// get the selected technique
+		def currentTechnique = PedagogyTechnique.findById(params.techniqueID)
+
+		// add the technique to the user's favorite list
+		currentLearningObjective.addToPedagogyTechniques(currentTechnique)
+
+		// store relationship
+		currentLearningObjective.save()
+
 		redirect(
 			controller: 'pedagogy',
 			action: 'index',
