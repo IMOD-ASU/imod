@@ -5,7 +5,6 @@ package imod
  * This holds all of the pedagogy parts together
  */
 class PedagogyTechnique {
-
 	String title
 	String description
 	PedagogyMode pedagogyMode
