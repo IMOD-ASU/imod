@@ -211,7 +211,7 @@
 												<label for="credit-hours">
 													<g:message code="imod.creditHours.label" default="Credit Hours" />
 												</label>
-												<g:field name="creditHours" id="credit-hours" type="number" value="${currentImod.creditHours}"/>
+												<g:field name="creditHours" id="credit-hours" type="number" min="0" max="7" value="${currentImod.creditHours}"/>
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'timeRatio', 'error')} ">
@@ -225,7 +225,7 @@
 												<label for="number-of-seats">
 													<g:message code="imod.numberOfSeats.label" default="Number Of Seats" />
 												</label>
-												<g:field name="numberOfSeats" id="number-of-seats" type="number" value="${currentImod.numberOfSeats}" />
+												<g:field name="numberOfSeats" id="number-of-seats" type="number" min="0" max="1000" value="${currentImod.numberOfSeats}" />
 											</div>
 									</div>
 								</td>
