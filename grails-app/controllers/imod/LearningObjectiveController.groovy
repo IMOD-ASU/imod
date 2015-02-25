@@ -201,6 +201,7 @@ class LearningObjectiveController {
 		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
 		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+		
 		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		[

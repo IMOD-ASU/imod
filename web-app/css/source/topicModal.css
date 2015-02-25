@@ -123,3 +123,15 @@
     font-weight:bold;
     color:red
 }
+
+/* Topic Dialog for Course Overview */
+#topicDialog.custom-instructor{
+    position: static; display: block; overflow: hidden;
+    width: 90%;
+}
+.error{
+    border: 1px solid red !important;
+}
+label.error{
+    display: none !important;
+}

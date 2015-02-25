@@ -1032,3 +1032,7 @@ label[for=weekdays] {
     width: 10%;
     margin-left: 1%;
 }
+
+#grading-procedure-text{
+    display: none;
+}

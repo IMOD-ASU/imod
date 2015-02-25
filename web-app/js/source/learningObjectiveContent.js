@@ -52,7 +52,7 @@ function selectCheckboxes(currentRow){
 	var contentNode = $('#contentTree').jstree(true).get_node(contentID);
 	var contentNodeClass = contentNode.li_attr["class"];
 	var testingObject = $("#"+contentID);
-	if (contentNodeClass in ["topicNotSelected", "topicIndeterminate"]){
+	if (contentNodeClass == "topicNotSelected" || contentNodeClass == "topicIndeterminate"){
 		contentNode.li_attr["class"] = "topicSelected";
 		testingObject.find("li").each(function(){
 			var childNode = $('#contentTree').jstree(true).get_node($(this).attr('id'));
