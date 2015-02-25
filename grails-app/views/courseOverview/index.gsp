@@ -184,36 +184,41 @@
 										</div>
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} ">
 
-												<div id="clickthis">
-													<g:link controller="courseOverview" action="add" params="['imodid': currentImod?.id]" title="${Help.toolTip("OVERVIEW", "Add instructor")}" class="add-instructor show-hover-new">
-														${message(code: 'default.add.label', args: [message(code: 'instructor.label', default: 'Instructor')])}
-													</g:link>
-													&nbsp;&nbsp;
-													<g:link controller="courseOverview" action="delete" params="['imodid': currentImod?.id]" data-imodid="${currentImod?.id}" title="${Help.toolTip("OVERVIEW", "Delete instructor")}" class="delete-instructor show-hover-new">
-														${message(code: 'Delete Instructor', args: [message(code: 'instructor.label', default: 'Delete Instructor')])}
-													</g:link>
-												</div>
-													<div id="custom-instructor">
-													<table id="instructor-table">
+												<div id="topicDialog" class="custom-instructor">
+													<input type="hidden" name="imodID" value="221" id="imodID">
+													<fieldset class="buttons topicButtonField">
+														<span class="topicButtonGradient">
+															<input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" id="addTopic">
+														</span>
+														<span class="topicButtonGradient">
+															<input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic">
+														</span>
+														<span id="errorMessage"></span>
+													</fieldset>
+													<table id="topicList" class="instructor-list">
 														<thead>
 															<tr>
-																<g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="show-hover-new" titleKey="${Help.toolTip("OVERVIEW","Last Name Label")}" title="${Help.toolTip("OVERVIEW","Last Name Label")}"/>
-																<g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="show-hover-new" titleKey="${Help.toolTip("OVERVIEW","First Name Label")}" />
-																<g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Email Label")}"/>
-																<g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Office Hours Label")}"/>
-																<g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Last Name Label")}"/>
-																<g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Role Label")}"/>
-																<g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Location')}" class="show-hover-new"  titleKey="${Help.toolTip("OVERVIEW","Location Label")}"/>
+																<th>&nbsp;</th>
+																<g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="show-hover-new"/>
+																<g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="show-hover-new"/>
+																<g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="show-hover-new" />
+																<g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="show-hover-new" />
+																<g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="show-hover-new" />
+																<g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="show-hover-new" />
+																<g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Office Location')}" class="show-hover-new" />
 															</tr>
 														</thead>
 														<tbody>
 															<g:each in="${currentImod?.instructors?}" var="instructor">
-																<tr>
-																	<td>
-																		<g:textField name="lastName" value="${instructor.lastName}"/>
+																<tr data-id="${instructor.id}" class="topicListRow">
+																	<td class="saveIcon">
+																		<i class="hidden fa fa-eraser"></i>
 																	</td>
 																	<td>
 																		<g:textField name="firstName" value="${instructor.firstName}"/>
+																	</td>
+																	<td>
+																		<g:textField name="lastName" value="${instructor.lastName}"/>
 																	</td>
 																	<td>
 																		<g:textField name="email" value="${instructor.email}"/>
@@ -234,19 +239,21 @@
 															</g:each>
 														</tbody>
 													</table>
-													</div>
-													<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} " style="margin-left:-20px;">
-														<label for="instructors">
-															<g:message code="imod.instructors.label" default="Select Instructors:" />
-														</label>
-
-														<select name="instructors" class="selected-instructors" multiple>
-															<g:each in="${currentImod?.instructors?}" var="instructor">
-																<option value="${instructor.id}">${instructor.firstName} ${instructor.lastName}</option>
-															</g:each>
-														</select>
-
-													</div>
+													<fieldset id="topicModalClose" class="buttons topicButtonField">
+														<span class="topicButtonGradient saveBG">
+															<button class="save save-instructors show-hover-new topicButton" action="save" id="saveTopic" title="">
+																 Finish
+															</button>
+														</span>
+														<!--
+														<span class="topicButtonGradient cancelBG">
+															<button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="">
+																<i class="fa fa-times"></i>
+																 Cancel
+															</button>
+														</span>-->
+													</fieldset>
+												</div>
 											</div>
 									</div>
 								</td>
@@ -357,57 +364,6 @@
 					</fieldset>
 				</g:form>
 			</div>
-		</div>
-
-		<div id="topicDialogBackground" class="modalBackground"></div>
-		<div id="topicDialog">
-			<input type="hidden" name="imodID" value="221" id="imodID">
-			<fieldset class="buttons topicButtonField">
-				<span class="topicButtonGradient">
-					<input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" id="addTopic">
-				</span>
-				<span class="topicButtonGradient">
-					<input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton" id="removeTopic">
-				</span>
-				<span id="errorMessage"></span>
-			</fieldset>
-			<table id="topicList">
-				<thead>
-					<tr>
-						<g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="show-hover-new"/>
-						<g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="show-hover-new"/>
-						<g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="show-hover-new" />
-						<g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="show-hover-new" />
-						<g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="show-hover-new" />
-						<g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="show-hover-new" />
-						<g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Location')}" class="show-hover-new" />
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="topicListRow">
-						<td><g:textField name="lastName" required="" /></td>
-						<td><g:textField name="firstName" required="" /></td>
-						<td><g:textField name="email" required="" /></td>
-						<td><g:textField name="officeHours" required="" /></td>
-						<td><g:textField name="webPage" required="" /></td>
-						<td><g:textField name="role" required="" /></td>
-						<td><g:textField name="location" required="" /></td>
-					</tr>
-				</tbody>
-			</table>
-			<fieldset id="topicModalClose" class="buttons topicButtonField">
-				<span class="topicButtonGradient saveBG">
-					<button class="save save-instructors show-hover-new topicButton" action="save" id="saveTopic" title="">
-						 Finish
-					</button>
-				</span>
-				<span class="topicButtonGradient cancelBG">
-					<button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="">
-						<i class="fa fa-times"></i>
-						 Cancel
-					</button>
-				</span>
-			</fieldset>
 		</div>
 
 	</body>

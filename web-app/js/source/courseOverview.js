@@ -11,19 +11,23 @@ $(document).ready(function() {
 
 	// delete instructor logic
 	$('.delete-instructor').click(function(){
-		var id = $(this).data('imodid');
 
 		if (confirm("Are you sure you want to delete the instructor(s)") == false) {
 	        return false;
 	    }
+
+	    var ids = [];
+		$('.instructor-list').find('.topicListRow.selected').each(function(){
+			ids.push($(this).data('id'));
+		});
 
 		$.ajax({
 			url: baseUrl + 'courseOverview/delete',
 			type: 'POST',
 			dataType: 'json',
 			data: {
-				imod_id: id,
-				selected: $('.selected-instructors').val()
+				imod_id: $('#imodID').val(),
+				selected: ids
 			},
 			success: function(data){
 				location.reload()
@@ -33,12 +37,14 @@ $(document).ready(function() {
 				console.log(xhr.responseText);
 			}
 		});
+
 		return false;
+		
 	});
 
 
 	//add instructor modal
-	$('.add-instructor').click(function(){
+	/*$('.add-instructor').click(function(){
 		$('#topicDialogBackground, #topicDialog').show()
 		return false;
 	});
@@ -50,7 +56,9 @@ $(document).ready(function() {
 		}		
 		
 		return false;
-	});
+	});*/
+
+	$('#topicList > tbody').on('click', 'tr', toggleSelected);
 
 	$('.topicButtonGradient .add').click(function(){
 		var row = $('#topicList tbody tr:first').clone();
@@ -136,5 +144,12 @@ function populateRepeatsEvery() {
 		$('label[for="weekdays"]').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 		$(':checkbox').css('visibility','hidden');
+	}
+}
+
+function toggleSelected(event){
+	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON','SELECT'])){
+		$(this).find(".saveIcon > i").toggleClass("hidden");
+		$(this).toggleClass("selected");
 	}
 }
