@@ -71,21 +71,20 @@ $(document).ready(function() {
 		row += "    <td class=\"saveIcon\">";
 		row += "        <i class=\"hidden fa fa-eraser\"><\/i>";
 		row += "    <\/td>";
-		row += "    <td><input type=\"text\" name=\"lastName\" value=\"\" id=\"lastName\" \/><\/td>";
-		row += "    <td><input type=\"text\" name=\"firstName\" value=\"\" id=\"firstName\" \/><\/td>";
-		row += "    <td><input type=\"text\" name=\"email\" value=\"\" id=\"email\" \/><\/td>";
-		row += "    <td><input type=\"text\" name=\"officeHours\" value=\"\" id=\"officeHours\" \/><\/td>";
-		row += "    <td><input type=\"text\" name=\"webPage\" value=\"\" id=\"webPage\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"firstName\" value=\"\" id=\"firstName\"  class=\"first_name\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"lastName\" value=\"\" id=\"lastName\"  class=\"last_name\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"email\" value=\"\" id=\"email\"  class=\"email\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"officeHours\" value=\"\" id=\"officeHours\" class=\"office_hours\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"webPage\" value=\"\" id=\"webPage\" class=\"web_page\" \/><\/td>";
 		row += "<td>";
-		row += "																		<select name=\"role\" id=\"role\">";
-		row += "																			<option value=\"\">Select Role<\/option>";
-		row += "																			<option>Associate Professor<\/option>";
-		row += "																			<option>Instructor<\/option>";
-		row += "																			<option>Grader<\/option>";
-		row += "																		<\/select>";
-		row += "																	<\/td>";
-
-		row += "    <td><input type=\"text\" name=\"location\" value=\"\" id=\"location\" \/><\/td>";
+		row += "	<select name=\"role\" id=\"role\" class=\"role\">";
+		row += "		<option value=\"\">Select Role<\/option>";
+		row += "		<option>Associate Professor<\/option>";
+		row += "		<option>Instructor<\/option>";
+		row += "		<option>Grader<\/option>";
+		row += "	<\/select>";
+		row += "<\/td>";
+		row += "    <td><input type=\"text\" name=\"location\" value=\"\" id=\"location\" class=\"location\" \/><\/td>";
 		row += "<\/tr>";
 
 		$('#topicList tbody').append(row);
@@ -102,44 +101,97 @@ $(document).ready(function() {
 
 	$('.save-instructors').click(function(){
 
-		var parameterList = [];
+		var isValid = $('form.instructor-form').valid();
 
-		$('.topicListRow').each(function(){
-			var row = $(this);
-			console.log(row.data('id'));
-			if(!row.data('id')){
-				parameterList.push({
-					lastName: row.find('input[name=lastName]').val(),
-					firstName: row.find('input[name=firstName]').val(),
-					email: row.find('input[name=email]').val(),
-					officeHours: row.find('input[name=officeHours]').val(),
-					webPage: row.find('input[name=webPage]').val(),
-					role: row.find('select[name=role]').val(),
-					location: row.find('input[name=location]').val(),
-				});
-			}
-			
-		});
+		if(isValid){
+
+			var parameterList = [];
+
+			$('.topicListRow').each(function(){
+				var row = $(this);
+				console.log(row.data('id'));
+				if(!row.data('id')){
+					parameterList.push({
+						lastName: row.find('input[name=lastName]').val(),
+						firstName: row.find('input[name=firstName]').val(),
+						email: row.find('input[name=email]').val(),
+						officeHours: row.find('input[name=officeHours]').val(),
+						webPage: row.find('input[name=webPage]').val(),
+						role: row.find('select[name=role]').val(),
+						location: row.find('input[name=location]').val(),
+					});
+				}
+				
+			});
 
 
-		$.ajax({
-			url: baseUrl + 'courseOverview/create',
-			type: 'POST',
-			dataType: 'json',
-			data: {
-				imod_id: $('input[name=id]').val(),
-				parameters: JSON.stringify(parameterList)
-			},
-			success: function(data){
-				location.reload()
-			},
-			error: function(xhr) {
-				// when something goes wrong log to the browser console
-				console.log(xhr.responseText);
-			}
-		});
+			$.ajax({
+				url: baseUrl + 'courseOverview/create',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					imod_id: $('input[name=id]').val(),
+					parameters: JSON.stringify(parameterList)
+				},
+				success: function(data){
+					location.reload()
+				},
+				error: function(xhr) {
+					// when something goes wrong log to the browser console
+					console.log(xhr.responseText);
+				}
+			});
+
+		}
+
 		return false;
 	});
+	
+	// instructor validation
+	jQuery.validator.addClassRules({
+	  first_name: {
+	    required: true,
+	  },
+	  last_name: {
+	    required: true,
+	  },
+	  email: {
+	    required: true,
+	    email: true,
+	  },
+	  role: {
+	  	required: true,
+	  }
+	});
+
+	// course overview validation
+	$(".courseoverview").validate({
+	  	rules: {
+	    	imodNumber: "required",
+	    	name:{
+	    		required: true
+	    	},	  
+	    	url: {
+	    		required: true,
+				url: true
+	    	},
+	    	numberOfSeats: {
+	    		digits: true
+	    	},
+	    	subjectArea: {
+	    		required: true
+	    	}
+	  	},
+	  	messages: {
+	    	url: {
+	      		url: "Please enter a valid URL eg. http://google.com"
+	    	}
+		}
+	});
+
+	// instructor form validation
+	$('.instructor-form').validate()
+	
 
 });
 

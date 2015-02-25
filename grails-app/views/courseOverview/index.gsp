@@ -12,6 +12,7 @@
 		</title>
 		<meta name="layout" content="imod" />
 		<script src="${resource(dir: 'js/source', file: 'courseOverview.js')}" defer></script>
+		<script src="${resource(dir: 'js/plugins', file: 'jquery.validate.js')}" defer></script>
 		<g:external dir="css/source" file="topicModal.css" />
 	</head>
 	<body>
@@ -35,7 +36,7 @@
 						</g:eachError>
 					</ul>
 				</g:hasErrors>
-				<g:form controller="imod" method="post">
+				<g:form controller="imod" method="post" class="courseoverview">
 					<g:hiddenField name="id" value="${currentImod?.id}"/>
 					<g:hiddenField name="version" value="${currentImod?.version}"/>
 					<fieldset class="form">
@@ -65,7 +66,7 @@
 													*
 												</span>
 											</label>
-											<g:textField name="name" required="" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
+											<g:textField name="name" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
@@ -85,7 +86,7 @@
 													*
 												</span>
 											</label>
-											<g:textField required="" name="url" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
+											<g:textField name="url" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
 										</div>
 
 										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'courseLocation', 'error')} ">
@@ -171,130 +172,6 @@
 												${scheduleWeekDays.description}
 											</label>
 										</g:each>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<div class="course-overview-form">
-										<div class="form-title">
-											<span class="title-text">
-												Instructors
-											</span>
-										</div>
-											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} ">
-
-												<div id="topicDialog" class="custom-instructor">
-													<input type="hidden" name="imodID" value="221" id="imodID">
-													<fieldset class="buttons topicButtonField">
-														<span class="topicButtonGradient">
-															<input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton">
-														</span>
-														<span class="topicButtonGradient">
-															<input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic">
-														</span>
-														<span id="errorMessage"></span>
-													</fieldset>
-													<table id="topicList" class="instructor-list">
-														<thead>
-															<tr>
-																<th>&nbsp;</th>
-																<g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="show-hover-new"/>
-																<g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="show-hover-new"/>
-																<g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="show-hover-new" />
-																<g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="show-hover-new" />
-																<g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="show-hover-new" />
-																<g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="show-hover-new" />
-																<g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Office Location')}" class="show-hover-new" />
-															</tr>
-														</thead>
-														<tbody>
-															<g:each in="${currentImod?.instructors?}" var="instructor">
-																<tr data-id="${instructor.id}" class="topicListRow">
-																	<td class="saveIcon">
-																		<i class="hidden fa fa-eraser"></i>
-																	</td>
-																	<td>
-																		<g:textField name="firstName" value="${instructor.firstName}"/>
-																	</td>
-																	<td>
-																		<g:textField name="lastName" value="${instructor.lastName}"/>
-																	</td>
-																	<td>
-																		<g:textField name="email" value="${instructor.email}"/>
-																	</td>
-																	<td>
-																		<g:textField name="officeHours" value="${instructor.officeHours}"/>
-																	</td>
-																	<td>
-																		<g:textField name="webPage" value="${instructor.webPage}"/>
-																	</td>
-																	<td>
-																	
-																		<select name="role" id="role">
-																			<option value="">Select Role</option>
-
-																			<g:if test="${instructor.role == 'Associate Professor'}">
-																				<option selected>Associate Professor</option>
-																			</g:if>
-																			<g:else>
-																				<option>Associate Professor</option>
-																			</g:else>
-
-																			<g:if test="${instructor.role == 'Instructor'}">
-																				<option selected>Instructor</option>
-																			</g:if>
-																			<g:else>
-																				<option>Instructor</option>
-																			</g:else>
-
-																			<g:if test="${instructor.role == 'Grader'}">
-																				<option selected>Grader</option>
-																			</g:if>
-																			<g:else>
-																				<option>Associate Professor</option>
-																			</g:else>
-
-																		</select>
-																	</td>
-																	<td>
-																		<g:textField name="location" value="${instructor.location}"/>
-																	</td>
-																</tr>
-															</g:each>
-
-															<!--
-															<tr class="topicListRow">
-																<td class="saveIcon">
-																	<i class="hidden fa fa-eraser"></i>
-																</td>
-																<td><g:textField name="lastName" /></td>
-																<td><g:textField name="firstName" /></td>
-																<td><g:textField name="email" /></td>
-																<td><g:textField name="officeHours" /></td>
-																<td><g:textField name="webPage" /></td>
-																<td><g:textField name="role" /></td>
-																<td><g:textField name="location" /></td>
-															</tr>-->
-
-														</tbody>
-													</table>
-													<fieldset id="topicModalClose" class="buttons topicButtonField">
-														<span class="topicButtonGradient saveBG">
-															<button class="save save-instructors show-hover-new topicButton" action="save" id="saveTopic" title="">
-																 Finish
-															</button>
-														</span>
-														<!--
-														<span class="topicButtonGradient cancelBG">
-															<button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="">
-																<i class="fa fa-times"></i>
-																 Cancel
-															</button>
-														</span>-->
-													</fieldset>
-												</div>
-											</div>
 									</div>
 								</td>
 							</tr>
@@ -403,6 +280,140 @@
 						</table>
 					</fieldset>
 				</g:form>
+
+				<g:form controller="imod" method="post" class="instructor-form">
+					<g:hiddenField name="id" value="${currentImod?.id}"/>
+					<g:hiddenField name="version" value="${currentImod?.version}"/>
+					<fieldset class="form">
+						<table class="inner-table">
+							<tr>
+								<td colspan="2">
+									<div class="course-overview-form">
+										<div class="form-title">
+											<span class="title-text">
+												Instructors
+											</span>
+										</div>
+											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} ">
+
+												<div id="topicDialog" class="custom-instructor">
+													<input type="hidden" name="imodID" value="221" id="imodID">
+													<fieldset class="buttons topicButtonField">
+														<span class="topicButtonGradient">
+															<input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton">
+														</span>
+														<span class="topicButtonGradient">
+															<input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic">
+														</span>
+														<span id="errorMessage"></span>
+													</fieldset>
+													<table id="topicList" class="instructor-list">
+														<thead>
+															<tr>
+																<th>&nbsp;</th>
+																<g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="show-hover-new"/>
+																<g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="show-hover-new"/>
+																<g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="show-hover-new" />
+																<g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="show-hover-new" />
+																<g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="show-hover-new" />
+																<g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="show-hover-new" />
+																<g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Office Location')}" class="show-hover-new" />
+															</tr>
+														</thead>
+														<tbody>
+															<g:each in="${currentImod?.instructors?}" var="instructor">
+																<tr data-id="${instructor.id}" class="topicListRow">
+																	<td class="saveIcon">
+																		<i class="hidden fa fa-eraser"></i>
+																	</td>
+																	<td>
+																		<g:textField name="firstName" value="${instructor.firstName}" class="first_name" />
+																	</td>
+																	<td>
+																		<g:textField name="lastName" value="${instructor.lastName}" class="last_name"/>
+																	</td>
+																	<td>
+																		<g:textField name="email" value="${instructor.email}" class="email"/>
+																	</td>
+																	<td>
+																		<g:textField name="officeHours" value="${instructor.officeHours}" class="office_hours"/>
+																	</td>
+																	<td>
+																		<g:textField name="webPage" value="${instructor.webPage}" class="web_page"/>
+																	</td>
+																	<td>
+
+																		<select name="role" id="role" class="role">
+																			<option value="">Select Role</option>
+
+																			<g:if test="${instructor.role == 'Associate Professor'}">
+																				<option selected>Associate Professor</option>
+																			</g:if>
+																			<g:else>
+																				<option>Associate Professor</option>
+																			</g:else>
+
+																			<g:if test="${instructor.role == 'Instructor'}">
+																				<option selected>Instructor</option>
+																			</g:if>
+																			<g:else>
+																				<option>Instructor</option>
+																			</g:else>
+
+																			<g:if test="${instructor.role == 'Grader'}">
+																				<option selected>Grader</option>
+																			</g:if>
+																			<g:else>
+																				<option>Associate Professor</option>
+																			</g:else>
+
+																		</select>
+																	</td>
+																	<td>
+																		<g:textField name="location" value="${instructor.location}" class="location"/>
+																	</td>
+																</tr>
+															</g:each>
+
+															<!--
+															<tr class="topicListRow">
+																<td class="saveIcon">
+																	<i class="hidden fa fa-eraser"></i>
+																</td>
+																<td><g:textField name="lastName" /></td>
+																<td><g:textField name="firstName" /></td>
+																<td><g:textField name="email" /></td>
+																<td><g:textField name="officeHours" /></td>
+																<td><g:textField name="webPage" /></td>
+																<td><g:textField name="role" /></td>
+																<td><g:textField name="location" /></td>
+															</tr>-->
+
+														</tbody>
+													</table>
+													<fieldset id="topicModalClose" class="buttons topicButtonField">
+														<span class="topicButtonGradient saveBG">
+															<button class="save save-instructors show-hover-new topicButton" action="save" id="saveTopic" title="">
+																 Finish
+															</button>
+														</span>
+														<!--
+														<span class="topicButtonGradient cancelBG">
+															<button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="">
+																<i class="fa fa-times"></i>
+																 Cancel
+															</button>
+														</span>-->
+													</fieldset>
+												</div>
+											</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</g:form>
+
 			</div>
 		</div>
 
