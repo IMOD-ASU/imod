@@ -188,7 +188,7 @@
 													<input type="hidden" name="imodID" value="221" id="imodID">
 													<fieldset class="buttons topicButtonField">
 														<span class="topicButtonGradient">
-															<input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" id="addTopic">
+															<input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton">
 														</span>
 														<span class="topicButtonGradient">
 															<input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic">
@@ -237,6 +237,21 @@
 																	</td>
 																</tr>
 															</g:each>
+
+															<!--
+															<tr class="topicListRow">
+																<td class="saveIcon">
+																	<i class="hidden fa fa-eraser"></i>
+																</td>
+																<td><g:textField name="lastName" /></td>
+																<td><g:textField name="firstName" /></td>
+																<td><g:textField name="email" /></td>
+																<td><g:textField name="officeHours" /></td>
+																<td><g:textField name="webPage" /></td>
+																<td><g:textField name="role" /></td>
+																<td><g:textField name="location" /></td>
+															</tr>-->
+
 														</tbody>
 													</table>
 													<fieldset id="topicModalClose" class="buttons topicButtonField">

@@ -12,14 +12,19 @@ $(document).ready(function() {
 	// delete instructor logic
 	$('.delete-instructor').click(function(){
 
-		if (confirm("Are you sure you want to delete the instructor(s)") == false) {
-	        return false;
-	    }
-
 	    var ids = [];
 		$('.instructor-list').find('.topicListRow.selected').each(function(){
 			ids.push($(this).data('id'));
 		});
+
+		if(ids.length < 1){
+			alert("Please select an instructor to delete");
+			return false;
+		}
+
+		if (confirm("Are you sure you want to delete the instructor(s)") == false) {
+	        return false;
+	    }
 
 		$.ajax({
 			url: baseUrl + 'courseOverview/delete',
@@ -39,7 +44,7 @@ $(document).ready(function() {
 		});
 
 		return false;
-		
+
 	});
 
 
@@ -61,11 +66,24 @@ $(document).ready(function() {
 	$('#topicList > tbody').on('click', 'tr', toggleSelected);
 
 	$('.topicButtonGradient .add').click(function(){
-		var row = $('#topicList tbody tr:first').clone();
+		var row="";
+		row += "<tr class=\"topicListRow\">";
+		row += "    <td class=\"saveIcon\">";
+		row += "        <i class=\"hidden fa fa-eraser\"><\/i>";
+		row += "    <\/td>";
+		row += "    <td><input type=\"text\" name=\"lastName\" value=\"\" id=\"lastName\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"firstName\" value=\"\" id=\"firstName\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"email\" value=\"\" id=\"email\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"officeHours\" value=\"\" id=\"officeHours\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"webPage\" value=\"\" id=\"webPage\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"role\" value=\"\" id=\"role\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"location\" value=\"\" id=\"location\" \/><\/td>";
+		row += "<\/tr>";
+
 		$('#topicList tbody').append(row);
-		$('#topicList tbody tr:last input').each(function(){
+		/*$('#topicList tbody tr:last input').each(function(){
 			$(this).val('');
-		});
+		});*/
 		return false;
 	});
 
@@ -80,19 +98,22 @@ $(document).ready(function() {
 
 		$('.topicListRow').each(function(){
 			var row = $(this);
-			console.log(row)
+			console.log(row.data('id'));
+			if(!row.data('id')){
+				parameterList.push({
+					lastName: row.find('input[name=lastName]').val(),
+					firstName: row.find('input[name=firstName]').val(),
+					email: row.find('input[name=email]').val(),
+					officeHours: row.find('input[name=officeHours]').val(),
+					webPage: row.find('input[name=webPage]').val(),
+					role: row.find('input[name=role]').val(),
+					location: row.find('input[name=location]').val(),
+				});
+			}
 
-			parameterList.push({
-				lastName: row.find('input[name=lastName]').val(),
-				firstName: row.find('input[name=firstName]').val(),
-				email: row.find('input[name=email]').val(),
-				officeHours: row.find('input[name=officeHours]').val(),
-				webPage: row.find('input[name=webPage]').val(),
-				role: row.find('input[name=role]').val(),
-				location: row.find('input[name=location]').val(),
-			});
-
+			
 		});
+
 
 		$.ajax({
 			url: baseUrl + 'courseOverview/create',
