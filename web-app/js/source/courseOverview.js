@@ -192,8 +192,30 @@ $(document).ready(function() {
 	// instructor form validation
 	$('.instructor-form').validate()
 	
+	gradingRadio($('.grading-radio:checked'));
+
+	// grading procedure radio buttons
+	$('.grading-radio').change(function(){
+		gradingRadio($(this));
+	});
+
+	$('.courseoverview').submit(function(){
+		var radio = $('.grading-radio:checked');
+
+		if(radio.val() != 'Custom'){
+			$('#grading-procedure-text').val(radio.val());
+		}
+	});
 
 });
+
+function gradingRadio(radio){
+	$('#grading-procedure-text').hide();
+	if(radio.val() == 'Custom'){
+		$('#grading-procedure-text').show();
+	}
+	radio.parents('.ui-accordion-content').css('height','auto');
+}
 
 function populateRepeatsEvery() {
 	if($('#repeats option:selected').text() === "Daily") {

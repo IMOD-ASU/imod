@@ -241,7 +241,19 @@
 												Grading procedure
 											</h3>
 											<div>
-												<g:textArea name="gradingProcedure" id="grading-procedure" value="${currentImod?.gradingProcedure}" rows="3" cols="30" />
+												<div>
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}"/> Competency Based
+                                                </div>
+
+                                                <div>
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}"/> Standardized Based
+                                                </div>
+
+                                                <div>
+                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}"/> Custom <br>
+
+													<g:textArea name="gradingProcedure" id="grading-procedure-text" value="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ? currentImod?.gradingProcedure:''}" rows="3" cols="30" />
+												</div>
 											</div>
 											<h3>
 												Attendance and tardiness
