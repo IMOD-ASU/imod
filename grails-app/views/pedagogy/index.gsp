@@ -80,15 +80,22 @@
 												</span>
 											</div>
 
-											<div id="pc3_img">
-												<g:img dir="images" file="logo_orange.png" alt="OrangeImodLogo"/>
+											<g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
 
-												<%-- PC3 Functionality --%>
-												<g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
-												<g:img id="content-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
-												<g:img id="condition-tab" dir="images/learningObjectives" file="LO-condition.png" alt="Condition"/>
-												<g:img id="criteria-tab" dir="images/learningObjectives" file="LO-criteria.png" alt="Criteria"/>
-											</div>
+											<ul class="learning-objective sub-nav">
+												<li class="performance active">
+													Performance
+												</li>
+												<li class="content">
+													Content
+												</li>
+												<li class="condition">
+													Condition
+												</li>
+												<li class="criteria active">
+													Criteria
+												</li>
+											</ul>
 
 											<div id="selectedFilter">
 												${selectionLine}
