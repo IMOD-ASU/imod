@@ -52,53 +52,7 @@
 							</ul>
 						</div>
 
-						<div id="filter-pedagogy-techniques">
-							<h3>
-								Knowledge Dimensions
-							</h3>
-							<div>
-								<ul>
-									<g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
-										<li>
-											<label for="knowledge-dimension-${index}">
-												${knowledgeDimension.description}
-											</label>
-											<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" />
-										</li>
-									</g:each>
-								</ul>
-							</div>
-							<h3>
-								Learning Domains
-							</h3>
-							<div>
-								<ul>
-									<g:each var="learningDomain" in="${learningDomains}" status="index">
-										<li>
-											<label for="learning-domain-${index}">
-												${learningDomain.name}
-											</label>
-											<g:checkBox name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" />
-										</li>
-									</g:each>
-								</ul>
-							</div>
-							<h3>
-								Domain Categories
-							</h3>
-							<div>
-								<ul>
-									<g:each var="domainCategory" in="${domainCategories}" status="index">
-										<li>
-											<label for="domain-category-${index}">
-												${domainCategory.name}
-											</label>
-											<g:checkBox name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" />
-										</li>
-									</g:each>
-								</ul>
-							</div>
-						</div>
+						<g:render template="/pedagogy/filter" />
 					</td>
 
 					<td>
@@ -126,22 +80,15 @@
 												</span>
 											</div>
 
-											<g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+											<div id="pc3_img">
+												<g:img dir="images" file="logo_orange.png" alt="OrangeImodLogo"/>
 
-											<ul class="learning-objective sub-nav">
-												<li class="performance active">
-													Performance
-												</li>
-												<li class="content">
-													Content
-												</li>
-												<li class="condition">
-													Condition
-												</li>
-												<li class="criteria active">
-													Criteria
-												</li>
-											</ul>
+												<%-- PC3 Functionality --%>
+												<g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+												<g:img id="content-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
+												<g:img id="condition-tab" dir="images/learningObjectives" file="LO-condition.png" alt="Condition"/>
+												<g:img id="criteria-tab" dir="images/learningObjectives" file="LO-criteria.png" alt="Criteria"/>
+											</div>
 
 											<div id="selectedFilter">
 												${selectionLine}
