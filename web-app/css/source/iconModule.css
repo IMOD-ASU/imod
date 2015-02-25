@@ -1,0 +1,58 @@
+.icons {
+	padding: 20px;
+	margin: 0;
+	list-style-type: none;
+
+	/*prevent text selecting for better user interface while clicking
+	the buttons*/
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.icons > label {
+	width: 100px;
+	padding: 45px 0;
+	text-align: center;
+	background-color: #FFFFCC;
+}
+
+.icons > .ui-selecting,
+.icons > .ui-state-active {
+	background-color: #FFFFCC;
+}
+
+.icons > .ui-state-hover,
+.icons > .ui-state-active,
+.icons > .ui-state-focus {
+	border: 1px solid #ccc;
+	color: #1c94c4;
+}
+
+.icons.assign {
+	background-image: url("../../images/unassign.png");
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+.icons.assign > .ui-selecting,
+.icons.assign > .ui-state-active {
+	background-image: url("../../images/assign.png"), url("../../images/thesaurus.png");
+	background-repeat: no-repeat, no-repeat;
+	background-position: right top, right bottom;
+}
+
+.icons.favorite {
+	background-image: url("../../images/pedagogy_icon.png");
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+.icons.favorite > .ui-selecting,
+.icons.favorite > .ui-state-active {
+	background-image: url("../../images/spinner.gif");
+	background-repeat: no-repeat;
+	background-position: right top;
+}

@@ -6,44 +6,6 @@ input[disabled='disabled'] {
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
 	margin: 10px;
 }
-.action-word-categories {
-	padding: 20px;
-	margin: 0;
-	list-style-type: none;
-
-	/*prevent text selecting for better user interface while clicking
-	the buttons*/
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none;
-}
-
-.action-word-categories > label {
-	width: 100px;
-	padding: 45px 0;
-	text-align: center;
-	background-color: #FFFFCC;
-	background-image: url("../../images/unassign.png");
-	background-repeat: no-repeat;
-	background-position: right top;
-}
-
-.action-word-categories > .ui-selecting,
-.action-word-categories > .ui-state-active {
-	background-color: #FFFFCC;
-	background-image: url("../../images/assign.png"), url("../../images/thesaurus.png");
-	background-repeat: no-repeat, no-repeat;
-	background-position: right top, right bottom;
-}
-
-.action-word-categories > .ui-state-hover,
-.action-word-categories > .ui-state-active,
-.action-word-categories > .ui-state-focus {
-	border: 1px solid #ccc;
-	color: #1c94c4;
-}
 
 /* learning objective left panel */
 .learning-objective.list-wrapper {
@@ -205,19 +167,23 @@ input[disabled='disabled'] {
 	background: linear-gradient(to right, transparent, #F5F5F5, transparent);
 }
 
-.learning-objective.sub-nav .active .performance {
+.learning-objective.sub-nav .active .performance,
+.learning-objective.sub-nav .active.performance {
 	color: #3BA8DE;
 }
 
-.learning-objective.sub-nav .active .content {
+.learning-objective.sub-nav .active .content,
+.learning-objective.sub-nav .active.content {
 	color: #F7941D;
 }
 
-.learning-objective.sub-nav .active .condition {
+.learning-objective.sub-nav .active .condition,
+.learning-objective.sub-nav .active.condition {
 	color: #EC008C;
 }
 
-.learning-objective.sub-nav .active .criteria {
+.learning-objective.sub-nav .active .criteria,
+.learning-objective.sub-nav .active.criteria {
 	color: #EC008C;
 }
 
@@ -581,4 +547,3 @@ input[disabled='disabled'] {
 #resourceList .unsaved{
 	background:white;
 }
-
