@@ -230,7 +230,32 @@
 																		<g:textField name="webPage" value="${instructor.webPage}"/>
 																	</td>
 																	<td>
-																		<g:textField name="location" value="${instructor.role}"/>
+																	
+																		<select name="role" id="role">
+																			<option value="">Select Role</option>
+
+																			<g:if test="${instructor.role == 'Associate Professor'}">
+																				<option selected>Associate Professor</option>
+																			</g:if>
+																			<g:else>
+																				<option>Associate Professor</option>
+																			</g:else>
+
+																			<g:if test="${instructor.role == 'Instructor'}">
+																				<option selected>Instructor</option>
+																			</g:if>
+																			<g:else>
+																				<option>Instructor</option>
+																			</g:else>
+
+																			<g:if test="${instructor.role == 'Grader'}">
+																				<option selected>Grader</option>
+																			</g:if>
+																			<g:else>
+																				<option>Associate Professor</option>
+																			</g:else>
+
+																		</select>
 																	</td>
 																	<td>
 																		<g:textField name="location" value="${instructor.location}"/>

@@ -76,7 +76,15 @@ $(document).ready(function() {
 		row += "    <td><input type=\"text\" name=\"email\" value=\"\" id=\"email\" \/><\/td>";
 		row += "    <td><input type=\"text\" name=\"officeHours\" value=\"\" id=\"officeHours\" \/><\/td>";
 		row += "    <td><input type=\"text\" name=\"webPage\" value=\"\" id=\"webPage\" \/><\/td>";
-		row += "    <td><input type=\"text\" name=\"role\" value=\"\" id=\"role\" \/><\/td>";
+		row += "<td>";
+		row += "																		<select name=\"role\" id=\"role\">";
+		row += "																			<option value=\"\">Select Role<\/option>";
+		row += "																			<option>Associate Professor<\/option>";
+		row += "																			<option>Instructor<\/option>";
+		row += "																			<option>Grader<\/option>";
+		row += "																		<\/select>";
+		row += "																	<\/td>";
+
 		row += "    <td><input type=\"text\" name=\"location\" value=\"\" id=\"location\" \/><\/td>";
 		row += "<\/tr>";
 
@@ -106,11 +114,10 @@ $(document).ready(function() {
 					email: row.find('input[name=email]').val(),
 					officeHours: row.find('input[name=officeHours]').val(),
 					webPage: row.find('input[name=webPage]').val(),
-					role: row.find('input[name=role]').val(),
+					role: row.find('select[name=role]').val(),
 					location: row.find('input[name=location]').val(),
 				});
 			}
-
 			
 		});
 
