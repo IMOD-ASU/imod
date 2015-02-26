@@ -1,11 +1,11 @@
 package security
 
-import grails.plugin.springsecurity.SpringSecurityUtils
-import grails.plugin.springsecurity.authentication.dao.NullSaltSource
-import grails.plugin.springsecurity.ui.RegistrationCode
+import grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugins.springsecurity.authentication.dao.NullSaltSource
+import grails.plugins.springsecurity.ui.RegistrationCode
 import groovy.text.SimpleTemplateEngine
 
-class RegisterController extends grails.plugin.springsecurity.ui.RegisterController {
+class RegisterController extends grails.plugins.springsecurity.ui.RegisterController {
 
 	// override default value from base class
 	static defaultAction = 'index'

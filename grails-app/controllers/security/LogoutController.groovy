@@ -1,5 +1,5 @@
 package security
-import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugins.springsecurity.SpringSecurityUtils
 
 class LogoutController {
 
