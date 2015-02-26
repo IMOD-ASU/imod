@@ -1,6 +1,6 @@
 package imod
 
-import org.joda.time.LocalTime;
+import org.joda.time.LocalTime
 import org.jadira.usertype.dateandtime.joda.PersistentLocalTime
 
 /**
