@@ -7,7 +7,7 @@ buildscript {
         maven { url 'http://repo.grails.org/grails/core' }
     }
     dependencies {
-        classpath 'org.grails:grails-gradle-plugin:$grailsVersion'
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.0.20'
     }
 }
@@ -45,7 +45,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'org.grails:grails-bom:$grailsVersion'
+        mavenBom "org.grails:grails-bom:$grailsVersion"
     }
     applyMavenExclusions false
 }
