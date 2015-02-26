@@ -24,11 +24,12 @@ apply plugin: "org.grails.grails-gsp"
 apply plugin: "maven"
 
 ext {
-  grailsVersion = project.grailsVersion
-  gradleWrapperVersion = project.gradleWrapperVersion
+    grailsVersion = project.grailsVersion
+    gradleWrapperVersion = project.gradleWrapperVersion
 }
 
-version "0.1"
+// Version should match Sprint Number
+version "0.15"
 group "imod"
 
 assets {
@@ -37,9 +38,9 @@ assets {
 }
 
 repositories {
-  mavenLocal()
-  maven { url "http://repo.grails.org/grails/core" }
-  maven { url "http://repo.grails.org/grails/plugins"}
+    mavenLocal()
+    maven { url "http://repo.grails.org/grails/core" }
+    maven { url "http://repo.grails.org/grails/plugins"}
 }
 
 dependencyManagement {
@@ -50,49 +51,51 @@ dependencyManagement {
 }
 
 dependencies {
-  compile 'org.springframework.boot:spring-boot-starter-logging'
-  compile("org.springframework.boot:spring-boot-starter-actuator")
-  compile "org.springframework.boot:spring-boot-autoconfigure"
-  compile "org.springframework.boot:spring-boot-starter-tomcat"
-  compile "org.grails:grails-dependencies"
-  compile "org.grails:grails-web-boot"
+    compile 'org.springframework.boot:spring-boot-starter-logging'
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile "org.springframework.boot:spring-boot-autoconfigure"
+    compile "org.springframework.boot:spring-boot-starter-tomcat"
+    compile "org.grails:grails-dependencies"
+    compile "org.grails:grails-web-boot"
 
-  // default compile plugins
-  compile "org.grails.plugins:hibernate"
-  compile "org.grails.plugins:cache"
-  compile "org.hibernate:hibernate-ehcache"
+    // default compile plugins
+    compile "org.grails.plugins:hibernate"
+    compile "org.grails.plugins:cache"
+    compile "org.hibernate:hibernate-ehcache"
 
-  // custom compile plugins
-  compile "org.grails.plugins:postgresql-extensions:4.3.0"
-  compile "org.grails.plugins:spring-security-core:2.0-RC4"
-  compile "org.grails.plugins:mail:1.0.7"
-  compile "org.grails.plugins:jquery-ui:1.10.4"
-  compile "org.grails.plugins:famfamfam:1.0.1"
-  compile "org.grails.plugins:spring-security-ui:1.0-RC2"
-  compile "org.grails.plugins:joda-time:1.5"
-  compile "org.grails.plugins:rest-client-builder:2.0.3"
+    // custom compile plugins
+    compile "org.grails.plugins:postgresql-extensions:4.3.0"
+    compile "org.grails.plugins:spring-security-core:2.0-RC4"
+    compile "org.grails.plugins:mail:1.0.7"
+    compile "org.grails.plugins:jquery-ui:1.10.4"
+    compile "org.grails.plugins:famfamfam:1.0.1"
+    compile "org.grails.plugins:spring-security-ui:1.0-RC2"
+    compile "org.grails.plugins:joda-time:1.5"
+    compile "org.grails.plugins:rest-client-builder:2.0.3"
 
-  // default runtime plugins
-  runtime "org.grails.plugins:asset-pipeline"
-  runtime "org.grails.plugins:scaffolding"
+    // default runtime plugins
+    runtime "org.grails.plugins:asset-pipeline"
+    runtime "org.grails.plugins:scaffolding"
 
-  // custom runtime
-  runtime "org.grails.plugins:jquery1.11.1"
+    // custom runtime
+    runtime "org.grails.plugins:jquery1.11.1"
 
-  // default test compile
-  testCompile "org.grails:grails-plugin-testing"
-  testCompile "org.grails.plugins:geb"
+    // default test compile
+    testCompile "org.grails:grails-plugin-testing"
+    testCompile "org.grails.plugins:geb"
 
-  // Note: It is recommended to update to a more robust driver (Chrome, Firefox etc.)
-  testRuntime 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.44.0'
+    // Note: It is recommended to update to a more robust driver (Chrome, Firefox etc.)
+    testRuntime 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.44.0'
 
-  // custom provided
-  // compile "org.grails.plugins:code-narc:0.22"
+    // custom provided
+    // code narc import is currently broken
+    // re-enable later and fix
+    // compile "org.grails.plugins:code-narc:0.22"
 
-  // default console
-  console "org.grails:grails-console"
+    // default console
+    console "org.grails:grails-console"
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = gradleWrapperVersion
+    gradleVersion = gradleWrapperVersion
 }
