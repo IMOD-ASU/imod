@@ -8,7 +8,6 @@
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-	-o-user-select: none;
 	user-select: none;
 }
 
@@ -31,7 +30,8 @@
 	color: #1c94c4;
 }
 
-.icons.assign {
+.icons.assign,
+.icons.favorite {
 	background-image: url("../../images/unassign.png");
 	background-repeat: no-repeat;
 	background-position: right top;
@@ -44,15 +44,9 @@
 	background-position: right top, right bottom;
 }
 
-.icons.favorite {
-	background-image: url("../../images/pedagogy_icon.png");
-	background-repeat: no-repeat;
-	background-position: right top;
-}
-
 .icons.favorite > .ui-selecting,
 .icons.favorite > .ui-state-active {
-	background-image: url("../../images/spinner.gif");
+	background-image: url("../../images/assign.png");
 	background-repeat: no-repeat;
 	background-position: right top;
 }
