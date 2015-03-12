@@ -19,6 +19,7 @@ import imod.Role
 import imod.ScheduleRepeats;
 import imod.ScheduleRepeatsEvery
 import imod.ScheduleWeekDays
+import imod.Audience
 
 
 class BootStrap {
@@ -423,6 +424,25 @@ class BootStrap {
 				text: "Clicking on Refresh displays the techniques that belongs the selections on the Domain, Domain Category and Knowledge Dimension in the Extended match."
 			).save()
 		}
+
+
+		// Populate Audience types
+		def audience = new Audience(
+			description: 'Lower Division'
+		).save()
+
+		def audience2 = new Audience(
+			description: 'Upper Division'
+		).save()
+
+		def audience3 = new Audience(
+			description: 'Undergraduate'
+		).save()
+
+		def audience4 = new Audience(
+			description: 'Graduate'
+		).save()
+
 
 		if(ScheduleRepeats.count() < 1)
 		{
