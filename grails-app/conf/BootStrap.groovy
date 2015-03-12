@@ -573,7 +573,7 @@ class BootStrap {
 			 */
 			def domainCategoryReceivingPhenomena = new DomainCategory(
 				domain: learningDomainAffective,
-				name: "ReceivingPhenomena"
+				name: "Receiving Phenomena"
 			)
 
 			def domainCategoryResponding = new DomainCategory(
