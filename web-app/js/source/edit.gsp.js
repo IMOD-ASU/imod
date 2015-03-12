@@ -1,6 +1,6 @@
 'use strict';
 
-$(document).ready(function () {
+$(document).ready(function() {
 	$('.show-hover-new').qtip({
 		show: 'mouseover',
 		hide: 'mouseout',
@@ -12,7 +12,7 @@ $(document).ready(function () {
 });
 
 function updateDatePicker() {
-	$("input[value='date.struct']:hidden").each(function () {
+	$("input[value='date.struct']:hidden").each(function() {
 		var dateFormat = "dd/mm/yy";
 		var name = $(this).attr('name');
 		var id = name.replace(".", "_").replace("[", "_").replace("]", "_") + "_input"; // Create JQuery Friendly ID
@@ -47,20 +47,19 @@ function updateDatePicker() {
 			$(this).before(template);
 			var displayWidget = $('#' + id);
 
-			displayWidget.blur(function () {
+			displayWidget.blur(function() {
 				var date = $.datepicker.parseDate(dateFormat, $(this).val());
 
 				if (date === null) {
 					$(selectDay).val("");
 					$(selectMonth).val("");
 					$(selectYear).val("");
-				}
-				else {
+				} else {
 					$(selectDay).val(date.getDate());
 					$(selectMonth).val(date.getMonth() + 1);
 					$(selectYear).val(date.getFullYear());
 				}
-			}).keydown(function (event) {
+			}).keydown(function(event) {
 				// Show popup on Down Arrow
 				if (event.keyCode === 40) {
 					displayWidget.datepicker("show");
@@ -75,13 +74,12 @@ function updateDatePicker() {
 				showButtonPanel: true,
 				showWeeks: true,
 				showOn: 'button',
-				onSelect: function (dateText, inst) {
+				onSelect: function(dateText, inst) {
 					if (inst === null) {
 						$(selectDay).val("");
 						$(selectMonth).val("");
 						$(selectYear).val("");
-					}
-					else {
+					} else {
 						$(selectDay).val(inst.selectedDay);
 						$(selectMonth).val(inst.selectedMonth + 1);
 						$(selectYear).val(inst.selectedYear);
@@ -92,25 +90,25 @@ function updateDatePicker() {
 	});
 }
 
-$(document).ready(function () {
-		document.getElementById("repeats").removeAttribute("multiple");
-		document.getElementById("repeatsEvery").removeAttribute("multiple");
-		$("#tabs").tabs({
-				ajaxOptions: {
-						error: function (xhr, status, index, anchor) {
-								$(anchor.hash).html('errorLoadingTabMessage');
-						}
-				}
-		});
-		$("#accordion").accordion();
-		$("#clickthis").click(function () {
-				$("#dialog").dialog();
-		});
-		updateDatePicker();
-		$("#spinner").ajaxComplete(function() {
-				updateDatePicker();
-		});
-		if ('${params.loadContentTab}' === 'true') {
-				$('#tabs').tabs("option", "active", 2);
+$(document).ready(function() {
+	document.getElementById("repeats").removeAttribute("multiple");
+	document.getElementById("repeatsEvery").removeAttribute("multiple");
+	$("#tabs").tabs({
+		ajaxOptions: {
+			error: function(xhr, status, index, anchor) {
+				$(anchor.hash).html('errorLoadingTabMessage');
+			}
 		}
+	});
+	$("#accordion").accordion();
+	$("#clickthis").click(function() {
+		$("#dialog").dialog();
+	});
+	updateDatePicker();
+	$("#spinner").ajaxComplete(function() {
+		updateDatePicker();
+	});
+	if ('${params.loadContentTab}' === 'true') {
+		$('#tabs').tabs("option", "active", 2);
+	}
 });

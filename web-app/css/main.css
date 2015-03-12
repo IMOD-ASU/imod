@@ -44,6 +44,7 @@ html {
     box-sizing: border-box;
     height: 100%;
     min-height: 100%;
+
     background-color: #dddddd;
     background-image: linear-gradient(top, #aaaaaa, #dddddd);
     background-repeat: no-repeat;
@@ -60,8 +61,10 @@ html * {
 body {
     /*max-width: 960px;*/
     overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
+
     min-height: 60%;
     margin: 0 auto;
+
     color: #333333;
     box-shadow: 0 0 0.3em #2b3856;
 }
@@ -95,10 +98,12 @@ a:active {
 }
 
 h1 {
+    margin: 0.8em 0 0.3em 0;
+
+    color: #2b3856;
+
     font-size: 1.25em;
     font-weight: normal;
-    margin: 0.8em 0 0.3em 0;
-    color: #2b3856;
 }
 
 ul {
@@ -119,7 +124,9 @@ img {
 
 #grailsLogo a {
     display: inline-block;
+
     margin: 1em;
+
     text-decoration: none;
 }
 
@@ -128,6 +135,7 @@ img {
 .content h1 {
     margin: 0.8em 1em 0.3em;
     padding: 0 0.25em;
+
     border-bottom: 1px solid #cccccc;
 }
 
@@ -136,14 +144,19 @@ img {
 }
 
 .footer {
-    font-size: 0.8em;
     bottom: 0;
+
     clear: both;
+
     min-height: 1em;
     padding-top: 1em;
     padding-bottom: 1em;
+
     text-align: center;
+
     color: #000000;
+
+    font-size: 0.8em;
 }
 
 .footer a {
@@ -154,10 +167,13 @@ img {
     position: absolute;
     top: 0;
     right: 0;
+
     width: 16px;
     height: 16px;
     padding: 0.5em;
+
     text-indent: -9999px;
+
     background: url(../images/spinner.gif) 50% 50% no-repeat transparent;
 }
 
@@ -165,7 +181,9 @@ img {
 
 .nav {
     zoom: 1;
+
     padding: 0.5em 0.75em;
+
     background-color: #efefef;
     box-shadow: 0 0 3px 1px #aaaaaa;
 }
@@ -173,22 +191,28 @@ img {
 .nav ul {
     overflow: hidden;
     zoom: 1;
+
     padding-left: 0;
 }
 
 .nav li {
     display: block;
     float: left;
+
     margin-right: 0.5em;
     margin-left: 6%;
     padding: 0;
+
     list-style-type: none;
 }
 
 .nav a {
     display: block;
+
     padding: 0.25em 0.7em;
+
     text-decoration: none;
+
     color: #666666;
     border-radius: 0.3em;
 }
@@ -209,6 +233,7 @@ img {
 .no-borderradius .nav a:focus,
 .no-borderradius .nav a:hover {
     text-decoration: underline;
+
     color: #444444;
     background-color: transparent;
 }
@@ -217,6 +242,7 @@ img {
 .nav a.list,
 .nav a.create {
     text-indent: 25px;
+
     background-repeat: no-repeat;
     background-position: 0.7em center;
 }
@@ -238,13 +264,16 @@ img {
 fieldset,
 .property-list {
     position: relative;
+
     zoom: 1;
+
     border: none;
 }
 
 .property-list .fieldcontain {
     overflow: hidden;
     zoom: 1;
+
     list-style: none;
 }
 
@@ -255,7 +284,9 @@ fieldset,
 .fieldcontain label,
 .fieldcontain .property-label {
     width: 25%;
+
     text-align: right;
+
     color: #666666;
 }
 
@@ -265,22 +296,27 @@ fieldset,
 
 .fieldcontain .property-value {
     display: block;
+
     margin-left: 27%;
 }
 
 label {
     display: inline-block;
+
     margin: 0 0.25em 0 0;
+
     cursor: pointer;
 }
 
 input,
 select,
 textarea {
-    font-size: 1em;
     padding: 0.2em 0.4em;
+
     border: 1px solid #cccccc;
     background-color: #fcfcfc;
+
+    font-size: 1em;
 }
 
 select {
@@ -293,12 +329,14 @@ select[multiple] {
 
 textarea {
     overflow: auto; /* IE always renders vertical scrollbar without this */
+
     vertical-align: top;
 }
 
 input[type=checkbox],
 input[type=radio] {
     padding: 0;
+
     border: 0;
     background-color: transparent;
 }
@@ -313,17 +351,23 @@ textarea:focus {
 }
 
 .required-indicator {
-    font-weight: bold;
     position: relative;
     top: 0.1em;
+
     display: inline-block;
+
     margin-left: 0.3em;
+
     color: #2b3856;
+
+    font-weight: bold;
 }
 
 ul.one-to-many {
     display: inline-block;
+
     list-style-position: inside;
+
     vertical-align: top;
 }
 
@@ -343,6 +387,7 @@ fieldset.embedded {
     margin-left: 0;
     padding-right: 0;
     padding-left: 0;
+
     border: 1px solid #cccccc;
     background-color: transparent;
     box-shadow: none;
@@ -356,10 +401,11 @@ fieldset.embedded legend {
 
 .errors,
 .message {
-    font-size: 0.8em;
-    line-height: 2;
     margin: 1em 2em;
     padding: 0.25em;
+
+    font-size: 0.8em;
+    line-height: 2;
 }
 
 .message {
@@ -383,12 +429,15 @@ fieldset.embedded legend {
 
 .errors li {
     list-style: none;
+
     text-indent: 2.2em;
+
     background: transparent url(../images/skin/exclamation.png) 0.5em 50% no-repeat;
 }
 
 .message {
     text-indent: 2.2em;
+
     background: transparent url(../images/skin/information.png) 0.5em 50% no-repeat;
 }
 
@@ -428,6 +477,7 @@ textarea:invalid:focus {
 
 table {
     margin-bottom: 1em;
+
     border-collapse: collapse;
 }
 
@@ -442,17 +492,20 @@ tr > th:last-child {
 
 td,
 th {
-    line-height: 1.5em;
     text-align: left;
     vertical-align: top;
+
+    line-height: 1.5em;
 }
 
 th {
-    font-weight: bold;
-    line-height: 1.7em;
     padding: 0.2em 0.6em;
+
     color: #666666;
     background: linear-gradient(to bottom, #ffffff 0%, #eaeaea 100%);
+
+    font-weight: bold;
+    line-height: 1.7em;
 }
 
 thead th {
@@ -461,6 +514,7 @@ thead th {
 
 th a {
     display: block;
+
     text-decoration: none;
 }
 
@@ -476,6 +530,7 @@ th a:focus {
 
 th.sortable a {
     padding-right: 1.1em;
+
     background-repeat: no-repeat;
     background-position: right;
 }
@@ -505,7 +560,9 @@ th.desc a {
 .pagination {
     margin: 0;
     padding: 0.3em 0.2em;
+
     text-align: center;
+
     border-top: 0;
     background-color: #efefef;
     box-shadow: 0 0 3px 1px #aaaaaa;
@@ -514,9 +571,12 @@ th.desc a {
 .pagination a,
 .pagination .currentStep {
     display: inline-block;
+
     margin: 0 0.1em;
     padding: 0.25em 0.7em;
+
     text-decoration: none;
+
     color: #666666;
     border-radius: 0.3em;
 }
@@ -534,6 +594,7 @@ th.desc a {
 .no-borderradius .pagination a:focus,
 .no-borderradius .pagination .currentStep {
     text-decoration: underline;
+
     color: #444444;
     background-color: transparent;
 }
@@ -542,8 +603,10 @@ th.desc a {
 
 .buttons {
     overflow: hidden;
+
     margin: 0.1em 0 0 0;
     padding: 0.3em;
+
     border: none;
     background-color: #efefef;
     box-shadow: 0 0 3px 1px #aaaaaa;
@@ -554,10 +617,13 @@ th.desc a {
 .buttons button {
     display: inline-block;
     overflow: visible;
+
     margin: 0 0.25em 0;
     padding: 0.25em 0.7em;
+
     cursor: pointer;
     text-decoration: none;
+
     color: #666666;
     border: 0;
     border-radius: 0.3em;
@@ -580,6 +646,7 @@ th.desc a {
 .no-borderradius .buttons a:hover,
 .no-borderradius .buttons a:focus {
     text-decoration: underline;
+
     color: #444444;
     background-color: transparent;
 }
@@ -588,6 +655,7 @@ th.desc a {
 .buttons .edit,
 .buttons .save {
     text-indent: 25px;
+
     background-repeat: no-repeat;
     background-position: 0.7em center;
 }
@@ -619,7 +687,9 @@ a.skip {
     position: absolute;
     top: 15px;
     right: 25px;
+
     text-align: right;
+
     color: #ffffff;
 }
 
@@ -627,15 +697,18 @@ a.skip {
     display: block;
     float: left;
     overflow: auto;
+
     width: 200px;
     height: 100px;
     margin: 20px;
+
     border: solid 1px #000000;
 }
 
 a.square {
     text-align: center;
     vertical-align: middle;
+
     color: #2b3856;
     background-color: #f0eeee;
 }
@@ -644,10 +717,13 @@ a.square {
     display: block;
     float: left;
     overflow: auto;
+
     width: 200px;
     height: 100px;
     margin: 20px;
+
     text-align: center;
+
     border: dashed 1px #000000;
 }
 
@@ -657,7 +733,9 @@ a.banner-home {
     position: absolute;
     top: 15px;
     right: 350px;
+
     text-align: right;
+
     color: #ffffff;
     background-color: #0c1625;
 }
@@ -665,6 +743,7 @@ a.banner-home {
 .resize-home {
     position: relative;
     left: -5px;
+
     width: 15px;
     height: auto;
 }
@@ -674,7 +753,9 @@ a.banner-imod {
     position: absolute;
     top: 15px;
     right: 220px;
+
     text-align: right;
+
     color: #ffffff;
     background-color: #0c1625;
 }
@@ -690,12 +771,14 @@ a.banner-link {
 }
 .add {
     text-indent: 25px;
+
     background-image: url(../images/add.png) !important;
     background-repeat: no-repeat;
     background-position: 0.7em center;
 }
 .remove {
     text-indent: 25px;
+
     background-image: url(../images/delete.gif) !important;
     background-repeat: no-repeat;
     background-position: 0.7em center;
@@ -707,9 +790,11 @@ a.banner-link {
 
 #status {
     float: left;
+
     width: 12em;
     margin: 2em 2em 1em;
     padding: 1em;
+
     border: 0.2em solid #ffffff;
     border-radius: 0.6em;
     background-color: #eeeeee;
@@ -727,10 +812,12 @@ a.banner-link {
     padding-bottom: 23%;
 }
 #status ul {
-    font-size: 0.9em;
     margin-bottom: 0.6em;
     padding: 0;
+
     list-style-type: none;
+
+    font-size: 0.9em;
 }
 
 #status li {
@@ -738,9 +825,11 @@ a.banner-link {
 }
 
 #status h1 {
-    font-size: 1.1em;
     margin: 0 0 0.3em;
+
     text-transform: uppercase;
+
+    font-size: 1.1em;
 }
 
 #page-body {
@@ -748,14 +837,16 @@ a.banner-link {
 }
 
 h2 {
-    font-size: 1em;
     margin-top: 1em;
     margin-bottom: 0.3em;
+
+    font-size: 1em;
 }
 
 p {
-    line-height: 1.5;
     margin: 0.25em 0;
+
+    line-height: 1.5;
 }
 
 #controller-list ul {
@@ -763,9 +854,11 @@ p {
 }
 
 #controller-list li {
-    line-height: 1.3;
     margin: 0.25em 0;
+
     list-style-position: inside;
+
+    line-height: 1.3;
 }
 
 @media screen and (max-width: 480px) {
@@ -802,11 +895,12 @@ p {
 }
 
 #tabs-container {
-    font-size: 12px;
     margin-top: 5%;
     margin-right: 17.5%;
     margin-bottom: 10.5%;
     margin-left: 2.5%;
+
+    font-size: 12px;
 }
 
 .ui-tabs-anchor {
@@ -816,6 +910,7 @@ p {
 .buttons {
     position: absolute;
     right: 0;
+
     width: 20%;
 }
 
@@ -841,6 +936,7 @@ p {
 
 table.inner-table {
     position: relative;
+
     width: 100%;
     height: 100%;
 }
@@ -850,6 +946,7 @@ table.inner-table {
 .buttons {
     top: 10px;
     right: 25px;
+
     width: auto;
 }
 
@@ -861,18 +958,21 @@ table.inner-table {
 .topic-schedule-widget {
     height: 100%;
     padding: 0 0 20px 0;
+
     border: solid 1px #c0c0c0;
     border-radius: 15px;
 }
 
 .form-title {
-    line-height: 250%;
     top: 0;
+
     color: #ffffff;
     border-top-left-radius: 14px 14px;
     border-top-right-radius: 14px 14px;
     background: #0a1629;
-    background: -webkit-gradient(linear, left top, left bottom, from(#1b4176), to(#172751));
+    background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
+
+    line-height: 250%;
 }
 
 .removeBorder {
@@ -883,6 +983,7 @@ table.inner-table {
 .fieldcontain label,
 .fieldcontain .property-label {
     margin-left: 40px;
+
     text-align: left;
 }
 
@@ -907,14 +1008,18 @@ a.ui-tabs-anchor {
 #overview-tab-title {
     position: absolute;
     top: 10px;
+
     color: black;
+
     font-size: 150%;
 }
 
 #lo-tab-title {
     position: absolute;
     top: 10px;
+
     color: black;
+
     font-size: 150%;
 }
 
@@ -922,7 +1027,9 @@ a.ui-tabs-anchor {
     position: absolute;
     top: 10px;
     left: 80px;
+
     color: black;
+
     font-size: 150%;
 }
 
@@ -930,7 +1037,9 @@ a.ui-tabs-anchor {
     position: absolute;
     top: 10px;
     left: 80px;
+
     color: black;
+
     font-size: 150%;
 }
 
@@ -938,15 +1047,18 @@ a.ui-tabs-anchor {
     position: absolute;
     top: 10px;
     left: 70px;
+
     color: black;
+
     font-size: 150%;
 }
 
 .ui-tabs-nav li {
+    width: 19.7%;
     height: 43px;
+
     border-top-left-radius: 5px 5px;
     border-top-right-radius: 5px;
-    width: 19.7%;
 }
 
 #help-placeholder {
@@ -954,12 +1066,14 @@ a.ui-tabs-anchor {
     z-index: 10;
     top: 144px;
     right: 15px;
+
     width: 12em;
     height: 9em;
     padding-top: 5px;
     padding-right: 1em;
     padding-bottom: 3em;
     padding-left: 5px;
+
     border-width: 1px;
     background-color: #ffff5a;
 }
@@ -969,13 +1083,16 @@ a.ui-tabs-anchor {
     z-index: 10;
     top: 144px;
     right: 15px;
+
     display: none;
+
     width: 12em;
     height: 1em;
     padding-top: 5px;
     padding-right: 1em;
     padding-bottom: 10px;
     padding-left: 5px;
+
     border-width: 1px;
     background-color: #ffff5a;
 }
@@ -988,6 +1105,7 @@ a.ui-tabs-anchor {
 #resize-quicktip {
     position: relative;
     top: 5px;
+
     width: 20px;
     height: auto;
 }
@@ -995,6 +1113,7 @@ a.ui-tabs-anchor {
 .fieldcontain label,
 .fieldcontain .property-label {
     margin-left: 40px;
+
     text-align: left;
 }
 
@@ -1004,6 +1123,7 @@ a.ui-tabs-anchor {
 
 #custom-instructor {
     overflow-y: scroll;
+
     height: 127px;
 }
 
@@ -1017,6 +1137,7 @@ a.ui-tabs-anchor {
 
 .list-imod-body {
     overflow-y: scroll;
+
     height: 400px;
     margin-top: 5%;
     margin-right: 17.5%;
@@ -1024,6 +1145,7 @@ a.ui-tabs-anchor {
     margin-left: 2.5%;
     padding-top: 2%;
     padding-left: 3.5%;
+
     background-color: #ffffff;
     box-shadow: 5px 5px 5px #888888;
 }
@@ -1033,9 +1155,11 @@ label[for=weekdays] {
     margin-left: 1%;
 }
 
-#grading-procedure-text{
+#grading-procedure-text {
     display: none;
 }
+<<<<<<< HEAD
+=======
 
 
 /* hide learning objectives initially so that
@@ -1048,3 +1172,4 @@ label[for=weekdays] {
 .saveIcon{
     font-size: 16px;
 }
+>>>>>>> rahul-sprint-15

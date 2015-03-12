@@ -57,7 +57,7 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ':tomcat:7.0.55'
+		build ':tomcat:7.0.55.2'
 
 		compile ':scaffolding:2.1.2'
 		compile ':postgresql-extensions:4.3.0'
@@ -70,7 +70,7 @@ grails.project.dependency.resolution = {
 		compile ':joda-time:1.5'
 		compile ':rest-client-builder:2.0.3'
 
-		provided ':codenarc:0.22'
+		provided ':codenarc:0.23'
 
 		runtime ':hibernate4:4.3.6.1'
 		runtime ':jquery:1.11.1'

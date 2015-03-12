@@ -3,53 +3,62 @@
 }
 
 select[disabled][disabled] {
+    cursor: inherit;
+
     color: GrayText;
     background-color: ThreeDFace;
-    cursor: inherit;
 }
 
 .smallblackarea {
-    top: 50px;
-    display: inline-block;
-    margin-right: 0;
-    margin-top: 0;
     position: absolute;
+    top: 50px;
     left: 25px;
+
+    display: inline-block;
+
+    width: 100px;
+    margin-top: 0;
+    margin-right: 0;
+    padding: 5px;
+
     font-family: arial;
     font-size: 12px;
     font-weight: bold;
-    padding: 5px;
-    width: 100px;
 }
 
 .imgblock {
-    display: block;
     position: relative;
+
+    display: block;
+    float: left;
+
     width: 140px;
     height: 140px;
     padding: 10px;
-    float: left;
 }
 
 .ui-tooltip,
 .arrow:after {
-    background: white;
     border: 0.5px solid black;
+    background: white;
 }
 
 .ui-tooltip {
     padding: 5px 10px;
+
     font: bold 12px 'Helvetica Neue', Sans-Serif;
 }
 
 .arrow {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+
+    overflow: hidden;
+
     width: 70px;
     height: 16px;
-    overflow: hidden;
-    position: absolute;
-    left: 50%;
     margin-left: -35px;
-    bottom: -16px;
 }
 
 .arrow.top {
@@ -62,36 +71,43 @@ select[disabled][disabled] {
 }
 
 .arrow:after {
-    content: '';
     position: absolute;
-    left: 20px;
     top: -20px;
+    left: 20px;
+
     width: 25px;
     height: 25px;
+
+    content: '';
+
     box-shadow: 6px 5px 9px -9px black;
+
     tranform: rotate(45deg);
 }
 
 .arrow.top:after {
-    bottom: -20px;
     top: auto;
+    bottom: -20px;
 }
 
 .graphErrorMessage {
-    font-weight: bold;
     margin: 120px;
+
+    font-weight: bold;
 }
 
 .treeEmptyMessage {
-    font-weight: bold;
     margin: 21px;
     padding-top: 81px;
+
+    font-weight: bold;
 }
 
 .topicScheduleEmptyMessage {
-    font-weight: bold;
     margin: 15px;
     padding-top: 107px;
+
+    font-weight: bold;
 }
 
 .firstChapter {
@@ -110,5 +126,6 @@ select[disabled][disabled] {
 .pc3_hover {
     height: 50px !important;
     margin-top: 15px;
+
     background-color: #a9a9a9;
 }
