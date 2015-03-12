@@ -342,7 +342,7 @@
 															<g:each in="${currentImod?.instructors?}" var="instructor">
 																<tr data-id="${instructor.id}" class="topicListRow">
 																	<td class="saveIcon">
-																		<i class="hidden fa fa-eraser"></i>
+																		<i class=" fa fa-square-o"></i>
 																	</td>
 																	<td>
 																		<g:textField name="firstName" value="${instructor.firstName}" class="first_name" />

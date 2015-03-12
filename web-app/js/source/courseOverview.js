@@ -277,7 +277,7 @@ function populateRepeatsEvery() {
 
 function toggleSelected(event){
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON','SELECT'])){
-		$(this).find(".saveIcon > i").toggleClass("hidden");
+		$(this).find(".saveIcon > i").toggleClass("fa-square-o").toggleClass("fa-check-square");
 		$(this).toggleClass("selected");
 	}
 }
