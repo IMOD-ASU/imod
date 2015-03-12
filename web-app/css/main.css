@@ -1158,9 +1158,6 @@ label[for=weekdays] {
 #grading-procedure-text {
     display: none;
 }
-<<<<<<< HEAD
-=======
-
 
 /* hide learning objectives initially so that
     we can hide empty learning objectives using JavaScript
@@ -1172,4 +1169,3 @@ label[for=weekdays] {
 .saveIcon{
     font-size: 16px;
 }
->>>>>>> rahul-sprint-15

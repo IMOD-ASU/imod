@@ -124,21 +124,13 @@
     padding: 0;
 }
 
-<<<<<<< HEAD
-#topicList .saveIcon {
-    width: 1.1em;
-    padding-right: 0.5em;
-    padding-left: 0.5em;
 
-    color: darkred;
-=======
 #topicList .saveIcon{
     width:1.1em;
     padding-left:.5em;
     padding-right:.5em;
     color:darkred;
     font-size: 16px;
->>>>>>> rahul-sprint-15
 }
 #topicList .knowledgeDimensionButton {
     width: 80%;
@@ -161,11 +153,6 @@
 .error {
     border: 1px solid red !important;
 }
-<<<<<<< HEAD
-label.error {
-    display: none !important;
-}
-=======
 .custom-instructor label.error{
     display: none !important;
 }
@@ -173,4 +160,3 @@ label.error {
 #time-ratio{
     max-width: 50px;
 }
->>>>>>> rahul-sprint-15
