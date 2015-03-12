@@ -172,6 +172,8 @@ $(document).ready(function() {
 	    return regexpr.test(value);
 	}, "Please enter a valid URL.");
 
+	$('#time-ratio').mask("9:9")
+
 	// course overview validation
 	$(".courseoverview").validate({
 	  	rules: {
@@ -182,9 +184,6 @@ $(document).ready(function() {
 	    	url: {
 	    		required: true,
 				urlRule: /^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i
-	    	},
-	    	numberOfSeats: {
-	    		digits: true
 	    	},
 	    	subjectArea: {
 	    		required: true

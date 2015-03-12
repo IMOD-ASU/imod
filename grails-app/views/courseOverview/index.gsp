@@ -13,6 +13,7 @@
 		<meta name="layout" content="imod" />
 		<script src="${resource(dir: 'js/source', file: 'courseOverview.js')}" defer></script>
 		<script src="${resource(dir: 'js/plugins', file: 'jquery.validate.js')}" defer></script>
+		<script src="${resource(dir: 'js/plugins', file: 'jquery.masked.min.js')}" defer></script>
 		<g:external dir="css/source" file="topicModal.css" />
 	</head>
 	<body>
@@ -399,7 +400,7 @@
 																			<g:else>
 																				<option>Grader</option>
 																			</g:else>
-																			
+
 																		</select>
 																	</td>
 																	<td>
