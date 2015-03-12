@@ -188,11 +188,27 @@ $(document).ready(function() {
 	    	},
 	    	subjectArea: {
 	    		required: true
+	    	},
+	    	creditHours: {
+	    		min: 0,
+	    		max: 7,
+	    		digits: true
+	    	},
+	    	numberOfSeats: {
+	    		min: 0,
+	    		max: 1000,
+	    		digits: true
 	    	}
 	  	},
 	  	messages: {
 	    	url: {
 	      		url: "Please enter a valid URL eg. http://google.com"
+	    	},
+	    	creditHours: {
+	    		min: "Credit hours cannot be negative"
+	    	},
+	    	numberOfSeats: {
+	    		min: "Number of seats cannot be negative"
 	    	}
 		}
 	});
