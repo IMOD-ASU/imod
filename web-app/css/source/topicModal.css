@@ -135,3 +135,7 @@
 .custom-instructor label.error{
     display: none !important;
 }
+
+#time-ratio{
+    max-width: 50px;
+}

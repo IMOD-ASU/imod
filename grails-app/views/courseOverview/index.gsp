@@ -220,6 +220,11 @@
 													<g:message code="imod.timeRatio.label" default="Time Ratio" />
 												</label>
 												<g:textField name="timeRatio" id="time-ratio" value="${currentImod?.timeRatio}" />
+
+												<span class="help-block">
+												"Time spent in and out of class. eg: 1:2"
+												</span>
+
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'numberOfSeats', 'error')} ">
