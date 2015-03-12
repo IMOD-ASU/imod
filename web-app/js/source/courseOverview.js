@@ -79,8 +79,11 @@ $(document).ready(function() {
 		row += "<td>";
 		row += "	<select name=\"role\" id=\"role\" class=\"role\">";
 		row += "		<option value=\"\">Select Role<\/option>";
+		row += "		<option>Assistant Professor<\/option>";
 		row += "		<option>Associate Professor<\/option>";
-		row += "		<option>Instructor<\/option>";
+		row += "		<option>Professor<\/option>";
+		row += "		<option>Teaching Assistant<\/option>";
+		row += "		<option>Course Assistant<\/option>";
 		row += "		<option>Grader<\/option>";
 		row += "	<\/select>";
 		row += "<\/td>";

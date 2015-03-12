@@ -358,6 +358,13 @@
 																		<select name="role" id="role" class="role">
 																			<option value="">Select Role</option>
 
+																			<g:if test="${instructor.role == 'Assistant Professor'}">
+																				<option selected>Assistant Professor</option>
+																			</g:if>
+																			<g:else>
+																				<option>Assistant Professor</option>
+																			</g:else>
+
 																			<g:if test="${instructor.role == 'Associate Professor'}">
 																				<option selected>Associate Professor</option>
 																			</g:if>
@@ -365,20 +372,34 @@
 																				<option>Associate Professor</option>
 																			</g:else>
 
-																			<g:if test="${instructor.role == 'Instructor'}">
-																				<option selected>Instructor</option>
+																			<g:if test="${instructor.role == 'Professor'}">
+																				<option selected>Professor</option>
 																			</g:if>
 																			<g:else>
-																				<option>Instructor</option>
+																				<option>Professor</option>
+																			</g:else>
+
+																			<g:if test="${instructor.role == 'Teaching Assistant'}">
+																				<option selected>Teaching Assistant</option>
+																			</g:if>
+																			<g:else>
+																				<option>Teaching Assistant</option>
+																			</g:else>
+
+																			<g:if test="${instructor.role == 'Course Assistant'}">
+																				<option selected>Course Assistant</option>
+																			</g:if>
+																			<g:else>
+																				<option>Course Assistant</option>
 																			</g:else>
 
 																			<g:if test="${instructor.role == 'Grader'}">
 																				<option selected>Grader</option>
 																			</g:if>
 																			<g:else>
-																				<option>Associate Professor</option>
+																				<option>Grader</option>
 																			</g:else>
-
+																			
 																		</select>
 																	</td>
 																	<td>
