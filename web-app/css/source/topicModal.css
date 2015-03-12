@@ -115,6 +115,7 @@
     padding-left:.5em;
     padding-right:.5em;
     color:darkred;
+    font-size: 16px;
 }
 #topicList .knowledgeDimensionButton{
     width:80%;
@@ -132,6 +133,10 @@
 .error{
     border: 1px solid red !important;
 }
-label.error{
+.custom-instructor label.error{
     display: none !important;
+}
+
+#time-ratio{
+    max-width: 50px;
 }

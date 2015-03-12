@@ -1036,3 +1036,8 @@ label[for=weekdays] {
 #grading-procedure-text{
     display: none;
 }
+
+
+.saveIcon{
+    font-size: 16px;
+}
