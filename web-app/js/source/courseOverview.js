@@ -167,6 +167,11 @@ $(document).ready(function() {
 	  }
 	});
 
+	// regex method for url
+	$.validator.addMethod("urlRule", function(value, element, regexpr) {          
+	    return regexpr.test(value);
+	}, "Please enter a valid URL.");
+
 	// course overview validation
 	$(".courseoverview").validate({
 	  	rules: {
@@ -176,7 +181,7 @@ $(document).ready(function() {
 	    	},	  
 	    	url: {
 	    		required: true,
-				url: true
+				urlRule: /^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i
 	    	},
 	    	numberOfSeats: {
 	    		digits: true

@@ -132,6 +132,6 @@
 .error{
     border: 1px solid red !important;
 }
-label.error{
+.custom-instructor label.error{
     display: none !important;
 }
