@@ -1,6 +1,7 @@
 package imod
 
 class PedagogyTechniqueController {
+	def springSecurityService
 
 	static allowedMethods = [
 		create: 'POST',
@@ -37,6 +38,28 @@ class PedagogyTechniqueController {
 
 		// persist new technique to database
 		newTechnique.save()
+
+		if(params.assignedToLearningObjective != null) {
+			// get current user object
+			def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
+
+			// add the technique to the user's favorite list
+			currentLearningObjective.addToPedagogyTechniques(newTechnique)
+
+			// store relationship
+			currentLearningObjective.save()
+		}
+
+		if(params.favoriteTechnique != null) {
+			// get current user object
+			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
+			// add the technique to the user's favorite list
+			currentUser.addToFavoriteTechnique(newTechnique)
+
+			// store relationship
+			currentUser.save()
+		}
 
 		redirect(
 			controller: 'pedagogy',

@@ -90,7 +90,7 @@ dependencies {
     // custom provided
     // code narc import is currently broken
     // re-enable later and fix
-    // compile 'org.grails.plugins:code-narc:0.22'
+    compile 'org.grails.plugins:code-narc:0.23'
 
     // default console
     console 'org.grails:grails-console'

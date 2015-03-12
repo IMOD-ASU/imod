@@ -8,7 +8,7 @@ var prevKeyword = '';
 $(document).ready(function() {
 
 	// Initially domain categories and action words will not be displayed as learning domain is null
-	if($('#domain-category-list').val() === 'null'){
+	if ($('#domain-category-list').val() === 'null') {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
 
 		$('#domain-category-list').css('visibility', 'hidden');
@@ -17,29 +17,31 @@ $(document).ready(function() {
 
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
-		'change', function() {
+		'change',
+		function() {
 			populateDomainCategories();
-	});
+		});
 
 	// listen for the selected domain category to change, when it does call ajax
 	$('#domain-category-list').on(
-		'change', function(){
+		'change',
+		function() {
 			populateActionWordCategories();
 
-	});
+		});
 
 	// listen for change in action word categories, when it does call ajax
 	$('.icons').on(
-		'click', function(){
+		'click',
+		function() {
 			populateActionWords();
-	});
+		});
 
 	// if the condition is set to hidden do not display it in the definition box above
 	$('#LO-hide-from-Objective').change(function() {
-		if(this.checked) {
+		if (this.checked) {
 			$('.learning-objective-current .learning-objective-condition').css('display', 'none');
-		}
-		else {
+		} else {
 			$('.learning-objective-current .learning-objective-condition').css('display', 'inline');
 		}
 	});
@@ -57,11 +59,10 @@ $(document).ready(function() {
 	$('input:radio[name=conditionType]').on(
 		'change',
 		function() {
-			if(this.value === 'Generic') {
+			if (this.value === 'Generic') {
 				$('#custom-condition-text').css('display', 'none');
 				$('.learning-objective.condition.generic').css('display', 'block');
-			}
-			else{
+			} else {
 				$('.learning-objective.condition.generic').css('display', 'none');
 				$('#custom-condition-text').css('display', 'block');
 			}
@@ -73,25 +74,25 @@ $(document).ready(function() {
 
 	//trigger jquery ui button for better radio buttons
 	var category = $('input[name=selectedActionWordCategory]').val();
-	$('.icons input[value="'+category+'"]').prop('checked',true);
- 	$('.icons').buttonset();
+	$('.icons input[value="' + category + '"]').prop('checked', true);
+	$('.icons').buttonset();
 
- 	// populate action words if a category is already selected
- 	populateActionWords(true);
+	// populate action words if a category is already selected
+	populateActionWords(true);
 
- 	//reset radio buttons if a selected radio button is clicked again
- 	$(document).on('click', '.icons label', function(){
- 		if($(this).hasClass('is-active')){
- 			$('.icons label').removeClass('is-active');
- 			setTimeout(function(){
-	 			$('.icons input:checked')
-	 				.removeAttr('checked').button('refresh');
-	        },0);
- 		}else{
- 			$('.icons label').removeClass('is-active');
- 			$(this).addClass('is-active');
- 		}
- 	});
+	//reset radio buttons if a selected radio button is clicked again
+	$(document).on('click', '.icons label', function() {
+		if ($(this).hasClass('is-active')) {
+			$('.icons label').removeClass('is-active');
+			setTimeout(function() {
+				$('.icons input:checked')
+					.removeAttr('checked').button('refresh');
+			}, 0);
+		} else {
+			$('.icons label').removeClass('is-active');
+			$(this).addClass('is-active');
+		}
+	});
 
 	// This listens for when a learning objective is selected and saves
 	// $('.action-word-category').on(
@@ -104,13 +105,11 @@ $(document).ready(function() {
 		'click',
 		function() {
 			$('#accuracy-text').prop(
-				'disabled',
-				! $('#enable-accuracy').is(':checked')
+				'disabled', !$('#enable-accuracy').is(':checked')
 			);
 			$('#accuracy-text').value('');
 			$('#accuracy-hide').prop(
-				'disabled',
-				! $('#enable-accuracy').is(':checked')
+				'disabled', !$('#enable-accuracy').is(':checked')
 			);
 		}
 	);
@@ -120,13 +119,11 @@ $(document).ready(function() {
 		'click',
 		function() {
 			$('#quality-text').prop(
-				'disabled',
-				! $('#enable-quality').is(':checked')
+				'disabled', !$('#enable-quality').is(':checked')
 			);
 			$('#quality-text').value('');
 			$('#quality-hide').prop(
-				'disabled',
-				! $('#enable-quality').is(':checked')
+				'disabled', !$('#enable-quality').is(':checked')
 			);
 		}
 	);
@@ -136,13 +133,11 @@ $(document).ready(function() {
 		'click',
 		function() {
 			$('#quantity-text').prop(
-				'disabled',
-				! $('#enable-quantity').is(':checked')
+				'disabled', !$('#enable-quantity').is(':checked')
 			);
 			$('#quantity-text').value('');
 			$('#quantity-hide').prop(
-				'disabled',
-				! $('#enable-quantity').is(':checked')
+				'disabled', !$('#enable-quantity').is(':checked')
 			);
 		}
 	);
@@ -152,20 +147,18 @@ $(document).ready(function() {
 		'click',
 		function() {
 			$('#speed-text').prop(
-				'disabled',
-				! $('#enable-speed').is(':checked')
+				'disabled', !$('#enable-speed').is(':checked')
 			);
 			$('#speed-text').value('');
 			$('#speed-hide').prop(
-				'disabled',
-				! $('#enable-speed').is(':checked')
+				'disabled', !$('#enable-speed').is(':checked')
 			);
 		}
 	);
 
 	//when learning domain isn't selected, do not save learning objective
-	$('.learning-objective-button.save').click(function(){
-		if($('#learning-domain-list').val() === "null" ||
+	$('.learning-objective-button.save').click(function() {
+		if ($('#learning-domain-list').val() === "null" ||
 			$('#domain-category-list').val() === "null" ||
 			$('input[name=actionWordCategory]').is(':checked') === false) {
 			alert("Learning Domain, Domain Category and Action Word Categories are required");
@@ -177,16 +170,14 @@ $(document).ready(function() {
 	var $liArray = $('ul.learning-objective.list-wrapper').children('li');
 	var height = getMinHeight($liArray);
 
-	$liArray.each(function(){
-		$("a",this).attr('title',$("a",this).text());
-		if(Math.floor($(this).height()) !== height)
-		{
-			$("a",this).text($("a",this).text().substring(0,70)+"...");
+	$liArray.each(function() {
+		$("a", this).attr('title', $("a", this).text());
+		if (Math.floor($(this).height()) !== height) {
+			$("a", this).text($("a", this).text().substring(0, 70) + "...");
 		}
-		if($(this).hasClass("active"))
-			{
-			$("a",this).text($("a",this).attr('title'));
-			}
+		if ($(this).hasClass("active")) {
+			$("a", this).text($("a", this).attr('title'));
+		}
 	});
 });
 
@@ -194,15 +185,14 @@ $(document).ready(function() {
  * ajax to pull domain categories based on which Learning Domain was selected,
  * then populate the select box with the domain categories
  * @param  {String} domain text from the domain select box
- * @return {XML}        Populates the domain category box with options
+ * @return {XML}		Populates the domain category box with options
  */
 function populateDomainCategories() {
-	if($('#learning-domain-list').val() !== 'null') {
+	if ($('#learning-domain-list').val() !== 'null') {
 		$('label[for="domain-category-list"]').css('visibility', 'visible');
 		$('#domain-category-list').css('visibility', 'visible');
 		$('.icons').css('visibility', 'visible');
-	}
-	else {
+	} else {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
 		$('#domain-category-list').css('visibility', 'hidden');
 		$('.icons').css('visibility', 'hidden');
@@ -215,7 +205,7 @@ function populateDomainCategories() {
 		data: {
 			domainName: $('#learning-domain-list').val().trim()
 		},
-		success: function(data){
+		success: function(data) {
 
 			// stores the data from the call back
 			var categories = data.value;
@@ -242,7 +232,7 @@ function populateDomainCategories() {
  * ajax to pull Action Words based on which Domain Category was selected,
  * then populate page with selectable action word category boxes
  * @param  {String} domain text from the domain category select box
- * @return {XML}        Populates the page with action word categories
+ * @return {XML}		Populates the page with action word categories
  */
 function populateActionWordCategories() {
 	$.ajax({
@@ -260,7 +250,7 @@ function populateActionWordCategories() {
 			// for each category
 			for (var i = 0; i < actionWordCategories.length; i++) {
 				// create the html
-				actionWordCategoriesHTML += '<input type="radio" id="radio'+i+'" name="actionWordCategory" value="'+actionWordCategories[i].actionWordCategory+'"><label for="radio'+i+'">' + actionWordCategories[i].actionWordCategory + '</label>';
+				actionWordCategoriesHTML += '<input type="radio" id="radio' + i + '" name="actionWordCategory" value="' + actionWordCategories[i].actionWordCategory + '"><label for="radio' + i + '">' + actionWordCategories[i].actionWordCategory + '</label>';
 			}
 			// display the html on the page
 			$('.icons').html(actionWordCategoriesHTML);
@@ -269,7 +259,7 @@ function populateActionWordCategories() {
 
 			populateActionWords();
 		},
-		error: function(xhr){
+		error: function(xhr) {
 			// when something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
@@ -280,13 +270,13 @@ function populateActionWordCategories() {
  * ajax to pull Action Words based on which Action Word Category was selected,
  * then populates a select tag with action words
  * @param  {String} domain text from the action word category boxes
- * @return {XML}        Populates the page with action words
+ * @return {XML}		Populates the page with action words
  */
 function populateActionWords(event) {
 
-	if(prevKeyword === $('.icons').find('.ui-state-active').text()){
+	if (prevKeyword === $('.icons').find('.ui-state-active').text()) {
 		return;
-	}else{
+	} else {
 		prevKeyword = $('.icons').find('.ui-state-active').text();
 	}
 
@@ -300,13 +290,13 @@ function populateActionWords(event) {
 		success: function(data) {
 			var actionWordsHTML = '';
 
-			if(event === true) {
+			if (event === true) {
 				var originalActionWord = $('#action-words').val();
 			}
 
 			// store the data from the call back
-			if(data.value !== null) {
-				if(data.value.verb !== undefined && data.value.verb !== null && data.value.verb !== ''){
+			if (data.value !== null) {
+				if (data.value.verb !== undefined && data.value.verb !== null && data.value.verb !== '') {
 
 					var actionWordsVerb = data.value.verb.syn;
 
@@ -314,37 +304,37 @@ function populateActionWords(event) {
 					// for each action word
 					for (var i = 0; i < actionWordsVerb.length; i++) {
 						// create the html for the action word
-						if(actionWordsVerb[i] === originalActionWord) {
-							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
-						}else{
-							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">'+ actionWordsVerb[i] + '</option>';
+						if (actionWordsVerb[i] === originalActionWord) {
+							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">' + actionWordsVerb[i] + '</option>';
+						} else {
+							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">' + actionWordsVerb[i] + '</option>';
 						}
 
 					}
 				}
 
-				if(data.value.noun !== undefined && data.value.noun !== null && data.value.noun !== ''){
+				if (data.value.noun !== undefined && data.value.noun !== null && data.value.noun !== '') {
 
 					var actionWordsNoun = data.value.noun.syn;
 					for (i = 0; i < actionWordsNoun.length; i++) {
 						// create the html for the action word
-						if(actionWordsNoun[i] === originalActionWord) {
-							actionWordsHTML += '<option selected value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
-						}else{
-							actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">'+ actionWordsNoun[i] + '</option>';
+						if (actionWordsNoun[i] === originalActionWord) {
+							actionWordsHTML += '<option selected value="' + actionWordsNoun[i] + '">' + actionWordsNoun[i] + '</option>';
+						} else {
+							actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">' + actionWordsNoun[i] + '</option>';
 						}
 					}
 				}
 
-				if(data.value.adjective !== undefined && data.value.adjective !== null && data.value.adjective !== ''){
+				if (data.value.adjective !== undefined && data.value.adjective !== null && data.value.adjective !== '') {
 
 					var actionWordsAdj = data.value.adjective.syn;
 					for (i = 0; i < actionWordsAdj.length; i++) {
 						// create the html for the action word
-						if(actionWordsAdj[i] == originalActionWord) {
-							actionWordsHTML += '<option selected value="' + actionWordsAdj[i] + '">'+ actionWordsAdj[i] + '</option>';
-						}else{
-							actionWordsHTML += '<option value="' + actionWordsAdj[i] + '">'+ actionWordsAdj[i] + '</option>';
+						if (actionWordsAdj[i] === originalActionWord) {
+							actionWordsHTML += '<option selected value="' + actionWordsAdj[i] + '">' + actionWordsAdj[i] + '</option>';
+						} else {
+							actionWordsHTML += '<option value="' + actionWordsAdj[i] + '">' + actionWordsAdj[i] + '</option>';
 						}
 					}
 				}
@@ -369,13 +359,12 @@ function propagateToDefinition(value, type) {
 
 function getMinHeight(liArray) {
 	var minHeight = Math.floor(liArray.eq(0).height());
-    liArray.each(function(){
-        if ( Math.floor($(this).height()) < minHeight )
-            {
-               minHeight = Math.floor($(this).height());
-    	    }
-    	var refineText = $("a",this).text().replace(/[\s\t]+/g,' ');
-    	$("a", this).text(refineText);
-    });
-    return minHeight;
+	liArray.each(function() {
+		if (Math.floor($(this).height()) < minHeight) {
+			minHeight = Math.floor($(this).height());
+		}
+		var refineText = $("a", this).text().replace(/[\s\t]+/g, ' ');
+		$("a", this).text(refineText);
+	});
+	return minHeight;
 }
