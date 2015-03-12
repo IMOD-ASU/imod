@@ -3,10 +3,10 @@
     padding: 20px;
 
     list-style-type: none;
-
-            user-select: none;
     /*prevent text selecting for better user interface while clicking
 	the buttons*/
+
+            user-select: none;
 
     -webkit-user-select: none;
        -moz-user-select: none;

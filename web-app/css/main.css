@@ -970,7 +970,7 @@ table.inner-table {
     border-top-left-radius: 14px 14px;
     border-top-right-radius: 14px 14px;
     background: #0a1629;
-    background: -webkit-gradient(linear, left top, left bottom, from(#1b4176), to(#172751));
+    background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
 
     line-height: 250%;
 }

@@ -16,11 +16,7 @@
 
     border: 1px solid #aaaabb;
     background-color: #f0f0fa;
-            box-shadow: 2px 2px 2px #eeeeee;
-
-       -moz-box-shadow: 2px 2px 2px #eeeeee;
-    -webkit-box-shadow: 2px 2px 2px #eeeeee;
-     -khtml-box-shadow: 2px 2px 2px #eeeeee;
+    box-shadow: 2px 2px 2px #eeeeee;
 }
 
 #login .inner .fheader {
