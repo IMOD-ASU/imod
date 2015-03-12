@@ -28,7 +28,19 @@ $(document).ready(function() {
 			helpbox.css("display","block");
 			tabContainer.css("margin-right", '17.5%');
 		}
-	})
+	});
+
+	$('.learning-objective.list-item').each(function(){
+
+		if($(this).find('.list-link').text().trim() == 'Empty Learning Objective'){
+
+	        $(this).hide();
+	    }
+
+	});
+
+	$('.learning-objective.list-wrapper').show();
+
 });
 
 function showHelp(displayHelp){
