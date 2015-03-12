@@ -6,6 +6,7 @@ import grails.plugins.rest.client.RestBuilder
 import groovy.json.JsonSlurper
 
 class CourseOverviewController {
+    def springSecurityService
 
     static allowedMethods = [
         delete:           'POST',
@@ -19,14 +20,12 @@ class CourseOverviewController {
 		]
 	}
 
-    def springSecurityService
-
     def create(String JSONData) {
 
         def jsonParser = new JsonSlurper()
         def parameters = jsonParser.parseText(params.parameters)
 
-        parameters.each() { 
+        parameters.each() {
 
             def firstName = it.firstName
             def lastName = it.lastName
@@ -35,7 +34,7 @@ class CourseOverviewController {
             def officeHours = it.officeHours
             def webPage = it.webPage
             def location = it.location
-            
+
             def newInstructor = new Instructor(
                 firstName: firstName,
                 lastName: lastName,
@@ -57,7 +56,7 @@ class CourseOverviewController {
                 value: 'success'
             ] as JSON
         )
-        
+
 
         // if no ajax
 
@@ -88,7 +87,7 @@ class CourseOverviewController {
 
 	// FIXME rename the action to addInstructor
     def add(){
-		
+
     	render(
 			view: 'addinstructor',
             model: [imodid: params.imodid]
@@ -97,11 +96,11 @@ class CourseOverviewController {
 
 
     def delete() {
-    	
+
         def instructorList = params.list('selected[]')
 
         instructorList.each { item ->
-            
+
             def instructorInstance = Instructor.get(item)
             instructorInstance.delete()
 

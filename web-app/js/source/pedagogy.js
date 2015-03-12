@@ -7,7 +7,9 @@ filterPedagogyTechniques();
 $('#filter-pedagogy-techniques').accordion();
 
 // add hide the add new technique modal
-$('#add-new-technique').dialog({autoOpen: false});
+$('#add-new-technique').dialog({
+	autoOpen: false
+});
 
 // attach a listener to the checkboxes, to update the pedaogy techniques
 // when the filters have been changed
@@ -29,8 +31,8 @@ function openNewPedagogyTechniqueModal() {
 }
 
 /**
-* Closes the modal to create a new pedagogy technique
-*/
+ * Closes the modal to create a new pedagogy technique
+ */
 function closeNewPedagogyTechniqueModal() {
 	$('#add-new-technique').dialog('close');
 }
@@ -71,12 +73,12 @@ function filterPedagogyTechniques() {
 	// send the data to the find matching techniques action in grails
 	// and process the response with the display pedagogy techniques callback
 	$.ajax({
-		url: '../findMatchingTechniques',
-		method: 'post',
-		data: JSON.stringify(data),
-		contentType: 'application/json'
-	})
-	.done(displayPedagogyTechniques);
+			url: '../findMatchingTechniques',
+			method: 'post',
+			data: JSON.stringify(data),
+			contentType: 'application/json'
+		})
+		.done(displayPedagogyTechniques);
 }
 
 /**
@@ -86,13 +88,13 @@ function filterPedagogyTechniques() {
 function displayPedagogyTechniques(data) {
 	var idealText = '';
 	// take the titles and make html code to display
-	for(var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
+	for (var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
 		idealText += '<input type="radio" id="radio' + index + '" name="pedagogyTechnque" value="' + data.idealPedagogyTechniqueMatch[index].title + '"><label for="radio' + index + '">' + data.idealPedagogyTechniqueMatch[index].title + '</label>';
 	}
 
 	var extendedText = '';
 	// take the titles and make html code to display
-	for(index = 0; index < data.extendedPedagogyTechniqueMatch.length; index++) {
+	for (index = 0; index < data.extendedPedagogyTechniqueMatch.length; index++) {
 		extendedText += '<div>' + data.extendedPedagogyTechniqueMatch[index].title + '</div>';
 	}
 
