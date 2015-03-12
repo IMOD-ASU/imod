@@ -1,17 +1,15 @@
 package imod
-import grails.converters.JSON
 
 class AssessmentController {
-
     static allowedMethods = [
         index: 'GET'
 
     ]
+    
     /**
      * index called when Assessment tab loads
      * @param id
      */
-
     def index(Long id,  Long learningObjectiveID) {
 		// get the selected imod
         def currentImod = Imod.get(id)
