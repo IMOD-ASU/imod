@@ -250,6 +250,7 @@ function populateRepeatsEvery() {
 		$('label[for="weekdays"]').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 		$(':checkbox').css('visibility','hidden');
+		$('#repeats-every').css('visibility','visible');
 
 	}
 	else if($('#repeats option:selected').text() === "Weekly") {
@@ -260,12 +261,14 @@ function populateRepeatsEvery() {
 		$('label[for="scheduleWeekDays"]').css('visibility', 'visible');
 		$('label[for="weekdays"]').css('visibility', 'visible');
 		$(':checkbox').css('visibility','visible');
+		$('#repeats-every').css('visibility','visible');
 	}
 	else {
 		$('label[for="repeatsEvery"]').css('visibility', 'hidden');
 		$('#repeatsEvery').css('visibility','hidden');
 		$('#duration').css('visibility','hidden');
 		$('label[for="scheduleWeekDays"]').css('visibility', 'hidden');
+		$('#repeats-every').css('visibility','hidden');
 		$('label[for="weekdays"]').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 		$(':checkbox').css('visibility','hidden');
