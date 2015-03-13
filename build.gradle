@@ -8,29 +8,30 @@ buildscript {
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.0.20'
+        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.1.1'
     }
 }
 
 plugins {
-    id 'io.spring.dependency-management' version '0.3.1.RELEASE'
+    id 'io.spring.dependency-management' version '0.4.0.RELEASE'
 }
+
+// Version should match Sprint Number
+version '0.16'
+group 'imod'
 
 apply plugin: 'spring-boot'
 apply plugin: 'war'
 apply plugin: 'asset-pipeline'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.grails.grails-web'
 apply plugin: 'org.grails.grails-gsp'
-apply plugin: 'maven'
 
 ext {
     grailsVersion = project.grailsVersion
     gradleWrapperVersion = project.gradleWrapperVersion
 }
-
-// Version should match Sprint Number
-version '0.15'
-group 'imod'
 
 assets {
     minifyJs = false
@@ -78,7 +79,7 @@ dependencies {
     runtime 'org.grails.plugins:scaffolding'
 
     // custom runtime
-    runtime 'org.grails.plugins:jquery1.11.1'
+    runtime 'org.grails.plugins:jquery:1.11.1'
 
     // default test compile
     testCompile 'org.grails:grails-plugin-testing'
@@ -89,8 +90,8 @@ dependencies {
 
     // custom provided
     // code narc import is currently broken
-    // re-enable later and fix
-    compile 'org.grails.plugins:code-narc:0.23'
+    // re-enable later after codenarc provides jar needed for grails 3 to work
+    // compile 'org.grails.plugins:code-narc:0.23'
 
     // default console
     console 'org.grails:grails-console'
