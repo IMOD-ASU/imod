@@ -427,21 +427,23 @@ class BootStrap {
 
 
 		// Populate Audience types
-		def audience = new Audience(
-			description: 'Lower Division'
-		).save()
+		if (Audience.count() < 1) {
+			def audience = new Audience(
+				description: 'Lower Division'
+			).save()
 
-		def audience2 = new Audience(
-			description: 'Upper Division'
-		).save()
+			def audience2 = new Audience(
+				description: 'Upper Division'
+			).save()
 
-		def audience3 = new Audience(
-			description: 'Undergraduate'
-		).save()
+			def audience3 = new Audience(
+				description: 'Undergraduate'
+			).save()
 
-		def audience4 = new Audience(
-			description: 'Graduate'
-		).save()
+			def audience4 = new Audience(
+				description: 'Graduate'
+			).save()
+		}
 
 
 		if(ScheduleRepeats.count() < 1)
