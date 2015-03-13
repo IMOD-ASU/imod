@@ -13,6 +13,7 @@
 		<meta name="layout" content="imod" />
 		<script src="${resource(dir: 'js/source', file: 'courseOverview.js')}" defer></script>
 		<script src="${resource(dir: 'js/plugins', file: 'jquery.validate.js')}" defer></script>
+		<script src="${resource(dir: 'js/plugins', file: 'jquery.masked.min.js')}" defer></script>
 		<g:external dir="css/source" file="topicModal.css" />
 	</head>
 	<body>
@@ -219,6 +220,11 @@
 													<g:message code="imod.timeRatio.label" default="Time Ratio" />
 												</label>
 												<g:textField name="timeRatio" id="time-ratio" value="${currentImod?.timeRatio}" />
+
+												<span class="help-block">
+												"Time spent in and out of class. eg: 1:2"
+												</span>
+
 											</div>
 
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'numberOfSeats', 'error')} ">
@@ -336,7 +342,7 @@
 															<g:each in="${currentImod?.instructors?}" var="instructor">
 																<tr data-id="${instructor.id}" class="topicListRow">
 																	<td class="saveIcon">
-																		<i class="hidden fa fa-eraser"></i>
+																		<i class=" fa fa-square-o"></i>
 																	</td>
 																	<td>
 																		<g:textField name="firstName" value="${instructor.firstName}" class="first_name" />
@@ -358,6 +364,13 @@
 																		<select name="role" id="role" class="role">
 																			<option value="">Select Role</option>
 
+																			<g:if test="${instructor.role == 'Assistant Professor'}">
+																				<option selected>Assistant Professor</option>
+																			</g:if>
+																			<g:else>
+																				<option>Assistant Professor</option>
+																			</g:else>
+
 																			<g:if test="${instructor.role == 'Associate Professor'}">
 																				<option selected>Associate Professor</option>
 																			</g:if>
@@ -365,18 +378,32 @@
 																				<option>Associate Professor</option>
 																			</g:else>
 
-																			<g:if test="${instructor.role == 'Instructor'}">
-																				<option selected>Instructor</option>
+																			<g:if test="${instructor.role == 'Professor'}">
+																				<option selected>Professor</option>
 																			</g:if>
 																			<g:else>
-																				<option>Instructor</option>
+																				<option>Professor</option>
+																			</g:else>
+
+																			<g:if test="${instructor.role == 'Teaching Assistant'}">
+																				<option selected>Teaching Assistant</option>
+																			</g:if>
+																			<g:else>
+																				<option>Teaching Assistant</option>
+																			</g:else>
+
+																			<g:if test="${instructor.role == 'Course Assistant'}">
+																				<option selected>Course Assistant</option>
+																			</g:if>
+																			<g:else>
+																				<option>Course Assistant</option>
 																			</g:else>
 
 																			<g:if test="${instructor.role == 'Grader'}">
 																				<option selected>Grader</option>
 																			</g:if>
 																			<g:else>
-																				<option>Associate Professor</option>
+																				<option>Grader</option>
 																			</g:else>
 
 																		</select>

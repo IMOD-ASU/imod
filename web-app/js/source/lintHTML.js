@@ -4,8 +4,7 @@
 
 // define rules for html hint
 var messages = HTMLHint.verify(
-	document.documentElement.innerHTML,
-	{
+	document.documentElement.innerHTML, {
 		"attr-lowercase": true,
 		"attr-no-duplication": true,
 		"attr-unsafe-chars": true,
@@ -27,6 +26,6 @@ if (messages.length > 0) {
 	// add results to the end of the page
 	for (var i = 0; i < messages.length; i++) {
 		var current = messages[i];
-		log('line '+ current.line +' [c="color: red"]' + current.message +'[c] `' + current.evidence + '`');
+		log('line ' + current.line + ' [c="color: red"]' + current.message + '[c] `' + current.evidence + '`');
 	}
 }

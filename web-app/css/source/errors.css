@@ -13,8 +13,9 @@ h2 {
 
 .exceptionMessage {
     margin: 10px;
-    border: 1px solid #000000;
     padding: 5px;
+
+    border: 1px solid #000000;
     background-color: #e9e9e9;
 }
 
@@ -31,21 +32,26 @@ h2 {
 
 /* error details */
 .error-details {
-    border-top: 1px solid #ffaaaa;
-    box-shadow: 0 0 2px rgba(0,0,0,0.2);
-    border-bottom: 1px solid #ffaaaa;
-    background-color: #fff3f3;
-    line-height: 1.5;
     overflow: hidden;
+
     padding: 5px;
     padding-left: 25px;
+
+    border-top: 1px solid #ffaaaa;
+    border-bottom: 1px solid #ffaaaa;
+    background-color: #fff3f3;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+
+    line-height: 1.5;
 }
 
 .error-details dt {
-    clear: left;
     float: left;
-    font-weight: bold;
+    clear: left;
+
     margin-right: 5px;
+
+    font-weight: bold;
 }
 
 .error-details dt:after {
@@ -58,14 +64,16 @@ h2 {
 
 /* stack trace */
 .stack {
-    padding: 5px;
     overflow: auto;
+
     height: 150px;
+    padding: 5px;
 }
 
 /* code snippet */
 .snippet {
     background-color: #ffffff;
+
     font-family: monospace;
 }
 
@@ -74,23 +82,28 @@ h2 {
 }
 
 .snippet .lineNumber {
-    background-color: #dddddd;
-    color: #999999;
     display: inline-block;
+
+    width: 3em;
     margin-right: 5px;
     padding: 0 3px;
+
     text-align: right;
-    width: 3em;
+
+    color: #999999;
+    background-color: #dddddd;
 }
 
 .snippet .error {
     background-color: #fff3f3;
+
     font-weight: bold;
 }
 
 .snippet .error .lineNumber {
-    background-color: #ffaaaa;
     color: #333333;
+    background-color: #ffaaaa;
+
     font-weight: bold;
 }
 

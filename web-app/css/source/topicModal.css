@@ -1,137 +1,161 @@
-#topicDialog{
-    display:none;
-    border:1px solid #C4C2C2;
-    background:#EDEDEF;
-    position:absolute;
-    width:70%;
-    top:30%;
+#topicDialog {
+    position: absolute;
+    z-index: 2;
+    top: 30%;
     left: 15%;
-    z-index:2;
+
+    display: none;
+
+    width: 70%;
+
+    border: 1px solid #c4c2c2;
+    background: #ededef;
 }
-#topicDialogBackground{
-    z-index:1;
+#topicDialogBackground {
+    z-index: 1;
 }
-#topicModalClose{
-    float:right;
-    margin-right:10px;
-    background:inherit;
+#topicModalClose {
+    float: right;
+
+    margin-right: 10px;
+
+    background: inherit;
 }
-.modalBackground{
-    position:fixed;
-    top:0;
-    left:0;
-    display:none;
-    height:100%;
-    width:100%;
-    background-color:rgba(0,0,0,.5);
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.5);
 }
-.topicButtonField{
-    top:initial;
-    right:initial;
-    position:relative;
-    width:auto;
-    box-shadow:none;
-    background:linear-gradient(#FEFEFE,#EDEDEF);
-    height:3em;
-    margin:0px;
+.topicButtonField {
+    position: relative;
+    top: initial;
+    right: initial;
+
+    width: auto;
+    height: 3em;
+    margin: 0;
+
+    background: linear-gradient(#fefefe,#ededef);
+    box-shadow: none;
 }
-.topicButton{
-    height:2.9em;
+.topicButton {
+    height: 2.9em;
+
     background-repeat: no-repeat;
-    background-position-y:center;
+    background-position-y: center;
 }
-.topicButtonGradient{
-    height:auto;
-    background:linear-gradient(#F0F0F0,white);
-    display:inline-block;
-    box-shadow:0px 1px 2px #888888;
-    margin-left:5px;
-    margin-right:5px;
-    border-radius:4px;
-    padding-left:5px;
-    padding-right:5px;
+.topicButtonGradient {
+    display: inline-block;
+
+    height: auto;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+
+    border-radius: 4px;
+    background: linear-gradient(#f0f0f0,white);
+    box-shadow: 0 1px 2px #888888;
 }
-.topicButtonGradient.saveBG{
-}
-.topicButtonGradient.cancelBG{
-}
-.topicButtonGradient.cancelBG i{
+
+
+.topicButtonGradient.cancelBG i {
     color: darkred;
-    font-size:1.5em;
+
+    font-size: 1.5em;
 }
-#topicList{
-    width:100%;
-    margin:0px;
-    margin-bottom:1px;
+#topicList {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 1px;
 }
-#topicList thead tr:last-child{
-    width:4em;
-    padding-right:10px;
+#topicList thead tr:last-child {
+    width: 4em;
+    padding-right: 10px;
 }
-#topicList tbody *{
-    vertical-align:middle;
+#topicList tbody * {
+    vertical-align: middle;
 }
 
-#topicList tbody img{
-    height:20px;
-    width:20px;
-    padding-right:5px;
+#topicList tbody img {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
 }
-#topicList tr{
-    border-top:1px solid #C4C2C2;
-    border-bottom:1px solid #C4C2C2;
-}
-
-#topicList td{
-    padding:5px;
-}
-#topicList input, #topicList select, #topicList button{
-    width:95%;
-    height:inherit;
-    min-height:inherit;
-}
-#topicList .hidden{
-    display:none;
-}
-#topicList .unsaved{
-    background:white;
-}
-#topicList .topicDimensions{
-    width:25%;
-}
-#topicList .topicPriority{
-    width:20%;
-}
-#topicList .topicResources{
-    width:15%;
-    padding-right:0px
-}
-#topicList .topicPreReq{
-    padding:0px;
+#topicList tr {
+    border-top: 1px solid #c4c2c2;
+    border-bottom: 1px solid #c4c2c2;
 }
 
-#topicList .saveIcon{
-    width:1.1em;
-    padding-left:.5em;
-    padding-right:.5em;
-    color:darkred;
+#topicList td {
+    padding: 5px;
 }
-#topicList .knowledgeDimensionButton{
-    width:80%;
+#topicList input,
+#topicList select,
+#topicList button {
+    width: 95%;
+    height: inherit;
+    min-height: inherit;
 }
-#topicList #errorMessage{
-    font-weight:bold;
-    color:red
+#topicList .hidden {
+    display: none;
+}
+#topicList .unsaved {
+    background: white;
+}
+#topicList .topicDimensions {
+    width: 25%;
+}
+#topicList .topicPriority {
+    width: 20%;
+}
+#topicList .topicResources {
+    width: 15%;
+    padding-right: 0;
+}
+#topicList .topicPreReq {
+    padding: 0;
+}
+
+#topicList .saveIcon {
+    width: 1.1em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    font-size: 16px;
+    color: darkred;
+}
+#topicList .knowledgeDimensionButton {
+    width: 80%;
+}
+#topicList #errorMessage {
+    color: red;
+
+    font-weight: bold;
 }
 
 /* Topic Dialog for Course Overview */
-#topicDialog.custom-instructor{
-    position: static; display: block; overflow: hidden;
+#topicDialog.custom-instructor {
+    position: static;
+
+    display: block;
+    overflow: hidden;
+
     width: 90%;
 }
-.error{
+.error {
     border: 1px solid red !important;
 }
-label.error{
+.custom-instructor label.error{
     display: none !important;
+}
+
+#time-ratio{
+    max-width: 50px;
 }

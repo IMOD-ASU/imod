@@ -129,6 +129,18 @@
 								<br />
 
 								<label>
+									Assign to Current Learning Objective
+								</label>
+								<g:checkBox name="assignedToLearningObjective" />
+								<br />
+
+								<label>
+									Favorite Technique
+								</label>
+								<g:checkBox name="favoriteTechnique" />
+								<br />
+
+								<label>
 									Learning Domain
 								</label>
 								<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />

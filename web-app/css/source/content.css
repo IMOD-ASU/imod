@@ -1,7 +1,8 @@
 #contentTable {
-    border: 1px solid;
     width: 70%;
-    margin-left: 15%;
     margin-top: 2%;
     margin-bottom: 2%;
+    margin-left: 15%;
+
+    border: 1px solid;
 }

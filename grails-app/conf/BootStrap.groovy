@@ -19,6 +19,7 @@ import imod.Role
 import imod.ScheduleRepeats;
 import imod.ScheduleRepeatsEvery
 import imod.ScheduleWeekDays
+import imod.Audience
 
 
 class BootStrap {
@@ -424,6 +425,27 @@ class BootStrap {
 			).save()
 		}
 
+
+		// Populate Audience types
+		if (Audience.count() < 1) {
+			def audience = new Audience(
+				description: 'Lower Division'
+			).save()
+
+			def audience2 = new Audience(
+				description: 'Upper Division'
+			).save()
+
+			def audience3 = new Audience(
+				description: 'Undergraduate'
+			).save()
+
+			def audience4 = new Audience(
+				description: 'Graduate'
+			).save()
+		}
+
+
 		if(ScheduleRepeats.count() < 1)
 		{
 			def ScheduleRepeatsDaily = new ScheduleRepeats(
@@ -573,7 +595,7 @@ class BootStrap {
 			 */
 			def domainCategoryReceivingPhenomena = new DomainCategory(
 				domain: learningDomainAffective,
-				name: "ReceivingPhenomena"
+				name: "Receiving Phenomena"
 			)
 
 			def domainCategoryResponding = new DomainCategory(

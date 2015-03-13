@@ -72,7 +72,7 @@
 		<input type="hidden" id="contentID" value="${contentItem.id }"/>
 	<tr id="${contentItem.id}" class="topicItem">
 						<td class="saveIcon">
-							<i class="hidden fa fa-eraser"></i>
+							<i class="fa fa-square-o"></i>
 						</td>
 						<td class="topicTitle">
 							<g:textField
@@ -138,7 +138,7 @@
 				<g:each var="contentItem" in="${contentList}">
 					<tr id="${contentItem.id}" class="topicItem">
 						<td class="saveIcon">
-							<i class="hidden fa fa-eraser"></i>
+							<i class="fa fa-square-o"></i>
 						</td>
 						<td class="topicTitle">
 							<g:textField
