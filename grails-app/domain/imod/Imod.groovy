@@ -113,7 +113,7 @@ class Imod {
 		missedExams			nullable: true
 		missedAssignments 	nullable: true
 		numberOfSeats		nullable: true,		min: 1,		scale: 1
-		creditHours			nullable: true,		min: 1,		scale: 1
+		creditHours			nullable: true,		min: 0,		scale: 1
 
 		// Domains belonging to an IMOD
 		coursePolicy	nullable: true

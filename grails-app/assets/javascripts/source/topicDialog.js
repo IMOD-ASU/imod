@@ -22,6 +22,7 @@ $(function() {
 	$('#cancelResource').click(closeResourceModal);
 	$('#saveResource').click(saveResource);
 	$('#removeResource').click(function() {
+
 		var resourceIDs = [];
 		$("#resourceList .selected").each(function() {
 			resourceIDs.push(this.id);
@@ -68,6 +69,7 @@ function errorMessage(message) {
 	}
 }
 
+
 function flashError() {
 	var message = errorMessages.shift();
 	$('#errorMessage').text(message);
@@ -103,7 +105,7 @@ function changePic(imageToChange) {
 
 function toggleSelected() {
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
-		$(this).find(".saveIcon > i").toggleClass("hidden");
+		$(this).find(".saveIcon > i").toggleClass("fa-square-o").toggleClass("fa-check-square");
 		$(this).toggleClass("selected");
 	}
 }
@@ -332,7 +334,7 @@ function addTopic() {
 			// FIXME move html block out of javascript file
 			$('<tr id="' + id + '" class="topicItem">' +
 				'<td class="saveIcon">' +
-				'<i class="hidden fa fa-eraser"></i>' +
+				'<i class="fa fa-square-o"></i>' +
 				'</td><td class="topicTitle">' +
 				'<input type="text" id="topicTitle' + id + '"> ' +
 				'<input type="hidden" id="topicTitleSaved' + id + '"> ' +
@@ -393,7 +395,7 @@ function addResource() {
 			// FIXME move html out of JS
 			$('<tr id="' + id + '" class="resourceItem">' +
 				'<td class="saveIcon">' +
-				'<i class="hidden fa fa-eraser"></i>' +
+				'<i class="fa fa-square-o"></i>' +
 				'</td><td class="resourceName">' +
 				'<input type="text" id="resourceName' + id + '"> ' +
 				'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
@@ -438,7 +440,7 @@ function getResource() {
 				// FIXME move html out of JS
 				$('<tr id="' + id + '" class="resourceItem">' +
 					'<td class="saveIcon">' +
-					'<i class="hidden fa fa-eraser"></i>' +
+					'<i class="fa fa-square-o"></i>' +
 					'</td><td class="resourceName">' +
 					'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
 					'<input type="hidden" id="resourceNameSaved' + id + '"> ' +

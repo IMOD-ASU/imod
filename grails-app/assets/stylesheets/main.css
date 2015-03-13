@@ -1158,3 +1158,13 @@ label[for=weekdays] {
 #grading-procedure-text {
     display: none;
 }
+
+/* hide learning objectives initially so that
+    we can hide empty learning objectives using JavaScript
+ */
+.learning-objective.list-wrapper {
+    display: none;
+}
+.saveIcon {
+    font-size: 16px;
+}

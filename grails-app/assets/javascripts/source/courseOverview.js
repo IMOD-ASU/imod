@@ -79,8 +79,11 @@ $(document).ready(function() {
 		row += "<td>";
 		row += "	<select name=\"role\" id=\"role\" class=\"role\">";
 		row += "		<option value=\"\">Select Role<\/option>";
+		row += "		<option>Assistant Professor<\/option>";
 		row += "		<option>Associate Professor<\/option>";
-		row += "		<option>Instructor<\/option>";
+		row += "		<option>Professor<\/option>";
+		row += "		<option>Teaching Assistant<\/option>";
+		row += "		<option>Course Assistant<\/option>";
 		row += "		<option>Grader<\/option>";
 		row += "	<\/select>";
 		row += "<\/td>";
@@ -164,6 +167,13 @@ $(document).ready(function() {
 		}
 	});
 
+	// regex method for url
+	$.validator.addMethod('urlRule', function(value, element, regexpr) {
+		return regexpr.test(value);
+	}, 'Please enter a valid URL.');
+
+	$('#time-ratio').mask('9:9');
+
 	// course overview validation
 	$('.courseoverview').validate({
 		rules: {
@@ -173,18 +183,31 @@ $(document).ready(function() {
 			},
 			url: {
 				required: true,
-				url: true
-			},
-			numberOfSeats: {
-				digits: true
+				urlRule: /^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i
 			},
 			subjectArea: {
 				required: true
+			},
+			creditHours: {
+				min: 0,
+				max: 7,
+				digits: true
+			},
+			numberOfSeats: {
+				min: 0,
+				max: 1000,
+				digits: true
 			}
 		},
 		messages: {
 			url: {
 				url: 'Please enter a valid URL eg. http://google.com'
+			},
+			creditHours: {
+				min: 'Credit hours cannot be negative'
+			},
+			numberOfSeats: {
+				min: 'Number of seats cannot be negative'
 			}
 		}
 	});
@@ -218,8 +241,8 @@ function gradingRadio(radio) {
 }
 
 function populateRepeatsEvery() {
-	if ($('#repeats option:selected').text() === "Daily") {
-		$('#duration').text("days");
+	if ($('#repeats option:selected').text() === 'Daily') {
+		$('#duration').text('days');
 		$('#duration').css('visibility', 'visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
 		$('#repeatsEvery').css('visibility', 'visible');
@@ -227,15 +250,17 @@ function populateRepeatsEvery() {
 		$('label[for="weekdays"]').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 		$(':checkbox').css('visibility', 'hidden');
+		$('#repeats-every').css('visibility', 'visible');
 
-	} else if ($('#repeats option:selected').text() === "Weekly") {
-		$('#duration').text("weeks");
+	} else if ($('#repeats option:selected').text() === 'Weekly') {
+		$('#duration').text('weeks');
 		$('#duration').css('visibility', 'visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
 		$('#repeatsEvery').css('visibility', 'visible');
 		$('label[for="scheduleWeekDays"]').css('visibility', 'visible');
 		$('label[for="weekdays"]').css('visibility', 'visible');
 		$(':checkbox').css('visibility', 'visible');
+		$('#repeats-every').css('visibility', 'visible');
 	} else {
 		$('label[for="repeatsEvery"]').css('visibility', 'hidden');
 		$('#repeatsEvery').css('visibility', 'hidden');
@@ -244,12 +269,13 @@ function populateRepeatsEvery() {
 		$('label[for="weekdays"]').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 		$(':checkbox').css('visibility', 'hidden');
+		$('#repeats-every').css('visibility', 'hidden');
 	}
 }
 
 function toggleSelected(event) {
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
-		$(this).find('.saveIcon > i').toggleClass('hidden');
+		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 		$(this).toggleClass('selected');
 	}
 }
