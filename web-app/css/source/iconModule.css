@@ -18,8 +18,13 @@
     padding: 45px 0;
 
     text-align: center;
+}
 
+.icons > .ui-state-default {
     background-color: #ffffcc;
+    background-image: url('../../images/unassign.png');
+    background-repeat: no-repeat;
+    background-position: right top;
 }
 
 .icons > .ui-selecting,
@@ -32,13 +37,6 @@
 .icons > .ui-state-focus {
     color: #1c94c4;
     border: 1px solid #cccccc;
-}
-
-.icons.assign,
-.icons.favorite {
-    background-image: url('../../images/unassign.png');
-    background-repeat: no-repeat;
-    background-position: right top;
 }
 
 .icons.assign > .ui-selecting,
