@@ -102,6 +102,10 @@ function displayPedagogyTechniques(data) {
 	$('#ideal-matches').html(idealText);
 	$('#extended-matches').html(extendedText);
 
-	$('#ideal-matches').buttonset();
-	$('#extended-matches').buttonset();
+	$('#ideal-matches').buttonset().click(function() {
+		$('#add-new-technique').dialog('open');
+	});
+	$('#extended-matches').buttonset().click(function() {
+		$('#add-new-technique').dialog('open');
+	});
 }
