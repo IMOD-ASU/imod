@@ -1,5 +1,13 @@
-# .gitignore for Grails 2.4
+# .gitignore for imods
 
+### Node ###
+node_modules
+
+### Bower ###
+bower_components
+
+
+### Grails 2.4 ###
 # ignore static analysis report
 static-analysis.txt
 static-analysis.html

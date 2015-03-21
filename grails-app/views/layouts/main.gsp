@@ -26,20 +26,21 @@ this is the basic layout with only the IMOD header and footer
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}" sizes="114x114" />
 
 		<!-- style libraries provided by content delivery network -->
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/ui-lightness/jquery-ui.css" />
-		<link rel="stylesheet" href="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css">
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/themes/default/style.min.css" />
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:regular,bold&amp;subset=Latin" />
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+		<g:external dir="bower_components/jquery.ui/themes/base" file="all.css" />
+		<g:external dir="bower_components/qtip2" file="jquery.qtip.min.css" />
+		<g:external dir="bower_components/jstree/dist/themes/default" file="style.min.css" />
+		<g:external dir="bower_components/fontawesome/css" file="font-awesome.min.css" />
+		<g:external dir="bower_components/ubuntu-fontface" file="ubuntu.css" />
 
 		<!-- internal styling -->
 		<g:external dir="css" file="main.css" />
 
 		<!-- javascript libraries provided by content delivery network -->
-		<script src="//code.jquery.com/jquery-2.1.3.min.js" defer></script>
-		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js" defer></script>
-		<script src="//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js" defer></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/jstree.min.js" defer></script>
+		<g:external dir="bower_components/jquery/dist" file="jquery.min.js" defer="defer" />
+		<g:external dir="bower_components/jquery.ui/ui" file="core.js" defer="defer" />
+		<g:external dir="bower_components/jquery.ui/ui" file="button.js" defer="defer" />
+		<g:external dir="bower_components/qtip2" file="jquery.qtip.min.js" defer="defer" />
+		<g:external dir="bower_components/jstree/dist" file="jstree.min.js" defer="defer" />
 
 		<!-- internal javascript -->
 		<g:javascript src="source/application.js" defer="defer" />
@@ -94,9 +95,9 @@ this is the basic layout with only the IMOD header and footer
 
 		<g:if env="development">
 			<!-- automated html style checking -->
-			<script src="//adamschwartz.co/log/log.js"></script>
-			<script src="//rawgit.com/yaniswang/HTMLHint/master/lib/htmlhint.js"></script>
-			<g:javascript src="source/lintHTML.js" />
+			<g:external dir="bower_components/log" file="log.min.js" defer="defer" />
+			<g:external dir="bower_components/htmlhint/lib" file="htmlhint.js" defer="defer" />
+			<g:javascript src="source/lintHTML.js" defer="defer" />
 		</g:if>
 	</body>
 </html>

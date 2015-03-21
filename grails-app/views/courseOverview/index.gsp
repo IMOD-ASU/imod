@@ -11,9 +11,9 @@
 			Course Overview
 		</title>
 		<meta name="layout" content="imod" />
-		<script src="${resource(dir: 'js/source', file: 'courseOverview.js')}" defer></script>
-		<script src="${resource(dir: 'js/plugins', file: 'jquery.validate.js')}" defer></script>
-		<script src="${resource(dir: 'js/plugins', file: 'jquery.masked.min.js')}" defer></script>
+		<g:javascript src="source/courseOverview.js" defer="defer" />
+		<g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" defer="defer" />
+		<g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" defer="defer" />
 		<g:external dir="css/source" file="topicModal.css" />
 	</head>
 	<body>
