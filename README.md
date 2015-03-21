@@ -18,11 +18,13 @@ An IMODS is a course that uses Pedagogy, Content, and Assessment to generate Lea
 * Install Grails version 2.4.4
 [(windows)](http://grails.org/doc/latest/guide/gettingStarted.html#requirements)
 [(linux)](http://gvmtool.net/)
-* Install Postgres SQL
-[(windows)](http://www.postgresql.org/download/windows/)
+* Install Postgres SQL 9.4 [(windows)](http://www.postgresql.org/download/windows/)
 [(linux)](https://help.ubuntu.com/community/PostgreSQL)
+* Install Node JS v0.12 [(windows) (linux)](https://nodejs.org/download/)
 * For develop ensure postgres user is "postres" with password "postres"
 * Create a database named "sample"
+* Run `npm install -g`
+* Run `bower install`
 
 ## Key Concepts
 
