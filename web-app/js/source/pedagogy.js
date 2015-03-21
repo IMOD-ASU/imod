@@ -106,8 +106,26 @@ function displayPedagogyTechniques(data) {
 
 	$('#ideal-matches').buttonset().click(function() {
 		$('#add-new-technique').dialog('open');
+		displayPedagogyInformationInEdit();
 	});
+
 	$('#extended-matches').buttonset().click(function() {
 		$('#add-new-technique').dialog('open');
+		displayPedagogyInformationInEdit();
+	});
+}
+
+function displayPedagogyInformationInEdit() {
+	var data = {
+		id: $('label.ui-state-active').attr('for')
+	};
+	$.ajax({
+		url: '../../pedagogyTechnique/get',
+		method: 'post',
+		data: JSON.stringify(data),
+		contentType: 'application/json'
+	})
+	.done(function(data) {
+		console.log(data);
 	});
 }
