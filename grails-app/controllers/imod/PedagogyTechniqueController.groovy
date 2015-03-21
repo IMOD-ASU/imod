@@ -1,4 +1,5 @@
 package imod
+import grails.converters.JSON
 
 class PedagogyTechniqueController {
 	def springSecurityService
@@ -8,6 +9,15 @@ class PedagogyTechniqueController {
 		favoriteByUser: 'POST',
 		assignToObjective: 'POST'
 	]
+
+	/**
+	 * get info on a selected technique
+	 */
+	def get(Long id) {
+		[
+			pedagogyTechnique: PedagogyTechnique.get(id)
+		] as JSON
+	}
 
 	/**
 	 * creates a new Pedagogy Technique
