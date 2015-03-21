@@ -12,8 +12,6 @@
 		</title>
 		<meta name="layout" content="imod" />
 		<g:javascript src="source/courseOverview.js" defer="defer" />
-		<g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" defer="defer" />
-		<g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" defer="defer" />
 		<g:external dir="css/source" file="topicModal.css" />
 	</head>
 	<body>

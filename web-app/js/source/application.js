@@ -2,8 +2,6 @@
 
 $(document).ready(function() {
 	$('#accordion').accordion();
-	$('#help-placeholder').draggable();
-	$('#open-help').draggable();
 	$('.show-hover-new').qtip({
 		style: {
 			background: 'transparent',

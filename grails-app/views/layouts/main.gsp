@@ -25,7 +25,7 @@ this is the basic layout with only the IMOD header and footer
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}" />
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'colorsymbol_sml.png')}" sizes="114x114" />
 
-		<!-- style libraries provided by content delivery network -->
+		<!-- style libraries -->
 		<g:external dir="bower_components/jquery.ui/themes/base" file="all.css" />
 		<g:external dir="bower_components/qtip2" file="jquery.qtip.min.css" />
 		<g:external dir="bower_components/jstree/dist/themes/default" file="style.min.css" />
@@ -35,12 +35,21 @@ this is the basic layout with only the IMOD header and footer
 		<!-- internal styling -->
 		<g:external dir="css" file="main.css" />
 
-		<!-- javascript libraries provided by content delivery network -->
+		<!-- core javascript libraries -->
 		<g:external dir="bower_components/jquery/dist" file="jquery.min.js" defer="defer" />
 		<g:external dir="bower_components/jquery.ui/ui" file="core.js" defer="defer" />
+		<g:external dir="bower_components/jquery.ui/ui" file="widget.js" defer="defer" />
+
+		<!-- ui widgets -->
+		<g:external dir="bower_components/jquery.ui/ui" file="accordion.js" defer="defer" />
 		<g:external dir="bower_components/jquery.ui/ui" file="button.js" defer="defer" />
+		<g:external dir="bower_components/jquery.ui/ui" file="dialog.js" defer="defer" />
+
+		<!-- plugins to javascript libraries -->
 		<g:external dir="bower_components/qtip2" file="jquery.qtip.min.js" defer="defer" />
 		<g:external dir="bower_components/jstree/dist" file="jstree.min.js" defer="defer" />
+		<g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" defer="defer" />
+		<g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" defer="defer" />
 
 		<!-- internal javascript -->
 		<g:javascript src="source/application.js" defer="defer" />
