@@ -76,7 +76,7 @@ function updateDatePicker(dateFormat) {
 			var template = "<input type='text' name='" + id + "' id='" + id + "' value='" + val + "'/>";
 
 			if ($(this).parent('.datePickerCalenderView').size()) {
-				template = "<div id='" + id + "'/>";
+				template = '<div id="' + id + '" />';
 			}
 
 

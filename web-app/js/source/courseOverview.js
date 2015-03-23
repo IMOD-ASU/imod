@@ -47,7 +47,6 @@ $(document).ready(function() {
 
 	});
 
-
 	$('#topicList > tbody').on('click', 'tr', toggleSelected);
 
 	$('.topicButtonGradient .add').click(function() {
