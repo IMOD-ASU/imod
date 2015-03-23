@@ -120,7 +120,22 @@ function displayPedagogyInformationInEdit() {
 			url: '../../pedagogyTechnique/get/' + $('label.ui-state-active').attr('for'),
 			method: 'GET'
 		})
-		.done(function(data) {
-			console.log(data);
-		});
+		.done(populatePedagogyTechnique);
+}
+
+function populatePedagogyTechnique(data) {
+	console.log(data);
+	var currentTechnique = data.pedagogyTechnique;
+	// set the text fields
+	$('#title').val(currentTechnique.title);
+	$('#location').val(currentTechnique.location);
+	$('#direction').val(currentTechnique.direction);
+	$('#materials').val(currentTechnique.materials);
+	$('#reference').val(currentTechnique.reference);
+	$('#strategyDescription').val(currentTechnique.strategyDescription);
+	$('#activityDescription').val(currentTechnique.activityDescription);
+
+	// choose correct item from selectables
+	$('.learningDomain option[value=' + currentTechnique.learningDomain[0].id + ']').prop('selected', true);
+	$('.domainCategory option[value=' + currentTechnique.domainCategory[0].id + ']').prop('selected', true);
 }

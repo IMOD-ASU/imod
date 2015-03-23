@@ -206,10 +206,8 @@
 								<g:textField name="activityDescription" />
 								<br />
 
-								<g:actionSubmit value="Save" action="create" />
-								<button id="create-pedagogy-cancel">
-									Cancel
-								</button>
+								<g:actionSubmit value="Save" action="save" />
+								<g:actionSubmit value="Cancel" action="cancel" />
 							</g:form>
 						</div>
 					</td>
