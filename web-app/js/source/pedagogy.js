@@ -20,21 +20,12 @@ $('input[name=domainCategory]').on('change', filterPedagogyTechniques);
 // when add new technique button is clicked open modal
 $('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
 
-// when cancel button is clicked close modal
-$('#create-pedagogy-cancel').on('click', closeNewPedagogyTechniqueModal);
-
 /**
  * Opens the modal to create a new pedagogy technique
  */
 function openNewPedagogyTechniqueModal() {
+	$('#techniqueId').val('');
 	$('#add-new-technique').dialog('open');
-}
-
-/**
- * Closes the modal to create a new pedagogy technique
- */
-function closeNewPedagogyTechniqueModal() {
-	$('#add-new-technique').dialog('close');
 }
 
 /**
@@ -116,6 +107,7 @@ function displayPedagogyTechniques(data) {
 }
 
 function displayPedagogyInformationInEdit() {
+	$('#techniqueId').val($('label.ui-state-active').attr('for'));
 	$.ajax({
 			url: '../../pedagogyTechnique/get/' + $('label.ui-state-active').attr('for'),
 			method: 'GET'
@@ -124,7 +116,6 @@ function displayPedagogyInformationInEdit() {
 }
 
 function populatePedagogyTechnique(data) {
-	console.log(data);
 	var currentTechnique = data.pedagogyTechnique;
 	// set the text fields
 	$('#title').val(currentTechnique.title);

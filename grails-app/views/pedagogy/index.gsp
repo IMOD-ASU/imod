@@ -122,6 +122,7 @@
 						<div id="add-new-technique" title="Add New Technique">
 							<%--To render the add new Technique dialog box--%>
 							<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+								<g:hiddenField name="techniqueId" />
 								<label>
 									Title
 								</label>

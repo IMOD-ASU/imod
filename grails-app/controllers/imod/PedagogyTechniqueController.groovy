@@ -35,16 +35,14 @@ class PedagogyTechniqueController {
 	 * creates a new Pedagogy Technique
 	 */
 	def save(Long id, Long learningObjectiveID) {
-		// attempt to find technique
-		def newTechnique = PedagogyTechnique.findByTitle(params.title)
+		def newTechnique = new PedagogyTechnique()
 
-		// technique does not exist, create now
-		if (newTechnique == null) {
-			newTechnique = new PedagogyTechnique()
-			newTechnique.title = params.title
+		if (params.techniqueId) {
+			newTechnique = PedagogyTechnique.get(params.techniqueId)
 		}
 
 		// Store text fields
+		newTechnique.title = params.title
 		newTechnique.description = params.activityDescription
 		newTechnique.direction = params.direction
 		newTechnique.materials = params.materials
