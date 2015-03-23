@@ -5,9 +5,10 @@ class PedagogyTechniqueController {
 	def springSecurityService
 
 	static allowedMethods = [
+		assignToObjective: 'POST',
 		create: 'POST',
 		favoriteByUser: 'POST',
-		assignToObjective: 'POST'
+		get: 'GET'
 	]
 
 	/**

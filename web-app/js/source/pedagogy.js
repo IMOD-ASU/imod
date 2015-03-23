@@ -116,14 +116,9 @@ function displayPedagogyTechniques(data) {
 }
 
 function displayPedagogyInformationInEdit() {
-	var data = {
-		id: $('label.ui-state-active').attr('for')
-	};
 	$.ajax({
-			url: '../../pedagogyTechnique/get',
-			method: 'post',
-			data: JSON.stringify(data),
-			contentType: 'application/json'
+			url: '../../pedagogyTechnique/get/' + $('label.ui-state-active').attr('for'),
+			method: 'GET'
 		})
 		.done(function(data) {
 			console.log(data);
