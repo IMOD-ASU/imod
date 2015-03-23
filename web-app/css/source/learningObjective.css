@@ -312,7 +312,7 @@ input[disabled='disabled'] {
 
     line-height: 1.5em;
 }
-#addTopicModal i {
+#addTopicModal i, #deleteTopicModal i {
     padding: 2px;
 
     vertical-align: middle;
@@ -326,9 +326,16 @@ input[disabled='disabled'] {
 #addTopicModal {
     font-weight: bold;
 }
+
+#deleteTopicModal{
+    margin-left: 10px;
+}
+
 .topicModalButton {
-    border: none;
-    background: transparent;
+    border: none; 
+    border-radius: 4px;
+    background: linear-gradient(white,#ededef);
+    box-shadow: 0 1px #c4c2c2; cursor: pointer;
 }
 .topicModalButtonGradient {
     display: inline-block;
@@ -339,10 +346,6 @@ input[disabled='disabled'] {
     margin-left: 5px;
     padding-right: 5px;
     padding-left: 5px;
-
-    border-radius: 4px;
-    background: linear-gradient(white,#ededef);
-    box-shadow: 0 1px #c4c2c2;
 }
 
 #topicDialog {

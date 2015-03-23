@@ -12,7 +12,44 @@ $(function() {
 		$("#contentTree").jstree("destroy");
 		buildContentTree(newJSONdata, true);
 	});
+
+	$("#deleteTopicModal").click(function() {
+		var nodeArray = $("#contentTree").jstree(true)._model.data["#"].children_d;
+		var defaultClass = "fa fa-stack-1x checkbox";
+		var idArray = [];
+		$(nodeArray).each(function() {
+			var icon = $("#select" + this.substr(7));
+			if ($("#" + this).hasClass("topicSelected")) {
+				icon.attr("class", defaultClass + " fa-check");
+				idArray.push(this.substr(7));
+			}
+		});
+
+		if(idArray.length < 1) {
+			alert("Please select at least one topic");
+		} else{
+			deleteTopicSubTab(idArray);
+		}
+
+		return false;
+
+	});
 });
+
+function deleteTopicSubTab(contentIDs) {
+	contentIDs = JSON.stringify(contentIDs);
+	$.ajax({
+		url: "../../content/deleteTopic/",
+		type: "GET",
+		dataType: "json",
+		data: {
+			contentIDs: contentIDs
+		},
+		success: function(data) {
+			// window.location.reload();
+		}
+	});
+}
 
 function buildContentTree(jsonData, refreshDB) {
 	$("#contentTree").jstree({
