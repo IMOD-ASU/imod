@@ -120,12 +120,12 @@ function displayPedagogyInformationInEdit() {
 		id: $('label.ui-state-active').attr('for')
 	};
 	$.ajax({
-		url: '../../pedagogyTechnique/get',
-		method: 'post',
-		data: JSON.stringify(data),
-		contentType: 'application/json'
-	})
-	.done(function(data) {
-		console.log(data);
-	});
+			url: '../../pedagogyTechnique/get',
+			method: 'post',
+			data: JSON.stringify(data),
+			contentType: 'application/json'
+		})
+		.done(function(data) {
+			console.log(data);
+		});
 }
