@@ -14,9 +14,11 @@ class PedagogyTechniqueController {
 	 * get info on a selected technique
 	 */
 	def get(Long id) {
-		[
-			pedagogyTechnique: PedagogyTechnique.get(id)
-		] as JSON
+		render (
+			[
+				pedagogyTechnique: PedagogyTechnique.get(id)
+			] as JSON
+		)
 	}
 
 	/**
