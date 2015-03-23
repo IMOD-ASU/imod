@@ -48,21 +48,6 @@ $(document).ready(function() {
 	});
 
 
-	//add instructor modal
-	/*$('.add-instructor').click(function(){
-		$('#topicDialogBackground, #topicDialog').show()
-		return false;
-	});
-
-	$('.topicButtonGradient .remove').click(function(){
-
-		if ($('#topicList tbody tr').length > 1){
-			$('#topicList tbody tr:last').remove();
-		}
-
-		return false;
-	});*/
-
 	$('#topicList > tbody').on('click', 'tr', toggleSelected);
 
 	$('.topicButtonGradient .add').click(function() {
@@ -91,9 +76,6 @@ $(document).ready(function() {
 		row += "<\/tr>";
 
 		$('#topicList tbody').append(row);
-		/*$('#topicList tbody tr:last input').each(function(){
-			$(this).val('');
-		});*/
 		return false;
 	});
 
@@ -168,47 +150,47 @@ $(document).ready(function() {
 	});
 
 	// regex method for url
-	$.validator.addMethod("urlRule", function(value, element, regexpr) {          
-	    return regexpr.test(value);
-	}, "Please enter a valid URL.");
+	$.validator.addMethod('urlRule', function(value, element, regexpr) {
+		return regexpr.test(value);
+	}, 'Please enter a valid URL.');
 
-	$('#time-ratio').mask("9:9")
+	$('#time-ratio').mask('9:9');
 
 	// course overview validation
-	$(".courseoverview").validate({
-	  	rules: {
-	    	imodNumber: "required",
-	    	name:{
-	    		required: true
-	    	},	  
-	    	url: {
-	    		required: true,
+	$('.courseoverview').validate({
+		rules: {
+			imodNumber: 'required',
+			name: {
+				required: true
+			},
+			url: {
+				required: true,
 				urlRule: /^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i
-	    	},
-	    	subjectArea: {
-	    		required: true
-	    	},
-	    	creditHours: {
-	    		min: 0,
-	    		max: 7,
-	    		digits: true
-	    	},
-	    	numberOfSeats: {
-	    		min: 0,
-	    		max: 1000,
-	    		digits: true
-	    	}
-	  	},
-	  	messages: {
-	    	url: {
-	      		url: "Please enter a valid URL eg. http://google.com"
-	    	},
-	    	creditHours: {
-	    		min: "Credit hours cannot be negative"
-	    	},
-	    	numberOfSeats: {
-	    		min: "Number of seats cannot be negative"
-	    	}
+			},
+			subjectArea: {
+				required: true
+			},
+			creditHours: {
+				min: 0,
+				max: 7,
+				digits: true
+			},
+			numberOfSeats: {
+				min: 0,
+				max: 1000,
+				digits: true
+			}
+		},
+		messages: {
+			url: {
+				url: 'Please enter a valid URL eg. http://google.com'
+			},
+			creditHours: {
+				min: 'Credit hours cannot be negative'
+			},
+			numberOfSeats: {
+				min: 'Number of seats cannot be negative'
+			}
 		}
 	});
 
@@ -241,8 +223,8 @@ function gradingRadio(radio) {
 }
 
 function populateRepeatsEvery() {
-	if ($('#repeats option:selected').text() === "Daily") {
-		$('#duration').text("days");
+	if ($('#repeats option:selected').text() === 'Daily') {
+		$('#duration').text('days');
 		$('#duration').css('visibility', 'visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
 		$('#repeatsEvery').css('visibility', 'visible');
@@ -252,8 +234,8 @@ function populateRepeatsEvery() {
 		$(':checkbox').css('visibility', 'hidden');
 		$('#repeats-every').css('visibility', 'visible');
 
-	} else if ($('#repeats option:selected').text() === "Weekly") {
-		$('#duration').text("weeks");
+	} else if ($('#repeats option:selected').text() === 'Weekly') {
+		$('#duration').text('weeks');
 		$('#duration').css('visibility', 'visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
 		$('#repeatsEvery').css('visibility', 'visible');
@@ -275,7 +257,7 @@ function populateRepeatsEvery() {
 
 function toggleSelected(event) {
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
-		$(this).find('.saveIcon > i').toggleClass("fa-square-o").toggleClass("fa-check-square");
+		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 		$(this).toggleClass('selected');
 	}
 }
