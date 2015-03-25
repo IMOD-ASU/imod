@@ -159,12 +159,12 @@
     max-width: 50px;
 }
 
-.course-overview-form #topicList tbody td{
+.course-overview-form #topicList tbody td {
     vertical-align: top;
 }
 
-.course-overview-form #topicList tbody td label.error{
-    margin-left: 0;
-    margin-top: 5px;
+.course-overview-form #topicList tbody td label.error {
     width: auto;
+    margin-top: 5px;
+    margin-left: 0;
 }
