@@ -184,11 +184,17 @@
                 
                 <li>
                     <strong>${instructor.firstName} ${instructor.lastName}</strong><br>
-                    ${instructor.email}<br>                    
                     ${instructor.role}<br>
-                    ${instructor.officeHours}<br>
-                    ${instructor.webPage}<br>
-                    ${instructor.location}<br>
+                    ${instructor.email}<br>                    
+                    <g:if test="${instructor.officeHours != null && !instructor.officeHours.isEmpty()}">
+                        Office Hours: ${instructor.officeHours}<br>
+                    </g:if>
+                    <g:if test="${instructor.webPage != null && !instructor.webPage.isEmpty()}">
+                        Website: ${instructor.webPage}<br>
+                    </g:if>
+                    <g:if test="${instructor.location != null && !instructor.location.isEmpty()}">
+                        Location: ${instructor.location}<br>
+                    </g:if>
                 </li>
 
             </g:each>
