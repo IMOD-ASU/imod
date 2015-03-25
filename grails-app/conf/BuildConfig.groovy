@@ -52,7 +52,7 @@ grails.project.dependency.resolution = {
 
 	dependencies {
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-		runtime 'org.postgresql:postgresql:9.3-1102-jdbc41'
+		runtime 'org.postgresql:postgresql:9.4-1201-jdbc41'
 		compile 'org.jadira.usertype:usertype.core:3.2.0.GA'
 	}
 
@@ -60,7 +60,7 @@ grails.project.dependency.resolution = {
 		build ':tomcat:7.0.55.2'
 
 		compile ':scaffolding:2.1.2'
-		compile ':postgresql-extensions:4.3.0'
+		compile ':postgresql-extensions:4.4.0'
 		compile ':cache:1.1.8'
 		compile ':spring-security-core:2.0-RC4'
 		compile ':mail:1.0.7'

@@ -7,6 +7,10 @@ package imod
 class PedagogyTechnique {
 	String title
 	String description
+	String direction
+	String materials
+	String strategyDescription
+	String activityDescription
 	PedagogyMode pedagogyMode
 
 	static hasMany = [
@@ -30,9 +34,13 @@ class PedagogyTechnique {
 	}
 
     static constraints = {
+		activityDescription nullable: true
 		activityFocus nullable: true
 		assignedLearningObjective nullable: true
 		description nullable: true, blank: true
+		direction nullable: true
+		materials nullable: true
+		strategyDescription nullable: true
 		userFavorite nullable: true
     }
 }

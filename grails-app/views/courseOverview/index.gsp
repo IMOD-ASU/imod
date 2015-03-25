@@ -45,6 +45,7 @@
 								</td>
 								<td>
 									<fieldset class="buttons">
+										<a href="../syllabus/${currentImod?.id}">Show Syllabus</a>
 										<g:actionSubmit class="save show-hover-new" action="update" title="${Help.toolTip("OVERVIEW", "Save Course Overview")}" value="${message(code: 'Save', default: 'Save')}"/>
 										<g:actionSubmit class="delete show-hover-new" action="delete" title="${Help.toolTip("OVERVIEW", "Delete Course Overview")}" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
 									</fieldset>
@@ -130,13 +131,14 @@
 											<g:datePicker name="schedule.endDate" precision="day" value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
 										</div>
 
-										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
+										<div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
 											<label for="startTime">
 												<g:message code="imod.schedule.startTime.label" default="Start Time" />
 											</label>
-										<joda:timePicker name="schedule.startTime" id="schedule-start-time" value="${currentImod?.schedule?.startTime}" />
+
+										<joda:timePicker name="schedule.startTime" id="schedule-start-time" value="${currentImod?.schedule?.startTime}"  />
 										</div>
-										<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'endTime', 'error')} ">
+										<div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'endTime', 'error')} ">
 											<label for="endTime">
 												<g:message code="imod.schedule.endTime.label" default="End Time" />
 											</label>
@@ -246,15 +248,15 @@
 											</h3>
 											<div>
 												<div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}"/> Competency Based
-                                                </div>
+													<g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}"/> Competency Based
+												</div>
 
-                                                <div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}"/> Standardized Based
-                                                </div>
+												<div>
+													<g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}"/> Standardized Based
+												</div>
 
-                                                <div>
-                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}"/> Custom <br>
+												<div>
+													<g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}"/> Custom <br>
 
 													<g:textArea name="gradingProcedure" id="grading-procedure-text" value="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ? currentImod?.gradingProcedure:''}" rows="3" cols="30" />
 												</div>
@@ -311,7 +313,6 @@
 											</span>
 										</div>
 											<div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} ">
-
 												<div id="topicDialog" class="custom-instructor">
 													<input type="hidden" name="imodID" value="221" id="imodID">
 													<fieldset class="buttons topicButtonField">
@@ -343,23 +344,22 @@
 																		<i class=" fa fa-square-o"></i>
 																	</td>
 																	<td>
-																		<g:textField name="firstName" value="${instructor.firstName}" class="first_name" />
+																		<g:textField name="firstName[]" value="${instructor.firstName}" class="first_name" />
 																	</td>
 																	<td>
-																		<g:textField name="lastName" value="${instructor.lastName}" class="last_name"/>
+																		<g:textField name="lastName[]" value="${instructor.lastName}" class="last_name"/>
 																	</td>
 																	<td>
-																		<g:textField name="email" value="${instructor.email}" class="email"/>
+																		<g:textField name="email[]" value="${instructor.email}" class="email"/>
 																	</td>
 																	<td>
-																		<g:textField name="officeHours" value="${instructor.officeHours}" class="office_hours"/>
+																		<g:textField name="officeHours[]" value="${instructor.officeHours}" class="office_hours"/>
 																	</td>
 																	<td>
-																		<g:textField name="webPage" value="${instructor.webPage}" class="web_page"/>
+																		<g:textField name="webPage[]" value="${instructor.webPage}" class="web_page"/>
 																	</td>
 																	<td>
-
-																		<select name="role" id="role" class="role">
+																		<select name="role[]" id="role" class="role">
 																			<option value="">Select Role</option>
 
 																			<g:if test="${instructor.role == 'Assistant Professor'}">
@@ -407,52 +407,28 @@
 																		</select>
 																	</td>
 																	<td>
-																		<g:textField name="location" value="${instructor.location}" class="location"/>
+																		<g:textField name="location[]" value="${instructor.location}" class="location"/>
 																	</td>
 																</tr>
 															</g:each>
-
-															<!--
-															<tr class="topicListRow">
-																<td class="saveIcon">
-																	<i class="hidden fa fa-eraser"></i>
-																</td>
-																<td><g:textField name="lastName" /></td>
-																<td><g:textField name="firstName" /></td>
-																<td><g:textField name="email" /></td>
-																<td><g:textField name="officeHours" /></td>
-																<td><g:textField name="webPage" /></td>
-																<td><g:textField name="role" /></td>
-																<td><g:textField name="location" /></td>
-															</tr>-->
-
 														</tbody>
 													</table>
-													<fieldset id="topicModalClose" class="buttons topicButtonField">
-														<span class="topicButtonGradient saveBG">
-															<button class="save save-instructors show-hover-new topicButton" action="save" id="saveTopic" title="">
-																 Finish
-															</button>
-														</span>
-														<!--
-														<span class="topicButtonGradient cancelBG">
-															<button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="">
-																<i class="fa fa-times"></i>
-																 Cancel
-															</button>
-														</span>-->
-													</fieldset>
-												</div>
+												<fieldset id="topicModalClose" class="buttons topicButtonField">
+                                                    <span class="topicButtonGradient saveBG">
+                                                        <button class="save save-instructors show-hover-new topicButton" action="save" id="saveTopic" title="">
+												            Finish
+									                    </button>
+												    </span>
+												</fieldset>
 											</div>
+										</div>
 									</div>
 								</td>
 							</tr>
 						</table>
 					</fieldset>
 				</g:form>
-
 			</div>
 		</div>
-
 	</body>
 </html>

@@ -32,9 +32,7 @@ $(document).ready(function() {
 	});
 
 	$('.learning-objective.list-item').each(function() {
-
 		if ($(this).find('.list-link').text().trim() === 'Empty Learning Objective') {
-
 			$(this).hide();
 		}
 

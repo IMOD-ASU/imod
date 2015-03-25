@@ -20,21 +20,12 @@ $('input[name=domainCategory]').on('change', filterPedagogyTechniques);
 // when add new technique button is clicked open modal
 $('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
 
-// when cancel button is clicked close modal
-$('#create-pedagogy-cancel').on('click', closeNewPedagogyTechniqueModal);
-
 /**
  * Opens the modal to create a new pedagogy technique
  */
 function openNewPedagogyTechniqueModal() {
+	$('#techniqueId').val('');
 	$('#add-new-technique').dialog('open');
-}
-
-/**
- * Closes the modal to create a new pedagogy technique
- */
-function closeNewPedagogyTechniqueModal() {
-	$('#add-new-technique').dialog('close');
 }
 
 /**
@@ -89,19 +80,53 @@ function displayPedagogyTechniques(data) {
 	var idealText = '';
 	// take the titles and make html code to display
 	for (var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
-		idealText += '<input type="radio" id="radio' + index + '" name="pedagogyTechnque" value="' + data.idealPedagogyTechniqueMatch[index].title + '"><label for="radio' + index + '">' + data.idealPedagogyTechniqueMatch[index].title + '</label>';
+		var currentTechnique = data.idealPedagogyTechniqueMatch[index];
+		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnque" value="' + currentTechnique.id + '"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
 	}
 
 	var extendedText = '';
 	// take the titles and make html code to display
 	for (index = 0; index < data.extendedPedagogyTechniqueMatch.length; index++) {
-		extendedText += '<div>' + data.extendedPedagogyTechniqueMatch[index].title + '</div>';
+		currentTechnique = data.extendedPedagogyTechniqueMatch[index];
+		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnque" value="' + currentTechnique.id + '"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
 	}
 
 	// add html code to the page
 	$('#ideal-matches').html(idealText);
 	$('#extended-matches').html(extendedText);
 
-	$('#ideal-matches').buttonset();
-	$('#extended-matches').buttonset();
+	$('#ideal-matches').buttonset().click(function() {
+		$('#add-new-technique').dialog('open');
+		displayPedagogyInformationInEdit();
+	});
+
+	$('#extended-matches').buttonset().click(function() {
+		$('#add-new-technique').dialog('open');
+		displayPedagogyInformationInEdit();
+	});
+}
+
+function displayPedagogyInformationInEdit() {
+	$('#techniqueId').val($('label.ui-state-active').attr('for'));
+	$.ajax({
+			url: '../../pedagogyTechnique/get/' + $('label.ui-state-active').attr('for'),
+			method: 'GET'
+		})
+		.done(populatePedagogyTechnique);
+}
+
+function populatePedagogyTechnique(data) {
+	var currentTechnique = data.pedagogyTechnique;
+	// set the text fields
+	$('#title').val(currentTechnique.title);
+	$('#location').val(currentTechnique.location);
+	$('#direction').val(currentTechnique.direction);
+	$('#materials').val(currentTechnique.materials);
+	$('#reference').val(currentTechnique.reference);
+	$('#strategyDescription').val(currentTechnique.strategyDescription);
+	$('#activityDescription').val(currentTechnique.activityDescription);
+
+	// choose correct item from selectables
+	$('.learningDomain option[value=' + currentTechnique.learningDomain[0].id + ']').prop('selected', true);
+	$('.domainCategory option[value=' + currentTechnique.domainCategory[0].id + ']').prop('selected', true);
 }

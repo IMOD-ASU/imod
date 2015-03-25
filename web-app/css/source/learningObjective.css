@@ -67,7 +67,6 @@ input[disabled='disabled'] {
 }
 
 .learning-objective.creator {
-    height: 50px;
     margin-bottom: 10px;
     padding-top: 15px;
 
@@ -119,7 +118,7 @@ input[disabled='disabled'] {
 
 .learning-objective.type-icon {
     position: relative;
-    top: 0;
+    top: -10px;
     left: 15px;
 
     display: inline-block;
@@ -132,15 +131,20 @@ input[disabled='disabled'] {
 }
 
 .learning-objective.sub-nav {
+    position: relative;
+    top: 1px;
+
     display: inline-block;
 
     list-style: none;
 
     text-align: center;
 
-    border: 1px solid #c4c2c2;
-    border-radius: 1.5em;
+    border-bottom: 0;
+    border-radius: 18px 18px 0 0;
     background: linear-gradient(#fdfdfd, #dddddd);
+
+    font-size: 0;
 }
 
 .learning-objective.sub-nav li {
@@ -149,23 +153,25 @@ input[disabled='disabled'] {
     width: 9em;
     height: 2.6em;
     margin: 0;
+    margin-right: -1px;
     padding-bottom: 0;
 
     text-align: center;
 
-    border: 1px solid #c4c2c2 none;
+    border: 1px solid #c4c2c2;
     border-radius: 0;
     text-shadow: 2px 2px 1px white;
 
+    font-size: 12px;
     line-height: 2.6em;
 }
 
 .learning-objective.sub-nav li:first-child {
-    border-radius: 1.5em 0 0 1.5em;
+    border-radius: 1.5em 0 0 0;
 }
 
 .learning-objective.sub-nav li:last-child {
-    border-radius: 0 1.5em 1.5em 0;
+    border-radius: 0 1.5em 0 0;
 }
 
 .learning-objective.sub-nav .tabs-background {
@@ -186,11 +192,15 @@ input[disabled='disabled'] {
     font-weight: bold;
 }
 
+.learning-objective.sub-nav li.active {
+    border-bottom: 1px solid #eeeeee;
+    background: #eeeeee;
+}
+
 .learning-objective.sub-nav .active a {
     height: 1.35em;
 
     border-radius: 2.6em / 1.2em;
-    background: linear-gradient(to right, transparent, #f5f5f5, transparent);
 }
 
 .learning-objective.sub-nav .active .performance,
@@ -309,7 +319,8 @@ input[disabled='disabled'] {
 
     line-height: 1.5em;
 }
-#addTopicModal i {
+#addTopicModal i,
+#deleteTopicModal i {
     padding: 2px;
 
     vertical-align: middle;
@@ -323,9 +334,18 @@ input[disabled='disabled'] {
 #addTopicModal {
     font-weight: bold;
 }
+
+#deleteTopicModal {
+    margin-left: 10px;
+}
+
 .topicModalButton {
+    cursor: pointer;
+
     border: none;
-    background: transparent;
+    border-radius: 4px;
+    background: linear-gradient(white,#ededef);
+    box-shadow: 0 1px #c4c2c2;
 }
 .topicModalButtonGradient {
     display: inline-block;
@@ -336,10 +356,6 @@ input[disabled='disabled'] {
     margin-left: 5px;
     padding-right: 5px;
     padding-left: 5px;
-
-    border-radius: 4px;
-    background: linear-gradient(white,#ededef);
-    box-shadow: 0 1px #c4c2c2;
 }
 
 #topicDialog {
