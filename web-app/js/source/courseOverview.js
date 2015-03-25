@@ -155,6 +155,20 @@ $(document).ready(function() {
 
 	$('#time-ratio').mask('9:9');
 
+	$('.timeFields').find('select').change(function(){
+		var isValid = compareStartEndTimes();
+		if(!isValid){
+			return false;
+		}
+	});
+
+	$('input.save').click(function(){
+		var isValid = compareStartEndTimes();
+		if(!isValid){
+			return false;
+		}
+	});
+
 	// course overview validation
 	$('.courseoverview').validate({
 		rules: {
@@ -212,6 +226,35 @@ $(document).ready(function() {
 	});
 
 });
+
+// compares startTime and EndTime
+function compareStartEndTimes(){
+	// check if end time is greater than start time
+    var startHour = $('#schedule-start-time_hour').val();
+    var startMinute = $('#schedule-start-time_minute').val();
+
+    var endHour = $('#schedule-end-time_hour').val();
+    var endMinute = $('#schedule-end-time_minute').val();
+
+    var currentDate = new Date()
+
+    var year = currentDate.getYear();
+    var month = currentDate.getMonth();
+    var day = currentDate.getDate();
+
+    var startTime = new Date(year, month, day, startHour, startMinute);
+    var endTime = new Date(year, month, day, endHour, endMinute);
+
+    console.log(startTime <= endTime);
+
+    if (endTime <= startTime){
+    	$('#time-error').remove();
+    	$('#schedule-end-time_hour').parent().append('<label id="time-error" class="error">End time has to be greater than start time</label>')
+    	return false;	
+    }
+
+    return true;
+}
 
 function gradingRadio(radio) {
 	$('#grading-procedure-text').hide();
