@@ -96,13 +96,13 @@ $(document).ready(function() {
                 console.log(row.data('id'));
                 if (!row.data('id')) {
                     parameterList.push({
-                        lastName: row.find('input[name="lastName"]').val(),
-                        firstName: row.find('input[name="firstName"]').val(),
-                        email: row.find('input[name="email"]').val(),
-                        officeHours: row.find('input[name="officeHours"]').val(),
-                        webPage: row.find('input[name="webPage"]').val(),
-                        role: row.find('select[name="role"]').val(),
-                        location: row.find('input[name="location"]').val()
+                        lastName: row.find('input[name="lastName[]"]').val(),
+                        firstName: row.find('input[name="firstName[]"]').val(),
+                        email: row.find('input[name="email[]"]').val(),
+                        officeHours: row.find('input[name="officeHours[]"]').val(),
+                        webPage: row.find('input[name="webPage[]"]').val(),
+                        role: row.find('select[name="role[]"]').val(),
+                        location: row.find('input[name="location[]"]').val()
                     });
                 }
 
