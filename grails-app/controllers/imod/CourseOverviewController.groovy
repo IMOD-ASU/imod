@@ -170,4 +170,12 @@ class CourseOverviewController {
 			)
 		}*/
 	}
+
+    // syllabus html page
+    def syllabus(Long id){
+        [
+            currentImod: Imod.get(id),
+            currentPage: 'syllabus'
+        ]
+    }
 }
