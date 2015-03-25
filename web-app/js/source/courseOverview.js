@@ -155,14 +155,14 @@ $(document).ready(function() {
 
 	$('#time-ratio').mask('9:9');
 
-	$('.timeFields').find('select').change(function(){
+	$('.timeFields').find('select').change(function() {
 		var isValid = compareStartEndTimes();
 		if(!isValid){
 			return false;
 		}
 	});
 
-	$('input.save').click(function(){
+	$('input.save').click(function() {
 		var isValid = compareStartEndTimes();
 		if(!isValid){
 			return false;
@@ -228,7 +228,7 @@ $(document).ready(function() {
 });
 
 // compares startTime and EndTime
-function compareStartEndTimes(){
+function compareStartEndTimes() {
 	// check if end time is greater than start time
     var startHour = $('#schedule-start-time_hour').val();
     var startMinute = $('#schedule-start-time_minute').val();
@@ -247,8 +247,8 @@ function compareStartEndTimes(){
 
     console.log(startTime <= endTime);
 
-    if (endTime <= startTime){
-    	$('#time-error').remove();
+    $('#time-error').remove();
+    if (endTime <= startTime) {
     	$('#schedule-end-time_hour').parent().append('<label id="time-error" class="error">End time has to be greater than start time</label>')
     	return false;	
     }
