@@ -57,7 +57,7 @@ grails.project.dependency.resolution = {
 	}
 
 	plugins {
-		build ':tomcat:7.0.55.2'
+		build ':tomcat:7.0.55.3'
 
 		compile ':scaffolding:2.1.2'
 		compile ':postgresql-extensions:4.4.0'
