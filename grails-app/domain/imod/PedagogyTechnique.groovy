@@ -9,6 +9,7 @@ class PedagogyTechnique {
 	String description
 	String direction
 	String materials
+	String reference
 	String strategyDescription
 	String activityDescription
 	PedagogyMode pedagogyMode
@@ -40,6 +41,7 @@ class PedagogyTechnique {
 		description nullable: true, blank: true
 		direction nullable: true
 		materials nullable: true
+		reference nullable: true
 		strategyDescription nullable: true
 		userFavorite nullable: true
     }
