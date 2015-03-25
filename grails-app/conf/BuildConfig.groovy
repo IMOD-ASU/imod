@@ -52,15 +52,15 @@ grails.project.dependency.resolution = {
 
 	dependencies {
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-		runtime 'org.postgresql:postgresql:9.3-1102-jdbc41'
+		runtime 'org.postgresql:postgresql:9.4-1201-jdbc41'
 		compile 'org.jadira.usertype:usertype.core:3.2.0.GA'
 	}
 
 	plugins {
-		build ':tomcat:7.0.55.2'
+		build ':tomcat:7.0.55.3'
 
 		compile ':scaffolding:2.1.2'
-		compile ':postgresql-extensions:4.3.0'
+		compile ':postgresql-extensions:4.4.0'
 		compile ':cache:1.1.8'
 		compile ':spring-security-core:2.0-RC4'
 		compile ':mail:1.0.7'
@@ -68,11 +68,11 @@ grails.project.dependency.resolution = {
 		compile ':famfamfam:1.0.1'
 		compile ':spring-security-ui:1.0-RC2'
 		compile ':joda-time:1.5'
-		compile ':rest-client-builder:2.0.3'
+		compile ':rest-client-builder:2.1.0'
 
 		provided ':codenarc:0.23'
 
-		runtime ':hibernate4:4.3.6.1'
+		runtime ':hibernate4:4.3.8.1'
 		runtime ':jquery:1.11.1'
 	}
 }

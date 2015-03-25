@@ -158,10 +158,10 @@ $(document).ready(function() {
 
 	//when learning domain isn't selected, do not save learning objective
 	$('.learning-objective-button.save').click(function() {
-		if ($('#learning-domain-list').val() === "null" ||
-			$('#domain-category-list').val() === "null" ||
+		if ($('#learning-domain-list').val() === 'null' ||
+			$('#domain-category-list').val() === 'null' ||
 			$('input[name=actionWordCategory]').is(':checked') === false) {
-			alert("Learning Domain, Domain Category and Action Word Categories are required");
+			alert('Learning Domain, Domain Category and Action Word Categories are required');
 			return false;
 		}
 	});
@@ -171,12 +171,12 @@ $(document).ready(function() {
 	var height = getMinHeight($liArray);
 
 	$liArray.each(function() {
-		$("a", this).attr('title', $("a", this).text());
+		$('a', this).attr('title', $('a', this).text());
 		if (Math.floor($(this).height()) !== height) {
-			$("a", this).text($("a", this).text().substring(0, 70) + "...");
+			$('a', this).text($('a', this).text().substring(0, 70) + '...');
 		}
-		if ($(this).hasClass("active")) {
-			$("a", this).text($("a", this).attr('title'));
+		if ($(this).hasClass('active')) {
+			$('a', this).text($('a', this).attr('title'));
 		}
 	});
 });
@@ -363,8 +363,8 @@ function getMinHeight(liArray) {
 		if (Math.floor($(this).height()) < minHeight) {
 			minHeight = Math.floor($(this).height());
 		}
-		var refineText = $("a", this).text().replace(/[\s\t]+/g, ' ');
-		$("a", this).text(refineText);
+		var refineText = $('a', this).text().replace(/[\s\t]+/g, ' ');
+		$('a', this).text(refineText);
 	});
 	return minHeight;
 }

@@ -2,6 +2,10 @@
     width: 800px !important;
 }
 
+.ui-dialog-title {
+    color: black;
+}
+
 select[disabled][disabled] {
     cursor: inherit;
 

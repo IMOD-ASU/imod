@@ -128,8 +128,10 @@
     width: 1.1em;
     padding-right: 0.5em;
     padding-left: 0.5em;
-    font-size: 16px;
+
     color: darkred;
+
+    font-size: 16px;
 }
 #topicList .knowledgeDimensionButton {
     width: 80%;
@@ -152,10 +154,17 @@
 .error {
     border: 1px solid red !important;
 }
-.custom-instructor label.error{
-    display: none !important;
+
+#time-ratio {
+    max-width: 50px;
 }
 
-#time-ratio{
-    max-width: 50px;
+.course-overview-form #topicList tbody td {
+    vertical-align: top;
+}
+
+.course-overview-form #topicList tbody td label.error {
+    width: auto;
+    margin-top: 5px;
+    margin-left: 0;
 }

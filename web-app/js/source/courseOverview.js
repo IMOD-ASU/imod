@@ -47,53 +47,34 @@ $(document).ready(function() {
 
 	});
 
-
-	//add instructor modal
-	/*$('.add-instructor').click(function(){
-		$('#topicDialogBackground, #topicDialog').show()
-		return false;
-	});
-
-	$('.topicButtonGradient .remove').click(function(){
-
-		if ($('#topicList tbody tr').length > 1){
-			$('#topicList tbody tr:last').remove();
-		}
-
-		return false;
-	});*/
-
 	$('#topicList > tbody').on('click', 'tr', toggleSelected);
 
 	$('.topicButtonGradient .add').click(function() {
 		var row = "";
 		row += "<tr class=\"topicListRow\">";
-		row += "	<td class=\"saveIcon\">";
-		row += "		<i class=\"hidden fa fa-eraser\"><\/i>";
-		row += "	<\/td>";
-		row += "	<td><input type=\"text\" name=\"firstName\" value=\"\" id=\"firstName\"  class=\"first_name\" \/><\/td>";
-		row += "	<td><input type=\"text\" name=\"lastName\" value=\"\" id=\"lastName\"  class=\"last_name\" \/><\/td>";
-		row += "	<td><input type=\"text\" name=\"email\" value=\"\" id=\"email\"  class=\"email\" \/><\/td>";
-		row += "	<td><input type=\"text\" name=\"officeHours\" value=\"\" id=\"officeHours\" class=\"office_hours\" \/><\/td>";
-		row += "	<td><input type=\"text\" name=\"webPage\" value=\"\" id=\"webPage\" class=\"web_page\" \/><\/td>";
+		row += "    <td class=\"saveIcon\">";
+		row += "        <i class=\"hidden fa fa-eraser\"><\/i>";
+		row += "    <\/td>";
+		row += "    <td><input type=\"text\" name=\"firstName[]\" value=\"\" id=\"firstName\"  class=\"first_name\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"lastName[]\" value=\"\" id=\"lastName\"  class=\"last_name\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"email[]\" value=\"\" id=\"email\"  class=\"email\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"officeHours[]\" value=\"\" id=\"officeHours\" class=\"office_hours\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"webPage[]\" value=\"\" id=\"webPage\" class=\"web_page\" \/><\/td>";
 		row += "<td>";
-		row += "	<select name=\"role\" id=\"role\" class=\"role\">";
-		row += "		<option value=\"\">Select Role<\/option>";
-		row += "		<option>Assistant Professor<\/option>";
-		row += "		<option>Associate Professor<\/option>";
-		row += "		<option>Professor<\/option>";
-		row += "		<option>Teaching Assistant<\/option>";
-		row += "		<option>Course Assistant<\/option>";
-		row += "		<option>Grader<\/option>";
-		row += "	<\/select>";
+		row += "    <select name=\"role[]\" id=\"role\" class=\"role\">";
+		row += "        <option value=\"\">Select Role<\/option>";
+		row += "        <option>Assistant Professor<\/option>";
+		row += "        <option>Associate Professor<\/option>";
+		row += "        <option>Professor<\/option>";
+		row += "        <option>Teaching Assistant<\/option>";
+		row += "        <option>Course Assistant<\/option>";
+		row += "        <option>Grader<\/option>";
+		row += "    <\/select>";
 		row += "<\/td>";
-		row += "	<td><input type=\"text\" name=\"location\" value=\"\" id=\"location\" class=\"location\" \/><\/td>";
+		row += "    <td><input type=\"text\" name=\"location[]\" value=\"\" id=\"location\" class=\"location\" \/><\/td>";
 		row += "<\/tr>";
 
 		$('#topicList tbody').append(row);
-		/*$('#topicList tbody tr:last input').each(function(){
-			$(this).val('');
-		});*/
 		return false;
 	});
 
@@ -115,13 +96,13 @@ $(document).ready(function() {
 				console.log(row.data('id'));
 				if (!row.data('id')) {
 					parameterList.push({
-						lastName: row.find('input[name=lastName]').val(),
-						firstName: row.find('input[name=firstName]').val(),
-						email: row.find('input[name=email]').val(),
-						officeHours: row.find('input[name=officeHours]').val(),
-						webPage: row.find('input[name=webPage]').val(),
-						role: row.find('select[name=role]').val(),
-						location: row.find('input[name=location]').val()
+						lastName: row.find('input[name="lastName[]"]').val(),
+						firstName: row.find('input[name="firstName[]"]').val(),
+						email: row.find('input[name="email[]"]').val(),
+						officeHours: row.find('input[name="officeHours[]"]').val(),
+						webPage: row.find('input[name="webPage[]"]').val(),
+						role: row.find('select[name="role[]"]').val(),
+						location: row.find('input[name="location[]"]').val()
 					});
 				}
 
@@ -168,47 +149,61 @@ $(document).ready(function() {
 	});
 
 	// regex method for url
-	$.validator.addMethod("urlRule", function(value, element, regexpr) {          
-	    return regexpr.test(value);
-	}, "Please enter a valid URL.");
+	$.validator.addMethod('urlRule', function(value, element, regexpr) {
+		return regexpr.test(value);
+	}, 'Please enter a valid URL.');
 
-	$('#time-ratio').mask("9:9")
+	$('#time-ratio').mask('9:9');
+
+	$('.timeFields').find('select').change(function() {
+		var isValid = compareStartEndTimes();
+		if (!isValid) {
+			return false;
+		}
+	});
+
+	$('input.save').click(function() {
+		var isValid = compareStartEndTimes();
+		if (!isValid) {
+			return false;
+		}
+	});
 
 	// course overview validation
-	$(".courseoverview").validate({
-	  	rules: {
-	    	imodNumber: "required",
-	    	name:{
-	    		required: true
-	    	},	  
-	    	url: {
-	    		required: true,
+	$('.courseoverview').validate({
+		rules: {
+			imodNumber: 'required',
+			name: {
+				required: true
+			},
+			url: {
+				required: true,
 				urlRule: /^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i
-	    	},
-	    	subjectArea: {
-	    		required: true
-	    	},
-	    	creditHours: {
-	    		min: 0,
-	    		max: 7,
-	    		digits: true
-	    	},
-	    	numberOfSeats: {
-	    		min: 0,
-	    		max: 1000,
-	    		digits: true
-	    	}
-	  	},
-	  	messages: {
-	    	url: {
-	      		url: "Please enter a valid URL eg. http://google.com"
-	    	},
-	    	creditHours: {
-	    		min: "Credit hours cannot be negative"
-	    	},
-	    	numberOfSeats: {
-	    		min: "Number of seats cannot be negative"
-	    	}
+			},
+			subjectArea: {
+				required: true
+			},
+			creditHours: {
+				min: 0,
+				max: 7,
+				digits: true
+			},
+			numberOfSeats: {
+				min: 0,
+				max: 1000,
+				digits: true
+			}
+		},
+		messages: {
+			url: {
+				url: 'Please enter a valid URL eg. http://google.com'
+			},
+			creditHours: {
+				min: 'Credit hours cannot be negative'
+			},
+			numberOfSeats: {
+				min: 'Number of seats cannot be negative'
+			}
 		}
 	});
 
@@ -232,6 +227,35 @@ $(document).ready(function() {
 
 });
 
+// compares startTime and EndTime
+function compareStartEndTimes() {
+	// check if end time is greater than start time
+	var startHour = $('#schedule-start-time_hour').val();
+	var startMinute = $('#schedule-start-time_minute').val();
+
+	var endHour = $('#schedule-end-time_hour').val();
+	var endMinute = $('#schedule-end-time_minute').val();
+
+	var currentDate = new Date();
+
+	var year = currentDate.getYear();
+	var month = currentDate.getMonth();
+	var day = currentDate.getDate();
+
+	var startTime = new Date(year, month, day, startHour, startMinute);
+	var endTime = new Date(year, month, day, endHour, endMinute);
+
+	console.log(startTime <= endTime);
+
+	if (endTime <= startTime) {
+		$('#time-error').remove();
+		$('#schedule-end-time_hour').parent().append('<label id="time-error" class="error">End time has to be greater than start time</label>');
+		return false;
+	}
+
+	return true;
+}
+
 function gradingRadio(radio) {
 	$('#grading-procedure-text').hide();
 	if (radio.val() === 'Custom') {
@@ -241,8 +265,8 @@ function gradingRadio(radio) {
 }
 
 function populateRepeatsEvery() {
-	if ($('#repeats option:selected').text() === "Daily") {
-		$('#duration').text("days");
+	if ($('#repeats option:selected').text() === 'Daily') {
+		$('#duration').text('days');
 		$('#duration').css('visibility', 'visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
 		$('#repeatsEvery').css('visibility', 'visible');
@@ -252,8 +276,8 @@ function populateRepeatsEvery() {
 		$(':checkbox').css('visibility', 'hidden');
 		$('#repeats-every').css('visibility', 'visible');
 
-	} else if ($('#repeats option:selected').text() === "Weekly") {
-		$('#duration').text("weeks");
+	} else if ($('#repeats option:selected').text() === 'Weekly') {
+		$('#duration').text('weeks');
 		$('#duration').css('visibility', 'visible');
 		$('label[for="repeatsEvery"]').css('visibility', 'visible');
 		$('#repeatsEvery').css('visibility', 'visible');
@@ -275,7 +299,7 @@ function populateRepeatsEvery() {
 
 function toggleSelected(event) {
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
-		$(this).find('.saveIcon > i').toggleClass("fa-square-o").toggleClass("fa-check-square");
+		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 		$(this).toggleClass('selected');
 	}
 }
