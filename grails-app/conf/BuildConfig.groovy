@@ -68,11 +68,11 @@ grails.project.dependency.resolution = {
 		compile ':famfamfam:1.0.1'
 		compile ':spring-security-ui:1.0-RC2'
 		compile ':joda-time:1.5'
-		compile ':rest-client-builder:2.0.3'
+		compile ':rest-client-builder:2.1.0'
 
 		provided ':codenarc:0.23'
 
-		runtime ':hibernate4:4.3.6.1'
+		runtime ':hibernate4:4.3.8.1'
 		runtime ':jquery:1.11.1'
 	}
 }
