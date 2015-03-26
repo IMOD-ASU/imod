@@ -78,14 +78,6 @@ body {
     text-align: center;
 }
 
-/* replace with .no-boxshadow body if you have modernizr available */
-.ie7 body,
-.ie8 body {
-    border-width: 0 1px;
-    border-style: solid;
-    border-color: #2b3856;
-}
-
 a:link,
 a:visited,
 a:hover {
@@ -369,11 +361,6 @@ ul.one-to-many {
     list-style-position: inside;
 
     vertical-align: top;
-}
-
-.ie7 ul.one-to-many {
-    display: inline;
-    zoom: 1;
 }
 
 ul.one-to-many li.add {
@@ -660,12 +647,6 @@ th.desc a {
     background-position: 0.7em center;
 }
 
-.ie7 .buttons input.delete,
-.ie7 .buttons input.edit,
-.ie7 .buttons input.save {
-    padding-left: 36px;
-}
-
 .buttons .delete {
     background-image: url(../images/skin/database_delete.png);
 }
@@ -683,6 +664,7 @@ a.skip {
     position: absolute;
     left: -9999px;
 }
+
 #login-link-container {
     position: absolute;
     top: 15px;
@@ -801,9 +783,6 @@ a.banner-link {
     box-shadow: 0 0 1.25em #cccccc;
 }
 
-.ie6 #status {
-    display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-}
 #page-body {
     height: 60%;
     margin: 0 1em 1em;

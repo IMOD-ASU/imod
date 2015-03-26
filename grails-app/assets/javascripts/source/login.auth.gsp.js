@@ -1,5 +1,5 @@
 'use strict';
 
 $(document).ready(function() {
-	$("#login-link-container").hide();
+	$('#login-link-container').hide();
 });

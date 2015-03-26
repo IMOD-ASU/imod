@@ -6,8 +6,8 @@ var content = '';
 
 $(function() {
 	// attach event listeners
-	$("#addTopicModal").click(showTopicDialog);
-	$("#addTopic").click(addTopic);
+	$('#addTopicModal').click(showTopicDialog);
+	$('#addTopic').click(addTopic);
 	$('#saveTopic').click(saveTopic);
 	$('#cancelTopic').click(function() {
 		revertChanges();
@@ -24,7 +24,7 @@ $(function() {
 	$('#removeResource').click(function() {
 
 		var resourceIDs = [];
-		$("#resourceList .selected").each(function() {
+		$('#resourceList .selected').each(function() {
 			resourceIDs.push(this.id);
 		});
 		deleteResource(resourceIDs);
@@ -89,13 +89,13 @@ function flashError() {
 }
 
 function changePic(imageToChange) {
-	var iconName = "";
+	var iconName = '';
 	$('#selectKnowledgeDimensions').find('input:checkbox').each(function() {
 		if ($(this).prop('checked')) {
 			iconName = iconName + $(this).val().charAt(0);
 		}
 	});
-	if (iconName === "") {
+	if (iconName === '') {
 		iconName = $('#imgNone').attr('href');
 	} else {
 		iconName = $('#img' + iconName).attr('href');
@@ -103,19 +103,19 @@ function changePic(imageToChange) {
 	$('#dimImage').attr('src', iconName);
 }
 
-function toggleSelected() {
+function toggleSelected(event) {
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
-		$(this).find(".saveIcon > i").toggleClass("fa-square-o").toggleClass("fa-check-square");
-		$(this).toggleClass("selected");
+		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+		$(this).toggleClass('selected');
 	}
 }
 
 function closeDimModal() {
-	var contentID = $("#topicID").val();
+	var contentID = $('#topicID').val();
 	var dimensions = [];
-	var dialog = $("#selectKnowledgeDimensions");
-	var background = $("#selectKnowledgeDimensionBackground");
-	var contentDimensions = $("#knowDimensionList" + contentID);
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
+	var contentDimensions = $('#knowDimensionList' + contentID);
 
 	$(this).siblings('span').find('input').each(function() {
 		if (this.checked) {
@@ -123,97 +123,97 @@ function closeDimModal() {
 		}
 	});
 	if (dimensions.length === 0) {
-		dimensions = "";
+		dimensions = '';
 	} else {
 		dimensions = dimensions.toString();
 	}
-	$("#topicID").val("");
+	$('#topicID').val('');
 	dialog.find('input:checkbox').each(function() {
 		$(this).prop('checked', false);
 	});
 
 	if (contentDimensions.val() !== dimensions) {
 		contentDimensions.val(dimensions);
-		$("#" + contentID).addClass("unsaved");
+		$('#' + contentID).addClass('unsaved');
 	}
-	$("#" + contentID).find('img').attr('src', $('#dimImage').attr('src'));
-	dialog.css("display", "none");
-	background.css("display", "none");
+	$('#' + contentID).find('img').attr('src', $('#dimImage').attr('src'));
+	dialog.css('display', 'none');
+	background.css('display', 'none');
 }
 
 function openDimModal() {
 	var contentID = $(this).parents('.topicItem').attr('id');
-	var dimString = $("#knowDimensionList" + contentID).val();
+	var dimString = $('#knowDimensionList' + contentID).val();
 	var dimensionList = [];
-	var dialog = $("#selectKnowledgeDimensions");
-	var background = $("#selectKnowledgeDimensionBackground");
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
 
-	if (dimString !== "") {
-		dimensionList = dimString.split(",");
+	if (dimString !== '') {
+		dimensionList = dimString.split(',');
 	}
 	for (var i = 0; i < dimensionList.length; i++) {
-		var findCheckBox = $(dialog).find("#" + dimensionList[i]);
+		var findCheckBox = $(dialog).find('#' + dimensionList[i]);
 		if (findCheckBox.length === 1) {
 			findCheckBox.prop('checked', true);
 		}
 	}
 	changePic();
-	$("#topicID").val(contentID);
-	dialog.css("display", "inherit");
-	background.css("display", "block");
+	$('#topicID').val(contentID);
+	dialog.css('display', 'inherit');
+	background.css('display', 'block');
 }
 
 function openResourceModal() {
 	content = this.id;
-	$("#selectResource").css("display", "inherit");
-	$("#selectResourceBackground").css("display", "block");
+	$('#selectResource').css('display', 'inherit');
+	$('#selectResourceBackground').css('display', 'block');
 	getResource();
 }
 
 function closeResourceModal() {
-	$("#selectResourceBackground").css("display", "none");
-	$("#selectResource").css("display", "none");
+	$('#selectResourceBackground').css('display', 'none');
+	$('#selectResource').css('display', 'none');
 
 }
 
 function highlightUnsaved(id) {
-	$("#" + id).addClass("unsaved");
+	$('#' + id).addClass('unsaved');
 }
 
 function deleteTopic(contentIDs) {
 	contentIDs = JSON.stringify(contentIDs);
 	$.ajax({
-		url: "../../content/deleteTopic/",
-		type: "GET",
-		dataType: "json",
+		url: '../../content/deleteTopic/',
+		type: 'GET',
+		dataType: 'json',
 		data: {
 			contentIDs: contentIDs
 		},
 		success: function(data) {
 			data.result.forEach(function(element) {
-				$("#" + element).remove();
+				$('#' + element).remove();
 			});
 		}
 	});
 }
 
 function saveTopic() {
-	var imodID = $("#imodID").val();
+	var imodID = $('#imodID').val();
 	var contentData = [];
 	var hasError = false;
 	var topicList = [];
-	$("#topicList tbody tr").each(function() {
+	$('#topicList tbody tr').each(function() {
 		var contentID = this.id;
-		var topicTitle = $("#topicTitle" + contentID).val();
-		var dimensions = $("#knowDimensionList" + contentID).val();
-		var priority = $("#topicPriority" + contentID).val();
-		var preReq = $("#topicPreReq" + contentID).is(':checked');
-		if (dimensions === "") {
-			errorMessage("Topic: " + topicTitle + " must have a Knowledge Dimension!");
+		var topicTitle = $('#topicTitle' + contentID).val();
+		var dimensions = $('#knowDimensionList' + contentID).val();
+		var priority = $('#topicPriority' + contentID).val();
+		var preReq = $('#topicPreReq' + contentID).is(':checked');
+		if (dimensions === '') {
+			errorMessage('Topic: ' + topicTitle + ' must have a Knowledge Dimension!');
 			hasError = true;
 		}
-		if (topicTitle === "") {
-			errorMessage("Topic title is required");
+		if (topicTitle === '') {
+			errorMessage('Topic title is required');
 			hasError = true;
 		}
 		topicList.push({
@@ -262,7 +262,7 @@ function refreshSaves() {
 }
 
 function revertChanges() {
-	$("#topicList tbody tr").each(function() {
+	$('#topicList tbody tr').each(function() {
 		var rowData = getTopicSavedItems(this);
 		var dimensions = [];
 		var dimensionShort = '';
@@ -296,20 +296,20 @@ function revertChanges() {
 function getTopicSavedItems(currentRow) {
 	var topicID = currentRow.id;
 	var rowData = {
-		title: $("#topicTitle" + topicID),
-		titleSaved: $("#topicTitleSaved" + topicID),
-		dimensions: $("#knowDimensionList" + topicID),
-		dimensionsSaved: $("#knowDimensionListSaved" + topicID),
-		priority: $("#topicPriority" + topicID),
-		prioritySaved: $("#topicPrioritySaved" + topicID),
-		preReq: $("#topicPreReq" + topicID),
-		preReqSaved: $("#topicPreReq" + topicID)
+		title: $('#topicTitle' + topicID),
+		titleSaved: $('#topicTitleSaved' + topicID),
+		dimensions: $('#knowDimensionList' + topicID),
+		dimensionsSaved: $('#knowDimensionListSaved' + topicID),
+		priority: $('#topicPriority' + topicID),
+		prioritySaved: $('#topicPrioritySaved' + topicID),
+		preReq: $('#topicPreReq' + topicID),
+		preReqSaved: $('#topicPreReq' + topicID)
 	};
 	return rowData;
 }
 
 function addTopic() {
-	var imodID = $("#imodID").val();
+	var imodID = $('#imodID').val();
 	$.ajax({
 		url: '../../content/addNewTopic',
 		type: 'GET',
@@ -340,7 +340,7 @@ function addTopic() {
 				'<input type="hidden" id="topicTitleSaved' + id + '"> ' +
 				'</td><td class="topicDimensions">' +
 				'<span>' +
-				'<img src="' + $("#imgNone").attr('href') + '"/> ' +
+				'<img src="' + $('#imgNone').attr('href') + '"/> ' +
 				'<button ' +
 				'class="knowledgeDimensionButton" ' +
 				'value="" ' +
@@ -417,15 +417,15 @@ function addResource() {
 }
 
 function getResource() {
-	var contentID = content.split("topicResources");
+	var contentID = content.split('topicResources');
 	contentID = contentID[1];
 	var resourceDiv = $('#resourceList tbody');
-	resourceDiv.html("");
-	var resourceOptions = "";
+	resourceDiv.html('');
+	var resourceOptions = '';
 	$.ajax({
-		url: "../../content/getResource",
-		type: "GET",
-		dataType: "json",
+		url: '../../content/getResource',
+		type: 'GET',
+		dataType: 'json',
 		data: {
 			contentID: contentID
 		},
@@ -466,7 +466,7 @@ function getResource() {
 }
 
 function saveResource() {
-	var imodID = $("#imodID").val();
+	var imodID = $('#imodID').val();
 	var resourceData = [];
 	var hasError = false;
 	$("#resourceList tbody tr").each(function() {
@@ -521,7 +521,7 @@ function deleteResource(resourceIDs) {
 		},
 		success: function(data) {
 			data.result.forEach(function(element) {
-				$("#" + element).remove();
+				$('#' + element).remove();
 			});
 		}
 	});
