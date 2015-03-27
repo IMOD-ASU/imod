@@ -82,6 +82,7 @@ class PedagogyController {
 					}
 				}
 			}
+			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
 
 		// find all technique that are not ideal, but have the learning domain
