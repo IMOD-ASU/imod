@@ -13,14 +13,6 @@ select[disabled][disabled] {
     background-color: ThreeDFace;
 }
 
-.ui-tabs .ui-tabs-nav {
-    padding: 0;
-}
-
-.ui-tabs-nav li {
-    width: 19.6%;
-}
-
 .smallblackarea {
     position: absolute;
     top: 50px;
