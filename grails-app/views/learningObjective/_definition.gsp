@@ -18,6 +18,16 @@
 	</g:if>
 </span>
 
+<span class="learning-objective-content">
+	<g:if test="${ it.contents != null }">
+		<g:each in="${ it.contents }" var="c" >
+			<g:if test="${ c.topicTitle != null }">
+		  		${ c.topicTitle }
+		  	</g:if>
+		</g:each>
+	</g:if>
+</span>
+
 <!-- Definition of the criteria for understanding a learning objective -->
 
 <span class="learning-objective-criteria">
@@ -44,14 +54,3 @@
 		${ it.indicator }
 	</g:if>
 </span>
-
-<span class="learning-objective-content">
-	<g:if test="${ it.contents != null }">
-		<g:each in="${ it.contents }" var="c" >
-			<g:if test="${ c.topicTitle != null }">
-		  		${ c.topicTitle }
-		  	</g:if>
-		</g:each>
-	</g:if>
-</span>
-
