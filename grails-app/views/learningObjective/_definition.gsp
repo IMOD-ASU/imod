@@ -20,11 +20,39 @@
 
 <span class="learning-objective-content">
 	<g:if test="${ it.contents != null }">
-		<g:each in="${ it.contents }" var="c" >
-			<g:if test="${ c.topicTitle != null }">
-		  		${ c.topicTitle }
-		  	</g:if>
-		</g:each>
+		<%-- One item in list --%>
+		<g:if test="${ it.contents.size() < 2 }">
+			<g:set var="contentItem" value="${it.contents[0]}" />
+			<g:if test="${ contentItem.topicTitle != null }">
+				${ contentItem.topicTitle }
+			</g:if>
+		</g:if>
+		<%-- Two items in list --%>
+		<g:elseif test="${ it.contents.size() == 2 }">
+			<g:set var="contentItem" value="${it.contents[0]}" />
+			<g:if test="${ contentItem.topicTitle != null }">
+				${ contentItem.topicTitle }
+			</g:if>
+			and
+			<g:set var="contentItem" value="${it.contents[1]}" />
+			<g:if test="${ contentItem.topicTitle != null }">
+				${ contentItem.topicTitle }
+			</g:if>
+		</g:elseif>
+		<%-- Many items in list --%>
+		<g:else>
+			<g:each in="${ it.contents }" var="contentItem" status="contentIndex">
+				<g:if test="${ contentItem.topicTitle != null }">
+					<g:if test="${ contentIndex > 0 }">
+						,&nbsp;
+					</g:if>
+					<g:if test="${ contentIndex == it.contents.size() - 1 }">
+						and&nbsp;
+					</g:if>
+					${ contentItem.topicTitle }
+				</g:if>
+			</g:each>
+		</g:else>
 	</g:if>
 </span>
 
