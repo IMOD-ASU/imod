@@ -160,7 +160,7 @@ class LearningObjectiveController {
 		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
-		def contents = [];
+		def contents = []
 		if (contentList.size() < 1) {
 			contentList.add(new Content(imod: currentImod))
 		}
@@ -201,7 +201,7 @@ class LearningObjectiveController {
 		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
 		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
-		
+
 		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		[

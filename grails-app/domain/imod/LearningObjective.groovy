@@ -32,6 +32,9 @@ class LearningObjective {
 	String criteriaSpeed
 	String actionWord
 
+	// Store a custom definition
+	String definition
+
 	// if the criteria is enabled or not
 	Boolean criteriaAccuracyEnabled
 	Boolean criteriaQualityEnabled
@@ -73,6 +76,7 @@ class LearningObjective {
 		criteriaType		nullable: true
 		actionWordCategory	nullable: true
 		condition			nullable: true
+		definition			nullable: true
 		criteriaAccuracy	nullable: true
 		criteriaQuality		nullable: true
 		criteriaQuantity	nullable: true
@@ -81,7 +85,6 @@ class LearningObjective {
 		performance			nullable: true
 		actionWord			nullable: true
 		hideFromLearningObjectiveCondition	nullable:true
-
 	}
 
 	static mapping = {

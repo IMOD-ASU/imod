@@ -73,7 +73,7 @@ class ContentController {
 			else {
 				success.add(contentID)
 			}
-		};
+		}
 
 		render(
 			[
@@ -106,7 +106,7 @@ class ContentController {
 		if (parentID != null) {
 			def parentContent = Content.get(parentID)
 			parentContent.addToSubContents(childContent)
-			childContent.parentContent = parentContent;
+			childContent.parentContent = parentContent
 		}
 		else{
 			childContent.parentContent = null
@@ -141,12 +141,12 @@ class ContentController {
 	}
 
 	def addResource(Long contentID) {
-		def contentInstance = Content.get(contentID);
-		def resourceInstance = new Resource(content: contentInstance);
-		resourceInstance.save();
-		contentInstance.addToResources(resourceInstance);
+		def contentInstance = Content.get(contentID)
+		def resourceInstance = new Resource(content: contentInstance)
+		resourceInstance.save()
+		contentInstance.addToResources(resourceInstance)
 
-		def resources = Resource.resourceTypes();
+		def resources = Resource.resourceTypes()
 		render([
 			id: resourceInstance.id,
 			resources: resources,
@@ -155,9 +155,9 @@ class ContentController {
 	}
 
 	def getResource(Long contentID) {
-		def contentInstance = Content.get(contentID);
-		def resources = contentInstance.getResources();
-		def resourceTypes = Resource.resourceTypes();
+		def contentInstance = Content.get(contentID)
+		def resources = contentInstance.getResources()
+		def resourceTypes = Resource.resourceTypes()
 		render([
 			resources: resources,
 			resourceTypes: resourceTypes,
@@ -189,7 +189,7 @@ class ContentController {
 			else {
 				success.add(resourceID)
 			}
-		};
+		}
 
 		render(
 			[
