@@ -100,6 +100,9 @@ class LearningObjectiveController {
 			default:
 				pageType = 'performance'
 		}
+		// clear learning objective definition
+		selectedLearningObjective.definition = null;
+
 		// save all of the changes
 		selectedLearningObjective.save()
 
