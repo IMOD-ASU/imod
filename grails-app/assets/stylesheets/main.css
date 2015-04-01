@@ -108,6 +108,8 @@ img {
 
 /* GENERAL */
 
+
+
 #grailsLogo {
     position: relative;
     /*left:17%;*/
@@ -1032,8 +1034,12 @@ a.ui-tabs-anchor {
     font-size: 150%;
 }
 
+.ui-tabs .ui-tabs-nav {
+    padding: 0;
+}
+
 .ui-tabs-nav li {
-    width: 19.7%;
+    width: 19%;
     height: 43px;
 
     border-top-left-radius: 5px 5px;
