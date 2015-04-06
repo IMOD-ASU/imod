@@ -1,11 +1,14 @@
 package imod
+import grails.converters.JSON
 
 class AssessmentController {
-    static allowedMethods = [
-        index: 'GET'
+    def learningObjectiveService
 
-    ]
-    
+	static allowedMethods = [
+		index: 'GET',
+		findMatchingTechniques: 'POST'
+	]
+
     /**
      * index called when Assessment tab loads
      * @param id
@@ -48,4 +51,77 @@ class AssessmentController {
             learningObjectives: learningObjectives,
         ]
 	}
+
+    /**
+     * Finds ideal and extended matches based on learning domains and knowledge dimensions
+     * expects params
+     * - knowledgeDimesions: name of each selected dimension
+     * - domain category: name of each selected category
+     * - learning domain: name of each selected domain
+     */
+    def findMatchingTechniques() {
+        def data = request.JSON
+
+        // process strings to longs
+        def selectedKnowledgeDimensions = []
+        def selectedDomainCategories = []
+        def selectedLearningDomains = []
+        for (def knowledgeDimension in data.selectedKnowledgeDimensions) {
+            selectedKnowledgeDimensions.add(knowledgeDimesion.toLong())
+        }
+        for (def domainCategory in data.selectedDomainCategories) {
+            selectedDomainCategories.add(domainCategory.toLong())
+        }
+        for (def learningDomain in data.selectedLearningDomains) {
+            selectedLearningDomains.add(learningDomain.toLong())
+        }
+
+        // find all technique where both the knowledge dimension and the domain category match
+        def idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
+            and {
+                knowledgeDimension {
+                    'in' ('id', selectedKnowledgeDimensions)
+                }
+                or {
+                    domainCategory {
+                        'in' ('id', selectedDomainCategories)
+                    }
+                    learningDomain {
+                        'in' ('id', selectedLearningDomains)
+                    }
+                }
+            }
+        }
+
+        // find all technique that are not ideal, but have the learning domain
+        def extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
+            and {
+                learningDomain {
+                    'in' ('id', selectedLearningDomains)
+                }
+                not {
+                    and {
+                        knowledgeDimension {
+                            'in' ('id', selectedKnowledgeDimensions)
+                        }
+                        or {
+                            domainCategory {
+                                'in' ('id', selectedDomainCategories)
+                            }
+                            learningDomain {
+                                'in' ('id', selectedLearningDomains)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        render(
+            [
+                idealAssessmentTechniqueMatch: idealAssessmentTechniqueMatch,
+                extendedAssessmentTechniqueMatch: extendedAssessmentTechniqueMatch
+            ] as JSON
+        )
+    }
 }
