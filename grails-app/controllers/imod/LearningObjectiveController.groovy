@@ -14,7 +14,7 @@ class LearningObjectiveController {
 		getDomainCategories: 		'GET',
 		performance: 				'GET',
 		save: 						'POST',
-		updateDefinition:			'POST',
+		saveDefinition:				'POST',
 	]
 
 	// same as having index action redirect to performance tab
@@ -35,6 +35,24 @@ class LearningObjectiveController {
 			id: id,
 			params: [
 				learningObjectiveID: learningObjectiveId
+			]
+		)
+	}
+
+	def saveDefinition(Long id, Long learningObjectiveID, String pageType) {
+		def currentImod = Imod.get(id)
+		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+
+		selectedLearningObjective.definition = params.customDefinition
+
+		selectedLearningObjective.save()
+
+		// redirect to the correct page
+		redirect(
+			action: pageType,
+			id: id,
+			params: [
+				learningObjectiveID: learningObjectiveID
 			]
 		)
 	}
@@ -100,8 +118,8 @@ class LearningObjectiveController {
 			default:
 				pageType = 'performance'
 		}
-		// clear learning objective definition
-		selectedLearningObjective.definition = null;
+		// rebuild learning Objective definition
+		selectedLearningObjective.buildDefinition()
 
 		// save all of the changes
 		selectedLearningObjective.save()

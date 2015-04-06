@@ -45,7 +45,7 @@
 								<g:each var="learningObjective" in="${learningObjectives}">
 									<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
 										<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
-											<g:render template="/learningObjective/definition" bean="${learningObjective}" />
+											${ learningObjective.definition }
 										</g:link>
 									</li>
 								</g:each>
