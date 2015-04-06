@@ -37,7 +37,6 @@ $(document).ready(function() {
 		if ($(this).find('.list-link').text().trim() === 'Empty Learning Objective') {
 			$(this).hide();
 		}
-
 	});
 	$('.learning-objective.list-wrapper').show();
 });
@@ -147,5 +146,4 @@ function toggleHelp() {
 		helpbox.css('top', boxtop);
 		helpbox.css('left', boxleft);
 	}
-
 }

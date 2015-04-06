@@ -1,5 +1,7 @@
 language: groovy
 
+sudo: false
+
 jdk:
   - openjdk7
   - oraclejdk7
@@ -8,7 +10,9 @@ jdk:
 addons:
   postgresql: "9.4"
 
-sudo: false
+cache:
+  directories:
+    - ~/.grails
 
 before_script:
   - psql -c 'create database sample;' -U postgres

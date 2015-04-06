@@ -32,6 +32,9 @@ class LearningObjective {
 	String criteriaSpeed
 	String actionWord
 
+	// Store a custom definition
+	String definition
+
 	// if the criteria is enabled or not
 	Boolean criteriaAccuracyEnabled
 	Boolean criteriaQualityEnabled
@@ -73,6 +76,7 @@ class LearningObjective {
 		criteriaType		nullable: true
 		actionWordCategory	nullable: true
 		condition			nullable: true
+		definition			nullable: true
 		criteriaAccuracy	nullable: true
 		criteriaQuality		nullable: true
 		criteriaQuantity	nullable: true
@@ -81,7 +85,6 @@ class LearningObjective {
 		performance			nullable: true
 		actionWord			nullable: true
 		hideFromLearningObjectiveCondition	nullable:true
-
 	}
 
 	static mapping = {
@@ -114,5 +117,66 @@ class LearningObjective {
 		boolean otherPagesEmpty = condition == null && indicator == null && performance == null
 		// put it all together
 		return otherPagesEmpty && criteriaPageEmpty
+	}
+
+	public buildDefinition() {
+		definition = ''
+		if (isEmpty()) {
+			definition = 'Empty Learning Objective'
+			return
+		}
+		if(!hideFromLearningObjectiveCondition && condition != null) {
+			definition += condition
+		}
+		if(performance != null) {
+			definition += ' ' + actionWord
+		}
+		if(contents != null) {
+			if (contents.size() == 1) {
+				def contentItem = contents[0]
+				if (contentItem.topicTitle != null) {
+					definition += contentItem.topicTitle
+				}
+			}
+			else if (contents.size() == 2) {
+				def contentItem = contents[0]
+				if (contentItem.topicTitle != null) {
+					definition += ' ' + contentItem.topicTitle
+				}
+				definition += ' and'
+				contentItem = contents[1]
+				if (contentItem.topicTitle != null) {
+					definition += ' ' + contentItem.topicTitle
+				}
+			}
+			else {
+				for (contentItem in contents) {
+					if (contentItem.topicTitle != null) {
+						if(contentIndex > 0) {
+							definition += ', '
+						}
+						if (contentIndex == it.contents.size() - 1) {
+							definition += 'and '
+						}
+						definition += contentItem.topicTitle
+					}
+				}
+			}
+		}
+		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
+			definition += ' ' + criteriaAccuracy
+		}
+		if (criteriaQuality != null && criteriaQualityHidden == false) {
+			definition += ' ' + criteriaQuality
+		}
+		if (criteriaQuantity != null && criteriaQuantityHidden == false) {
+			definition += ' ' + criteriaQuantity
+		}
+		if (criteriaSpeed != null && criteriaSpeedHidden == false) {
+			definition += ' ' + criteriaSpeed
+		}
+		if (indicator != null) {
+			definition += ' ' + indicator
+		}
 	}
 }

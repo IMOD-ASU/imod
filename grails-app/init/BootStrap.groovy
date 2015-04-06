@@ -16,7 +16,7 @@ import imod.PedagogyReference
 import imod.PedagogyReferenceType
 import imod.PedagogyTechnique
 import imod.Role
-import imod.ScheduleRepeats;
+import imod.ScheduleRepeats
 import imod.ScheduleRepeatsEvery
 import imod.ScheduleWeekDays
 import imod.Audience
@@ -34,15 +34,15 @@ class BootStrap {
 		if (Role.list().size() == 0) {
 			new Role(
 				authority: "ROLE_ANONYMOUS"
-			).save();
+			).save()
 
 			new Role(
 				authority: "ROLE_ADMIN"
-			).save();
+			).save()
 
 			tempRole = new Role(
 				authority: "ROLE_USER"
-			).save();
+			).save()
 		}
 
 		/**
