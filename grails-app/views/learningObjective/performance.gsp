@@ -14,8 +14,9 @@
 			<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 			<g:hiddenField name="pageType" value="performance" id="page-type" />
 			<fieldset class="learning-objective-button">
-			<g:submitButton class="save show-hover-new" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
+				<g:submitButton class="save show-hover-new" name="update" value="Save" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
 			</fieldset>
+
 			<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 				Learning Domain
 			</label>
@@ -43,7 +44,6 @@
 					${actionWord}
 				</option>
 			</select>
-
 		</g:form>
 	</body>
 </html>
