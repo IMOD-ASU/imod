@@ -21,7 +21,7 @@
 <span class="learning-objective-content">
 	<g:if test="${ it.contents != null }">
 		<%-- One item in list --%>
-		<g:if test="${ it.contents.size() < 2 }">
+		<g:if test="${ it.contents.size() == 1 }">
 			<g:set var="contentItem" value="${it.contents[0]}" />
 			<g:if test="${ contentItem.topicTitle != null }">
 				${ contentItem.topicTitle }
