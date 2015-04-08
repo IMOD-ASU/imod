@@ -4,7 +4,7 @@ package imod
  * This stores the list of the Knowledge Dimension categories
  */
 public enum KnowledgeDimensionEnum {
-	CONCEPTUAL('Conceptually','Conceptualdimension related tooltip message'),
+	CONCEPTUAL('Conceptual','Conceptual dimension related tooltip message'),
 	FACTUAL('Factual','Factual dimension related tooltip message'),
 	METACOGNITIVE('Metacognitive','Metacognitive dimension related tooltip message'),
 	PROCEDURAL('Procedural','Procedural dimension related tooltip message')
