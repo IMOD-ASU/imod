@@ -49,12 +49,13 @@ $(document).ready(function() {
 
 	$('#topicList > tbody').on('click', 'tr', toggleSelected);
 
+
 	$('.topicButtonGradient .add').click(function() {
 		var row = "";
 		row += "<tr class=\"topicListRow\">";
-		row += "    <td class=\"saveIcon\">";
-		row += "        <i class=\"hidden fa fa-eraser\"><\/i>";
-		row += "    <\/td>";
+		row += "<td class=\"saveIcon\">";
+		row += "	<i class=\" fa fa-square-o\"><\/i>";
+		row += "<\/td>";
 		row += "    <td><input type=\"text\" name=\"firstName[]\" value=\"\" id=\"firstName\"  class=\"first_name\" \/><\/td>";
 		row += "    <td><input type=\"text\" name=\"lastName[]\" value=\"\" id=\"lastName\"  class=\"last_name\" \/><\/td>";
 		row += "    <td><input type=\"text\" name=\"email[]\" value=\"\" id=\"email\"  class=\"email\" \/><\/td>";
@@ -83,20 +84,6 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('.instructor-form')
-		.on("keypress",
-			".first_name, .last_name, .email, .role", 
-			function() {				
-				instructorValidator();
-			});
-
-	$('.instructor-form')
-		.on("change",
-			".role", 
-			function() {				
-				instructorValidator();
-			});
-
 	$('.save-instructors').click(function() {
 
 		var isValid = instructorValidator();
@@ -107,18 +94,18 @@ $(document).ready(function() {
 
 			$('.topicListRow').each(function() {
 				var row = $(this);
-				console.log(row.data('id'));
-				if (!row.data('id')) {
-					parameterList.push({
-						lastName: row.find('input[name="lastName[]"]').val(),
-						firstName: row.find('input[name="firstName[]"]').val(),
-						email: row.find('input[name="email[]"]').val(),
-						officeHours: row.find('input[name="officeHours[]"]').val(),
-						webPage: row.find('input[name="webPage[]"]').val(),
-						role: row.find('select[name="role[]"]').val(),
-						location: row.find('input[name="location[]"]').val()
-					});
-				}
+				
+				parameterList.push({
+					id: row.data('id'),
+					lastName: row.find('input[name="lastName[]"]').val(),
+					firstName: row.find('input[name="firstName[]"]').val(),
+					email: row.find('input[name="email[]"]').val(),
+					officeHours: row.find('input[name="officeHours[]"]').val(),
+					webPage: row.find('input[name="webPage[]"]').val(),
+					role: row.find('select[name="role[]"]').val(),
+					location: row.find('input[name="location[]"]').val()
+				});
+
 
 			});
 
@@ -309,11 +296,10 @@ function compareStartEndTimes() {
 
 	var startTime = new Date(year, month, day, startHour, startMinute);
 	var endTime = new Date(year, month, day, endHour, endMinute);
-
-	console.log(startTime <= endTime);
+	
+	$('#time-error').remove();
 
 	if (endTime <= startTime) {
-		$('#time-error').remove();
 		$('#schedule-end-time_hour').parent().append('<label id="time-error" class="error">End time has to be greater than start time</label>');
 		return false;
 	}
