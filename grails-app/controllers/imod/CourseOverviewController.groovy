@@ -193,9 +193,18 @@ class CourseOverviewController {
 
     // syllabus html page
     def syllabus(Long id){
+
+        def currentImod = Imod.get(id);
+
+        def learningObjectives = LearningObjective.findAllByImod(currentImod)
+
+        def contentList = Content.findAllWhere(imod: currentImod, parentContent: null);
+
         [
-            currentImod: Imod.get(id),
-            currentPage: 'syllabus'
+            currentImod: currentImod,
+            currentPage: 'syllabus',
+            learningObjectives: learningObjectives,
+            contentList: contentList
         ]
     }
 }
