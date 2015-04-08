@@ -92,7 +92,7 @@ this is the basic layout with only the IMOD header and footer
 			Copyright &copy; 2015 IMOD&trade;
 		</div>
 
-		<g:if env="developments">
+		<g:if env="development">
 			<!-- automated html style checking -->
 			<script src="//adamschwartz.co/log/log.js"></script>
 			<script src="//rawgit.com/yaniswang/HTMLHint/master/lib/htmlhint.js"></script>
