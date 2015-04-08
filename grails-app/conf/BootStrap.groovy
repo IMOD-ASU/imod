@@ -1208,19 +1208,23 @@ class BootStrap {
 
 if (KnowledgeDimension.count() < 1) {
 			new KnowledgeDimension(
-				description: "Factual"
+				description: "Factual",
+				info: "Factual dimension related tooltip message"
 			).save()
 
 			new KnowledgeDimension(
-				description: "Conceptual"
+				description: "Conceptual",
+				info: "Conceptual dimension related tooltip message"
 			).save()
 
 			new KnowledgeDimension(
-				description: "Procedural"
+				description: "Procedural",
+				info: "Procedural dimension related tooltip message"
 			).save()
 
 			new KnowledgeDimension(
-				description: "Metacognitive"
+				description: "Metacognitive",
+				info: "Metacognitive dimension related tooltip message"
 			).save()
 		}
 
