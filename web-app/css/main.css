@@ -977,6 +977,15 @@ table.inner-table {
     padding-left: 10px;
 }
 
+/* disabled tab */
+.tab-disabled{
+    opacity: 0.1;
+}
+
+.tab-disabled, .tab-disabled a{
+    cursor: not-allowed;
+}
+
 img.tab-icon {
     width: 20%;
     height: 43px;

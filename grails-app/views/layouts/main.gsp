@@ -98,5 +98,6 @@ this is the basic layout with only the IMOD header and footer
 			<script src="//rawgit.com/yaniswang/HTMLHint/master/lib/htmlhint.js"></script>
 			<g:javascript src="source/lintHTML.js" />
 		</g:if>
+
 	</body>
 </html>
