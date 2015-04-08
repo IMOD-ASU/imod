@@ -35,19 +35,39 @@ class CourseOverviewController {
             def webPage = it.webPage
             def location = it.location
 
-            def newInstructor = new Instructor(
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                role: role,
-                officeHours: officeHours,
-                webPage: webPage,
-                location: location,
-                createdBy: params.imod_id
-            )
+            if(it.id == null){
+                
+                def newInstructor = new Instructor(
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    role: role,
+                    officeHours: officeHours,
+                    webPage: webPage,
+                    location: location,
+                    createdBy: params.imod_id
+                )
 
-            // save new instructor and the updated user to database
-            newInstructor.save()
+
+                // save new instructor and the updated user to database
+                newInstructor.save()
+
+            }else{
+
+                def newInstructor = Instructor.get(it.id)
+                newInstructor.firstName = firstName;
+                newInstructor.lastName = lastName;
+                newInstructor.email = email;
+                newInstructor.role = role;
+                newInstructor.officeHours = officeHours;
+                newInstructor.webPage = webPage;
+                newInstructor.location = location;
+
+                // save new instructor and the updated user to database
+                newInstructor.save()
+
+            }
+
 
         }
 
