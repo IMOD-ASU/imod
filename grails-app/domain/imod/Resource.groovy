@@ -1,6 +1,6 @@
 package imod
 
-import java.util.List;
+import java.util.List
 
 /**
  * Stores information of a document or other resource relevant to teaching a topic in a course
@@ -51,7 +51,7 @@ class Resource {
 	 */
 	static belongsTo = [
 		content: Content
-	] 
+	]
 
 
 	/*
@@ -84,7 +84,7 @@ class Resource {
 	 * Functions *
 	 *************
 	 */
-	
+
 	static List resourceTypes() {
 		def resourceList = [
 			'Book',
