@@ -27,11 +27,16 @@
 					Quick tip
 				</Span>
 				<a id="open-button" href="#" onclick="toggleHelp()">
-					_
+					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_active.png')}" alt=""/>
 				</a>
-
 				<div id="qtip-place" style="float: right; text-align: left; position: absolute; margin: 20%; font-family: fantasy;">
 				</div>
+			</div>
+			<div id="help-placeholder-2">
+				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
+				<a id="open-button" href="#" onclick="toggleHelp()">
+					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_inactive.png')}" alt=""/>
+				</a>
 			</div>
 
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
@@ -80,7 +85,6 @@
 
 				<g:layoutBody/>
 			</div>
-			<div id="quick-tips"><button id="QuickTips"> Quick Tips</button></div>
 			</body>
 	</html>
 </g:applyLayout>
