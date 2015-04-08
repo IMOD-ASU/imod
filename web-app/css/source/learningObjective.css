@@ -141,7 +141,7 @@ input[disabled='disabled'] {
     text-align: center;
 
     border-bottom: 0;
-    border-radius: 18px 18px 0 0;
+    border-radius: 5px 5px 0 0;
     background: linear-gradient(#fdfdfd, #dddddd);
 
     font-size: 0;
@@ -167,11 +167,11 @@ input[disabled='disabled'] {
 }
 
 .learning-objective.sub-nav li:first-child {
-    border-radius: 1.5em 0 0 0;
+    border-radius: 5px 0 0 0;
 }
 
 .learning-objective.sub-nav li:last-child {
-    border-radius: 0 1.5em 0 0;
+    border-radius: 0 5px 0 0;
 }
 
 .learning-objective.sub-nav .tabs-background {
