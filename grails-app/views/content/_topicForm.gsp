@@ -106,7 +106,7 @@
 				<li>
 					<!-- FIXME replace with g:checkbox tag -->
 					<input type="checkbox" id="${dimension}" value="${dimension}" />
-					<label for="${dimension}">
+					<label  title="${dimension.getInfo()}" for="${dimension}">
 						${dimension}
 					</label>
 				</li>
