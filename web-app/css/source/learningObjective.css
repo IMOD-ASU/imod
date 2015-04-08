@@ -141,8 +141,8 @@ input[disabled='disabled'] {
     text-align: center;
 
     border-bottom: 0;
-    border-radius: 5px 5px 0 0;
-    background: linear-gradient(#fdfdfd, #dddddd);
+    /*border-radius: 5px 5px 0 0;*/
+    /*background: linear-gradient(#fdfdfd, #dddddd);*/
 
     font-size: 0;
 }
@@ -153,25 +153,19 @@ input[disabled='disabled'] {
     width: 9em;
     height: 2.6em;
     margin: 0;
-    margin-right: -1px;
+    margin-right: 5px;
     padding-bottom: 0;
 
     text-align: center;
 
+    background: linear-gradient(#fdfdfd, #dddddd);
+
     border: 1px solid #c4c2c2;
-    border-radius: 0;
+    border-radius: 5px 5px 0 0;
     text-shadow: 2px 2px 1px white;
 
     font-size: 12px;
     line-height: 2.6em;
-}
-
-.learning-objective.sub-nav li:first-child {
-    border-radius: 5px 0 0 0;
-}
-
-.learning-objective.sub-nav li:last-child {
-    border-radius: 0 5px 0 0;
 }
 
 .learning-objective.sub-nav .tabs-background {
@@ -193,7 +187,8 @@ input[disabled='disabled'] {
 }
 
 .learning-objective.sub-nav li.active {
-    border-bottom: 1px solid #eeeeee;
+    border: 1px solid #0C1625;
+    border-bottom-color: #eeeeee;
     background: #eeeeee;
 }
 
