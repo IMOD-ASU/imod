@@ -83,9 +83,23 @@ $(document).ready(function() {
 		return false;
 	});
 
+	$('.instructor-form')
+		.on("keypress",
+			".first_name, .last_name, .email, .role", 
+			function() {				
+				instructorValidator();
+			});
+
+	$('.instructor-form')
+		.on("change",
+			".role", 
+			function() {				
+				instructorValidator();
+			});
+
 	$('.save-instructors').click(function() {
 
-		var isValid = $('form.instructor-form').valid();
+		var isValid = instructorValidator();
 
 		if (isValid) {
 
@@ -132,7 +146,7 @@ $(document).ready(function() {
 	});
 
 	// instructor validation
-	jQuery.validator.addClassRules({
+	/*jQuery.validator.addClassRules({
 		first_name: {
 			required: true
 		},
@@ -146,7 +160,7 @@ $(document).ready(function() {
 		role: {
 			required: true
 		}
-	});
+	});*/
 
 	// regex method for url
 	$.validator.addMethod('urlRule', function(value, element, regexpr) {
@@ -207,9 +221,6 @@ $(document).ready(function() {
 		}
 	});
 
-	// instructor form validation
-	$('.instructor-form').validate();
-
 	gradingRadio($('.grading-radio:checked'));
 
 	// grading procedure radio buttons
@@ -226,6 +237,60 @@ $(document).ready(function() {
 	});
 
 });
+
+// custom validation function for instructors
+function instructorValidator(){
+	var errorList = [];
+
+	$('.instructor-form').find('.error').remove();
+
+	$('.instructor-form').find(".first_name, .last_name, .email, .role").each(function() {
+
+		if(!isRequired($(this).val())){
+			errorList.push({"element":$(this),
+							message: "This field is required"});
+		}else if($(this).hasClass('email')){
+
+			if(!isValidEmailAddress($(this).val())){
+				errorList.push({"element":$(this),
+							message: "Requires a valid email address"});
+			}
+			
+		}
+
+	});
+
+	if(errorList.length > 0) {
+		
+		for (var i = 0; i < errorList.length; i++) {
+			var errorMsg = '<label class="error">'
+			errorMsg += errorList[i].message;
+			errorMsg += "</label>";
+
+			errorList[i].element.after(errorMsg);
+		};
+
+		return false;
+
+	} else {
+		return true;
+	}
+		
+}
+
+// source: http://stackoverflow.com/a/2855946
+function isValidEmailAddress(emailAddress) {
+    var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+    return pattern.test(emailAddress);
+};
+
+function isRequired(fieldValue){
+	if(fieldValue != "" && fieldValue != null && fieldValue != undefined){
+		return true;
+	}else{
+		return false;
+	}
+}
 
 // compares startTime and EndTime
 function compareStartEndTimes() {
