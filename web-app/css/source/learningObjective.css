@@ -158,10 +158,9 @@ input[disabled='disabled'] {
 
     text-align: center;
 
-    background: linear-gradient(#fdfdfd, #dddddd);
-
     border: 1px solid #c4c2c2;
     border-radius: 5px 5px 0 0;
+    background: linear-gradient(#fdfdfd, #dddddd);
     text-shadow: 2px 2px 1px white;
 
     font-size: 12px;
@@ -187,7 +186,7 @@ input[disabled='disabled'] {
 }
 
 .learning-objective.sub-nav li.active {
-    border: 1px solid #0C1625;
+    border: 1px solid #0c1625;
     border-bottom-color: #eeeeee;
     background: #eeeeee;
 }
@@ -635,6 +634,6 @@ input[disabled='disabled'] {
     background: white;
 }
 
-.message.banner{
-	visibility: hidden;
+.message.banner {
+    visibility: hidden;
 }
