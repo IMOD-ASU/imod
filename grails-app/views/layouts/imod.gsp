@@ -38,7 +38,9 @@
 					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_inactive.png')}" alt=""/>
 				</a>
 			</div>
-
+			<div class="message banner">
+				Please enter course overview data followed by learning objectives and content.
+			</div>
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/course overview/) == null ? '' : 'ui-tabs-active ui-state-active'}">

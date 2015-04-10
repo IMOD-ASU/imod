@@ -876,7 +876,7 @@ p {
 }
 
 #tabs-container {
-    margin-top: 5%;
+    margin-top: 1%;
     margin-right: 17.5%;
     margin-bottom: 10.5%;
     margin-left: 2.5%;
@@ -1187,4 +1187,8 @@ label[for=weekdays] {
 }
 .saveIcon {
     font-size: 16px;
+}
+
+.message.banner{
+	margin-top:3.5%;
 }

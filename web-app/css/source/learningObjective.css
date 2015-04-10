@@ -634,3 +634,7 @@ input[disabled='disabled'] {
 #resourceList .unsaved {
     background: white;
 }
+
+.message.banner{
+	visibility: hidden;
+}
