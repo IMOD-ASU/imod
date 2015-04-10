@@ -50,7 +50,7 @@ html {
     background-repeat: no-repeat;
 }
 
-html.no-cssgradients {
+.no-cssgradients {
     background-color: #aaaaaa;
 }
 
@@ -107,6 +107,8 @@ img {
 }
 
 /* GENERAL */
+
+
 
 #grailsLogo {
     position: relative;
@@ -874,7 +876,7 @@ p {
 }
 
 #tabs-container {
-    margin-top: 5%;
+    margin-top: 1%;
     margin-right: 17.5%;
     margin-bottom: 10.5%;
     margin-left: 2.5%;
@@ -975,6 +977,16 @@ table.inner-table {
     padding-left: 10px;
 }
 
+/* disabled tab */
+.tab-disabled {
+    opacity: 0.1;
+}
+
+.tab-disabled,
+.tab-disabled a {
+    cursor: not-allowed;
+}
+
 img.tab-icon {
     width: 20%;
     height: 43px;
@@ -1032,8 +1044,12 @@ a.ui-tabs-anchor {
     font-size: 150%;
 }
 
+.ui-tabs .ui-tabs-nav {
+    padding: 0;
+}
+
 .ui-tabs-nav li {
-    width: 19.7%;
+    width: 19%;
     height: 43px;
 
     border-top-left-radius: 5px 5px;
@@ -1048,6 +1064,23 @@ a.ui-tabs-anchor {
 
     width: 12em;
     height: 9em;
+    padding-top: 5px;
+    padding-right: 1em;
+    padding-bottom: 3em;
+    padding-left: 5px;
+
+    border-width: 1px;
+    background-color: #ffff5a;
+}
+
+#help-placeholder-2 {
+    position: absolute;
+    z-index: 7;
+    top: 144px;
+    right: 15px;
+
+    width: 3em;
+    height: 1em;
     padding-top: 5px;
     padding-right: 1em;
     padding-bottom: 3em;
@@ -1086,6 +1119,16 @@ a.ui-tabs-anchor {
     top: 5px;
 
     width: 20px;
+    height: auto;
+}
+
+#active-quicktip {
+    position: relative;
+    top: 5px;
+
+    float: right;
+
+    width: 15px;
     height: auto;
 }
 
@@ -1146,4 +1189,8 @@ label[for=weekdays] {
 }
 .saveIcon {
     font-size: 16px;
+}
+
+.message.banner {
+    margin-top: 3.5%;
 }

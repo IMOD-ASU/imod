@@ -171,7 +171,7 @@
                                         <g:each in="${imod.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
                                             <!-- FIXME move complex logic to controller -->
                                             <!-- FIXME all model queries should be run in controller -->
-                                            <g:checkBox name="scheduleWeekDays_${scheduleWeekDays.id}" id="schedule-week-days-${scheduleWeekDays.id}" value="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}" />
+                                            <g:checkBox name="scheduleWeekDays_${scheduleWeekDays.id}" id="schedule-week-days-${scheduleWeekDays.id}" value="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}" title="${ message( code:'imod.courseOverview.scheduleRepeatsOn' ) }"/>
                                             <label for="weekdays">
                                                 ${scheduleWeekDays.description}
                                             </label>
@@ -191,7 +191,7 @@
                                                 <label for="overview">
                                                     <g:message code="imod.overview.label" default="Overview" />
                                                 </label>
-                                                <g:textArea name="overview" value="${currentImod?.overview}" rows="4" cols="40" />
+                                                <g:textArea name="overview" value="${currentImod?.overview}" rows="4" cols="40" title="${ message( code:'imod.courseOverview.overview')}"/>
                                             </div>
 
                                             <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'subjectArea', 'error')} ">
@@ -201,7 +201,7 @@
                                                         *
                                                     </span>
                                                 </label>
-                                                <g:textField name="subjectArea" id="subject-area" required="" value="${currentImod?.subjectArea}" />
+                                                <g:textField name="subjectArea" id="subject-area" required="" value="${currentImod?.subjectArea}" title="${ message( code:'imod.courseOverview.subjectArea')}"/>
                                             </div>
 
                                             <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'audience', 'error')} ">
@@ -215,14 +215,14 @@
                                                 <label for="credit-hours">
                                                     <g:message code="imod.creditHours.label" default="Credit Hours" />
                                                 </label>
-                                                <g:field name="creditHours" id="credit-hours" type="number" min="0" max="7" value="${currentImod.creditHours}"/>
+                                                <g:field name="creditHours" id="credit-hours" type="number" min="0" max="7" value="${currentImod.creditHours}" title="${ message( code:'imod.courseOverview.creditHours')}"/>
                                             </div>
 
                                             <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'timeRatio', 'error')} ">
                                                 <label for="time-ratio">
                                                     <g:message code="imod.timeRatio.label" default="Time Ratio" />
                                                 </label>
-                                                <g:textField name="timeRatio" id="time-ratio" value="${currentImod?.timeRatio}" />
+                                                <g:textField name="timeRatio" id="time-ratio" value="${currentImod?.timeRatio}" title="${ message( code:'imod.courseOverview.timeRatio')}"/>
 
                                                 <span class="help-block">
                                                 "Time spent in and out of class. eg: 1:2"
@@ -234,7 +234,7 @@
                                                 <label for="number-of-seats">
                                                     <g:message code="imod.numberOfSeats.label" default="Number Of Seats" />
                                                 </label>
-                                                <g:field name="numberOfSeats" id="number-of-seats" type="number" min="0" max="1000" value="${currentImod.numberOfSeats}" />
+                                                <g:field name="numberOfSeats" id="number-of-seats" type="number" min="0" max="1000" value="${currentImod.numberOfSeats}" title="${ message( code:'imod.courseOverview.numberOfSeats')}"/>
                                             </div>
                                     </div>
                                 </td>
@@ -251,48 +251,48 @@
                                             </h3>
                                             <div>
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}"/> Competency Based
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/> Competency Based
                                                 </div>
 
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}"/> Standardized Based
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/> Standardized Based
                                                 </div>
 
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}"/> Custom <br>
+                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/> Custom <br>
 
-                                                    <g:textArea name="gradingProcedure" id="grading-procedure-text" value="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ? currentImod?.gradingProcedure:''}" rows="3" cols="30" />
+                                                    <g:textArea name="gradingProcedure" id="grading-procedure-text" value="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ? currentImod?.gradingProcedure:''}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
                                                 </div>
                                             </div>
                                             <h3>
                                                 Attendance and tardiness
                                             </h3>
                                             <div>
-                                                <g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" />
+                                                <g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
                                             </div>
                                             <h3>
                                                 Class participation
                                             </h3>
                                             <div>
-                                                <g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" />
+												<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.classParticipation')}" />
                                             </div>
                                             <h3>
                                                 Professional Conduct
                                             </h3>
                                             <div>
-                                                <g:textArea name="professionalConduct" id="professional-conduct" value="${currentImod?.professionalConduct}" rows="2" cols="30" />
+                                                <g:textArea name="professionalConduct" id="professional-conduct" value="${currentImod?.professionalConduct}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.professionalConduct')}" />
                                             </div>
                                             <h3>
                                                 Missed exams/Make-up exams
                                             </h3>
                                             <div>
-                                                <g:textArea name="missedExams" id="missed-exams" value="${currentImod?.missedExams}" rows="2" cols="30" />
+                                                <g:textArea name="missedExams" id="missed-exams" value="${currentImod?.missedExams}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedExams')}" />
                                             </div>
                                             <h3>
                                                 Missed Assignments
                                             </h3>
                                             <div>
-                                                <g:textArea name="missedAssignments" id="missed-assignments" value="${currentImod?.missedAssignments}" rows="2" cols="30" />
+                                                <g:textArea name="missedAssignments" id="missed-assignments" value="${currentImod?.missedAssignments}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedAssignments')}" />
                                             </div>
                                         </div>
                                     </div>
@@ -321,7 +321,7 @@
                                                     <input type="hidden" name="imodID" value="221" id="imodID">
                                                     <fieldset class="buttons topicButtonField">
                                                         <span class="topicButtonGradient">
-                                                            <input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton">
+                                                            <input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
                                                         </span>
                                                         <span class="topicButtonGradient">
                                                             <input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic">

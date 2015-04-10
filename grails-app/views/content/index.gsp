@@ -240,7 +240,7 @@
 						id="${dimension}"
 						value="${dimension}"
 					/>
-					<label for="${dimension}">
+					<label title="${dimension.getInfo()}" for="${dimension}">
 						${dimension}
 					</label>
 				</li>

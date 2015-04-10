@@ -16,7 +16,7 @@ import imod.PedagogyReference
 import imod.PedagogyReferenceType
 import imod.PedagogyTechnique
 import imod.Role
-import imod.ScheduleRepeats;
+import imod.ScheduleRepeats
 import imod.ScheduleRepeatsEvery
 import imod.ScheduleWeekDays
 import imod.Audience
@@ -34,15 +34,15 @@ class BootStrap {
 		if (Role.list().size() == 0) {
 			new Role(
 				authority: "ROLE_ANONYMOUS"
-			).save();
+			).save()
 
 			new Role(
 				authority: "ROLE_ADMIN"
-			).save();
+			).save()
 
 			tempRole = new Role(
 				authority: "ROLE_USER"
-			).save();
+			).save()
 		}
 
 		/**
@@ -1208,19 +1208,23 @@ class BootStrap {
 
 if (KnowledgeDimension.count() < 1) {
 			new KnowledgeDimension(
-				description: "Factual"
+				description: "Factual",
+				info: "Factual dimension related tooltip message"
 			).save()
 
 			new KnowledgeDimension(
-				description: "Conceptual"
+				description: "Conceptual",
+				info: "Conceptual dimension related tooltip message"
 			).save()
 
 			new KnowledgeDimension(
-				description: "Procedural"
+				description: "Procedural",
+				info: "Procedural dimension related tooltip message"
 			).save()
 
 			new KnowledgeDimension(
-				description: "Metacognitive"
+				description: "Metacognitive",
+				info: "Metacognitive dimension related tooltip message"
 			).save()
 		}
 

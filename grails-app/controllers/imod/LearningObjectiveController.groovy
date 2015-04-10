@@ -14,7 +14,7 @@ class LearningObjectiveController {
 		getDomainCategories: 		'GET',
 		performance: 				'GET',
 		save: 						'POST',
-		updateDefinition:			'POST',
+		saveDefinition:				'POST',
 	]
 
 	// same as having index action redirect to performance tab
@@ -35,6 +35,24 @@ class LearningObjectiveController {
 			id: id,
 			params: [
 				learningObjectiveID: learningObjectiveId
+			]
+		)
+	}
+
+	def saveDefinition(Long id, Long learningObjectiveID, String pageType) {
+		def currentImod = Imod.get(id)
+		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+		
+		selectedLearningObjective.definition = params.customDefinition
+
+		selectedLearningObjective.save()
+
+		// redirect to the correct page
+		redirect(
+			action: pageType,
+			id: id,
+			params: [
+				learningObjectiveID: learningObjectiveID
 			]
 		)
 	}
@@ -100,6 +118,9 @@ class LearningObjectiveController {
 			default:
 				pageType = 'performance'
 		}
+		// rebuild learning Objective definition
+		selectedLearningObjective.buildDefinition()
+
 		// save all of the changes
 		selectedLearningObjective.save()
 
@@ -160,7 +181,7 @@ class LearningObjectiveController {
 		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
-		def contents = [];
+		def contents = []
 		if (contentList.size() < 1) {
 			contentList.add(new Content(imod: currentImod))
 		}
@@ -201,7 +222,7 @@ class LearningObjectiveController {
 		def currentImod = Imod.get(id)
 		// get a list of all of the learning objectives for this imod
 		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
-		
+
 		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		[

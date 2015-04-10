@@ -58,7 +58,7 @@
 									<g:each var="learningObjective" in="${learningObjectives}">
 										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
 											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
-												<g:render template="/learningObjective/definition" bean="${learningObjective}" />
+												${ learningObjective.definition }
 											</g:link>
 										</li>
 									</g:each>
@@ -67,7 +67,13 @@
 						</td>
 						<td class="learning-objective definition-cell">
 							<div class="learning-objective definition" class="learning-objective-current">
-								<g:render template="/learningObjective/definition" bean="${currentLearningObjective}" />
+								${ currentLearningObjective.definition }
+								<g:form action="saveDefinition" id="${currentImod.id}" method="post">
+									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" />
+									<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
+									<g:hiddenField name="pageType" value="criteria" id="page-type" />
+									<g:submitButton name="update" value="update" />
+								</g:form>
 							</div>
 						</td>
 					</tr>
