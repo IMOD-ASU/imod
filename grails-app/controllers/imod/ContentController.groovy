@@ -82,6 +82,7 @@ class ContentController {
 			] as JSON
 		)
 	}
+	
 	def deleteTopic(String contentIDs) {
 		def success = []
 		def contentIDList = new JsonSlurper().parseText(contentIDs)

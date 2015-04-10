@@ -22,6 +22,12 @@ $(document).ready(function() {
 		//alert(document.activeElement);
 		$('#qtip-place').html(document.activeElement.title);
 	});
+	
+	$('input[type="button"], input[type="submit"]').hover(function() {
+		$('#qtip-place').html(this.title);
+	}, function() {
+	        $("#qtip-place").html("");
+	});
 
 	$('.learning-objective.list-item').each(function() {
 		if ($(this).find('.list-link').text().trim() === 'Empty Learning Objective') {
