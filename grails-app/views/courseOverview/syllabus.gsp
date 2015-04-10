@@ -11,6 +11,9 @@
         <title>
             Syllabus
         </title>
+
+        <g:external dir="css/source" file="syllabus.css" />
+
     </head>
     <body>
 
