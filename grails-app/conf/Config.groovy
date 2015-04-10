@@ -71,8 +71,7 @@ environments {
 		grails.gorm.failOnError = true
 	}
     test {
-        grails.logging.jul.usebridge = true
-        grails.gorm.failOnError = true
+        grails.logging.jul.usebridge = false
         grails.serverURL = 'http://imod.poly.asu.edu:8080/imod-test'
     }
 	production {
