@@ -38,7 +38,9 @@
 					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_inactive.png')}" alt=""/>
 				</a>
 			</div>
-
+			<div class="message banner">
+				Please enter course overview data followed by learning objectives and content.
+			</div>
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/course overview/) == null ? '' : 'ui-tabs-active ui-state-active'}">
@@ -65,7 +67,7 @@
 							</span>
 						</g:link>
 					</li>
-					<li class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
+					<li onclick="return false;" class="tab-disabled ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link controller="assessment" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
 							<span id="assess-tab-title">
@@ -73,7 +75,7 @@
 							</span>
 						</g:link>
 					</li>
-					<li class="ui-state-default ui-corner-top ${ currentPage.find(/pedagogy/) == null ? '' : 'ui-tabs-active ui-state-active'}">
+					<li onclick="return false;" class="tab-disabled ui-state-default ui-corner-top ${ currentPage.find(/pedagogy/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link controller="pedagogy" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
 							<span id="pedagogy-tab-title">

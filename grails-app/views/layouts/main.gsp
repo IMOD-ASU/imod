@@ -108,5 +108,6 @@ this is the basic layout with only the IMOD header and footer
 			<g:external dir="bower_components/htmlhint/lib" file="htmlhint.js" defer="defer" />
 			<g:javascript src="source/lintHTML.js" defer="defer" />
 		</g:if>
+
 	</body>
 </html>

@@ -50,7 +50,7 @@ html {
     background-repeat: no-repeat;
 }
 
-html.no-cssgradients {
+.no-cssgradients {
     background-color: #aaaaaa;
 }
 
@@ -876,7 +876,7 @@ p {
 }
 
 #tabs-container {
-    margin-top: 5%;
+    margin-top: 1%;
     margin-right: 17.5%;
     margin-bottom: 10.5%;
     margin-left: 2.5%;
@@ -975,6 +975,16 @@ table.inner-table {
 
 .title-text {
     padding-left: 10px;
+}
+
+/* disabled tab */
+.tab-disabled {
+    opacity: 0.1;
+}
+
+.tab-disabled,
+.tab-disabled a {
+    cursor: not-allowed;
 }
 
 img.tab-icon {
@@ -1116,9 +1126,10 @@ a.ui-tabs-anchor {
     position: relative;
     top: 5px;
 
+    float: right;
+
     width: 15px;
     height: auto;
-    float: right;
 }
 
 .fieldcontain label,
@@ -1178,4 +1189,8 @@ label[for=weekdays] {
 }
 .saveIcon {
     font-size: 16px;
+}
+
+.message.banner {
+    margin-top: 3.5%;
 }

@@ -23,6 +23,74 @@ class ImodController {
 	def list() {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
+
+		// create sample imod if it doesn't exist
+		/*def sample = Imod.findByName('OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE')
+
+		if(sample == null){
+			// create a new imod
+			def newImod = new Imod(
+				owner: currentUser,
+				name: 'OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE',
+				url: 'https://piazza.com/asu/spring2014/cst100/home',			
+				subjectArea: 'Computer Science',
+				imodNumber: 'cst100',
+				courseLocation: 'Peralta 213',
+				overview: 'Introduces problem solving with a state-of-the-art programming language. Expressions, statements, basic control flow and methods. Data, data aggregation and usage.',
+				courseSemester: 'Fall 2015',
+				gradingProcedure: 'Attainment of course outcomes will be assessed based on your performance in various course activities throughout the semester. Table 1 shows a breakdown of the percentage allocation for each type of course assessment activity.',
+				attendance: 'Regular on-time attendance in this course is expected. The presentations, activities and discussions that will occur during class sessions are designed to enhance your educational experience and help you achieve the identified course objectives.',
+
+				classParticipation: 'Class Participation',
+				professionalConduct: 'Professional Conduct',
+				missedExams: 'missedExams',
+				missedAssignments: 'Missed assignment section',
+				creditHours: '3',
+				timeRatio: '1:3',
+				numberOfSeats: '30',
+				audience: "48",
+
+			)
+
+			// update current user
+			currentUser.addToImods(newImod)
+
+			// save new imod and the updated user to database
+			currentUser.save()
+
+
+			def newInstructor = new Instructor(
+	            firstName: "Dr. Ajay",
+	            lastName: "Bansal",
+	            email: "ajay.bansal@asu.edu",
+	            role: "Professor",
+	            officeHours: "Tuesdays & Thursdays | 9:00am – 10:0am or by appointment",
+	            location: "Peralta 230V",
+	            createdBy: newImod.id
+	        )
+
+
+	        // save new instructor and the updated user to database
+	        newInstructor.save()
+
+	        newInstructor = new Instructor(
+	            firstName: "Rehman",
+	            lastName: "Chughtai",
+	            email: "Rehman.Chughtai@asu.edu",
+	            role: "Assistant Professor",
+	            officeHours: "by email appointment",
+	            location: "Peralta 235 (Bullpen)",
+	            createdBy: newImod.id
+	        )
+
+
+	        // save new instructor and the updated user to database
+	        newInstructor.save()
+
+		}*/	
+
+
 		// search for imods owned by current user
 		def displayList = Imod.findAllWhere(owner: currentUser)
 		[
@@ -191,6 +259,18 @@ class ImodController {
 			}
 		}
 	}
+
+	/*def sample(){
+		
+
+
+		// search for imods owned by current user
+		def displayList = Imod.findAllWhere(owner: currentUser)
+		[
+			imodInstanceList: displayList,
+			sort: 'name'
+		]
+	}*/
 
 	def delete(Long id) {
 		def currentImod = Imod.get(id)

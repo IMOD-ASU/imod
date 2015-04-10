@@ -150,7 +150,8 @@ class LearningObjective {
 				}
 			}
 			else {
-				for (contentItem in contents) {
+				for (def contentIndex = 0; contentIndex < contents.size(); contentIndex++) {
+					def contentItem = contents[contentIndex]
 					if (contentItem.topicTitle != null) {
 						if(contentIndex > 0) {
 							definition += ', '
