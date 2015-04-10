@@ -135,7 +135,7 @@ class LearningObjective {
 			if (contents.size() == 1) {
 				def contentItem = contents[0]
 				if (contentItem.topicTitle != null) {
-					definition += contentItem.topicTitle
+					definition += ' ' + contentItem.topicTitle
 				}
 			}
 			else if (contents.size() == 2) {
@@ -153,10 +153,12 @@ class LearningObjective {
 				for (def contentIndex = 0; contentIndex < contents.size(); contentIndex++) {
 					def contentItem = contents[contentIndex]
 					if (contentItem.topicTitle != null) {
-						if(contentIndex > 0) {
+						if(contentIndex == 0) {
+							definition += ' '
+						} else {
 							definition += ', '
 						}
-						if (contentIndex == it.contents.size() - 1) {
+						if (contentIndex == contents.size() - 1) {
 							definition += 'and '
 						}
 						definition += contentItem.topicTitle
