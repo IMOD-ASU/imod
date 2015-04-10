@@ -8,6 +8,7 @@ class KnowledgeDimension {
 	 * Describes the information that this dimension encapsulates
 	 */
 	String description
+	String info
 
 	/**
 	 * Knowledge dimensions are not versioned

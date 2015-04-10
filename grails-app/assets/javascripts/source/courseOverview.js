@@ -49,30 +49,31 @@ $(document).ready(function() {
 
 	$('#topicList > tbody').on('click', 'tr', toggleSelected);
 
+
 	$('.topicButtonGradient .add').click(function() {
-		var row = "";
-		row += "<tr class=\"topicListRow\">";
-		row += "    <td class=\"saveIcon\">";
-		row += "        <i class=\"hidden fa fa-eraser\"><\/i>";
-		row += "    <\/td>";
-		row += "    <td><input type=\"text\" name=\"firstName[]\" value=\"\" id=\"firstName\"  class=\"first_name\" \/><\/td>";
-		row += "    <td><input type=\"text\" name=\"lastName[]\" value=\"\" id=\"lastName\"  class=\"last_name\" \/><\/td>";
-		row += "    <td><input type=\"text\" name=\"email[]\" value=\"\" id=\"email\"  class=\"email\" \/><\/td>";
-		row += "    <td><input type=\"text\" name=\"officeHours[]\" value=\"\" id=\"officeHours\" class=\"office_hours\" \/><\/td>";
-		row += "    <td><input type=\"text\" name=\"webPage[]\" value=\"\" id=\"webPage\" class=\"web_page\" \/><\/td>";
-		row += "<td>";
-		row += "    <select name=\"role[]\" id=\"role\" class=\"role\">";
-		row += "        <option value=\"\">Select Role<\/option>";
-		row += "        <option>Assistant Professor<\/option>";
-		row += "        <option>Associate Professor<\/option>";
-		row += "        <option>Professor<\/option>";
-		row += "        <option>Teaching Assistant<\/option>";
-		row += "        <option>Course Assistant<\/option>";
-		row += "        <option>Grader<\/option>";
-		row += "    <\/select>";
-		row += "<\/td>";
-		row += "    <td><input type=\"text\" name=\"location[]\" value=\"\" id=\"location\" class=\"location\" \/><\/td>";
-		row += "<\/tr>";
+		var row = '';
+		row += '<tr class="topicListRow">';
+		row += '<td class="saveIcon">';
+		row += '	<i class="fa fa-square-o"></i>';
+		row += '</td>';
+		row += '    <td><input type="text" name="firstName[]" value="" id="firstName" class="first_name" /></td>';
+		row += '    <td><input type="text" name="lastName[]" value="" id="lastName" class="last_name" /></td>';
+		row += '    <td><input type="text" name="email[]" value="" id="email"  class="email" /></td>';
+		row += '    <td><input type="text" name="officeHours[]" value="" id="officeHours" class="office_hours" /></td>';
+		row += '    <td><input type="text" name="webPage[]" value="" id="webPage" class="web_page" /></td>';
+		row += '<td>';
+		row += '    <select name="role[]" id="role" class="role">';
+		row += '        <option value="">Select Role</option>';
+		row += '        <option>Assistant Professor</option>';
+		row += '        <option>Associate Professor</option>';
+		row += '        <option>Professor</option>';
+		row += '        <option>Teaching Assistant</option>';
+		row += '        <option>Course Assistant</option>';
+		row += '        <option>Grader</option>';
+		row += '    </select>';
+		row += '</td>';
+		row += '    <td><input type="text" name="location[]" value="" id="location" class="location" /></td>';
+		row += '</tr>';
 
 		$('#topicList tbody').append(row);
 		return false;
@@ -85,7 +86,7 @@ $(document).ready(function() {
 
 	$('.save-instructors').click(function() {
 
-		var isValid = $('form.instructor-form').valid();
+		var isValid = instructorValidator();
 
 		if (isValid) {
 
@@ -93,18 +94,18 @@ $(document).ready(function() {
 
 			$('.topicListRow').each(function() {
 				var row = $(this);
-				console.log(row.data('id'));
-				if (!row.data('id')) {
-					parameterList.push({
-						lastName: row.find('input[name="lastName[]"]').val(),
-						firstName: row.find('input[name="firstName[]"]').val(),
-						email: row.find('input[name="email[]"]').val(),
-						officeHours: row.find('input[name="officeHours[]"]').val(),
-						webPage: row.find('input[name="webPage[]"]').val(),
-						role: row.find('select[name="role[]"]').val(),
-						location: row.find('input[name="location[]"]').val()
-					});
-				}
+
+				parameterList.push({
+					id: row.data('id'),
+					lastName: row.find('input[name="lastName[]"]').val(),
+					firstName: row.find('input[name="firstName[]"]').val(),
+					email: row.find('input[name="email[]"]').val(),
+					officeHours: row.find('input[name="officeHours[]"]').val(),
+					webPage: row.find('input[name="webPage[]"]').val(),
+					role: row.find('select[name="role[]"]').val(),
+					location: row.find('input[name="location[]"]').val()
+				});
+
 
 			});
 
@@ -132,7 +133,7 @@ $(document).ready(function() {
 	});
 
 	// instructor validation
-	jQuery.validator.addClassRules({
+	/*jQuery.validator.addClassRules({
 		first_name: {
 			required: true
 		},
@@ -146,7 +147,7 @@ $(document).ready(function() {
 		role: {
 			required: true
 		}
-	});
+	});*/
 
 	// regex method for url
 	$.validator.addMethod('urlRule', function(value, element, regexpr) {
@@ -207,9 +208,6 @@ $(document).ready(function() {
 		}
 	});
 
-	// instructor form validation
-	$('.instructor-form').validate();
-
 	gradingRadio($('.grading-radio:checked'));
 
 	// grading procedure radio buttons
@@ -226,6 +224,64 @@ $(document).ready(function() {
 	});
 
 });
+
+// custom validation function for instructors
+function instructorValidator() {
+	var errorList = [];
+
+	$('.instructor-form').find('.error').remove();
+
+	$('.instructor-form').find('.first_name, .last_name, .email, .role').each(function() {
+
+		if (!isRequired($(this).val())) {
+			errorList.push({
+			'element': $(this),
+				message: 'This field is required'
+			});
+		} else if ($(this).hasClass('email')) {
+
+			if (!isValidEmailAddress($(this).val())) {
+				errorList.push({
+					'element': $(this),
+					message: 'Requires a valid email address'
+				});
+			}
+
+		}
+
+	});
+
+	if (errorList.length > 0) {
+
+		for (var i = 0; i < errorList.length; i++) {
+			var errorMsg = '<label class="error">';
+			errorMsg += errorList[i].message;
+			errorMsg += "</label>";
+
+			errorList[i].element.after(errorMsg);
+		}
+
+		return false;
+
+	} else {
+		return true;
+	}
+
+}
+
+// source: http://stackoverflow.com/a/2855946
+function isValidEmailAddress(emailAddress) {
+	var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+	return pattern.test(emailAddress);
+}
+
+function isRequired(fieldValue) {
+	if (fieldValue !== '' && fieldValue !== null && fieldValue !== undefined) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 // compares startTime and EndTime
 function compareStartEndTimes() {
@@ -245,10 +301,9 @@ function compareStartEndTimes() {
 	var startTime = new Date(year, month, day, startHour, startMinute);
 	var endTime = new Date(year, month, day, endHour, endMinute);
 
-	console.log(startTime <= endTime);
+	$('#time-error').remove();
 
 	if (endTime <= startTime) {
-		$('#time-error').remove();
 		$('#schedule-end-time_hour').parent().append('<label id="time-error" class="error">End time has to be greater than start time</label>');
 		return false;
 	}

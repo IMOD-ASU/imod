@@ -42,7 +42,7 @@ class LearningObjectiveController {
 	def saveDefinition(Long id, Long learningObjectiveID, String pageType) {
 		def currentImod = Imod.get(id)
 		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-
+		
 		selectedLearningObjective.definition = params.customDefinition
 
 		selectedLearningObjective.save()
