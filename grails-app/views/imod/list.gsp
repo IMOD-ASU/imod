@@ -10,6 +10,7 @@
 		</title>
 	</head>
 	<body>
+
 		<div class="list-imod-body">
 			<div id="list-imod" class="content scaffold-list" role="main">
 				<g:if test="${flash.message}">
