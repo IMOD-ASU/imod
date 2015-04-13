@@ -58,10 +58,11 @@ input[disabled='disabled'] {
 .learning-objective.definition-display.active,
 .learning-objective.definition-edit.active {
     display: block;
+
     text-align: center;
 }
 
-.learning-objective.definition-edit input[name=update]{
+.learning-objective.definition-edit input[name=update] {
     display: none;
 }
 
