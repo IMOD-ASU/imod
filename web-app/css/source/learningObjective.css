@@ -50,6 +50,22 @@ input[disabled='disabled'] {
     border-radius: 5px;
 }
 
+.learning-objective.definition-display,
+.learning-objective.definition-edit {
+    display: none;
+}
+
+.learning-objective.definition-display.active,
+.learning-objective.definition-edit.active {
+    display: block;
+
+    text-align: center;
+}
+
+.learning-objective.definition-edit input[name=update] {
+    display: none;
+}
+
 .learning-objective.definition-cell {
     width: 70%;
     height: 5em;
