@@ -22,7 +22,7 @@ $(document).ready(function() {
 			return false;
 		}
 
-		if (confirm('Are you sure you want to delete the instructor(s)') === false) {
+		if (confirm('Are you sure you want to delete the instructor(s)?') === false) {
 			return false;
 		}
 
