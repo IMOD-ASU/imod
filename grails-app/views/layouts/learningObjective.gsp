@@ -70,7 +70,6 @@
 									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" />
 									<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 									<g:hiddenField name="pageType" value="criteria" id="page-type" />
-									<g:submitButton name="update" value="update" />
 								</g:form>
 							</div>
 						</td>
