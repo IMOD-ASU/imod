@@ -3,6 +3,7 @@
 $(function() {
 	var jsonData = JSON.parse($("input[name=treeData]").val());
 	buildContentTree(jsonData, false);
+	
 	$('#contentTree').on('ready.jstree', function() {
 		var idList = $('#contentTree').find('li.topicSelected');
 		$(idList).each(function() {

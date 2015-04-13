@@ -15,6 +15,18 @@ $(document).ready(function() {
 		$('.icons').css('visibility', 'hidden');
 	}
 
+	$('.learning-objective.definition-display').click(function() {
+		$('.learning-objective.definition-display').removeClass('active');
+		$('.learning-objective.definition-edit').addClass('active');
+		$('.learning-objective.definition-edit #customDefinition').focus();
+	});
+
+	$('.learning-objective.definition-edit #customDefinition').blur(function() {
+		$('.learning-objective.definition-display').addClass('active');
+		$('.learning-objective.definition-edit').removeClass('active');
+		$('.learning-objective.definition-edit').submit();
+	});
+
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(
 		'change',
