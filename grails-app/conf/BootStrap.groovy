@@ -642,7 +642,7 @@ class BootStrap {
 
 			def domainCategoryGuidedResponse = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: "GuidedResponse"
+				name: "Guided Response"
 			)
 
 			def domainCategoryMechanism = new DomainCategory(
@@ -652,7 +652,7 @@ class BootStrap {
 
 			def domainCategoryComplexOvertResponse = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: "ComplexOvertResponse"
+				name: "Complex Overt Response"
 			)
 
 			def domainCategoryAdaptation = new DomainCategory(
