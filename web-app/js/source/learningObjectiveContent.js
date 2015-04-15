@@ -3,7 +3,7 @@
 $(function() {
 	var jsonData = JSON.parse($("input[name=treeData]").val());
 	buildContentTree(jsonData, false);
-	
+
 	$('#contentTree').on('ready.jstree', function() {
 		var idList = $('#contentTree').find('li.topicSelected');
 		$(idList).each(function() {
@@ -72,12 +72,12 @@ function buildContentTree(jsonData, refreshDB) {
 			selectCheckboxes(this);
 		});
 		$('#contentTree .jstree-anchor').on('click', function(event) {
-				
+
 			// if delete topic is clicked
 			var target = $(event.target);
-			if(target.attr('class') == 'delete-topic'){
+			if (target.attr('class') === 'delete-topic') {
 				var contents = [];
-				var contentId = target.data('id')
+				var contentId = target.data('id');
 				contents.push(contentId);
 				deleteTopicSubTab(contents);
 

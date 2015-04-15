@@ -311,18 +311,28 @@ input[disabled='disabled'] {
 }
 
 /* individual delete button styling */
-.delete-topic{
-    background: #000; color: #fff;
-    font-size: 12px; width: 16px; height: 16px; line-height: 16px;
-    border-radius: 8px; text-align: center;
-    margin-left: 5px; display: none;
+.delete-topic {
+    display: none;
+
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+
+    text-align: center;
+
+    color: #ffffff;
+    border-radius: 8px;
+    background: #000000;
+
+    font-size: 12px;
+    line-height: 16px;
 }
 
-.delete-topic:hover{
+.delete-topic:hover {
     background: red;
 }
 
-#contentTree li.jstree-node:hover .delete-topic{
+#contentTree li.jstree-node:hover .delete-topic {
     display: inline-block;
 }
 
@@ -517,7 +527,7 @@ input[disabled='disabled'] {
 
     color: darkred;
 }
-.saveIcon i{
+.saveIcon i {
     cursor: pointer;
 }
 
