@@ -22,17 +22,17 @@ $(document).ready(function() {
 		//alert(document.activeElement);
 		$('#qtip-place').html(document.activeElement.title);
 	});
-	
+
 	$('input[type="submit"]').hover(function() {
 		$('#qtip-place').html($(this).attr('oldtitle'));
 	}, function() {
-	        $("#qtip-place").html("");
+		$("#qtip-place").html("");
 	});
 
 	$('input[type="checkbox"], input[type="radio"]').hover(function() {
 		$('#qtip-place').html($(this).attr('title'));
 	}, function() {
-	        $("#qtip-place").html("");
+		$("#qtip-place").html("");
 	});
 
 	$('.learning-objective.list-item').each(function() {

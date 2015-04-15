@@ -48,15 +48,15 @@ $(document).ready(function() {
 	});
 
 	// $('#topicList > tbody').on('click', 'tr', toggleSelected);
-	$('#topicList').on('click', '.saveIcon', function(){
+	$('#topicList').on('click', '.saveIcon', function() {
 		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 		$(this).parent().toggleClass('selected');
 	});
 
-	$('.saveIcon-parent').click(function(){
+	$('.saveIcon-parent').click(function() {
 		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 
-		if($(this).find("i").hasClass('fa-square-o')){
+		if ($(this).find("i").hasClass('fa-square-o')) {
 
 			$(this).parents('table')
 				.find('tbody')
@@ -67,7 +67,7 @@ $(document).ready(function() {
 				.removeClass('fa-check-square')
 				.addClass('fa-square-o');
 
-		}else{
+		} else {
 
 			$(this).parents('table')
 				.find('tbody')
@@ -124,7 +124,7 @@ $(document).ready(function() {
 
 		if (isValid) {
 
-			var isValid = instructorValidator();
+			isValid = instructorValidator();
 
 			if (isValid) {
 
@@ -269,7 +269,7 @@ function instructorValidator() {
 
 		if (!isRequired($(this).val())) {
 			errorList.push({
-			'element': $(this),
+				'element': $(this),
 				message: 'This field is required'
 			});
 		} else if ($(this).hasClass('email')) {

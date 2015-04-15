@@ -6,11 +6,11 @@ var prevKeyword = '';
 
 //on page load
 $(document).ready(function() {
-	
+
 	$(':button').hover(function() {
 		$('#qtip-place').html($(this).attr('title'));
 	}, function() {
-	        $("#qtip-place").html("");
+		$("#qtip-place").html("");
 	});
 
 

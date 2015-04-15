@@ -36,17 +36,17 @@ $(function() {
 		});
 		deleteTopic(contentIDs);
 	});
-	
+
 	// $('#topicList > tbody').on('click', 'tr', toggleSelected);
-	$('#topicList').on('click', '.saveIcon', function(){
+	$('#topicList').on('click', '.saveIcon', function() {
 		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 		$(this).parent().toggleClass('selected');
 	});
 
-	$('.saveIcon-parent').click(function(){
+	$('.saveIcon-parent').click(function() {
 		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 
-		if($(this).find("i").hasClass('fa-square-o')){
+		if ($(this).find("i").hasClass('fa-square-o')) {
 
 			$(this).parents('table')
 				.find('tbody')
@@ -57,7 +57,7 @@ $(function() {
 				.removeClass('fa-check-square')
 				.addClass('fa-square-o');
 
-		}else{
+		} else {
 
 			$(this).parents('table')
 				.find('tbody')
@@ -75,7 +75,7 @@ $(function() {
 
 
 	// $('#resourceList > tbody').on('click', 'tr', toggleSelected);
-	$('#resourceList').on('click', '.saveIcon', function(){
+	$('#resourceList').on('click', '.saveIcon', function() {
 		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 		$(this).toggleClass('selected');
 	});
