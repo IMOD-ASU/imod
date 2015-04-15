@@ -23,8 +23,7 @@ An IMODS is a course that uses Pedagogy, Content, and Assessment to generate Lea
 * Install Node JS v0.12 [(windows) (linux)](https://nodejs.org/download/)
 * For develop ensure postgres user is "postres" with password "postres"
 * Create a database named "sample"
-* Run `npm install -g`
-* Run `bower install`
+* Run `npm install bower -g`
 
 ## Key Concepts
 
