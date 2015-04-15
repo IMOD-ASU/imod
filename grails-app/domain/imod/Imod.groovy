@@ -101,17 +101,17 @@ class Imod {
 		subjectArea		nullable: false,	blank: false
 
 		// These are optional string atrributes of an IMOD
-		overview			nullable: true, maxSize: 20000
+		overview			nullable: true, maxSize: 65000
 		courseSemester		nullable: true
 		courseLocation		nullable: true
 		timeRatio			nullable: true
 		imodNumber			nullable: true
-		gradingProcedure 	nullable: true, maxSize: 20000
-		attendance 			nullable: true, maxSize: 20000
-		classParticipation 	nullable: true, maxSize: 20000
-		professionalConduct nullable: true, maxSize: 20000
-		missedExams			nullable: true, maxSize: 20000
-		missedAssignments 	nullable: true, maxSize: 20000
+		gradingProcedure 	nullable: true, maxSize: 65000
+		attendance 			nullable: true, maxSize: 65000
+		classParticipation 	nullable: true, maxSize: 65000
+		professionalConduct nullable: true, maxSize: 65000
+		missedExams			nullable: true, maxSize: 65000
+		missedAssignments 	nullable: true, maxSize: 65000
 		numberOfSeats		nullable: true,		min: 1,		scale: 1
 		creditHours			nullable: true,		min: 0,		scale: 1
 

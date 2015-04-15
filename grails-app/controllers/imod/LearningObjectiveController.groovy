@@ -76,7 +76,12 @@ class LearningObjectiveController {
 			case 'performance':
 				selectedLearningObjective.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				selectedLearningObjective.performance = params.DCL
-				selectedLearningObjective.actionWord = params.actionWord
+				if(params.actionWord == 'other'){
+					selectedLearningObjective.actionWord = params.customActionWord
+				}
+				else{
+					selectedLearningObjective.actionWord = params.actionWord
+				}
 				break
 
 			// if the user is saving the condition page
