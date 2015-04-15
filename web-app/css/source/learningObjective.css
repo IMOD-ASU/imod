@@ -310,6 +310,22 @@ input[disabled='disabled'] {
     background-image: url(../../images/skin/database_save.png);
 }
 
+/* individual delete button styling */
+.delete-topic{
+    background: #000; color: #fff;
+    font-size: 12px; width: 16px; height: 16px; line-height: 16px;
+    border-radius: 8px; text-align: center;
+    margin-left: 5px; display: none;
+}
+
+.delete-topic:hover{
+    background: red;
+}
+
+#contentTree li.jstree-node:hover .delete-topic{
+    display: inline-block;
+}
+
 #contentTree .checkboxBackground {
     display: inline-block;
 
