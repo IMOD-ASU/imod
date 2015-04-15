@@ -14,7 +14,7 @@ $(function() {
 		buildContentTree(newJSONdata, true);
 	});
 
-	/*$('#deleteTopicModal').click(function() {
+	$('#deleteTopicModal').click(function() {
 		var nodeArray = $('#contentTree').jstree(true)._model.data['#'].children_d;
 		var defaultClass = 'fa fa-stack-1x checkbox';
 		var idArray = [];
@@ -33,7 +33,7 @@ $(function() {
 		}
 
 		return false;
-	});*/
+	});
 });
 
 function deleteTopicSubTab(contentIDs) {
@@ -46,7 +46,7 @@ function deleteTopicSubTab(contentIDs) {
 			contentIDs: contentIDs
 		},
 		success: function(data) {
-			window.location.reload();
+			// window.location.reload();
 		}
 	});
 }
@@ -71,19 +71,7 @@ function buildContentTree(jsonData, refreshDB) {
 		$('#contentTree .jstree-wholerow').on('click', function() {
 			selectCheckboxes(this);
 		});
-		$('#contentTree .jstree-anchor').on('click', function(event) {
-				
-			// if delete topic is clicked
-			var target = $(event.target);
-			if(target.attr('class') == 'delete-topic'){
-				var contents = [];
-				var contentId = target.data('id')
-				contents.push(contentId);
-				deleteTopicSubTab(contents);
-
-				return false;
-			}
-
+		$('#contentTree .jstree-anchor').on('click', function() {
 			selectCheckboxes(this);
 		});
 		refreshCheckboxes(refreshDB);

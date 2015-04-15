@@ -245,7 +245,7 @@ class LearningObjectiveController {
 		def topicTitle = '<span class="fa-stack">' +
 			'<i class="checkboxBackground"></i>'+
 			'<i class="fa fa-stack-1x checkbox" id="select' + currentID + '"></i> ' +
-			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
+			'</span> ' + current.topicTitle
 		def returnValue = {}
 		def rootNode = ""
 		if (current.parentContent == null){
