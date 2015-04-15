@@ -50,6 +50,22 @@ input[disabled='disabled'] {
     border-radius: 5px;
 }
 
+.learning-objective.definition-display,
+.learning-objective.definition-edit {
+    display: none;
+}
+
+.learning-objective.definition-display.active,
+.learning-objective.definition-edit.active {
+    display: block;
+
+    text-align: center;
+}
+
+.learning-objective.definition-edit input[name=update] {
+    display: none;
+}
+
 .learning-objective.definition-cell {
     width: 70%;
     height: 5em;
@@ -294,6 +310,32 @@ input[disabled='disabled'] {
     background-image: url(../../images/skin/database_save.png);
 }
 
+/* individual delete button styling */
+.delete-topic {
+    display: none;
+
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+
+    text-align: center;
+
+    color: #ffffff;
+    border-radius: 8px;
+    background: #000000;
+
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.delete-topic:hover {
+    background: red;
+}
+
+#contentTree li.jstree-node:hover .delete-topic {
+    display: inline-block;
+}
+
 #contentTree .checkboxBackground {
     display: inline-block;
 
@@ -485,6 +527,10 @@ input[disabled='disabled'] {
 
     color: darkred;
 }
+.saveIcon i {
+    cursor: pointer;
+}
+
 #topicList .knowledgeDimensionButton {
     width: 80%;
 }

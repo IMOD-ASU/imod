@@ -15,15 +15,11 @@
 			<title>
 				<g:layoutTitle default="Learning Objective"/>
 			</title>
-
 			<g:external dir="css/source" file="learningObjective.css" />
-
 			<g:javascript src="source/learningObjective.js" defer="defer" />
-
 			<g:layoutHead />
 		</head>
 		<body>
-
 			<g:if test="${flash.message}">
 				<div class="message" role="status">
 					${flash.message}
@@ -47,7 +43,7 @@
 									<span class="title-text">
 										Learning Objectives
 										<g:link action="create" id="${currentImod.id}">
-											<button>
+											<button title="${ message( code:'imod.learningObjective.add' ) }" >
 												<span class="fa fa-plus"></span>
 												Add
 											</button>
@@ -67,12 +63,13 @@
 						</td>
 						<td class="learning-objective definition-cell">
 							<div class="learning-objective definition" class="learning-objective-current">
-								${ currentLearningObjective.definition }
-								<g:form action="saveDefinition" id="${currentImod.id}" method="post">
+								<div class="learning-objective definition-display active">
+									${ currentLearningObjective.definition }
+								</div>
+								<g:form class="learning-objective definition-edit" action="saveDefinition" id="${currentImod.id}" method="post">
 									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" />
 									<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 									<g:hiddenField name="pageType" value="criteria" id="page-type" />
-									<g:submitButton name="update" value="update" />
 								</g:form>
 							</div>
 						</td>
@@ -82,7 +79,6 @@
 							<div class="learning-objective creator">
 								<!-- FIXME there must be a better way to pick the correct icon for each page -->
 								<img class="learning-objective type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-' + currentPage.find(/\w+$/) + '.png')}" alt=""/>
-
 								<ul class="learning-objective sub-nav">
 									<li class="${ currentPage.find(/learning objective performance/) == null ? '' : 'active' }">
 										<g:link action="performance" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="performance">
@@ -105,7 +101,6 @@
 										</g:link>
 									</li>
 								</ul>
-
 							</div>
 							<g:layoutBody />
 						</td>

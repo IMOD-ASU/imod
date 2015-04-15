@@ -642,7 +642,7 @@ class BootStrap {
 
 			def domainCategoryGuidedResponse = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: "GuidedResponse"
+				name: "Guided Response"
 			)
 
 			def domainCategoryMechanism = new DomainCategory(
@@ -652,7 +652,7 @@ class BootStrap {
 
 			def domainCategoryComplexOvertResponse = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: "ComplexOvertResponse"
+				name: "Complex Overt Response"
 			)
 
 			def domainCategoryAdaptation = new DomainCategory(
@@ -1209,22 +1209,22 @@ class BootStrap {
 if (KnowledgeDimension.count() < 1) {
 			new KnowledgeDimension(
 				description: "Factual",
-				info: "Factual dimension related tooltip message"
+				info: "The knowledge of terminology, details, or elements."
 			).save()
 
 			new KnowledgeDimension(
 				description: "Conceptual",
-				info: "Conceptual dimension related tooltip message"
+				info: "The knowledge classifications, generalizations, and theories."
 			).save()
 
 			new KnowledgeDimension(
 				description: "Procedural",
-				info: "Procedural dimension related tooltip message"
+				info: "The knowledge of subject specific skills and techniques; “the knowledge of criteria for when to use appropriate procedures."
 			).save()
 
 			new KnowledgeDimension(
 				description: "Metacognitive",
-				info: "Metacognitive dimension related tooltip message"
+				info: "The knowledge about cognitive tasks; strategic knowledge; self-knowledge."
 			).save()
 		}
 

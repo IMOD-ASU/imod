@@ -24,9 +24,8 @@ class ImodController {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
-
 		// create sample imod if it doesn't exist
-		/*def sample = Imod.findByName('OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE')
+		def sample = currentUser.imods.find{it.name == 'OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE'}
 
 		if(sample == null){
 			// create a new imod
@@ -49,8 +48,6 @@ class ImodController {
 				creditHours: '3',
 				timeRatio: '1:3',
 				numberOfSeats: '30',
-				audience: "48",
-
 			)
 
 			// update current user
@@ -88,7 +85,7 @@ class ImodController {
 	        // save new instructor and the updated user to database
 	        newInstructor.save()
 
-		}*/	
+		}	
 
 
 		// search for imods owned by current user
@@ -109,7 +106,13 @@ class ImodController {
 			name: 'New Imod',
 			url: 'example.com',
 			subjectArea: 'sample',
-			imodNumber: '1'
+			imodNumber: '1',
+			//	gradingProcedure: '',
+			attendance: 'Regular on-time attendance in this course is expected',
+			classParticipation: 'Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.',
+			professionalConduct: 'All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/',
+			missedExams: 'The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements',
+			missedAssignments: 'Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.'
 		)
 
 		// update current user

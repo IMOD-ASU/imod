@@ -7,6 +7,13 @@ var prevKeyword = '';
 //on page load
 $(document).ready(function() {
 
+	$(':button').hover(function() {
+		$('#qtip-place').html($(this).attr('title'));
+	}, function() {
+		$("#qtip-place").html("");
+	});
+
+
 	// Initially domain categories and action words will not be displayed as learning domain is null
 	if ($('#domain-category-list').val() === 'null') {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
@@ -14,6 +21,18 @@ $(document).ready(function() {
 		$('#domain-category-list').css('visibility', 'hidden');
 		$('.icons').css('visibility', 'hidden');
 	}
+
+	$('.learning-objective.definition-display').click(function() {
+		$('.learning-objective.definition-display').removeClass('active');
+		$('.learning-objective.definition-edit').addClass('active');
+		$('.learning-objective.definition-edit #customDefinition').focus();
+	});
+
+	$('.learning-objective.definition-edit #customDefinition').blur(function() {
+		$('.learning-objective.definition-display').addClass('active');
+		$('.learning-objective.definition-edit').removeClass('active');
+		$('.learning-objective.definition-edit').submit();
+	});
 
 	// listen for the selected learning domain to change, when it does call ajax
 	$('#learning-domain-list').on(

@@ -17,7 +17,7 @@ plugins {
 }
 
 // Version should match Sprint Number
-version '0.17'
+version '0.19.0'
 group 'imod'
 
 apply plugin: 'spring-boot'

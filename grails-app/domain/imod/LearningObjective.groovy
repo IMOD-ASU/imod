@@ -93,15 +93,15 @@ class LearningObjective {
 
 		hideFromLearningObjectiveCondition defaultValue: 'false'
 
-		criteriaAccuracyHidden	defaultValue: 'true'
-		criteriaQualityHidden	defaultValue: 'true'
-		criteriaQuantityHidden	defaultValue: 'true'
-		criteriaSpeedHidden		defaultValue: 'true'
+		criteriaAccuracyHidden	defaultValue: 'false'
+		criteriaQualityHidden	defaultValue: 'false'
+		criteriaQuantityHidden	defaultValue: 'false'
+		criteriaSpeedHidden		defaultValue: 'false'
 
-		criteriaAccuracyEnabled	defaultValue: 'true'
-		criteriaQualityEnabled	defaultValue: 'true'
-		criteriaQuantityEnabled	defaultValue: 'true'
-		criteriaSpeedEnabled	defaultValue: 'true'
+		criteriaAccuracyEnabled	defaultValue: 'false'
+		criteriaQualityEnabled	defaultValue: 'false'
+		criteriaQuantityEnabled	defaultValue: 'false'
+		criteriaSpeedEnabled	defaultValue: 'false'
 		autoTimestamp true
 	}
 
