@@ -229,33 +229,8 @@
                 <h3>Content</h3>
             </div>
 
-            <table>
-            <g:if test="${contentList.getClass()!=String}">
-                <g:each var="contentItem" in="${contentList}">
-                    <tr id="${contentItem.id}" class="topicItem">
-                        <td class="topicTitle">
-                            ${contentItem.topicTitle}
-                        </td>
-                        <td class="topicDimensions">
-                            <span>
-                                <!-- FIXME move complex logic to controller -->
-                                <g:img width="30" dir="images/content" file="knowDim${contentItem.dimensions.sort(){it.value}.collect(){it.toString().charAt(0)}.join()?:'None'}.png" />
-
-                                ${contentItem.dimensions.join(',')}
-                            </span>
-                        </td>
-                        <td class="topicPriority">
-                            ${contentItem.priority}
-                        </td>
-                        <td class="topicPreReq">
-                            <g:if test="${contentItem.preReq }">
-                                Pre-Req
-                            </g:if>
-                        </td>
-                    </tr>
-                </g:each>
-            </g:if>
-            </table>
+            %{-- comes straight from the controller as text --}%
+            ${contentList}
 
         </div>
 

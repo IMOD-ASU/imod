@@ -200,11 +200,42 @@ class CourseOverviewController {
 
         def contentList = Content.findAllWhere(imod: currentImod, parentContent: null);
 
+        def text = "<ul>"
+
+        contentList.each() {
+            text += getSubContent(it)
+        }
+
+        text += "</ul>"
+
+
         [
             currentImod: currentImod,
             currentPage: 'syllabus',
             learningObjectives: learningObjectives,
-            contentList: contentList
+            contentList: text
         ]
+    }
+
+    private def getSubContent(Content current) {
+        // FIXME remove html from controller
+        def listChildren = []
+        def returnValue = {}
+        def text = ""        
+
+        text += "<li>" + current.topicTitle
+
+        if (current.subContents != null){
+            text += "<ul>"
+            current.subContents.each() {
+                text += getSubContent(it)
+            }
+            text += "</ul>"
+        }
+
+        text +=  "</li>"
+
+
+        return text
     }
 }
