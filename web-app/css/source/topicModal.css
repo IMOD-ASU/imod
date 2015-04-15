@@ -133,6 +133,11 @@
 
     font-size: 16px;
 }
+
+.saveIcon i{
+    cursor: pointer;
+}
+
 #topicList .knowledgeDimensionButton {
     width: 80%;
 }

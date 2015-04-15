@@ -47,7 +47,41 @@ $(document).ready(function() {
 
 	});
 
-	$('#topicList > tbody').on('click', 'tr', toggleSelected);
+	// $('#topicList > tbody').on('click', 'tr', toggleSelected);
+	$('#topicList').on('click', '.saveIcon', function(){
+		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+		$(this).parent().toggleClass('selected');
+	});
+
+	$('.saveIcon-parent').click(function(){
+		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+
+		if($(this).find("i").hasClass('fa-square-o')){
+
+			$(this).parents('table')
+				.find('tbody')
+				.find('tr')
+				.removeClass('selected')
+				.find('.saveIcon')
+				.find('> i')
+				.removeClass('fa-check-square')
+				.addClass('fa-square-o');
+
+		}else{
+
+			$(this).parents('table')
+				.find('tbody')
+				.find('tr')
+				.addClass('selected')
+				.find('.saveIcon')
+				.find('> i')
+				.removeClass('fa-square-o')
+				.addClass('fa-check-square');
+
+		}
+
+		return false;
+	});
 
 
 	$('.topicButtonGradient .add').click(function() {
