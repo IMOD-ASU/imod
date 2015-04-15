@@ -43,7 +43,7 @@
 									<span class="title-text">
 										Learning Objectives
 										<g:link action="create" id="${currentImod.id}">
-											<button>
+											<button title="${ message( code:'imod.learningObjective.add' ) }" >
 												<span class="fa fa-plus"></span>
 												Add
 											</button>

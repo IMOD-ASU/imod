@@ -11,20 +11,20 @@
 	<body>
 		<g:form action="save" >
 			<fieldset class="learning-objective-button">
-				<g:actionSubmit action="save" value="${message(code: 'Save', default: 'Save')}" class="save show-hover-new" title="${Help.toolTip("OVERVIEW", "Save Learning Objective")}" />
+				<g:actionSubmit action="save" value="${message(code: 'Save', default: 'Save')}" class="save show-hover-new" title="${ message( code:'imod.learningObjective.save' ) }" />
 				<g:hiddenField name="id" value="${currentImod.id}" id="current-imod-d" />
 				<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 				<g:hiddenField name="pageType" value="condition" id="page-type" />
 			</fieldset>
 			<div class="learning-objective condition radio-form">
-				<g:radio name="conditionType" checked="${!isCustom}" value="Generic" id="condition-generic" class="learning-objective condition radio" />
+				<g:radio name="conditionType" checked="${!isCustom}" value="Generic" id="condition-generic" class="learning-objective condition radio" title="${ message( code:'imod.learningObjective.genericCondition' ) }" />
 				<label for="condition-generic" >
 					Generic
 				</label>
 				<span>
 					&nbsp;
 				</span>
-				<g:radio name="conditionType" checked="${isCustom}" value="Custom" id="condition-custom" class="learning-objective condition radio" />
+				<g:radio name="conditionType" checked="${isCustom}" value="Custom" id="condition-custom" class="learning-objective condition radio" title="${ message( code:'imod.learningObjective.customCondition' ) }" />
 				<label for="condition-custom" >
 					Custom
 				</label>
@@ -34,7 +34,7 @@
 			<div class="learning-objective condition generic">
 				<g:select size="5" name="genericCondition" from="${LearningObjective.genericConditions}" value="${currentCondition}" class="learning-objective condition generic text" id="generic-condition-text" />
 			</div>
-			<g:checkBox name="hideCondition" checked="${hideCondition}" id="hide-condition" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Hide from Objective')}" />
+			<g:checkBox name="hideCondition" checked="${hideCondition}" id="hide-condition" title="${ message( code:'imod.learningObjective.hideFromObjective' ) }" />
 			Hide from Objective
 		</g:form>
 	</body>

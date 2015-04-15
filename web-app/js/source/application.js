@@ -23,8 +23,14 @@ $(document).ready(function() {
 		$('#qtip-place').html(document.activeElement.title);
 	});
 	
-	$('input[type="button"], input[type="submit"]').hover(function() {
-		$('#qtip-place').html(this.title);
+	$('input[type="submit"]').hover(function() {
+		$('#qtip-place').html($(this).attr('oldtitle'));
+	}, function() {
+	        $("#qtip-place").html("");
+	});
+
+	$('input[type="checkbox"], input[type="radio"]').hover(function() {
+		$('#qtip-place').html($(this).attr('title'));
 	}, function() {
 	        $("#qtip-place").html("");
 	});

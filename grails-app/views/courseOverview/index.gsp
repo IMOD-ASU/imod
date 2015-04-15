@@ -49,8 +49,8 @@
 
                                     <fieldset class="buttons">
                                     	<a href="../syllabus/${currentImod?.id}">Show Syllabus</a>
-                                        <g:actionSubmit class="save overview-save show-hover-new" action="update" title="${Help.toolTip("OVERVIEW", "Save Course Overview")}" value="${message(code: 'Save', default: 'Save')}"/>
-                                        <g:actionSubmit class="delete show-hover-new" action="delete" title="${Help.toolTip("OVERVIEW", "Delete Course Overview")}" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+                                        <g:actionSubmit class="save overview-save show-hover-new" action="update" title="${ message( code:'imod.courseOverview.save' ) }" value="${message(code: 'Save', default: 'Save')}"/>
+                                        <g:actionSubmit class="delete show-hover-new" action="delete" title="${ message( code:'imod.courseOverview.delete' ) }" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
                                     </fieldset>
                                 </td>
                             </tr>
@@ -324,7 +324,7 @@
                                                             <input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
                                                         </span>
                                                         <span class="topicButtonGradient">
-                                                            <input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic">
+                                                            <input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
                                                         </span>
                                                         <span id="errorMessage"></span>
                                                     </fieldset>

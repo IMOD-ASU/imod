@@ -33,11 +33,11 @@
 		<g:render template="/content/topicForm"/>
 		<fieldset>
 			<span class="topicModalButtonGradient">
-				<button id="addTopicModal" class="topicModalButton">
+				<button id="addTopicModal" class="topicModalButton" title="${ message( code:'imod.learningObjective.addTopic' ) }">
 					<i class="fa fa-plus"></i>
 					Add Topics
 				</button>
-				<button id="deleteTopicModal" class="topicModalButton">
+				<button id="deleteTopicModal" class="topicModalButton" title="${ message( code:'imod.learningObjective.deleteTopic' ) }">
 					<i class="fa fa-minus"></i>
 					Delete Topics
 				</button>
