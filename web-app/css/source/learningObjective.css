@@ -501,6 +501,10 @@ input[disabled='disabled'] {
 
     color: darkred;
 }
+.saveIcon i{
+    cursor: pointer;
+}
+
 #topicList .knowledgeDimensionButton {
     width: 80%;
 }
