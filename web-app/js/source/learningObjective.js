@@ -7,6 +7,13 @@ var prevKeyword = '';
 //on page load
 $(document).ready(function() {
 
+	$(':button').hover(function() {
+		$('#qtip-place').html($(this).attr('title'));
+	}, function() {
+		$("#qtip-place").html("");
+	});
+
+
 	// Initially domain categories and action words will not be displayed as learning domain is null
 	if ($('#domain-category-list').val() === 'null') {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');

@@ -1057,13 +1057,13 @@ a.ui-tabs-anchor {
 }
 
 #help-placeholder {
-    position: absolute;
+    position: fixed;
     z-index: 10;
     top: 170px;
     right: 15px;
 
     width: 12em;
-    height: 9em;
+    height: 10em;
     padding-top: 5px;
     padding-right: 1em;
     padding-bottom: 3em;
@@ -1074,9 +1074,9 @@ a.ui-tabs-anchor {
 }
 
 #help-placeholder-2 {
-    position: absolute;
+    position: fixed;
     z-index: 7;
-    top: 144px;
+    top: 170px;
     right: 15px;
 
     width: 3em;
@@ -1193,6 +1193,7 @@ label[for=weekdays] {
 
 .message.banner {
     margin-top: 3.5%;
+
     font-size: 20px;
     font-weight: bold;
 }

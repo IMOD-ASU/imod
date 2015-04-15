@@ -91,7 +91,7 @@
 
             </g:if>
 
-            <g:if test="${currentImod?.schedule?.repeats?.description == "Weekly" || currentImod?.schedule?.repeats?.description == "Daily"}">
+            <g:if test="${currentImod?.schedule?.repeats?.description == "Weekly" }">
                 
                 <div class="fieldcontain">
                     <label for="scheduleWeekDays">
@@ -215,7 +215,7 @@
 
             <ul class="learning-objective list-wrapper">
                 <g:each var="learningObjective" in="${learningObjectives}">                    
-                    <g:if test="${learningObjective.definition.trim() != "" }">
+                    <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
                         <li class="learning-objective list-item">
                             ${ learningObjective.definition }
 
