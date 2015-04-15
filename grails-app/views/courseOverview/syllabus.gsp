@@ -91,7 +91,7 @@
 
             </g:if>
 
-            <g:if test="${currentImod?.schedule?.repeats?.description == "Weekly" || currentImod?.schedule?.repeats?.description == "Daily"}">
+            <g:if test="${currentImod?.schedule?.repeats?.description == "Weekly" }">
                 
                 <div class="fieldcontain">
                     <label for="scheduleWeekDays">
