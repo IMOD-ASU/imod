@@ -203,7 +203,7 @@ class LearningObjectiveController {
 		def currentImod					=  Imod.get(id)
 		def learningObjectives			=  learningObjectiveService.getAllByImod(currentImod)
 		def currentLearningObjective	=  learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-		def currentCondition			=  currentLearningObjective.condition?:LearningObjective.genericConditions.first()
+		def currentCondition			=  currentLearningObjective.condition?:''
 		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
 		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
 
