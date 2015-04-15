@@ -37,10 +37,6 @@
 					<i class="fa fa-plus"></i>
 					Add Topics
 				</button>
-				<button id="deleteTopicModal" class="topicModalButton" title="${ message( code:'imod.learningObjective.deleteTopic' ) }">
-					<i class="fa fa-minus"></i>
-					Delete Topics
-				</button>
 			</span>
 		</fieldset>
 		<g:hiddenField name="treeData" value='${contentList}' />
