@@ -37,7 +37,7 @@
                         </g:eachError>
                     </ul>
                 </g:hasErrors>
-                <g:form controller="imod" method="post" class="courseoverview">
+                <g:form url="[action:'update',controller:'imod']" method="post" class="courseoverview">
                     <g:hiddenField name="id" value="${currentImod?.id}"/>
                     <g:hiddenField name="version" value="${currentImod?.version}"/>
                     <fieldset class="form">
@@ -49,7 +49,7 @@
 
                                     <fieldset class="buttons">
                                     	<a href="../syllabus/${currentImod?.id}">Show Syllabus</a>
-                                        <g:actionSubmit class="save show-hover-new" action="update" title="${Help.toolTip("OVERVIEW", "Save Course Overview")}" value="${message(code: 'Save', default: 'Save')}"/>
+                                        <g:actionSubmit class="save overview-save show-hover-new" action="update" title="${Help.toolTip("OVERVIEW", "Save Course Overview")}" value="${message(code: 'Save', default: 'Save')}"/>
                                         <g:actionSubmit class="delete show-hover-new" action="delete" title="${Help.toolTip("OVERVIEW", "Delete Course Overview")}" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
                                     </fieldset>
                                 </td>
@@ -315,7 +315,7 @@
                                                 Instructors
                                             </span>
                                         </div>
-                                            <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} ">
+                                            <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} " style="padding:0 15px;">
 
                                                 <div id="topicDialog" class="custom-instructor">
                                                     <input type="hidden" name="imodID" value="221" id="imodID">
@@ -435,20 +435,20 @@
 
                                                         </tbody>
                                                     </table>
+                                                    <!--
                                                     <fieldset id="topicModalClose" class="buttons topicButtonField">
                                                         <span class="topicButtonGradient saveBG">
                                                             <button class="save save-instructors show-hover-new topicButton" action="save" id="saveTopic" title="">
                                                                  Finish
                                                             </button>
                                                         </span>
-                                                        <!--
                                                         <span class="topicButtonGradient cancelBG">
                                                             <button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="">
                                                                 <i class="fa fa-times"></i>
                                                                  Cancel
                                                             </button>
-                                                        </span>-->
-                                                    </fieldset>
+                                                        </span>
+                                                    </fieldset>-->
                                                 </div>
                                             </div>
                                     </div>
