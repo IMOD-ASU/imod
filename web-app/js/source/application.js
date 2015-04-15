@@ -2,8 +2,8 @@
 
 $(document).ready(function() {
 	$('#accordion').accordion();
-	$('#help-placeholder').draggable();
-	$('#open-help').draggable();
+	// $('#help-placeholder').draggable();
+	// $('#open-help').draggable();
 	$('#help-placeholder-2').css('display', 'none');
 	$('.show-hover-new').qtip({
 		style: {
