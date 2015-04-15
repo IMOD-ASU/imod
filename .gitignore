@@ -7,7 +7,7 @@ node_modules
 bower_components
 
 
-### Grails 2.4 ###
+### Grails 2.5 ###
 # ignore static analysis report
 static-analysis.txt
 static-analysis.html
