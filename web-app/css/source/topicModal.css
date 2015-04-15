@@ -154,7 +154,7 @@
     display: block;
     overflow: hidden;
 
-    width: 90%;
+    width: auto;
 }
 .error {
     border: 1px solid red !important;
