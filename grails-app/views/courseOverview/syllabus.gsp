@@ -215,7 +215,7 @@
 
             <ul class="learning-objective list-wrapper">
                 <g:each var="learningObjective" in="${learningObjectives}">                    
-                    <g:if test="${learningObjective.definition.trim() != "" }">
+                    <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
                         <li class="learning-objective list-item">
                             ${ learningObjective.definition }
 
