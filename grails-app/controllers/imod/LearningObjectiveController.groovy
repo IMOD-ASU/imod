@@ -203,7 +203,7 @@ class LearningObjectiveController {
 		def currentImod					=  Imod.get(id)
 		def learningObjectives			=  learningObjectiveService.getAllByImod(currentImod)
 		def currentLearningObjective	=  learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-		def currentCondition			=  currentLearningObjective.condition?:LearningObjective.genericConditions.first()
+		def currentCondition			=  currentLearningObjective.condition?:''
 		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
 		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
 
@@ -245,7 +245,7 @@ class LearningObjectiveController {
 		def topicTitle = '<span class="fa-stack">' +
 			'<i class="checkboxBackground"></i>'+
 			'<i class="fa fa-stack-1x checkbox" id="select' + currentID + '"></i> ' +
-			'</span> ' + current.topicTitle
+			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
 		def returnValue = {}
 		def rootNode = ""
 		if (current.parentContent == null){

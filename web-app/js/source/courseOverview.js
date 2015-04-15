@@ -22,7 +22,7 @@ $(document).ready(function() {
 			return false;
 		}
 
-		if (confirm('Are you sure you want to delete the instructor(s)') === false) {
+		if (confirm('Are you sure you want to delete the instructor(s)?') === false) {
 			return false;
 		}
 
@@ -47,7 +47,41 @@ $(document).ready(function() {
 
 	});
 
-	$('#topicList > tbody').on('click', 'tr', toggleSelected);
+	// $('#topicList > tbody').on('click', 'tr', toggleSelected);
+	$('#topicList').on('click', '.saveIcon', function() {
+		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+		$(this).parent().toggleClass('selected');
+	});
+
+	$('.saveIcon-parent').click(function() {
+		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+
+		if ($(this).find("i").hasClass('fa-square-o')) {
+
+			$(this).parents('table')
+				.find('tbody')
+				.find('tr')
+				.removeClass('selected')
+				.find('.saveIcon')
+				.find('> i')
+				.removeClass('fa-check-square')
+				.addClass('fa-square-o');
+
+		} else {
+
+			$(this).parents('table')
+				.find('tbody')
+				.find('tr')
+				.addClass('selected')
+				.find('.saveIcon')
+				.find('> i')
+				.removeClass('fa-square-o')
+				.addClass('fa-check-square');
+
+		}
+
+		return false;
+	});
 
 
 	$('.topicButtonGradient .add').click(function() {
@@ -84,52 +118,59 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('.save-instructors').click(function() {
+	$('.overview-save').click(function() {
 
-		var isValid = instructorValidator();
+		var isValid = compareStartEndTimes();
 
 		if (isValid) {
 
-			var parameterList = [];
+			isValid = instructorValidator();
 
-			$('.topicListRow').each(function() {
-				var row = $(this);
+			if (isValid) {
 
-				parameterList.push({
-					id: row.data('id'),
-					lastName: row.find('input[name="lastName[]"]').val(),
-					firstName: row.find('input[name="firstName[]"]').val(),
-					email: row.find('input[name="email[]"]').val(),
-					officeHours: row.find('input[name="officeHours[]"]').val(),
-					webPage: row.find('input[name="webPage[]"]').val(),
-					role: row.find('select[name="role[]"]').val(),
-					location: row.find('input[name="location[]"]').val()
+				var parameterList = [];
+
+				$('.topicListRow').each(function() {
+					var row = $(this);
+
+					parameterList.push({
+						id: row.data('id'),
+						lastName: row.find('input[name="lastName[]"]').val(),
+						firstName: row.find('input[name="firstName[]"]').val(),
+						email: row.find('input[name="email[]"]').val(),
+						officeHours: row.find('input[name="officeHours[]"]').val(),
+						webPage: row.find('input[name="webPage[]"]').val(),
+						role: row.find('select[name="role[]"]').val(),
+						location: row.find('input[name="location[]"]').val()
+					});
+
+
 				});
 
 
-			});
+				$.ajax({
+					url: baseUrl + 'courseOverview/create',
+					type: 'POST',
+					dataType: 'json',
+					data: {
+						imod_id: $('input[name=id]').val(),
+						parameters: JSON.stringify(parameterList)
+					},
+					success: function(data) {
+						$('.courseoverview').submit();
+					},
+					error: function(xhr) {
+						// when something goes wrong log to the browser console
+						console.log(xhr.responseText);
+					}
+				});
 
-
-			$.ajax({
-				url: baseUrl + 'courseOverview/create',
-				type: 'POST',
-				dataType: 'json',
-				data: {
-					imod_id: $('input[name=id]').val(),
-					parameters: JSON.stringify(parameterList)
-				},
-				success: function(data) {
-					location.reload();
-				},
-				error: function(xhr) {
-					// when something goes wrong log to the browser console
-					console.log(xhr.responseText);
-				}
-			});
+			}
 
 		}
 
 		return false;
+
 	});
 
 	// instructor validation
@@ -157,13 +198,6 @@ $(document).ready(function() {
 	$('#time-ratio').mask('9:9');
 
 	$('.timeFields').find('select').change(function() {
-		var isValid = compareStartEndTimes();
-		if (!isValid) {
-			return false;
-		}
-	});
-
-	$('input.save').click(function() {
 		var isValid = compareStartEndTimes();
 		if (!isValid) {
 			return false;
@@ -235,7 +269,7 @@ function instructorValidator() {
 
 		if (!isRequired($(this).val())) {
 			errorList.push({
-			'element': $(this),
+				'element': $(this),
 				message: 'This field is required'
 			});
 		} else if ($(this).hasClass('email')) {

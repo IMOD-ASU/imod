@@ -29,7 +29,7 @@
 				<a id="open-button" href="#" onclick="toggleHelp()">
 					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_active.png')}" alt=""/>
 				</a>
-				<div id="qtip-place" style="float: right; text-align: left; position: absolute; margin: 20%; font-family: fantasy;">
+				<div id="qtip-place" style="float: right; text-align: center; position: absolute; margin: 10%; font-family: fantasy; width: 10em;">
 				</div>
 			</div>
 			<div id="help-placeholder-2">

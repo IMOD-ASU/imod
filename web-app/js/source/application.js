@@ -23,6 +23,18 @@ $(document).ready(function() {
 		$('#qtip-place').html(document.activeElement.title);
 	});
 
+	$('input[type="submit"]').hover(function() {
+		$('#qtip-place').html($(this).attr('oldtitle'));
+	}, function() {
+		$("#qtip-place").html("");
+	});
+
+	$('input[type="checkbox"], input[type="radio"]').hover(function() {
+		$('#qtip-place').html($(this).attr('title'));
+	}, function() {
+		$("#qtip-place").html("");
+	});
+
 	$('.learning-objective.list-item').each(function() {
 		if ($(this).find('.list-link').text().trim() === 'Empty Learning Objective') {
 			$(this).hide();
