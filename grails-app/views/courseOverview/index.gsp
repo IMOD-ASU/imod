@@ -331,7 +331,9 @@
                                                     <table id="topicList" class="instructor-list">
                                                         <thead>
                                                             <tr>
-                                                                <th>&nbsp;</th>
+                                                                <td class="saveIcon saveIcon-parent">
+                                                                    <i class="fa fa-square-o"></i>
+                                                                </td>
                                                                 <g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="show-hover-new"/>
                                                                 <g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="show-hover-new"/>
                                                                 <g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="show-hover-new" />
