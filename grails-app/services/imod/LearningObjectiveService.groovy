@@ -8,14 +8,14 @@ class LearningObjectiveService {
         // create a learning objective, linked to the imod
         def newLearningObjective = new LearningObjective(
             imod: currentImod,
-            criteriaAccuracyEnabled:	true,
-            criteriaQualityEnabled:		true,
-            criteriaQuantityEnabled:	true,
-            criteriaSpeedEnabled:		true,
-            criteriaAccuracyHidden:		true,
-            criteriaQualityHidden:		true,
-            criteriaQuantityHidden:		true,
-            criteriaSpeedHidden:		true,
+            criteriaAccuracyEnabled:	false,
+            criteriaQualityEnabled:		false,
+            criteriaQuantityEnabled:	false,
+            criteriaSpeedEnabled:		false,
+            criteriaAccuracyHidden:		false,
+            criteriaQualityHidden:		false,
+            criteriaQuantityHidden:		false,
+            criteriaSpeedHidden:		false,
         )
         // add the learning objective to the collection of learning objectives in the imod
         currentImod.addToLearningObjectives(newLearningObjective)
