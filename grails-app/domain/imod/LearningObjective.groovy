@@ -76,7 +76,7 @@ class LearningObjective {
 		criteriaType		nullable: true
 		actionWordCategory	nullable: true
 		condition			nullable: true
-		definition			nullable: true, maxSize: 20000
+		definition			nullable: true, maxSize: 65000
 		criteriaAccuracy	nullable: true
 		criteriaQuality		nullable: true
 		criteriaQuantity	nullable: true
