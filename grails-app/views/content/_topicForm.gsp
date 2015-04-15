@@ -17,7 +17,9 @@
 	<table id="topicList">
 		<thead>
 			<tr>
-				<td></td>
+				<td class="saveIcon saveIcon-parent">
+                    <i class="fa fa-square-o"></i>
+                </td>
 				<td>
 					Topic
 				</td>

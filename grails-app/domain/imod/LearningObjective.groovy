@@ -64,9 +64,7 @@ class LearningObjective {
 	]
 
 	public static final List genericConditions = [
-		'Given a problem specification',
-		'Students completing this course will be able to',
-		'After completing the course, the student will be able to'
+		''
 	]
 
 	/**
