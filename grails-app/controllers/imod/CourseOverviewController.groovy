@@ -198,7 +198,7 @@ class CourseOverviewController {
 
         def learningObjectives = LearningObjective.findAllByImod(currentImod)
 
-        def contentList = Content.findAllWhere(imod: currentImod, parentContent: null);
+        def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 
         def text = "<ul>"
 

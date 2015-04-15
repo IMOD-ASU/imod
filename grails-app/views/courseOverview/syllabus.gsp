@@ -214,10 +214,13 @@
             </div>
 
             <ul class="learning-objective list-wrapper">
-                <g:each var="learningObjective" in="${learningObjectives}">
-                    <li class="learning-objective list-item">
-                        ${ learningObjective.definition }
-                    </li>
+                <g:each var="learningObjective" in="${learningObjectives}">                    
+                    <g:if test="${learningObjective.definition.trim() != "" }">
+                        <li class="learning-objective list-item">
+                            ${ learningObjective.definition }
+
+                        </li>
+                    </g:if>
                 </g:each>
             </ul>
 
