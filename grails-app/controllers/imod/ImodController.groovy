@@ -26,7 +26,10 @@ class ImodController {
 
 
 		// create sample imod if it doesn't exist
-		/*def sample = Imod.findByName('OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE')
+		def sample = Imod.findByName('OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE')
+
+		print "sample"
+		print sample
 
 		if(sample == null){
 			// create a new imod
@@ -88,7 +91,7 @@ class ImodController {
 	        // save new instructor and the updated user to database
 	        newInstructor.save()
 
-		}*/	
+		}	
 
 
 		// search for imods owned by current user
