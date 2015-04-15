@@ -43,8 +43,7 @@ function deleteTopicSubTab(contentIDs) {
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			contentIDs: contentIDs,
-			ObjectiveId: $('#imodID').val()
+			contentIDs: contentIDs
 		},
 		success: function(data) {
 			// window.location.reload();
