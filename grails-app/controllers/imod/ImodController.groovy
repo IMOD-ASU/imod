@@ -24,12 +24,8 @@ class ImodController {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
-
 		// create sample imod if it doesn't exist
-		def sample = Imod.findByName('OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE')
-
-		print "sample"
-		print sample
+		def sample = currentUser.imods.find{it.name == 'OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE'}
 
 		if(sample == null){
 			// create a new imod
@@ -52,8 +48,6 @@ class ImodController {
 				creditHours: '3',
 				timeRatio: '1:3',
 				numberOfSeats: '30',
-				audience: "48",
-
 			)
 
 			// update current user
