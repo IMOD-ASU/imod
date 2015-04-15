@@ -39,11 +39,12 @@
 				</g:each>
 			</div>
 
-			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" >
+			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" style="margin-bottom:10px;">
 				<option>
 					${actionWord}
 				</option>
-			</select>
+			</select><br/>
+			<input name="customActionWord" type="text" id="custom-action-words" >
 		</g:form>
 	</body>
 </html>
