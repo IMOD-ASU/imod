@@ -84,12 +84,47 @@ class ContentController {
 	}
 	
 	def deleteTopic(String contentIDs) {
+
 		def success = []
 		def contentIDList = new JsonSlurper().parseText(contentIDs)
-		contentIDList.each() {
-			def deletedContent = Content.get(it)
+
+		contentIDList.each() { item ->
+
+			def deletedContent = Content.get(item)
+
+			// remove any parent association
+			def oldParent = deletedContent.parentContent
+			if(oldParent != null) {
+				oldParent.removeFromSubContents(deletedContent)
+			}
+
+			// remove all children association
+			def childrenList = []
+			def children = deletedContent.subContents
+			if(children != null) {
+				
+				childrenList.addAll(children);
+				
+				childrenList.each(){ child ->
+					deletedContent.removeFromSubContents(child)	
+				}
+
+			}
+
+			def learningObjectiveList = []
+			def learningObjectives = deletedContent.objectives
+
+			// remove learning objective association
+			if(learningObjectives != null){
+				learningObjectiveList.addAll(learningObjectives);
+				learningObjectiveList.each(){
+					deletedContent.removeFromObjectives(it)	
+				}				
+			}
+			
+
 			deletedContent.delete()
-			success.add(it)
+			success.add(item)
 		}
 		render(
 			[
