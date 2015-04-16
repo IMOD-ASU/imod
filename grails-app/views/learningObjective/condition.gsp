@@ -30,7 +30,7 @@
 				</label>
 			</div>
 			<br />
-			<g:textArea name="customCondition" value="${currentCondition}" id="custom-condition-text" class="learning-objective condition custom-text" rows="8" />
+			<g:textArea name="customCondition" value="${currentCustomCondition}" id="custom-condition-text" class="learning-objective condition custom-text" rows="8" />
 			<div class="learning-objective condition generic">
 				<g:select size="5" name="genericCondition" from="${LearningObjective.genericConditions}" value="${currentCondition}" class="learning-objective condition generic text" id="generic-condition-text" />
 			</div>
