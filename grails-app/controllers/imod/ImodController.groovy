@@ -21,80 +21,84 @@ class ImodController {
 	}
 
 	def list() {
-		// get current user object
-		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+        // get current user object
+        def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
-		// create sample imod if it doesn't exist
-		def sample = currentUser.imods.find{it.name == 'OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE'}
+        // create sample imod if it doesn't exist
+        def sample = currentUser.imods.find{it.name == 'Object-Oriented Software Development - sample'}
 
-		if(sample == null){
-			// create a new imod
-			def newImod = new Imod(
-				owner: currentUser,
-				name: 'OBJECT ORIENTED SOFTWARE DEVELOPMENT - SAMPLE',
-				url: 'https://piazza.com/asu/spring2014/cst100/home',			
-				subjectArea: 'Computer Science',
-				imodNumber: 'cst100',
-				courseLocation: 'Peralta 213',
-				overview: 'Introduces problem solving with a state-of-the-art programming language. Expressions, statements, basic control flow and methods. Data, data aggregation and usage.',
-				courseSemester: 'Fall 2015',
-				gradingProcedure: 'Attainment of course outcomes will be assessed based on your performance in various course activities throughout the semester. Table 1 shows a breakdown of the percentage allocation for each type of course assessment activity.',
-				attendance: 'Regular on-time attendance in this course is expected. The presentations, activities and discussions that will occur during class sessions are designed to enhance your educational experience and help you achieve the identified course objectives.',
+        if(sample == null){
 
-				classParticipation: 'Class Participation',
-				professionalConduct: 'Professional Conduct',
-				missedExams: 'missedExams',
-				missedAssignments: 'Missed assignment section',
-				creditHours: '3',
-				timeRatio: '1:3',
-				numberOfSeats: '30',
-			)
+            def audience1 = Audience.findByDescription("Lower Division");
 
-			// update current user
-			currentUser.addToImods(newImod)
+            // create a new imod
+            def newImod = new Imod(
+                owner: currentUser,
+                name: 'Object-Oriented Software Development - sample',
+                url: 'https://piazza.com/asu/spring2014/cst100/home',           
+                subjectArea: 'Computer Science',
+                imodNumber: 'cst100',
+                courseLocation: 'Peralta 213',
+                overview: 'Introduces problem solving with a state-of-the-art programming language. Expressions, statements, basic control flow and methods. Data, data aggregation and usage.',
+                courseSemester: 'Fall 2015',
+                gradingProcedure: 'Attainment of course outcomes will be assessed based on your performance in various course activities throughout the semester. Table 1 shows a breakdown of the percentage allocation for each type of course assessment activity. \n\n Table 1: Percentage Allocation for each Type of Course Assessment Activity \n ASSESSMENTS % OF FINAL GRADE \n Assignments 40 \n Team Project    20 \n Mid-term test   20 \n Final Exam  20 \n \n The standard ASU grading options will be used in this course: A+; A; A-; B+; B; B-; C+; C; C-; D; and E. See Table 2 for the percentage allocation for each grade level. \n Table 2: Percentage allocation for Each Grade Level \n A+  95 and above \b B   75 –79 \n C-  55 – 59 \n A   90 – 94 \n B-  70 – 74 \n D   50 – 54 \n A-  85 – 89 \n C+  65 – 69 \n E   49 and below \n B+  80 – 84 \n C   60 – 64',
+                attendance: 'Regular on-time attendance in this course is expected. The presentations, activities and discussions that will occur during class sessions are designed to enhance your educational experience and help you achieve the identified course objectives. An attendance sheet will be circulated / Check for Understanding assignment will be administered at the beginning of each class session (Tuesday and Thursday sessions). You are responsible for ensuring that you sign the attendance sheet/ complete and submit your assignment. You may miss up to three class sessions without penalty. If you are absent, I assume you have a good reason and do not need to see any related documentation. Beginning with your fourth absence, each missed session will result in the loss of 2 percentage points from your final cumulative grade.',
+                classParticipation: 'TBD',
+                professionalConduct: '• You should keep a copy of all work submitted for grading (exception: quizzes) and any e-mails concerning submitted work that is sent to the instructor.  If an assignment “goes missing”, for whatever reason, the copy kept by you will be used for grading.  If no copy is available, a score of zero will be given. Submittals rarely are lost but if it happens this is the policy that will be followed. \n •   The classroom should be a lively, interactive, and comfortable place where information is shared, ideas tested and issues debated. You are expected to participate in class discussions and activities in a manner that is respectful and sensitive to the cultural, religious, sexual, and other individual differences in the ASU community. If you encounter a problem with civility and respect, please do not hesitate to come forward and discuss with me. We will find a means to address and rectify the situation. \n •   The following behaviors are considered unacceptable, and are unwelcomed during class sessions:\n(1) Wearing caps and other headgear (except those worn for medical or religious purposes) during class. \n (2) Sleeping or daydreaming during class. \n (3) Chronic tardiness; be here when class starts. \n (4) Reading or working on materials that are extraneous to the course. \n (5) Prematurely packing up your books and bags before class has ended. \n (6) Chatting with your classmates during instructor or student-led presentations. \n (7) Checking your cell phones or other electronic devices. \n •   I have no problem with eating and drinking during class, provided you don’t leave a mess or distract others. You must however honor the policies of the assigned room. \n \n ACADEMIC INTEGRITY & CONDUCT: \n Each student has an obligation to act with honesty and integrity, and to respect the rights of others in carrying out all academic assignments. You should be familiar with, and adhere to the student code of conduct, and the Academic Integrity Policy (see links to related documents below).  In the event of violations of academic integrity or conduct, the conditions, procedures, and sanctions provided by these policies will guide the process taken to address the issue. \n \n Student Code of Conduct: https://students.asu.edu/srr \n\n  Integrity Policy: \n https://provost.asu.edu/sites/default/files/AcademicIntegrityPolicyPDF.pdf',
+                missedExams: 'TBD',
+                missedAssignments: 'ASSIGNMENT SUBMISSION\nAssignment submission dates are generally firm, and in most cases submittals are due either before or at the beginning of class.  I appreciate, however, that there may be times during the semester, when work from various courses “pile up”.  If this happens you should not hesitate to request a deadline extension via email or in-person. Late assignments will not be accepted unless an extension was granted by the instructor. The Recitation Leaders will not approve deadline extensions. The latest time to request an extension is 24 hours before the assignment is due. Requests made after this time will be denied. If granted, you are responsible for ensuring that the late assignment is submitted according to all other specifications in the assignment instructions.\n\nFEEDBACK ON ASSIGNMENTS\nIn most cases, submitted assignments will be graded and returned within a week. For more elaborate submissions (e.g., Project), the turn-around time may be more.',
+                creditHours: '3',
+                timeRatio: '1:3',
+                numberOfSeats: '30',
+                audience: audience1.id
+            )
 
-			// save new imod and the updated user to database
-			currentUser.save()
+            // update current user
+            currentUser.addToImods(newImod)
 
-
-			def newInstructor = new Instructor(
-	            firstName: "Dr. Ajay",
-	            lastName: "Bansal",
-	            email: "ajay.bansal@asu.edu",
-	            role: "Professor",
-	            officeHours: "Tuesdays & Thursdays | 9:00am – 10:0am or by appointment",
-	            location: "Peralta 230V",
-	            createdBy: newImod.id
-	        )
+            // save new imod and the updated user to database
+            currentUser.save()
 
 
-	        // save new instructor and the updated user to database
-	        newInstructor.save()
-
-	        newInstructor = new Instructor(
-	            firstName: "Rehman",
-	            lastName: "Chughtai",
-	            email: "Rehman.Chughtai@asu.edu",
-	            role: "Assistant Professor",
-	            officeHours: "by email appointment",
-	            location: "Peralta 235 (Bullpen)",
-	            createdBy: newImod.id
-	        )
+            def newInstructor = new Instructor(
+                firstName: "Dr. Ajay",
+                lastName: "Bansal",
+                email: "ajay.bansal@asu.edu",
+                role: "Professor",
+                officeHours: "Tuesdays & Thursdays | 9:00am – 10:0am or by appointment",
+                location: "Peralta 230V",
+                createdBy: newImod.id
+            )
 
 
-	        // save new instructor and the updated user to database
-	        newInstructor.save()
+            // save new instructor and the updated user to database
+            newInstructor.save()
 
-		}	
+            newInstructor = new Instructor(
+                firstName: "Rehman",
+                lastName: "Chughtai",
+                email: "Rehman.Chughtai@asu.edu",
+                role: "Assistant Professor",
+                officeHours: "by email appointment",
+                location: "Peralta 235 (Bullpen)",
+                createdBy: newImod.id
+            )
 
 
-		// search for imods owned by current user
-		def displayList = Imod.findAllWhere(owner: currentUser)
-		[
-			imodInstanceList: displayList,
-			sort: 'name'
-		]
-	}
+            // save new instructor and the updated user to database
+            newInstructor.save()
+
+        }   
+
+
+        // search for imods owned by current user
+        def displayList = Imod.findAllWhere(owner: currentUser)
+        [
+            imodInstanceList: displayList,
+            sort: 'name'
+        ]
+    }
+
 
 	def create() {
 		// get the current user
