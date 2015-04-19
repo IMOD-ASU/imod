@@ -57,7 +57,7 @@ class PedagogyController {
 		def selectedKnowledgeDimensions = []
 		def selectedDomainCategories = []
 		def selectedLearningDomains = []
-		for (def knowledgeDimesion in data.selectedKnowledgeDimensions) {
+		for (def knowledgeDimension in data.selectedKnowledgeDimensions) {
 			selectedKnowledgeDimensions.add(knowledgeDimesion.toLong())
 		}
 		for (def domainCategory in data.selectedDomainCategories) {

@@ -8,10 +8,11 @@
 
 		<g:external dir="css/source" file="assessment.css" />
 		<g:external dir="css/source" file="learningObjective.css" />
+		<g:external dir="css/source" file="iconModule.css" />
 		<g:javascript src="source/assessment.js" defer="defer" />
 
 	</head>
-	</head>
+
 	<body>
 	<div id="edit-imod" class="content scaffold-edit" role="main">
 			<g:if test="${flash.message}">
@@ -160,6 +161,105 @@
 				<g:render template="emptyStateTemplate" />
 				</div>
 				</g:else>
+
+
+				<%--Dialog box for Add New Technique --%>
+				<div id="add-new-technique" title="Add New Technique">
+					<%--To render the add new Technique dialog box--%>
+					<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<label>
+							Title
+						</label>
+						<g:textField name="title" />
+						<br />
+
+						<label>
+							Assign to Current Learning Objective
+						</label>
+						<g:checkBox name="assignedToLearningObjective" />
+						<br />
+
+						<label>
+							Favorite Technique
+						</label>
+						<g:checkBox name="favoriteTechnique" />
+						<br />
+
+						<label>
+							Learning Domain
+						</label>
+						<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+						<br />
+
+						<label>
+							Domain Category
+						</label>
+						<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
+						<br />
+
+						<label>
+							Knowledge Dimension
+						</label>
+						<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+						<br />
+
+						<label>
+							Delivery Mode
+						</label>
+						<g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
+						<br />
+
+						<label>
+							Location
+						</label>
+						<g:textField name="location" />
+						<br />
+
+						<label>
+							Focus
+						</label>
+						<g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+						<br />
+
+						<label>
+							Direction
+						</label>
+						<g:textField name="direction" />
+						<br />
+
+						<label>
+							Materials Required
+						</label>
+						<g:textField name="materials" />
+						<br />
+
+						<label>
+							Reference
+						</label>
+						<g:textField name="reference" />
+						<br />
+
+						<label>
+							Description of Strategy
+						</label>
+						<g:textField name="strategyDescription" />
+						<br />
+
+						<label>
+							Description of Activity
+						</label>
+						<g:textField name="activityDescription" />
+						<br />
+
+						<g:actionSubmit value="Save" action="create" />
+						<button id="create-pedagogy-cancel">
+							Cancel
+						</button>
+					</g:form>
+				</div>
+
+
+
 
 		</td>
 	</tr>
