@@ -348,11 +348,11 @@ input[disabled='disabled'] {
     font-weight: bold;
 }
 
-#contentTree .jstree-node{
+#contentTree .jstree-node {
     text-transform: capitalize;
 }
 
-#contentTable .topicTitle input{
+#contentTable .topicTitle input {
     text-transform: capitalize;
 }
 
