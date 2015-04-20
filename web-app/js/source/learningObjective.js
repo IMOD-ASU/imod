@@ -6,14 +6,13 @@ var prevKeyword = '';
 
 //on page load
 $(document).ready(function() {
-	
+
 	$('#custom-action-words').css('visibility', 'hidden');
-	
+
 	$('#action-words').change(function() {
-		if(this.value == 'other'){
+		if (this.value === 'other') {
 			$('#custom-action-words').css('visibility', 'visible');
-		}
-		else{
+		} else {
 			$('#custom-action-words').css('visibility', 'hidden');
 		}
 	});
@@ -378,12 +377,11 @@ function populateActionWords(event) {
 				}
 			}
 
-			if(flag == 0 && event == true){
+			if (flag === 0 && event === true) {
 				actionWordsHTML += '<option selected value="other"> --Other-- </option>';
 				$('#custom-action-words').css('visibility', 'visible');
 				$('input#custom-action-words').val(originalActionWord);
-			}
-			else{
+			} else {
 				actionWordsHTML += '<option value="other"> --Other-- </option>';
 				$('#custom-action-words').css('visibility', 'hidden');
 			}
