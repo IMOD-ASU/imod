@@ -242,7 +242,7 @@
 						id="${dimension}"
 						value="${dimension}"
 					/>
-					<label title="${dimension.getInfo()}" for="${dimension}">
+					<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
 						${dimension}
 					</label>
 				</li>

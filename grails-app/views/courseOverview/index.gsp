@@ -11,10 +11,8 @@
             Course Overview
         </title>
         <meta name="layout" content="imod" />
-        <script src="${resource(dir: 'js/source', file: 'courseOverview.js')}" defer></script>
-        <script src="${resource(dir: 'js/plugins', file: 'jquery.validate.js')}" defer></script>
-        <script src="${resource(dir: 'js/plugins', file: 'jquery.masked.min.js')}" defer></script>
         <g:external dir="css/source" file="topicModal.css" />
+        <g:javascript src="source/courseOverview.js" defer="defer" />
     </head>
     <body>
         <div id="tabs-1">
@@ -316,7 +314,6 @@
                                             </span>
                                         </div>
                                             <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} " style="padding:0 15px;">
-
                                                 <div id="topicDialog" class="custom-instructor">
                                                     <input type="hidden" name="imodID" value="221" id="imodID">
                                                     <fieldset class="buttons topicButtonField">
@@ -365,7 +362,6 @@
                                                                         <g:textField name="webPage[]" value="${instructor.webPage}" class="web_page"/>
                                                                     </td>
                                                                     <td>
-
                                                                         <select name="role[]" id="role" class="role">
                                                                             <option value="">Select Role</option>
 
@@ -418,37 +414,8 @@
                                                                     </td>
                                                                 </tr>
                                                             </g:each>
-
-                                                            <!--
-                                                            <tr class="topicListRow">
-                                                                <td class="saveIcon">
-                                                                    <i class="hidden fa fa-eraser"></i>
-                                                                </td>
-                                                                <td><g:textField name="lastName" /></td>
-                                                                <td><g:textField name="firstName" /></td>
-                                                                <td><g:textField name="email" /></td>
-                                                                <td><g:textField name="officeHours" /></td>
-                                                                <td><g:textField name="webPage" /></td>
-                                                                <td><g:textField name="role" /></td>
-                                                                <td><g:textField name="location" /></td>
-                                                            </tr>-->
-
                                                         </tbody>
                                                     </table>
-                                                    <!--
-                                                    <fieldset id="topicModalClose" class="buttons topicButtonField">
-                                                        <span class="topicButtonGradient saveBG">
-                                                            <button class="save save-instructors show-hover-new topicButton" action="save" id="saveTopic" title="">
-                                                                 Finish
-                                                            </button>
-                                                        </span>
-                                                        <span class="topicButtonGradient cancelBG">
-                                                            <button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="">
-                                                                <i class="fa fa-times"></i>
-                                                                 Cancel
-                                                            </button>
-                                                        </span>
-                                                    </fieldset>-->
                                                 </div>
                                             </div>
                                     </div>
@@ -457,9 +424,7 @@
                         </table>
                     </fieldset>
                 </g:form>
-
             </div>
         </div>
-
     </body>
 </html>

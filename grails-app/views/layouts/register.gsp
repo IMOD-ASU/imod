@@ -8,7 +8,7 @@
 
 		<link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
 
-		<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+		<g:external dir="bower_components/jquery/dist" file="jquery.min.js" />
 		<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'reset.css',plugin:'spring-security-ui')}"/>
 		<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'spring-security-ui.css',plugin:'spring-security-ui')}"/>
 		<jqui:resources />

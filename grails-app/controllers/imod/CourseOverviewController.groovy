@@ -131,64 +131,6 @@ class CourseOverviewController {
                 value: 'success'
             ] as JSON
         )
-
-        // todo
-        // check if instructor doesn't exist and handle the exception
-
-		/*def instructorInstance = Instructor.get(params.id)
-		if (!instructorInstance) {
-			flash.message = message(
-				code: 'default.not.found.message',
-				args: [
-					message(
-						code: 'instructor.label',
-						default: 'Instructor'
-					),
-					instructorInstance
-				]
-			)
-			redirect(
-				controller: 'courseOverview',
-				action: 'index',
-				id: instructorInstance.id
-			)
-			return
-		}
-
-		try {
-			instructorInstance.delete()
-			flash.message = message (
-				code: 'default.deleted.message',
-				args: [
-					message(
-						code: 'instructor.label',
-						default: 'Instructor'
-					),
-					instructorInstance
-				]
-			)
-			redirect(
-				controller: 'courseOverview',
-				action: 'index',
-				id: instructorInstance.id
-			)
-		}
-		catch (DataIntegrityViolationException e) {
-			flash.message = message(
-				code: 'default.not.deleted.message',
-				args: [
-					message(
-						code: 'instructor.label',
-						default: 'Instructor'
-					),
-					instructorInstance
-				]
-			)
-			redirect(
-				action: 'show',
-				id: id
-			)
-		}*/
 	}
 
     // syllabus html page
