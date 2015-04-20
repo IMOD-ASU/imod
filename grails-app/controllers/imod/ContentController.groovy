@@ -58,6 +58,8 @@ class ContentController {
 				}
 			}
 
+			// print contentInstance.topicTitle+": "+dimensions
+
 			contentInstance.dimensions = dimensions
 			contentInstance.priority = priority
 			contentInstance.preReq = preReq
