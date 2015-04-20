@@ -29,7 +29,7 @@ $(document).ready(function() {
 		$("#qtip-place").html("");
 	});
 
-	$('input[type="checkbox"], input[type="radio"]').hover(function() {
+	$('input[type="checkbox"], input[type="radio"], .knowledge-dim-label').hover(function() {
 		$('#qtip-place').html($(this).attr('title'));
 	}, function() {
 		$("#qtip-place").html("");
