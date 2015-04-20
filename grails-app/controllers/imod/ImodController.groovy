@@ -234,6 +234,416 @@ class ImodController {
 			selectedLearningObjective.save();
 
 
+			// content
+			def currentInstance = null
+			def dimensions
+			def dimensions2
+
+			def contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Programming Fundamentals"
+			dimensions = "Metacognitive, Procedural, Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Problem Solving"
+			dimensions = "Metacognitive, Procedural"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Constructing Algorithms"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Constructing Formal Code"
+			dimensions = "Procedural, Factual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Variables"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Software Development Environment"
+			dimensions = "Procedural, Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Setup and Configuration"
+			dimensions = "Procedural"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Writing Code"
+			dimensions = "Procedural, Factual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Executing Code"
+			dimensions = "Procedural"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Errors (syntax, semantic, runtime)"
+			dimensions = "Procedural, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Program Structure and Flow"
+			dimensions = "Procedural, Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Sequence"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Selection"
+			dimensions = "Procedural, Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Iteration"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Functions"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Modular Programming Techniques"
+			dimensions = "Procedural, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Composite Data Structures"
+			dimensions = "Procedural, Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Store and Manipulate Data"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Lists"
+			dimensions = "Procedural, Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Strings"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Tuples"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Good to Know"
+			contentInstance.topicTitle = "Searching and Sorting"
+			dimensions = "Procedural, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Good to Know"
+			contentInstance.topicTitle = "Classes and Objects"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Good to Know"
+			contentInstance.topicTitle = "Object"
+			dimensions = "Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Good to Know"
+			contentInstance.topicTitle = "Types"
+			dimensions = "Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Application Domain - Problem Specification"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Introduction to Graphics and Drawing"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Introduction to Animation"
+			dimensions = "Factual, Conceptual"
+			if (dimensions != ''){
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
 
         } // end sample
 
