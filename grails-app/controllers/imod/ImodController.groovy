@@ -98,140 +98,140 @@ class ImodController {
             
             // LO(1)
             def learningObjectiveID = learningObjectiveService.create(newImod)
-            def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-            selectedLearningObjective.actionWordCategory = implement
-            selectedLearningObjective.definition = "(LO1) Given a problem specification apply Iteration, Constructing Algorithms, Constructing Formal Code, Selection, Sequence, and Problem Solving 85%";
-            selectedLearningObjective.actionWord = "apply"
-            selectedLearningObjective.condition = "Given a problem specification"
-            selectedLearningObjective.criteriaAccuracy = "85%"
-            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
-            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
-            selectedLearningObjective.criteriaQuality = ""
-            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQualityHidden = "FALSE"
-            selectedLearningObjective.criteriaQuantity = ""
-            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
-            selectedLearningObjective.criteriaSpeed = ""
-            selectedLearningObjective.criteriaSpeedEnabled = "FALSE"
-            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
-            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
-            selectedLearningObjective.performance = "Apply"
-			selectedLearningObjective.save();
+            def lo1 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            lo1.actionWordCategory = implement
+            lo1.definition = "(LO1) Given a problem specification apply Iteration, Constructing Algorithms, Constructing Formal Code, Selection, Sequence, and Problem Solving 85%";
+            lo1.actionWord = "apply"
+            lo1.condition = "Given a problem specification"
+            lo1.criteriaAccuracy = "85%"
+            lo1.criteriaAccuracyEnabled = "TRUE"
+            lo1.criteriaAccuracyHidden = "FALSE"
+            lo1.criteriaQuality = ""
+            lo1.criteriaQualityEnabled = "FALSE"
+            lo1.criteriaQualityHidden = "FALSE"
+            lo1.criteriaQuantity = ""
+            lo1.criteriaQuantityEnabled = "FALSE"
+            lo1.criteriaQuantityHidden = "FALSE"
+            lo1.criteriaSpeed = ""
+            lo1.criteriaSpeedEnabled = "FALSE"
+            lo1.criteriaSpeedHidden = "FALSE"
+            lo1.hideFromLearningObjectiveCondition = "FALSE"
+            lo1.performance = "Apply"
+			lo1.save();
 
 			// LO(2)
             learningObjectiveID = learningObjectiveService.create(newImod)
-            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-            selectedLearningObjective.actionWordCategory = implement
-            selectedLearningObjective.definition = "(LO2) Given a problem specification use Strings, Tuples, Constructing Formal Code, Store and Manipulate Data, Lists, Variables, and Constructing Algorithms 85% determined per assessment";
-            selectedLearningObjective.actionWord = "use"
-            selectedLearningObjective.condition = "Given a problem specification"
-            selectedLearningObjective.criteriaAccuracy = "85%"
-            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
-            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
-            selectedLearningObjective.criteriaQuality = ""
-            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQualityHidden = "FALSE"
-            selectedLearningObjective.criteriaQuantity = ""
-            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
-            selectedLearningObjective.criteriaSpeed = "determined per assessment"
-            selectedLearningObjective.criteriaSpeedEnabled = "TRUE"
-            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
-            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
-            selectedLearningObjective.performance = "Apply"
-			selectedLearningObjective.save();
+            def lo2 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            lo2.actionWordCategory = implement
+            lo2.definition = "(LO2) Given a problem specification use Strings, Tuples, Constructing Formal Code, Store and Manipulate Data, Lists, Variables, and Constructing Algorithms 85% determined per assessment";
+            lo2.actionWord = "use"
+            lo2.condition = "Given a problem specification"
+            lo2.criteriaAccuracy = "85%"
+            lo2.criteriaAccuracyEnabled = "TRUE"
+            lo2.criteriaAccuracyHidden = "FALSE"
+            lo2.criteriaQuality = ""
+            lo2.criteriaQualityEnabled = "FALSE"
+            lo2.criteriaQualityHidden = "FALSE"
+            lo2.criteriaQuantity = ""
+            lo2.criteriaQuantityEnabled = "FALSE"
+            lo2.criteriaQuantityHidden = "FALSE"
+            lo2.criteriaSpeed = "determined per assessment"
+            lo2.criteriaSpeedEnabled = "TRUE"
+            lo2.criteriaSpeedHidden = "FALSE"
+            lo2.hideFromLearningObjectiveCondition = "FALSE"
+            lo2.performance = "Apply"
+			lo2.save();
 
 			// LO(3)
             learningObjectiveID = learningObjectiveService.create(newImod)
-            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-            selectedLearningObjective.actionWordCategory = implement
-            selectedLearningObjective.definition = "(LO3) Given a problem specification use Constructing Algorithms, Constructing Formal Code, Object Types, Functions, Classes and Objects, and Modular Programming Techniques";
-            selectedLearningObjective.actionWord = "use"
-            selectedLearningObjective.condition = "Given a problem specification"
-            selectedLearningObjective.criteriaAccuracy = ""
-            selectedLearningObjective.criteriaAccuracyEnabled = "FALSE"
-            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
-            selectedLearningObjective.criteriaQuality = ""
-            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQualityHidden = "FALSE"
-            selectedLearningObjective.criteriaQuantity = ""
-            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
-            selectedLearningObjective.criteriaSpeed = ""
-            selectedLearningObjective.criteriaSpeedEnabled = "FALSE"
-            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
-            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
-            selectedLearningObjective.performance = "Apply"
-			selectedLearningObjective.save();
+            def lo3 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            lo3.actionWordCategory = implement
+            lo3.definition = "(LO3) Given a problem specification use Constructing Algorithms, Constructing Formal Code, Object Types, Functions, Classes and Objects, and Modular Programming Techniques";
+            lo3.actionWord = "use"
+            lo3.condition = "Given a problem specification"
+            lo3.criteriaAccuracy = ""
+            lo3.criteriaAccuracyEnabled = "FALSE"
+            lo3.criteriaAccuracyHidden = "FALSE"
+            lo3.criteriaQuality = ""
+            lo3.criteriaQualityEnabled = "FALSE"
+            lo3.criteriaQualityHidden = "FALSE"
+            lo3.criteriaQuantity = ""
+            lo3.criteriaQuantityEnabled = "FALSE"
+            lo3.criteriaQuantityHidden = "FALSE"
+            lo3.criteriaSpeed = ""
+            lo3.criteriaSpeedEnabled = "FALSE"
+            lo3.criteriaSpeedHidden = "FALSE"
+            lo3.hideFromLearningObjectiveCondition = "FALSE"
+            lo3.performance = "Apply"
+			lo3.save();
 
 			// LO(4)
             learningObjectiveID = learningObjectiveService.create(newImod)
-            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-            selectedLearningObjective.actionWordCategory = interpret
-            selectedLearningObjective.definition = "(LO4) understand Object, Classes and Objects, and Types dependent per assessment";
-            selectedLearningObjective.actionWord = "understand"
-            selectedLearningObjective.condition = "Given a problem specification"
-            selectedLearningObjective.criteriaAccuracy = "dependent per assessment"
-            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
-            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
-            selectedLearningObjective.criteriaQuality = ""
-            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQualityHidden = "FALSE"
-            selectedLearningObjective.criteriaQuantity = ""
-            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
-            selectedLearningObjective.criteriaSpeed = ""
-            selectedLearningObjective.criteriaSpeedEnabled = "FALSE"
-            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
-            selectedLearningObjective.performance = "Understand"
-			selectedLearningObjective.save();
+            def lo4 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            lo4.actionWordCategory = interpret
+            lo4.definition = "(LO4) understand Object, Classes and Objects, and Types dependent per assessment";
+            lo4.actionWord = "understand"
+            lo4.condition = "Given a problem specification"
+            lo4.criteriaAccuracy = "dependent per assessment"
+            lo4.criteriaAccuracyEnabled = "TRUE"
+            lo4.criteriaAccuracyHidden = "FALSE"
+            lo4.criteriaQuality = ""
+            lo4.criteriaQualityEnabled = "FALSE"
+            lo4.criteriaQualityHidden = "FALSE"
+            lo4.criteriaQuantity = ""
+            lo4.criteriaQuantityEnabled = "FALSE"
+            lo4.criteriaQuantityHidden = "FALSE"
+            lo4.criteriaSpeed = ""
+            lo4.criteriaSpeedEnabled = "FALSE"
+            lo4.criteriaSpeedHidden = "FALSE"
+            lo4.performance = "Understand"
+			lo4.save();
 
 			// LO(5)
             learningObjectiveID = learningObjectiveService.create(newImod)
-            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-            selectedLearningObjective.actionWordCategory = implement
-            selectedLearningObjective.definition = "(LO5) Given a problem specification apply Constructing Algorithms, Constructing Formal Code, and Problem Solving 85% determined per assessment";
-            selectedLearningObjective.actionWord = "apply"
-            selectedLearningObjective.condition = "Given a problem specification"
-            selectedLearningObjective.criteriaAccuracy = "85%"
-            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
-            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
-            selectedLearningObjective.criteriaQuality = "determined per assessment"
-            selectedLearningObjective.criteriaQualityEnabled = "TRUE"
-            selectedLearningObjective.criteriaQualityHidden = "FALSE"
-            selectedLearningObjective.criteriaQuantity = ""
-            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
-            selectedLearningObjective.criteriaSpeed = ""
-            selectedLearningObjective.criteriaSpeedEnabled = "FALSE"
-            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
-            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
-            selectedLearningObjective.performance = "Apply"
-			selectedLearningObjective.save();
+            def lo5 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            lo5.actionWordCategory = implement
+            lo5.definition = "(LO5) Given a problem specification apply Constructing Algorithms, Constructing Formal Code, and Problem Solving 85% determined per assessment";
+            lo5.actionWord = "apply"
+            lo5.condition = "Given a problem specification"
+            lo5.criteriaAccuracy = "85%"
+            lo5.criteriaAccuracyEnabled = "TRUE"
+            lo5.criteriaAccuracyHidden = "FALSE"
+            lo5.criteriaQuality = "determined per assessment"
+            lo5.criteriaQualityEnabled = "TRUE"
+            lo5.criteriaQualityHidden = "FALSE"
+            lo5.criteriaQuantity = ""
+            lo5.criteriaQuantityEnabled = "FALSE"
+            lo5.criteriaQuantityHidden = "FALSE"
+            lo5.criteriaSpeed = ""
+            lo5.criteriaSpeedEnabled = "FALSE"
+            lo5.criteriaSpeedHidden = "FALSE"
+            lo5.hideFromLearningObjectiveCondition = "FALSE"
+            lo5.performance = "Apply"
+			lo5.save();
 
 			// LO(6)
             learningObjectiveID = learningObjectiveService.create(newImod)
-            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-            selectedLearningObjective.actionWordCategory = implement
-            selectedLearningObjective.definition = "(LO6) Given a problem specification configure Errors (syntax, semantic, runtime), Setup and Configuration, Executing Code, Constructing Formal Code, Writing Code, and Software Development Environment 85% determined per assessment";
-            selectedLearningObjective.actionWord = "configure"
-            selectedLearningObjective.condition = "Given a problem specification"
-            selectedLearningObjective.criteriaAccuracy = "85%"
-            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
-            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
-            selectedLearningObjective.criteriaQuality = ""
-            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQualityHidden = "FALSE"
-            selectedLearningObjective.criteriaQuantity = ""
-            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
-            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
-            selectedLearningObjective.criteriaSpeed = "determined per assessment"
-            selectedLearningObjective.criteriaSpeedEnabled = "TRUE"
-            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
-            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
-            selectedLearningObjective.performance = "Apply"
-			selectedLearningObjective.save();
+            def lo6 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            lo6.actionWordCategory = implement
+            lo6.definition = "(LO6) Given a problem specification configure Errors (syntax, semantic, runtime), Setup and Configuration, Executing Code, Constructing Formal Code, Writing Code, and Software Development Environment 85% determined per assessment";
+            lo6.actionWord = "configure"
+            lo6.condition = "Given a problem specification"
+            lo6.criteriaAccuracy = "85%"
+            lo6.criteriaAccuracyEnabled = "TRUE"
+            lo6.criteriaAccuracyHidden = "FALSE"
+            lo6.criteriaQuality = ""
+            lo6.criteriaQualityEnabled = "FALSE"
+            lo6.criteriaQualityHidden = "FALSE"
+            lo6.criteriaQuantity = ""
+            lo6.criteriaQuantityEnabled = "FALSE"
+            lo6.criteriaQuantityHidden = "FALSE"
+            lo6.criteriaSpeed = "determined per assessment"
+            lo6.criteriaSpeedEnabled = "TRUE"
+            lo6.criteriaSpeedHidden = "FALSE"
+            lo6.hideFromLearningObjectiveCondition = "FALSE"
+            lo6.performance = "Apply"
+			lo6.save();
 
 
 			// content
@@ -266,6 +266,8 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo1.addToContents(contentInstance)		
+			lo5.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -279,7 +281,11 @@ class ImodController {
 			}
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
-			contentInstance.save()
+			contentInstance.save()			
+			lo1.addToContents(contentInstance)
+			lo2.addToContents(contentInstance)
+			lo3.addToContents(contentInstance)
+			lo5.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -294,6 +300,11 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo1.addToContents(contentInstance)
+			lo2.addToContents(contentInstance)
+			lo3.addToContents(contentInstance)
+			lo5.addToContents(contentInstance)
+			lo6.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -308,6 +319,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo2.addToContents(contentInstance)
 
 
 
@@ -338,6 +350,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo6.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -352,6 +365,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo6.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -366,6 +380,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo6.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -380,6 +395,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo6.addToContents(contentInstance)
 
 
 
@@ -410,6 +426,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo1.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -424,6 +441,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo1.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -438,6 +456,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo1.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -452,6 +471,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo3.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -466,6 +486,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo3.addToContents(contentInstance)
 
 
 
@@ -497,6 +518,8 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			currentInstance = contentInstance
+			lo2.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -511,6 +534,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo2.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -525,6 +549,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo2.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -539,6 +564,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo2.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -583,6 +609,8 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo3.addToContents(contentInstance)
+			lo4.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = "FALSE"
@@ -597,6 +625,7 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
+			lo4.addToContents(contentInstance)
 
 
 
