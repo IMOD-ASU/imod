@@ -234,6 +234,218 @@ class ImodController {
 			selectedLearningObjective.save();
 
 
+			// content
+			def currentInstance = null
+
+			def contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Programming Fundamentals"
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Problem Solving"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Constructing Algorithms"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Constructing Formal Code"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Variables"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Software Development Environment"
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Setup and Configuration"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Writing Code"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Executing Code"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Errors (syntax, semantic, runtime)"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Program Structure and Flow"
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Sequence"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Selection"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Iteration"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Critical"
+			contentInstance.topicTitle = "Functions"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Modular Programming Techniques"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Composite Data Structures"
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Store and Manipulate Data"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Lists"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Strings"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Tuples"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Good to Know"
+			contentInstance.topicTitle = "Searching and Sorting"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Good to Know"
+			contentInstance.topicTitle = "Classes and Objects"
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Good to Know"
+			contentInstance.topicTitle = "Object"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Good to Know"
+			contentInstance.topicTitle = "Types"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			
+
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Application Domain - Problem Specification"
+			contentInstance.save()
+			currentInstance = contentInstance
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Introduction to Graphics and Drawing"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = "FALSE"
+			contentInstance.priority = "Very Important"
+			contentInstance.topicTitle = "Introduction to Animation"
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+
+
 
         } // end sample
 
