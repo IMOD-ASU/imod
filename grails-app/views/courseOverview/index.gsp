@@ -12,6 +12,7 @@
         </title>
         <meta name="layout" content="imod" />
         <g:external dir="css/source" file="topicModal.css" />
+        <g:javascript src="source/courseOverview.js" defer="defer" />
     </head>
     <body>
         <div id="tabs-1">
