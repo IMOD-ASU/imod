@@ -3,6 +3,7 @@ package imod
 import org.springframework.dao.DataIntegrityViolationException
 
 class ImodController {
+	def learningObjectiveService
 
 	static allowedMethods = [
 		save: 'POST',
@@ -23,6 +24,10 @@ class ImodController {
 	def list() {
         // get current user object
         def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
+        def interpret = ActionWordCategory.findByActionWordCategory("Interpret")
+        def implement = ActionWordCategory.findByActionWordCategory("Implement")
+
 
         // create sample imod if it doesn't exist
         def sample = currentUser.imods.find{it.name == 'Object-Oriented Software Development - sample'}
@@ -87,12 +92,150 @@ class ImodController {
             // save new instructor and the updated user to database
             newInstructor.save()
 
+            def currentImod = newImod;
 
             // add learning objectives
-            /*def learningObjectiveId = LearningObjective.create(newImod)
-            print learningObjectiveId*/
+            
+            // LO(1)
+            def learningObjectiveID = learningObjectiveService.create(newImod)
+            def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            selectedLearningObjective.actionWordCategory = implement
+            selectedLearningObjective.definition = "(LO1) Given a problem specification apply Iteration, Constructing Algorithms, Constructing Formal Code, Selection, Sequence, and Problem Solving 85%";
+            selectedLearningObjective.actionWord = "apply"
+            selectedLearningObjective.condition = "Given a problem specification"
+            selectedLearningObjective.criteriaAccuracy = "85%"
+            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
+            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
+            selectedLearningObjective.criteriaQuality = ""
+            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQualityHidden = "FALSE"
+            selectedLearningObjective.criteriaQuantity = ""
+            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
+            selectedLearningObjective.criteriaSpeed = ""
+            selectedLearningObjective.criteriaSpeedEnabled = "FALSE"
+            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
+            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
+            selectedLearningObjective.performance = "Apply"
+			selectedLearningObjective.save();
 
-        }
+			// LO(2)
+            learningObjectiveID = learningObjectiveService.create(newImod)
+            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            selectedLearningObjective.actionWordCategory = implement
+            selectedLearningObjective.definition = "(LO2) Given a problem specification use Strings, Tuples, Constructing Formal Code, Store and Manipulate Data, Lists, Variables, and Constructing Algorithms 85% determined per assessment";
+            selectedLearningObjective.actionWord = "use"
+            selectedLearningObjective.condition = "Given a problem specification"
+            selectedLearningObjective.criteriaAccuracy = "85%"
+            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
+            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
+            selectedLearningObjective.criteriaQuality = ""
+            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQualityHidden = "FALSE"
+            selectedLearningObjective.criteriaQuantity = ""
+            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
+            selectedLearningObjective.criteriaSpeed = "determined per assessment"
+            selectedLearningObjective.criteriaSpeedEnabled = "TRUE"
+            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
+            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
+            selectedLearningObjective.performance = "Apply"
+			selectedLearningObjective.save();
+
+			// LO(3)
+            learningObjectiveID = learningObjectiveService.create(newImod)
+            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            selectedLearningObjective.actionWordCategory = implement
+            selectedLearningObjective.definition = "(LO3) Given a problem specification use Constructing Algorithms, Constructing Formal Code, Object Types, Functions, Classes and Objects, and Modular Programming Techniques";
+            selectedLearningObjective.actionWord = "use"
+            selectedLearningObjective.condition = "Given a problem specification"
+            selectedLearningObjective.criteriaAccuracy = ""
+            selectedLearningObjective.criteriaAccuracyEnabled = "FALSE"
+            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
+            selectedLearningObjective.criteriaQuality = ""
+            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQualityHidden = "FALSE"
+            selectedLearningObjective.criteriaQuantity = ""
+            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
+            selectedLearningObjective.criteriaSpeed = ""
+            selectedLearningObjective.criteriaSpeedEnabled = "FALSE"
+            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
+            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
+            selectedLearningObjective.performance = "Apply"
+			selectedLearningObjective.save();
+
+			// LO(4)
+            learningObjectiveID = learningObjectiveService.create(newImod)
+            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            selectedLearningObjective.actionWordCategory = interpret
+            selectedLearningObjective.definition = "(LO4) understand Object, Classes and Objects, and Types dependent per assessment";
+            selectedLearningObjective.actionWord = "understand"
+            selectedLearningObjective.condition = "Given a problem specification"
+            selectedLearningObjective.criteriaAccuracy = "dependent per assessment"
+            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
+            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
+            selectedLearningObjective.criteriaQuality = ""
+            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQualityHidden = "FALSE"
+            selectedLearningObjective.criteriaQuantity = ""
+            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
+            selectedLearningObjective.criteriaSpeed = ""
+            selectedLearningObjective.criteriaSpeedEnabled = "FALSE"
+            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
+            selectedLearningObjective.performance = "Understand"
+			selectedLearningObjective.save();
+
+			// LO(5)
+            learningObjectiveID = learningObjectiveService.create(newImod)
+            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            selectedLearningObjective.actionWordCategory = implement
+            selectedLearningObjective.definition = "(LO5) Given a problem specification apply Constructing Algorithms, Constructing Formal Code, and Problem Solving 85% determined per assessment";
+            selectedLearningObjective.actionWord = "apply"
+            selectedLearningObjective.condition = "Given a problem specification"
+            selectedLearningObjective.criteriaAccuracy = "85%"
+            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
+            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
+            selectedLearningObjective.criteriaQuality = "determined per assessment"
+            selectedLearningObjective.criteriaQualityEnabled = "TRUE"
+            selectedLearningObjective.criteriaQualityHidden = "FALSE"
+            selectedLearningObjective.criteriaQuantity = ""
+            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
+            selectedLearningObjective.criteriaSpeed = ""
+            selectedLearningObjective.criteriaSpeedEnabled = "FALSE"
+            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
+            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
+            selectedLearningObjective.performance = "Apply"
+			selectedLearningObjective.save();
+
+			// LO(6)
+            learningObjectiveID = learningObjectiveService.create(newImod)
+            selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+            selectedLearningObjective.actionWordCategory = implement
+            selectedLearningObjective.definition = "(LO6) Given a problem specification configure Errors (syntax, semantic, runtime), Setup and Configuration, Executing Code, Constructing Formal Code, Writing Code, and Software Development Environment 85% determined per assessment";
+            selectedLearningObjective.actionWord = "configure"
+            selectedLearningObjective.condition = "Given a problem specification"
+            selectedLearningObjective.criteriaAccuracy = "85%"
+            selectedLearningObjective.criteriaAccuracyEnabled = "TRUE"
+            selectedLearningObjective.criteriaAccuracyHidden = "FALSE"
+            selectedLearningObjective.criteriaQuality = ""
+            selectedLearningObjective.criteriaQualityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQualityHidden = "FALSE"
+            selectedLearningObjective.criteriaQuantity = ""
+            selectedLearningObjective.criteriaQuantityEnabled = "FALSE"
+            selectedLearningObjective.criteriaQuantityHidden = "FALSE"
+            selectedLearningObjective.criteriaSpeed = "determined per assessment"
+            selectedLearningObjective.criteriaSpeedEnabled = "TRUE"
+            selectedLearningObjective.criteriaSpeedHidden = "FALSE"
+            selectedLearningObjective.hideFromLearningObjectiveCondition = "FALSE"
+            selectedLearningObjective.performance = "Apply"
+			selectedLearningObjective.save();
+
+
+
+        } // end sample
 
 
         // search for imods owned by current user
