@@ -2,6 +2,125 @@
 
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 
+
+// source: http://stackoverflow.com/a/2855946
+function isValidEmailAddress(emailAddress) {
+	var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+	return pattern.test(emailAddress);
+}
+
+function isRequired(fieldValue) {
+	if (fieldValue !== '' && fieldValue !== null && fieldValue !== undefined) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+// custom validation function for instructors
+function instructorValidator() {
+	var errorList = [];
+
+	$('.instructor-form').find('.error').remove();
+
+	$('.instructor-form').find('.first_name, .last_name, .email, .role').each(function() {
+
+		if (!isRequired($(this).val())) {
+			errorList.push({
+				'element': $(this),
+				message: 'This field is required'
+			});
+		} else if ($(this).hasClass('email')) {
+
+			if (!isValidEmailAddress($(this).val())) {
+				errorList.push({
+					'element': $(this),
+					message: 'Requires a valid email address'
+				});
+			}
+
+		}
+
+	});
+
+	if (errorList.length > 0) {
+
+		for (var i = 0; i < errorList.length; i++) {
+			var errorMsg = '<label class="error">';
+			errorMsg += errorList[i].message;
+			errorMsg += "</label>";
+
+			errorList[i].element.after(errorMsg);
+		}
+
+		return false;
+
+	} else {
+		return true;
+	}
+
+}
+
+// compares startTime and EndTime
+function compareStartEndTimes() {
+	// check if end time is greater than start time
+	var startHour = $('#schedule-start-time_hour').val();
+	var startMinute = $('#schedule-start-time_minute').val();
+
+	var endHour = $('#schedule-end-time_hour').val();
+	var endMinute = $('#schedule-end-time_minute').val();
+
+	var currentDate = new Date();
+
+	var year = currentDate.getYear();
+	var month = currentDate.getMonth();
+	var day = currentDate.getDate();
+
+	var startTime = new Date(year, month, day, startHour, startMinute);
+	var endTime = new Date(year, month, day, endHour, endMinute);
+
+	$('#time-error').remove();
+
+	if (endTime <= startTime) {
+		$('#schedule-end-time_hour').parent().append('<label id="time-error" class="error">End time has to be greater than start time</label>');
+		return false;
+	}
+
+	return true;
+}
+
+function gradingRadio(radio) {
+	$('#grading-procedure-text').hide();
+	if (radio.val() === 'Custom') {
+		$('#grading-procedure-text').show();
+	}
+	radio.parents('.ui-accordion-content').css('height', 'auto');
+}
+
+function populateRepeatsEvery() {
+	if ($('#repeats option:selected').text() === 'Daily') {
+		$('#duration').text('days');
+		$('#duration, label[for="repeatsEvery"], #repeatsEvery').css('visibility', 'visible');
+		$('label[for="scheduleWeekDays"], label[for="weekdays"], :checkbox').css('visibility', 'hidden');
+		$(':checkbox').removeAttr('checked');
+	} else if ($('#repeats option:selected').text() === 'Weekly') {
+		$('#duration').text('weeks');
+		$('#duration, label[for="repeatsEvery"], #repeatsEvery, label[for="scheduleWeekDays"], label[for="weekdays"], :checkbox, #repeats-every').css('visibility', 'visible');
+	} else {
+		$(':checkbox, label[for="weekdays"], label[for="scheduleWeekDays"], #duration, label[for="repeatsEvery"], #repeatsEvery').css('visibility', 'hidden');
+		$(':checkbox').removeAttr('checked');
+	}
+}
+
+// TODO is the method unused?
+function toggleSelected(event) {
+	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
+		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+		$(this).toggleClass('selected');
+	}
+}
+
+
 $(document).ready(function() {
 	populateRepeatsEvery();
 	$('#repeats').on(
@@ -34,7 +153,7 @@ $(document).ready(function() {
 				imod_id: $('#imodID').val(),
 				selected: ids
 			},
-			success: function(data) {
+			success: function() {
 				location.reload();
 			},
 			error: function(xhr) {
@@ -47,7 +166,6 @@ $(document).ready(function() {
 
 	});
 
-	// $('#topicList > tbody').on('click', 'tr', toggleSelected);
 	$('#topicList').on('click', '.saveIcon', function() {
 		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 		$(this).parent().toggleClass('selected');
@@ -156,7 +274,7 @@ $(document).ready(function() {
 						imod_id: $('input[name=id]').val(),
 						parameters: JSON.stringify(parameterList)
 					},
-					success: function(data) {
+					success: function() {
 						$('.courseoverview').submit();
 					},
 					error: function(xhr) {
@@ -172,23 +290,6 @@ $(document).ready(function() {
 		return false;
 
 	});
-
-	// instructor validation
-	/*jQuery.validator.addClassRules({
-		first_name: {
-			required: true
-		},
-		last_name: {
-			required: true
-		},
-		email: {
-			required: true,
-			email: true
-		},
-		role: {
-			required: true
-		}
-	});*/
 
 	// regex method for url
 	$.validator.addMethod('urlRule', function(value, element, regexpr) {
@@ -258,137 +359,3 @@ $(document).ready(function() {
 	});
 
 });
-
-// custom validation function for instructors
-function instructorValidator() {
-	var errorList = [];
-
-	$('.instructor-form').find('.error').remove();
-
-	$('.instructor-form').find('.first_name, .last_name, .email, .role').each(function() {
-
-		if (!isRequired($(this).val())) {
-			errorList.push({
-				'element': $(this),
-				message: 'This field is required'
-			});
-		} else if ($(this).hasClass('email')) {
-
-			if (!isValidEmailAddress($(this).val())) {
-				errorList.push({
-					'element': $(this),
-					message: 'Requires a valid email address'
-				});
-			}
-
-		}
-
-	});
-
-	if (errorList.length > 0) {
-
-		for (var i = 0; i < errorList.length; i++) {
-			var errorMsg = '<label class="error">';
-			errorMsg += errorList[i].message;
-			errorMsg += "</label>";
-
-			errorList[i].element.after(errorMsg);
-		}
-
-		return false;
-
-	} else {
-		return true;
-	}
-
-}
-
-// source: http://stackoverflow.com/a/2855946
-function isValidEmailAddress(emailAddress) {
-	var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
-	return pattern.test(emailAddress);
-}
-
-function isRequired(fieldValue) {
-	if (fieldValue !== '' && fieldValue !== null && fieldValue !== undefined) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-// compares startTime and EndTime
-function compareStartEndTimes() {
-	// check if end time is greater than start time
-	var startHour = $('#schedule-start-time_hour').val();
-	var startMinute = $('#schedule-start-time_minute').val();
-
-	var endHour = $('#schedule-end-time_hour').val();
-	var endMinute = $('#schedule-end-time_minute').val();
-
-	var currentDate = new Date();
-
-	var year = currentDate.getYear();
-	var month = currentDate.getMonth();
-	var day = currentDate.getDate();
-
-	var startTime = new Date(year, month, day, startHour, startMinute);
-	var endTime = new Date(year, month, day, endHour, endMinute);
-
-	$('#time-error').remove();
-
-	if (endTime <= startTime) {
-		$('#schedule-end-time_hour').parent().append('<label id="time-error" class="error">End time has to be greater than start time</label>');
-		return false;
-	}
-
-	return true;
-}
-
-function gradingRadio(radio) {
-	$('#grading-procedure-text').hide();
-	if (radio.val() === 'Custom') {
-		$('#grading-procedure-text').show();
-	}
-	radio.parents('.ui-accordion-content').css('height', 'auto');
-}
-
-function populateRepeatsEvery() {
-	if ($('#repeats option:selected').text() === 'Daily') {
-		$('#duration').text('days');
-		$('#duration').css('visibility', 'visible');
-		$('label[for="repeatsEvery"]').css('visibility', 'visible');
-		$('#repeatsEvery').css('visibility', 'visible');
-		$('label[for="scheduleWeekDays"]').css('visibility', 'hidden');
-		$('label[for="weekdays"]').css('visibility', 'hidden');
-		$(':checkbox').removeAttr('checked');
-		$(':checkbox').css('visibility', 'hidden');
-		$('#repeats-every').css('visibility', 'visible');
-
-	} else if ($('#repeats option:selected').text() === 'Weekly') {
-		$('#duration').text('weeks');
-		$('#duration').css('visibility', 'visible');
-		$('label[for="repeatsEvery"]').css('visibility', 'visible');
-		$('#repeatsEvery').css('visibility', 'visible');
-		$('label[for="scheduleWeekDays"]').css('visibility', 'visible');
-		$('label[for="weekdays"]').css('visibility', 'visible');
-		$(':checkbox').css('visibility', 'visible');
-		$('#repeats-every').css('visibility', 'visible');
-	} else {
-		$('label[for="repeatsEvery"]').css('visibility', 'hidden');
-		$('#repeatsEvery').css('visibility', 'hidden');
-		$('#duration').css('visibility', 'hidden');
-		$('label[for="scheduleWeekDays"]').css('visibility', 'hidden');
-		$('label[for="weekdays"]').css('visibility', 'hidden');
-		$(':checkbox').removeAttr('checked');
-		$(':checkbox').css('visibility', 'hidden');
-		$('#repeats-every').css('visibility', 'hidden');
-	}
-}
-
-function toggleSelected(event) {
-	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
-		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-		$(this).toggleClass('selected');
-	}
-}
