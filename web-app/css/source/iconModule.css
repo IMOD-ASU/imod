@@ -22,9 +22,9 @@
 
 .icons > .ui-state-default {
     background-color: #ffffcc;
-    background-image: url('../../images/unassign.png');
-    background-repeat: no-repeat;
-    background-position: right top;
+    background-image: url('../../images/unfav.png'),url('../../images/unassign.png');
+    background-repeat: no-repeat, no-repeat;
+    background-position:left top,  right top;
 }
 
 .icons > .ui-selecting,

@@ -7,10 +7,15 @@ filterAssessmentTechniques();
 $('#filter-assessment-techniques').accordion();
 
 
-// add hide the add new technique modal
+// auto hide the add new technique modal
 $('#add-new-technique').dialog({
 	autoOpen: false
 });
+
+//On Click function for the favorite assessment technique list
+$('#favorites').on('click', favoriteAssessmentTechniques);
+
+
 
 // attach a listener to the checkboxes, to update the pedaogy techniques
 // when the filters have been changed
@@ -19,10 +24,10 @@ $('input[name=learningDomain]').on('change', filterAssessmentTechniques);
 $('input[name=domainCategory]').on('change', filterAssessmentTechniques);
 
 // when add new technique button is clicked open modal
-$('#add-new-technique-button').on('click', openNewAssessmentTechniqueModal);
+$('#new-technique').on('click', openNewAssessmentTechniqueModal);
 
 // when cancel button is clicked close modal
-$('#create-pedagogy-cancel').on('click', closeNewAssessmentTechniqueModal);
+$('#create-assessment-cancel').on('click', closeNewAssessmentTechniqueModal);
 
 /**
  * Opens the modal to create a new pedagogy technique
@@ -37,6 +42,16 @@ function openNewAssessmentTechniqueModal() {
 function closeNewAssessmentTechniqueModal() {
 	$('#add-new-technique').dialog('close');
 }
+
+/**
+ * shows list of assessment techniques marked as favorites
+ */
+function favoriteAssessmentTechniques() {
+	$('#assessmentFavorites').show();
+	$('#assessmentFavoritesDiv').show();
+}
+
+
 
 /**
  * Reads which filters are selected and sends information to server to update
@@ -90,13 +105,13 @@ function displayAssessmentTechniques(data) {
 	var idealText = '';
 	// take the titles and make html code to display
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		idealText += '<input type="radio" id="radio' + index + '" name="assessmentTechnque" value="' + data.idealAssessmentTechniqueMatch[index].title + '"><label for="radio' + index + '">' + data.idealAssessmentTechniqueMatch[index].title + '</label>';
+		idealText += '<input type="checkbox" id="tech' + index + '"name="assessmentTechnque" value="' + data.idealAssessmentTechniqueMatch[index].title + '"><label for="tech' + index + '">' + data.idealAssessmentTechniqueMatch[index].title + '</label>';
 	}
 
 	var extendedText = '';
 	// take the titles and make html code to display
 	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		extendedText += '<div>' + data.extendedAssessmentTechniqueMatch[index].title + '</div>';
+		extendedText += '<input type="checkbox" id="tech' + index + '"name="assessmentTechnque" value="' + data.extendedAssessmentTechniqueMatch[index].title + '"><label for="tech' + index + '">' + data.extendedAssessmentTechniqueMatch[index].title + '</label>';
 	}
 
 	// add html code to the page
