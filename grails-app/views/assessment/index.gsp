@@ -47,7 +47,7 @@
 				<g:each var="learningObjective" in="${learningObjectives}">
 					<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
 						<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
-							${learningObjective.definition}
+							${ learningObjective.definition }
 						</g:link>
 					</li>
 				</g:each>
@@ -74,7 +74,7 @@
 							<label for="knowledge-dimension-${index}">
 								${knowledgeDimension.description}
 							</label>
-							<g:checkBox checked ="none" name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" />
+							<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" />
 						</li>
 					</g:each>
 				</ul>
@@ -89,7 +89,7 @@
 							<label for="learning-domain-${index}">
 								${learningDomain.name}
 							</label>
-							<g:checkBox  checked ="none" name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" />
+							<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" />
 						</li>
 					</g:each>
 				</ul>
@@ -104,7 +104,7 @@
 							<label for="domain-category-${index}">
 								${domainCategory.name}
 							</label>
-							<g:checkBox checked ="none" name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" />
+							<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" />
 						</li>
 					</g:each>
 				</ul>
@@ -115,7 +115,7 @@
 		<td class="learning-objective definition-cell">
 
 				<g:if test="${learningObjectives}">
-
+				<div class="topic_addition_widget">
 					<div class="assessment-page-buttons">
 						<span>
 
@@ -132,8 +132,49 @@
 						</span>
 					</div>
 
+					<g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+
+					<ul class="learning-objective sub-nav">
+						<li class="performance active">
+							Performance
+						</li>
+						<li class="content">
+							Content
+						</li>
+						<li class="condition">
+							Condition
+						</li>
+						<li class="criteria active">
+							Criteria
+						</li>
+					</ul>
+
+					<div id="selectedFilter">
+						${selectionLine}
+					</div>
+
+					<h3 title="" class="showHover">
+						Ideal Match
+					</h3>
+
+					<div id="ideal-matches" class="icons favorite"> </div>
+
+					<h3 id="assessmentFavorites" title="" class="showHover">
+						Favorites
+					</h3>
+
+					<div id="assessmentFavoritesDiv" class="icons favorite"></div>
+
+
+					<h3 title="" class="showHover">
+						Extended Match
+					</h3>
+
+					<div id="extended-matches" class="icons favorite"></div>
+				</div>
 				</g:if>
 				<g:else>
+
 				<div class="assessment-page-buttons-disabled">
 					<span>
 
@@ -149,6 +190,7 @@
 						</button>
 					</span>
 				<br/>
+
 				</div>
 				<div class="video-control" style="">
 
@@ -203,56 +245,10 @@
 						<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
 						<br />
 
-						<label>
-							Delivery Mode
-						</label>
-						<g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
-						<br />
 
-						<label>
-							Location
-						</label>
-						<g:textField name="location" />
-						<br />
-
-						<label>
-							Focus
-						</label>
-						<g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
-						<br />
-
-						<label>
-							Direction
-						</label>
-						<g:textField name="direction" />
-						<br />
-
-						<label>
-							Materials Required
-						</label>
-						<g:textField name="materials" />
-						<br />
-
-						<label>
-							Reference
-						</label>
-						<g:textField name="reference" />
-						<br />
-
-						<label>
-							Description of Strategy
-						</label>
-						<g:textField name="strategyDescription" />
-						<br />
-
-						<label>
-							Description of Activity
-						</label>
-						<g:textField name="activityDescription" />
-						<br />
 
 						<g:actionSubmit value="Save" action="create" />
-						<button id="create-pedagogy-cancel">
+						<button id="create-assessment-cancel">
 							Cancel
 						</button>
 					</g:form>

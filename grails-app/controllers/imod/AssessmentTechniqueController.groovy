@@ -35,10 +35,6 @@ class AssessmentTechniqueController {
 		)
 
 
-	/*	newTechnique.addToActivityFocus(
-			PedagogyActivityFocus.findByFocus(params.pedagogyFocus)
-		)*/
-
 		// persist new technique to database
 		newTechnique.save()
 
