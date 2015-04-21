@@ -2,8 +2,8 @@
 
 $(document).ready(function() {
 	$('#accordion').accordion();
-	$('#help-placeholder').draggable();
-	$('#open-help').draggable();
+	// $('#help-placeholder').draggable();
+	// $('#open-help').draggable();
 	$('#help-placeholder-2').css('display', 'none');
 	$('.show-hover-new').qtip({
 		style: {
@@ -29,14 +29,17 @@ $(document).ready(function() {
 		$("#qtip-place").html("");
 	});
 
-	$('input[type="checkbox"], input[type="radio"]').hover(function() {
+	$('input[type="checkbox"], input[type="radio"], .knowledge-dim-label').hover(function() {
 		$('#qtip-place').html($(this).attr('title'));
 	}, function() {
 		$("#qtip-place").html("");
 	});
 
 	$('.learning-objective.list-item').each(function() {
-		if ($(this).find('.list-link').text().trim() === 'Empty Learning Objective') {
+		if ($(this).find('.list-link').text().trim() === 'Empty Learning Objective' ||
+			$(this).find('.list-link').text().trim() === '' ||
+			$(this).find('.list-link').text().trim() === null
+		) {
 			$(this).hide();
 		}
 	});

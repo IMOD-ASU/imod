@@ -345,9 +345,15 @@ input[disabled='disabled'] {
     background-image: url(../../images/checkboxBG.png);
 }
 #contentTree .rootNode {
-    text-transform: capitalize;
-
     font-weight: bold;
+}
+
+#contentTree .jstree-node {
+    text-transform: capitalize;
+}
+
+#contentTable .topicTitle input {
+    text-transform: capitalize;
 }
 
 #contentTree .checkbox {

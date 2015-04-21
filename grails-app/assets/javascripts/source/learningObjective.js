@@ -7,6 +7,16 @@ var prevKeyword = '';
 //on page load
 $(document).ready(function() {
 
+	$('#custom-action-words').css('visibility', 'hidden');
+
+	$('#action-words').change(function() {
+		if (this.value === 'other') {
+			$('#custom-action-words').css('visibility', 'visible');
+		} else {
+			$('#custom-action-words').css('visibility', 'hidden');
+		}
+	});
+
 	$(':button').hover(function() {
 		$('#qtip-place').html($(this).attr('title'));
 	}, function() {
@@ -20,6 +30,7 @@ $(document).ready(function() {
 
 		$('#domain-category-list').css('visibility', 'hidden');
 		$('.icons').css('visibility', 'hidden');
+		$('#action-words').css('visibility', 'hidden');
 	}
 
 	$('.learning-objective.definition-display').click(function() {
@@ -211,10 +222,13 @@ function populateDomainCategories() {
 		$('label[for="domain-category-list"]').css('visibility', 'visible');
 		$('#domain-category-list').css('visibility', 'visible');
 		$('.icons').css('visibility', 'visible');
+		$('#action-words').css('visibility', 'visible');
 	} else {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
 		$('#domain-category-list').css('visibility', 'hidden');
 		$('.icons').css('visibility', 'hidden');
+		$('#action-words').css('visibility', 'hidden');
+		$('#custom-action-words').css('visibility', 'hidden');
 	}
 
 	$.ajax({
@@ -308,6 +322,7 @@ function populateActionWords(event) {
 		},
 		success: function(data) {
 			var actionWordsHTML = '';
+			var flag = 0;
 
 			if (event === true) {
 				var originalActionWord = $('#action-words').val();
@@ -324,6 +339,7 @@ function populateActionWords(event) {
 					for (var i = 0; i < actionWordsVerb.length; i++) {
 						// create the html for the action word
 						if (actionWordsVerb[i] === originalActionWord) {
+							flag = 1;
 							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">' + actionWordsVerb[i] + '</option>';
 						} else {
 							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">' + actionWordsVerb[i] + '</option>';
@@ -338,6 +354,7 @@ function populateActionWords(event) {
 					for (i = 0; i < actionWordsNoun.length; i++) {
 						// create the html for the action word
 						if (actionWordsNoun[i] === originalActionWord) {
+							flag = 1;
 							actionWordsHTML += '<option selected value="' + actionWordsNoun[i] + '">' + actionWordsNoun[i] + '</option>';
 						} else {
 							actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">' + actionWordsNoun[i] + '</option>';
@@ -351,6 +368,7 @@ function populateActionWords(event) {
 					for (i = 0; i < actionWordsAdj.length; i++) {
 						// create the html for the action word
 						if (actionWordsAdj[i] === originalActionWord) {
+							flag = 1;
 							actionWordsHTML += '<option selected value="' + actionWordsAdj[i] + '">' + actionWordsAdj[i] + '</option>';
 						} else {
 							actionWordsHTML += '<option value="' + actionWordsAdj[i] + '">' + actionWordsAdj[i] + '</option>';
@@ -359,6 +377,14 @@ function populateActionWords(event) {
 				}
 			}
 
+			if (flag === 0 && event === true) {
+				actionWordsHTML += '<option selected value="other"> --Other-- </option>';
+				$('#custom-action-words').css('visibility', 'visible');
+				$('input#custom-action-words').val(originalActionWord);
+			} else {
+				actionWordsHTML += '<option value="other"> --Other-- </option>';
+				$('#custom-action-words').css('visibility', 'hidden');
+			}
 			// display the html for the action words
 			$('#action-words').html(actionWordsHTML);
 		},

@@ -16,6 +16,7 @@ class LearningObjective {
 	 */
 	// FIXME condition is a SQL reserved word
 	String condition
+	String customCondition
 	// FIXME indicator is a SQL reserved word
 	String indicator
 	String performance
@@ -76,7 +77,8 @@ class LearningObjective {
 		criteriaType		nullable: true
 		actionWordCategory	nullable: true
 		condition			nullable: true
-		definition			nullable: true
+		customCondition		nullable: true
+		definition			nullable: true, maxSize: 65000
 		criteriaAccuracy	nullable: true
 		criteriaQuality		nullable: true
 		criteriaQuantity	nullable: true

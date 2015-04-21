@@ -76,7 +76,12 @@ class LearningObjectiveController {
 			case 'performance':
 				selectedLearningObjective.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				selectedLearningObjective.performance = params.DCL
-				selectedLearningObjective.actionWord = params.actionWord
+				if(params.actionWord == 'other'){
+					selectedLearningObjective.actionWord = params.customActionWord
+				}
+				else{
+					selectedLearningObjective.actionWord = params.actionWord
+				}
 				break
 
 			// if the user is saving the condition page
@@ -88,6 +93,11 @@ class LearningObjectiveController {
 					selectedLearningObjective.condition = params.customCondition
 				}
 				selectedLearningObjective.hideFromLearningObjectiveCondition = (params.hideCondition == 'on' ? true : false)
+				if(LearningObjective.genericConditions.contains(selectedLearningObjective.condition)){
+					selectedLearningObjective.customCondition = ''
+				}else{
+					selectedLearningObjective.customCondition = selectedLearningObjective.condition
+				}
 				break
 
 			// if the user is saving the criteria page
@@ -204,11 +214,13 @@ class LearningObjectiveController {
 		def learningObjectives			=  learningObjectiveService.getAllByImod(currentImod)
 		def currentLearningObjective	=  learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def currentCondition			=  currentLearningObjective.condition?:''
+		def currentCustomCondition		=  currentLearningObjective.customCondition
 		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
 		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
 
 		[
 			currentCondition:			currentCondition,
+			currentCustomCondition:		currentCustomCondition,
 			currentImod:				currentImod,
 			currentLearningObjective:	currentLearningObjective,
 			currentPage:				'learning objective condition',

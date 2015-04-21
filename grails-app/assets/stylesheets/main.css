@@ -1197,3 +1197,25 @@ label[for=weekdays] {
     font-size: 20px;
     font-weight: bold;
 }
+
+
+#qtip-place::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #f5f5f5;
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#qtip-place::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+
+    background-color: #f5f5f5;
+}
+
+#qtip-place::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ebeb35;
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}

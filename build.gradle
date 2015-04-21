@@ -17,7 +17,7 @@ plugins {
 }
 
 // Version should match Sprint Number
-version '0.19.0'
+version '0.19.2'
 group 'imod'
 
 apply plugin: 'spring-boot'
@@ -65,7 +65,7 @@ dependencies {
     compile 'org.hibernate:hibernate-ehcache'
 
     // custom compile plugins
-    compile 'org.grails.plugins:postgresql-extensions:4.3.0'
+    compile 'org.grails.plugins:postgresql-extensions:4.4.0'
     compile 'org.grails.plugins:spring-security-core:2.0-RC4'
     compile 'org.grails.plugins:mail:1.0.7'
     compile 'org.grails.plugins:jquery-ui:1.10.4'
