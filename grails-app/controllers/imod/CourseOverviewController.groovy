@@ -12,10 +12,10 @@ class CourseOverviewController {
     ]
 
 	def index(Long id) {
-		[
+        [
 			currentImod: Imod.get(id),
 			currentPage: 'course overview'
-		]
+        ]
 	}
 
     def create() {
@@ -33,8 +33,7 @@ class CourseOverviewController {
             def webPage = it.webPage
             def location = it.location
 
-            if(it.id == null){
-
+            if(it.id == null) {
                 def newInstructor = new Instructor(
                     firstName: firstName,
                     lastName: lastName,
@@ -46,27 +45,21 @@ class CourseOverviewController {
                     createdBy: params.imod_id
                 )
 
-
                 // save new instructor and the updated user to database
                 newInstructor.save()
-
-            }else{
-
+            } else {
                 def newInstructor = Instructor.get(it.id)
-                newInstructor.firstName = firstName;
-                newInstructor.lastName = lastName;
-                newInstructor.email = email;
-                newInstructor.role = role;
-                newInstructor.officeHours = officeHours;
-                newInstructor.webPage = webPage;
-                newInstructor.location = location;
+                newInstructor.firstName = firstName
+                newInstructor.lastName = lastName
+                newInstructor.email = email
+                newInstructor.role = role
+                newInstructor.officeHours = officeHours
+                newInstructor.webPage = webPage
+                newInstructor.location = location
 
                 // save new instructor and the updated user to database
                 newInstructor.save()
-
             }
-
-
         }
 
         render (
@@ -77,8 +70,7 @@ class CourseOverviewController {
     }
 
 	// FIXME rename the action to addInstructor
-    def add(){
-
+    def add() {
     	render(
 			view: 'addinstructor',
             model: [imodid: params.imodid]
@@ -87,14 +79,11 @@ class CourseOverviewController {
 
 
     def delete() {
-
         def instructorList = params.list('selected[]')
 
         instructorList.each { item ->
-
             def instructorInstance = Instructor.get(item)
             instructorInstance.delete()
-
         }
 
         render (
@@ -105,21 +94,20 @@ class CourseOverviewController {
 	}
 
     // syllabus html page
-    def syllabus(Long id){
-
-        def currentImod = Imod.get(id);
+    def syllabus(Long id) {
+        def currentImod = Imod.get(id)
 
         def learningObjectives = LearningObjective.findAllByImod(currentImod)
 
         def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 
-        def text = "<ul>"
+        def text = '<ul>'
 
         contentList.each() {
             text += getSubContent(it)
         }
 
-        text += "</ul>"
+        text += '</ul>'
 
         [
             currentImod: currentImod,
@@ -130,20 +118,19 @@ class CourseOverviewController {
     }
 
     private def getSubContent(Content current) {
-        def text = ""
+        def text = ''
 
-        text += "<li>" + current.topicTitle
+        text += '<li>' + current.topicTitle
 
-        if (current.subContents != null){
-            text += "<ul>"
+        if (current.subContents != null) {
+            text += '<ul>'
             current.subContents.each() {
                 text += getSubContent(it)
             }
-            text += "</ul>"
+            text += '</ul>'
         }
 
-        text +=  "</li>"
-
+        text +=  '</li>'
 
         return text
     }

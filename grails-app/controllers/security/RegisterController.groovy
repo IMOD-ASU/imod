@@ -61,7 +61,6 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 	}
 
 	def forgotPassword() {
-
 		if (!request.post) {
 			// show the form
 			return
@@ -105,7 +104,6 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 }
 
 class RegisterCommand {
-
 	String username
 	String email
 	String password
