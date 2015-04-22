@@ -6,6 +6,10 @@ package imod
 class PedagogyActivityDuration {
 	String duration
 
+	String toString() {
+	    return duration
+	}
+
 	static mapping = {
 		version false
 	}

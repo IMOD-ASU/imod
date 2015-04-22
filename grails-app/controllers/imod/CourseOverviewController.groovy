@@ -1,8 +1,6 @@
 package imod
 
-import org.springframework.dao.DataIntegrityViolationException
 import grails.converters.JSON
-import grails.plugins.rest.client.RestBuilder
 import groovy.json.JsonSlurper
 
 class CourseOverviewController {
@@ -20,7 +18,7 @@ class CourseOverviewController {
 		]
 	}
 
-    def create(String JSONData) {
+    def create() {
 
         def jsonParser = new JsonSlurper()
         def parameters = jsonParser.parseText(params.parameters)
@@ -36,7 +34,7 @@ class CourseOverviewController {
             def location = it.location
 
             if(it.id == null){
-                
+
                 def newInstructor = new Instructor(
                     firstName: firstName,
                     lastName: lastName,
@@ -76,33 +74,6 @@ class CourseOverviewController {
                 value: 'success'
             ] as JSON
         )
-
-
-        // if no ajax
-
-        /*
-        // create a new instructor
-        def newInstructor = new Instructor(
-            firstName: params.firstName,
-            lastName: params.lastName,
-            email: params.email,
-            role: params.role,
-            officeHours: params.officeHours,
-            webPage: params.webPage,
-            location: params.location,
-            createdBy: params.imod_id
-        )
-
-        // save new instructor and the updated user to database
-        newInstructor.save()
-
-        // redirect to editing new Instructor
-        redirect(
-            controller: 'CourseOverview',
-            action: 'index',
-            id: springSecurityService.currentUser.id
-
-        )*/
     }
 
 	// FIXME rename the action to addInstructor
@@ -150,7 +121,6 @@ class CourseOverviewController {
 
         text += "</ul>"
 
-
         [
             currentImod: currentImod,
             currentPage: 'syllabus',
@@ -160,10 +130,7 @@ class CourseOverviewController {
     }
 
     private def getSubContent(Content current) {
-        // FIXME remove html from controller
-        def listChildren = []
-        def returnValue = {}
-        def text = ""        
+        def text = ""
 
         text += "<li>" + current.topicTitle
 

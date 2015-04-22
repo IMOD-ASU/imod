@@ -3,7 +3,6 @@ package security
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.authentication.dao.NullSaltSource
 import grails.plugin.springsecurity.ui.RegistrationCode
-import groovy.text.SimpleTemplateEngine
 
 class RegisterController extends grails.plugin.springsecurity.ui.RegisterController {
 

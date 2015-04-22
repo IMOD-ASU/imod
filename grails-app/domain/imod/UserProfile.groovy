@@ -19,9 +19,7 @@ class UserProfile {
 	String country
 	String zip
 
-
 	ImodUser user
-
 
     static constraints = {
 		// remove these constraints selectively in the future if profile is not nullable in ImodUser class

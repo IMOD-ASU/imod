@@ -20,5 +20,4 @@ class UserPreferences {
 		dateRepresentation defaultValue: "'mm/dd/yy'"
 		version false
 	}
-
 }

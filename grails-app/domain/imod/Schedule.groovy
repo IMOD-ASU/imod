@@ -37,6 +37,4 @@ class Schedule {
 		startTime type: PersistentLocalTime
 		endTime   type: PersistentLocalTime
 	}
-
-
 }

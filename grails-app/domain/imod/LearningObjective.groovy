@@ -121,6 +121,10 @@ class LearningObjective {
 		return otherPagesEmpty && criteriaPageEmpty
 	}
 
+	String toString() {
+	    return definition
+	}
+
 	public buildDefinition() {
 		definition = ''
 		if (isEmpty()) {
