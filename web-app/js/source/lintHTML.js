@@ -2,7 +2,7 @@
 
 'use strict';
 
-// define rules for html hint
+// Define rules for html hint
 var messages = HTMLHint.verify(
 	document.documentElement.innerHTML, {
 		'attr-lowercase': true,

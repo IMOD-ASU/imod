@@ -1,0 +1,70 @@
+{
+	"disallowDanglingUnderscores": true,
+	"disallowEmptyBlocks": true,
+	"disallowMixedSpacesAndTabs": true,
+	"disallowMultipleLineBreaks": true,
+	"disallowMultipleLineStrings": true,
+	"disallowMultipleSpaces": true,
+	"disallowMultipleVarDecl": true,
+	"disallowNewlineBeforeBlockStatements": true,
+	"disallowPaddingNewlinesInBlocks": true,
+	"disallowQuotedKeysInObjects": true,
+	"disallowSpaceAfterObjectKeys": true,
+	"disallowSpaceAfterPrefixUnaryOperators": true,
+	"disallowSpaceBeforePostfixUnaryOperators": true,
+	"disallowSpacesInCallExpression": true,
+	"disallowSpacesInsideArrayBrackets": true,
+	"disallowSpacesInsideObjectBrackets": true,
+	"disallowSpacesInsideParentheses": true,
+	"disallowTrailingComma": true,
+	"disallowTrailingWhitespace": true,
+	"disallowYodaConditions": true,
+
+	"requireBlocksOnNewline": true,
+	"requireCapitalizedComments": true,
+	"requireCommaBeforeLineBreak": true,
+	"requireCurlyBraces": true,
+	"requireDotNotation": true,
+	"requireFunctionDeclarations": true,
+	"requireLineBreakAfterVariableAssignment": true,
+	"requireLineFeedAtFileEnd": true,
+	"requireOperatorBeforeLineBreak": true,
+	"requirePaddingNewLinesInObjects": true,
+	"requireSemicolons": true,
+	"requireSpaceAfterBinaryOperators": true,
+	"requireSpaceAfterKeywords": true,
+	"requireSpaceAfterLineComment": true,
+	"requireSpaceBeforeBinaryOperators": true,
+	"requireSpaceBeforeBlockStatements": true,
+	"requireSpaceBeforeKeywords": true,
+	"requireSpaceBeforeObjectValues": true,
+	"requireSpaceBetweenArguments": true,
+	"requireSpacesInConditionalExpression": true,
+	"requireSpacesInForStatement": true,
+
+	"disallowImplicitTypeConversion": [
+		"numeric",
+		"boolean",
+		"binary",
+		"string"
+	],
+	"disallowOperatorBeforeLineBreak": [
+		"===",
+		"!==",
+		"&&",
+		"||",
+		"="
+	],
+
+	"requireSpacesInFunction": {
+		"beforeOpeningRoundBrace": true,
+		"beforeOpeningCurlyBrace": true
+	},
+	"requireKeywordsOnNewLine": ["else"],
+
+	"maximumLineLength": 120,
+	"validateIndentation": "\t",
+	"validateLineBreaks": "LF",
+	"validateParameterSeparator": ", ",
+	"validateQuoteMarks": "'"
+}

@@ -11,7 +11,8 @@ if (typeof SpringSecurityUI === 'undefined') {
 	 * @param  text  the message text
 	 * @param  duration  how long to display the message
 	 */
-	/*public*/ SpringSecurityUI.message = function(type, text, duration) {
+	/*public*/
+	SpringSecurityUI.message = function (type, text, duration) {
 		var clazz = 'icon ';
 		if (type === 'error') {
 			clazz += 'icon_error';
@@ -20,18 +21,18 @@ if (typeof SpringSecurityUI === 'undefined') {
 			clazz += 'icon_info';
 		}
 
-		if(text === 'Sorry, your account is locked.'){
-			//let the message stay till user dismisses it
-			//if the message says account is locked
+		if (text === 'Sorry, your account is locked.') {
+			// let the message stay till user dismisses it
+			// if the message says account is locked
 
 			$.jGrowl('<span class="' + clazz + '">' + text + '</span>', {
 				sticky: true
 			});
-		}else{
+		}
+		else {
 			$.jGrowl('<span class="' + clazz + '">' + text + '</span>', {
 				life: duration
 			});
 		}
-
 	};
 }
