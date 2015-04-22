@@ -3,13 +3,12 @@
 /**
  * Opens the modal to create a new pedagogy technique
  */
-function openNewPedagogyTechniqueModal() {
+function openNewPedagogyTechniqueModal () {
 	$('#techniqueId').val('');
 	$('#add-new-technique').dialog('open');
 }
 
-
-function populatePedagogyTechnique(data) {
+function populatePedagogyTechnique (data) {
 	var currentTechnique = data.pedagogyTechnique;
 	// set the text fields
 	$('#title').val(currentTechnique.title);
@@ -25,8 +24,7 @@ function populatePedagogyTechnique(data) {
 	$('.domainCategory option[value=' + currentTechnique.domainCategory[0].id + ']').prop('selected', true);
 }
 
-
-function displayPedagogyInformationInEdit() {
+function displayPedagogyInformationInEdit () {
 	$('#techniqueId').val($('label.ui-state-active').attr('for'));
 	$.ajax({
 			url: '../../pedagogyTechnique/get/' + $('label.ui-state-active').attr('for'),
@@ -39,7 +37,7 @@ function displayPedagogyInformationInEdit() {
  * callback for find matching techniques grails action
  * this takes the json data and processes it into html code
  */
-function displayPedagogyTechniques(data) {
+function displayPedagogyTechniques (data) {
 	var idealText = '';
 	// take the titles and make html code to display
 	for (var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
@@ -58,22 +56,26 @@ function displayPedagogyTechniques(data) {
 	$('#ideal-matches').html(idealText);
 	$('#extended-matches').html(extendedText);
 
-	$('#ideal-matches').buttonset().click(function() {
-		$('#add-new-technique').dialog('open');
-		displayPedagogyInformationInEdit();
-	});
+	$('#ideal-matches').buttonset().click(
+		function () {
+			$('#add-new-technique').dialog('open');
+			displayPedagogyInformationInEdit();
+		}
+	);
 
-	$('#extended-matches').buttonset().click(function() {
-		$('#add-new-technique').dialog('open');
-		displayPedagogyInformationInEdit();
-	});
+	$('#extended-matches').buttonset().click(
+		function () {
+			$('#add-new-technique').dialog('open');
+			displayPedagogyInformationInEdit();
+		}
+	);
 }
 
 /**
  * Reads which filters are selected and sends information to server to update
  * visible pedagogy techniques
  */
-function filterPedagogyTechniques() {
+function filterPedagogyTechniques () {
 	// get all of the selected checkboxes
 	var selectedKnowledgeDimensions = $('input[name=knowledgeDimension]:checked');
 	var selectedLearningDomains = $('input[name=learningDomain]:checked');
@@ -105,12 +107,11 @@ function filterPedagogyTechniques() {
 	// send the data to the find matching techniques action in grails
 	// and process the response with the display pedagogy techniques callback
 	$.ajax({
-			url: '../findMatchingTechniques',
-			method: 'post',
-			data: JSON.stringify(data),
-			contentType: 'application/json'
-		})
-		.done(displayPedagogyTechniques);
+		url: '../findMatchingTechniques',
+		method: 'post',
+		data: JSON.stringify(data),
+		contentType: 'application/json'
+	}).done(displayPedagogyTechniques);
 }
 
 // load techniques on page load

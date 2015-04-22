@@ -3,14 +3,14 @@
 /**
  * Opens the modal to create a new pedagogy technique
  */
-function openNewAssessmentTechniqueModal() {
+function openNewAssessmentTechniqueModal () {
 	$('#add-new-technique').dialog('open');
 }
 
 /**
  * Closes the modal to create a new pedagogy technique
  */
-function closeNewAssessmentTechniqueModal() {
+function closeNewAssessmentTechniqueModal () {
 	$('#add-new-technique').dialog('close');
 }
 
@@ -18,7 +18,7 @@ function closeNewAssessmentTechniqueModal() {
  * callback for find matching techniques grails action
  * this takes the json data and processes it into html code
  */
-function displayAssessmentTechniques(data) {
+function displayAssessmentTechniques (data) {
 	var idealText = '';
 	// take the titles and make html code to display
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
@@ -43,7 +43,7 @@ function displayAssessmentTechniques(data) {
  * Reads which filters are selected and sends information to server to update
  * visible pedagogy techniques
  */
-function filterAssessmentTechniques() {
+function filterAssessmentTechniques () {
 	// get all of the selected checkboxes
 	var selectedKnowledgeDimensions = $('input[name=knowledgeDimension]:checked');
 	var selectedLearningDomains = $('input[name=learningDomain]:checked');
@@ -75,12 +75,11 @@ function filterAssessmentTechniques() {
 	// send the data to the find matching techniques action in grails
 	// and process the response with the display pedagogy techniques callback
 	$.ajax({
-			url: '../findMatchingTechniques',
-			method: 'post',
-			data: JSON.stringify(data),
-			contentType: 'application/json'
-		})
-		.done(displayAssessmentTechniques);
+		url: '../findMatchingTechniques',
+		method: 'post',
+		data: JSON.stringify(data),
+		contentType: 'application/json'
+	}).done(displayAssessmentTechniques);
 }
 
 // load techniques on page load
@@ -88,7 +87,6 @@ filterAssessmentTechniques();
 
 // the filters for the pedagogy technique are wrapped in a accordian
 $('#filter-assessment-techniques').accordion();
-
 
 // add hide the add new technique modal
 $('#add-new-technique').dialog({
