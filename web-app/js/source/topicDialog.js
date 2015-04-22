@@ -4,95 +4,6 @@ var errorMessages = [];
 var isFlashing = null;
 var content = '';
 
-$(function() {
-	// attach event listeners
-	$('#addTopicModal').click(showTopicDialog);
-	$('#addTopic').click(addTopic);
-	$('#saveTopic').click(saveTopic);
-	$('#cancelTopic').click(function() {
-		revertChanges();
-		hideTopicDialog();
-	});
-	$('.knowledgeDimensionButton').click(openDimModal);
-	$('#knowDimFinished').click(closeDimModal);
-	$('.ResourceButton').click(openResourceModal);
-	$('#addResource').click(function() {
-		addResource();
-	});
-	$('#cancelResource').click(closeResourceModal);
-	$('#saveResource').click(saveResource);
-	$('#removeResource').click(function() {
-
-		var resourceIDs = [];
-		$('#resourceList .selected').each(function() {
-			resourceIDs.push(this.id);
-		});
-		deleteResource(resourceIDs);
-	});
-	$('#removeTopic').click(function() {
-		var contentIDs = [];
-		$('#topicList .selected').each(function() {
-			contentIDs.push(this.id);
-		});
-		deleteTopic(contentIDs);
-	});
-
-	// $('#topicList > tbody').on('click', 'tr', toggleSelected);
-	$('#topicList').on('click', '.saveIcon', function() {
-		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-		$(this).parent().toggleClass('selected');
-	});
-
-	$('.saveIcon-parent').click(function() {
-		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-
-		if ($(this).find("i").hasClass('fa-square-o')) {
-
-			$(this).parents('table')
-				.find('tbody')
-				.find('tr')
-				.removeClass('selected')
-				.find('.saveIcon')
-				.find('> i')
-				.removeClass('fa-check-square')
-				.addClass('fa-square-o');
-
-		} else {
-
-			$(this).parents('table')
-				.find('tbody')
-				.find('tr')
-				.addClass('selected')
-				.find('.saveIcon')
-				.find('> i')
-				.removeClass('fa-square-o')
-				.addClass('fa-check-square');
-
-		}
-
-		return false;
-	});
-
-
-	// $('#resourceList > tbody').on('click', 'tr', toggleSelected);
-	$('#resourceList').on('click', '.saveIcon', function() {
-		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-		$(this).toggleClass('selected');
-	});
-
-
-	$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
-	$('#topicList > tbody').on('change', 'input', function() {
-		var id = $(this).parents('tr .topicItem').attr('id');
-		highlightUnsaved(id);
-	});
-	$('#topicList > tbody').on('change', 'select', function() {
-		var id = $(this).parents('tr .topicItem').attr('id');
-		highlightUnsaved(id);
-	});
-
-});
-
 function showTopicDialog() {
 	$('#topicDialogBackground').css('display', 'block');
 	$('#topicDialog').css('display', 'block');
@@ -101,15 +12,6 @@ function showTopicDialog() {
 function hideTopicDialog() {
 	$('#topicDialogBackground').css('display', 'none');
 	$('#topicDialog').css('display', 'none');
-
-}
-
-function errorMessage(message) {
-	errorMessages.push(message);
-	if (isFlashing === null) {
-		flashError();
-		isFlashing = setInterval(flashError, 4000);
-	}
 }
 
 
@@ -131,7 +33,16 @@ function flashError() {
 		);
 }
 
-function changePic(imageToChange) {
+
+function errorMessage(message) {
+	errorMessages.push(message);
+	if (isFlashing === null) {
+		flashError();
+		isFlashing = setInterval(flashError, 4000);
+	}
+}
+
+function changePic() {
 	var iconName = '';
 	$('#selectKnowledgeDimensions').find('input:checkbox').each(function() {
 		if ($(this).prop('checked')) {
@@ -146,6 +57,7 @@ function changePic(imageToChange) {
 	$('#dimImage').attr('src', iconName);
 }
 
+// TODO is this function unused?
 function toggleSelected(event) {
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
 		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
@@ -204,6 +116,55 @@ function openDimModal() {
 	$('#topicID').val(contentID);
 	dialog.css('display', 'inherit');
 	background.css('display', 'block');
+}
+
+function getResource() {
+	var contentID = content.split('topicResources');
+	contentID = contentID[1];
+	var resourceDiv = $('#resourceList tbody');
+	resourceDiv.html('');
+	var resourceOptions = '';
+	$.ajax({
+		url: '../../content/getResource',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			contentID: contentID
+		},
+		success: function(data) {
+			var resources = data.resources;
+			var resourceTypes = data.resourceTypes;
+			for (var i = 0; i < resourceTypes.length; i++) {
+				resourceOptions += '<option value="' + resourceTypes[i] + '">' + resourceTypes[i] + '</option>';
+			}
+			$.each(resources, function(key, value) {
+				var id = value.id;
+				// FIXME move html out of JS
+				$('<tr id="' + id + '" class="resourceItem">' +
+					'<td class="saveIcon">' +
+					'<i class="fa fa-square-o"></i>' +
+					'</td><td class="resourceName">' +
+					'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
+					'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
+					'</td><td class="resourceDescription">' +
+					'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
+					'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
+					'</td><td class="resourceType">' +
+					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '"> ' +
+					resourceOptions +
+					'</select> ' +
+
+					'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
+					'</td></tr>'
+				).appendTo(resourceDiv);
+				$("#resourceType" + id).val(value.resourceType);
+			});
+
+		},
+		error: function(xhr) {
+			alert(xhr.responseText);
+		}
+	});
 }
 
 function openResourceModal() {
@@ -294,6 +255,22 @@ function saveTopic() {
 
 }
 
+function getTopicSavedItems(currentRow) {
+	var topicID = currentRow.id;
+	var rowData = {
+		title: $('#topicTitle' + topicID),
+		titleSaved: $('#topicTitleSaved' + topicID),
+		dimensions: $('#knowDimensionList' + topicID),
+		dimensionsSaved: $('#knowDimensionListSaved' + topicID),
+		priority: $('#topicPriority' + topicID),
+		prioritySaved: $('#topicPrioritySaved' + topicID),
+		preReq: $('#topicPreReq' + topicID),
+		preReqSaved: $('#topicPreReq' + topicID)
+	};
+	return rowData;
+}
+
+// TODO is the function unused?
 function refreshSaves() {
 	$('#topicList tbody tr').each(function() {
 		var rowData = getTopicSavedItems(this);
@@ -334,21 +311,6 @@ function revertChanges() {
 		deleteTopic(contentIDs);
 
 	});
-}
-
-function getTopicSavedItems(currentRow) {
-	var topicID = currentRow.id;
-	var rowData = {
-		title: $('#topicTitle' + topicID),
-		titleSaved: $('#topicTitleSaved' + topicID),
-		dimensions: $('#knowDimensionList' + topicID),
-		dimensionsSaved: $('#knowDimensionListSaved' + topicID),
-		priority: $('#topicPriority' + topicID),
-		prioritySaved: $('#topicPrioritySaved' + topicID),
-		preReq: $('#topicPreReq' + topicID),
-		preReqSaved: $('#topicPreReq' + topicID)
-	};
-	return rowData;
 }
 
 function addTopic() {
@@ -459,55 +421,6 @@ function addResource() {
 	});
 }
 
-function getResource() {
-	var contentID = content.split('topicResources');
-	contentID = contentID[1];
-	var resourceDiv = $('#resourceList tbody');
-	resourceDiv.html('');
-	var resourceOptions = '';
-	$.ajax({
-		url: '../../content/getResource',
-		type: 'GET',
-		dataType: 'json',
-		data: {
-			contentID: contentID
-		},
-		success: function(data) {
-			var resources = data.resources;
-			var resourceTypes = data.resourceTypes;
-			for (var i = 0; i < resourceTypes.length; i++) {
-				resourceOptions += '<option value="' + resourceTypes[i] + '">' + resourceTypes[i] + '</option>';
-			}
-			$.each(resources, function(key, value) {
-				var id = value.id;
-				// FIXME move html out of JS
-				$('<tr id="' + id + '" class="resourceItem">' +
-					'<td class="saveIcon">' +
-					'<i class="fa fa-square-o"></i>' +
-					'</td><td class="resourceName">' +
-					'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
-					'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
-					'</td><td class="resourceDescription">' +
-					'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
-					'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
-					'</td><td class="resourceType">' +
-					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '"> ' +
-					resourceOptions +
-					'</select> ' +
-
-					'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
-					'</td></tr>'
-				).appendTo(resourceDiv);
-				$("#resourceType" + id).val(value.resourceType);
-			});
-
-		},
-		error: function(xhr) {
-			alert(xhr.responseText);
-		}
-	});
-}
-
 function saveResource() {
 	var imodID = $('#imodID').val();
 	var resourceData = [];
@@ -569,3 +482,93 @@ function deleteResource(resourceIDs) {
 		}
 	});
 }
+
+
+$(function() {
+	// attach event listeners
+	$('#addTopicModal').click(showTopicDialog);
+	$('#addTopic').click(addTopic);
+	$('#saveTopic').click(saveTopic);
+	$('#cancelTopic').click(function() {
+		revertChanges();
+		hideTopicDialog();
+	});
+	$('.knowledgeDimensionButton').click(openDimModal);
+	$('#knowDimFinished').click(closeDimModal);
+	$('.ResourceButton').click(openResourceModal);
+	$('#addResource').click(function() {
+		addResource();
+	});
+	$('#cancelResource').click(closeResourceModal);
+	$('#saveResource').click(saveResource);
+	$('#removeResource').click(function() {
+
+		var resourceIDs = [];
+		$('#resourceList .selected').each(function() {
+			resourceIDs.push(this.id);
+		});
+		deleteResource(resourceIDs);
+	});
+	$('#removeTopic').click(function() {
+		var contentIDs = [];
+		$('#topicList .selected').each(function() {
+			contentIDs.push(this.id);
+		});
+		deleteTopic(contentIDs);
+	});
+
+	// $('#topicList > tbody').on('click', 'tr', toggleSelected);
+	$('#topicList').on('click', '.saveIcon', function() {
+		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+		$(this).parent().toggleClass('selected');
+	});
+
+	$('.saveIcon-parent').click(function() {
+		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+
+		if ($(this).find("i").hasClass('fa-square-o')) {
+
+			$(this).parents('table')
+				.find('tbody')
+				.find('tr')
+				.removeClass('selected')
+				.find('.saveIcon')
+				.find('> i')
+				.removeClass('fa-check-square')
+				.addClass('fa-square-o');
+
+		} else {
+
+			$(this).parents('table')
+				.find('tbody')
+				.find('tr')
+				.addClass('selected')
+				.find('.saveIcon')
+				.find('> i')
+				.removeClass('fa-square-o')
+				.addClass('fa-check-square');
+
+		}
+
+		return false;
+	});
+
+
+	// $('#resourceList > tbody').on('click', 'tr', toggleSelected);
+	$('#resourceList').on('click', '.saveIcon', function() {
+		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+		$(this).toggleClass('selected');
+	});
+
+
+	$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
+	$('#topicList > tbody').on('change', 'input', function() {
+		var id = $(this).parents('tr .topicItem').attr('id');
+		highlightUnsaved(id);
+	});
+	$('#topicList > tbody').on('change', 'select', function() {
+		var id = $(this).parents('tr .topicItem').attr('id');
+		highlightUnsaved(id);
+	});
+
+});

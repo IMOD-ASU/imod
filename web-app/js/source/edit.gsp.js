@@ -1,16 +1,5 @@
 'use strict';
 
-$(document).ready(function() {
-	$('.show-hover-new').qtip({
-		show: 'mouseover',
-		hide: 'mouseout',
-		position: {
-			type: 'static',
-			container: $('div#qtip-place')
-		}
-	});
-});
-
 function updateDatePicker() {
 	$("input[value='date.struct']:hidden").each(function() {
 		var dateFormat = 'dd/mm/yy';
@@ -91,6 +80,15 @@ function updateDatePicker() {
 }
 
 $(document).ready(function() {
+	$('.show-hover-new').qtip({
+		show: 'mouseover',
+		hide: 'mouseout',
+		position: {
+			type: 'static',
+			container: $('div#qtip-place')
+		}
+	});
+
 	document.getElementById('repeats').removeAttribute('multiple');
 	document.getElementById('repeatsEvery').removeAttribute('multiple');
 	$('#tabs').tabs({

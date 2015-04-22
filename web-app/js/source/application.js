@@ -46,12 +46,6 @@ $(document).ready(function() {
 	$('.learning-objective.list-wrapper').show();
 });
 
-function showHelp(displayHelp) {
-	if (displayHelp !== 'true') {
-		$('#help-placeholder').css('display', 'none');
-	}
-}
-
 function updateDatePicker(dateFormat) {
 	$("input[value='date.struct']:hidden").each(function() {
 		var name = $(this).attr('name');

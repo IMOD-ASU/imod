@@ -1,29 +1,5 @@
 'use strict';
 
-// load techniques on page load
-filterAssessmentTechniques();
-
-// the filters for the pedagogy technique are wrapped in a accordian
-$('#filter-assessment-techniques').accordion();
-
-
-// add hide the add new technique modal
-$('#add-new-technique').dialog({
-	autoOpen: false
-});
-
-// attach a listener to the checkboxes, to update the pedaogy techniques
-// when the filters have been changed
-$('input[name=knowledgeDimension]').on('change', filterAssessmentTechniques);
-$('input[name=learningDomain]').on('change', filterAssessmentTechniques);
-$('input[name=domainCategory]').on('change', filterAssessmentTechniques);
-
-// when add new technique button is clicked open modal
-$('#add-new-technique-button').on('click', openNewAssessmentTechniqueModal);
-
-// when cancel button is clicked close modal
-$('#create-pedagogy-cancel').on('click', closeNewAssessmentTechniqueModal);
-
 /**
  * Opens the modal to create a new pedagogy technique
  */
@@ -36,6 +12,31 @@ function openNewAssessmentTechniqueModal() {
  */
 function closeNewAssessmentTechniqueModal() {
 	$('#add-new-technique').dialog('close');
+}
+
+/**
+ * callback for find matching techniques grails action
+ * this takes the json data and processes it into html code
+ */
+function displayAssessmentTechniques(data) {
+	var idealText = '';
+	// take the titles and make html code to display
+	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		idealText += '<input type="radio" id="radio' + index + '" name="assessmentTechnque" value="' + data.idealAssessmentTechniqueMatch[index].title + '"><label for="radio' + index + '">' + data.idealAssessmentTechniqueMatch[index].title + '</label>';
+	}
+
+	var extendedText = '';
+	// take the titles and make html code to display
+	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		extendedText += '<div>' + data.extendedAssessmentTechniqueMatch[index].title + '</div>';
+	}
+
+	// add html code to the page
+	$('#ideal-matches').html(idealText);
+	$('#extended-matches').html(extendedText);
+
+	$('#ideal-matches').buttonset();
+	$('#extended-matches').buttonset();
 }
 
 /**
@@ -82,27 +83,26 @@ function filterAssessmentTechniques() {
 		.done(displayAssessmentTechniques);
 }
 
-/**
- * callback for find matching techniques grails action
- * this takes the json data and processes it into html code
- */
-function displayAssessmentTechniques(data) {
-	var idealText = '';
-	// take the titles and make html code to display
-	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		idealText += '<input type="radio" id="radio' + index + '" name="assessmentTechnque" value="' + data.idealAssessmentTechniqueMatch[index].title + '"><label for="radio' + index + '">' + data.idealAssessmentTechniqueMatch[index].title + '</label>';
-	}
+// load techniques on page load
+filterAssessmentTechniques();
 
-	var extendedText = '';
-	// take the titles and make html code to display
-	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		extendedText += '<div>' + data.extendedAssessmentTechniqueMatch[index].title + '</div>';
-	}
+// the filters for the pedagogy technique are wrapped in a accordian
+$('#filter-assessment-techniques').accordion();
 
-	// add html code to the page
-	$('#ideal-matches').html(idealText);
-	$('#extended-matches').html(extendedText);
 
-	$('#ideal-matches').buttonset();
-	$('#extended-matches').buttonset();
-}
+// add hide the add new technique modal
+$('#add-new-technique').dialog({
+	autoOpen: false
+});
+
+// attach a listener to the checkboxes, to update the pedaogy techniques
+// when the filters have been changed
+$('input[name=knowledgeDimension]').on('change', filterAssessmentTechniques);
+$('input[name=learningDomain]').on('change', filterAssessmentTechniques);
+$('input[name=domainCategory]').on('change', filterAssessmentTechniques);
+
+// when add new technique button is clicked open modal
+$('#add-new-technique-button').on('click', openNewAssessmentTechniqueModal);
+
+// when cancel button is clicked close modal
+$('#create-pedagogy-cancel').on('click', closeNewAssessmentTechniqueModal);
