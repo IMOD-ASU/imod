@@ -10,6 +10,10 @@ class PedagogyMode {
 		pedagogyTechnique: PedagogyTechnique
 	]
 
+	String toString() {
+	    return name
+	}
+
 	static mapping = {
 		version false
 	}

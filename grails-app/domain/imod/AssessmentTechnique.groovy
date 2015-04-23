@@ -24,6 +24,10 @@ class AssessmentTechnique {
 		//PedagogyMode
 	]
 
+	String toString() {
+	    return title
+	}
+
 	static mapping = {
 		description type: 'text'
 		version false

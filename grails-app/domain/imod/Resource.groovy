@@ -1,7 +1,5 @@
 package imod
 
-import java.util.List
-
 /**
  * Stores information of a document or other resource relevant to teaching a topic in a course
  */

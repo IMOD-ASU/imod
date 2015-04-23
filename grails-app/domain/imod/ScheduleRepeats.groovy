@@ -16,6 +16,4 @@ class ScheduleRepeats {
 	def String toString(){
 		return description
 	}
-	
-	
 }

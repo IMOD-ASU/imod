@@ -15,6 +15,10 @@ class PedagogyReference {
 		pedagogyTechnique: PedagogyTechnique
 	]
 
+	String toString() {
+	    return title
+	}
+
 	static mapping = {
 		version false
 		description type: 'text'
