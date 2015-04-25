@@ -160,11 +160,13 @@ class LearningObjective {
 	private String listToSentance(list) {
 		String returnString = '';
 		if(list != null) {
+			// there is only one item in the list
 			if (list.size() == 1) {
 				if (first.toString() != null) {
 					returnString += ' ' + list[0]
 				}
 			}
+			// there are two items in the list
 			else if (list.size() == 2) {
 				if (first != null) {
 					returnString += ' ' + list[0]
@@ -174,17 +176,23 @@ class LearningObjective {
 					returnString += ' ' + list[1]
 				}
 			}
+			// there are no items or many times in the list
 			else {
 				for (int index = 0; index < list.size(); index++) {
 					if (list[index] != null) {
+						// add space in front of first item
 						if(index == 0) {
 							returnString += ' '
-						} else {
+						}
+						// comma seperate middle items
+						else {
 							returnString += ', '
 						}
+						// add an 'and' for the last item
 						if (index == list.size() - 1) {
 							returnString += 'and '
 						}
+						// add the item
 						returnString += list[index]
 					}
 				}
