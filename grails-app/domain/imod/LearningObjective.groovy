@@ -138,7 +138,7 @@ class LearningObjective {
 			definition += ' ' + actionWord
 		}
 
-		definition += toCommaSeperatedList(contents)
+		definition += listToSentance(contents)
 
 		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
 			definition += ' ' + criteriaAccuracy
@@ -157,39 +157,35 @@ class LearningObjective {
 		}
 	}
 
-	private toCommaSeperatedList(array) {
+	private String listToSentance(list) {
 		String returnString = '';
-		if(array != null) {
-			if (array.size() == 1) {
-				def first = array[0]
+		if(list != null) {
+			if (list.size() == 1) {
 				if (first.toString() != null) {
-					returnString += ' ' + first.toString()
+					returnString += ' ' + list[0]
 				}
 			}
-			else if (array.size() == 2) {
-				def first = array[0]
-				if (first.toString() != null) {
-					returnString += ' ' + contentItem.topicTitle
+			else if (list.size() == 2) {
+				if (first != null) {
+					returnString += ' ' + list[0]
 				}
 				returnString += ' and'
-				def second = array[1]
-				if (second.toString() != null) {
-					returnString += ' ' + second.toString()
+				if (second != null) {
+					returnString += ' ' + list[1]
 				}
 			}
 			else {
-				for (int index = 0; index < array.size(); index++) {
-					def item = array[index]
-					if (item.toString() != null) {
+				for (int index = 0; index < list.size(); index++) {
+					if (list[index] != null) {
 						if(index == 0) {
 							returnString += ' '
 						} else {
 							returnString += ', '
 						}
-						if (index == array.size() - 1) {
+						if (index == list.size() - 1) {
 							returnString += 'and '
 						}
-						returnString += item.toString()
+						returnString += list[index]
 					}
 				}
 			}
