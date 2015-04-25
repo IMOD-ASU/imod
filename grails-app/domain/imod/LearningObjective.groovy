@@ -137,41 +137,9 @@ class LearningObjective {
 		if(performance != null) {
 			definition += ' ' + actionWord
 		}
-		if(contents != null) {
-			if (contents.size() == 1) {
-				def contentItem = contents[0]
-				if (contentItem.topicTitle != null) {
-					definition += ' ' + contentItem.topicTitle
-				}
-			}
-			else if (contents.size() == 2) {
-				def contentItem = contents[0]
-				if (contentItem.topicTitle != null) {
-					definition += ' ' + contentItem.topicTitle
-				}
-				definition += ' and'
-				contentItem = contents[1]
-				if (contentItem.topicTitle != null) {
-					definition += ' ' + contentItem.topicTitle
-				}
-			}
-			else {
-				for (def contentIndex = 0; contentIndex < contents.size(); contentIndex++) {
-					def contentItem = contents[contentIndex]
-					if (contentItem.topicTitle != null) {
-						if(contentIndex == 0) {
-							definition += ' '
-						} else {
-							definition += ', '
-						}
-						if (contentIndex == contents.size() - 1) {
-							definition += 'and '
-						}
-						definition += contentItem.topicTitle
-					}
-				}
-			}
-		}
+
+		definition += toCommaSeperatedList(contents)
+
 		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
 			definition += ' ' + criteriaAccuracy
 		}
@@ -186,6 +154,46 @@ class LearningObjective {
 		}
 		if (indicator != null) {
 			definition += ' ' + indicator
+		}
+	}
+
+	private toCommaSeperatedList(array) {
+		String returnString = '';
+		if(array != null) {
+			if (array.size() == 1) {
+				def first = array[0]
+				if (first.toString() != null) {
+					returnString += ' ' + first.toString()
+				}
+			}
+			else if (array.size() == 2) {
+				def first = array[0]
+				if (first.toString() != null) {
+					returnString += ' ' + contentItem.topicTitle
+				}
+				returnString += ' and'
+				def second = array[1]
+				if (second.toString() != null) {
+					returnString += ' ' + second.toString()
+				}
+			}
+			else {
+				for (int index = 0; index < array.size(); index++) {
+					def item = array[index]
+					if (item.toString() != null) {
+						if(index == 0) {
+							returnString += ' '
+						} else {
+							returnString += ', '
+						}
+						if (index == array.size() - 1) {
+							returnString += 'and '
+						}
+						returnString += item.toString()
+					}
+				}
+			}
+			return returnString
 		}
 	}
 }
