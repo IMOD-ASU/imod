@@ -131,45 +131,48 @@ class LearningObjective {
 			definition = 'Empty Learning Objective'
 			return
 		}
-		if(!hideFromLearningObjectiveCondition && condition != null) {
+		if (!hideFromLearningObjectiveCondition && condition != null) {
 			definition += condition
 		}
-		if(performance != null) {
+		if (performance != null) {
 			definition += ' ' + actionWord
 		}
 
-		definition += listToSentance(contents)
+		definition += listToSentence(contents)
 
+		List<String> criteria = [] as String[]
 		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
-			definition += ' ' + criteriaAccuracy
+			criteria.push(criteriaAccuracy + ' accuracy')
 		}
 		if (criteriaQuality != null && criteriaQualityHidden == false) {
-			definition += ' ' + criteriaQuality
+			criteria.push(criteriaQuality + ' quality')
 		}
 		if (criteriaQuantity != null && criteriaQuantityHidden == false) {
-			definition += ' ' + criteriaQuantity
+			criteria.push(criteriaQuantity + ' quantity')
 		}
 		if (criteriaSpeed != null && criteriaSpeedHidden == false) {
-			definition += ' ' + criteriaSpeed
+			criteria.push(criteriaSpeed + ' speed')
 		}
 		if (indicator != null) {
-			definition += ' ' + indicator
+			criteria.push(indicator)
 		}
+
+		definition += listToSentence(criteria, ' with ')
 	}
 
-	private String listToSentance(list) {
+	private String listToSentence(list, openingSpace = ' ') {
 		String returnString = '';
 		if(list != null) {
 			// there is only one item in the list
 			if (list.size() == 1) {
 				if (first.toString() != null) {
-					returnString += ' ' + list[0]
+					returnString += openingSpace + list[0]
 				}
 			}
 			// there are two items in the list
 			else if (list.size() == 2) {
 				if (first != null) {
-					returnString += ' ' + list[0]
+					returnString += openingSpace + list[0]
 				}
 				returnString += ' and'
 				if (second != null) {
@@ -181,8 +184,8 @@ class LearningObjective {
 				for (int index = 0; index < list.size(); index++) {
 					if (list[index] != null) {
 						// add space in front of first item
-						if(index == 0) {
-							returnString += ' '
+						if (index == 0) {
+							returnString += openingSpace
 						}
 						// comma seperate middle items
 						else {
