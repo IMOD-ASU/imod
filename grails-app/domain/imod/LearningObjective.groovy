@@ -131,61 +131,76 @@ class LearningObjective {
 			definition = 'Empty Learning Objective'
 			return
 		}
-		if(!hideFromLearningObjectiveCondition && condition != null) {
+		if (!hideFromLearningObjectiveCondition && condition != null) {
 			definition += condition
 		}
-		if(performance != null) {
+		if (performance != null) {
 			definition += ' ' + actionWord
 		}
-		if(contents != null) {
-			if (contents.size() == 1) {
-				def contentItem = contents[0]
-				if (contentItem.topicTitle != null) {
-					definition += ' ' + contentItem.topicTitle
+
+		definition += listToSentence(contents)
+
+		List<String> criteria = [] as String[]
+		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
+			criteria.push(criteriaAccuracy + ' accuracy')
+		}
+		if (criteriaQuality != null && criteriaQualityHidden == false) {
+			criteria.push(criteriaQuality + ' quality')
+		}
+		if (criteriaQuantity != null && criteriaQuantityHidden == false) {
+			criteria.push(criteriaQuantity + ' quantity')
+		}
+		if (criteriaSpeed != null && criteriaSpeedHidden == false) {
+			criteria.push(criteriaSpeed + ' speed')
+		}
+		if (indicator != null) {
+			criteria.push(indicator)
+		}
+
+		definition += listToSentence(criteria, ' with ')
+	}
+
+	private String listToSentence(list, openingSpace = ' ') {
+		String returnString = '';
+		if(list != null) {
+			// there is only one item in the list
+			if (list.size() == 1) {
+				if (first.toString() != null) {
+					returnString += openingSpace + list[0]
 				}
 			}
-			else if (contents.size() == 2) {
-				def contentItem = contents[0]
-				if (contentItem.topicTitle != null) {
-					definition += ' ' + contentItem.topicTitle
+			// there are two items in the list
+			else if (list.size() == 2) {
+				if (first != null) {
+					returnString += openingSpace + list[0]
 				}
-				definition += ' and'
-				contentItem = contents[1]
-				if (contentItem.topicTitle != null) {
-					definition += ' ' + contentItem.topicTitle
+				returnString += ' and'
+				if (second != null) {
+					returnString += ' ' + list[1]
 				}
 			}
+			// there are no items or many times in the list
 			else {
-				for (def contentIndex = 0; contentIndex < contents.size(); contentIndex++) {
-					def contentItem = contents[contentIndex]
-					if (contentItem.topicTitle != null) {
-						if(contentIndex == 0) {
-							definition += ' '
-						} else {
-							definition += ', '
+				for (int index = 0; index < list.size(); index++) {
+					if (list[index] != null) {
+						// add space in front of first item
+						if (index == 0) {
+							returnString += openingSpace
 						}
-						if (contentIndex == contents.size() - 1) {
-							definition += 'and '
+						// comma seperate middle items
+						else {
+							returnString += ', '
 						}
-						definition += contentItem.topicTitle
+						// add an 'and' for the last item
+						if (index == list.size() - 1) {
+							returnString += 'and '
+						}
+						// add the item
+						returnString += list[index]
 					}
 				}
 			}
-		}
-		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
-			definition += ' ' + criteriaAccuracy
-		}
-		if (criteriaQuality != null && criteriaQualityHidden == false) {
-			definition += ' ' + criteriaQuality
-		}
-		if (criteriaQuantity != null && criteriaQuantityHidden == false) {
-			definition += ' ' + criteriaQuantity
-		}
-		if (criteriaSpeed != null && criteriaSpeedHidden == false) {
-			definition += ' ' + criteriaSpeed
-		}
-		if (indicator != null) {
-			definition += ' ' + indicator
+			return returnString
 		}
 	}
 }
