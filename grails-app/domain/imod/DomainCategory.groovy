@@ -31,7 +31,6 @@ class DomainCategory {
 	 */
 	static mapping = {
 		sort 'name'
-		sort 'id'
 		version false
 	}
 

@@ -42,7 +42,7 @@ class LearningObjectiveController {
 	def saveDefinition(Long id, Long learningObjectiveID, String pageType) {
 		def currentImod = Imod.get(id)
 		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-		
+
 		selectedLearningObjective.definition = params.customDefinition
 
 		selectedLearningObjective.save()
@@ -66,7 +66,7 @@ class LearningObjectiveController {
 	 */
 	//TODO: add confirmation that the content was successfully saved
 	// FIXME each page should have its own save
-	def save (Long id, Long learningObjectiveID, String pageType){
+	def save (Long id, Long learningObjectiveID, String pageType) {
 		//gets the learning objective to be updated
 		def currentImod = Imod.get(id)
 		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
@@ -76,10 +76,10 @@ class LearningObjectiveController {
 			case 'performance':
 				selectedLearningObjective.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				selectedLearningObjective.performance = params.DCL
-				if(params.actionWord == 'other'){
+				if(params.actionWord == 'other') {
 					selectedLearningObjective.actionWord = params.customActionWord
 				}
-				else{
+				else {
 					selectedLearningObjective.actionWord = params.actionWord
 				}
 				break
@@ -93,9 +93,10 @@ class LearningObjectiveController {
 					selectedLearningObjective.condition = params.customCondition
 				}
 				selectedLearningObjective.hideFromLearningObjectiveCondition = (params.hideCondition == 'on' ? true : false)
-				if(LearningObjective.genericConditions.contains(selectedLearningObjective.condition)){
+				if(LearningObjective.genericConditions.contains(selectedLearningObjective.condition)) {
 					selectedLearningObjective.customCondition = ''
-				}else{
+				}
+				else {
 					selectedLearningObjective.customCondition = selectedLearningObjective.condition
 				}
 				break
@@ -152,7 +153,6 @@ class LearningObjectiveController {
 	 * @param  learningObjectiveID ID of the specific learning objective being edited
 	 */
 	def performance(Long id, Long learningObjectiveID) {
-
 		// get relevant imod
 		def currentImod = Imod.get(id)
 
@@ -215,7 +215,7 @@ class LearningObjectiveController {
 		def currentLearningObjective	=  learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def currentCondition			=  currentLearningObjective.condition?:''
 		def currentCustomCondition		=  currentLearningObjective.customCondition
-		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
+		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find {it == currentCondition}))
 		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
 
 		[
@@ -260,14 +260,13 @@ class LearningObjectiveController {
 			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
 		def returnValue = {}
 		def rootNode = ""
-		if (current.parentContent == null){
+		if (current.parentContent == null) {
 			rootNode = "rootNode"
 		}
-		if (current.subContents != null){
+		if (current.subContents != null) {
 			current.subContents.collect(listChildren) {
 				getSubContent(it, objective)
 			}
-
 		}
 
 		returnValue = [

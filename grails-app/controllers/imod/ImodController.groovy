@@ -13,7 +13,6 @@ class ImodController {
 
 	def springSecurityService
 
-
 	def index() {
 		redirect(
 			action: 'list',
@@ -25,22 +24,20 @@ class ImodController {
         // get current user object
         def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
-        def interpret = ActionWordCategory.findByActionWordCategory("Interpret")
-        def implement = ActionWordCategory.findByActionWordCategory("Implement")
-
+        def interpret = ActionWordCategory.findByActionWordCategory('Interpret')
+        def implement = ActionWordCategory.findByActionWordCategory('Implement')
 
         // create sample imod if it doesn't exist
-        def sample = currentUser.imods.find{it.name == 'Object-Oriented Software Development - sample'}
+        def sample = currentUser.imods.find {it.name == 'Object-Oriented Software Development - sample'}
 
-        if(sample == null){
-
-            def audience1 = Audience.findByDescription("Lower Division");
+        if(sample == null) {
+            def audience1 = Audience.findByDescription('Lower Division')
 
             // create a new imod
             def newImod = new Imod(
                 owner: currentUser,
                 name: 'Object-Oriented Software Development - sample',
-                url: 'https://piazza.com/asu/spring2014/cst100/home',           
+                url: 'https://piazza.com/asu/spring2014/cst100/home',
                 subjectArea: 'Computer Science',
                 imodNumber: 'CST100',
                 courseLocation: 'Peralta 213',
@@ -66,12 +63,12 @@ class ImodController {
             newImod.addToAudience(audience1)
 
             def newInstructor = new Instructor(
-                firstName: "Dr. Ajay",
-                lastName: "Bansal",
-                email: "ajay.bansal@asu.edu",
-                role: "Professor",
-                officeHours: "Tuesdays & Thursdays | 9:00am – 10:0am or by appointment",
-                location: "Peralta 230V",
+                firstName: 'Dr. Ajay',
+                lastName: 'Bansal',
+                email: 'ajay.bansal@asu.edu',
+                role: 'Professor',
+                officeHours: 'Tuesdays & Thursdays | 9:00am – 10:0am or by appointment',
+                location: 'Peralta 230V',
                 createdBy: newImod.id
             )
 
@@ -79,12 +76,12 @@ class ImodController {
             newInstructor.save()
 
             newInstructor = new Instructor(
-                firstName: "Rehman",
-                lastName: "Chughtai",
-                email: "Rehman.Chughtai@asu.edu",
-                role: "Assistant Professor",
-                officeHours: "by email appointment",
-                location: "Peralta 235 (Bullpen)",
+                firstName: 'Rehman',
+                lastName: 'Chughtai',
+                email: 'Rehman.Chughtai@asu.edu',
+                role: 'Assistant Professor',
+                officeHours: 'by email appointment',
+                location: 'Peralta 235 (Bullpen)',
                 createdBy: newImod.id
             )
 
@@ -92,147 +89,145 @@ class ImodController {
             // save new instructor and the updated user to database
             newInstructor.save()
 
-            def currentImod = newImod;
+            def currentImod = newImod
 
             // add learning objectives
-            
             // LO(1)
             def learningObjectiveID = learningObjectiveService.create(newImod)
             def lo1 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
             lo1.actionWordCategory = implement
-            lo1.definition = "(LO1) Given a problem specification apply Iteration, Constructing Algorithms, Constructing Formal Code, Selection, Sequence, and Problem Solving 85%";
-            lo1.actionWord = "apply"
-            lo1.condition = "Given a problem specification"
-            lo1.criteriaAccuracy = "85%"
-            lo1.criteriaAccuracyEnabled = "TRUE"
-            lo1.criteriaAccuracyHidden = "FALSE"
-            lo1.criteriaQuality = ""
-            lo1.criteriaQualityEnabled = "FALSE"
-            lo1.criteriaQualityHidden = "FALSE"
-            lo1.criteriaQuantity = ""
-            lo1.criteriaQuantityEnabled = "FALSE"
-            lo1.criteriaQuantityHidden = "FALSE"
-            lo1.criteriaSpeed = ""
-            lo1.criteriaSpeedEnabled = "FALSE"
-            lo1.criteriaSpeedHidden = "FALSE"
-            lo1.hideFromLearningObjectiveCondition = "FALSE"
-            lo1.performance = "Apply"
-			lo1.save();
+            lo1.definition = '(LO1) Given a problem specification apply Iteration, Constructing Algorithms, Constructing Formal Code, Selection, Sequence, and Problem Solving 85%'
+            lo1.actionWord = 'apply'
+            lo1.condition = 'Given a problem specification'
+            lo1.criteriaAccuracy = '85%'
+            lo1.criteriaAccuracyEnabled = 'TRUE'
+            lo1.criteriaAccuracyHidden = 'FALSE'
+            lo1.criteriaQuality = ''
+            lo1.criteriaQualityEnabled = 'FALSE'
+            lo1.criteriaQualityHidden = 'FALSE'
+            lo1.criteriaQuantity = ''
+            lo1.criteriaQuantityEnabled = 'FALSE'
+            lo1.criteriaQuantityHidden = 'FALSE'
+            lo1.criteriaSpeed = ''
+            lo1.criteriaSpeedEnabled = 'FALSE'
+            lo1.criteriaSpeedHidden = 'FALSE'
+            lo1.hideFromLearningObjectiveCondition = 'FALSE'
+            lo1.performance = 'Apply'
+			lo1.save()
 
 			// LO(2)
             learningObjectiveID = learningObjectiveService.create(newImod)
             def lo2 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
             lo2.actionWordCategory = implement
-            lo2.definition = "(LO2) Given a problem specification use Strings, Tuples, Constructing Formal Code, Store and Manipulate Data, Lists, Variables, and Constructing Algorithms 85% determined per assessment";
-            lo2.actionWord = "use"
-            lo2.condition = "Given a problem specification"
-            lo2.criteriaAccuracy = "85%"
-            lo2.criteriaAccuracyEnabled = "TRUE"
-            lo2.criteriaAccuracyHidden = "FALSE"
-            lo2.criteriaQuality = ""
-            lo2.criteriaQualityEnabled = "FALSE"
-            lo2.criteriaQualityHidden = "FALSE"
-            lo2.criteriaQuantity = ""
-            lo2.criteriaQuantityEnabled = "FALSE"
-            lo2.criteriaQuantityHidden = "FALSE"
-            lo2.criteriaSpeed = "determined per assessment"
-            lo2.criteriaSpeedEnabled = "TRUE"
-            lo2.criteriaSpeedHidden = "FALSE"
-            lo2.hideFromLearningObjectiveCondition = "FALSE"
-            lo2.performance = "Apply"
-			lo2.save();
+            lo2.definition = '(LO2) Given a problem specification use Strings, Tuples, Constructing Formal Code, Store and Manipulate Data, Lists, Variables, and Constructing Algorithms 85% determined per assessment'
+            lo2.actionWord = 'use'
+            lo2.condition = 'Given a problem specification'
+            lo2.criteriaAccuracy = '85%'
+            lo2.criteriaAccuracyEnabled = 'TRUE'
+            lo2.criteriaAccuracyHidden = 'FALSE'
+            lo2.criteriaQuality = ''
+            lo2.criteriaQualityEnabled = 'FALSE'
+            lo2.criteriaQualityHidden = 'FALSE'
+            lo2.criteriaQuantity = ''
+            lo2.criteriaQuantityEnabled = 'FALSE'
+            lo2.criteriaQuantityHidden = 'FALSE'
+            lo2.criteriaSpeed = 'determined per assessment'
+            lo2.criteriaSpeedEnabled = 'TRUE'
+            lo2.criteriaSpeedHidden = 'FALSE'
+            lo2.hideFromLearningObjectiveCondition = 'FALSE'
+            lo2.performance = 'Apply'
+			lo2.save()
 
 			// LO(3)
             learningObjectiveID = learningObjectiveService.create(newImod)
             def lo3 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
             lo3.actionWordCategory = implement
-            lo3.definition = "(LO3) Given a problem specification use Constructing Algorithms, Constructing Formal Code, Object Types, Functions, Classes and Objects, and Modular Programming Techniques";
-            lo3.actionWord = "use"
-            lo3.condition = "Given a problem specification"
-            lo3.criteriaAccuracy = ""
-            lo3.criteriaAccuracyEnabled = "FALSE"
-            lo3.criteriaAccuracyHidden = "FALSE"
-            lo3.criteriaQuality = ""
-            lo3.criteriaQualityEnabled = "FALSE"
-            lo3.criteriaQualityHidden = "FALSE"
-            lo3.criteriaQuantity = ""
-            lo3.criteriaQuantityEnabled = "FALSE"
-            lo3.criteriaQuantityHidden = "FALSE"
-            lo3.criteriaSpeed = ""
-            lo3.criteriaSpeedEnabled = "FALSE"
-            lo3.criteriaSpeedHidden = "FALSE"
-            lo3.hideFromLearningObjectiveCondition = "FALSE"
-            lo3.performance = "Apply"
-			lo3.save();
+            lo3.definition = '(LO3) Given a problem specification use Constructing Algorithms, Constructing Formal Code, Object Types, Functions, Classes and Objects, and Modular Programming Techniques'
+            lo3.actionWord = 'use'
+            lo3.condition = 'Given a problem specification'
+            lo3.criteriaAccuracy = ''
+            lo3.criteriaAccuracyEnabled = 'FALSE'
+            lo3.criteriaAccuracyHidden = 'FALSE'
+            lo3.criteriaQuality = ''
+            lo3.criteriaQualityEnabled = 'FALSE'
+            lo3.criteriaQualityHidden = 'FALSE'
+            lo3.criteriaQuantity = ''
+            lo3.criteriaQuantityEnabled = 'FALSE'
+            lo3.criteriaQuantityHidden = 'FALSE'
+            lo3.criteriaSpeed = ''
+            lo3.criteriaSpeedEnabled = 'FALSE'
+            lo3.criteriaSpeedHidden = 'FALSE'
+            lo3.hideFromLearningObjectiveCondition = 'FALSE'
+            lo3.performance = 'Apply'
+			lo3.save()
 
 			// LO(4)
             learningObjectiveID = learningObjectiveService.create(newImod)
             def lo4 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
             lo4.actionWordCategory = interpret
-            lo4.definition = "(LO4) understand Object, Classes and Objects, and Types dependent per assessment";
-            lo4.actionWord = "understand"
-            lo4.condition = "Given a problem specification"
-            lo4.criteriaAccuracy = "dependent per assessment"
-            lo4.criteriaAccuracyEnabled = "TRUE"
-            lo4.criteriaAccuracyHidden = "FALSE"
-            lo4.criteriaQuality = ""
-            lo4.criteriaQualityEnabled = "FALSE"
-            lo4.criteriaQualityHidden = "FALSE"
-            lo4.criteriaQuantity = ""
-            lo4.criteriaQuantityEnabled = "FALSE"
-            lo4.criteriaQuantityHidden = "FALSE"
-            lo4.criteriaSpeed = ""
-            lo4.criteriaSpeedEnabled = "FALSE"
-            lo4.criteriaSpeedHidden = "FALSE"
-            lo4.performance = "Understand"
-			lo4.save();
+            lo4.definition = '(LO4) understand Object, Classes and Objects, and Types dependent per assessment'
+            lo4.actionWord = 'understand'
+            lo4.condition = 'Given a problem specification'
+            lo4.criteriaAccuracy = 'dependent per assessment'
+            lo4.criteriaAccuracyEnabled = 'TRUE'
+            lo4.criteriaAccuracyHidden = 'FALSE'
+            lo4.criteriaQuality = ''
+            lo4.criteriaQualityEnabled = 'FALSE'
+            lo4.criteriaQualityHidden = 'FALSE'
+            lo4.criteriaQuantity = ''
+            lo4.criteriaQuantityEnabled = 'FALSE'
+            lo4.criteriaQuantityHidden = 'FALSE'
+            lo4.criteriaSpeed = ''
+            lo4.criteriaSpeedEnabled = 'FALSE'
+            lo4.criteriaSpeedHidden = 'FALSE'
+            lo4.performance = 'Understand'
+			lo4.save()
 
 			// LO(5)
             learningObjectiveID = learningObjectiveService.create(newImod)
             def lo5 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
             lo5.actionWordCategory = implement
-            lo5.definition = "(LO5) Given a problem specification apply Constructing Algorithms, Constructing Formal Code, and Problem Solving 85% determined per assessment";
-            lo5.actionWord = "apply"
-            lo5.condition = "Given a problem specification"
-            lo5.criteriaAccuracy = "85%"
-            lo5.criteriaAccuracyEnabled = "TRUE"
-            lo5.criteriaAccuracyHidden = "FALSE"
-            lo5.criteriaQuality = "determined per assessment"
-            lo5.criteriaQualityEnabled = "TRUE"
-            lo5.criteriaQualityHidden = "FALSE"
-            lo5.criteriaQuantity = ""
-            lo5.criteriaQuantityEnabled = "FALSE"
-            lo5.criteriaQuantityHidden = "FALSE"
-            lo5.criteriaSpeed = ""
-            lo5.criteriaSpeedEnabled = "FALSE"
-            lo5.criteriaSpeedHidden = "FALSE"
-            lo5.hideFromLearningObjectiveCondition = "FALSE"
-            lo5.performance = "Apply"
-			lo5.save();
+            lo5.definition = '(LO5) Given a problem specification apply Constructing Algorithms, Constructing Formal Code, and Problem Solving 85% determined per assessment'
+            lo5.actionWord = 'apply'
+            lo5.condition = 'Given a problem specification'
+            lo5.criteriaAccuracy = '85%'
+            lo5.criteriaAccuracyEnabled = 'TRUE'
+            lo5.criteriaAccuracyHidden = 'FALSE'
+            lo5.criteriaQuality = 'determined per assessment'
+            lo5.criteriaQualityEnabled = 'TRUE'
+            lo5.criteriaQualityHidden = 'FALSE'
+            lo5.criteriaQuantity = ''
+            lo5.criteriaQuantityEnabled = 'FALSE'
+            lo5.criteriaQuantityHidden = 'FALSE'
+            lo5.criteriaSpeed = ''
+            lo5.criteriaSpeedEnabled = 'FALSE'
+            lo5.criteriaSpeedHidden = 'FALSE'
+            lo5.hideFromLearningObjectiveCondition = 'FALSE'
+            lo5.performance = 'Apply'
+			lo5.save()
 
 			// LO(6)
             learningObjectiveID = learningObjectiveService.create(newImod)
             def lo6 = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
             lo6.actionWordCategory = implement
-            lo6.definition = "(LO6) Given a problem specification configure Errors (syntax, semantic, runtime), Setup and Configuration, Executing Code, Constructing Formal Code, Writing Code, and Software Development Environment 85% determined per assessment";
-            lo6.actionWord = "configure"
-            lo6.condition = "Given a problem specification"
-            lo6.criteriaAccuracy = "85%"
-            lo6.criteriaAccuracyEnabled = "TRUE"
-            lo6.criteriaAccuracyHidden = "FALSE"
-            lo6.criteriaQuality = ""
-            lo6.criteriaQualityEnabled = "FALSE"
-            lo6.criteriaQualityHidden = "FALSE"
-            lo6.criteriaQuantity = ""
-            lo6.criteriaQuantityEnabled = "FALSE"
-            lo6.criteriaQuantityHidden = "FALSE"
-            lo6.criteriaSpeed = "determined per assessment"
-            lo6.criteriaSpeedEnabled = "TRUE"
-            lo6.criteriaSpeedHidden = "FALSE"
-            lo6.hideFromLearningObjectiveCondition = "FALSE"
-            lo6.performance = "Apply"
-			lo6.save();
-
+            lo6.definition = '(LO6) Given a problem specification configure Errors (syntax, semantic, runtime), Setup and Configuration, Executing Code, Constructing Formal Code, Writing Code, and Software Development Environment 85% determined per assessment'
+            lo6.actionWord = 'configure'
+            lo6.condition = 'Given a problem specification'
+            lo6.criteriaAccuracy = '85%'
+            lo6.criteriaAccuracyEnabled = 'TRUE'
+            lo6.criteriaAccuracyHidden = 'FALSE'
+            lo6.criteriaQuality = ''
+            lo6.criteriaQualityEnabled = 'FALSE'
+            lo6.criteriaQualityHidden = 'FALSE'
+            lo6.criteriaQuantity = ''
+            lo6.criteriaQuantityEnabled = 'FALSE'
+            lo6.criteriaQuantityHidden = 'FALSE'
+            lo6.criteriaSpeed = 'determined per assessment'
+            lo6.criteriaSpeedEnabled = 'TRUE'
+            lo6.criteriaSpeedHidden = 'FALSE'
+            lo6.hideFromLearningObjectiveCondition = 'FALSE'
+            lo6.performance = 'Apply'
+			lo6.save()
 
 			// content
 			def currentInstance = null
@@ -240,11 +235,11 @@ class ImodController {
 			def dimensions2
 
 			def contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Programming Fundamentals"
-			dimensions = "Metacognitive, Procedural, Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Programming Fundamentals'
+			dimensions = 'Metacognitive, Procedural, Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -254,11 +249,11 @@ class ImodController {
 			currentInstance = contentInstance
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Problem Solving"
-			dimensions = "Metacognitive, Procedural"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Problem Solving'
+			dimensions = 'Metacognitive, Procedural'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -266,33 +261,15 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
-			lo1.addToContents(contentInstance)		
-			lo5.addToContents(contentInstance)
-
-			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Constructing Algorithms"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
-				dimensions2 = dimensions.split(',').collect() {
-					it.toUpperCase().trim() as KnowledgeDimensionEnum
-				}
-			}
-			contentInstance.dimensions = dimensions2
-			contentInstance.parentContent = currentInstance
-			contentInstance.save()			
 			lo1.addToContents(contentInstance)
-			lo2.addToContents(contentInstance)
-			lo3.addToContents(contentInstance)
 			lo5.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Constructing Formal Code"
-			dimensions = "Procedural, Factual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Constructing Algorithms'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -304,14 +281,32 @@ class ImodController {
 			lo2.addToContents(contentInstance)
 			lo3.addToContents(contentInstance)
 			lo5.addToContents(contentInstance)
+
+			contentInstance = new Content(imod: currentImod)
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Constructing Formal Code'
+			dimensions = 'Procedural, Factual'
+			if (dimensions != '') {
+				dimensions2 = dimensions.split(',').collect() {
+					it.toUpperCase().trim() as KnowledgeDimensionEnum
+				}
+			}
+			contentInstance.dimensions = dimensions2
+			contentInstance.parentContent = currentInstance
+			contentInstance.save()
+			lo1.addToContents(contentInstance)
+			lo2.addToContents(contentInstance)
+			lo3.addToContents(contentInstance)
+			lo5.addToContents(contentInstance)
 			lo6.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Variables"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Variables'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -324,11 +319,11 @@ class ImodController {
 
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Software Development Environment"
-			dimensions = "Procedural, Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Software Development Environment'
+			dimensions = 'Procedural, Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -338,11 +333,11 @@ class ImodController {
 			currentInstance = contentInstance
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Setup and Configuration"
-			dimensions = "Procedural"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Setup and Configuration'
+			dimensions = 'Procedural'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -353,11 +348,11 @@ class ImodController {
 			lo6.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Writing Code"
-			dimensions = "Procedural, Factual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Writing Code'
+			dimensions = 'Procedural, Factual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -368,11 +363,11 @@ class ImodController {
 			lo6.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Executing Code"
-			dimensions = "Procedural"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Executing Code'
+			dimensions = 'Procedural'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -383,11 +378,11 @@ class ImodController {
 			lo6.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Errors (syntax, semantic, runtime)"
-			dimensions = "Procedural, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Errors (syntax, semantic, runtime)'
+			dimensions = 'Procedural, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -400,11 +395,11 @@ class ImodController {
 
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Program Structure and Flow"
-			dimensions = "Procedural, Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Program Structure and Flow'
+			dimensions = 'Procedural, Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -414,11 +409,11 @@ class ImodController {
 			currentInstance = contentInstance
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Sequence"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Sequence'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -429,11 +424,11 @@ class ImodController {
 			lo1.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Selection"
-			dimensions = "Procedural, Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Selection'
+			dimensions = 'Procedural, Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -444,11 +439,11 @@ class ImodController {
 			lo1.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Iteration"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Iteration'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -459,11 +454,11 @@ class ImodController {
 			lo1.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Critical"
-			contentInstance.topicTitle = "Functions"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Critical'
+			contentInstance.topicTitle = 'Functions'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -474,11 +469,11 @@ class ImodController {
 			lo3.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Very Important"
-			contentInstance.topicTitle = "Modular Programming Techniques"
-			dimensions = "Procedural, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Very Important'
+			contentInstance.topicTitle = 'Modular Programming Techniques'
+			dimensions = 'Procedural, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -488,15 +483,12 @@ class ImodController {
 			contentInstance.save()
 			lo3.addToContents(contentInstance)
 
-
-
-
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Very Important"
-			contentInstance.topicTitle = "Composite Data Structures"
-			dimensions = "Procedural, Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Very Important'
+			contentInstance.topicTitle = 'Composite Data Structures'
+			dimensions = 'Procedural, Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -506,11 +498,11 @@ class ImodController {
 			currentInstance = contentInstance
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Very Important"
-			contentInstance.topicTitle = "Store and Manipulate Data"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Very Important'
+			contentInstance.topicTitle = 'Store and Manipulate Data'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -522,11 +514,11 @@ class ImodController {
 			lo2.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Very Important"
-			contentInstance.topicTitle = "Lists"
-			dimensions = "Procedural, Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Very Important'
+			contentInstance.topicTitle = 'Lists'
+			dimensions = 'Procedural, Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -537,11 +529,11 @@ class ImodController {
 			lo2.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Very Important"
-			contentInstance.topicTitle = "Strings"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Very Important'
+			contentInstance.topicTitle = 'Strings'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -552,11 +544,11 @@ class ImodController {
 			lo2.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Very Important"
-			contentInstance.topicTitle = "Tuples"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Very Important'
+			contentInstance.topicTitle = 'Tuples'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -567,11 +559,11 @@ class ImodController {
 			lo2.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Good to Know"
-			contentInstance.topicTitle = "Searching and Sorting"
-			dimensions = "Procedural, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Good to Know'
+			contentInstance.topicTitle = 'Searching and Sorting'
+			dimensions = 'Procedural, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -580,14 +572,12 @@ class ImodController {
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
 
-
-
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Good to Know"
-			contentInstance.topicTitle = "Classes and Objects"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Good to Know'
+			contentInstance.topicTitle = 'Classes and Objects'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -597,11 +587,11 @@ class ImodController {
 			currentInstance = contentInstance
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Good to Know"
-			contentInstance.topicTitle = "Object"
-			dimensions = "Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Good to Know'
+			contentInstance.topicTitle = 'Object'
+			dimensions = 'Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -613,11 +603,11 @@ class ImodController {
 			lo4.addToContents(contentInstance)
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Good to Know"
-			contentInstance.topicTitle = "Types"
-			dimensions = "Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Good to Know'
+			contentInstance.topicTitle = 'Types'
+			dimensions = 'Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -631,11 +621,11 @@ class ImodController {
 
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Very Important"
-			contentInstance.topicTitle = "Application Domain - Problem Specification"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Very Important'
+			contentInstance.topicTitle = 'Application Domain - Problem Specification'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -645,11 +635,11 @@ class ImodController {
 			currentInstance = contentInstance
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Very Important"
-			contentInstance.topicTitle = "Introduction to Graphics and Drawing"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Very Important'
+			contentInstance.topicTitle = 'Introduction to Graphics and Drawing'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -659,11 +649,11 @@ class ImodController {
 			contentInstance.save()
 
 			contentInstance = new Content(imod: currentImod)
-			contentInstance.preReq = "FALSE"
-			contentInstance.priority = "Very Important"
-			contentInstance.topicTitle = "Introduction to Animation"
-			dimensions = "Factual, Conceptual"
-			if (dimensions != ''){
+			contentInstance.preReq = 'FALSE'
+			contentInstance.priority = 'Very Important'
+			contentInstance.topicTitle = 'Introduction to Animation'
+			dimensions = 'Factual, Conceptual'
+			if (dimensions != '') {
 				dimensions2 = dimensions.split(',').collect() {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
@@ -671,9 +661,6 @@ class ImodController {
 			contentInstance.dimensions = dimensions2
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
-
-
-
         } // end sample
 
 
@@ -821,29 +808,25 @@ class ImodController {
 				currentImod
 			]
 		)
+
 		redirect(
 			controller: 'courseOverview',
 			action: 'index',
 			id: currentImod.id
 		)
 
-
-		def schedule = Schedule.findById(currentImod.properties.get("scheduleId"))
+		def schedule = Schedule.findById(currentImod.properties.get('scheduleId'))
 
 		schedule.scheduleWeekDays = null
 
-		params.each{
-
-			if(it.key.contains("scheduleWeekDays_"))
-			{
-				if (it.value.contains("on")){
-					if(schedule.scheduleWeekDays == null)
-					{
-						currentImod.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - "scheduleWeekDays_") as Integer))
+		params.each {
+			if(it.key.contains('scheduleWeekDays_')) {
+				if (it.value.contains('on')) {
+					if(schedule.scheduleWeekDays == null) {
+						currentImod.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer))
 					}
-					else
-					{
-						currentImod.schedule.scheduleWeekDays << ScheduleWeekDays.get((it.key - "scheduleWeekDays_") as Integer)
+					else {
+						currentImod.schedule.scheduleWeekDays << ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer)
 
 					}
 					currentImod.schedule.save()
@@ -852,18 +835,6 @@ class ImodController {
 			}
 		}
 	}
-
-	/*def sample(){
-		
-
-
-		// search for imods owned by current user
-		def displayList = Imod.findAllWhere(owner: currentUser)
-		[
-			imodInstanceList: displayList,
-			sort: 'name'
-		]
-	}*/
 
 	def delete(Long id) {
 		def currentImod = Imod.get(id)
@@ -888,7 +859,7 @@ class ImodController {
 			// delete associated instructors
 			def instructors = currentImod.instructors
 
-			instructors.each{
+			instructors.each {
 				it.delete()
 			}
 

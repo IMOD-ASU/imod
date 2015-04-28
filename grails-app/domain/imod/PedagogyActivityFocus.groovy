@@ -6,6 +6,10 @@ package imod
 class PedagogyActivityFocus {
 	String focus
 
+	String toString() {
+	    return focus
+	}
+
 	static mapping = {
 		version false
 	}

@@ -52,7 +52,7 @@ class ContentController {
 			def topicTitle = it.topicTitle
 
 			def contentInstance = Content.get(contentID)
-			if (it.dimensions != ''){
+			if (it.dimensions != '') {
 				dimensions = it.dimensions.split(',').collect() {
 					it.toUpperCase() as KnowledgeDimensionEnum
 				}
@@ -82,9 +82,8 @@ class ContentController {
 			] as JSON
 		)
 	}
-	
-	def deleteTopic(String contentIDs) {
 
+	def deleteTopic(String contentIDs) {
 		def success = []
 		def contentIDList = new JsonSlurper().parseText(contentIDs)
 
@@ -102,26 +101,23 @@ class ContentController {
 			def childrenList = []
 			def children = deletedContent.subContents
 			if(children != null) {
-				
-				childrenList.addAll(children);
-				
-				childrenList.each(){ child ->
-					deletedContent.removeFromSubContents(child)	
-				}
+				childrenList.addAll(children)
 
+				childrenList.each() { child ->
+					deletedContent.removeFromSubContents(child)
+				}
 			}
 
 			def learningObjectiveList = []
 			def learningObjectives = deletedContent.objectives
 
 			// remove learning objective association
-			if(learningObjectives != null){
-				learningObjectiveList.addAll(learningObjectives);
-				learningObjectiveList.each(){
-					deletedContent.removeFromObjectives(it)	
-				}				
+			if(learningObjectives != null) {
+				learningObjectiveList.addAll(learningObjectives)
+				learningObjectiveList.each() {
+					deletedContent.removeFromObjectives(it)
+				}
 			}
-			
 
 			deletedContent.delete()
 			success.add(item)
@@ -144,7 +140,7 @@ class ContentController {
 			parentContent.addToSubContents(childContent)
 			childContent.parentContent = parentContent
 		}
-		else{
+		else {
 			childContent.parentContent = null
 		}
 		render(
@@ -159,7 +155,7 @@ class ContentController {
 		if (idArray != null) {
 			def jsonParser = new JsonSlurper()
 			def contentIDList = jsonParser.parseText(idArray)
-			def contentList = contentIDList.collect{Content.get(it)}
+			def contentList = contentIDList.collect {Content.get(it)}
 			learningObjectiveInstance.contents.clear()
 			contentList.each() {
 				learningObjectiveInstance.addToContents(it)
@@ -187,7 +183,6 @@ class ContentController {
 			id: resourceInstance.id,
 			resources: resources,
 		] as JSON)
-
 	}
 
 	def getResource(Long contentID) {
@@ -197,7 +192,7 @@ class ContentController {
 		render([
 			resources: resources,
 			resourceTypes: resourceTypes,
-			]as JSON)
+		] as JSON)
 	}
 
 	def saveResource(String JSONData) {
