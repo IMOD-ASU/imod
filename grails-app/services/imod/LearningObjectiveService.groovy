@@ -35,8 +35,6 @@ class LearningObjectiveService {
         // if there are no learning objectives create one
         if (learningObjectives.size() < 1) {
             create(currentImod)
-            // updates the list of all of the learning objectives for this imod
-            learningObjectives = LearningObjective.findAllByImod(currentImod)
         }
     }
 
@@ -52,9 +50,9 @@ class LearningObjectiveService {
      * Get a learning objective by id, and ensures that objective belongs to
      * selected Imods
      */
-    def safeGet(Imod currentImod, Long learningObjectiveID) {
+    LearningObjective safeGet(Imod currentImod, Long learningObjectiveID) {
         ensureLearningObjectiveExists(currentImod)
-        def objective
+        LearningObjective objective
         // when there is not objective specified, pick first
         if (learningObjectiveID == null) {
             objective = currentImod.learningObjectives.first()
