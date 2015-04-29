@@ -1,4 +1,6 @@
 package imod
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 /**
  * Describes when a topic should be covered during the curriculum
@@ -32,6 +34,7 @@ class ContentSchedule {
 	 * @return topic name and start date for covering the topic
 	 */
 	def String toString() {
-		return "${content.topicTitle}:${startDate}"
+		DateFormat df = new SimpleDateFormat('MM/dd/yyyy');
+		return "${content.topicTitle + ':' + df.format(startDate)}"
 	}
 }
