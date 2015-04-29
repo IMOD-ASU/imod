@@ -6,6 +6,7 @@
 	"disallowMultipleLineStrings": true,
 	"disallowMultipleSpaces": true,
 	"disallowMultipleVarDecl": true,
+	"disallowNamedUnassignedFunctions": true,
 	"disallowNewlineBeforeBlockStatements": true,
 	"disallowPaddingNewlinesInBlocks": true,
 	"disallowQuotedKeysInObjects": true,
@@ -30,6 +31,7 @@
 	"requireLineFeedAtFileEnd": true,
 	"requireOperatorBeforeLineBreak": true,
 	"requirePaddingNewLinesInObjects": true,
+	"requirePaddingNewLinesAfterUseStrict": true,
 	"requireSemicolons": true,
 	"requireSpaceAfterBinaryOperators": true,
 	"requireSpaceAfterKeywords": true,
@@ -63,6 +65,7 @@
 	"requireKeywordsOnNewLine": ["else"],
 
 	"maximumLineLength": 120,
+	"maximumNumberOfLines": 500,
 	"validateIndentation": "\t",
 	"validateLineBreaks": "LF",
 	"validateParameterSeparator": ", ",
