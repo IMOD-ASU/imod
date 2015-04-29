@@ -42,14 +42,16 @@ function displayPedagogyTechniques (data) {
 	// Take the titles and make html code to display
 	for (var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
 		var currentTechnique = data.idealPedagogyTechniqueMatch[index];
-		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnque" value="' + currentTechnique.id + '"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
+		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
+		idealText += '<label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
 	}
 
 	var extendedText = '';
 	// Take the titles and make html code to display
 	for (index = 0; index < data.extendedPedagogyTechniqueMatch.length; index++) {
 		currentTechnique = data.extendedPedagogyTechniqueMatch[index];
-		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnque" value="' + currentTechnique.id + '"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
+		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
+		idealText += '<label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
 	}
 
 	// Add html code to the page

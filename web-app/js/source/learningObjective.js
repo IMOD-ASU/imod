@@ -123,7 +123,8 @@ function populateActionWordCategories () {
 			// For each category
 			for (var i = 0; i < actionWordCategories.length; i++) {
 				// Create the html
-				actionWordCategoriesHTML += '<input type="radio" id="radio' + i + '" name="actionWordCategory" value="' + actionWordCategories[i].actionWordCategory + '"><label for="radio' + i + '">' + actionWordCategories[i].actionWordCategory + '</label>';
+				actionWordCategoriesHTML += '<input type="radio" id="radio' + i + '" name="actionWordCategory" value="' + actionWordCategories[i].actionWordCategory + '">';
+				actionWordCategoriesHTML += '<label for="radio' + i + '">' + actionWordCategories[i].actionWordCategory + '</label>';
 			}
 			// Display the html on the page
 			$('.icons').html(actionWordCategoriesHTML);

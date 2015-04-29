@@ -77,7 +77,8 @@ function compareStartEndTimes () {
 	$('#time-error').remove();
 
 	if (endTime <= startTime) {
-		$('#schedule-end-time_hour').parent().append('<label id="time-error" class="error">End time has to be greater than start time</label>');
+		var errorLabel = '<label id="time-error" class="error">End time has to be greater than start time</label>';
+		$('#schedule-end-time_hour').parent().append(errorLabel);
 		return false;
 	}
 

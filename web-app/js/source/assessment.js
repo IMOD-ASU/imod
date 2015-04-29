@@ -22,7 +22,8 @@ function displayAssessmentTechniques (data) {
 	var idealText = '';
 	// Take the titles and make html code to display
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		idealText += '<input type="radio" id="radio' + index + '" name="assessmentTechnque" value="' + data.idealAssessmentTechniqueMatch[index].title + '"><label for="radio' + index + '">' + data.idealAssessmentTechniqueMatch[index].title + '</label>';
+		idealText += '<input type="radio" id="radio' + index + '" name="assessmentTechnque" value="' + data.idealAssessmentTechniqueMatch[index].title + '">';
+		idealText += '<label for="radio' + index + '">' + data.idealAssessmentTechniqueMatch[index].title + '</label>';
 	}
 
 	var extendedText = '';
