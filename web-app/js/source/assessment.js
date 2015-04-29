@@ -15,23 +15,23 @@ function closeNewAssessmentTechniqueModal () {
 }
 
 /**
- * callback for find matching techniques grails action
+ * Callback for find matching techniques grails action
  * this takes the json data and processes it into html code
  */
 function displayAssessmentTechniques (data) {
 	var idealText = '';
-	// take the titles and make html code to display
+	// Take the titles and make html code to display
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 		idealText += '<input type="radio" id="radio' + index + '" name="assessmentTechnque" value="' + data.idealAssessmentTechniqueMatch[index].title + '"><label for="radio' + index + '">' + data.idealAssessmentTechniqueMatch[index].title + '</label>';
 	}
 
 	var extendedText = '';
-	// take the titles and make html code to display
+	// Take the titles and make html code to display
 	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
 		extendedText += '<div>' + data.extendedAssessmentTechniqueMatch[index].title + '</div>';
 	}
 
-	// add html code to the page
+	// Add html code to the page
 	$('#ideal-matches').html(idealText);
 	$('#extended-matches').html(extendedText);
 
@@ -44,7 +44,7 @@ function displayAssessmentTechniques (data) {
  * visible pedagogy techniques
  */
 function filterAssessmentTechniques () {
-	// get all of the selected checkboxes
+	// Get all of the selected checkboxes
 	var selectedKnowledgeDimensions = $('input[name=knowledgeDimension]:checked');
 	var selectedLearningDomains = $('input[name=learningDomain]:checked');
 	var selectedDomainCategories = $('input[name=domainCategory]:checked');
@@ -54,7 +54,7 @@ function filterAssessmentTechniques () {
 	var selectedLearningDomainsData = [];
 	var selectedDomainCategoriesData = [];
 
-	// get the id of the grails domain from the value attribute in the html
+	// Get the id of the grails domain from the value attribute in the html
 	for (var index = 0; index < selectedKnowledgeDimensions.length; index++) {
 		selectedKnowledgeDimensionsData[index] = selectedKnowledgeDimensions[index].value;
 	}
@@ -65,14 +65,14 @@ function filterAssessmentTechniques () {
 		selectedDomainCategoriesData[index] = selectedDomainCategories[index].value;
 	}
 
-	// bundle the data into an object
+	// Bundle the data into an object
 	var data = {
 		selectedKnowledgeDimensions: selectedKnowledgeDimensionsData,
 		selectedLearningDomains: selectedLearningDomainsData,
 		selectedDomainCategories: selectedDomainCategoriesData
 	};
 
-	// send the data to the find matching techniques action in grails
+	// Send the data to the find matching techniques action in grails
 	// and process the response with the display pedagogy techniques callback
 	$.ajax({
 		url: '../findMatchingTechniques',
@@ -82,25 +82,25 @@ function filterAssessmentTechniques () {
 	}).done(displayAssessmentTechniques);
 }
 
-// load techniques on page load
+// Load techniques on page load
 filterAssessmentTechniques();
 
-// the filters for the pedagogy technique are wrapped in a accordian
+// The filters for the pedagogy technique are wrapped in a accordian
 $('#filter-assessment-techniques').accordion();
 
-// add hide the add new technique modal
+// Add hide the add new technique modal
 $('#add-new-technique').dialog({
 	autoOpen: false
 });
 
-// attach a listener to the checkboxes, to update the pedaogy techniques
+// Attach a listener to the checkboxes, to update the pedaogy techniques
 // when the filters have been changed
 $('input[name=knowledgeDimension]').on('change', filterAssessmentTechniques);
 $('input[name=learningDomain]').on('change', filterAssessmentTechniques);
 $('input[name=domainCategory]').on('change', filterAssessmentTechniques);
 
-// when add new technique button is clicked open modal
+// When add new technique button is clicked open modal
 $('#add-new-technique-button').on('click', openNewAssessmentTechniqueModal);
 
-// when cancel button is clicked close modal
+// When cancel button is clicked close modal
 $('#create-pedagogy-cancel').on('click', closeNewAssessmentTechniqueModal);

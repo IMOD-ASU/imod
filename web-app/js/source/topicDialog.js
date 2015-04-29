@@ -503,7 +503,7 @@ function deleteResource (resourceIDs) {
 
 $(
 	function () {
-		// attach event listeners
+		// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(addTopic);
 		$('#saveTopic').click(saveTopic);
