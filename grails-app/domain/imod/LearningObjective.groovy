@@ -165,17 +165,17 @@ class LearningObjective {
 		if(list != null) {
 			// there is only one item in the list
 			if (list.size() == 1) {
-				if (first.toString() != null) {
+				if (list[0].toString() != null) {
 					returnString += openingSpace + list[0]
 				}
 			}
 			// there are two items in the list
 			else if (list.size() == 2) {
-				if (first != null) {
+				if (list[0] != null) {
 					returnString += openingSpace + list[0]
 				}
 				returnString += ' and'
-				if (second != null) {
+				if (list[1] != null) {
 					returnString += ' ' + list[1]
 				}
 			}
