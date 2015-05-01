@@ -153,8 +153,9 @@ class LearningObjective {
 		if (criteriaSpeed != null && criteriaSpeedHidden == false) {
 			criteria.push(criteriaSpeed + ' speed')
 		}
+
 		if (indicator != null) {
-			criteria.push(indicator)
+			definition += indicator
 		}
 
 		definition += listToSentence(criteria, ' with ')
