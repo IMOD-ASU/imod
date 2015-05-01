@@ -65,6 +65,7 @@
 							<div class="learning-objective definition" class="learning-objective-current">
 								<div class="learning-objective definition-display active">
 									${ currentLearningObjective.definition }
+									<i class="fa fa-pencil" title="click to edit"></i>
 								</div>
 								<g:form class="learning-objective definition-edit" action="saveDefinition" id="${currentImod.id}" method="post">
 									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" />

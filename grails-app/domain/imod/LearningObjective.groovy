@@ -138,7 +138,7 @@ class LearningObjective {
 			definition += ' ' + actionWord
 		}
 
-		definition += listToSentence(contents)
+		definition += listToSentence(contents.sort{it.topicTitle})
 
 		List<String> criteria = [] as String[]
 		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
@@ -153,8 +153,9 @@ class LearningObjective {
 		if (criteriaSpeed != null && criteriaSpeedHidden == false) {
 			criteria.push(criteriaSpeed + ' speed')
 		}
+
 		if (indicator != null) {
-			criteria.push(indicator)
+			definition += indicator
 		}
 
 		definition += listToSentence(criteria, ' with ')
@@ -165,17 +166,17 @@ class LearningObjective {
 		if(list != null) {
 			// there is only one item in the list
 			if (list.size() == 1) {
-				if (first.toString() != null) {
+				if (list[0].toString() != null) {
 					returnString += openingSpace + list[0]
 				}
 			}
 			// there are two items in the list
 			else if (list.size() == 2) {
-				if (first != null) {
+				if (list[0] != null) {
 					returnString += openingSpace + list[0]
 				}
 				returnString += ' and'
-				if (second != null) {
+				if (list[1] != null) {
 					returnString += ' ' + list[1]
 				}
 			}
