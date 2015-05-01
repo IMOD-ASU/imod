@@ -8,14 +8,14 @@ $('#filter-assessment-techniques').accordion();
 
 
 // auto hide the add new technique modal
-$('#add-new-technique').dialog({
+$('#new-technique').dialog({
 	autoOpen: false
 });
 
-//On Click function for the favorite assessment technique list
-$('#favorites').on('click', favoriteAssessmentTechniques);
-
-
+// auto hide the add new technique modal
+$('#display-new-technique').dialog({
+	autoOpen: false
+});
 
 // attach a listener to the checkboxes, to update the pedaogy techniques
 // when the filters have been changed
@@ -24,34 +24,15 @@ $('input[name=learningDomain]').on('change', filterAssessmentTechniques);
 $('input[name=domainCategory]').on('change', filterAssessmentTechniques);
 
 // when add new technique button is clicked open modal
-$('#new-technique').on('click', openNewAssessmentTechniqueModal);
-
-// when cancel button is clicked close modal
-$('#create-assessment-cancel').on('click', closeNewAssessmentTechniqueModal);
+$('#new-technique-button').on('click', openNewAssessmentTechniqueModal);
 
 /**
  * Opens the modal to create a new pedagogy technique
  */
 function openNewAssessmentTechniqueModal() {
-	$('#add-new-technique').dialog('open');
+	$('#techniqueId').val('');
+	$('#new-technique').dialog('open');
 }
-
-/**
- * Closes the modal to create a new pedagogy technique
- */
-function closeNewAssessmentTechniqueModal() {
-	$('#add-new-technique').dialog('close');
-}
-
-/**
- * shows list of assessment techniques marked as favorites
- */
-function favoriteAssessmentTechniques() {
-	$('#assessmentFavorites').show();
-	$('#assessmentFavoritesDiv').show();
-}
-
-
 
 /**
  * Reads which filters are selected and sends information to server to update
@@ -94,8 +75,26 @@ function filterAssessmentTechniques() {
 			data: JSON.stringify(data),
 			contentType: 'application/json'
 		})
-		.done(displayAssessmentTechniques);
+		.done(displayAssessmentTechniques, showAssessmentTechnique);
 }
+
+function showAssessmentTechnique(data){
+
+	$('#ideal-matches').buttonset().click(function() {
+		$('#display-new-technique').dialog('open');
+		displayAssessmentInformationInEdit();
+
+	});
+
+	$('#extended-matches').buttonset().click(function() {
+		$('#display-new-technique').dialog('open');
+		displayAssessmentInformationInEdit();
+	});
+
+
+}
+
+
 
 /**
  * callback for find matching techniques grails action
@@ -105,13 +104,15 @@ function displayAssessmentTechniques(data) {
 	var idealText = '';
 	// take the titles and make html code to display
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		idealText += '<input type="checkbox" id="tech' + index + '"name="assessmentTechnque" value="' + data.idealAssessmentTechniqueMatch[index].title + '"><label for="tech' + index + '">' + data.idealAssessmentTechniqueMatch[index].title + '</label>';
+		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnque" value="' + currentTechnique.id + '"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
 	}
 
 	var extendedText = '';
 	// take the titles and make html code to display
 	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		extendedText += '<input type="checkbox" id="tech' + index + '"name="assessmentTechnque" value="' + data.extendedAssessmentTechniqueMatch[index].title + '"><label for="tech' + index + '">' + data.extendedAssessmentTechniqueMatch[index].title + '</label>';
+		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+		extendedText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnque" value="' + currentTechnique.id + '"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
 	}
 
 	// add html code to the page
@@ -120,4 +121,74 @@ function displayAssessmentTechniques(data) {
 
 	$('#ideal-matches').buttonset();
 	$('#extended-matches').buttonset();
+
 }
+
+
+
+function displayAssessmentInformationInEdit() {
+	$('#techniqueId1').val($('label.ui-state-active').attr('for'));
+
+
+	$.ajax({
+			url: '../../assessmentTechnique/display/' + $('label.ui-state-active').attr('for'),
+			method: 'GET'
+		})
+		.done(populateAssessmentTechnique);
+}
+
+function populateAssessmentTechnique(data) {
+	var currentTechnique = data.assessmentTechnique;
+	// set the text fields
+	$('#title1').val(currentTechnique.title);
+	$('#title2').val(currentTechnique.title);
+
+	$('#description1').val(currentTechnique.description);
+	$('#description2').val(currentTechnique.description);
+
+	$('#procedure1').val(currentTechnique.procedure);
+	$('#procedure2').val(currentTechnique.procedure);
+
+	$("input[name='duration1']").val(currentTechnique.duration);
+	$("input[name='duration2']").val(currentTechnique.duration);
+
+
+	$("input[name='assessmentFeedback1']").val(currentTechnique.assessmentFeedback);
+
+	var checkedCheckboxes = $('.assessmentFeedback2:checked');
+
+$('.assessmentFeedback3').val($.each(checkedCheckboxes, function(index, checkbox) {var theValue = checkbox.value;}));
+
+
+
+	$('#learningDomain option[value=' + currentTechnique.learningDomain[0].id+ ']').prop('selected', true).val();
+	//alert("this is the display alert to return value"+ ld);
+	$('#domainCategory option[value=' + currentTechnique.domainCategory[0].id + ']').prop('selected', true);
+
+	$( ".allInputs" ).hide();
+
+	$(".allInputs1").replaceWith( function() {
+		return "<span class=\"allspans1\"> :" + $( this ).val() + "</span>";
+	});
+
+
+	$('#View').hide();
+
+
+}
+
+$( "#Edit" ).click( function() {
+
+	$('#View').show();
+
+	$( ".allInputs" ).show();
+
+	$( ".allspans1" ).hide();
+});
+
+$( "#View" ).click( function() {
+
+$(".allInputs").hide();
+$( ".allspans1" ).show();
+
+});

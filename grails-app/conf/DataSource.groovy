@@ -1,8 +1,8 @@
 dataSource {
 	pooled = true
 	driverClassName = 'org.postgresql.Driver'
-	username = 'postgres'
-	password = 'postgres'
+	username = 'postres'
+	password = 'postres'
 }
 hibernate {
 	flush.mode = 'auto'

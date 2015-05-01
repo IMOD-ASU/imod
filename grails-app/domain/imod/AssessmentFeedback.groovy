@@ -1,13 +1,13 @@
 package imod
 
 /**
- * How this pedagogy is delivered (online on campus)
+ * feedback mechanism
  */
-class PedagogyMode {
+class AssessmentFeedback {
 	String name
 
 	static hasMany = [
-		pedagogyTechnique: PedagogyTechnique
+		assessmentTechnique: AssessmentTechnique
 	]
 
 	static mapping = {

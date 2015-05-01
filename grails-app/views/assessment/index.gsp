@@ -121,7 +121,7 @@
 
 							<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 
-							<button id="new-technique">Add New Technique
+							<button id="new-technique-button">Add New Technique
 							</button>
 
 							<button id="favorites">Favorites
@@ -159,6 +159,7 @@
 
 					<div id="ideal-matches" class="icons favorite"> </div>
 
+
 					<h3 id="assessmentFavorites" title="" class="showHover">
 						Favorites
 					</h3>
@@ -180,7 +181,7 @@
 
 						<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 
-						<button id="new-technique">Add New Technique
+						<button id="new-technique-button">Add New Technique
 						</button>
 
 						<button id="favorites">Favorites
@@ -206,14 +207,52 @@
 
 
 				<%--Dialog box for Add New Technique --%>
-				<div id="add-new-technique" title="Add New Technique">
+				<div id="new-technique" title="Add New Technique">
 					<%--To render the add new Technique dialog box--%>
 					<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:hiddenField name="techniqueId" />
 						<label>
 							Title
 						</label>
 						<g:textField name="title" />
 						<br />
+
+						<label>
+						Description
+						</label>
+						<g:textArea name="description" />
+						<br />
+
+						<label>
+						Procedure
+						</label>
+						<g:textArea name="procedure" />
+						<br />
+
+						<label>
+							Duration
+						</label>
+						<g:field type="number" name="duration" min="01" max="60" class="allInputs"/>
+						<br />
+						<label>
+							Feedback Mechanism
+						</label>
+						<g:select name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
+						<br />
+
+
+						<g:each var="assessmentFeedbacks" in="${assessmentFeedback}" status="index">
+						<span>
+								<label for="assessment-feedback-${index}">
+									${assessmentFeedbacks.name}
+								</label>
+								<g:checkBox  name="assessmentFeedback2" value="${assessmentFeedbacks.id}" id="assessment-feedback-${index}" />
+						</span>
+						</g:each>
+						<br />
+
+
+
 
 						<label>
 							Assign to Current Learning Objective
@@ -247,14 +286,105 @@
 
 
 
-						<g:actionSubmit value="Save" action="create" />
-						<button id="create-assessment-cancel">
-							Cancel
-						</button>
+						<g:actionSubmit value="Save" action="save" />
+						<g:actionSubmit value="Cancel" action="cancel" />
 					</g:form>
 				</div>
 
 
+				<%--Dialog box for Displaying Technique --%>
+				<div id="display-new-technique" title="Display Technique">
+					<%--To render the add new Technique dialog box--%>
+					<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+					<span><input type="button" value="Edit" id="Edit" />
+					<input type="button" value="View" id="View" />
+					</span><br/>
+
+						<g:hiddenField name="techniqueId1" />
+						<label>
+							Title
+						</label>
+						<g:textField name="title1"  class="allInputs"/>
+						<g:textField name="title2"  class="allInputs1"/>
+						<br />
+
+						<label>
+						Description
+						</label>
+						<g:textField name="description1"  class="allInputs"/>
+						<g:textField name="description2"  class="allInputs1"/>
+						<br />
+
+						<label>
+						Procedure
+						</label>
+						<g:textArea name="procedure1"  class="allInputs"/>
+						<g:textArea name="procedure2"  class="allInputs1"/>
+						<br />
+
+						<label>
+						Duration
+						</label>
+						<g:field type="number" name="duration1" min="01" max="60" class="allInputs"/>
+						<g:field type="number" name="duration2" min="01" max="60" class="allInputs1"/>
+						<br />
+
+						<label>
+							Feedback Mechanism
+						</label>
+						<g:select name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
+						<br />
+						<g:each var="assessmentFeedbacks" in="${assessmentFeedback}" status="index">
+						<span>
+								<label for="assessment-feedback-${index}">
+									${assessmentFeedbacks.name}
+								</label>
+								<g:checkBox  name="assessmentFeedback3" value="${assessmentFeedbacks.id}" id="assessment-feedback-${index}" />
+						</span>
+						</g:each>
+						<br />
+
+
+
+
+						<label>
+							Assign to Current Learning Objective
+						</label>
+						<g:checkBox name="assignedToLearningObjective" />
+						<br />
+
+						<label>
+							Favorite Technique
+						</label>
+						<g:checkBox name="favoriteTechnique" />
+						<br />
+
+						<label>
+							Learning Domain
+						</label>
+						<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+						<br />
+
+						<label>
+							Domain Category
+						</label>
+						<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
+						<br />
+
+						<label>
+							Knowledge Dimension
+						</label>
+						<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+
+
+						<br />
+
+
+
+						<g:actionSubmit value="Save" action="save1" />
+						<g:actionSubmit value="Cancel" action="cancel" />
+					</g:form>
+				</div>
 
 
 		</td>
@@ -263,9 +393,6 @@
 
 
 </table>
-
-
-
 
 	</body>
 </html>
