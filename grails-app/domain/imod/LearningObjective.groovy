@@ -138,7 +138,7 @@ class LearningObjective {
 			definition += ' ' + actionWord
 		}
 
-		definition += listToSentence(contents)
+		definition += listToSentence(contents.sort{it.topicTitle})
 
 		List<String> criteria = [] as String[]
 		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
