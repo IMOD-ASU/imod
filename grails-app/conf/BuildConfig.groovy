@@ -54,6 +54,7 @@ grails.project.dependency.resolution = {
 		// specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 		runtime 'org.postgresql:postgresql:9.4-1201-jdbc41'
 		compile 'org.jadira.usertype:usertype.core:3.2.0.GA'
+		runtime 'org.springframework:spring-test:3.1.0.RELEASE'
 	}
 
 	plugins {
