@@ -187,7 +187,7 @@ function buildContentTree (jsonData, refreshDB) {
 			$('#contentTree .jstree-anchor').on(
 				'click',
 				function (event) {
-					// if delete topic is clicked
+					// If delete topic is clicked
 					var target = $(event.target);
 					if (target.attr('class') === 'delete-topic') {
 						var contents = [];
@@ -215,7 +215,7 @@ function buildContentTree (jsonData, refreshDB) {
 	$('#contentTree').off('click.jstree');
 }
 
-function populateTopics (topicList) { // jshint ignore:line
+function populateTopics (topicList) {
 	var contentTree = $.jstree.reference('#contentTree');
 	$('#topicList tbody').html('');
 	$(topicList).each(

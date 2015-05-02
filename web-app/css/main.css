@@ -987,6 +987,11 @@ table.inner-table {
     cursor: not-allowed;
 }
 
+.policy-field textarea {
+    width: 95%;
+    min-height: 200px;
+}
+
 img.tab-icon {
     width: 20%;
     height: 43px;

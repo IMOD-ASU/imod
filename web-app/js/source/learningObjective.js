@@ -5,7 +5,7 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var prevKeyword = '';
 
 /**
- * ajax to pull Action Words based on which Action Word Category was selected,
+ * Ajax to pull Action Words based on which Action Word Category was selected,
  * then populates a select tag with action words
  * @param  {String} domain text from the action word category boxes
  * @return {XML}		Populates the page with action words
@@ -42,7 +42,7 @@ function populateActionWords (event) {
 					// This will store the html for the action words
 					// For each action word
 					for (var i = 0; i < actionWordsVerb.length; i++) {
-						// create the html for the action word
+						// Create the html for the action word
 						if (actionWordsVerb[i] === originalActionWord) {
 							flag = 1;
 							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">' + actionWordsVerb[i] + '</option>';
@@ -56,7 +56,7 @@ function populateActionWords (event) {
 				if (data.value.noun !== undefined && data.value.noun !== null && data.value.noun !== '') {
 					var actionWordsNoun = data.value.noun.syn;
 					for (i = 0; i < actionWordsNoun.length; i++) {
-						// create the html for the action word
+						// Create the html for the action word
 						if (actionWordsNoun[i] === originalActionWord) {
 							flag = 1;
 							actionWordsHTML += '<option selected value="' + actionWordsNoun[i] + '">' + actionWordsNoun[i] + '</option>';
@@ -70,7 +70,7 @@ function populateActionWords (event) {
 				if (data.value.adjective !== undefined && data.value.adjective !== null && data.value.adjective !== '') {
 					var actionWordsAdj = data.value.adjective.syn;
 					for (i = 0; i < actionWordsAdj.length; i++) {
-						// create the html for the action word
+						// Create the html for the action word
 						if (actionWordsAdj[i] === originalActionWord) {
 							flag = 1;
 							actionWordsHTML += '<option selected value="' + actionWordsAdj[i] + '">' + actionWordsAdj[i] + '</option>';
@@ -91,18 +91,18 @@ function populateActionWords (event) {
 				actionWordsHTML += '<option value="other"> --Other-- </option>';
 				$('#custom-action-words').css('visibility', 'hidden');
 			}
-			// display the html for the action words
+			// Display the html for the action words
 			$('#action-words').html(actionWordsHTML);
 		},
 		error: function (xhr) {
-			// when something goes wrong log to the browser console
+			// When something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
 	});
 }
 
 /**
- * ajax to pull Action Words based on which Domain Category was selected,
+ * Ajax to pull Action Words based on which Domain Category was selected,
  * then populate page with selectable action word category boxes
  * @param  {String} domain text from the domain category select box
  * @return {XML}		Populates the page with action word categories
@@ -116,24 +116,25 @@ function populateActionWordCategories () {
 			domainName: $('#domain-category-list').val().trim()
 		},
 		success: function (data) {
-			// store the data from the call back
+			// Store the data from the call back
 			var actionWordCategories = data.value;
-			// this will temporarily store the html for the categories
+			// This will temporarily store the html for the categories
 			var actionWordCategoriesHTML = '';
-			// for each category
+			// For each category
 			for (var i = 0; i < actionWordCategories.length; i++) {
-				// create the html
-				actionWordCategoriesHTML += '<input type="radio" id="radio' + i + '" name="actionWordCategory" value="' + actionWordCategories[i].actionWordCategory + '"><label for="radio' + i + '">' + actionWordCategories[i].actionWordCategory + '</label>';
+				// Create the html
+				actionWordCategoriesHTML += '<input type="radio" id="radio' + i + '" name="actionWordCategory" value="' + actionWordCategories[i].actionWordCategory + '">';
+				actionWordCategoriesHTML += '<label for="radio' + i + '">' + actionWordCategories[i].actionWordCategory + '</label>';
 			}
-			// display the html on the page
+			// Display the html on the page
 			$('.icons').html(actionWordCategoriesHTML);
-			// since the markup is reloaded, re-initiate buttonset
+			// Since the markup is reloaded, re-initiate buttonset
 			$('.icons').buttonset();
 
 			populateActionWords();
 		},
 		error: function (xhr) {
-			// when something goes wrong log to the browser console
+			// When something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
 	});
@@ -141,7 +142,7 @@ function populateActionWordCategories () {
 
 
 /**
- * ajax to pull domain categories based on which Learning Domain was selected,
+ * Ajax to pull domain categories based on which Learning Domain was selected,
  * then populate the select box with the domain categories
  * @param  {String} domain text from the domain select box
  * @return {XML}		Populates the domain category box with options
@@ -169,28 +170,28 @@ function populateDomainCategories () {
 			domainName: $('#learning-domain-list').val().trim()
 		},
 		success: function (data) {
-			// stores the data from the call back
+			// Stores the data from the call back
 			var categories = data.value;
-			// this stores the new html that will be added
+			// This stores the new html that will be added
 			var options = '';
-			// for each of the categories
+			// For each of the categories
 			for (var i = 0; i < categories.length; i++) {
-				// create the html for the category
+				// Create the html for the category
 				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>';
 			}
-			// store this to the page
+			// Store this to the page
 			$('#domain-category-list').html(options);
 
 			populateActionWordCategories();
 		},
 		error: function (xhr) {
-			// when something goes wrong log to the browser console
+			// When something goes wrong log to the browser console
 			console.log(xhr.responseText);
 		}
 	});
 }
 
-// add the data to the definition box, depending on which type of data it is
+// Add the data to the definition box, depending on which type of data it is
 function propagateToDefinition (value, type) {
 	var definitionType = '.learning-objective-current .learning-objective-' + type;
 	$(definitionType).text(value);
@@ -260,28 +261,28 @@ $(document).ready(
 			}
 		);
 
-		// listen for the selected learning domain to change, when it does call ajax
+		// Listen for the selected learning domain to change, when it does call ajax
 		$('#learning-domain-list').on(
 			'change',
 			function () {
 				populateDomainCategories();
 			});
 
-		// listen for the selected domain category to change, when it does call ajax
+		// Listen for the selected domain category to change, when it does call ajax
 		$('#domain-category-list').on(
 			'change',
 			function () {
 				populateActionWordCategories();
 			});
 
-		// listen for change in action word categories, when it does call ajax
+		// Listen for change in action word categories, when it does call ajax
 		$('.icons').on(
 			'click',
 			function () {
 				populateActionWords();
 			});
 
-		// if the condition is set to hidden do not display it in the definition box above
+		// If the condition is set to hidden do not display it in the definition box above
 		$('#LO-hide-from-Objective').change(
 			function () {
 				if (this.checked) {
@@ -293,12 +294,12 @@ $(document).ready(
 			}
 		);
 
-		// when a custom condition is added, display in the definition box above
+		// When a custom condition is added, display in the definition box above
 		$('#custom-condition-text').keyup(
 			propagateToDefinition(this.value, 'condition')
 		);
 
-		// when a standard condition is added, display in the definition box above
+		// When a standard condition is added, display in the definition box above
 		$('.learning-objective.condition.generic.text').change(
 			propagateToDefinition(this.value, 'condition')
 		);
@@ -317,18 +318,18 @@ $(document).ready(
 			}
 		);
 
-		// manually tiggers the radio box change event
+		// Manually tiggers the radio box change event
 		$('input:radio[name=conditionType]:checked').change();
 
-		// trigger jquery ui button for better radio buttons
+		// Trigger jquery ui button for better radio buttons
 		var category = $('input[name=selectedActionWordCategory]').val();
 		$('.icons input[value="' + category + '"]').prop('checked', true);
 		$('.icons').buttonset();
 
-		// populate action words if a category is already selected
+		// Populate action words if a category is already selected
 		populateActionWords(true);
 
-		// reset radio buttons if a selected radio button is clicked again
+		// Reset radio buttons if a selected radio button is clicked again
 		$(document).on(
 			'click',
 			'.icons label',
@@ -349,7 +350,7 @@ $(document).ready(
 			}
 		);
 
-		// when the checkbox is changed disable text box and other check box
+		// When the checkbox is changed disable text box and other check box
 		$('#enable-accuracy').on(
 			'click',
 			function () {
@@ -363,7 +364,7 @@ $(document).ready(
 			}
 		);
 
-		// when the checkbox is changed disable text box and other check box
+		// When the checkbox is changed disable text box and other check box
 		$('#enable-quality').on(
 			'click',
 			function () {
@@ -391,7 +392,7 @@ $(document).ready(
 			}
 		);
 
-		// when the checkbox is changed disable text box and other check box
+		// When the checkbox is changed disable text box and other check box
 		$('#enable-speed').on(
 			'click',
 			function () {

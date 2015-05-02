@@ -2,7 +2,11 @@
 
 $(document).ready(
 	function () {
-		$('#accordion').accordion();
+		$('#accordion').accordion(
+			{
+				heightStyle: 'content'
+			}
+		);
 		$('#help-placeholder-2').css('display', 'none');
 		$('.show-hover-new').qtip({
 			style: {
@@ -61,7 +65,7 @@ function updateDatePicker (dateFormat) {
 			var id = name.replace('.', '_').replace('[', '_').replace(']', '_') + '_input';
 
 			if ($('#' + id).length === 0) {
-				// find the select elements
+				// Find the select elements
 				var selectDay = $(this).nextAll('select:eq(0)').hide();
 				var selectMonth = $(this).nextAll('select:eq(1)').hide();
 				var selectYear = $(this).nextAll('select:eq(2)').hide();

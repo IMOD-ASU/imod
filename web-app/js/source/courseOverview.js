@@ -17,7 +17,7 @@ function isRequired (fieldValue) {
 	}
 }
 
-// custom validation function for instructors
+// Custom validation function for instructors
 function instructorValidator () {
 	var errorList = [];
 
@@ -56,9 +56,9 @@ function instructorValidator () {
 	}
 }
 
-// compares startTime and EndTime
+// Compares startTime and EndTime
 function compareStartEndTimes () {
-	// check if end time is greater than start time
+	// Check if end time is greater than start time
 	var startHour = $('#schedule-start-time_hour').val();
 	var startMinute = $('#schedule-start-time_minute').val();
 
@@ -77,7 +77,8 @@ function compareStartEndTimes () {
 	$('#time-error').remove();
 
 	if (endTime <= startTime) {
-		$('#schedule-end-time_hour').parent().append('<label id="time-error" class="error">End time has to be greater than start time</label>');
+		var errorLabel = '<label id="time-error" class="error">End time has to be greater than start time</label>';
+		$('#schedule-end-time_hour').parent().append(errorLabel);
 		return false;
 	}
 
@@ -153,10 +154,17 @@ $(document).ready(
 						selected: ids
 					},
 					success: function () {
-						location.reload();
+						alert('Instructors removed successfully');
+						for (var i = 0; i < ids.length; i++) {
+							$('#instructor' + ids[i]).remove();
+						}
+
+						if (!$('.instructor-list').find('tbody tr').length) {
+							$('.remove-instructor').remove();
+						}
 					},
 					error: function (xhr) {
-						// when something goes wrong log to the browser console
+						// When something goes wrong log to the browser console
 						console.log(xhr.responseText);
 					}
 				});
@@ -278,7 +286,7 @@ $(document).ready(
 								},
 							error:
 								function (xhr) {
-									// when something goes wrong log to the browser console
+									// When something goes wrong log to the browser console
 									console.log(xhr.responseText);
 								}
 						});
@@ -288,7 +296,7 @@ $(document).ready(
 			}
 		);
 
-		// regex method for url
+		// Regex method for url
 		$.validator.addMethod('urlRule',
 			function (value, element, regexpr) {
 				return regexpr.test(value);
@@ -307,7 +315,7 @@ $(document).ready(
 			}
 		);
 
-		// course overview validation
+		// Course overview validation
 		$('.courseoverview').validate({
 			rules: {
 				imodNumber: 'required',
@@ -347,7 +355,7 @@ $(document).ready(
 
 		gradingRadio($('.grading-radio:checked'));
 
-		// grading procedure radio buttons
+		// Grading procedure radio buttons
 		$('.grading-radio').change(
 			function () {
 				gradingRadio($(this));
