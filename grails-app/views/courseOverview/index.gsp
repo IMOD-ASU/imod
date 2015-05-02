@@ -253,7 +253,7 @@
                                                 </div>
 
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/> Standardized Based
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/> Standardized
                                                 </div>
 
                                                 <div>
