@@ -159,27 +159,27 @@
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Grading procedure:</strong></h4>
-                    <p>${currentImod?.gradingProcedure.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.gradingProcedure.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Attendance and tardiness:</strong></h4>
-                    <p>${currentImod?.attendance.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.attendance.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Class participation:</strong></h4>
-                    <p>${currentImod?.classParticipation.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.classParticipation.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Professional Conduct:</strong></h4>
-                    <p>${currentImod?.professionalConduct.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.professionalConduct.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Missed exams/Make-up exams:</strong></h4>
-                    <p>${currentImod?.missedExams.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.missedExams.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Missed Assignments:</strong></h4>
-                    <p>${currentImod?.missedAssignments.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.missedAssignments.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
             </div>%{-- course policy --}%
 
@@ -194,17 +194,17 @@
                 <g:each in="${currentImod?.instructors}" var="instructor">
                     
                     <li>
-                        <strong>${instructor.firstName.encodeAsCustomEscape()} ${instructor.lastName.encodeAsCustomEscape()}</strong><br/>
-                        ${instructor.role.encodeAsCustomEscape()}<br/>
-                        ${instructor.email.encodeAsCustomEscape()}<br/>                    
+                        <strong>${instructor.firstName.encodeAsHTML().replaceAll("\n","<br/>")} ${instructor.lastName.encodeAsHTML().replaceAll("\n","<br/>")}</strong><br/>
+                        ${instructor.role.encodeAsHTML().replaceAll("\n","<br/>")}<br/>
+                        ${instructor.email.encodeAsHTML().replaceAll("\n","<br/>")}<br/>                    
                         <g:if test="${instructor.officeHours != null && !instructor.officeHours.isEmpty()}">
-                            Office Hours: ${instructor.officeHours.encodeAsCustomEscape()}<br/>
+                            Office Hours: ${instructor.officeHours.encodeAsHTML().replaceAll("\n","<br/>")}<br/>
                         </g:if>
                         <g:if test="${instructor.webPage != null && !instructor.webPage.isEmpty()}">
-                            Website: ${instructor.webPage.encodeAsCustomEscape()}<br/>
+                            Website: ${instructor.webPage.encodeAsHTML().replaceAll("\n","<br/>")}<br/>
                         </g:if>
                         <g:if test="${instructor.location != null && !instructor.location.isEmpty()}">
-                            Location: ${instructor.location.encodeAsCustomEscape()}<br/>
+                            Location: ${instructor.location.encodeAsHTML().replaceAll("\n","<br/>")}<br/>
                         </g:if>
                     </li>
 
@@ -240,7 +240,7 @@
                 </div>
 
                 %{-- comes straight from the controller as text --}%
-                ${contentList.encodeAsCustomEscape()}
+                ${contentList.replaceAll("\n","<br/>").replaceAll("&(?!amp;)", "&amp;")}
 
             </div>
 
