@@ -2,7 +2,11 @@
 
 $(document).ready(
 	function () {
-		$('#accordion').accordion({heightStyle: "content"});
+		$('#accordion').accordion(
+			{
+				heightStyle: 'content'
+			}
+		);
 		$('#help-placeholder-2').css('display', 'none');
 		$('.show-hover-new').qtip({
 			style: {
