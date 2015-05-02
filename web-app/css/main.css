@@ -988,7 +988,8 @@ table.inner-table {
 }
 
 .policy-field textarea {
-    width: 95%; min-height: 200px;
+    width: 95%;
+    min-height: 200px;
 }
 
 img.tab-icon {

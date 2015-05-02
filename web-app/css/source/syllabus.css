@@ -1,31 +1,44 @@
-html, body{
+html,
+body {
     margin: 0;
     padding: 0;
+
     outline: 0;
 }
 
-body{
-    background: #ddd; line-height: 1.5em;
+body {
     padding: 0 20px;
+
+    background: #dddddd;
+
     font-family: Verdana, Arial, Helvetica;
+    line-height: 1.5em;
 }
 
 h3 {
-    font-size: 1em; margin-bottom: 15px; 
-    border-bottom: 1px solid #ccc; padding-bottom: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #cccccc;
+
+    font-size: 1em;
 }
 
 h4 {
-    font-size: 0.8em; margin-bottom: 15px;
+    margin-bottom: 15px;
+
+    font-size: 0.8em;
 }
 
-.wrapper{
-    background: #fff;
+.wrapper {
     max-width: 800px;
-    padding: 10px 30px;
     margin: 20px auto;
-    border: 1px solid #ccc;
+    padding: 10px 30px;
+
     word-wrap: break-word;
+
+    border: 1px solid #cccccc;
+    background: #ffffff;
 }
 
 .Content li {
