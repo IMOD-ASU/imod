@@ -45,22 +45,26 @@ h4 {
     text-transform: capitalize;
 }
 
-.course-details .form-title{
+.course-details .form-title {
     position: relative;
 }
-.course-details .options{
+.course-details .options {
     position: absolute;
-    right: 0; top: 0;
+    top: 0;
+    right: 0;
 }
 
 @media print {
-    body{
-        font-family: Arial; font-size: 0.9em;
+    body {
+        font-family: Arial;
+        font-size: 0.9em;
     }
-    .wrapper{
-        border: none; padding: 0;
+    .wrapper {
+        padding: 0;
+
+        border: none;
     }
-    .options{
+    .options {
         display: none;
     }
 }
