@@ -154,12 +154,12 @@ $(document).ready(
 						selected: ids
 					},
 					success: function () {
-						alert("Instructors removed successfully");
+						alert('Instructors removed successfully');
 						for (var i = 0; i < ids.length; i++) {
-							$("#instructor"+ids[i]).remove();
+							$('#instructor' + ids[i]).remove();
 						}
 
-						if(!$('.instructor-list').find('tbody tr').length){
+						if (!$('.instructor-list').find('tbody tr').length) {
 							$('.remove-instructor').remove();
 						}
 					},
