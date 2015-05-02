@@ -32,21 +32,21 @@
                         <g:message code="imod.name.label" default="Course Title" />:
                     </label>
                     <strong>
-                        ${currentImod?.name}
+                        ${currentImod?.name.encodeAsCustomEscape()}
                     </strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="imodNumber">
                         <g:message code="imod.imodNumber.label" default="Course Number" />:
                     </label>
-                    <strong>${currentImod?.imodNumber}</strong>
+                    <strong>${currentImod?.imodNumber.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="url">
                         <g:message code="imod.url.label" default="Course URL" />:
                     </label>
                     <strong>
-                        ${currentImod?.url}
+                        ${currentImod?.url.encodeAsCustomEscape()}
                     </strong>
                 </div>
                 <div class="fieldcontain">
@@ -54,7 +54,7 @@
                         <g:message code="imod.courseLocation.label" default="Classroom Location" />:
                     </label>
                     <strong>
-                        ${currentImod?.courseLocation}
+                        ${currentImod?.courseLocation.encodeAsCustomEscape()}
                     </strong>
                 </div>
                 <div class="fieldcontain">
@@ -62,7 +62,7 @@
                         <g:message code="imod.courseSemester.label" default="Semester" />:
                     </label>
                     <strong>
-                        ${currentImod?.courseSemester}
+                        ${currentImod?.courseSemester.encodeAsCustomEscape()}
                     </strong>
                 </div>
             </div>%{-- course details --}%
@@ -100,7 +100,7 @@
                         Repeats
                     </label>
                     <strong>
-                        ${currentImod?.schedule?.repeats?.description}
+                        ${currentImod?.schedule?.repeats?.description.encodeAsCustomEscape()}
                     </strong>
                 </div>
 
@@ -110,7 +110,7 @@
                             Repeats Every
                         </label>
                         <strong>
-                            ${currentImod?.schedule?.repeatsEvery?.description} days
+                            ${currentImod?.schedule?.repeatsEvery?.description.encodeAsCustomEscape()} days
                         </strong>
                     </div>
                 </g:if>
@@ -123,11 +123,11 @@
                         <g:each in="${imod.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">                           
                             <g:if test="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}">                           
                                 <label for="weekdays">
-                                    <strong>${scheduleWeekDays.description}</strong>
+                                    <strong>${scheduleWeekDays.description.encodeAsCustomEscape()}</strong>
                                 </label>
                             </g:if>
                         </g:each>
-                        
+
                     </div>
                 </g:if>
             </div>%{-- schedule --}%
@@ -139,13 +139,13 @@
                 <div class="fieldcontain">
                     <label>Overview:</label>
                     <strong>
-                        ${currentImod?.overview}
+                        ${currentImod?.overview.encodeAsCustomEscape()}
                     </strong>
                 </div>
                 <div class="fieldcontain">
                     <label>Subject Area:</label>
                     <strong>
-                        ${currentImod?.subjectArea}
+                        ${currentImod?.subjectArea.encodeAsCustomEscape()}
                     </strong>
                 </div>
                 <div class="fieldcontain">
@@ -163,19 +163,19 @@
                 <div class="fieldcontain">
                     <label>Credit Hours:</label>
                     <strong>
-                        ${currentImod?.creditHours}
+                        ${currentImod?.creditHours.encodeAsCustomEscape()}
                     </strong>
                 </div>
                 <div class="fieldcontain">
                     <label>Time Ratio:</label>
                     <strong>
-                        ${currentImod?.timeRatio}
+                        ${currentImod?.timeRatio.encodeAsCustomEscape()}
                     </strong>
                 </div>
                 <div class="fieldcontain">
                     <label>Number of Seats:</label>
                     <strong>
-                        ${currentImod?.numberOfSeats}
+                        ${currentImod?.numberOfSeats.encodeAsCustomEscape()}
                     </strong>
                 </div>
             </div>%{-- course description --}%
@@ -189,7 +189,7 @@
                         <strong>Grading procedure:</strong>
                     </h4>
                     <p>
-                        ${currentImod?.gradingProcedure.trim().replaceAll("\n","<br>")}
+                        ${currentImod?.gradingProcedure.encodeAsCustomEscape()}
                     </p>
                 </div>
                 <div class="fieldcontain">
@@ -197,7 +197,7 @@
                         <strong>Attendance and tardiness:</strong>
                     </h4>
                     <p>
-                        ${currentImod?.attendance.trim().replaceAll("\n","<br>")}
+                        ${currentImod?.attendance.encodeAsCustomEscape()}
                     </p>
                 </div>
                 <div class="fieldcontain">
@@ -205,7 +205,7 @@
                         <strong>Class participation:</strong>
                     </h4>
                     <p>
-                        ${currentImod?.classParticipation.trim().replaceAll("\n","<br>")}
+                        ${currentImod?.classParticipation.encodeAsCustomEscape()}
                     </p>
                 </div>
                 <div class="fieldcontain">
@@ -213,7 +213,7 @@
                         <strong>Professional Conduct:</strong>
                     </h4>
                     <p>
-                        ${currentImod?.professionalConduct.trim().replaceAll("\n","<br>")}
+                        ${currentImod?.professionalConduct.encodeAsCustomEscape()}
                     </p>
                 </div>
                 <div class="fieldcontain">
@@ -221,7 +221,7 @@
                         <strong>Missed exams/Make-up exams:</strong>
                     </h4>
                     <p>
-                        ${currentImod?.missedExams.trim().replaceAll("\n","<br>")}
+                        ${currentImod?.missedExams.encodeAsCustomEscape()}
                     </p>
                 </div>
                 <div class="fieldcontain">
@@ -229,7 +229,7 @@
                         <strong>Missed Assignments:</strong>
                     </h4>
                     <p>
-                        ${currentImod?.missedAssignments.trim().replaceAll("\n","<br>")}
+                        ${currentImod?.missedAssignments.encodeAsCustomEscape()}
                     </p>
                 </div>
             </div>%{-- course policy --}%
@@ -245,23 +245,23 @@
 
                     <li>
                         <strong>
-                            ${instructor.firstName} ${instructor.lastName}
+                            ${instructor.firstName.encodeAsCustomEscape()} ${instructor.lastName.encodeAsCustomEscape()}
                         </strong>
                         <br>
-                        ${instructor.role}
+                        ${instructor.role.encodeAsCustomEscape()}
                         <br>
-                        ${instructor.email}
+                        ${instructor.email.encodeAsCustomEscape()}
                         <br>
                         <g:if test="${instructor.officeHours != null && !instructor.officeHours.isEmpty()}">
-                            Office Hours: ${instructor.officeHours}
+                            Office Hours: ${instructor.officeHours.encodeAsCustomEscape()}
                             <br>
                         </g:if>
                         <g:if test="${instructor.webPage != null && !instructor.webPage.isEmpty()}">
-                            Website: ${instructor.webPage}
+                            Website: ${instructor.webPage.encodeAsCustomEscape()}
                             <br>
                         </g:if>
                         <g:if test="${instructor.location != null && !instructor.location.isEmpty()}">
-                            Location: ${instructor.location}
+                            Location: ${instructor.location.encodeAsCustomEscape()}
                             <br>
                         </g:if>
                     </li>
@@ -280,7 +280,7 @@
                     <g:each var="learningObjective" in="${learningObjectives}">
                         <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
                             <li class="learning-objective list-item">
-                                ${ learningObjective.definition }
+                                ${ learningObjective.definition.encodeAsCustomEscape() }
                             </li>
                         </g:if>
                     </g:each>
@@ -292,7 +292,7 @@
                     <h3>Content</h3>
                 </div>
                 %{-- comes straight from the controller as text --}%
-                ${contentList}
+                ${contentList.encodeAsCustomEscape()}
             </div>
         </div>
     </body>
