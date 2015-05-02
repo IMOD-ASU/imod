@@ -18,6 +18,9 @@
 		<g:if env="development">
 			<g:renderException exception="${exception}" />
 		</g:if>
+		<g:elseif env="test">
+			<g:renderException exception="${exception}" />
+		</g:if>
 		<g:else>
 			<ul class="errors">
 				<li>
