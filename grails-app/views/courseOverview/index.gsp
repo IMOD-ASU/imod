@@ -320,9 +320,11 @@
                                                         <span class="topicButtonGradient">
                                                             <input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
                                                         </span>
-                                                        <span class="topicButtonGradient">
-                                                            <input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
-                                                        </span>
+                                                        <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
+                                                            <span class="remove-instructor topicButtonGradient">
+                                                                <input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
+                                                            </span>
+                                                        </g:if>
                                                         <span id="errorMessage"></span>
                                                     </fieldset>
                                                     <table id="topicList" class="instructor-list">
@@ -342,7 +344,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <g:each in="${currentImod?.instructors?}" var="instructor">
-                                                                <tr data-id="${instructor.id}" class="topicListRow">
+                                                                <tr id="instructor${instructor.id}" data-id="${instructor.id}" class="topicListRow">
                                                                     <td class="saveIcon">
                                                                         <i class=" fa fa-square-o"></i>
                                                                     </td>
