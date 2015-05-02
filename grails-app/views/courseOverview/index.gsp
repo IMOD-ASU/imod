@@ -46,7 +46,7 @@
                                 <td>
 
                                     <fieldset class="buttons">
-                                    	<a href="../syllabus/${currentImod?.id}">Show Syllabus</a>
+                                    	<a href="../syllabus/${currentImod?.id}" target="_blank">Show Syllabus</a>
                                         <g:actionSubmit class="save overview-save show-hover-new" action="update" title="${ message( code:'imod.courseOverview.save' ) }" value="${message(code: 'Save', default: 'Save')}"/>
                                         <g:actionSubmit class="delete show-hover-new" action="delete" title="${ message( code:'imod.courseOverview.delete' ) }" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
                                     </fieldset>

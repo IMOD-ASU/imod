@@ -1,7 +1,3 @@
-.Content li {
-    text-transform: capitalize;
-}
-
 html, body{
     margin: 0;
     padding: 0;
@@ -11,15 +7,16 @@ html, body{
 body{
     background: #ddd; line-height: 1.5em;
     padding: 0 20px;
+    font-family: Verdana, Arial, Helvetica;
 }
 
 h3 {
-    font-size: 1.5em; margin-bottom: 15px; 
+    font-size: 1em; margin-bottom: 15px; 
     border-bottom: 1px solid #ccc; padding-bottom: 10px;
 }
 
 h4 {
-    font-size: 1.3em; margin-bottom: 15px;
+    font-size: 0.8em; margin-bottom: 15px;
 }
 
 .wrapper{
@@ -28,4 +25,9 @@ h4 {
     padding: 10px 30px;
     margin: 20px auto;
     border: 1px solid #ccc;
+    word-wrap: break-word;
+}
+
+.Content li {
+    text-transform: capitalize;
 }
