@@ -237,7 +237,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="course-overview-form" id="policy">
+                                    <div class="policy-field course-overview-form" id="policy">
                                         <div class="form-title">
                                             <span class="title-text">
                                                 Course Policy
