@@ -117,6 +117,30 @@ class CourseOverviewController {
         ]
     }
 
+     def syllabuspdf(Long id) {
+        def currentImod = Imod.get(id)
+
+        def learningObjectives = LearningObjective.findAllByImod(currentImod)
+
+        def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+
+        def text = '<ul>'
+
+        contentList.each() {
+            text += getSubContent(it)
+        }
+
+        text += '</ul>'
+
+        renderPdf(
+            template: "/CourseOverview/syllabus", 
+            model: [currentImod: currentImod,
+            currentPage: 'syllabus',
+            learningObjectives: learningObjectives,
+            contentList: text],
+            filename: currentImod?.name.replaceAll(" ", "_")+".pdf");
+    }
+
     private def getSubContent(Content current) {
         def text = ''
 

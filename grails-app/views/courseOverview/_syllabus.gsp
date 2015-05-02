@@ -5,7 +5,8 @@
 <%@page import="imod.ScheduleRepeatsEvery"%>
 <%@page import="imod.ScheduleWeekDays"%>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
         <title>
@@ -23,44 +24,37 @@
             <div class="course-details">
                 <div class="form-title">
                     <h3>Course Details</h3>
-
-                    <div class="options">
-
-                        <a href="javascript:window.print()">Print</a>
-                        <a href="../syllabuspdf/${currentImod?.id}" class="download-pdf">Download</a>
-
-                    </div>
-
+                    
                 </div>
                 <div class="fieldcontain">
                     <label for="name">
                         <g:message code="imod.name.label" default="Course Title" />: 
                     </label>
-                    <strong>${currentImod?.name}</strong>
+                    <strong>${currentImod?.name.encodeAsHTML()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="imodNumber">
                         <g:message code="imod.imodNumber.label" default="Course Number" />: 
                     </label>
-                    <strong>${currentImod?.imodNumber}</strong>
+                    <strong>${currentImod?.imodNumber.encodeAsHTML()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="url">
                         <g:message code="imod.url.label" default="Course URL" />: 
                     </label>
-                    <strong>${currentImod?.url}</strong>
+                    <strong>${currentImod?.url.encodeAsHTML()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="courseLocation">
                         <g:message code="imod.courseLocation.label" default="Classroom Location" />: 
                     </label>
-                    <strong>${currentImod?.courseLocation}</strong>
+                    <strong>${currentImod?.courseLocation.encodeAsHTML()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="courseSemester">
                         <g:message code="imod.courseSemester.label" default="Semester" />: 
                     </label>
-                    <strong>${currentImod?.courseSemester}</strong>
+                    <strong>${currentImod?.courseSemester.encodeAsHTML()}</strong>
                 </div>
             </div>%{-- course details --}%
 
@@ -126,17 +120,17 @@
                 </div>
                 <div class="fieldcontain">
                     <label>Overview:</label>
-                    <strong>${currentImod?.overview}</strong>
+                    <strong>${currentImod?.overview.encodeAsHTML()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label>Subject Area:</label>
-                    <strong>${currentImod?.subjectArea}</strong>
+                    <strong>${currentImod?.subjectArea.encodeAsHTML()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label>Audience:</label>
                     <strong>
                         <g:each in="${currentImod?.audience*.description}" var="it" status="i">
-                            ${it.encodeAsHTML()}
+                            ${it.encodeAsHTML().encodeAsHTML()}
 
                             <g:if test="${i != currentImod?.audience*.description.size() - 1}">
                                 ,
@@ -151,7 +145,7 @@
                 </div>
                 <div class="fieldcontain">
                     <label>Time Ratio:</label>
-                    <strong>${currentImod?.timeRatio}</strong>
+                    <strong>${currentImod?.timeRatio.encodeAsHTML()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label>Number of Seats:</label>
@@ -165,30 +159,31 @@
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Grading procedure:</strong></h4>
-                    <p>${currentImod?.gradingProcedure.trim().replaceAll("\n","<br>")}</p>
+                    <p>${currentImod?.gradingProcedure.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Attendance and tardiness:</strong></h4>
-                    <p>${currentImod?.attendance.trim().replaceAll("\n","<br>")}</p>
+                    <p>${currentImod?.attendance.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Class participation:</strong></h4>
-                    <p>${currentImod?.classParticipation.trim().replaceAll("\n","<br>")}</p>
+                    <p>${currentImod?.classParticipation.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Professional Conduct:</strong></h4>
-                    <p>${currentImod?.professionalConduct.trim().replaceAll("\n","<br>")}</p>
+                    <p>${currentImod?.professionalConduct.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Missed exams/Make-up exams:</strong></h4>
-                    <p>${currentImod?.missedExams.trim().replaceAll("\n","<br>")}</p>
+                    <p>${currentImod?.missedExams.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Missed Assignments:</strong></h4>
-                    <p>${currentImod?.missedAssignments.trim().replaceAll("\n","<br>")}</p>
+                    <p>${currentImod?.missedAssignments.trim().encodeAsHTML().replaceAll("\n","<br/>")}</p>
                 </div>
             </div>%{-- course policy --}%
 
+            <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
             <div class="instructors">
 
                 <div class="form-title">
@@ -199,17 +194,17 @@
                 <g:each in="${currentImod?.instructors}" var="instructor">
                     
                     <li>
-                        <strong>${instructor.firstName} ${instructor.lastName}</strong><br>
-                        ${instructor.role}<br>
-                        ${instructor.email}<br>                    
+                        <strong>${instructor.firstName.encodeAsHTML().replaceAll("\n","<br/>")} ${instructor.lastName.encodeAsHTML().replaceAll("\n","<br/>")}</strong><br/>
+                        ${instructor.role.encodeAsHTML().replaceAll("\n","<br/>")}<br/>
+                        ${instructor.email.encodeAsHTML().replaceAll("\n","<br/>")}<br/>                    
                         <g:if test="${instructor.officeHours != null && !instructor.officeHours.isEmpty()}">
-                            Office Hours: ${instructor.officeHours}<br>
+                            Office Hours: ${instructor.officeHours.encodeAsHTML().replaceAll("\n","<br/>")}<br/>
                         </g:if>
                         <g:if test="${instructor.webPage != null && !instructor.webPage.isEmpty()}">
-                            Website: ${instructor.webPage}<br>
+                            Website: ${instructor.webPage.encodeAsHTML().replaceAll("\n","<br/>")}<br/>
                         </g:if>
                         <g:if test="${instructor.location != null && !instructor.location.isEmpty()}">
-                            Location: ${instructor.location}<br>
+                            Location: ${instructor.location.encodeAsHTML().replaceAll("\n","<br/>")}<br/>
                         </g:if>
                     </li>
 
@@ -217,7 +212,7 @@
                 </ul>
 
             </div>%{-- instructors --}%
-
+            </g:if>
 
             <div class="learning-objectives">
 
@@ -229,7 +224,7 @@
                     <g:each var="learningObjective" in="${learningObjectives}">                    
                         <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
                             <li class="learning-objective list-item">
-                                ${ learningObjective.definition }
+                                ${ learningObjective.definition.encodeAsHTML() }
 
                             </li>
                         </g:if>
@@ -245,7 +240,7 @@
                 </div>
 
                 %{-- comes straight from the controller as text --}%
-                ${contentList}
+                ${contentList.replaceAll("\n","<br/>").replaceAll("&(?!amp;)", "&amp;")}
 
             </div>
 
