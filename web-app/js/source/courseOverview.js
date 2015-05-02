@@ -154,7 +154,14 @@ $(document).ready(
 						selected: ids
 					},
 					success: function () {
-						location.reload();
+						alert("Instructors removed successfully");
+						for (var i = 0; i < ids.length; i++) {
+							$("#instructor"+ids[i]).remove();
+						}
+
+						if(!$('.instructor-list').find('tbody tr').length){
+							$('.remove-instructor').remove();
+						}
 					},
 					error: function (xhr) {
 						// When something goes wrong log to the browser console
