@@ -21,7 +21,7 @@
 				if(!saved)
 				{
 					alert("Please save the course overview page before proceeding to Learning Objective");
-					var url = "/imod/courseOverview/index/"+id;
+					var url = "../index/"+id;
 					$(location).attr('href',url);
 					return false;
 				}
