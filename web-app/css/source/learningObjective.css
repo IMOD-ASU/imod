@@ -687,7 +687,7 @@ input[disabled='disabled'] {
 }
 
 #custom-action-words {
-	margin-left: 80px;
+    margin-left: 80px;
 }
 
 .message.banner {
@@ -695,6 +695,7 @@ input[disabled='disabled'] {
 }
 
 .action-word-category {
-	float: left;
-	padding-top: 50px;
+    float: left;
+
+    padding-top: 50px;
 }
