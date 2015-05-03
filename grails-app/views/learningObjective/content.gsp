@@ -39,7 +39,13 @@
 				</button>
 			</span>
 		</fieldset>
-		<g:hiddenField name="treeData" value='${contentList}' />
+
+		<g:if test="${contentList.toString() != '[]'}">
+			<g:hiddenField name="treeData" value='${contentList}' />
+		</g:if>
+		<g:else>
+			Please add a topic.
+		</g:else>
 		<div id="contentTree"></div>
 	</body>
 </html>

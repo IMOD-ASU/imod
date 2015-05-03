@@ -192,9 +192,7 @@ class LearningObjectiveController {
 		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 		def contents = []
-		if (contentList.size() < 1) {
-			contentList.add(new Content(imod: currentImod))
-		}
+		
 		contentList.collect(contents) {
 			getSubContent(it, currentLearningObjective)
 		}

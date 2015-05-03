@@ -17,7 +17,7 @@
         
 
     </head>
-    <body>
+    <body class="syllabus_pdf">
 
         <div class="wrapper">
 
@@ -30,31 +30,31 @@
                     <label for="name">
                         <g:message code="imod.name.label" default="Course Title" />: 
                     </label>
-                    <strong>${currentImod?.name.encodeAsHTML()}</strong>
+                    <strong>${currentImod?.name.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="imodNumber">
                         <g:message code="imod.imodNumber.label" default="Course Number" />: 
                     </label>
-                    <strong>${currentImod?.imodNumber.encodeAsHTML()}</strong>
+                    <strong>${currentImod?.imodNumber.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="url">
                         <g:message code="imod.url.label" default="Course URL" />: 
                     </label>
-                    <strong>${currentImod?.url.encodeAsHTML()}</strong>
+                    <strong>${currentImod?.url.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="courseLocation">
                         <g:message code="imod.courseLocation.label" default="Classroom Location" />: 
                     </label>
-                    <strong>${currentImod?.courseLocation.encodeAsHTML()}</strong>
+                    <strong>${currentImod?.courseLocation.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="courseSemester">
                         <g:message code="imod.courseSemester.label" default="Semester" />: 
                     </label>
-                    <strong>${currentImod?.courseSemester.encodeAsHTML()}</strong>
+                    <strong>${currentImod?.courseSemester.encodeAsCustomEscape()}</strong>
                 </div>
             </div>%{-- course details --}%
 
@@ -120,17 +120,17 @@
                 </div>
                 <div class="fieldcontain">
                     <label>Overview:</label>
-                    <strong>${currentImod?.overview.encodeAsHTML()}</strong>
+                    <strong>${currentImod?.overview.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label>Subject Area:</label>
-                    <strong>${currentImod?.subjectArea.encodeAsHTML()}</strong>
+                    <strong>${currentImod?.subjectArea.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label>Audience:</label>
                     <strong>
                         <g:each in="${currentImod?.audience*.description}" var="it" status="i">
-                            ${it.encodeAsHTML().encodeAsHTML()}
+                            ${it.encodeAsCustomEscape()}
 
                             <g:if test="${i != currentImod?.audience*.description.size() - 1}">
                                 ,
@@ -145,7 +145,7 @@
                 </div>
                 <div class="fieldcontain">
                     <label>Time Ratio:</label>
-                    <strong>${currentImod?.timeRatio.encodeAsHTML()}</strong>
+                    <strong>${currentImod?.timeRatio.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label>Number of Seats:</label>
@@ -159,27 +159,27 @@
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Grading procedure:</strong></h4>
-                    <p>${currentImod?.gradingProcedure.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.gradingProcedure.encodeAsCustomEscape()}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Attendance and tardiness:</strong></h4>
-                    <p>${currentImod?.attendance.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.attendance.encodeAsCustomEscape()}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Class participation:</strong></h4>
-                    <p>${currentImod?.classParticipation.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.classParticipation.encodeAsCustomEscape()}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Professional Conduct:</strong></h4>
-                    <p>${currentImod?.professionalConduct.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.professionalConduct.encodeAsCustomEscape()}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Missed exams/Make-up exams:</strong></h4>
-                    <p>${currentImod?.missedExams.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.missedExams.encodeAsCustomEscape()}</p>
                 </div>
                 <div class="fieldcontain">
                     <h4><strong>Missed Assignments:</strong></h4>
-                    <p>${currentImod?.missedAssignments.trim().encodeAsCustomEscape()}</p>
+                    <p>${currentImod?.missedAssignments.encodeAsCustomEscape()}</p>
                 </div>
             </div>%{-- course policy --}%
 
@@ -214,6 +214,7 @@
             </div>%{-- instructors --}%
             </g:if>
 
+            <g:if test="${learningObjectives != null && learningObjectives.isEmpty()}">
             <div class="learning-objectives">
 
                 <div class="form-title">
@@ -222,9 +223,9 @@
 
                 <ul class="learning-objective list-wrapper">
                     <g:each var="learningObjective" in="${learningObjectives}">                    
-                        <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
+                        <g:if test="${learningObjective.definition != null && learningObjective.definition != "" }">
                             <li class="learning-objective list-item">
-                                ${ learningObjective.definition.encodeAsHTML() }
+                                ${ learningObjective.definition.encodeAsCustomEscape() }
 
                             </li>
                         </g:if>
@@ -232,7 +233,9 @@
                 </ul>
 
             </div>
+            </g:if>
 
+            <g:if test="${contentList != null && contentList.isEmpty()}">
             <div class="Content">
 
                 <div class="form-title">
@@ -243,6 +246,7 @@
                 ${contentList.encodeAsCustomEscape()}
 
             </div>
+            </g:if>
 
         </div>
     </body>

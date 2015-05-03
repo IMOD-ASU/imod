@@ -133,7 +133,7 @@ class CourseOverviewController {
         text += '</ul>'
 
         renderPdf(
-            template: "/CourseOverview/syllabus", 
+            template: "/courseOverview/syllabus", 
             model: [currentImod: currentImod,
             currentPage: 'syllabus',
             learningObjectives: learningObjectives,

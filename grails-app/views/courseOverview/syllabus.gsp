@@ -234,6 +234,7 @@
                 </div>
             </div>%{-- course policy --}%
 
+            <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
             <div class="instructors">
 
                 <div class="form-title">
@@ -270,8 +271,10 @@
                 </ul>
 
             </div>%{-- instructors --}%
+            </g:if>
 
 
+            <g:if test="${learningObjectives != null && learningObjectives.isEmpty()}">
             <div class="learning-objectives">
                 <div class="form-title">
                     <h3>Learning Objectives</h3>
@@ -286,7 +289,9 @@
                     </g:each>
                 </ul>
             </div>
+            </g:if>
 
+            <g:if test="${contentList != null && contentList.isEmpty()}">
             <div class="Content">
                 <div class="form-title">
                     <h3>Content</h3>
@@ -294,6 +299,7 @@
                 %{-- comes straight from the controller as text --}%
                 ${contentList.encodeAsCustomEscape()}
             </div>
+            </g:if>
         </div>
     </body>
 </html>
