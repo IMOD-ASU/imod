@@ -54,6 +54,15 @@ h4 {
     right: 0;
 }
 
+body.syllabus_pdf{
+    font-family: Arial;
+    font-size: 0.9em;
+}
+
+body.syllabus_pdf{
+    padding: 0; border: none;
+}
+
 @media print {
     body {
         font-family: Arial;

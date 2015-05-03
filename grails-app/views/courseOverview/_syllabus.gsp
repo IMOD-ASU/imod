@@ -17,7 +17,7 @@
         
 
     </head>
-    <body>
+    <body class="syllabus_pdf">
 
         <div class="wrapper">
 
