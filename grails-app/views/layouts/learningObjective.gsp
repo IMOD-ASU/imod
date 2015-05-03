@@ -68,7 +68,7 @@
 									<i class="fa fa-pencil" title="click to edit"></i>
 								</div>
 								<g:form class="learning-objective definition-edit" action="saveDefinition" id="${currentImod.id}" method="post">
-									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" />
+									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" title="${ message( code:'imod.learningObjective.editDetails' ) }"/>
 									<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 									<g:hiddenField name="pageType" value="criteria" id="page-type" />
 								</g:form>
