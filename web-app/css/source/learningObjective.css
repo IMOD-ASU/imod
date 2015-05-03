@@ -686,6 +686,15 @@ input[disabled='disabled'] {
     background: white;
 }
 
+#custom-action-words {
+	margin-left: 80px;
+}
+
 .message.banner {
     visibility: hidden;
+}
+
+.action-word-category {
+	float: left;
+	padding-top: 50px;
 }
