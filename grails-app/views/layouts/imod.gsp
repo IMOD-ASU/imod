@@ -16,6 +16,18 @@
 			<title>
 				<g:layoutTitle default="IMOD" />
 			</title>
+			<g:javascript>
+			function checkSave(saved, id){
+				if(!saved)
+				{
+					alert("Please save the course overview page before proceeding to Learning Objective");
+					var url = "/imod/courseOverview/index/"+id;
+					$(location).attr('href',url);
+					return false;
+				}
+				return true;
+				}
+		</g:javascript>
 
 			<g:layoutHead/>
 		</head>
@@ -52,7 +64,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/learning objective/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link controller="learningObjective" action="performance" id="${currentImod?.id}" class="ui-tabs-anchor">
+						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id});" controller="learningObjective" action="performance" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
 							<span id="lo-tab-title">
 								Learning Objectives
