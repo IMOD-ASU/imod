@@ -153,6 +153,8 @@ function populateDomainCategories () {
 		$('#domain-category-list').css('visibility', 'visible');
 		$('.icons').css('visibility', 'visible');
 		$('#action-words').css('visibility', 'visible');
+		$('label[for="action-word-category"]').css('visibility', 'visible');
+		$('label[for="action-words"]').css('visibility', 'visible');
 	}
 	else {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
@@ -160,6 +162,8 @@ function populateDomainCategories () {
 		$('.icons').css('visibility', 'hidden');
 		$('#action-words').css('visibility', 'hidden');
 		$('#custom-action-words').css('visibility', 'hidden');
+		$('label[for="action-word-category"]').css('visibility', 'hidden');
+		$('label[for="action-words"]').css('visibility', 'hidden');
 	}
 
 	$.ajax({
@@ -239,7 +243,8 @@ $(document).ready(
 		// Initially domain categories and action words will not be displayed as learning domain is null
 		if ($('#domain-category-list').val() === 'null') {
 			$('label[for="domain-category-list"]').css('visibility', 'hidden');
-
+			$('label[for="action-word-category"]').css('visibility', 'hidden');
+			$('label[for="action-words"]').css('visibility', 'hidden');
 			$('#domain-category-list').css('visibility', 'hidden');
 			$('.icons').css('visibility', 'hidden');
 			$('#action-words').css('visibility', 'hidden');

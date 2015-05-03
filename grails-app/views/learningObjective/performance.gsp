@@ -31,7 +31,7 @@
 
 			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" id="selected-action-word-category" />
 			<div>
-			<label for="actionWordCategory" class="action-word-category">
+			<label for="action-word-category" class="action-word-category">
 				Action Word Category
 			</label>
 			<div class="icons assign">

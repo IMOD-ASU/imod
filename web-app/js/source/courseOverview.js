@@ -96,7 +96,7 @@ function gradingRadio (radio) {
 function populateRepeatsEvery () {
 	if ($('#repeats option:selected').text() === 'Daily') {
 		$('#duration').text('days');
-		$('#duration, label[for="repeatsEvery"], #repeatsEvery').css('visibility', 'visible');
+		$('#duration, label[for="repeatsEvery"], #repeats-every').css('visibility', 'visible');
 		$('label[for="scheduleWeekDays"], label[for="weekdays"], :checkbox').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 	}
@@ -105,7 +105,7 @@ function populateRepeatsEvery () {
 		$('#duration, label[for="repeatsEvery"], #repeatsEvery, label[for="scheduleWeekDays"], label[for="weekdays"], :checkbox, #repeats-every').css('visibility', 'visible');
 	}
 	else {
-		$(':checkbox, label[for="weekdays"], label[for="scheduleWeekDays"], #duration, label[for="repeatsEvery"], #repeatsEvery').css('visibility', 'hidden');
+		$(':checkbox, label[for="weekdays"], label[for="scheduleWeekDays"], #duration, label[for="repeatsEvery"], #repeats-every').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 	}
 }
