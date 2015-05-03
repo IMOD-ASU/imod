@@ -214,6 +214,7 @@
             </div>%{-- instructors --}%
             </g:if>
 
+            <g:if test="${learningObjectives != null && learningObjectives.isEmpty()}">
             <div class="learning-objectives">
 
                 <div class="form-title">
@@ -232,7 +233,9 @@
                 </ul>
 
             </div>
+            </g:if>
 
+            <g:if test="${contentList != null && contentList.isEmpty()}">
             <div class="Content">
 
                 <div class="form-title">
@@ -243,6 +246,7 @@
                 ${contentList.encodeAsCustomEscape()}
 
             </div>
+            </g:if>
 
         </div>
     </body>
