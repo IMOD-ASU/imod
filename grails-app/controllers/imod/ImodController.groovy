@@ -51,7 +51,8 @@ class ImodController {
                 missedAssignments: 'ASSIGNMENT SUBMISSION\nAssignment submission dates are generally firm, and in most cases submittals are due either before or at the beginning of class.  I appreciate, however, that there may be times during the semester, when work from various courses “pile up”.  If this happens you should not hesitate to request a deadline extension via email or in-person. Late assignments will not be accepted unless an extension was granted by the instructor. The Recitation Leaders will not approve deadline extensions. The latest time to request an extension is 24 hours before the assignment is due. Requests made after this time will be denied. If granted, you are responsible for ensuring that the late assignment is submitted according to all other specifications in the assignment instructions.\n\nFEEDBACK ON ASSIGNMENTS\nIn most cases, submitted assignments will be graded and returned within a week. For more elaborate submissions (e.g., Project), the turn-around time may be more.',
                 creditHours: '3',
                 timeRatio: '1:3',
-                numberOfSeats: '30'
+                numberOfSeats: '30',
+				saved: true
             )
 
 			// update current user
@@ -67,7 +68,7 @@ class ImodController {
                 lastName: 'Bansal',
                 email: 'ajay.bansal@asu.edu',
                 role: 'Professor',
-                officeHours: 'Tuesdays & Thursdays | 9:00am – 10:0am or by appointment',
+                officeHours: 'Tuesdays & Thursdays | 9:00am - 10:0am or by appointment',
                 location: 'Peralta 230V',
                 createdBy: newImod.id
             )
@@ -689,7 +690,8 @@ class ImodController {
 			classParticipation: 'Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.',
 			professionalConduct: 'All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/',
 			missedExams: 'The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements',
-			missedAssignments: 'Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.'
+			missedAssignments: 'Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.',
+			saved: false
 		)
 
 		// update current user
@@ -787,7 +789,7 @@ class ImodController {
 
 		// FIXME unbundle variable assignment
 		currentImod.properties = params
-
+		currentImod.saved = true
 		if (!currentImod.save()) {
 			render(
 				view: 'edit',
