@@ -8,7 +8,9 @@ class AssessmentTechnique {
 	String title
 	String description
 	String procedure
-	String	duration
+	String duration
+	Boolean assigncheck = Boolean.TRUE
+	Boolean favcheck = Boolean.TRUE 
 	AssessmentFeedback assessmentFeedback
 
 	static hasMany = [
@@ -38,5 +40,7 @@ class AssessmentTechnique {
 		procedure nullable: true, blank: true
 		duration nullable: true, blank:true
 		userFavorite nullable: true
+		assessmentFeedback nullable:true
+
     }
 }

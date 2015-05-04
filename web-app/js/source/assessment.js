@@ -126,6 +126,8 @@ function displayAssessmentTechniques(data) {
 
 
 
+
+
 function displayAssessmentInformationInEdit() {
 	$('#techniqueId1').val($('label.ui-state-active').attr('for'));
 
@@ -139,6 +141,9 @@ function displayAssessmentInformationInEdit() {
 
 function populateAssessmentTechnique(data) {
 	var currentTechnique = data.assessmentTechnique;
+
+	alert("current tech params ::::   "+ currentTechnique.assignedToLearningObjective);
+
 	// set the text fields
 	$('#title1').val(currentTechnique.title);
 	$('#title2').val(currentTechnique.title);
@@ -157,7 +162,9 @@ function populateAssessmentTechnique(data) {
 
 	var checkedCheckboxes = $('.assessmentFeedback2:checked');
 
-$('.assessmentFeedback3').val($.each(checkedCheckboxes, function(index, checkbox) {var theValue = checkbox.value;}));
+	$('.assessmentFeedback3').val($.each(checkedCheckboxes, function(index, checkbox)
+		{var theValue = checkbox.value;}
+	));
 
 
 
@@ -177,6 +184,8 @@ $('.assessmentFeedback3').val($.each(checkedCheckboxes, function(index, checkbox
 
 }
 
+
+//clicking on edit and View in display technique modal
 $( "#Edit" ).click( function() {
 
 	$('#View').show();
@@ -185,6 +194,8 @@ $( "#Edit" ).click( function() {
 
 	$( ".allspans1" ).hide();
 });
+
+
 
 $( "#View" ).click( function() {
 

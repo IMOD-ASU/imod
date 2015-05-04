@@ -61,7 +61,8 @@ class LearningObjective {
 
 	static hasMany = [
 		contents: Content,
-		pedagogyTechniques: PedagogyTechnique
+		pedagogyTechniques: PedagogyTechnique,
+		assessmentTechniques: AssessmentTechnique
 	]
 
 	public static final List genericConditions = [

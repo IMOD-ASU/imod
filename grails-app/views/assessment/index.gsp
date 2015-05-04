@@ -350,13 +350,13 @@
 						<label>
 							Assign to Current Learning Objective
 						</label>
-						<g:checkBox name="assignedToLearningObjective" />
+						<g:checkBox name="assignedToLearningObjective"  value="${true}"/>
 						<br />
 
 						<label>
 							Favorite Technique
 						</label>
-						<g:checkBox name="favoriteTechnique" />
+						<g:checkBox name="favoriteTechnique"  value="${true}"/>
 						<br />
 
 						<label>

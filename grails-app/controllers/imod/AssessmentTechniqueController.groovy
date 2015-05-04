@@ -45,8 +45,15 @@ class AssessmentTechniqueController {
 		newTechnique.description = params.description1
 		newTechnique.procedure = params.procedure1
 		newTechnique.duration = params.duration1
+		newTechnique.assigncheck = params.assignedToLearningObjective as boolean
+		newTechnique.favcheck = params.favoriteTechnique as boolean
 
-		newTechnique.assessmentFeedback= AssessmentFeedback.findByName(params.assessmentFeedback)
+		newTechnique.assessmentFeedback= AssessmentFeedback.findByName(params.assessmentFeedback1)
+
+	//	newTechnique.assignedLearningObjective = params.assignedToLearningObjective
+
+		println params.assignedToLearningObjective as boolean
+		println params.favoriteTechnique as boolean
 
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
@@ -81,7 +88,7 @@ class AssessmentTechniqueController {
 			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 			// add the technique to the user's favorite list
-			currentUser.addToFavoriteTechnique(newTechnique)
+			currentUser.addToFavoriteAssessmentTechnique(newTechnique)
 
 			// store relationship
 			currentUser.save()
@@ -113,10 +120,15 @@ class AssessmentTechniqueController {
 		newTechnique.description = params.description
 		newTechnique.procedure = params.procedure
 		newTechnique.duration= params.duration
-
+		newTechnique.assigncheck = params.assignedToLearningObjective as boolean
+		newTechnique.favcheck = params.favoriteTechnique as boolean
 
 		newTechnique.assessmentFeedback= AssessmentFeedback.findByName(params.assessmentFeedback)
 
+	//	newTechnique.assignedLearningObjective = params.assignedToLearningObjective
+
+		println params.assignedToLearningObjective as boolean
+		println params.favoriteTechnique as boolean
 
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
@@ -151,7 +163,7 @@ class AssessmentTechniqueController {
 			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 			// add the technique to the user's favorite list
-			currentUser.addToFavoriteTechnique(newTechnique)
+			currentUser.addToFavoriteAssessmentTechnique(newTechnique)
 
 			// store relationship
 			currentUser.save()
