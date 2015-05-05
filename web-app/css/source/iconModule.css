@@ -39,6 +39,15 @@
     border: 1px solid #cccccc;
 }
 
+
+.icons.assessmentassign > .ui-selecting,
+.icons.assessmentassign > .ui-state-active,
+.icons.assessmentassign > .ui-state-default{
+    background-image: url('../../images/unfav.png'),url('../../images/assign.png');
+    background-repeat: no-repeat, no-repeat;
+    background-position: left top, right top;
+}
+
 .icons.assign > .ui-selecting,
 .icons.assign > .ui-state-active {
     background-image: url('../../images/assign.png'), url('../../images/thesaurus.png');

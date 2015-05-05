@@ -127,7 +127,10 @@
 							<button id="favorites">Favorites
 							</button>
 
-							<button id="instructional-plan">Instructional Plan
+							<button id="unfavorites">UnFavorites
+							</button>
+
+							<button id="assessment-plan">Assessment Plan
 							</button>
 						</span>
 					</div>
@@ -156,22 +159,32 @@
 					<h3 title="" class="showHover">
 						Ideal Match
 					</h3>
+					<div id="ideal-matches" class="icons">
 
-					<div id="ideal-matches" class="icons favorite"> </div>
 
+					</div>
+
+					<h3 title="" class="showHover">
+						Ideal matches1
+					</h3>
+					<div id="ideal-matches1" class="AllMatches">
+
+					</div>
+
+					<div class="favDiv">
 
 					<h3 id="assessmentFavorites" title="" class="showHover">
 						Favorites
 					</h3>
 
-					<div id="assessmentFavoritesDiv" class="icons favorite"></div>
-
+					<div id="assessmentFavoritesDiv" class="AllMatches" ></div>
+					</div>
 
 					<h3 title="" class="showHover">
 						Extended Match
 					</h3>
 
-					<div id="extended-matches" class="icons favorite"></div>
+					<div id="extended-matches" class="icons"></div>
 				</div>
 				</g:if>
 				<g:else>

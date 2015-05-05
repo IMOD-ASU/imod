@@ -7,6 +7,37 @@ filterAssessmentTechniques();
 $('#filter-assessment-techniques').accordion();
 
 
+
+$('#assessment-plan').click(function(){
+
+
+});
+
+$('#favorites').click(function(){
+	$('.favDiv').show();
+	$('#assessmentFavorites').show();
+	$('#assessmentFavoritesDiv').show();
+
+	$('#favorites').hide();
+
+	$('#unfavorites').show();
+});
+
+$('#unfavorites').click(function(){
+	$('.favDiv').hide();
+	$('#assessmentFavorites').hide();
+	$('#assessmentFavoritesDiv').hide();
+
+	$('#favorites').show();
+
+	$('#unfavorites').hide();
+
+
+});
+
+
+
+
 // auto hide the add new technique modal
 $('#new-technique').dialog({
 	autoOpen: false
@@ -73,14 +104,80 @@ function filterAssessmentTechniques() {
 			url: '../findMatchingTechniques',
 			method: 'post',
 			data: JSON.stringify(data),
+			success: function(data) {
+				getFavorites(data);
+			},
 			contentType: 'application/json'
 		})
-		.done(displayAssessmentTechniques, showAssessmentTechnique);
+		.done(displayAssessmentTechniques, showAssessmentTechnique, checkForAssign);
 }
+
+//$(document).ready(checkForAssign());
+
+
+function checkForAssign(data) {
+    // Your code
+
+	alert(data.idealAssessmentTechniqueMatch.length);
+
+for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+
+	if(currentTechnique.assigncheck == true){
+
+		alert("parent ::: "+$("#"+currentTechnique.id).val());
+
+//	alert("parent ::: "+$("#"+currentTechnique.id).parent("#ideal-matches").attr('class'));
+
+	$("#span-"+currentTechnique.id).addClass('icons assessmentassign');
+
+	}
+}
+
+}
+
+function getFavorites(data){
+
+	//alert(data.idealAssessmentTechniqueMatch.length);
+
+var favText='';
+
+for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		var currentIdeal = data.idealAssessmentTechniqueMatch[index];
+
+
+		if(currentIdeal.favcheck == true ){
+
+		favText += '<input  type="radio" id="2'
+		+ currentIdeal.id + '" name="assessmentTech1" value="'
+		+ currentIdeal.id + '"><span id="span1-'+currentIdeal.id+'" class="icons"><label for="'
+		+ currentIdeal.id + '">'
+		+ currentIdeal.title +'</label></span></input>';
+
+		}
+
+
+	}
+
+			$('#assessmentFavoritesDiv').html(favText);
+			$('#assessmentFavoritesDiv').buttonset();
+
+
+				$("#span1-"+currentIdeal.id).addClass('icons assessmentassign');
+
+
+}
+
 
 function showAssessmentTechnique(data){
 
 	$('#ideal-matches').buttonset().click(function() {
+		$('#display-new-technique').dialog('open');
+		displayAssessmentInformationInEdit();
+
+	});
+
+	$('#ideal-matches1').click(function() {
 		$('#display-new-technique').dialog('open');
 		displayAssessmentInformationInEdit();
 
@@ -94,8 +191,6 @@ function showAssessmentTechnique(data){
 
 }
 
-
-
 /**
  * callback for find matching techniques grails action
  * this takes the json data and processes it into html code
@@ -105,28 +200,74 @@ function displayAssessmentTechniques(data) {
 	// take the titles and make html code to display
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
-		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnque" value="' + currentTechnique.id + '"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
+
+					idealText += '<input type="radio" id="'
+					+ currentTechnique.id + '" name="assessmentTech" value="'
+					+ currentTechnique.id + '"><label for="' + currentTechnique.id + '">'
+					+ currentTechnique.title + '</label>';
+
+
+	}
+
+
+	var idealText1 = '';
+	// take the titles and make html code to display
+	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+
+					idealText1 += '<input  type="radio" id="1'
+					+ currentTechnique.id + '" name="assessmentTech1" value="'
+					+ currentTechnique.id + '"><span id="span-'+currentTechnique.id+'" class="icons"><label for="' + currentTechnique.id
+					+ '">'
+					+ currentTechnique.title +'</label></span></input>';
+
+
 	}
 
 	var extendedText = '';
 	// take the titles and make html code to display
 	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
 		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		extendedText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnque" value="' + currentTechnique.id + '"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
+		extendedText += '<input type="radio" id="'
+		+ currentTechnique.id + '" name="assessmentTech" value="'
+		+ currentTechnique.id + '"><label for="' + currentTechnique.id
+		+ '">' + currentTechnique.title + '</label>';
 	}
 
 	// add html code to the page
 	$('#ideal-matches').html(idealText);
+	$('#ideal-matches1').html(idealText1);
 	$('#extended-matches').html(extendedText);
 
+
+
 	$('#ideal-matches').buttonset();
+	$('#ideal-matches1').buttonset();
 	$('#extended-matches').buttonset();
 
 }
 
 
 
+/*
+function checkForAssign(data){
 
+	alert(data);
+
+for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		var currentTechnique1 = data.idealAssessmentTechniqueMatch[index];
+
+	if(currentTechnique1.assigncheck == true){
+
+	alert("parent ::: "+$("").parent());
+	}
+}
+
+}
+
+
+
+*/
 
 function displayAssessmentInformationInEdit() {
 	$('#techniqueId1').val($('label.ui-state-active').attr('for'));
@@ -142,7 +283,19 @@ function displayAssessmentInformationInEdit() {
 function populateAssessmentTechnique(data) {
 	var currentTechnique = data.assessmentTechnique;
 
-	alert("current tech params ::::   "+ currentTechnique.assignedToLearningObjective);
+//	alert("current tech params :::: assign :   "+ currentTechnique.assigncheck+" favorite :  "+currentTechnique.favcheck);
+
+
+	if(currentTechnique.assigncheck == false){
+	//	alert("goes here in save1 function");
+	//	$("input[name='assessmentTech']").removeClass( "icons ui-state-default" ).addClass("icons assessmentassign");
+	//	$('.icons input[value="' +currentTechnique.id+ '"]').removeClass( "icons ui-state-default" ).addClass("icons assessmentassign");
+
+	}
+
+	if(currentTechnique.favcheck == false){
+		//alert("brbrbbrbr");
+	}
 
 	// set the text fields
 	$('#title1').val(currentTechnique.title);

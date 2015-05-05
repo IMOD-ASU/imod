@@ -20,6 +20,16 @@ class AssessmentTechniqueController {
 		)
 	}
 
+/*
+	def favs(long id){
+		render (
+			[
+				assessmentTechnique: AssessmentTechnique.get(id)
+			] as JSON
+		)
+
+	}
+*/
 	def cancel(Long id, Long learningObjectiveID) {
 		redirect(
 			controller: 'assessment',
