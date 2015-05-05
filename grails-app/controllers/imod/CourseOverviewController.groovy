@@ -9,9 +9,11 @@ class CourseOverviewController {
     static allowedMethods = [
         delete:           'POST',
         create:           'POST',
+        syllabusUpdate:   'POST',
     ]
 
 	def index(Long id) {
+
         [
 			currentImod: Imod.get(id),
 			currentPage: 'course overview'
@@ -95,7 +97,16 @@ class CourseOverviewController {
 
     // syllabus html page
     def syllabus(Long id) {
+
         def currentImod = Imod.get(id)
+        // def syllabus = SyllabusSettings.get(771);
+        // def pref = SyllabusPref.findById(800);
+
+        // print syllabus
+        // print pref
+
+        // syllabus.removeFromPref(pref)
+        // pref.save()
 
         def learningObjectives = LearningObjective.findAllByImod(currentImod)
 
@@ -108,12 +119,19 @@ class CourseOverviewController {
         }
 
         text += '</ul>'
+        
+        def settings = currentImod.syllabus
+
+        if(settings == null || settings.empty){
+            settings = SyllabusSettings.findAll("from SyllabusSettings as s" + " order by s.id asc");
+        }
 
         [
             currentImod: currentImod,
             currentPage: 'syllabus',
             learningObjectives: learningObjectives,
-            contentList: text
+            contentList: text,
+            settings: settings,
         ]
     }
 
@@ -139,6 +157,54 @@ class CourseOverviewController {
             learningObjectives: learningObjectives,
             contentList: text],
             filename: currentImod?.name.replaceAll(" ", "_")+".pdf");
+    }
+
+    def syllabusUpdate(){
+
+        def currentImod = Imod.get(params.imod)
+
+        def jsonParser = new JsonSlurper()
+        def settings = jsonParser.parseText(params.settings)
+        def pref = null
+        def syllabus = null
+
+        settings.each() {
+
+            def prefs = currentImod.syllabus.pref;
+            // currentImod.syllabus.pref.clear();
+            syllabus = SyllabusSettings.get(it.id)
+            
+
+            // print test
+
+            prefs.each() { p->
+
+                if(p[0] != null){
+                    syllabus.removeFromPref(p[0])    
+                }                
+
+            }
+
+            pref = new SyllabusPref(
+                sortNumber: it.sort_number,
+                selected: it.selected,
+            )
+
+            syllabus.addToPref(pref);
+            pref.save();
+
+            currentImod.addToSyllabus(syllabus)
+
+        }
+
+
+        render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+
+
     }
 
     private def getSubContent(Content current) {

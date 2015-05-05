@@ -14,6 +14,9 @@
         <g:external dir="css/source" file="syllabus.css" media="screen, print"/>
     </head>
     <body>
+
+        <input type="hidden" class="imod_id" value="${currentImod.id}">
+
         <div class="wrapper">
             <div class="course-details">
                 <div class="form-title">
@@ -21,6 +24,7 @@
 
                     <div class="options">
 
+                        <a href="#" class="edit-pref">Edit Preferences</a>
                         <a href="javascript:window.print()">Print</a>
                         <a href="../syllabuspdf/${currentImod?.id}" class="download-pdf">Download</a>
 
@@ -291,7 +295,7 @@
             </div>
             </g:if>
 
-            <g:if test="${contentList != null && contentList.isEmpty()}">
+            <g:if test="${contentList.trim() != '<ul></ul>'}">
             <div class="Content">
                 <div class="form-title">
                     <h3>Content</h3>
@@ -301,5 +305,86 @@
             </div>
             </g:if>
         </div>
+
+        <div class="pref-modal-wrap">
+            <div class="pref-modal">
+
+                <h3>Edit Syllabus Preferences</h3>
+
+                <ol class="pref-sortable">
+
+
+                    <g:each in="${settings}" var="setting">
+
+                        <li data-id="${setting.id}">
+                            <label>
+                                <g:checkBox name="setting_checkbox" value="${setting.pref.selected[0]}" />
+                                <span>${setting.description}</span>
+                            </label>
+                        </li>
+
+                    </g:each>
+
+                </ol>
+
+                <button class="submit">Submit</button>
+
+            </div>
+        </div>
+
+        <g:external dir="bower_components/jquery/dist" file="jquery.min.js"/>
+        <g:external dir="bower_components/jquery-sortable/source/js" file="jquery-sortable-min.js"/>
+        <script type="text/javascript">
+
+            $(function() {
+
+                $("ol.pref-sortable").sortable();
+
+                $('.pref-modal .submit').click(function() {
+
+                    var settings = [];
+
+                    $('.pref-sortable li').each(function(index) {
+
+                        var setting = {}
+
+                        setting["description"] = $(this)
+                            .find('span')
+                            .text();
+                        setting["selected"] = $(this)
+                            .find('input[type="checkbox"]')
+                            .is(":checked");
+                        setting["sort_number"] = index;
+                        setting["id"] = $(this).data('id');
+
+                        settings.push(setting);
+
+                    });
+
+                    $.ajax({
+                        url: '../syllabusUpdate',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            imod: $('.imod_id').val(),
+                            settings: JSON.stringify(settings)
+                        },
+                        success:
+                            function () {
+                                console.log("done");
+                            },
+                        error:
+                            function (xhr) {
+                                // When something goes wrong log to the browser console
+                                console.log(xhr.responseText);
+                            }
+                    });
+
+                });
+
+            });
+
+        </script>
+
     </body>
 </html>
