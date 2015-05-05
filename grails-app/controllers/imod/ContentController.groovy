@@ -132,7 +132,8 @@ class ContentController {
 
 	def updateHierarchies() {
 
-		print params
+		def jsonParser = new JsonSlurper()
+        def test = jsonParser.parseText(params.test)
 
 		/*def topics = new JsonSlurper().parseText(contents)
 
