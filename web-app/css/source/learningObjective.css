@@ -388,6 +388,11 @@ input[disabled='disabled'] {
     background-image: url(../../images/checkboxBG.png);
     cursor: pointer;
 }
+
+#contentTree .sub-content-tree{
+    cursor: pointer;
+}
+
 #contentTree .rootNode {
     font-weight: bold;
 }

@@ -32,8 +32,13 @@
 	<body>
 		<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" />
 		<g:render template="/content/topicForm"/>
+
+		<fieldset class="learning-objective-button">
+			<input type="submit" id="save-content" value="Save" name="save_content" class="save show-hover-new">
+		</fieldset>
 		<fieldset>
 			<span class="topicModalButtonGradient">
+
 				<button id="addTopicModal" class="topicModalButton" title="${ message( code:'imod.learningObjective.addTopic' ) }">
 					<i class="fa fa-plus"></i>
 					Add Topics

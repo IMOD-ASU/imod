@@ -259,7 +259,13 @@ $(
 
 			$('.sub-content-tree').click(function() {
 
-				$(this).find('.checkbox').toggleClass('fa-check');
+				var item = $(this);
+
+				if( item.find('.checkbox').hasClass('fa-check') ){
+					item.parent().find('.checkbox').removeClass('fa-check');
+				}else{
+					item.parent().find('.checkbox').addClass('fa-check');
+				}
 
 				return false;
 			});
