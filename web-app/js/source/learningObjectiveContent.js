@@ -251,7 +251,7 @@ function getTreeChildren (list, parents) {
 			var children = getTreeChildren(myItem.find('> ul > li'), childrenArr);
 			item["child"] = children;
 		} else {
-			item["child"] = null;
+			item["child"] = '';
 		}
 
 		parents.push(item);
@@ -305,13 +305,14 @@ $(
 				var parents = []
 
 				parents = getTreeChildren($('#contentTree > li'), parents);
+				
 
 				$.ajax({
 					url: '../../content/updateHierarchies',
 					type: 'POST',
 					dataType: 'json',
 					contentType: "application/json; charset=utf-8",
-					data: JSON.stringify({ contents, parents }),
+					data: JSON.stringify(parents),
 					error: function (xhr) {
 						// console.log(xhr.responseText);
 					}

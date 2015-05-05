@@ -132,16 +132,28 @@ class ContentController {
 
 	def updateHierarchies() {
 
-		def jsonParser = new JsonSlurper()
-        def test = jsonParser.parseText(params.test)
+		def childContent = null
+		def oldParent = null
+		def parentContent = null
 
-		/*def topics = new JsonSlurper().parseText(contents)
+		def topics = request.JSON
 
 		topics.each() {
-			print it
-		}*/
 
-		/*def childContent = Content.get(contentID)
+			updateHierarchyTest(it, null)
+			
+		}		
+
+		render(
+			[
+				success: true
+			] as JSON
+		)
+	}
+
+	def updateHierarchyTest(content, Long parentID) {
+
+		def childContent = Content.get(content.id)
 		def oldParent = childContent.parentContent
 		if(oldParent != null) {
 			oldParent.removeFromSubContents(childContent)
@@ -153,12 +165,18 @@ class ContentController {
 		}
 		else {
 			childContent.parentContent = null
-		}*/
-		render(
-			[
-				success: true
-			] as JSON
-		)
+		}
+
+		if(content.child != ''){
+			
+			content.child.each(){
+
+				updateHierarchyTest(it, content.id)
+
+			}
+
+		}
+
 	}
 
 	def updateHierarchy(Long contentID, Long parentID) {
