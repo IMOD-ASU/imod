@@ -10,6 +10,7 @@ class ContentController {
 		saveTopic: 'POST',
 		deleteTopic:'GET',
 		updateHierarchy: 'POST',
+		updateHierarcies: 'POST',
 		setLearningObjective: 'POST',
 		addResource: 'GET',
 	]
@@ -125,6 +126,36 @@ class ContentController {
 		render(
 			[
 				result: success
+			] as JSON
+		)
+	}
+
+	def updateHierarchies() {
+
+		print params
+
+		/*def topics = new JsonSlurper().parseText(contents)
+
+		topics.each() {
+			print it
+		}*/
+
+		/*def childContent = Content.get(contentID)
+		def oldParent = childContent.parentContent
+		if(oldParent != null) {
+			oldParent.removeFromSubContents(childContent)
+		}
+		if (parentID != null) {
+			def parentContent = Content.get(parentID)
+			parentContent.addToSubContents(childContent)
+			childContent.parentContent = parentContent
+		}
+		else {
+			childContent.parentContent = null
+		}*/
+		render(
+			[
+				success: true
 			] as JSON
 		)
 	}

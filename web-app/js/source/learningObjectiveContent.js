@@ -306,7 +306,16 @@ $(
 
 				parents = getTreeChildren($('#contentTree > li'), parents);
 
-				console.log(parents);
+				$.ajax({
+					url: '../../content/updateHierarchies',
+					type: 'POST',
+					dataType: 'json',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify({ contents, parents }),
+					error: function (xhr) {
+						// console.log(xhr.responseText);
+					}
+				});
 
 			});
 		}
