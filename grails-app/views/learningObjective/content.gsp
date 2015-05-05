@@ -24,6 +24,7 @@
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
+		<g:external dir="bower_components/jquery-sortable/source/js" file="jquery-sortable-min.js" defer="defer" />
 		<g:javascript src="source/learningObjectiveContent.js" defer="defer" />
 
 		<meta name="layout" content="learningObjective">
@@ -40,12 +41,17 @@
 			</span>
 		</fieldset>
 
+
+			${contentList2}
+
+		
+
 		<g:if test="${contentList.toString() != '[]'}">
 			<g:hiddenField name="treeData" value='${contentList}' />
 		</g:if>
 		<g:else>
 			Please add a topic.
 		</g:else>
-		<div id="contentTree"></div>
+		%{-- <div id="contentTree"></div> --}%
 	</body>
 </html>

@@ -233,10 +233,39 @@ function populateTopics (topicList) {
 
 $(
 	function () {
-		var jsonData = JSON.parse($('input[name=treeData]').val());
-		buildContentTree(jsonData, false);
+		/*var jsonData = JSON.parse($('input[name=treeData]').val());
+		buildContentTree(jsonData, false);*/
 
-		$('#contentTree').on(
+		if( $('#contentTree').length ) {
+			$('#contentTree').sortable();
+
+			$('.delete-topic').click( function() {
+
+				var isDelete = confirm("Are you sure you want to delete this?");
+
+				if (isDelete) {
+
+					var contents = [];
+					var contentId = $(this).data('id');
+					contents.push(contentId);
+					deleteTopicSubTab(contents);
+
+				}
+
+				return false;
+
+			});
+			
+
+			$('.sub-content-tree').click(function() {
+
+				$(this).find('.checkbox').toggleClass('fa-check');
+
+				return false;
+			});
+		}
+
+		/*$('#contentTree').on(
 			'ready.jstree',
 			function () {
 				var idList = $('#contentTree').find('li.topicSelected');
@@ -249,6 +278,6 @@ $(
 				$('#contentTree').jstree('destroy');
 				buildContentTree(newJSONdata, true);
 			}
-		);
+		);*/
 	}
 );
