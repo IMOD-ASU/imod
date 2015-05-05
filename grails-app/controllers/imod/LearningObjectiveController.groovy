@@ -199,13 +199,18 @@ class LearningObjectiveController {
 		}
 		contents = new groovy.json.JsonBuilder(contents).toString()
 
-		def text = '<ul id="contentTree">'
+		def text = null
+		
+		if(contentList != null){
+			
+			text = '<ul id="contentTree">'
+	        contentList2.each() {
+	            text += getSubContentHTML(it, currentLearningObjective)
+	        }
 
-        contentList2.each() {
-            text += getSubContentHTML(it, currentLearningObjective)
+	        text += '</ul>'
+
         }
-
-        text += '</ul>'
 
 		[
 			contentList:				contents,
@@ -305,7 +310,7 @@ class LearningObjectiveController {
 			'<i class="fa fa-stack-1x checkbox '+ topicSelected + '" id="select' + currentID + '"></i> ' +
 			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
 
-        text += '<li>' + topicTitle
+        text += '<li data-itemid="' + currentID + '">' + topicTitle
 
         if (current.subContents != null) {
             text += '<ul>'

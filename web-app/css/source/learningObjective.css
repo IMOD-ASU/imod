@@ -349,23 +349,24 @@ input[disabled='disabled'] {
     cursor: move;
 }
 
+#contentTree ul {    
+    border-left: 1px dashed #ccc;
+}
+
 #contentTree ul li{
     list-style-type: none;
     margin-left: 20px;
     margin-right: 20px;
     padding: 5px;
     padding-bottom: 0px;
-    border: 1px solid #ccc;
     margin-bottom: 10px;
     cursor: move;
 }
 
-#contentTree ul li:hover{
-    background: #eee;
-}
-
 #contentTree li.placeholder {
   position: relative;
+  height: 20px;
+  border: 1px dashed #ccc;
 }
 #contentTree li.placeholder:before {
   position: absolute;

@@ -231,6 +231,36 @@ function populateTopics (topicList) {
 	$('#contentTree').jstree('open_all');
 }
 
+function getTreeChildren (list, parents) {
+
+	list.each(function(){
+		
+		var item = {}
+
+		var myItem = $(this);
+
+		item["id"] = myItem.data('itemid');
+		item["isChecked"] = myItem.find('.sub-content-tree')
+									.find('.checkbox')
+									.hasClass('fa-check');
+
+		if($(this).find('> ul > li').length) {
+
+			var childrenArr = [];
+
+			var children = getTreeChildren(myItem.find('> ul > li'), childrenArr);
+			item["child"] = children;
+		} else {
+			item["child"] = null;
+		}
+
+		parents.push(item);
+
+	});
+
+	return parents;
+}
+
 $(
 	function () {
 		/*var jsonData = JSON.parse($('input[name=treeData]').val());
@@ -268,6 +298,16 @@ $(
 				}
 
 				return false;
+			});
+
+			$('#save-content').click(function() {
+
+				var parents = []
+
+				parents = getTreeChildren($('#contentTree > li'), parents);
+
+				console.log(parents);
+
 			});
 		}
 

@@ -46,13 +46,8 @@
 			</span>
 		</fieldset>
 
-
+		<g:if test="${contentList2 != null}">			
 			${contentList2}
-
-		
-
-		<g:if test="${contentList.toString() != '[]'}">
-			<g:hiddenField name="treeData" value='${contentList}' />
 		</g:if>
 		<g:else>
 			Please add a topic.
