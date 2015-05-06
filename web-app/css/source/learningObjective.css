@@ -334,39 +334,46 @@ input[disabled='disabled'] {
 
 /* New Content Tree Plugin */
 .dragged {
-  position: absolute;
-  opacity: 0.5;
-  z-index: 2000;
+    position: absolute;
+    z-index: 2000;
+
+    opacity: 0.5;
 }
 
-#contentTree{
-    list-style-type: none;
+#contentTree {
     padding-left: 20px;
+
+    list-style-type: none;
 }
 
 #contentTree > li {
-    margin-bottom: 20px;    
+    margin-bottom: 20px;
+
     cursor: move;
 }
 
-#contentTree ul {    
-    border-left: 1px dashed #ccc;
+#contentTree ul {
+    border-left: 1px dashed #cccccc;
 }
 
-#contentTree ul li{
-    list-style-type: none;
-    margin-left: 20px;
+#contentTree ul li {
     margin-right: 20px;
-    padding: 5px;
-    padding-bottom: 0px;
     margin-bottom: 10px;
+    margin-left: 20px;
+    padding: 5px;
+    padding-bottom: 0;
+
+    list-style-type: none;
+
     cursor: move;
 }
 
 #contentTree li.placeholder {
     position: relative;
+
     height: 20px;
-    border: 1px dashed #ccc;
+
+    border: 1px dashed #cccccc;
 }
 /*#contentTree li.placeholder:before {
     position: absolute;
@@ -379,18 +386,23 @@ input[disabled='disabled'] {
 }*/
 
 #contentTree li:hover > .delete-topic {
-    display: inline-block; cursor: pointer;
+    display: inline-block;
+
+    cursor: pointer;
 }
 
 #contentTree .checkboxBackground {
     display: inline-block;
+
     width: 17px;
     height: 17px;
-    background-image: url(../../images/checkboxBG.png);
+
     cursor: pointer;
+
+    background-image: url(../../images/checkboxBG.png);
 }
 
-#contentTree .sub-content-tree{
+#contentTree .sub-content-tree {
     cursor: pointer;
 }
 
