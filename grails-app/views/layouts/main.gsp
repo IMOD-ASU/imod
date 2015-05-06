@@ -102,7 +102,7 @@ this is the basic layout with only the IMOD header and footer
 			Copyright &copy; 2015 IMOD&trade;
 		</div>
 
-		<g:if env="developments">
+		<g:if env="development">
 			<!-- automated html style checking -->
 			<g:external dir="bower_components/log" file="log.min.js" defer="defer" />
 			<g:external dir="bower_components/htmlhint/lib" file="htmlhint.js" defer="defer" />

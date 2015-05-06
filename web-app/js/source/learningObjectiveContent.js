@@ -16,7 +16,7 @@ function deleteTopicSubTab (contentIDs) {
 }
 
 // FIXME this function has too many statements
-function refreshTreeValues (currentRow, doRefresh) {
+/*function refreshTreeValues (currentRow, doRefresh) {
 	var contentID = $(currentRow).parent('li').attr('id');
 	var contentNode = $('#contentTree').jstree(true).get_node(contentID);
 	var newJSONdata;
@@ -229,9 +229,9 @@ function populateTopics (topicList) {
 		}
 	);
 	$('#contentTree').jstree('open_all');
-}
+}*/
 
-function getTreeChildren (list, parents) {
+function getTreeChildren (list, parents, idArray) {
 
 	list.each(function(){
 		
@@ -240,16 +240,20 @@ function getTreeChildren (list, parents) {
 		var myItem = $(this);
 
 		item["id"] = myItem.data('itemid');
-		item["isChecked"] = myItem.find('.sub-content-tree')
-									.find('.checkbox')
-									.hasClass('fa-check');
+		item["isChecked"] = myItem
+								.find('.sub-content-tree')
+								.find('.checkbox')
+								.hasClass('fa-check');
+		if(item["isChecked"]){
+			idArray.push(item["id"]);
+		}		
 
 		if($(this).find('> ul > li').length) {
 
 			var childrenArr = [];
+			var children = getTreeChildren(myItem.find('> ul > li'), childrenArr, idArray);
+			item["child"] = children[0];
 
-			var children = getTreeChildren(myItem.find('> ul > li'), childrenArr);
-			item["child"] = children;
 		} else {
 			item["child"] = '';
 		}
@@ -258,7 +262,7 @@ function getTreeChildren (list, parents) {
 
 	});
 
-	return parents;
+	return [parents, idArray];
 }
 
 $(
@@ -284,8 +288,7 @@ $(
 
 				return false;
 
-			});
-			
+			});			
 
 			$('.sub-content-tree').click(function() {
 
@@ -302,19 +305,27 @@ $(
 
 			$('#save-content').click(function() {
 
-				var parents = []
+				var parents = [], idArray = []
 
-				parents = getTreeChildren($('#contentTree > li'), parents);
+				var content = getTreeChildren($('#contentTree > li'), parents, idArray);
 				
+				var obj = {
+					topics: content[0],
+					idArray: content[1],
+					objId: $('input[name=learningObjectiveID]').val()
+				}
 
 				$.ajax({
-					url: '../../content/updateHierarchies',
+					url: '../../content/updateHierarchy',
 					type: 'POST',
 					dataType: 'json',
 					contentType: "application/json; charset=utf-8",
-					data: JSON.stringify(parents),
+					data: JSON.stringify(obj),
+					success: function () {
+						window.location.reload();
+					},
 					error: function (xhr) {
-						// console.log(xhr.responseText);
+						console.log(xhr.responseText);
 					}
 				});
 
