@@ -364,19 +364,19 @@ input[disabled='disabled'] {
 }
 
 #contentTree li.placeholder {
-  position: relative;
-  height: 20px;
-  border: 1px dashed #ccc;
+    position: relative;
+    height: 20px;
+    border: 1px dashed #ccc;
 }
-#contentTree li.placeholder:before {
-  position: absolute;
-  width: 8px; 
-  height: 8px;
-  top: -8px;
-  left: 0;
-  background: url(../../images/arrow-small.png);
-  content: "";
-}
+/*#contentTree li.placeholder:before {
+    position: absolute;
+    width: 8px; 
+    height: 8px;
+    top: -8px;
+    left: 0;
+    background: url(../../images/arrow-small.png);
+    content: "";
+}*/
 
 #contentTree li:hover > .delete-topic {
     display: inline-block; cursor: pointer;
