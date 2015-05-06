@@ -1,6 +1,6 @@
 'use strict';
 
-function updateDatePicker () {
+function updateDatePicker() {
 	$('input[value="date.struct"]:hidden').each(
 		function () {
 			var dateFormat = 'dd/mm/yy';
@@ -44,8 +44,7 @@ function updateDatePicker () {
 							$(selectDay).val('');
 							$(selectMonth).val('');
 							$(selectYear).val('');
-						}
-						else {
+						} else {
 							$(selectDay).val(date.getDate());
 							$(selectMonth).val(date.getMonth() + 1);
 							$(selectYear).val(date.getFullYear());
@@ -73,8 +72,7 @@ function updateDatePicker () {
 							$(selectDay).val('');
 							$(selectMonth).val('');
 							$(selectYear).val('');
-						}
-						else {
+						} else {
 							$(selectDay).val(inst.selectedDay);
 							$(selectMonth).val(inst.selectedMonth + 1);
 							$(selectYear).val(inst.selectedYear);
