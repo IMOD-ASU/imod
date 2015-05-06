@@ -10,7 +10,7 @@ class AssessmentTechnique {
 	String procedure
 	String duration
 	Boolean assigncheck = Boolean.TRUE
-	Boolean favcheck = Boolean.TRUE 
+	Boolean favcheck = Boolean.TRUE
 	AssessmentFeedback assessmentFeedback
 
 	static hasMany = [
@@ -24,8 +24,8 @@ class AssessmentTechnique {
 
 	static belongsTo = [
 		ImodUser,
-		LearningObjective,
-		AssessmentFeedback
+		LearningObjective
+
 	]
 
 	static mapping = {
