@@ -130,7 +130,7 @@
 							<button id="unfavorites">UnFavorites
 							</button>
 
-							<button id="assessment-plan">Assessment Plan
+							<button id="assessment-plan-button">Assessment Plan
 							</button>
 						</span>
 					</div>
@@ -208,7 +208,7 @@
 						<button id="favorites">Favorites
 						</button>
 
-						<button id="instructional-plan">Instructional Plan
+						<button id="assessment-plan-button">Assessment Plan
 						</button>
 					</span>
 				<br/>
@@ -316,7 +316,9 @@
 				<%--Dialog box for Displaying Technique --%>
 				<div id="display-new-technique" title="Display Technique">
 					<%--To render the add new Technique dialog box--%>
-					<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+					<g:form controller="assessmentTechnique" method="post"
+					id="${currentImod.id}"
+					params="[learningObjectiveID: currentLearningObjective.id]">
 					<span><input type="button" value="Edit" id="Edit" />
 					<input type="button" value="View" id="View" />
 					</span><br/>
@@ -384,8 +386,10 @@
 							Learning Domain
 						</label>
 						<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+						<br/>
+						<label>Learning Domain</label>
 
-						<label id="ld" > </label>
+						<label>${} </label>
 						<br />
 
 						<label>
@@ -408,6 +412,36 @@
 						<g:actionSubmit value="Cancel" action="cancel" />
 					</g:form>
 				</div>
+
+				<div id="assessment-plan" >
+					<g:form controller="assessmentTechnique" method="post"
+					id="${currentImod.id}"
+					params="[learningObjectiveID: currentLearningObjective.id]">
+					<label>
+					<h2>Learning Objective </h2>
+				</label><br/>
+				<span>
+					<g:if test="${learningObjectives}">
+					<g:each var="learningObjective" in="${learningObjectives}">
+						<div class="assessment-plan learning-objective">
+						${learningObjective.id} : ${ learningObjective.definition }
+						</div>
+					</g:each>
+					</g:if>
+				</span>
+
+				<div id="assessmentData">
+
+				</div>
+				<br/>
+				<div id='individualAssessments'>
+					<div id='assignTitle'></div>
+					<div id='assignTitle1'></div>
+				</div>
+			</g:form>
+
+				</div>
+
 
 
 		</td>

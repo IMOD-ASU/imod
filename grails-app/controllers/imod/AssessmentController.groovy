@@ -14,6 +14,7 @@ class AssessmentController {
      * @param id
      */
     def index(Long id,  Long learningObjectiveID) {
+
         // get the selected imod
 		def currentImod = Imod.get(id)
 

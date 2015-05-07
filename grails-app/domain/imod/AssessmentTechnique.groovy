@@ -2,7 +2,7 @@ package imod
 
 /**
  * This is the key table,
- * This holds all of the pedagogy parts together
+ * This holds all of the Assessment parts together
  */
 class AssessmentTechnique {
 	String title
