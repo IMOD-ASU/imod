@@ -332,8 +332,63 @@ input[disabled='disabled'] {
     background: red;
 }
 
-#contentTree li.jstree-node:hover .delete-topic {
+/* New Content Tree Plugin */
+.dragged {
+    position: absolute;
+    z-index: 2000;
+
+    opacity: 0.5;
+}
+
+#contentTree {
+    padding-left: 20px;
+
+    list-style-type: none;
+}
+
+#contentTree > li {
+    margin-bottom: 20px;
+
+    cursor: move;
+}
+
+#contentTree ul {
+    border-left: 1px dashed #cccccc;
+}
+
+#contentTree ul li {
+    margin-right: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    padding: 5px;
+    padding-bottom: 0;
+
+    list-style-type: none;
+
+    cursor: move;
+}
+
+#contentTree li.placeholder {
+    position: relative;
+
+    height: 20px;
+
+    border: 1px dashed #cccccc;
+}
+/*#contentTree li.placeholder:before {
+    position: absolute;
+    width: 8px; 
+    height: 8px;
+    top: -8px;
+    left: 0;
+    background: url(../../images/arrow-small.png);
+    content: "";
+}*/
+
+#contentTree li:hover > .delete-topic {
     display: inline-block;
+
+    cursor: pointer;
 }
 
 #contentTree .checkboxBackground {
@@ -342,8 +397,15 @@ input[disabled='disabled'] {
     width: 17px;
     height: 17px;
 
+    cursor: pointer;
+
     background-image: url(../../images/checkboxBG.png);
 }
+
+#contentTree .sub-content-tree {
+    cursor: pointer;
+}
+
 #contentTree .rootNode {
     font-weight: bold;
 }
