@@ -1,58 +1,30 @@
 .favDiv{
 
-    display : none;
+    visibility : hidden;
+    display: none
 
 }
 
 #unfavorites{
 
-    display:none;
+    display : none;
 }
 
 #assessmentFavorites{
 
+    visibility : hidden;
     display : none;
-
 }
 
 #assessmentFavoritesDiv{
 
+    visibility : hidden;
     display : none;
 }
 
 
 .assessmentTechButtons{
-    margin: 1em;
-    padding: 20px;
 
-    list-style-type: none;
-    /*prevent text selecting for better user interface while clicking
-    the buttons*/
-
-    user-select: none;
-
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    border: 1px solid #d3d3d3;
-    color: #555555;
-    font-weight: normal;
-
-    width:100px;
-    height:100px;
-    cursor: pointer;
-    display: inline-block;
-    line-height: normal;
-    margin-right: 0.1em;
-    overflow: visible;
-    padding: 0;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #ffffcc;
-    background-image: url('../../images/unfav.png'),url('../../images/unassign.png');
-    background-repeat: no-repeat, no-repeat;
-    background-position:left top,  right top;
 }
 
 

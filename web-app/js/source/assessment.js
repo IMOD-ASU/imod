@@ -7,26 +7,28 @@ filterAssessmentTechniques();
 $('#filter-assessment-techniques').accordion();
 
 
-
-$('#assessment-plan').click(function(){
-
-
-});
-
 $('#favorites').click(function(){
-	$('.favDiv').show();
-	$('#assessmentFavorites').show();
-	$('#assessmentFavoritesDiv').show();
+	$('.favDiv').css('visibility', 'visible');
+	$('.favDiv').css('display', 'block');
+	$('#assessmentFavorites').css('visibility', 'visible');
+	$('#assessmentFavorites').css('display', 'block');
+	$('#assessmentFavoritesDiv').css('visibility', 'visible');
+	$('#assessmentFavoritesDiv').css('display', 'block');
 
 	$('#favorites').hide();
 
 	$('#unfavorites').show();
+
+
 });
 
 $('#unfavorites').click(function(){
-	$('.favDiv').hide();
-	$('#assessmentFavorites').hide();
-	$('#assessmentFavoritesDiv').hide();
+	$('.favDiv').css('visibility', 'hidden');
+	$('.favDiv').css('display', 'none');
+	$('#assessmentFavorites').css('visibility', 'hidden');
+	$('#assessmentFavorites').css('display', 'none');
+	$('#assessmentFavoritesDiv').css('visibility', 'hidden');
+	$('#assessmentFavoritesDiv').css('display', 'none');
 
 	$('#favorites').show();
 
@@ -104,66 +106,153 @@ function filterAssessmentTechniques() {
 			url: '../findMatchingTechniques',
 			method: 'post',
 			data: JSON.stringify(data),
-			success: function(data) {
+		/*	success: function(data) {
 				getFavorites(data);
-			},
+			},*/
 			contentType: 'application/json'
 		})
 		.done(displayAssessmentTechniques, showAssessmentTechnique, checkForAssign);
 }
 
-//$(document).ready(checkForAssign());
-
-
 function checkForAssign(data) {
     // Your code
 
-	alert(data.idealAssessmentTechniqueMatch.length);
 
 for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+	var currentTechnique = data.idealAssessmentTechniqueMatch[index];
 
-	if(currentTechnique.assigncheck == true){
+	alert("this is Assign Check with Ideal Number of techs: "+currentTechnique.id);
 
-		alert("parent ::: "+$("#"+currentTechnique.id).val());
+	if(currentTechnique.assigncheck == true && currentTechnique.favcheck == false){
 
-//	alert("parent ::: "+$("#"+currentTechnique.id).parent("#ideal-matches").attr('class'));
+		alert("assignCheck IDEAL TRUE FALSE "+$("#span-"+currentTechnique.id).val());
 
-	$("#span-"+currentTechnique.id).addClass('icons assessmentassign');
+	$("#span-"+currentTechnique.id).addClass('icons assessmentUnfavAssign');
+
+	}
+	else if(currentTechnique.assigncheck == true && currentTechnique.favcheck == true){
+
+		alert("assignCheck IDEAL TRUE TRUE "+$("#span-"+currentTechnique.id).val());
+
+	$("#span-"+currentTechnique.id).addClass('icons assessmentFavAssign');
+
+	}
+	else if(currentTechnique.assigncheck == false && currentTechnique.favcheck == true){
+
+		alert("assignCheck IDEAL FALSE TRUE "+$("#span-"+currentTechnique.id).val());
+
+	$("#span-"+currentTechnique.id).addClass('icons assessmentFavUnassign');
+
+	}
+	else if(currentTechnique.assigncheck == false && currentTechnique.favcheck == false){
+
+		alert("assignCheck IDEAL FALSE FALSE "+$("#span-"+currentTechnique.id).val());
+
+	$("#span-"+currentTechnique.id).addClass('icons assessmentUnfavUnassign');
 
 	}
 }
+
+
+for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+
+		alert("This is AssignCheck extended alert for  tech :"+currentTechnique.id)
+
+	if(currentTechnique.assigncheck == true && currentTechnique.favcheck == false){
+
+	alert("assignCheck EXT TRUE FALSE: "+$('#span-'+currentTechnique.id).val());
+
+	$('#span-'+currentTechnique.id).addClass('icons assessmentUnfavAssign');
+
+	}
+	else if(currentTechnique.assigncheck == true && currentTechnique.favcheck == true){
+
+	alert("assignCheck EXT TRUE TRUE : "+$("#span-"+currentTechnique.id).val());
+
+	$('#span-'+currentTechnique.id).addClass('icons assessmentFavAssign');
+
+	}
+	else if(currentTechnique.assigncheck == false && currentTechnique.favcheck == true){
+
+		alert("assignCheck ext FALSE TRUE "+$("#span-"+currentTechnique.id).val());
+
+	$("#span-"+currentTechnique.id).addClass('icons assessmentFavUnassign');
+
+	}
+	else if(currentTechnique.assigncheck == false && currentTechnique.favcheck == false){
+
+		alert("assignCheck ext FALSE FALSE "+$("#span-"+currentTechnique.id).val());
+
+	$("#span-"+currentTechnique.id).addClass('icons assessmentUnfavUnassign');
+
+	}
+}
+
+
 
 }
 
 function getFavorites(data){
 
-	//alert(data.idealAssessmentTechniqueMatch.length);
-
-var favText='';
 
 for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		var currentIdeal = data.idealAssessmentTechniqueMatch[index];
+	var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+
+	//	alert("get FAV alert Ideal: "+	$("#span-"+currentTechnique.id).val());
 
 
-		if(currentIdeal.favcheck == true ){
+		if(currentTechnique.favcheck == true  && currentTechnique.assigncheck == false){
 
-		favText += '<input  type="radio" id="2'
-		+ currentIdeal.id + '" name="assessmentTech1" value="'
-		+ currentIdeal.id + '"><span id="span1-'+currentIdeal.id+'" class="icons"><label for="'
-		+ currentIdeal.id + '">'
-		+ currentIdeal.title +'</label></span></input>';
+
+
+			alert("get FAV alert Ideal TRUE TRUE: "+currentTechnique.id);
+
+		//	$("#span-"+currentTechnique.id).attr("id","#span1-"+currentTechnique.id )
+		$("#span1-"+currentTechnique.id).addClass('icons assessmentFavUnassign');
+
 
 		}
+
+		else if(currentTechnique.favcheck == true  && currentTechnique.assigncheck == true){
+
+
+			alert("get FAV alert Ideal TRUE TRUE: "+currentTechnique.id);
+
+		//	$("#span-"+currentTechnique.id).attr("id","#span1-"+currentTechnique.id )
+		$("#span1-"+currentTechnique.id).addClass('icons assessmentFavAssign');
+
+
+			}
+
 
 
 	}
 
-			$('#assessmentFavoritesDiv').html(favText);
-			$('#assessmentFavoritesDiv').buttonset();
+
+	for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+
+			var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
 
 
-				$("#span1-"+currentIdeal.id).addClass('icons assessmentassign');
+			if(currentTechnique.favcheck == true  && currentTechnique.assigncheck == true){
+
+
+
+			$("#span1-"+currentTechnique.id).addClass('icons assessmentFavUnassign');
+
+
+			}
+			else if(currentTechnique.favcheck == true   && currentTechnique.assigncheck == true){
+
+
+			$("#span1-"+currentTechnique.id).addClass('icons assessmentFavAssign');
+
+
+			}
+
+
+		}
 
 
 }
@@ -177,7 +266,7 @@ function showAssessmentTechnique(data){
 
 	});
 
-	$('#ideal-matches1').click(function() {
+	$('#ideal-matches1').buttonset().click(function() {
 		$('#display-new-technique').dialog('open');
 		displayAssessmentInformationInEdit();
 
@@ -196,55 +285,125 @@ function showAssessmentTechnique(data){
  * this takes the json data and processes it into html code
  */
 function displayAssessmentTechniques(data) {
-	var idealText = '';
-	// take the titles and make html code to display
-	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
-
-					idealText += '<input type="radio" id="'
-					+ currentTechnique.id + '" name="assessmentTech" value="'
-					+ currentTechnique.id + '"><label for="' + currentTechnique.id + '">'
-					+ currentTechnique.title + '</label>';
-
-
-	}
-
 
 	var idealText1 = '';
 	// take the titles and make html code to display
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
 
-					idealText1 += '<input  type="radio" id="1'
+					idealText1 += '<input  type="radio" id="'
 					+ currentTechnique.id + '" name="assessmentTech1" value="'
-					+ currentTechnique.id + '"><span id="span-'+currentTechnique.id+'" class="icons"><label for="' + currentTechnique.id
+					+ currentTechnique.id + '"><span id="span-'
+					+currentTechnique.id+'" class="icons"><label for="' + currentTechnique.id
+					+ '">'
+					+ currentTechnique.title +'</label></span></input>';
+
+
+
+	}
+
+	var idealText2 = '';
+	// take the titles and make html code to display
+	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+
+		if(currentTechnique.favcheck == true){
+
+			if(currentTechnique.assigncheck == true){
+
+				idealText2 += '<input  type="radio" id="fav'
+				+ currentTechnique.id + '" name="assessmentTech1" value="'
+				+ currentTechnique.id + '"><span id="span1-'
+				+currentTechnique.id+'" class="icons assessmentFavAssign"><label for="' + currentTechnique.id
+				+ '">'
+				+ currentTechnique.title +'</label></span></input>';
+
+			}
+			else if(currentTechnique.assigncheck == false){
+
+				idealText2 += '<input  type="radio" id="fav'
+				+ currentTechnique.id + '" name="assessmentTech1" value="'
+				+ currentTechnique.id + '"><span id="span1-'
+				+currentTechnique.id+'" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id
+				+ '">'
+				+ currentTechnique.title +'</label></span></input>';
+
+			}
+
+		}//main if
+
+
+		$('#assessmentFavoritesDiv').html(idealText2);
+		$('#assessmentFavoritesDiv').buttonset();
+	}
+
+
+
+	var extendedText = '';
+	// take the titles and make html code to display
+	for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+
+
+
+					extendedText += '<input  type="radio" id="'
+					+ currentTechnique.id + '" name="assessmentTech1" value="'
+					+ currentTechnique.id + '"><span id="span-'
+					+currentTechnique.id+'" class="icons"><label for="' + currentTechnique.id
 					+ '">'
 					+ currentTechnique.title +'</label></span></input>';
 
 
 	}
 
-	var extendedText = '';
+
+	var extendedText2 = '';
 	// take the titles and make html code to display
-	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		extendedText += '<input type="radio" id="'
-		+ currentTechnique.id + '" name="assessmentTech" value="'
-		+ currentTechnique.id + '"><label for="' + currentTechnique.id
-		+ '">' + currentTechnique.title + '</label>';
+	for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+
+
+		if(currentTechnique.favcheck == true){
+			if(currentTechnique.assigncheck == true){
+
+				extendedText2 += '<input  type="radio" id="fav'
+				+ currentTechnique.id + '" name="assessmentTech1" value="'
+				+ currentTechnique.id + '"><span id="span1-'
+				+currentTechnique.id+'" class="icons assessmentFavAssign "><label for="' + currentTechnique.id
+				+ '">'
+				+ currentTechnique.title +'</label></span></input>';
+			}
+
+			else if(currentTechnique.assigncheck == false){
+
+				extendedText2 += '<input  type="radio" id="'
+				+ currentTechnique.id + '" name="assessmentTech1" value="fav'
+				+ currentTechnique.id + '"><span id="span1-'
+				+currentTechnique.id+'" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id
+				+ '">'
+				+ currentTechnique.title +'</label></span></input>';
+			}
+
+		}//main if
+
+
+				$('#assessmentFavoritesDiv1').html(extendedText2);
+				$('#assessmentFavoritesDiv1').buttonset();
+
 	}
 
+
 	// add html code to the page
-	$('#ideal-matches').html(idealText);
+
 	$('#ideal-matches1').html(idealText1);
 	$('#extended-matches').html(extendedText);
 
 
 
-	$('#ideal-matches').buttonset();
+
 	$('#ideal-matches1').buttonset();
 	$('#extended-matches').buttonset();
-
+//	$('#assessmentFavoritesDiv').buttonset();
 }
 
 
@@ -269,7 +428,7 @@ for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) 
 
 */
 
-function displayAssessmentInformationInEdit() {
+function displayAssessmentInformationInEdit(data) {
 	$('#techniqueId1').val($('label.ui-state-active').attr('for'));
 
 
@@ -283,19 +442,15 @@ function displayAssessmentInformationInEdit() {
 function populateAssessmentTechnique(data) {
 	var currentTechnique = data.assessmentTechnique;
 
+	for (var index = 0; index < data.assessmentTechnique.length; index++) {
+
+		alert("alert"+data.assessmentTechnique.id);
+	}
+
+
+
+
 //	alert("current tech params :::: assign :   "+ currentTechnique.assigncheck+" favorite :  "+currentTechnique.favcheck);
-
-
-	if(currentTechnique.assigncheck == false){
-	//	alert("goes here in save1 function");
-	//	$("input[name='assessmentTech']").removeClass( "icons ui-state-default" ).addClass("icons assessmentassign");
-	//	$('.icons input[value="' +currentTechnique.id+ '"]').removeClass( "icons ui-state-default" ).addClass("icons assessmentassign");
-
-	}
-
-	if(currentTechnique.favcheck == false){
-		//alert("brbrbbrbr");
-	}
 
 	// set the text fields
 	$('#title1').val(currentTechnique.title);
@@ -310,6 +465,8 @@ function populateAssessmentTechnique(data) {
 	$("input[name='duration1']").val(currentTechnique.duration);
 	$("input[name='duration2']").val(currentTechnique.duration);
 
+//	alert("this is the learning domain chosen"+ currentTechnique.id);
+
 
 	$("input[name='assessmentFeedback1']").val(currentTechnique.assessmentFeedback);
 
@@ -320,10 +477,11 @@ function populateAssessmentTechnique(data) {
 	));
 
 
-
-	$('#learningDomain option[value=' + currentTechnique.learningDomain[0].id+ ']').prop('selected', true).val();
-	//alert("this is the display alert to return value"+ ld);
+//alert($('#learningDomain option[value=' + currentTechnique.learningDomain.id + ']').text());
+		//alert("this is the display alert to return value"+ ld);
 	$('#domainCategory option[value=' + currentTechnique.domainCategory[0].id + ']').prop('selected', true);
+
+
 
 	$( ".allInputs" ).hide();
 

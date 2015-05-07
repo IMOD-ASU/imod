@@ -156,16 +156,17 @@
 						${selectionLine}
 					</div>
 
-					<h3 title="" class="showHover">
+			<!--		<h3 title="" class="showHover">
 						Ideal Match
 					</h3>
 					<div id="ideal-matches" class="icons">
 
 
 					</div>
+				-->
 
 					<h3 title="" class="showHover">
-						Ideal matches1
+						Ideal matches
 					</h3>
 					<div id="ideal-matches1" class="AllMatches">
 
@@ -177,14 +178,21 @@
 						Favorites
 					</h3>
 
-					<div id="assessmentFavoritesDiv" class="AllMatches" ></div>
+					<div id="assessmentFavoritesDiv" class="AllMatches"  >
+
+					</div><div id="assessmentFavoritesDiv1" class="AllMatches"  >
+
+					</div>
+
 					</div>
 
 					<h3 title="" class="showHover">
 						Extended Match
 					</h3>
 
-					<div id="extended-matches" class="icons"></div>
+					<div id="extended-matches" class="AllMatches">
+
+					</div>
 				</div>
 				</g:if>
 				<g:else>
@@ -376,6 +384,8 @@
 							Learning Domain
 						</label>
 						<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+
+						<label id="ld" > </label>
 						<br />
 
 						<label>
