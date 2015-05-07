@@ -70,7 +70,7 @@ $('#assessment-plan-button').on('click', openAssessmentPlanModal);
  */
 function openAssessmentPlanModal() {
 
-		alert ("click calls the displayAssessmentPlan fucntion with ajax data");
+	//	alert ("click calls the displayAssessmentPlan fucntion with ajax data");
 
 	$('#assessment-plan').dialog('open');
 	$('#assessment-plan').dialog(
@@ -252,7 +252,7 @@ for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) 
 
 
 
-			alert("get FAV alert Ideal TRUE TRUE: "+currentTechnique.id);
+		//	alert("get FAV alert Ideal TRUE TRUE: "+currentTechnique.id);
 
 		//	$("#span-"+currentTechnique.id).attr("id","#span1-"+currentTechnique.id )
 		$("#span1-"+currentTechnique.id).addClass('icons assessmentFavUnassign');
@@ -263,7 +263,7 @@ for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) 
 		else if(currentTechnique.favcheck == true  && currentTechnique.assigncheck == true){
 
 
-			alert("get FAV alert Ideal TRUE TRUE: "+currentTechnique.id);
+		//	alert("get FAV alert Ideal TRUE TRUE: "+currentTechnique.id);
 
 		//	$("#span-"+currentTechnique.id).attr("id","#span1-"+currentTechnique.id )
 		$("#span1-"+currentTechnique.id).addClass('icons assessmentFavAssign');
