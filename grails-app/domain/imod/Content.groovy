@@ -132,6 +132,10 @@ class Content {
 		return priorityList
 	}
 
+	String toString() {
+	    return topicTitle
+	}
+
 	/**
 	 * [checkRecursion description]
 	 * @param  currentContent [description]
@@ -149,6 +153,5 @@ class Content {
 		else{
 			return checkRecursion(currentContent.parentContent, contentToAdd, errors)
 		}
-
 	}
 }

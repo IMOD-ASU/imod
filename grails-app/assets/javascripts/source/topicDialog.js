@@ -4,95 +4,6 @@ var errorMessages = [];
 var isFlashing = null;
 var content = '';
 
-$(function() {
-	// attach event listeners
-	$('#addTopicModal').click(showTopicDialog);
-	$('#addTopic').click(addTopic);
-	$('#saveTopic').click(saveTopic);
-	$('#cancelTopic').click(function() {
-		revertChanges();
-		hideTopicDialog();
-	});
-	$('.knowledgeDimensionButton').click(openDimModal);
-	$('#knowDimFinished').click(closeDimModal);
-	$('.ResourceButton').click(openResourceModal);
-	$('#addResource').click(function() {
-		addResource();
-	});
-	$('#cancelResource').click(closeResourceModal);
-	$('#saveResource').click(saveResource);
-	$('#removeResource').click(function() {
-
-		var resourceIDs = [];
-		$('#resourceList .selected').each(function() {
-			resourceIDs.push(this.id);
-		});
-		deleteResource(resourceIDs);
-	});
-	$('#removeTopic').click(function() {
-		var contentIDs = [];
-		$('#topicList .selected').each(function() {
-			contentIDs.push(this.id);
-		});
-		deleteTopic(contentIDs);
-	});
-
-	// $('#topicList > tbody').on('click', 'tr', toggleSelected);
-	$('#topicList').on('click', '.saveIcon', function() {
-		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-		$(this).parent().toggleClass('selected');
-	});
-
-	$('.saveIcon-parent').click(function() {
-		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-
-		if ($(this).find("i").hasClass('fa-square-o')) {
-
-			$(this).parents('table')
-				.find('tbody')
-				.find('tr')
-				.removeClass('selected')
-				.find('.saveIcon')
-				.find('> i')
-				.removeClass('fa-check-square')
-				.addClass('fa-square-o');
-
-		} else {
-
-			$(this).parents('table')
-				.find('tbody')
-				.find('tr')
-				.addClass('selected')
-				.find('.saveIcon')
-				.find('> i')
-				.removeClass('fa-square-o')
-				.addClass('fa-check-square');
-
-		}
-
-		return false;
-	});
-
-
-	// $('#resourceList > tbody').on('click', 'tr', toggleSelected);
-	$('#resourceList').on('click', '.saveIcon', function() {
-		$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-		$(this).toggleClass('selected');
-	});
-
-
-	$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
-	$('#topicList > tbody').on('change', 'input', function() {
-		var id = $(this).parents('tr .topicItem').attr('id');
-		highlightUnsaved(id);
-	});
-	$('#topicList > tbody').on('change', 'select', function() {
-		var id = $(this).parents('tr .topicItem').attr('id');
-		highlightUnsaved(id);
-	});
-
-});
-
 function showTopicDialog() {
 	$('#topicDialogBackground').css('display', 'block');
 	$('#topicDialog').css('display', 'block');
@@ -101,17 +12,7 @@ function showTopicDialog() {
 function hideTopicDialog() {
 	$('#topicDialogBackground').css('display', 'none');
 	$('#topicDialog').css('display', 'none');
-
 }
-
-function errorMessage(message) {
-	errorMessages.push(message);
-	if (isFlashing === null) {
-		flashError();
-		isFlashing = setInterval(flashError, 4000);
-	}
-}
-
 
 function flashError() {
 	var message = errorMessages.shift();
@@ -122,7 +23,7 @@ function flashError() {
 		.fadeOut(
 			'slow',
 			'swing',
-			function() {
+			function () {
 				if (errorMessages.length === 0) {
 					clearInterval(isFlashing);
 					isFlashing = null;
@@ -131,13 +32,23 @@ function flashError() {
 		);
 }
 
-function changePic(imageToChange) {
+function errorMessage(message) {
+	errorMessages.push(message);
+	if (isFlashing === null) {
+		flashError();
+		isFlashing = setInterval(flashError, 4000);
+	}
+}
+
+function changePic() {
 	var iconName = '';
-	$('#selectKnowledgeDimensions').find('input:checkbox').each(function() {
-		if ($(this).prop('checked')) {
-			iconName = iconName + $(this).val().charAt(0);
+	$('#selectKnowledgeDimensions').find('input:checkbox').each(
+		function () {
+			if ($(this).prop('checked')) {
+				iconName = iconName + $(this).val().charAt(0);
+			}
 		}
-	});
+	);
 	if (iconName === '') {
 		iconName = $('#imgNone').attr('href');
 	} else {
@@ -146,6 +57,7 @@ function changePic(imageToChange) {
 	$('#dimImage').attr('src', iconName);
 }
 
+// TODO is this function unused?
 function toggleSelected(event) {
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
 		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
@@ -160,20 +72,24 @@ function closeDimModal() {
 	var background = $('#selectKnowledgeDimensionBackground');
 	var contentDimensions = $('#knowDimensionList' + contentID);
 
-	$(this).siblings('span').find('input').each(function() {
-		if (this.checked) {
-			dimensions.push($(this).val());
+	$(this).siblings('span').find('input').each(
+		function () {
+			if (this.checked) {
+				dimensions.push($(this).val());
+			}
 		}
-	});
+	);
 	if (dimensions.length === 0) {
 		dimensions = '';
 	} else {
 		dimensions = dimensions.toString();
 	}
 	$('#topicID').val('');
-	dialog.find('input:checkbox').each(function() {
-		$(this).prop('checked', false);
-	});
+	dialog.find('input:checkbox').each(
+		function () {
+			$(this).prop('checked', false);
+		}
+	);
 
 	if (contentDimensions.val() !== dimensions) {
 		contentDimensions.val(dimensions);
@@ -206,6 +122,54 @@ function openDimModal() {
 	background.css('display', 'block');
 }
 
+function getResource() {
+	var contentID = content.split('topicResources');
+	contentID = contentID[1];
+	var resourceDiv = $('#resourceList tbody');
+	resourceDiv.html('');
+	var resourceOptions = '';
+	$.ajax({
+		url: '../../content/getResource',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			contentID: contentID
+		},
+		success: function (data) {
+			var resources = data.resources;
+			var resourceTypes = data.resourceTypes;
+			for (var i = 0; i < resourceTypes.length; i++) {
+				resourceOptions += '<option value="' + resourceTypes[i] + '">' + resourceTypes[i] + '</option>';
+			}
+			$.each(resources, function (key, value) {
+				var id = value.id;
+				// FIXME move html out of JS
+				$('<tr id="' + id + '" class="resourceItem">' +
+					'<td class="saveIcon">' +
+					'<i class="fa fa-square-o"></i>' +
+					'</td><td class="resourceName">' +
+					'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
+					'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
+					'</td><td class="resourceDescription">' +
+					'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
+					'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
+					'</td><td class="resourceType">' +
+					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '"> ' +
+					resourceOptions +
+					'</select> ' +
+
+					'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
+					'</td></tr>'
+				).appendTo(resourceDiv);
+				$('#resourceType' + id).val(value.resourceType);
+			});
+		},
+		error: function (xhr) {
+			alert(xhr.responseText);
+		}
+	});
+}
+
 function openResourceModal() {
 	content = this.id;
 	$('#selectResource').css('display', 'inherit');
@@ -216,7 +180,6 @@ function openResourceModal() {
 function closeResourceModal() {
 	$('#selectResourceBackground').css('display', 'none');
 	$('#selectResource').css('display', 'none');
-
 }
 
 function highlightUnsaved(id) {
@@ -232,10 +195,12 @@ function deleteTopic(contentIDs) {
 		data: {
 			contentIDs: contentIDs
 		},
-		success: function(data) {
-			data.result.forEach(function(element) {
-				$('#' + element).remove();
-			});
+		success: function (data) {
+			data.result.forEach(
+				function (element) {
+					$('#' + element).remove();
+				}
+			);
 		}
 	});
 }
@@ -245,33 +210,35 @@ function saveTopic() {
 	var contentData = [];
 	var hasError = false;
 	var topicList = [];
-	$('#topicList tbody tr').each(function() {
-		var contentID = this.id;
-		var topicTitle = $('#topicTitle' + contentID).val();
-		var dimensions = $('#knowDimensionList' + contentID).val();
-		var priority = $('#topicPriority' + contentID).val();
-		var preReq = $('#topicPreReq' + contentID).is(':checked');
-		if (dimensions === '') {
-			errorMessage('Topic: ' + topicTitle + ' must have a Knowledge Dimension!');
-			hasError = true;
+	$('#topicList tbody tr').each(
+		function () {
+			var contentID = this.id;
+			var topicTitle = $('#topicTitle' + contentID).val();
+			var dimensions = $('#knowDimensionList' + contentID).val();
+			var priority = $('#topicPriority' + contentID).val();
+			var preReq = $('#topicPreReq' + contentID).is(':checked');
+			if (dimensions === '') {
+				errorMessage('Topic: ' + topicTitle + ' must have a Knowledge Dimension!');
+				hasError = true;
+			}
+			if (topicTitle === '') {
+				errorMessage('Topic title is required');
+				hasError = true;
+			}
+			topicList.push({
+				contentID: contentID,
+				dimensions: dimensions,
+				topicTitle: topicTitle
+			});
+			contentData.push({
+				contentID: contentID,
+				dimensions: dimensions,
+				priority: priority,
+				preReq: preReq,
+				topicTitle: topicTitle
+			});
 		}
-		if (topicTitle === '') {
-			errorMessage('Topic title is required');
-			hasError = true;
-		}
-		topicList.push({
-			contentID: contentID,
-			dimensions: dimensions,
-			topicTitle: topicTitle
-		});
-		contentData.push({
-			contentID: contentID,
-			dimensions: dimensions,
-			priority: priority,
-			preReq: preReq,
-			topicTitle: topicTitle
-		});
-	});
+	);
 	if (hasError) {
 		return;
 	}
@@ -284,55 +251,12 @@ function saveTopic() {
 			id: imodID,
 			JSONData: contentData
 		},
-		success: function() {
+		success: function () {
 			location.reload();
 		},
-		error: function(xhr) {
+		error: function (xhr) {
 			alert(xhr.responseText);
 		}
-	});
-
-}
-
-function refreshSaves() {
-	$('#topicList tbody tr').each(function() {
-		var rowData = getTopicSavedItems(this);
-		$(rowData.titleSaved).val($(rowData.title).val());
-		$(rowData.dimensionsSaved).val($(rowData.dimensions).val());
-		$(rowData.prioritySaved).val($(rowData.priority).val());
-		$(rowData.preReqSaved).val($(rowData.preReq).val());
-	});
-}
-
-function revertChanges() {
-	$('#topicList tbody tr').each(function() {
-		var rowData = getTopicSavedItems(this);
-		var dimensions = [];
-		var dimensionShort = '';
-		var icon = '';
-		var contentIDs = [];
-
-		if ($(rowData.dimensionsSaved).val() === '') {
-			contentIDs.push(this.id);
-		} else {
-			$(rowData.title).val($(rowData.titleSaved).val());
-			$(rowData.dimensions).val($(rowData.dimensionsSaved).val());
-			$(rowData.priority).val($(rowData.prioritySaved).val());
-			$(rowData.preReq).val($(rowData.preReqSaved).val());
-			$('#' + this.id).removeClass('unsaved');
-			dimensions = $(rowData.dimensions).val().split(',');
-			$(dimensions).each(function() {
-				dimensionShort += this.charAt(0);
-			});
-			if (dimensionShort === '') {
-				icon = $('#imgNone').attr('href');
-			} else {
-				icon = $('#img' + dimensionShort).attr('href');
-			}
-			$(rowData.dimensions).siblings('img').attr('src', icon);
-		}
-		deleteTopic(contentIDs);
-
 	});
 }
 
@@ -351,6 +275,54 @@ function getTopicSavedItems(currentRow) {
 	return rowData;
 }
 
+// TODO is the function unused?
+function refreshSaves() {
+	$('#topicList tbody tr').each(
+		function () {
+			var rowData = getTopicSavedItems(this);
+			$(rowData.titleSaved).val($(rowData.title).val());
+			$(rowData.dimensionsSaved).val($(rowData.dimensions).val());
+			$(rowData.prioritySaved).val($(rowData.priority).val());
+			$(rowData.preReqSaved).val($(rowData.preReq).val());
+		}
+	);
+}
+
+function revertChanges() {
+	$('#topicList tbody tr').each(
+		function () {
+			var rowData = getTopicSavedItems(this);
+			var dimensions = [];
+			var dimensionShort = '';
+			var icon = '';
+			var contentIDs = [];
+
+			if ($(rowData.dimensionsSaved).val() === '') {
+				contentIDs.push(this.id);
+			} else {
+				$(rowData.title).val($(rowData.titleSaved).val());
+				$(rowData.dimensions).val($(rowData.dimensionsSaved).val());
+				$(rowData.priority).val($(rowData.prioritySaved).val());
+				$(rowData.preReq).val($(rowData.preReqSaved).val());
+				$('#' + this.id).removeClass('unsaved');
+				dimensions = $(rowData.dimensions).val().split(',');
+				$(dimensions).each(
+					function () {
+						dimensionShort += this.charAt(0);
+					}
+				);
+				if (dimensionShort === '') {
+					icon = $('#imgNone').attr('href');
+				} else {
+					icon = $('#img' + dimensionShort).attr('href');
+				}
+				$(rowData.dimensions).siblings('img').attr('src', icon);
+			}
+			deleteTopic(contentIDs);
+		}
+	);
+}
+
 function addTopic() {
 	var imodID = $('#imodID').val();
 	$.ajax({
@@ -360,7 +332,7 @@ function addTopic() {
 		data: {
 			id: imodID
 		},
-		success: function(data) {
+		success: function (data) {
 			var dimensions = data.dimensions;
 			var priorities = data.priorities;
 			var id = data.id;
@@ -411,7 +383,7 @@ function addTopic() {
 			$('.knowledgeDimensionButton').click(openDimModal);
 			$('.ResourceButton').click(openResourceModal);
 		},
-		error: function(xhr) {
+		error: function (xhr) {
 			alert(xhr.responseText);
 		}
 	});
@@ -427,7 +399,7 @@ function addResource() {
 		data: {
 			contentID: contentID
 		},
-		success: function(data) {
+		success: function (data) {
 			var id = data.id;
 			var resources = data.resources;
 			var resourceOptions = '';
@@ -453,56 +425,7 @@ function addResource() {
 				'</td></tr>'
 			).appendTo(resourceDiv);
 		},
-		error: function(xhr) {
-			alert(xhr.responseText);
-		}
-	});
-}
-
-function getResource() {
-	var contentID = content.split('topicResources');
-	contentID = contentID[1];
-	var resourceDiv = $('#resourceList tbody');
-	resourceDiv.html('');
-	var resourceOptions = '';
-	$.ajax({
-		url: '../../content/getResource',
-		type: 'GET',
-		dataType: 'json',
-		data: {
-			contentID: contentID
-		},
-		success: function(data) {
-			var resources = data.resources;
-			var resourceTypes = data.resourceTypes;
-			for (var i = 0; i < resourceTypes.length; i++) {
-				resourceOptions += '<option value="' + resourceTypes[i] + '">' + resourceTypes[i] + '</option>';
-			}
-			$.each(resources, function(key, value) {
-				var id = value.id;
-				// FIXME move html out of JS
-				$('<tr id="' + id + '" class="resourceItem">' +
-					'<td class="saveIcon">' +
-					'<i class="fa fa-square-o"></i>' +
-					'</td><td class="resourceName">' +
-					'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
-					'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
-					'</td><td class="resourceDescription">' +
-					'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
-					'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
-					'</td><td class="resourceType">' +
-					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '"> ' +
-					resourceOptions +
-					'</select> ' +
-
-					'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
-					'</td></tr>'
-				).appendTo(resourceDiv);
-				$("#resourceType" + id).val(value.resourceType);
-			});
-
-		},
-		error: function(xhr) {
+		error: function (xhr) {
 			alert(xhr.responseText);
 		}
 	});
@@ -512,26 +435,28 @@ function saveResource() {
 	var imodID = $('#imodID').val();
 	var resourceData = [];
 	var hasError = false;
-	$("#resourceList tbody tr").each(function() {
-		var resourceID = this.id;
-		var resourceName = $('#resourceName' + resourceID).val();
-		var resourceDescription = $('#resourceDescription' + resourceID).val();
-		var resourceType = $('#resourceType' + resourceID).val();
-		if (resourceDescription === '') {
-			errorMessage('Resource: ' + resourceName + ' must have a Description!');
-			hasError = true;
+	$('#resourceList tbody tr').each(
+		function () {
+			var resourceID = this.id;
+			var resourceName = $('#resourceName' + resourceID).val();
+			var resourceDescription = $('#resourceDescription' + resourceID).val();
+			var resourceType = $('#resourceType' + resourceID).val();
+			if (resourceDescription === '') {
+				errorMessage('Resource: ' + resourceName + ' must have a Description!');
+				hasError = true;
+			}
+			if (resourceName === '') {
+				errorMessage('Resource Name is required');
+				hasError = true;
+			}
+			resourceData.push({
+				resourceID: resourceID,
+				resourceName: resourceName,
+				resourceDescription: resourceDescription,
+				resourceType: resourceType
+			});
 		}
-		if (resourceName === '') {
-			errorMessage('Resource Name is required');
-			hasError = true;
-		}
-		resourceData.push({
-			resourceID: resourceID,
-			resourceName: resourceName,
-			resourceDescription: resourceDescription,
-			resourceType: resourceType
-		});
-	});
+	);
 	if (hasError) {
 		return;
 	}
@@ -544,10 +469,10 @@ function saveResource() {
 			id: imodID,
 			JSONData: resourceData
 		},
-		success: function() {
+		success: function () {
 			closeResourceModal();
 		},
-		error: function(xhr) {
+		error: function (xhr) {
 			alert(xhr.responseText);
 		}
 	});
@@ -562,10 +487,120 @@ function deleteResource(resourceIDs) {
 		data: {
 			resourceIDs: resourceIDs
 		},
-		success: function(data) {
-			data.result.forEach(function(element) {
-				$('#' + element).remove();
-			});
+		success: function (data) {
+			data.result.forEach(
+				function (element) {
+					$('#' + element).remove();
+				}
+			);
 		}
 	});
 }
+
+$(
+	function () {
+		// Attach event listeners
+		$('#addTopicModal').click(showTopicDialog);
+		$('#addTopic').click(addTopic);
+		$('#saveTopic').click(saveTopic);
+		$('#cancelTopic').click(
+			function () {
+				revertChanges();
+				hideTopicDialog();
+			}
+		);
+		$('.knowledgeDimensionButton').click(openDimModal);
+		$('#knowDimFinished').click(closeDimModal);
+		$('.ResourceButton').click(openResourceModal);
+		$('#addResource').click(addResource);
+		$('#cancelResource').click(closeResourceModal);
+		$('#saveResource').click(saveResource);
+		$('#removeResource').click(
+			function () {
+				var resourceIDs = [];
+				$('#resourceList .selected').each(
+					function () {
+						resourceIDs.push(this.id);
+					}
+				);
+				deleteResource(resourceIDs);
+			}
+		);
+		$('#removeTopic').click(
+			function () {
+				var contentIDs = [];
+				$('#topicList .selected').each(
+					function () {
+						contentIDs.push(this.id);
+					}
+				);
+				deleteTopic(contentIDs);
+			}
+		);
+
+		// $('#topicList > tbody').on('click', 'tr', toggleSelected);
+		$('#topicList').on(
+			'click',
+			'.saveIcon',
+			function () {
+				$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+				$(this).parent().toggleClass('selected');
+			}
+		);
+
+		$('.saveIcon-parent').click(
+			function () {
+				$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+
+				if ($(this).find('i').hasClass('fa-square-o')) {
+					$(this).parents('table')
+						.find('tbody')
+						.find('tr')
+						.removeClass('selected')
+						.find('.saveIcon')
+						.find('> i')
+						.removeClass('fa-check-square')
+						.addClass('fa-square-o');
+				} else {
+					$(this).parents('table')
+						.find('tbody')
+						.find('tr')
+						.addClass('selected')
+						.find('.saveIcon')
+						.find('> i')
+						.removeClass('fa-square-o')
+						.addClass('fa-check-square');
+				}
+				return false;
+			}
+		);
+
+		// $('#resourceList > tbody').on('click', 'tr', toggleSelected);
+		$('#resourceList').on(
+			'click',
+			'.saveIcon',
+			function () {
+				$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+				$(this).toggleClass('selected');
+			}
+		);
+
+		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
+		$('#topicList > tbody').on(
+			'change',
+			'input',
+			function () {
+				var id = $(this).parents('tr .topicItem').attr('id');
+				highlightUnsaved(id);
+			}
+		);
+		$('#topicList > tbody').on(
+			'change',
+			'select',
+			function () {
+				var id = $(this).parents('tr .topicItem').attr('id');
+				highlightUnsaved(id);
+			}
+		);
+	}
+);

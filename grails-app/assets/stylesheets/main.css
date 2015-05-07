@@ -844,16 +844,16 @@ p {
 
 @media screen and (max-width: 480px) {
     #status {
-        display: none;
+    	display: none;
     }
 
     #page-body {
-        height: 90%;
-        margin: 0 1em 1em;
+    	height: 90%;
+    	margin: 0 1em 1em;
     }
 
     #page-body h1 {
-        margin-top: 0;
+    	margin-top: 0;
     }
 }
 
@@ -985,6 +985,11 @@ table.inner-table {
 .tab-disabled,
 .tab-disabled a {
     cursor: not-allowed;
+}
+
+.policy-field textarea {
+    width: 95%;
+    min-height: 200px;
 }
 
 img.tab-icon {

@@ -42,7 +42,7 @@ class LearningObjectiveController {
 	def saveDefinition(Long id, Long learningObjectiveID, String pageType) {
 		def currentImod = Imod.get(id)
 		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-		
+
 		selectedLearningObjective.definition = params.customDefinition
 
 		selectedLearningObjective.save()
@@ -66,7 +66,7 @@ class LearningObjectiveController {
 	 */
 	//TODO: add confirmation that the content was successfully saved
 	// FIXME each page should have its own save
-	def save (Long id, Long learningObjectiveID, String pageType){
+	def save (Long id, Long learningObjectiveID, String pageType) {
 		//gets the learning objective to be updated
 		def currentImod = Imod.get(id)
 		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
@@ -76,10 +76,10 @@ class LearningObjectiveController {
 			case 'performance':
 				selectedLearningObjective.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				selectedLearningObjective.performance = params.DCL
-				if(params.actionWord == 'other'){
+				if(params.actionWord == 'other') {
 					selectedLearningObjective.actionWord = params.customActionWord
 				}
-				else{
+				else {
 					selectedLearningObjective.actionWord = params.actionWord
 				}
 				break
@@ -93,9 +93,10 @@ class LearningObjectiveController {
 					selectedLearningObjective.condition = params.customCondition
 				}
 				selectedLearningObjective.hideFromLearningObjectiveCondition = (params.hideCondition == 'on' ? true : false)
-				if(LearningObjective.genericConditions.contains(selectedLearningObjective.condition)){
+				if(LearningObjective.genericConditions.contains(selectedLearningObjective.condition)) {
 					selectedLearningObjective.customCondition = ''
-				}else{
+				}
+				else {
 					selectedLearningObjective.customCondition = selectedLearningObjective.condition
 				}
 				break
@@ -152,7 +153,6 @@ class LearningObjectiveController {
 	 * @param  learningObjectiveID ID of the specific learning objective being edited
 	 */
 	def performance(Long id, Long learningObjectiveID) {
-
 		// get relevant imod
 		def currentImod = Imod.get(id)
 
@@ -191,14 +191,26 @@ class LearningObjectiveController {
 		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+		def contentList2 = contentList
 		def contents = []
-		if (contentList.size() < 1) {
-			contentList.add(new Content(imod: currentImod))
-		}
+		
 		contentList.collect(contents) {
 			getSubContent(it, currentLearningObjective)
 		}
 		contents = new groovy.json.JsonBuilder(contents).toString()
+
+		def text = null
+		
+		if(contentList != null){
+			
+			text = '<ul id="contentTree">'
+	        contentList2.each() {
+	            text += getSubContentHTML(it, currentLearningObjective)
+	        }
+
+	        text += '</ul>'
+
+        }
 
 		[
 			contentList:				contents,
@@ -206,6 +218,7 @@ class LearningObjectiveController {
 			currentLearningObjective:	currentLearningObjective,
 			currentPage:				'learning objective content',
 			learningObjectives:			learningObjectives,
+			contentList2: 				text,
 		]
 	}
 
@@ -215,7 +228,7 @@ class LearningObjectiveController {
 		def currentLearningObjective	=  learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def currentCondition			=  currentLearningObjective.condition?:''
 		def currentCustomCondition		=  currentLearningObjective.customCondition
-		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find{it == currentCondition}))
+		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find {it == currentCondition}))
 		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
 
 		[
@@ -260,14 +273,13 @@ class LearningObjectiveController {
 			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
 		def returnValue = {}
 		def rootNode = ""
-		if (current.parentContent == null){
+		if (current.parentContent == null) {
 			rootNode = "rootNode"
 		}
-		if (current.subContents != null){
+		if (current.subContents != null) {
 			current.subContents.collect(listChildren) {
 				getSubContent(it, objective)
 			}
-
 		}
 
 		returnValue = [
@@ -283,6 +295,35 @@ class LearningObjectiveController {
 		]
 		return returnValue
 	}
+
+
+	private def getSubContentHTML(Content current, LearningObjective objective) {
+        def text = ''
+
+        def topicSelected = ''
+		if (objective.contents.contains(current) as Boolean) {
+			topicSelected = 'fa-check'
+		}
+		def currentID = current.id
+		def topicTitle = '<span class="sub-content-tree fa-stack">' +
+			'<i class="checkboxBackground"></i>'+
+			'<i class="fa fa-stack-1x checkbox '+ topicSelected + '" id="select' + currentID + '"></i> ' +
+			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
+
+        text += '<li data-itemid="' + currentID + '">' + topicTitle
+
+        if (current.subContents != null) {
+            text += '<ul>'
+            current.subContents.each() {
+                text += getSubContentHTML(it, objective)
+            }
+            text += '</ul>'
+        }
+
+        text +=  '</li>'
+
+        return text
+    }
 
 
 	/**

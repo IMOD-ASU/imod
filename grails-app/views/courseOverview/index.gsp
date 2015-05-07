@@ -46,7 +46,9 @@
                                 <td>
 
                                     <fieldset class="buttons">
-                                    	<a href="../syllabus/${currentImod?.id}">Show Syllabus</a>
+                                    	<a href="../syllabus/${currentImod?.id}" target="_blank">
+                                            Show Syllabus
+                                        </a>
                                         <g:actionSubmit class="save overview-save show-hover-new" action="update" title="${ message( code:'imod.courseOverview.save' ) }" value="${message(code: 'Save', default: 'Save')}"/>
                                         <g:actionSubmit class="delete show-hover-new" action="delete" title="${ message( code:'imod.courseOverview.delete' ) }" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
                                     </fieldset>
@@ -185,59 +187,57 @@
                                                 Course Description
                                             </span>
                                         </div>
-                                            <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'overview', 'error')} ">
-                                                <label for="overview">
-                                                    <g:message code="imod.overview.label" default="Overview" />
-                                                </label>
-                                                <g:textArea name="overview" value="${currentImod?.overview}" rows="4" cols="40" title="${ message( code:'imod.courseOverview.overview')}"/>
-                                            </div>
+                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'overview', 'error')} ">
+                                            <label for="overview">
+                                                <g:message code="imod.overview.label" default="Overview" />
+                                            </label>
+                                            <g:textArea name="overview" value="${currentImod?.overview}" rows="4" cols="40" title="${ message( code:'imod.courseOverview.overview')}"/>
+                                        </div>
 
-                                            <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'subjectArea', 'error')} ">
-                                                <label for="subject-area">
-                                                    <g:message code="imod.subjectArea.label" default="Subject Area" />
-                                                    <span class="required-indicator">
-                                                        *
-                                                    </span>
-                                                </label>
-                                                <g:textField name="subjectArea" id="subject-area" required="" value="${currentImod?.subjectArea}" title="${ message( code:'imod.courseOverview.subjectArea')}"/>
-                                            </div>
-
-                                            <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'audience', 'error')} ">
-                                                <label for="audience">
-                                                    <g:message code="imod.audience.label" default="Audience" />
-                                                </label>
-                                                <g:select name="audience" from="${imod.Audience.list()}" noSelection="${['none':'No Audience'] }" multiple="multiple" optionKey="id" size="5" value="${currentImod?.audience*.id}" class="many-to-many" />
-                                            </div>
-
-                                            <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'creditHours', 'error')} ">
-                                                <label for="credit-hours">
-                                                    <g:message code="imod.creditHours.label" default="Credit Hours" />
-                                                </label>
-                                                <g:field name="creditHours" id="credit-hours" type="number" min="0" max="7" value="${currentImod.creditHours}" title="${ message( code:'imod.courseOverview.creditHours')}"/>
-                                            </div>
-
-                                            <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'timeRatio', 'error')} ">
-                                                <label for="time-ratio">
-                                                    <g:message code="imod.timeRatio.label" default="Time Ratio" />
-                                                </label>
-                                                <g:textField name="timeRatio" id="time-ratio" value="${currentImod?.timeRatio}" title="${ message( code:'imod.courseOverview.timeRatio')}"/>
-
-                                                <span class="help-block">
-                                                "Time spent in and out of class. eg: 1:2"
+                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'subjectArea', 'error')} ">
+                                            <label for="subject-area">
+                                                <g:message code="imod.subjectArea.label" default="Subject Area" />
+                                                <span class="required-indicator">
+                                                    *
                                                 </span>
+                                            </label>
+                                            <g:textField name="subjectArea" id="subject-area" required="" value="${currentImod?.subjectArea}" title="${ message( code:'imod.courseOverview.subjectArea')}"/>
+                                        </div>
 
-                                            </div>
+                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'audience', 'error')} ">
+                                            <label for="audience">
+                                                <g:message code="imod.audience.label" default="Audience" />
+                                            </label>
+                                            <g:select name="audience" from="${imod.Audience.list()}" noSelection="${['none':'No Audience'] }" multiple="multiple" optionKey="id" size="5" value="${currentImod?.audience*.id}" class="many-to-many" />
+                                        </div>
 
-                                            <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'numberOfSeats', 'error')} ">
-                                                <label for="number-of-seats">
-                                                    <g:message code="imod.numberOfSeats.label" default="Number Of Seats" />
-                                                </label>
-                                                <g:field name="numberOfSeats" id="number-of-seats" type="number" min="0" max="1000" value="${currentImod.numberOfSeats}" title="${ message( code:'imod.courseOverview.numberOfSeats')}"/>
-                                            </div>
+                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'creditHours', 'error')} ">
+                                            <label for="credit-hours">
+                                                <g:message code="imod.creditHours.label" default="Credit Hours" />
+                                            </label>
+                                            <g:field name="creditHours" id="credit-hours" type="number" min="0" max="7" value="${currentImod.creditHours}" title="${ message( code:'imod.courseOverview.creditHours')}"/>
+                                        </div>
+
+                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'timeRatio', 'error')} ">
+                                            <label for="time-ratio">
+                                                <g:message code="imod.timeRatio.label" default="Time Ratio" />
+                                            </label>
+                                            <g:textField name="timeRatio" id="time-ratio" value="${currentImod?.timeRatio}" title="${ message( code:'imod.courseOverview.timeRatio')}"/>
+                                            <span class="help-block">
+                                                "Time spent in and out of class. eg: 1:2"
+                                            </span>
+                                        </div>
+
+                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'numberOfSeats', 'error')} ">
+                                            <label for="number-of-seats">
+                                                <g:message code="imod.numberOfSeats.label" default="Number Of Seats" />
+                                            </label>
+                                            <g:field name="numberOfSeats" id="number-of-seats" type="number" min="0" max="1000" value="${currentImod.numberOfSeats}" title="${ message( code:'imod.courseOverview.numberOfSeats')}"/>
+                                        </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="course-overview-form" id="policy">
+                                    <div class="policy-field course-overview-form" id="policy">
                                         <div class="form-title">
                                             <span class="title-text">
                                                 Course Policy
@@ -249,16 +249,19 @@
                                             </h3>
                                             <div>
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/> Competency Based
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
+                                                    Competency Based
                                                 </div>
 
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/> Standardized Based
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
+                                                    Standardized
                                                 </div>
 
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/> Custom <br>
-
+                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
+                                                    Custom
+                                                    <br>
                                                     <g:textArea name="gradingProcedure" id="grading-procedure-text" value="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ? currentImod?.gradingProcedure:''}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
                                                 </div>
                                             </div>
@@ -313,111 +316,112 @@
                                                 Instructors
                                             </span>
                                         </div>
-                                            <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} " style="padding:0 15px;">
-                                                <div id="topicDialog" class="custom-instructor">
-                                                    <input type="hidden" name="imodID" value="221" id="imodID">
-                                                    <fieldset class="buttons topicButtonField">
-                                                        <span class="topicButtonGradient">
-                                                            <input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
-                                                        </span>
-                                                        <span class="topicButtonGradient">
+                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'instructors', 'error')} " style="padding:0 15px;">
+                                            <div id="topicDialog" class="custom-instructor">
+                                                <input type="hidden" name="imodID" value="221" id="imodID">
+                                                <fieldset class="buttons topicButtonField">
+                                                    <span class="topicButtonGradient">
+                                                        <input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
+                                                    </span>
+                                                    <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
+                                                        <span class="remove-instructor topicButtonGradient">
                                                             <input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
                                                         </span>
-                                                        <span id="errorMessage"></span>
-                                                    </fieldset>
-                                                    <table id="topicList" class="instructor-list">
-                                                        <thead>
-                                                            <tr>
-                                                                <td class="saveIcon saveIcon-parent">
-                                                                    <i class="fa fa-square-o"></i>
+                                                    </g:if>
+                                                    <span id="errorMessage"></span>
+                                                </fieldset>
+                                                <table id="topicList" class="instructor-list">
+                                                    <thead>
+                                                        <tr>
+                                                            <td class="saveIcon saveIcon-parent">
+                                                                <i class="fa fa-square-o"></i>
+                                                            </td>
+                                                            <g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="show-hover-new"/>
+                                                            <g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="show-hover-new"/>
+                                                            <g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="show-hover-new" />
+                                                            <g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="show-hover-new" />
+                                                            <g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="show-hover-new" />
+                                                            <g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="show-hover-new" />
+                                                            <g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Office Location')}" class="show-hover-new" />
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <g:each in="${currentImod?.instructors?}" var="instructor">
+                                                            <tr id="instructor${instructor.id}" data-id="${instructor.id}" class="topicListRow">
+                                                                <td class="saveIcon">
+                                                                    <i class=" fa fa-square-o"></i>
                                                                 </td>
-                                                                <g:sortableColumn property="firstName" title="${message(code: 'imod.instructor.firstName.label', default: 'First Name')}" class="show-hover-new"/>
-                                                                <g:sortableColumn property="lastName" title="${message(code: 'imod.instructor.lastName.label', default: 'Last Name')}" class="show-hover-new"/>
-                                                                <g:sortableColumn property="email" title="${message(code: 'imod.instructor.email.label', default: 'Email')}" class="show-hover-new" />
-                                                                <g:sortableColumn property="officeHours" title="${message(code: 'imod.instructor.officeHours.label', default: 'Office Hours')}" class="show-hover-new" />
-                                                                <g:sortableColumn property="webPage" title="${message(code: 'imod.instructor.webPage.label', default: 'Web Page')}" class="show-hover-new" />
-                                                                <g:sortableColumn property="Role" title="${message(code: 'imod.instructor.Role.label', default: 'Role')}" class="show-hover-new" />
-                                                                <g:sortableColumn property="location" title="${message(code: 'imod.instructor.location.label', default: 'Office Location')}" class="show-hover-new" />
+                                                                <td>
+                                                                    <g:textField name="firstName[]" value="${instructor.firstName}" class="first_name" />
+                                                                </td>
+                                                                <td>
+                                                                    <g:textField name="lastName[]" value="${instructor.lastName}" class="last_name"/>
+                                                                </td>
+                                                                <td>
+                                                                    <g:textField name="email[]" value="${instructor.email}" class="email"/>
+                                                                </td>
+                                                                <td>
+                                                                    <g:textField name="officeHours[]" value="${instructor.officeHours}" class="office_hours"/>
+                                                                </td>
+                                                                <td>
+                                                                    <g:textField name="webPage[]" value="${instructor.webPage}" class="web_page"/>
+                                                                </td>
+                                                                <td>
+                                                                    <select name="role[]" id="role" class="role">
+                                                                        <option value="">Select Role</option>
+
+                                                                        <g:if test="${instructor.role == 'Assistant Professor'}">
+                                                                            <option selected>Assistant Professor</option>
+                                                                        </g:if>
+                                                                        <g:else>
+                                                                            <option>Assistant Professor</option>
+                                                                        </g:else>
+
+                                                                        <g:if test="${instructor.role == 'Associate Professor'}">
+                                                                            <option selected>Associate Professor</option>
+                                                                        </g:if>
+                                                                        <g:else>
+                                                                            <option>Associate Professor</option>
+                                                                        </g:else>
+
+                                                                        <g:if test="${instructor.role == 'Professor'}">
+                                                                            <option selected>Professor</option>
+                                                                        </g:if>
+                                                                        <g:else>
+                                                                            <option>Professor</option>
+                                                                        </g:else>
+
+                                                                        <g:if test="${instructor.role == 'Teaching Assistant'}">
+                                                                            <option selected>Teaching Assistant</option>
+                                                                        </g:if>
+                                                                        <g:else>
+                                                                            <option>Teaching Assistant</option>
+                                                                        </g:else>
+
+                                                                        <g:if test="${instructor.role == 'Course Assistant'}">
+                                                                            <option selected>Course Assistant</option>
+                                                                        </g:if>
+                                                                        <g:else>
+                                                                            <option>Course Assistant</option>
+                                                                        </g:else>
+
+                                                                        <g:if test="${instructor.role == 'Grader'}">
+                                                                            <option selected>Grader</option>
+                                                                        </g:if>
+                                                                        <g:else>
+                                                                            <option>Grader</option>
+                                                                        </g:else>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <g:textField name="location[]" value="${instructor.location}" class="location"/>
+                                                                </td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <g:each in="${currentImod?.instructors?}" var="instructor">
-                                                                <tr data-id="${instructor.id}" class="topicListRow">
-                                                                    <td class="saveIcon">
-                                                                        <i class=" fa fa-square-o"></i>
-                                                                    </td>
-                                                                    <td>
-                                                                        <g:textField name="firstName[]" value="${instructor.firstName}" class="first_name" />
-                                                                    </td>
-                                                                    <td>
-                                                                        <g:textField name="lastName[]" value="${instructor.lastName}" class="last_name"/>
-                                                                    </td>
-                                                                    <td>
-                                                                        <g:textField name="email[]" value="${instructor.email}" class="email"/>
-                                                                    </td>
-                                                                    <td>
-                                                                        <g:textField name="officeHours[]" value="${instructor.officeHours}" class="office_hours"/>
-                                                                    </td>
-                                                                    <td>
-                                                                        <g:textField name="webPage[]" value="${instructor.webPage}" class="web_page"/>
-                                                                    </td>
-                                                                    <td>
-                                                                        <select name="role[]" id="role" class="role">
-                                                                            <option value="">Select Role</option>
-
-                                                                            <g:if test="${instructor.role == 'Assistant Professor'}">
-                                                                                <option selected>Assistant Professor</option>
-                                                                            </g:if>
-                                                                            <g:else>
-                                                                                <option>Assistant Professor</option>
-                                                                            </g:else>
-
-                                                                            <g:if test="${instructor.role == 'Associate Professor'}">
-                                                                                <option selected>Associate Professor</option>
-                                                                            </g:if>
-                                                                            <g:else>
-                                                                                <option>Associate Professor</option>
-                                                                            </g:else>
-
-                                                                            <g:if test="${instructor.role == 'Professor'}">
-                                                                                <option selected>Professor</option>
-                                                                            </g:if>
-                                                                            <g:else>
-                                                                                <option>Professor</option>
-                                                                            </g:else>
-
-                                                                            <g:if test="${instructor.role == 'Teaching Assistant'}">
-                                                                                <option selected>Teaching Assistant</option>
-                                                                            </g:if>
-                                                                            <g:else>
-                                                                                <option>Teaching Assistant</option>
-                                                                            </g:else>
-
-                                                                            <g:if test="${instructor.role == 'Course Assistant'}">
-                                                                                <option selected>Course Assistant</option>
-                                                                            </g:if>
-                                                                            <g:else>
-                                                                                <option>Course Assistant</option>
-                                                                            </g:else>
-
-                                                                            <g:if test="${instructor.role == 'Grader'}">
-                                                                                <option selected>Grader</option>
-                                                                            </g:if>
-                                                                            <g:else>
-                                                                                <option>Grader</option>
-                                                                            </g:else>
-
-                                                                        </select>
-                                                                    </td>
-                                                                    <td>
-                                                                        <g:textField name="location[]" value="${instructor.location}" class="location"/>
-                                                                    </td>
-                                                                </tr>
-                                                            </g:each>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                        </g:each>
+                                                    </tbody>
+                                                </table>
                                             </div>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

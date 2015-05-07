@@ -1,41 +1,5 @@
 'use strict';
 
-$(function() {
-	var jsonData = JSON.parse($("input[name=treeData]").val());
-	buildContentTree(jsonData, false);
-
-	$('#contentTree').on('ready.jstree', function() {
-		var idList = $('#contentTree').find('li.topicSelected');
-		$(idList).each(function() {
-			refreshTreeValues($(this).children('a'), false);
-		});
-		var newJSONdata = $('#contentTree').jstree(true).get_json();
-		$('#contentTree').jstree('destroy');
-		buildContentTree(newJSONdata, true);
-	});
-
-	/*$('#deleteTopicModal').click(function() {
-		var nodeArray = $('#contentTree').jstree(true)._model.data['#'].children_d;
-		var defaultClass = 'fa fa-stack-1x checkbox';
-		var idArray = [];
-		$(nodeArray).each(function() {
-			var icon = $('#select' + this.substr(7));
-			if ($('#' + this).hasClass('topicSelected')) {
-				icon.attr('class', defaultClass + ' fa-check');
-				idArray.push(this.substr(7));
-			}
-		});
-
-		if (idArray.length < 1) {
-			alert('Please select at least one topic');
-		} else {
-			deleteTopicSubTab(idArray);
-		}
-
-		return false;
-	});*/
-});
-
 function deleteTopicSubTab(contentIDs) {
 	contentIDs = JSON.stringify(contentIDs);
 	$.ajax({
@@ -45,79 +9,14 @@ function deleteTopicSubTab(contentIDs) {
 		data: {
 			contentIDs: contentIDs
 		},
-		success: function(data) {
+		success: function () {
 			window.location.reload();
 		}
 	});
 }
 
-function buildContentTree(jsonData, refreshDB) {
-	$('#contentTree').jstree({
-		'core': {
-			'data': jsonData,
-			'check_callback': true,
-			'themes': {
-				'icons': false
-			}
-		},
-		'dnd': {
-			'copy': false
-		},
-		'plugins': ['wholerow', 'dnd', 'types']
-	});
-	$('#contentTree').on('ready.jstree', function() {
-		$('#contentTree').jstree('open_all');
-
-		$('#contentTree .jstree-wholerow').on('click', function() {
-			selectCheckboxes(this);
-		});
-		$('#contentTree .jstree-anchor').on('click', function(event) {
-
-			// if delete topic is clicked
-			var target = $(event.target);
-			if (target.attr('class') === 'delete-topic') {
-				var contents = [];
-				var contentId = target.data('id');
-				contents.push(contentId);
-				deleteTopicSubTab(contents);
-
-				return false;
-			}
-
-			selectCheckboxes(this);
-		});
-		refreshCheckboxes(refreshDB);
-	});
-	$('#contentTree').on('move_node.jstree', function(e, data) {
-		$('#contentTree').jstree('open_node', '#' + data.node.parent);
-		refreshTreeValues($('#' + data.node.id).children('a'), true);
-		moveContent(data.node.id.substr(7), data.node.parent.substr(7));
-	});
-	$('#contentTree').off('click.jstree');
-}
-
-function selectCheckboxes(currentRow) {
-	var contentID = $(currentRow).parent('li').attr('id');
-	var contentNode = $('#contentTree').jstree(true).get_node(contentID);
-	var contentNodeClass = contentNode.li_attr['class'];
-	var testingObject = $('#' + contentID);
-	if (contentNodeClass === 'topicNotSelected' || contentNodeClass === 'topicIndeterminate') {
-		contentNode.li_attr['class'] = 'topicSelected';
-		testingObject.find('li').each(function() {
-			var childNode = $('#contentTree').jstree(true).get_node($(this).attr('id'));
-			childNode.li_attr['class'] = 'topicSelected';
-		});
-	} else {
-		contentNode.li_attr['class'] = 'topicNotSelected';
-		testingObject.find('li').each(function() {
-			var childNode = $('#contentTree').jstree(true).get_node($(this).attr('id'));
-			childNode.li_attr['class'] = 'topicNotSelected';
-		});
-	}
-	refreshTreeValues(currentRow, true);
-}
-
-function refreshTreeValues(currentRow, doRefresh) {
+// FIXME this function has too many statements
+/*function refreshTreeValues (currentRow, doRefresh) {
 	var contentID = $(currentRow).parent('li').attr('id');
 	var contentNode = $('#contentTree').jstree(true).get_node(contentID);
 	var newJSONdata;
@@ -127,37 +26,48 @@ function refreshTreeValues(currentRow, doRefresh) {
 		currentNode = $('#contentTree').jstree(true).get_node(currentNode.parent);
 		if (currentNode.parents.length === 1) {
 			currentNode.a_attr['class'] = 'rootNode';
-		} else {
+		}
+		else {
 			currentNode.a_attr['class'] = '';
 		}
 		if (!indeterminate) {
 			var numIndeterminate;
-			$(currentNode.children_d).each(function() {
-				if ($('#contentTree').jstree(true).get_node(this).li_attr['class'] === 'topicIndeterminate') {
-					numIndeterminate++;
+			// FIXME use for loop instead
+			$(currentNode.children_d).each(
+				function () {
+					if ($('#contentTree').jstree(true).get_node(this).li_attr['class'] === 'topicIndeterminate') {
+						numIndeterminate++;
+					}
 				}
-			});
+			);
 			if (numIndeterminate > 0) {
 				indeterminate = true;
 				currentNode.li_attr['class'] = 'topicIndeterminate';
-			} else {
+			}
+			else {
 				var treeSize = currentNode.children_d.length;
 				var numSelected = 0;
-				$(currentNode.children_d).each(function() {
-					if ($('#contentTree').jstree(true).get_node(this).li_attr['class'] === 'topicSelected') {
-						numSelected++;
+				// FIXME use for loop instead
+				$(currentNode.children_d).each(
+					function () {
+						if ($('#contentTree').jstree(true).get_node(this).li_attr['class'] === 'topicSelected') {
+							numSelected++;
+						}
 					}
-				});
+				);
 				if (treeSize !== numSelected && numSelected > 0) {
 					indeterminate = true;
 					currentNode.li_attr['class'] = 'topicIndeterminate';
-				} else if (treeSize === numSelected && numSelected > 0) {
+				}
+				else if (treeSize === numSelected && numSelected > 0) {
 					currentNode.li_attr['class'] = 'topicSelected';
-				} else {
+				}
+				else {
 					currentNode.li_attr['class'] = 'topicNotSelected';
 				}
 			}
-		} else {
+		}
+		else {
 			currentNode.li_attr['class'] = 'topicIndeterminate';
 		}
 	}
@@ -168,42 +78,33 @@ function refreshTreeValues(currentRow, doRefresh) {
 	}
 }
 
-function refreshCheckboxes(refreshDB) {
-	var nodeArray = $('#contentTree').jstree(true)._model.data['#'].children_d;
-	var defaultClass = 'fa fa-stack-1x checkbox';
-	var idArray = [];
-	$(nodeArray).each(function() {
-		var icon = $('#select' + this.substr(7));
-		if ($('#' + this).hasClass('topicSelected')) {
-			icon.attr('class', defaultClass + ' fa-check');
-			idArray.push(this.substr(7));
-		} else if ($('#' + this).hasClass('topicIndeterminate')) {
-			icon.attr('class', defaultClass + ' fa-minus');
-		} else {
-			icon.attr('class', defaultClass);
-		}
-	});
-	if (refreshDB) {
-		setContents(idArray);
+function selectCheckboxes (currentRow) {
+	var contentID = $(currentRow).parent('li').attr('id');
+	var contentNode = $('#contentTree').jstree(true).get_node(contentID);
+	var contentNodeClass = contentNode.li_attr['class'];
+	var testingObject = $('#' + contentID);
+	if (contentNodeClass === 'topicNotSelected' || contentNodeClass === 'topicIndeterminate') {
+		contentNode.li_attr['class'] = 'topicSelected';
+		testingObject.find('li').each(
+			function () {
+				var childNode = $('#contentTree').jstree(true).get_node($(this).attr('id'));
+				childNode.li_attr['class'] = 'topicSelected';
+			}
+		);
 	}
+	else {
+		contentNode.li_attr['class'] = 'topicNotSelected';
+		testingObject.find('li').each(
+			function () {
+				var childNode = $('#contentTree').jstree(true).get_node($(this).attr('id'));
+				childNode.li_attr['class'] = 'topicNotSelected';
+			}
+		);
+	}
+	refreshTreeValues(currentRow, true);
 }
 
-function moveContent(contentID, parentID) {
-	$.ajax({
-		url: '../../content/updateHierarchy',
-		type: 'POST',
-		dataType: 'json',
-		data: {
-			contentID: contentID,
-			parentID: parentID
-		},
-		error: function(xhr) {
-			alert(xhr.responseText);
-		}
-	});
-}
-
-function setContents(idArray) {
+function setContents (idArray) {
 	var objectiveID = $('input[name=learningObjectiveID]').val();
 	idArray = JSON.stringify(idArray);
 	$.ajax({
@@ -214,23 +115,225 @@ function setContents(idArray) {
 			objectiveID: objectiveID,
 			idArray: idArray
 		},
-		error: function(xhr) {
+		error: function (xhr) {
 			alert(xhr.responseText);
 		}
 	});
 }
 
-// FIXME if unused remove topicList parameter
-function populateTopics(topicList) {
+function refreshCheckboxes (refreshDB) {
+	var nodeArray = $('#contentTree').jstree(true)._model.data['#'].children_d;
+	var defaultClass = 'fa fa-stack-1x checkbox';
+	var idArray = [];
+	$(nodeArray).each(
+		function () {
+			var icon = $('#select' + this.substr(7));
+			if ($('#' + this).hasClass('topicSelected')) {
+				icon.attr('class', defaultClass + ' fa-check');
+				idArray.push(this.substr(7));
+			}
+			else if ($('#' + this).hasClass('topicIndeterminate')) {
+				icon.attr('class', defaultClass + ' fa-minus');
+			}
+			else {
+				icon.attr('class', defaultClass);
+			}
+		}
+	);
+	if (refreshDB) {
+		setContents(idArray);
+	}
+}
+
+function moveContent (contentID, parentID) {
+	$.ajax({
+		url: '../../content/updateHierarchy',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			contentID: contentID,
+			parentID: parentID
+		},
+		error: function (xhr) {
+			alert(xhr.responseText);
+		}
+	});
+}
+
+function buildContentTree (jsonData, refreshDB) {
+	$('#contentTree').jstree({
+		core: {
+			data: jsonData,
+			check_callback: true,
+			themes: {
+				icons: false
+			}
+		},
+		dnd: {
+			copy: false
+		},
+		plugins: ['wholerow', 'dnd', 'types']
+	});
+	$('#contentTree').on(
+		'ready.jstree',
+		function () {
+			$('#contentTree').jstree('open_all');
+
+			$('#contentTree .jstree-wholerow').on(
+				'click',
+				function () {
+				selectCheckboxes(this);
+			});
+			$('#contentTree .jstree-anchor').on(
+				'click',
+				function (event) {
+					// If delete topic is clicked
+					var target = $(event.target);
+					if (target.attr('class') === 'delete-topic') {
+						var contents = [];
+						var contentId = target.data('id');
+						contents.push(contentId);
+						deleteTopicSubTab(contents);
+
+						return false;
+					}
+
+					selectCheckboxes(this);
+				}
+			);
+			refreshCheckboxes(refreshDB);
+		}
+	);
+	$('#contentTree').on(
+		'move_node.jstree',
+		function (e, data) {
+			$('#contentTree').jstree('open_node', '#' + data.node.parent);
+			refreshTreeValues($('#' + data.node.id).children('a'), true);
+			moveContent(data.node.id.substr(7), data.node.parent.substr(7));
+		}
+	);
+	$('#contentTree').off('click.jstree');
+}
+
+function populateTopics (topicList) {
 	var contentTree = $.jstree.reference('#contentTree');
 	$('#topicList tbody').html('');
-	$(topicList).each(function() {
-		contentTree.create_node(
-			'#', {
-				'id': 'content' + this.contentID,
-				'text': this.topicTitle
-			}
-		);
-	});
+	$(topicList).each(
+		function () {
+			contentTree.create_node(
+				'#', {
+					id: 'content' + this.contentID,
+					text: this.topicTitle
+				}
+			);
+		}
+	);
 	$('#contentTree').jstree('open_all');
+}*/
+
+function getTreeChildren(list, parents, idArray) {
+	list.each(function () {
+		var item = {};
+
+		var myItem = $(this);
+
+		item.id = myItem.data('itemid');
+		item.isChecked = myItem
+								.find('.sub-content-tree')
+								.find('.checkbox')
+								.hasClass('fa-check');
+		if (item.isChecked) {
+			idArray.push(item.id);
+		}
+
+		if ($(this).find('> ul > li').length) {
+			var childrenArr = [];
+			var children = getTreeChildren(myItem.find('> ul > li'), childrenArr, idArray);
+			item.child = children[0];
+		} else {
+			item.child = '';
+		}
+
+		parents.push(item);
+	});
+
+	return [parents, idArray];
 }
+
+$(
+	function () {
+		/*var jsonData = JSON.parse($('input[name=treeData]').val());
+		buildContentTree(jsonData, false);*/
+
+		if ($('#contentTree').length) {
+			$('#contentTree').sortable();
+
+			$('.delete-topic').click(function () {
+				var isDelete = confirm('Are you sure you want to delete this?');
+
+				if (isDelete) {
+					var contents = [];
+					var contentId = $(this).data('id');
+					contents.push(contentId);
+					deleteTopicSubTab(contents);
+				}
+
+				return false;
+			});
+
+			$('.sub-content-tree').click(function () {
+				var item = $(this);
+
+				if (item.find('.checkbox').hasClass('fa-check')) {
+					item.parent().find('.checkbox').removeClass('fa-check');
+				} else {
+					item.parent().find('.checkbox').addClass('fa-check');
+				}
+
+				return false;
+			});
+
+			$('#save-content').click(function () {
+				var parents = [];
+				var idArray = [];
+
+				var content = getTreeChildren($('#contentTree > li'), parents, idArray);
+
+				var obj = {
+					topics: content[0],
+					idArray: content[1],
+					objId: $('input[name=learningObjectiveID]').val()
+				};
+
+				$.ajax({
+					url: '../../content/updateHierarchy',
+					type: 'POST',
+					dataType: 'json',
+					contentType: 'application/json; charset=utf-8',
+					data: JSON.stringify(obj),
+					success: function () {
+						window.location.reload();
+					},
+					error: function (xhr) {
+						console.log(xhr.responseText);
+					}
+				});
+			});
+		}
+
+		/*$('#contentTree').on(
+			'ready.jstree',
+			function () {
+				var idList = $('#contentTree').find('li.topicSelected');
+				$(idList).each(
+					function () {
+						refreshTreeValues($(this).children('a'), false);
+					}
+				);
+				var newJSONdata = $('#contentTree').jstree(true).get_json();
+				$('#contentTree').jstree('destroy');
+				buildContentTree(newJSONdata, true);
+			}
+		);*/
+	}
+);

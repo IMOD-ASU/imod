@@ -1,0 +1,10 @@
+{
+	"preset": "yandex",
+	"validateIndentation": "\t",
+	"disallowMultipleSpaces": true,
+	"disallowNewlineBeforeBlockStatements": true,
+	"disallowPaddingNewlinesInBlocks": true,
+	"requireCapitalizedComments": true,
+	"requireBlocksOnNewline": true,
+	"requirePaddingNewLinesInObjects": true
+}

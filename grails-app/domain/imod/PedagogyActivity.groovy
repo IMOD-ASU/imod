@@ -14,6 +14,10 @@ class PedagogyActivity {
 		pedagogyActivityDuration: PedagogyActivityDuration
 	]
 
+	String toString() {
+	    return title
+	}
+
 	static mapping = {
 		description type: 'text'
 		example type: 'text'
