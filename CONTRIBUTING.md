@@ -1,3 +1,14 @@
+## Contents
+* [Contributing Guidelines](#contributing-guidelines)
+  - [Editor Guidelines](#editor-guidelines)
+  - [Git Guidelines](#git-guidelines)
+  - [Code Guidlines](#code-guidelines)
+* [Maintainance Guidelines](#maintainance-guidelines)
+  - [Git Sprint Management](#git-sprint-management)
+  - [Code Maintainance](#code-maintainance)
+  - [Library Maintainance](#library-maintainance)
+  - [Server Maintainance](#server-maintainance)
+
 # Contributing Guidelines
 
 ### Editor Guidelines
@@ -148,3 +159,36 @@ NOTE: this is only used for reference so developers know what tools and versions
 3. update the `package.json` file with the latest version
 4. run `npm update -g {packageName}`
 5. run `npm install`
+
+<br>
+<br>
+### Server Maintainance
+
+##### Update the Test/Demo Server
+1. SSH into the server
+2. run `sudo apt-get update`
+3. run `sudo apt-get dist-upgrade`
+
+##### Recover from Test/Demo Server Crash
+1. SSH into the server
+2. run `sudo reboot`
+3. Wait a few minutes
+4. SSH into the server again
+5. run `sudo /opt/apache-tomcat-7.0.61/bin/startup.sh`
+
+##### Recover from Travis CI depandancy lock
+Sometimes when dependancies get updated Travis CI say all builds fail.
+
+1. Check the logs to make sure it is not a code mistake
+2. Goto the [Travis CI website](https://travis-ci.org/IMOD-ASU/imod/)
+3. Login with Github credentials
+4. Click Settings > Caches
+5. Click Delete all repository caches
+
+Done! the next Travis CI build will be a bit slow, but will not hang on installing dependancies.
+
+##### Update Apache Tomcat on Demo
+Coming Soon!
+
+##### Update NodeJS on Demo
+Coming Soon!
