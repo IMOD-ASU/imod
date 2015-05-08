@@ -79,11 +79,7 @@
 							</span>
 						</g:link>
 					</li>
-<<<<<<< HEAD
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-=======
-			<!--		<li class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
->>>>>>> AssessmentPlanAllFeaturesWorking
 						<g:link controller="assessment" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
 							<span id="assess-tab-title">
@@ -91,26 +87,7 @@
 							</span>
 						</g:link>
 					</li>
-			-->
-			<li class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-			<g:link controller="assessment" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
-				<img class="tab-icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
-				<span id="assess-tab-title">
-					Assessment
-				</span>
-			</g:link>
-		</li>
-
-		
-		<li class="ui-state-default ui-corner-top ${ currentPage.find(/pedagogy/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-		<g:link controller="pedagogy" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
-			<img class="tab-icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
-			<span id="assess-tab-title">
-				Pedagogy
-			</span>
-		</g:link>
-	</li>
-				<!--	<li onclick="return false;" class="tab-disabled ui-state-default ui-corner-top ${ currentPage.find(/pedagogy/) == null ? '' : 'ui-tabs-active ui-state-active'}">
+					<li onclick="return false;" class="tab-disabled ui-state-default ui-corner-top ${ currentPage.find(/pedagogy/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link controller="pedagogy" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
 							<span id="pedagogy-tab-title">
@@ -118,7 +95,6 @@
 							</span>
 						</g:link>
 					</li>
-				-->
 				</ul>
 
 				<g:layoutBody/>

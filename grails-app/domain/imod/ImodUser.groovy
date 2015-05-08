@@ -22,8 +22,7 @@ class ImodUser {
 
 	static hasMany = [
 		imods: Imod,
-		favoriteTechnique: PedagogyTechnique,
-		favoriteAssessmentTechnique: AssessmentTechnique
+		favoriteTechnique: PedagogyTechnique
 	]
 
 	static hasOne = [
@@ -39,7 +38,6 @@ class ImodUser {
 		profile 	nullable: true
 		preferences nullable: true
 		favoriteTechnique nullable: true
-		favoriteAssessmentTechnique nullable:true
 	}
 
 	static mapping = {
