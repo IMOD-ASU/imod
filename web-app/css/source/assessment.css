@@ -1,31 +1,24 @@
-.favDiv{
-
-    visibility : hidden;
-    display: none
-
+.favDiv {
+    display: none;
+    visibility: hidden;
 }
 
-#unfavorites{
-
-    display : none;
+#unfavorites {
+    display: none;
 }
 
-#assessmentFavorites{
-
-    visibility : hidden;
-    display : none;
+#assessmentFavorites {
+    display: none;
+    visibility: hidden;
 }
 
-#assessmentFavoritesDiv{
-
-    visibility : hidden;
-    display : none;
+#assessmentFavoritesDiv {
+    display: none;
+    visibility: hidden;
 }
 
 
-.assessmentTechButtons{
 
-}
 
 
 

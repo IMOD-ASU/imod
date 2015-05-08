@@ -3,7 +3,8 @@
     padding: 20px;
 
     list-style-type: none;
-    user-select: none;
+
+            user-select: none;
 
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -13,6 +14,7 @@
 .icons > label {
     width: 120px;
     padding: 45px 0;
+
     text-align: center;
 }
 
@@ -20,7 +22,7 @@
     background-color: #ffffcc;
     background-image: url('../../images/unfav.png'),url('../../images/unassign.png');
     background-repeat: no-repeat, no-repeat;
-    background-position:left top,  right top;
+    background-position: left top,  right top;
 }
 
 .icons > .ui-selecting,
@@ -37,7 +39,7 @@
 
 .icons.assessmentUnfavUnassign > .ui-selecting,
 .icons.assessmentUnfavUnassign > .ui-state-active,
-.icons.assessmentUnfavUnassign > .ui-state-default{
+.icons.assessmentUnfavUnassign > .ui-state-default {
     background-image: url('../../images/unfav.png'),url('../../images/unassign.png');
     background-repeat: no-repeat, no-repeat;
     background-position: left top, right top;
@@ -45,7 +47,7 @@
 
 .icons.assessmentFavAssign > .ui-selecting,
 .icons.assessmentFavAssign > .ui-state-active,
-.icons.assessmentFavAssign > .ui-state-default{
+.icons.assessmentFavAssign > .ui-state-default {
     background-image: url('../../images/fav.png'),url('../../images/assign.png');
     background-repeat: no-repeat, no-repeat;
     background-position: left top, right top;
@@ -54,7 +56,7 @@
 
 .icons.assessmentUnfavAssign > .ui-selecting,
 .icons.assessmentUnfavAssign > .ui-state-active,
-.icons.assessmentUnfavAssign > .ui-state-default{
+.icons.assessmentUnfavAssign > .ui-state-default {
     background-image: url('../../images/unfav.png'),url('../../images/assign.png');
     background-repeat: no-repeat, no-repeat;
     background-position: left top, right top;
@@ -63,7 +65,7 @@
 
 .icons.assessmentFavUnassign > .ui-selecting,
 .icons.assessmentFavUnassign > .ui-state-active,
-.icons.assessmentFavUnassign > .ui-state-default{
+.icons.assessmentFavUnassign > .ui-state-default {
     background-image: url('../../images/fav.png'),url('../../images/unassign.png');
     background-repeat: no-repeat, no-repeat;
     background-position: left top, right top;
