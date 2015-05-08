@@ -33,9 +33,9 @@
 
 			<table>
 				<tr>
-					<td>
+					<td class="learning-objective list-panel">
 						<!-- left panel for the page -->
-						<div class="learning-objective list">
+						<div>
 							<div class="form-title">
 								<span class="title-text">
 									Learning Objectives
