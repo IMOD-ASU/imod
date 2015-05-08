@@ -243,12 +243,20 @@
                                                 Course Policy
                                             </span>
                                         </div>
+                                        <div style="font-size:14">
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	Default:<g:radio id="coursePolicyRadioDefault" name="coursePolicyRadio" title="Default" value="Default" checked="true" />
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	Custom: <g:radio id="coursePolicyRadioCustom" name="coursePolicyRadio" title="Custom" value="Custom" />
+                                        </div>
                                         <div id="accordion">
                                             <h3>
                                                 Grading procedure
                                             </h3>
                                             <div>
-                                                <div>
+                                                <div style="align:centre">
                                                     <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
                                                     Competency Based
                                                 </div>
@@ -269,7 +277,7 @@
                                                 Attendance and tardiness
                                             </h3>
                                             <div>
-                                                <g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
+                                                <g:textArea name="attendance" id="attendance-tardiness" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
                                             </div>
                                             <h3>
                                                 Class participation
