@@ -21,24 +21,27 @@ class ImodUser {
 
 
 	static hasMany = [
-		imods: Imod,
-		favoriteTechnique: PedagogyTechnique
-	]
+			imods: Imod,
+			favoriteTechnique: PedagogyTechnique,
+			favoriteAssessmentTechnique: AssessmentTechnique
+		]
 
-	static hasOne = [
-		preferences: UserPreferences,
-		profile: UserProfile
-	]
+		static hasOne = [
+			preferences: UserPreferences,
+			profile: UserProfile
+		]
 
 
-	static constraints = {
-		username 	blank: false,	unique: true
-		password 	blank: false
-		email	 	unique: true, email: true
-		profile 	nullable: true
-		preferences nullable: true
-		favoriteTechnique nullable: true
-	}
+		static constraints = {
+			username 	blank: false,	unique: true
+			password 	blank: false
+			email	 	unique: true, email: true
+			profile 	nullable: true
+			preferences nullable: true
+			favoriteTechnique nullable: true
+			favoriteAssessmentTechnique nullable:true
+		}
+
 
 	static mapping = {
 		password column: '`password`'

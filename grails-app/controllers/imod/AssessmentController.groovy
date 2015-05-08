@@ -14,32 +14,21 @@ class AssessmentController {
      * @param id
      */
     def index(Long id,  Long learningObjectiveID) {
-		// get the selected imod
-        def currentImod = Imod.get(id)
 
-        // finds all the learning objective linked to this imod
-        def learningObjectives = LearningObjective.findAllByImod(currentImod)
+        // get the selected imod
+		def currentImod = Imod.get(id)
 
-        // Search for selected learning objective
-        // if there are no learning objectives set null
-        // if there is no selected learning objective, pick first
-        // otherwise get the objective
-        def currentLearningObjective
-        def objectivesForCurrentImod = currentImod.learningObjectives
-        if (objectivesForCurrentImod.size() < 1) {
-            currentLearningObjective = null
-        }
-        else if (learningObjectiveID == null) {
-            currentLearningObjective = objectivesForCurrentImod.first()
-        }
-        else {
-            currentLearningObjective = objectivesForCurrentImod.find { it.id == learningObjectiveID }
-        }
+		// finds all the learning objective linked to this imod
+		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+
+		// select current learning objective
+		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
         // get all of the filters used to find Assessment techniques
         def domainCategories = DomainCategory.list()
         def knowledgeDimensions = KnowledgeDimension.list()
         def learningDomains = LearningDomain.list()
+        def assessmentFeedback = AssessmentFeedback.list()
 
         [
             currentImod: currentImod,
@@ -49,6 +38,7 @@ class AssessmentController {
             knowledgeDimensions: knowledgeDimensions,
             learningDomains: learningDomains,
             learningObjectives: learningObjectives,
+            assessmentFeedback: assessmentFeedback,
         ]
 	}
 
@@ -67,7 +57,7 @@ class AssessmentController {
         def selectedDomainCategories = []
         def selectedLearningDomains = []
         for (def knowledgeDimension in data.selectedKnowledgeDimensions) {
-            selectedKnowledgeDimensions.add(knowledgeDimesion.toLong())
+            selectedKnowledgeDimensions.add(knowledgeDimension.toLong())
         }
         for (def domainCategory in data.selectedDomainCategories) {
             selectedDomainCategories.add(domainCategory.toLong())
@@ -91,30 +81,34 @@ class AssessmentController {
                     }
                 }
             }
+          resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
         }
 
         // find all technique that are not ideal, but have the learning domain
         def extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
             and {
-                learningDomain {
-                    'in' ('id', selectedLearningDomains)
-                }
-                not {
-                    and {
-                        knowledgeDimension {
-                            'in' ('id', selectedKnowledgeDimensions)
-                        }
-                        or {
-                            domainCategory {
-                                'in' ('id', selectedDomainCategories)
-                            }
-                            learningDomain {
-                                'in' ('id', selectedLearningDomains)
-                            }
+            learningDomain {
+                'in' ('id', selectedLearningDomains)
+            }
+				not {
+					and {
+
+						knowledgeDimension {
+							'in' ('id', selectedKnowledgeDimensions)
+						}
+						or {
+
+							domainCategory {
+								'in' ('id', selectedDomainCategories)
+							}
+							learningDomain {
+								'in' ('id', selectedLearningDomains)
+							}
                         }
                     }
                 }
             }
+                resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
         }
 
         render(
