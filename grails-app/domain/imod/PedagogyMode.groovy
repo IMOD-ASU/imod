@@ -17,4 +17,8 @@ class PedagogyMode {
 	static mapping = {
 		version false
 	}
+
+	String toString(){
+		return name
+	}
 }

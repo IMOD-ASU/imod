@@ -41,15 +41,18 @@
 									Learning Objectives
 								</span>
 							</div>
+						
+
 							<ul class="learning-objective list-wrapper">
-								<g:each var="learningObjective" in="${learningObjectives}">
-									<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
-										<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
-											${ learningObjective.definition }
-										</g:link>
-									</li>
-								</g:each>
-							</ul>
+							<g:each var="learningObjective" in="${learningObjectives}">
+								<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
+									<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
+										${ learningObjective.definition }
+									</g:link>
+								</li>
+							</g:each>
+						</ul>
+
 						</div>
 
 						<g:render template="/pedagogy/filter" />

@@ -47,7 +47,7 @@
 				<g:each var="learningObjective" in="${learningObjectives}">
 					<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
 						<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
-							${learningObjective.definition}
+							${ learningObjective.definition }
 						</g:link>
 					</li>
 				</g:each>
@@ -74,7 +74,7 @@
 							<label for="knowledge-dimension-${index}">
 								${knowledgeDimension.description}
 							</label>
-							<g:checkBox checked ="none" name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" />
+							<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" />
 						</li>
 					</g:each>
 				</ul>
@@ -89,7 +89,7 @@
 							<label for="learning-domain-${index}">
 								${learningDomain.name}
 							</label>
-							<g:checkBox  checked ="none" name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" />
+							<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" />
 						</li>
 					</g:each>
 				</ul>
@@ -104,7 +104,7 @@
 							<label for="domain-category-${index}">
 								${domainCategory.name}
 							</label>
-							<g:checkBox checked ="none" name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" />
+							<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" />
 						</li>
 					</g:each>
 				</ul>
@@ -115,40 +115,104 @@
 		<td class="learning-objective definition-cell">
 
 				<g:if test="${learningObjectives}">
-
+				<div class="topic_addition_widget">
 					<div class="assessment-page-buttons">
 						<span>
 
 							<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 
-							<button id="new-technique">Add New Technique
+							<button id="new-technique-button">Add New Technique
 							</button>
 
 							<button id="favorites">Favorites
 							</button>
 
-							<button id="instructional-plan">Instructional Plan
+							<button id="unfavorites">UnFavorites
+							</button>
+
+							<button id="assessment-plan-button">Assessment Plan
 							</button>
 						</span>
 					</div>
 
+					<g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+
+					<ul class="learning-objective sub-nav">
+						<li class="performance active">
+							Performance
+						</li>
+						<li class="content">
+							Content
+						</li>
+						<li class="condition">
+							Condition
+						</li>
+						<li class="criteria active">
+							Criteria
+						</li>
+					</ul>
+
+					<div id="selectedFilter">
+						${selectionLine}
+					</div>
+
+			<!--		<h3 title="" class="showHover">
+						Ideal Match
+					</h3>
+					<div id="ideal-matches" class="icons">
+
+
+					</div>
+				-->
+
+					<h3 title="" class="showHover">
+						Ideal matches
+					</h3>
+					<div id="ideal-matches1" class="AllMatches">
+
+					</div>
+
+					<div class="favDiv">
+
+					<h3 id="assessmentFavorites" title="" class="showHover">
+						Favorites
+					</h3>
+
+					<div id="assessmentFavoritesDiv" class="AllMatches"  >
+
+					</div><div id="assessmentFavoritesDiv1" class="AllMatches"  >
+
+					</div>
+
+					</div>
+
+					<h3 title="" class="showHover">
+						Extended Match
+					</h3>
+
+					<div id="extended-matches" class="AllMatches">
+
+					</div>
+				</div>
 				</g:if>
 				<g:else>
+
 				<div class="assessment-page-buttons-disabled">
 					<span>
 
 						<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 
-						<button id="new-technique">Add New Technique
+						<button id="new-technique-button">Add New Technique
 						</button>
 
 						<button id="favorites">Favorites
 						</button>
 
-						<button id="instructional-plan">Instructional Plan
+						<button id="assessment-plan-button">Assessment Plan
 						</button>
 					</span>
 				<br/>
+
 				</div>
 				<div class="video-control" style="">
 
@@ -164,14 +228,52 @@
 
 
 				<%--Dialog box for Add New Technique --%>
-				<div id="add-new-technique" title="Add New Technique">
+				<div id="new-technique" title="Add New Technique">
 					<%--To render the add new Technique dialog box--%>
 					<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:hiddenField name="techniqueId" />
 						<label>
 							Title
 						</label>
 						<g:textField name="title" />
 						<br />
+
+						<label>
+						Description
+						</label>
+						<g:textArea name="description" />
+						<br />
+
+						<label>
+						Procedure
+						</label>
+						<g:textArea name="procedure" />
+						<br />
+
+						<label>
+							Duration
+						</label>
+						<g:field type="number" name="duration" min="01" max="60" class="allInputs"/>
+						<br />
+						<label>
+							Feedback Mechanism
+						</label>
+						<g:select name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
+						<br />
+
+
+						<g:each var="assessmentFeedbacks" in="${assessmentFeedback}" status="index">
+						<span>
+								<label for="assessment-feedback-${index}">
+									${assessmentFeedbacks.name}
+								</label>
+								<g:checkBox  name="assessmentFeedback2" value="${assessmentFeedbacks.id}" id="assessment-feedback-${index}" />
+						</span>
+						</g:each>
+						<br />
+
+
+
 
 						<label>
 							Assign to Current Learning Objective
@@ -203,61 +305,142 @@
 						<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
 						<br />
 
-						<label>
-							Delivery Mode
-						</label>
-						<g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
-						<br />
 
-						<label>
-							Location
-						</label>
-						<g:textField name="location" />
-						<br />
 
-						<label>
-							Focus
-						</label>
-						<g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
-						<br />
-
-						<label>
-							Direction
-						</label>
-						<g:textField name="direction" />
-						<br />
-
-						<label>
-							Materials Required
-						</label>
-						<g:textField name="materials" />
-						<br />
-
-						<label>
-							Reference
-						</label>
-						<g:textField name="reference" />
-						<br />
-
-						<label>
-							Description of Strategy
-						</label>
-						<g:textField name="strategyDescription" />
-						<br />
-
-						<label>
-							Description of Activity
-						</label>
-						<g:textField name="activityDescription" />
-						<br />
-
-						<g:actionSubmit value="Save" action="create" />
-						<button id="create-pedagogy-cancel">
-							Cancel
-						</button>
+						<g:actionSubmit value="Save" action="save" />
+						<g:actionSubmit value="Cancel" action="cancel" />
 					</g:form>
 				</div>
 
+
+				<%--Dialog box for Displaying Technique --%>
+				<div id="display-new-technique" title="Display Technique">
+					<%--To render the add new Technique dialog box--%>
+					<g:form controller="assessmentTechnique" method="post"
+					id="${currentImod.id}"
+					params="[learningObjectiveID: currentLearningObjective.id]">
+					<span><input type="button" value="Edit" id="Edit" />
+					<input type="button" value="View" id="View" />
+					</span><br/>
+
+						<g:hiddenField name="techniqueId1" />
+						<label>
+							Title
+						</label>
+						<g:textField name="title1"  class="allInputs"/>
+						<g:textField name="title2"  class="allInputs1"/>
+						<br />
+
+						<label>
+						Description
+						</label>
+						<g:textField name="description1"  class="allInputs"/>
+						<g:textField name="description2"  class="allInputs1"/>
+						<br />
+
+						<label>
+						Procedure
+						</label>
+						<g:textArea name="procedure1"  class="allInputs"/>
+						<g:textArea name="procedure2"  class="allInputs1"/>
+						<br />
+
+						<label>
+						Duration
+						</label>
+						<g:field type="number" name="duration1" min="01" max="60" class="allInputs"/>
+						<g:field type="number" name="duration2" min="01" max="60" class="allInputs1"/>
+						<br />
+
+						<label>
+							Feedback Mechanism
+						</label>
+						<g:select name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
+						<br />
+						<g:each var="assessmentFeedbacks" in="${assessmentFeedback}" status="index">
+						<span>
+								<label for="assessment-feedback-${index}">
+									${assessmentFeedbacks.name}
+								</label>
+								<g:checkBox  name="assessmentFeedback3" value="${assessmentFeedbacks.id}" id="assessment-feedback-${index}" />
+						</span>
+						</g:each>
+						<br />
+
+
+
+
+						<label>
+							Assign to Current Learning Objective
+						</label>
+						<g:checkBox name="assignedToLearningObjective"  value="${true}"/>
+						<br />
+
+						<label>
+							Favorite Technique
+						</label>
+						<g:checkBox name="favoriteTechnique"  value="${true}"/>
+						<br />
+
+						<label>
+							Learning Domain
+						</label>
+						<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+						<br/>
+						<label>Learning Domain</label>
+
+						<label>${} </label>
+						<br />
+
+						<label>
+							Domain Category
+						</label>
+						<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
+						<br />
+
+						<label>
+							Knowledge Dimension
+						</label>
+						<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+
+
+						<br />
+
+
+
+						<g:actionSubmit value="Save" action="save1" />
+						<g:actionSubmit value="Cancel" action="cancel" />
+					</g:form>
+				</div>
+
+				<div id="assessment-plan" >
+					<g:form controller="assessmentTechnique" method="post"
+					id="${currentImod.id}"
+					params="[learningObjectiveID: currentLearningObjective.id]">
+					<label>
+					<h2>Learning Objective </h2>
+				</label><br/>
+				<span>
+					<g:if test="${learningObjectives}">
+					<g:each var="learningObjective" in="${learningObjectives}">
+						<div class="assessment-plan learning-objective">
+						${learningObjective.id} : ${ learningObjective.definition }
+						</div>
+					</g:each>
+					</g:if>
+				</span>
+
+				<div id="assessmentData">
+
+				</div>
+				<br/>
+				<div id='individualAssessments'>
+					<div id='assignTitle'></div>
+					<div id='assignTitle1'></div>
+				</div>
+			</g:form>
+
+				</div>
 
 
 
@@ -267,9 +450,6 @@
 
 
 </table>
-
-
-
 
 	</body>
 </html>

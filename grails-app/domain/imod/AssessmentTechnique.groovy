@@ -2,12 +2,16 @@ package imod
 
 /**
  * This is the key table,
- * This holds all of the pedagogy parts together
+ * This holds all of the Assessment parts together
  */
 class AssessmentTechnique {
 	String title
 	String description
-	//PedagogyMode pedagogyMode
+	String procedure
+	String duration
+	Boolean assigncheck = Boolean.TRUE
+	Boolean favcheck = Boolean.TRUE
+	AssessmentFeedback assessmentFeedback
 
 	static hasMany = [
 		//activityFocus: PedagogyActivityFocus,
@@ -20,8 +24,8 @@ class AssessmentTechnique {
 
 	static belongsTo = [
 		ImodUser,
-		LearningObjective,
-		//PedagogyMode
+		LearningObjective
+
 	]
 
 	String toString() {
@@ -37,6 +41,10 @@ class AssessmentTechnique {
 		//activityFocus nullable: true
 		assignedLearningObjective nullable: true
 		description nullable: true, blank: true
+		procedure nullable: true, blank: true
+		duration nullable: true, blank:true
 		userFavorite nullable: true
+		assessmentFeedback nullable:true
+
     }
 }

@@ -15,11 +15,13 @@ import imod.PedagogyMode
 import imod.PedagogyReference
 import imod.PedagogyReferenceType
 import imod.PedagogyTechnique
+import imod.AssessmentTechnique
 import imod.Role
 import imod.ScheduleRepeats
 import imod.ScheduleRepeatsEvery
 import imod.ScheduleWeekDays
 import imod.Audience
+import imod.AssessmentFeedback
 
 
 class BootStrap {
@@ -1204,8 +1206,6 @@ class BootStrap {
 
 		}
 
-
-
 if (KnowledgeDimension.count() < 1) {
 			new KnowledgeDimension(
 				description: 'Factual',
@@ -1245,6 +1245,25 @@ if (KnowledgeDimension.count() < 1) {
 				description: 'URL'
 			).save()
 		}
+
+
+		if(AssessmentFeedback.count() == 0){
+			new AssessmentFeedback(
+				name:"In Person"
+			).save()
+
+			new AssessmentFeedback(
+				name:"Online"
+			).save()
+
+			new AssessmentFeedback(
+				name:"Both"
+			).save()
+		}
+
+
+
+
 
 		if(PedagogyMode.count() == 0){
 			new PedagogyMode(
@@ -1300,6 +1319,29 @@ if (KnowledgeDimension.count() < 1) {
 				focus:'Presenting'
 			).save()
 		}
+
+		if(AssessmentTechnique.count() == 0){
+			/*Pedagogy Technique*/
+			def assessmentTech = new AssessmentTechnique(
+				title:"Minute Papers",
+				domain: LearningDomain.findAllByNameInList([
+					'Cognitive'
+				]),//'Cognitive','Affective', 'Psychomotor'
+				category:DomainCategory.findAllByNameInList([
+					'Remembering'
+				]),
+				knowledge:KnowledgeDimension.findAllByDescriptionInList([
+					"Factual",
+					"Conceptual",
+					"Procedural",
+					"Metacognitive"
+				]),
+				assessmentFeedback: AssessmentFeedback.findByName("Online")
+				).save()
+
+		}
+
+
 
 		if(PedagogyTechnique.count() == 0){
 			/*Pedagogy Technique*/
