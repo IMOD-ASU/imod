@@ -247,9 +247,10 @@
                                         	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        	Default:<g:radio id="coursePolicyRadioDefault" name="coursePolicyRadio" title="Default" value="Default" checked="true" />
                                         	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        	Custom: <g:radio id="coursePolicyRadioCustom" name="coursePolicyRadio" title="Custom" value="Custom" />
+                                        	<g:radio id="coursePolicyRadioDefault" name="coursePolicyRadio" title=" Select for Default policies" value="Default Policies" checked="true" />&nbsp;Default
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	<g:radio id="coursePolicyRadioCustom" name="coursePolicyRadio" title="Select for custom policies" value="Custom" />&nbsp;Custom
                                         </div>
                                         <div id="accordion">
                                             <h3>
