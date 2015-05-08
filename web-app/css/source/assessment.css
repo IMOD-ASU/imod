@@ -1,3 +1,34 @@
+.favDiv{
+
+    visibility : hidden;
+    display: none
+
+}
+
+#unfavorites{
+
+    display : none;
+}
+
+#assessmentFavorites{
+
+    visibility : hidden;
+    display : none;
+}
+
+#assessmentFavoritesDiv{
+
+    visibility : hidden;
+    display : none;
+}
+
+
+.assessmentTechButtons{
+
+}
+
+
+
 .no-objective-defined {
     text-align: center;
     vertical-align: middle;
