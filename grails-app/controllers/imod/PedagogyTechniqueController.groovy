@@ -45,6 +45,7 @@ class PedagogyTechniqueController {
 		newTechnique.title = params.title
 		newTechnique.description = params.activityDescription
 		newTechnique.direction = params.direction
+		newTechnique.location = params.location
 		newTechnique.materials = params.materials
 		newTechnique.reference = params.reference
 		newTechnique.strategyDescription = params.strategyDescription
