@@ -78,11 +78,6 @@ class AssessmentTechniqueController {
 
 		newTechnique.assessmentFeedback= AssessmentFeedback.findByName(params.assessmentFeedback1)
 
-	//	newTechnique.assignedLearningObjective = params.assignedToLearningObjective
-
-	//	println params.assignedToLearningObjective as boolean
-	//	println params.favoriteTechnique as boolean
-
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)
@@ -155,11 +150,6 @@ class AssessmentTechniqueController {
 		newTechnique.favcheck = params.favoriteTechnique as boolean
 
 		newTechnique.assessmentFeedback= AssessmentFeedback.findByName(params.assessmentFeedback)
-
-	//	newTechnique.assignedLearningObjective = params.assignedToLearningObjective
-
-	//	println params.assignedToLearningObjective as boolean
-	//	println params.favoriteTechnique as boolean
 
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)

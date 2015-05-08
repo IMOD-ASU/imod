@@ -66,17 +66,6 @@ class AssessmentController {
             selectedLearningDomains.add(learningDomain.toLong())
         }
 
-
-
-
-//        def favoriteAssessmentTechniqueMatch = AssessmentTechnique{
-
-
-
-//        }
-
-
-
         // find all technique where both the knowledge dimension and the domain category match
         def idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
             and {

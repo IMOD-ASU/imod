@@ -1,4 +1,5 @@
 <%@ page import="imod.Help" %>
+
 <html>
 	<head>
 		<title>
@@ -262,20 +263,6 @@
 						<g:select name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
 						<br />
 
-
-						<g:each var="assessmentFeedbacks" in="${assessmentFeedback}" status="index">
-						<span>
-								<label for="assessment-feedback-${index}">
-									${assessmentFeedbacks.name}
-								</label>
-								<g:checkBox  name="assessmentFeedback2" value="${assessmentFeedbacks.id}" id="assessment-feedback-${index}" />
-						</span>
-						</g:each>
-						<br />
-
-
-
-
 						<label>
 							Assign to Current Learning Objective
 						</label>
@@ -305,8 +292,6 @@
 						</label>
 						<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
 						<br />
-
-
 
 						<g:actionSubmit value="Save" action="save" />
 						<g:actionSubmit value="Cancel" action="cancel" />
@@ -358,19 +343,6 @@
 						</label>
 						<g:select name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
 						<br />
-						<g:each var="assessmentFeedbacks" in="${assessmentFeedback}" status="index">
-						<span>
-								<label for="assessment-feedback-${index}">
-									${assessmentFeedbacks.name}
-								</label>
-								<g:checkBox  name="assessmentFeedback3" value="${assessmentFeedbacks.id}" id="assessment-feedback-${index}" />
-						</span>
-						</g:each>
-						<br />
-
-
-
-
 						<label>
 							Assign to Current Learning Objective
 						</label>
@@ -390,7 +362,6 @@
 						<br/>
 						<label>Learning Domain</label>
 
-						<label>${} </label>
 						<br />
 
 						<label>
