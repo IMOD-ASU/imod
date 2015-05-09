@@ -12,7 +12,7 @@ An IMODS is a course that uses Pedagogy, Content, and Assessment to generate Lea
 - Read the [Contributing Guidelines](https://github.com/IMOD-ASU/imod/blob/master/CONTRIBUTING.md)
 
 ###Installation Instructions
-* Install the Java Developement Kit version 7 or 8
+* Install the Java Developement Kit version 8
 [(windows)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 [(linux)](http://openjdk.java.net/install/)
 * Install Grails version 2.5.0
