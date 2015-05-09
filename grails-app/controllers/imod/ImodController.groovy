@@ -30,7 +30,7 @@ class ImodController {
         // create sample imod if it doesn't exist
         def sample = currentUser.imods.find {it.name == 'Object-Oriented Software Development - sample'}
 
-        if(sample == null) {
+        if (sample == null) {
             def audience1 = Audience.findByDescription('Lower Division')
 
             // create a new imod
@@ -822,7 +822,7 @@ class ImodController {
 		schedule.scheduleWeekDays = null
 
 		params.each {
-			if(it.key.contains('scheduleWeekDays_')) {
+			if (it.key.contains('scheduleWeekDays_')) {
 				if (it.value.contains('on')) {
 					if(schedule.scheduleWeekDays == null) {
 						currentImod.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer))

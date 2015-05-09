@@ -1,15 +1,3 @@
-//Adding all style related JS on top
-/*$("#new-technique").dialog({
-    create: function(event, ui) {
-      var widget = $(this).dialog("widget");
-      $(".ui-dialog-titlebar-close span", widget)
-          .removeClass("ui-icon-closethick")
-          .addClass("ui-icon-minusthick");
-   }
-});
-
-*/
-
 'use strict';
 
 // Load techniques on page load
@@ -18,18 +6,14 @@ filterAssessmentTechniques();
 // Filters for the pedagogy technique are wrapped in a accordian
 $('#filter-assessment-techniques').accordion();
 
-$('#idealCollapser').load(function(){
+$('#idealCollapser').load(function () {
 	$('#ideal-matches1').slideToggle('slow');
 
 	$('#extended-matches').hide();
 });
 
-
-
-$('#extCollapser').click(function(){
+$('#extCollapser').click(function () {
 	$('#extended-matches').slideToggle('slow');
-
-
 });
 
 $('#favorites').click(function () {
@@ -198,14 +182,7 @@ function checkForAssign(data) {
 	}
 }
 
-
 function showAssessmentTechnique() {
-/*	$('#ideal-matches').buttonset().click(function () {
-		$('#display-new-technique').dialog('open');
-		displayAssessmentInformationInEdit();
-	});
-*/
-
 	$('#ideal-matches1').buttonset().click(function () {
 		$('#display-new-technique').dialog('open');
 		$('#display-new-technique').dialog({
@@ -243,7 +220,12 @@ function displayAssessmentTechniques(data) {
 	// Take the titles and make html code to display
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
-		idealText1 += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span-' + currentTechnique.id + '" class="icons"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+		idealText1 += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '" />';
+		idealText1 += '<span id="span-' + currentTechnique.id + '" class="icons">';
+		idealText1 += '  <label for="' + currentTechnique.id + '">';
+		idealText1 += '    ' + currentTechnique.title;
+		idealText1 += '  </label>';
+		idealText1 += '</span>';
 	}
 
 	var idealText2 = '';
@@ -252,9 +234,19 @@ function displayAssessmentTechniques(data) {
 		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
 		if (currentTechnique.favcheck === true) {
 			if (currentTechnique.assigncheck === true) {
-				idealText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+				idealText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '" />';
+				idealText2 += '<span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign">';
+				idealText2 += '  <label for="' + currentTechnique.id + '">';
+				idealText2 += '    ' + currentTechnique.title;
+				idealText2 += '  </label>';
+				idealText2 += '</span>';
 			} else if (currentTechnique.assigncheck === false){
-				idealText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+				idealText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '" />';
+				idealText2 += '<span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign">';
+				idealText2 += '  <label for="' + currentTechnique.id + '">';
+				idealText2 += '    ' + currentTechnique.title;
+				idealText2 += '  </label>';
+				idealText2 += '</span>';
 			}
 		}
 
@@ -266,7 +258,12 @@ function displayAssessmentTechniques(data) {
 	// Take the titles and make html code to display
 	for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
 		var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		extendedText += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span-' + currentTechnique.id + '" class="icons"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+		extendedText += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '" />';
+		extendedText += '<span id="span-' + currentTechnique.id + '" class="icons">';
+		extendedText += '  <label for="' + currentTechnique.id + '">';
+		extendedText += '    ' + currentTechnique.title;
+		extendedText += '  </label>';
+		extendedText += '</span>';
 	}
 
 	var extendedText2 = '';
@@ -275,9 +272,19 @@ function displayAssessmentTechniques(data) {
 		var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
 		if (currentTechnique.favcheck === true) {
 			if (currentTechnique.assigncheck === true) {
-				extendedText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign "><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+				extendedText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '" />';
+				extendedText2 += '<span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign ">';
+				extendedText2 += '  <label for="' + currentTechnique.id + '">';
+				extendedText2 += '    ' + currentTechnique.title;
+				extendedText2 += '  </label>';
+				extendedText2 += '</span>';
 			} else if (currentTechnique.assigncheck === false) {
-				extendedText2 += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="fav' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+				extendedText2 += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="fav' + currentTechnique.id + '" />';
+				extendedText2 += '<span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign">';
+				extendedText2 += '  <label for="' + currentTechnique.id + '">';
+				extendedText2 += '    ' + currentTechnique.title;
+				extendedText2 += '  </label>';
+				extendedText2 += '</span>';
 			}
 		}
 		$('#assessmentFavoritesDiv1').html(extendedText2);
@@ -303,61 +310,70 @@ function displayAssessmentPlan(data) {
 }
 
 function assessmentPlanData(data) {
-	var allAssessmentData ='';
+	var allAssessmentData = '';
 
-	//alert(data.learningDomains.id);
 	for (var index = 0; index < data.assessmentTechInstance.length; index++) {
 		var assessmentPlan = data.assessmentTechInstance[index];
 
 		var techkd = '';
-		var techld = '';
-		var techdc ='';
-		for(var ind = 0; ind < assessmentPlan.knowledgeDimension.length; ind++){
+		for (var ind = 0; ind < assessmentPlan.knowledgeDimension.length; ind++) {
 			var xx = assessmentPlan.knowledgeDimension[ind];
-		//	alert("xx"+ xx.id);
 			techkd = xx.id;
-		//	alert("techkd"+techkd);
 		}
 
-		//alert("after loop techkd:"+techkd);
 		var xkd = '';
-		var xdc='';
-		var xld='';
-		var kd='';
+		var xdc = '';
+		var xld = '';
+		var kd = '';
 
-		for(var index1 = 0; index1 < data.knowledgeDimensions.length; index1++){
+		for (var index1 = 0; index1 < data.knowledgeDimensions.length; index1++) {
 			kd = data.knowledgeDimensions[index1];
 
-			//alert("kd:"+ kd.id);
-			//alert("for works");
+			if (kd.id === techkd) {
+				var xkd = kd.description;
 
-			if(kd.id == techkd)
-			{
-				//alert("if works"+kd+techkd);
-				var xkd= kd.description;
-
-				alert("final X::"+xkd);
+				alert('final X::' + xkd);
 			}
 		}
 
-
-	allAssessmentData += '<div id="'+assessmentPlan.id+'"><span><h2>'
-						  +assessmentPlan.title+'</h2></span><br/><span> Description : '
-						  +assessmentPlan.description+'</span><br/><span>'
-					      +assessmentPlan.procedure+'</span><br/><span>'
-						  +assessmentPlan.duration+'</span><br/><span>DomainCategory :'
-						  +xdc+'</span><br/><span>Learning Domain :'
-						  +xld+'</span><br/><span> Knowledge Dimension : '
-						  +xkd+'</span><br/><span>'
-						  +assessmentPlan.assessmentFeedback.name+'</span>'
-						 '</div>';
-
-	//alert(allAssessmentData);
-
+		allAssessmentData += '<div id="' + assessmentPlan.id + '">';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    <h2>';
+		allAssessmentData += '      ' + assessmentPlan.title;
+		allAssessmentData += '    </h2>';
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    Description : ' + assessmentPlan.description;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    ' + assessmentPlan.procedure;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    ' + assessmentPlan.duration;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    DomainCategory :' + xdc;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    Learning Domain :' + xld;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    Knowledge Dimension : ' + xkd;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    ' + assessmentPlan.assessmentFeedback.name;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '</div>';
 	}
 
 	$('#assessmentData').html(allAssessmentData);
-
 }
 
 function displayAssessmentInformationInEdit() {
