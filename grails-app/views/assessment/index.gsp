@@ -12,7 +12,6 @@
 		<g:external dir="css/source" file="learningObjective.css" />
 		<g:external dir="css/source" file="iconModule.css" />
 		<g:javascript src="source/assessment.js" defer="defer" />
-
 	</head>
 
 	<body>
@@ -226,74 +225,79 @@
 									Favorite
 								</label>
 								<g:checkBox class="favBtn" name="favoriteTechnique" />
-							</span><br/>
-
+							</span>
 							<br/>
-						<p class="form-align">
-							<label class="form-labels">
-								Title
-							</label>
-							<g:textField name="title" class="form-inputs"/>
-						</p><br/>
+							<br/>
 
-						<p class="form-align">
-							<label class="form-labels">
-								Description
-							</label>
-							<g:textArea name="description" class="form-inputs"/>
-						</p><br/>
+							<p class="form-align">
+								<label class="form-labels">
+									Title
+								</label>
+								<g:textField name="title" class="form-inputs"/>
+							</p>
+							<br/>
 
-						<p class="form-align">
-							<label class="form-labels">
-								Procedure
-							</label>
-							<g:textArea name="procedure" class="form-inputs"/>
-						</p><br/>
+							<p class="form-align">
+								<label class="form-labels">
+									Description
+								</label>
+								<g:textArea name="description" class="form-inputs"/>
+							</p>
+							<br/>
 
-						<p class="form-align">
-							<label class="form-labels">
-								Duration
-							</label>
-							<g:field type="number" name="duration" min="01" max="60" class="allInputs"/>
-						</p><br/>
+							<p class="form-align">
+								<label class="form-labels">
+									Procedure
+								</label>
+								<g:textArea name="procedure" class="form-inputs"/>
+							</p>
+							<br/>
 
-						<p class="form-align">
-							<label class="form-labels">
-								Feedback Mechanism
-							</label>
-							<g:select class="form-inputs" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
-						</p><br/>
+							<p class="form-align">
+								<label class="form-labels">
+									Duration
+								</label>
+								<g:field type="number" name="duration" min="01" max="60" class="allInputs"/>
+							</p>
+							<br/>
 
+							<p class="form-align">
+								<label class="form-labels">
+									Feedback Mechanism
+								</label>
+								<g:select class="form-inputs" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
+							</p>
+							<br/>
 
+							<p class="form-align">
+								<label class="form-labels">
+									Learning Domain
+								</label>
+								<g:select class="form-inputs" name="learningDomain" from="${learningDomains}" optionKey="name" />
+							</p>
+							<br/>
 
-						<p class="form-align">
-							<label class="form-labels">
-								Learning Domain
-							</label>
-							<g:select class="form-inputs" name="learningDomain" from="${learningDomains}" optionKey="name" />
-						</p><br/>
+							<p class="form-align">
+								<label class="form-labels">
+									Domain Category
+								</label>
+								<g:select class="form-inputs" name="domainCategory" from="${domainCategories}" optionKey="name" />
+							</p>
+							<br/>
 
-						<p class="form-align">
-							<label class="form-labels">
-								Domain Category
-							</label>
-							<g:select class="form-inputs" name="domainCategory" from="${domainCategories}" optionKey="name" />
-						</p><br/>
+							<p class="form-align">
+								<label class="form-labels">
+									Knowledge Dimension
+								</label>
+								<g:select class="form-inputs" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+							</p>
+							<br/>
 
-						<p class="form-align">
-							<label class="form-labels">
-								Knowledge Dimension
-							</label>
-							<g:select class="form-inputs" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
-						</p><br />
-
-						<div id="modalButtons">
-							<g:actionSubmit value="Save" action="save" />
-							<g:actionSubmit value="Cancel" action="cancel" />
-						</div>
-
+							<div id="modalButtons">
+								<g:actionSubmit value="Save" action="save" />
+								<g:actionSubmit value="Cancel" action="cancel" />
+							</div>
 						</g:form>
-
 					</div>
 
 					<%--Dialog box for Displaying in edit and View mode Technique --%>
@@ -319,68 +323,75 @@
 
 							<g:hiddenField name="techniqueId1" />
 							<p class="form-align">
-							<label class="form-labels">
-								Title
-							</label>
-							<g:textField name="title1"  class="allInputs"/>
-							<g:textField name="title2"  class="allInputs1"/>
-							</p><br/>
+								<label class="form-labels">
+									Title
+								</label>
+								<g:textField name="title1"  class="allInputs"/>
+								<g:textField name="title2"  class="allInputs1"/>
+							</p>
+							<br/>
+							<p class="form-align">
+								<label class="form-labels">
+									Description
+								</label>
+								<g:textField name="description1"  class="allInputs"/>
+								<g:textField name="description2"  class="allInputs1"/>
+							</p>
+							<br/>
 
 							<p class="form-align">
-							<label class="form-labels">
-								Description
-							</label>
-							<g:textField name="description1"  class="allInputs"/>
-							<g:textField name="description2"  class="allInputs1"/>
-							</p><br/>
+								<label class="form-labels">
+									Procedure
+								</label>
+								<g:textArea name="procedure1"  class="allInputs"/>
+								<g:textArea name="procedure2"  class="allInputs1"/>
+							</p>
+							<br/>
 
 							<p class="form-align">
-							<label class="form-labels">
-								Procedure
-							</label>
-							<g:textArea name="procedure1"  class="allInputs"/>
-							<g:textArea name="procedure2"  class="allInputs1"/>
-							</p><br/>
+								<label class="form-labels">
+									Duration
+								</label>
+								<g:field type="number" name="duration1" min="01" max="60" class="allInputs"/>
+								<g:field type="number" name="duration2" min="01" max="60" class="allInputs1"/>
+							</p>
+							<br/>
 
 							<p class="form-align">
-							<label class="form-labels">
-								Duration
-							</label>
-							<g:field type="number" name="duration1" min="01" max="60" class="allInputs"/>
-							<g:field type="number" name="duration2" min="01" max="60" class="allInputs1"/>
-							</p><br/>
+								<label class="form-labels">
+									Feedback Mechanism
+								</label>
+								<g:select name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
+							</p>
+							<br/>
 
 							<p class="form-align">
-							<label class="form-labels">
-								Feedback Mechanism
-							</label>
-							<g:select name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
-							</p><br/>
+								<label class="form-labels">
+									Learning Domain
+								</label>
+								<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+							</p>
+							<br/>
 
 							<p class="form-align">
-							<label class="form-labels">
-								Learning Domain
-							</label>
-							<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
-							</p><br/>
+								<label class="form-labels">
+									Domain Category
+								</label>
+								<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
+							</p>
+							<br/>
 
 							<p class="form-align">
-							<label class="form-labels">
-								Domain Category
-							</label>
-							<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
-						</p><br/>
-
-							<p class="form-align">
-							<label class="form-labels">
-								Knowledge Dimension
-							</label>
-							<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
-						</p><br/>
+								<label class="form-labels">
+									Knowledge Dimension
+								</label>
+								<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+							</p>
+							<br/>
 
 							<div id="modalButtons">
-							<g:actionSubmit value="Save" action="save1" />
-							<g:actionSubmit value="Cancel" action="cancel" />
+								<g:actionSubmit value="Save" action="save1" />
+								<g:actionSubmit value="Cancel" action="cancel" />
 							</div>
 						</g:form>
 					</div>
@@ -410,10 +421,11 @@
 							<br/>
 
 							<div id='individualAssessments'>
-								<div id='assignTitle'></div>
-								<div id='assignTitle1'></div>
+								<div id='assignTitle'>
+								</div>
+								<div id='assignTitle1'>
+								</div>
 							</div>
-
 						</g:form>
 					</div>
 				</td>
