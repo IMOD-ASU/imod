@@ -171,10 +171,10 @@ NOTE: this is only used for reference so developers know what tools and versions
 
 ##### Recover from Test/Demo Server Crash
 1. SSH into the server
-2. run `sudo reboot`
+2. Run `sudo reboot`
 3. Wait a few minutes
 4. SSH into the server again
-5. run `sudo /opt/apache-tomcat-7.0.61/bin/startup.sh`
+5. Run `sudo /opt/apache-tomcat-7.0.61/bin/startup.sh`
 
 ##### Recover from Travis CI depandancy lock
 Sometimes when dependancies get updated Travis CI say all builds fail.
@@ -188,7 +188,22 @@ Sometimes when dependancies get updated Travis CI say all builds fail.
 Done! the next Travis CI build will be a bit slow, but will not hang on installing dependancies.
 
 ##### Update Apache Tomcat on Demo
-Coming Soon!
+1. SSH into the server
+2. Goto `/opt`
+3. Run `sudo /opt/apache-tomcat-{new version}/bin/shutdown.sh`
+4. Open the [Apache Tomcat site](https://tomcat.apache.org/download-70.cgi)
+5. Get the latest code binary version `sudo wget http://whatever.tar.gz`
+6. Unzip file `sudo tar -zxvf whatever.tar.gz`
+7. Copy the Tomcat Manager configuration from the old Tomcat config file to the new
+8. In `bin/catalina.sh` copy the Java version and Java Opts from the old tomcat to the new
+9. Run `sudo /opt/apache-tomcat-{new version}/bin/startup.sh`
 
 ##### Update NodeJS on Demo
-Coming Soon!
+1. SSH into the server
+2. Goto `/opt`
+3. Open the [iojs website](https://iojs.org/en/index.html)
+4. Get the latest binary `sudo wget whatever.tat.gz`
+5. Unzip the file `sudo tar -zxvf whatever.tar.gz`
+6. cd into the new version
+7. run `bin/npm install bower`
+8. update the path to iojs in each of the Jenkins project configurations
