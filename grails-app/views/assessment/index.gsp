@@ -215,6 +215,10 @@
 						<%--To render the add new Technique dialog box--%>
 
 						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:javascript>
+							var currentLO = ${currentLearningObjective.id}
+						</g:javascript>
+
 							<g:hiddenField name="techniqueId" />
 							<span>
 								<label >
@@ -399,7 +403,7 @@
 								<g:if test="${learningObjectives.definition !=null}">
 									<g:each var="learningObjective" in="${learningObjectives}">
 										<div class="assessment-plan learning-objective">
-											${learningObjective.id} : ${ learningObjective.definition }
+										${ learningObjective.definition }
 										</div>
 									</g:each>
 								</g:if>

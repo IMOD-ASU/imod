@@ -14,7 +14,6 @@ class AssessmentTechnique {
 	AssessmentFeedback assessmentFeedback
 
 	static hasMany = [
-		//activityFocus: PedagogyActivityFocus,
 		assignedLearningObjective: LearningObjective,
 		domainCategory: DomainCategory,
 		knowledgeDimension: KnowledgeDimension,
@@ -34,7 +33,6 @@ class AssessmentTechnique {
 	}
 
     static constraints = {
-		//activityFocus nullable: true
 		assignedLearningObjective nullable: true
 		description nullable: true, blank: true
 		procedure nullable: true, blank: true

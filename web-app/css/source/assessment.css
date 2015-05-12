@@ -13,14 +13,13 @@
     font-size: 1em;}
 .form-labels { display: table-cell; width: 150px;    font-family: helvetica;
     font-size: 1em;}
-.form-inputs { display: table-cell; width: 200px;     font-family: helvetica;
+.form-inputs { display: table-cell; width: 400px;     font-family: helvetica;
     font-size: 1em;}
-.allInputs  {display: table-cell; width: 200px;     font-family: helvetica;
+.allInputs  {display: table-cell; width: 400px;     font-family: helvetica;
     font-size: 1em;}
-.allInputs1 {display: table-cell; width: 200px;    font-family: helvetica;
+.allInputs1 {display: table-cell; width: 400px !important;    font-family: helvetica;
     font-size: 1em;}
-.allspans1 {display: table-cell; width: 200px;     font-family: helvetica;
-    font-size: 1em;}
+.allspans1 {display: table-cell; width: 400px !important;    font-family: helvetica; font-size: 1em;}
 
 #modalButtons {
    float: right;
