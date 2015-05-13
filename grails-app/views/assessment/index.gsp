@@ -216,7 +216,7 @@
 
 						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 						<g:javascript>
-							var currentLO = ${currentLearningObjective.id}
+							var currentLO = ${currentLearningObjective.id};
 						</g:javascript>
 
 							<g:hiddenField name="techniqueId" />
@@ -389,37 +389,20 @@
 						</g:form>
 					</div>
 
-					<%--Dialog box for Assessement Plans--%>
-					<div id="assessment-plan" >
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
-							<label>
-								<h2>
-									Learning Objective
-								</h2>
-							</label>
-							<br/>
+<%--Dialog box for Assessement Plans--%>
+<div id="assessment-plan" >
+<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 
-							<span>
-								<g:if test="${learningObjectives.definition !=null}">
-									<g:each var="learningObjective" in="${learningObjectives}">
-										<div class="assessment-plan learning-objective">
-										${ learningObjective.definition }
-										</div>
-									</g:each>
-								</g:if>
-							</span>
+<div id="listLO"></div>
+<div id="assessmentData"></div><br/>
 
-							<div id="assessmentData">
-							</div>
-							<br/>
 
-							<div id='individualAssessments'>
-								<div id='assignTitle'></div>
-								<div id='assignTitle1'></div>
-							</div>
+<div id='individualAssessments'><div id='assignTitle'></div><div id='assignTitle1'></div></div>
 
-						</g:form>
-					</div>
+
+</g:form>
+
+</div><%--End of Assessment Plan Modal --%>
 				</td>
 			</tr>
 		</table>

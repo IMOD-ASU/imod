@@ -18,7 +18,12 @@ class AssessmentTechnique {
 		domainCategory: DomainCategory,
 		knowledgeDimension: KnowledgeDimension,
 		learningDomain: LearningDomain,
-		userFavorite: ImodUser
+		userFavorite: ImodUser,
+		/**
+		* These are the learning objectives that this AssessmentTechnique topic tries to teach
+		*/
+		objectives:		LearningObjective
+
 	]
 
 	static belongsTo = [

@@ -87,15 +87,12 @@ $('#assessment-plan-button').on('click', openAssessmentPlanModal);
  * Opens the modal to create a new assessment technique
  */
 function openAssessmentPlanModal() {
-	// Alert ("click calls the displayAssessmentPlan fucntion with ajax data");
-
 	$('#assessment-plan').dialog(
 	{
-
 		resizable: false,
 		height: 'auto',
 		title:'Assessment Plan',
-		width: 400,
+		width: '600px',
 		modal: true,
 		zindex: 1001,
 		autoReposition: true,
@@ -173,19 +170,40 @@ function filterAssessmentTechniques() {
 }
 
 function checkForAssign(data) {
-	// Your code
+	var assignedLO='';
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+	//alert("for loop for ideal tech");
 
+	for(var assignedLOindex=0; assignedLOindex<currentTechnique.assignedLearningObjective.length; assignedLOindex++){
+		assignedLO =currentTechnique.assignedLearningObjective[assignedLOindex]
+	//alert("assignedLO list"+assignedLO.id+" currentLO::"+currentLO+" condition:::"+(currentLO == assignedLO.id));
+
+	if(currentLO == assignedLO.id)
+
+	{
+	//	alert("== CHECK :::"+currentLO +" == "+ assignedLO.id);
 		if (currentTechnique.assigncheck === true && currentTechnique.favcheck === false) {
+			//alert("T T");
 			$('#span-' + currentTechnique.id).addClass('icons assessmentUnfavAssign');
-		} else if (currentTechnique.assigncheck === true && currentTechnique.favcheck === true) {
+		}
+		else if (currentTechnique.assigncheck === true && currentTechnique.favcheck === true) {
+			//alert("T F");
 			$('#span-' + currentTechnique.id).addClass('icons assessmentFavAssign');
-		} else if (currentTechnique.assigncheck === false && currentTechnique.favcheck === true) {
+		}
+
+
+		else if (currentTechnique.assigncheck === false && currentTechnique.favcheck === true) {
+			//alert("F T");
 			$('#span-' + currentTechnique.id).addClass('icons assessmentFavUnassign');
-		} else if (currentTechnique.assigncheck === false && currentTechnique.favcheck === false) {
+		}
+		else if (currentTechnique.assigncheck === false && currentTechnique.favcheck === false) {
+			//alert("F F");
 			$('#span-' + currentTechnique.id).addClass('icons assessmentUnfavUnassign');
 		}
+	}
+
+	}
 	}
 
 	for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
@@ -257,18 +275,18 @@ function displayAssessmentTechniques(data) {
 	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 	var currentTechnique = data.idealAssessmentTechniqueMatch[index];
 
-	for(var assignedLOindex=0; assignedLOindex<currentTechnique.assignedLearningObjective.length; assignedLOindex++){
+/*	for(var assignedLOindex=0; assignedLOindex<currentTechnique.assignedLearningObjective.length; assignedLOindex++){
 			assignedLO =currentTechnique.assignedLearningObjective[assignedLOindex]
 
 		//	alert("assignedLO list"+assignedLO.id+" currentLO::"+currentLO+" condition:::"+(currentLO == assignedLO.id));
 
 			if(currentLO == assignedLO.id)
-			{
+			{*/
 					idealText1 += '<input  type="radio" id="' + currentTechnique.id+ '" name="assessmentTech1" value="'
 							+ currentTechnique.id + '"><span id="span-' + currentTechnique.id + '" class="icons"><label for="'
 					+ currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			}
-	}
+		/*	}
+	}*/
 
 }
 
@@ -334,11 +352,28 @@ function displayAssessmentPlan(data) {
 
 function assessmentPlanData(data) {
 	var allAssessmentData ='';
+	var allLOData ='';
+	var listLOTech ='';
+	var loId='';
+	var listAssignedTech='';
+	var assignloId='';
+	var assessmentPlan='';
 
-	//alert(data.learningDomains.id);
+	for(var indexer=0; indexer < data.listLO.length; indexer++){
+		listLOTech = data.listLO[indexer];
+		loId=listLOTech.id;
+		//alert("loId:"+loId);
+		allLOData ='<div class="loHeading">Learning Objective :<i>'+listLOTech.definition+'</i></div>';
 	for (var index = 0; index < data.assessmentTechInstance.length; index++) {
-		var assessmentPlan = data.assessmentTechInstance[index];
+		assessmentPlan = data.assessmentTechInstance[index];
 
+	for(var indexer1=0; indexer1 < assessmentPlan.assignedLearningObjective.length; indexer1++){
+		listAssignedTech = assessmentPlan.assignedLearningObjective[indexer1];
+		//alert(	listAssignedTech.id);
+		assignloId = listAssignedTech.id;
+		//alert("asignloId:"+assignloId);
+	if(loId == assignloId)
+	{
 		var techkd = '';
 		var techld = '';
 		var techdc ='';
@@ -371,9 +406,6 @@ function assessmentPlanData(data) {
 			techfm = xx3.id;
 		//	alert("techkd"+techkd);
 		}
-
-
-
 		//alert("after loop techkd:"+techkd);
 		var xkd = '';
 		var xdc='';
@@ -412,11 +444,9 @@ function assessmentPlanData(data) {
 			{
 				//alert("if works"+kd+techkd);
 				var xdc= dc.name;
-
 				//alert("final X::"+xkd);
 			}
 		}
-
 
 		for(var index4 = 0; index4 < data.assessmentFeedback.length; index4++){
 			fm = data.assessmentFeedback[index4];
@@ -424,31 +454,33 @@ function assessmentPlanData(data) {
 			{
 				//alert("if works"+kd+techkd);
 				var xfm= fm.name;
-
 				//alert("final X::"+xkd);
 			}
 		}
 
-
-
-
-	allAssessmentData += '<div id="'+assessmentPlan.id+'"><span><h2>'
-						  +assessmentPlan.title+'</h2></span><br/><span> Description : '
-						  +assessmentPlan.description+'</span><br/><span>'
-					      +assessmentPlan.procedure+'</span><br/><span>'
+		//$('#listLO').html(allLOData);
+	//alert("allLOData::"+listLOTech.id);
+	allAssessmentData += allLOData +'<div class="loTechniques" id="'+assessmentPlan.id+'"><span><h2>'
+						  +assessmentPlan.title+'</h2></span><span> Description : '
+						  +assessmentPlan.description+'</span><br/><span>Procedure :'
+					      +assessmentPlan.procedure+'</span><br/><span>Duration :'
 						  +assessmentPlan.duration+'</span><br/><span>DomainCategory :'
 						  +xdc+'</span><br/><span>Learning Domain :'
 						  +xld+'</span><br/><span> Knowledge Dimension : '
-						  +xkd+'</span>'
-						 '</div>';
+						  +xkd+'</span><br/><br/>';
 
-	//alert(allAssessmentData);
+	}//loid == assignloId if ends
 
-	}
+	}//assignedLearningObjective for loop ends
+	}// assessmentTechniqueInstance for loop ends
+	}//listLO for loop end
 
 	$('#assessmentData').html(allAssessmentData);
 
 }
+
+
+
 
 function checkIndex(){
 

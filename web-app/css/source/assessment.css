@@ -202,3 +202,17 @@ border-top-left-radius: 0px !important;
     border: 1px solid #c4c2c2;
     border-radius: 5px;
 }
+
+/* Assessment Plan  styling  for modal */
+/* each technique*/
+.loTechniques{
+    font-family: 'times new roman';
+    font-size: x-small;
+}
+
+.loHeading{
+    font-style: italic;
+    font-weight: bold;
+    font-family: 'times new roman';
+    font-size: small;
+}
