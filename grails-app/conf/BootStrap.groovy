@@ -1320,27 +1320,6 @@ if (KnowledgeDimension.count() < 1) {
 
 
 
-		if(AssessmentTechnique.count() == 0){
-	/*Pedagogy Technique*/
-	def assessmentTech = new AssessmentTechnique(
-		title:"Minute Papers",
-		domain: LearningDomain.findAllByNameInList([
-			'Cognitive'
-		]),//'Cognitive','Affective', 'Psychomotor'
-		category:DomainCategory.findAllByNameInList([
-			'Remembering'
-		]),
-		knowledge:KnowledgeDimension.findAllByDescriptionInList([
-			"Factual",
-			"Conceptual",
-			"Procedural",
-			"Metacognitive"
-		]),
-		assessmentFeedback: AssessmentFeedback.findByName("Online")
-		).save()
-
-}
-
 
 		if(PedagogyTechnique.count() == 0){
 			/*Pedagogy Technique*/

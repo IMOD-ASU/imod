@@ -15,6 +15,8 @@ class AssessmentTechniqueController {
 
 	def assessmentplan(Long id, Long learningObjectiveID) {
 
+		def listLO = LearningObjective.list();
+
 		def assessmentTechInstance = AssessmentTechnique.findAllByAssigncheck(true)
 		def domainCategories = DomainCategory.list()
         def knowledgeDimensions = KnowledgeDimension.list()
@@ -22,15 +24,15 @@ class AssessmentTechniqueController {
         def assessmentFeedback = AssessmentFeedback.list()
 
 
-		println(assessmentTechInstance)
+		//println(assessmentTechInstance+"get the learning objectives")
 		render (
 			[
+			listLO: listLO,
 			assessmentTechInstance: assessmentTechInstance,
 			domainCategories: domainCategories,
 			knowledgeDimensions: knowledgeDimensions,
 			learningDomains: learningDomains,
 			assessmentFeedback: assessmentFeedback,
-
 			]as JSON
 		)
 	}
@@ -40,8 +42,7 @@ class AssessmentTechniqueController {
 	 * get info on a selected technique
 	 */
 	def display(Long id) {
-		def assessmentTechInstance1 = AssessmentTechnique.findAllByAssigncheck(true)
-		println(assessmentTechInstance1.id+assessmentTechInstance1.title)
+
 		render (
 			[
 				assessmentTechnique: AssessmentTechnique.get(id)
@@ -96,16 +97,19 @@ class AssessmentTechniqueController {
 
 		// This checks when a technique is assigned to a learning objective
 
-		if(params.assigncheck == true) {
-							// get current user object
-		def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
 
+		if(params.assigncheck == true) {
+		//println("goes into asigncheck if:: "+params.assigncheck )
+
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
 		// add the technique to the user's favorite list
 		currentLearningObjective.addToAssessmentTechniques(newTechnique)
 
 		// store relationship
 		currentLearningObjective.save()
 		}
+
 
 		// This checks when a technique is favoritized  to by a user
 		if(params.favcheck == true) {
@@ -167,15 +171,16 @@ class AssessmentTechniqueController {
 		// persist new technique to database
 		newTechnique.save()
 
-// This checks when a technique is assigned to a learning objective
 
 		if(params.assigncheck == true) {
 		// get current user object
-		def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
 
-		// add the technique to the user's favorite list
+		// This checks when a technique is assigned to a learning objective
+				def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
+
+		// add the technique to assigned
 		currentLearningObjective.addToAssessmentTechniques(newTechnique)
-
+		println("save"+params.assigncheck+"::"+assessmentTechniques.list())
 		// store relationship
 		currentLearningObjective.save()
 		}
@@ -201,5 +206,7 @@ class AssessmentTechniqueController {
 			]
 		)
 	}
+
+
 
 }

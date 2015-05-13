@@ -1,35 +1,103 @@
-.favDiv {
-    display: none;
-    visibility: hidden;
+.assignBtn{ width:20px !important;}
+.favBtn{ width:20px !important;}
+
+#editModal{width:50px !important;}
+
+#viewModal{width:50px !important;}
+
+.editviewButtons{ float: right; text-align:center;}
+
+.new-technique { display: table;        font-family: helvetica;
+    font-size: 1em;  }
+.form-align    { display: table-row;      font-family: helvetica;
+    font-size: 1em;}
+.form-labels { display: table-cell; width: 150px;    font-family: helvetica;
+    font-size: 1em;}
+.form-inputs { display: table-cell; width: 400px;     font-family: helvetica;
+    font-size: 1em;}
+.allInputs  {display: table-cell; width: 400px;     font-family: helvetica;
+    font-size: 1em;}
+.allInputs1 {display: table-cell; width: 400px !important;    font-family: helvetica;
+    font-size: 1em;}
+.allspans1 {display: table-cell; width: 400px !important;    font-family: helvetica; font-size: 1em;}
+
+#modalButtons {
+   float: right;
+   text-align: center;
 }
 
-#unfavorites {
-    display: none;
+
+
+.ui-dialog-titlebar {
+background:#F0EEEE;
 }
 
-#assessmentFavorites {
-    display: none;
-    visibility: hidden;
+
+.ui-dialog .ui-dialog-titlebar-close {
+background:  #172751 none;
+position: absolute;
+right: -1px;
+top: -1px;
+width: 25px;
+margin: 0 0 0 0;
+height: 25px;
+border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
 
-#assessmentFavoritesDiv {
-    display: none;
-    visibility: hidden;
+.favDiv{
+
+    visibility : hidden;
+    display: none
+
 }
 
+#unfavorites{
+
+    display : none;
+}
+
+#assessmentFavorites{
+
+    visibility : hidden;
+    display : none;
+}
+
+#assessmentFavoritesDiv{
+
+    visibility : hidden;
+    display : none;
+}
+
+
+.assessmentTechButtons{
+
+}
 
 .no-objective-defined {
     text-align: center;
     vertical-align: middle;
-
+    /*pointer-events: none;*/
+    /* for "disabled" effect */
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
     opacity: 0.5;
     background: #cccccc;
 }
 
+
+
 .assessment-page-buttons {
     height: 50px;
+    text-align: center;
+    vertical-align: middle;
 
     text-align: center;
+    background:#F0EEEE none;
+    padding-top:10px;
 }
 
 .assessment-page-buttons-disabled {
@@ -43,6 +111,78 @@
     background: #cccccc;
 }
 
+#new-technique-button{
+    height: 25px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    box-shadow:none !important;
+    background:white none;
+    color:#000000;
+    font:Helvetica;
+    width: 155px;
+
+    background-image: url('../../images/add.png');
+    background-repeat: no-repeat;
+    background-position:left center;
+
+
+}
+#favorites{
+    height: 25px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    box-shadow:none !important;
+    background:white none;
+    color:#000000;
+    font:Helvetica;
+
+    width: 155px;
+    background-size:30% 70%;
+    background-image: url('../../images/fav.png');
+    background-repeat: no-repeat;
+    background-position:left center;
+
+}
+#unfavorites{
+    height: 25px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    box-shadow:none !important;
+    background:white none;
+    color:#000000;
+    font:Helvetica;
+
+    width: 155px;
+    background-size:30% 70%;
+    background-image: url('../../images/unfav.png');
+    background-repeat: no-repeat;
+    background-position:left left;
+
+}
+#assessment-plan-button{
+    height: 25px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    box-shadow:none !important;
+    background:white none;
+    color:#000000;
+    font:Helvetica;
+
+    width: 155px;
+
+
+    background-repeat: no-repeat;
+    background-position:left left;
+
+
+
+}
+
+
 .video-control {
     text-align: center;
 }
@@ -50,6 +190,7 @@
 .video-center {
     margin: 0 auto;
 }
+
 
 .learning-objective.definition-cell {
     height: 5em;
@@ -60,4 +201,18 @@
 
     border: 1px solid #c4c2c2;
     border-radius: 5px;
+}
+
+/* Assessment Plan  styling  for modal */
+/* each technique*/
+.loTechniques{
+    font-family: 'times new roman';
+    font-size: x-small;
+}
+
+.loHeading{
+    font-style: italic;
+    font-weight: bold;
+    font-family: 'times new roman';
+    font-size: small;
 }

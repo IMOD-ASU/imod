@@ -14,12 +14,16 @@ class AssessmentTechnique {
 	AssessmentFeedback assessmentFeedback
 
 	static hasMany = [
-		//activityFocus: PedagogyActivityFocus,
 		assignedLearningObjective: LearningObjective,
 		domainCategory: DomainCategory,
 		knowledgeDimension: KnowledgeDimension,
 		learningDomain: LearningDomain,
-		userFavorite: ImodUser
+		userFavorite: ImodUser,
+		/**
+		* These are the learning objectives that this AssessmentTechnique topic tries to teach
+		*/
+		objectives:		LearningObjective
+
 	]
 
 	static belongsTo = [
@@ -34,7 +38,6 @@ class AssessmentTechnique {
 	}
 
     static constraints = {
-		//activityFocus nullable: true
 		assignedLearningObjective nullable: true
 		description nullable: true, blank: true
 		procedure nullable: true, blank: true
