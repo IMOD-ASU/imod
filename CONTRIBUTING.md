@@ -69,7 +69,7 @@ Its good to run these tools at least once a sprint to look for code smells and p
 
 * [CodeNarc](http://codenarc.sourceforge.net/) for Groovy and Grails static analysis
 * [FindBug](http://findbugs.sourceforge.net/) for more analysis of the compiled Groovy code and templates
-* [JShint](http://jshint.com/docs/) for staic analysis of javascript
+* [JShint](http://jshint.com/docs/) for static analysis of javascript
 * [JSCS](http://jscs.info/) for style checking javascript
 * [CSSComb](http://csscomb.com/docs) for automatic formatting of stylesheets
 * [HTML hint](http://htmlhint.com/) for HTML validation and stylechecking
@@ -202,7 +202,7 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 1. SSH into the server
 2. Goto `/opt`
 3. Open the [iojs website](https://iojs.org/en/index.html)
-4. Get the latest binary `sudo wget whatever.tat.gz`
+4. Get the latest binary `sudo wget whatever.tar.gz`
 5. Unzip the file `sudo tar -zxvf whatever.tar.gz`
 6. cd into the new version
 7. run `bin/npm install bower`
