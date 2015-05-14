@@ -78,8 +78,9 @@ class LearningObjectiveController {
 				selectedLearningObjective.performance = params.DCL
 				if(params.actionWord == 'other') {
 					selectedLearningObjective.actionWord = params.customActionWord
-				}
-				else {
+				}else if(params.actionWord == 'select'){
+					selectedLearningObjective.actionWord = 'Enter the details here';
+				}else {
 					selectedLearningObjective.actionWord = params.actionWord
 				}
 				break
@@ -170,7 +171,7 @@ class LearningObjectiveController {
 		def domainList = LearningDomain.list()
 		def domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
 		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
-
+		
 		[
 			actionWord: 				currentLearningObjective.actionWord,
 			actionWordCategoryList:		actionWordCategoryList,

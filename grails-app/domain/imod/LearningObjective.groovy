@@ -127,6 +127,9 @@ class LearningObjective {
 
 	public buildDefinition() {
 		definition = ''
+		if(actionWord == 'Enter the details here'){
+			actionWord = '';
+		}
 		if (isEmpty()) {
 			definition = 'Empty Learning Objective'
 			return
