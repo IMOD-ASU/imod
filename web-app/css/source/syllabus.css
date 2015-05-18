@@ -54,26 +54,30 @@ h4 {
     right: 0;
 }
 
-body.syllabus_pdf{
+body.syllabus_pdf {
+    background: none;
+
     font-family: Arial;
-    font-size: 0.9em; background: none;
+    font-size: 0.9em;
 }
 
-body.syllabus_pdf .wrapper{
-    padding: 0; border: none;
+body.syllabus_pdf .wrapper {
+    padding: 0;
+
+    border: none;
 }
 
 @media print {
     body {
-        font-family: Arial;
-        font-size: 0.9em;
+    	font-family: Arial;
+    	font-size: 0.9em;
     }
     .wrapper {
-        padding: 0;
+    	padding: 0;
 
-        border: none;
+    	border: none;
     }
     .options {
-        display: none;
+    	display: none;
     }
 }

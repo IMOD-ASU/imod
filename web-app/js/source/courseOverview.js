@@ -3,22 +3,21 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 
 // Source: http://stackoverflow.com/a/2855946
-function isValidEmailAddress (emailAddress) {
+function isValidEmailAddress(emailAddress) {
 	var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
 	return pattern.test(emailAddress);
 }
 
-function isRequired (fieldValue) {
+function isRequired(fieldValue) {
 	if (fieldValue !== '' && fieldValue !== null && fieldValue !== undefined) {
 		return true;
-	}
-	else {
+	} else {
 		return false;
 	}
 }
 
 // Custom validation function for instructors
-function instructorValidator () {
+function instructorValidator() {
 	var errorList = [];
 
 	$('.instructor-form').find('.error').remove();
@@ -30,8 +29,7 @@ function instructorValidator () {
 					element: $(this),
 					message: 'This field is required'
 				});
-			}
-			else if ($(this).hasClass('email')) {
+			} else if ($(this).hasClass('email')) {
 				if (!isValidEmailAddress($(this).val())) {
 					errorList.push({
 						element: $(this),
@@ -50,8 +48,7 @@ function instructorValidator () {
 			errorList[i].element.after(errorMsg);
 		}
 		return false;
-	}
-	else {
+	} else {
 		return true;
 	}
 }
@@ -61,7 +58,7 @@ function fnCoursePolicyRadio(){
 }
 
 // Compares startTime and EndTime
-function compareStartEndTimes () {
+function compareStartEndTimes() {
 	// Check if end time is greater than start time
 	var startHour = $('#schedule-start-time_hour').val();
 	var startMinute = $('#schedule-start-time_minute').val();
@@ -89,7 +86,7 @@ function compareStartEndTimes () {
 	return true;
 }
 
-function gradingRadio (radio) {
+function gradingRadio(radio) {
 	$('#grading-procedure-text').hide();
 	if (radio.val() === 'Custom') {
 		$('#grading-procedure-text').show();
@@ -97,25 +94,23 @@ function gradingRadio (radio) {
 	radio.parents('.ui-accordion-content').css('height', 'auto');
 }
 
-function populateRepeatsEvery () {
+function populateRepeatsEvery() {
 	if ($('#repeats option:selected').text() === 'Daily') {
 		$('#duration').text('days');
-		$('#duration, label[for="repeatsEvery"], #repeatsEvery').css('visibility', 'visible');
+		$('#duration, label[for="repeatsEvery"], #repeats-every').css('visibility', 'visible');
 		$('label[for="scheduleWeekDays"], label[for="weekdays"], :checkbox').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
-	}
-	else if ($('#repeats option:selected').text() === 'Weekly') {
+	} else if ($('#repeats option:selected').text() === 'Weekly') {
 		$('#duration').text('weeks');
 		$('#duration, label[for="repeatsEvery"], #repeatsEvery, label[for="scheduleWeekDays"], label[for="weekdays"], :checkbox, #repeats-every').css('visibility', 'visible');
-	}
-	else {
-		$(':checkbox, label[for="weekdays"], label[for="scheduleWeekDays"], #duration, label[for="repeatsEvery"], #repeatsEvery').css('visibility', 'hidden');
+	} else {
+		$(':checkbox, label[for="weekdays"], label[for="scheduleWeekDays"], #duration, label[for="repeatsEvery"], #repeats-every').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 	}
 }
 
 // TODO is the method unused?
-function toggleSelected (event) {
+function toggleSelected(event) {
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
 		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 		$(this).toggleClass('selected');
@@ -199,8 +194,7 @@ $(document).ready(
 						.find('> i')
 						.removeClass('fa-check-square')
 						.addClass('fa-square-o');
-				}
-				else {
+				} else {
 					$(this).parents('table')
 						.find('tbody')
 						.find('tr')

@@ -24,6 +24,7 @@
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
+		<g:external dir="bower_components/jquery-sortable/source/js" file="jquery-sortable-min.js" defer="defer" />
 		<g:javascript src="source/learningObjectiveContent.js" defer="defer" />
 
 		<meta name="layout" content="learningObjective">
@@ -31,8 +32,13 @@
 	<body>
 		<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" />
 		<g:render template="/content/topicForm"/>
+
+		<fieldset class="learning-objective-button">
+			<input type="submit" id="save-content" value="Save" name="save_content" class="save show-hover-new">
+		</fieldset>
 		<fieldset>
 			<span class="topicModalButtonGradient">
+
 				<button id="addTopicModal" class="topicModalButton" title="${ message( code:'imod.learningObjective.addTopic' ) }">
 					<i class="fa fa-plus"></i>
 					Add Topics
@@ -40,12 +46,12 @@
 			</span>
 		</fieldset>
 
-		<g:if test="${contentList.toString() != '[]'}">
-			<g:hiddenField name="treeData" value='${contentList}' />
+		<g:if test="${contentList2 != null}">			
+			${contentList2}
 		</g:if>
 		<g:else>
 			Please add a topic.
 		</g:else>
-		<div id="contentTree"></div>
+		%{-- <div id="contentTree"></div> --}%
 	</body>
 </html>

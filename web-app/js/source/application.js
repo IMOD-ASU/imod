@@ -2,11 +2,9 @@
 
 $(document).ready(
 	function () {
-		$('#accordion').accordion(
-			{
-				heightStyle: 'content'
-			}
-		);
+		$('#accordion').accordion({
+			heightStyle: 'content'
+		});
 		$('#help-placeholder-2').css('display', 'none');
 		$('.show-hover-new').qtip({
 			style: {
@@ -56,7 +54,7 @@ $(document).ready(
 	}
 );
 
-function updateDatePicker (dateFormat) {
+function updateDatePicker(dateFormat) {
 	$('input[value="date.struct"]:hidden').each(
 		function () {
 			var name = $(this).attr('name');
@@ -80,6 +78,7 @@ function updateDatePicker (dateFormat) {
 				// If there is a date in the Selects then use it otherwise it's empty
 				if (dateDay !== '' && dateYear !== '' && dateMonth !== '') {
 					var date = new Date(dateYear, dateMonth - 1, dateDay);
+
 					val = $.datepicker.formatDate(dateFormat, date);
 				}
 
@@ -101,8 +100,7 @@ function updateDatePicker (dateFormat) {
 							$(selectDay).val('');
 							$(selectMonth).val('');
 							$(selectYear).val('');
-						}
-						else {
+						} else {
 							$(selectDay).val(date.getDate());
 							$(selectMonth).val(date.getMonth() + 1);
 							$(selectYear).val(date.getFullYear());
@@ -118,7 +116,7 @@ function updateDatePicker (dateFormat) {
 				);
 
 				displayWidget.datepicker({
-					changeMonth: true,
+					SchangeMonth: true,
 					changeYear: true,
 					dateFormat: dateFormat,
 					constrainInput: true,
@@ -130,8 +128,7 @@ function updateDatePicker (dateFormat) {
 							$(selectDay).val('');
 							$(selectMonth).val('');
 							$(selectYear).val('');
-						}
-						else {
+						} else {
 							$(selectDay).val(inst.selectedDay);
 							$(selectMonth).val(inst.selectedMonth + 1);
 							$(selectYear).val(inst.selectedYear);
@@ -143,7 +140,7 @@ function updateDatePicker (dateFormat) {
 	);
 }
 
-function toggleHelp () {
+function toggleHelp() {
 	var helpbox = $('#help-placeholder');
 	var helpbox2 = $('#help-placeholder-2');
 	var tabContainer = $('#tabs-container');
@@ -151,8 +148,7 @@ function toggleHelp () {
 		helpbox.css('display', 'none');
 		helpbox2.css('display', 'block');
 		tabContainer.css('margin-right', '5.5%');
-	}
-	else {
+	} else {
 		helpbox.css('display', 'block');
 		helpbox2.css('display', 'none');
 		tabContainer.css('margin-right', '17.5%');

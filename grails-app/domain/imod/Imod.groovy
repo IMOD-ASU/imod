@@ -39,7 +39,7 @@ class Imod {
 	String	imodNumber
 	Integer	numberOfSeats
 	Integer	creditHours
-
+	Boolean saved
 
 	/*
 	 *****************
@@ -114,7 +114,7 @@ class Imod {
 		missedAssignments 	nullable: true, maxSize: 65000
 		numberOfSeats		nullable: true,		min: 1,		scale: 1
 		creditHours			nullable: true,		min: 0,		scale: 1
-
+		saved				nullable: true
 		// Domains belonging to an IMOD
 		coursePolicy	nullable: true
 		schedule		nullable: true

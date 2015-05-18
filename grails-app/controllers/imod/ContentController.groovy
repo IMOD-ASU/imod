@@ -93,14 +93,14 @@ class ContentController {
 
 			// remove any parent association
 			def oldParent = deletedContent.parentContent
-			if(oldParent != null) {
+			if (oldParent != null) {
 				oldParent.removeFromSubContents(deletedContent)
 			}
 
 			// remove all children association
 			def childrenList = []
 			def children = deletedContent.subContents
-			if(children != null) {
+			if (children != null) {
 				childrenList.addAll(children)
 
 				childrenList.each() { child ->
@@ -112,7 +112,7 @@ class ContentController {
 			def learningObjectives = deletedContent.objectives
 
 			// remove learning objective association
-			if(learningObjectives != null) {
+			if (learningObjectives != null) {
 				learningObjectiveList.addAll(learningObjectives)
 				learningObjectiveList.each() {
 					deletedContent.removeFromObjectives(it)
@@ -129,10 +129,30 @@ class ContentController {
 		)
 	}
 
-	def updateHierarchy(Long contentID, Long parentID) {
-		def childContent = Content.get(contentID)
+	def updateHierarchy() {
+
+		def data = request.JSON
+		def contents = data.topics
+		def idArray = data.idArray
+
+		contents.each() {
+			buildHierarchy(it, null)
+		}
+
+		setLearningObjective(data.objId, idArray);
+
+		render(
+			[
+				success: true
+			] as JSON
+		)
+	}
+
+	def buildHierarchy(content, Long parentID) {
+
+		def childContent = Content.get(content.id)
 		def oldParent = childContent.parentContent
-		if(oldParent != null) {
+		if (oldParent != null) {
 			oldParent.removeFromSubContents(childContent)
 		}
 		if (parentID != null) {
@@ -143,19 +163,24 @@ class ContentController {
 		else {
 			childContent.parentContent = null
 		}
-		render(
-			[
-				success: true
-			] as JSON
-		)
+
+		if (content.child != '') {
+
+			content.child.each(){
+
+				buildHierarchy(it, content.id)
+
+			}
+
+		}
+
 	}
 
-	def setLearningObjective(Long objectiveID, String idArray) {
+	def setLearningObjective(String objectiveID, idArray) {
 		def learningObjectiveInstance = LearningObjective.get(objectiveID)
+
 		if (idArray != null) {
-			def jsonParser = new JsonSlurper()
-			def contentIDList = jsonParser.parseText(idArray)
-			def contentList = contentIDList.collect {Content.get(it)}
+			def contentList = idArray.collect {Content.get(it)}
 			learningObjectiveInstance.contents.clear()
 			contentList.each() {
 				learningObjectiveInstance.addToContents(it)
@@ -165,11 +190,7 @@ class ContentController {
 		else {
 			learningObjectiveInstance.contents = null
 		}
-		render(
-			[
-				success: true
-			] as JSON
-		)
+
 	}
 
 	def addResource(Long contentID) {

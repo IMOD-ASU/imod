@@ -4,17 +4,17 @@ var errorMessages = [];
 var isFlashing = null;
 var content = '';
 
-function showTopicDialog () {
+function showTopicDialog() {
 	$('#topicDialogBackground').css('display', 'block');
 	$('#topicDialog').css('display', 'block');
 }
 
-function hideTopicDialog () {
+function hideTopicDialog() {
 	$('#topicDialogBackground').css('display', 'none');
 	$('#topicDialog').css('display', 'none');
 }
 
-function flashError () {
+function flashError() {
 	var message = errorMessages.shift();
 	$('#errorMessage').text(message);
 	$('#errorMessage')
@@ -32,7 +32,7 @@ function flashError () {
 		);
 }
 
-function errorMessage (message) {
+function errorMessage(message) {
 	errorMessages.push(message);
 	if (isFlashing === null) {
 		flashError();
@@ -40,7 +40,7 @@ function errorMessage (message) {
 	}
 }
 
-function changePic () {
+function changePic() {
 	var iconName = '';
 	$('#selectKnowledgeDimensions').find('input:checkbox').each(
 		function () {
@@ -51,22 +51,21 @@ function changePic () {
 	);
 	if (iconName === '') {
 		iconName = $('#imgNone').attr('href');
-	}
-	else {
+	} else {
 		iconName = $('#img' + iconName).attr('href');
 	}
 	$('#dimImage').attr('src', iconName);
 }
 
 // TODO is this function unused?
-function toggleSelected (event) {
+function toggleSelected(event) {
 	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
 		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 		$(this).toggleClass('selected');
 	}
 }
 
-function closeDimModal () {
+function closeDimModal() {
 	var contentID = $('#topicID').val();
 	var dimensions = [];
 	var dialog = $('#selectKnowledgeDimensions');
@@ -82,8 +81,7 @@ function closeDimModal () {
 	);
 	if (dimensions.length === 0) {
 		dimensions = '';
-	}
-	else {
+	} else {
 		dimensions = dimensions.toString();
 	}
 	$('#topicID').val('');
@@ -102,7 +100,7 @@ function closeDimModal () {
 	background.css('display', 'none');
 }
 
-function openDimModal () {
+function openDimModal() {
 	var contentID = $(this).parents('.topicItem').attr('id');
 	var dimString = $('#knowDimensionList' + contentID).val();
 	var dimensionList = [];
@@ -124,7 +122,7 @@ function openDimModal () {
 	background.css('display', 'block');
 }
 
-function getResource () {
+function getResource() {
 	var contentID = content.split('topicResources');
 	contentID = contentID[1];
 	var resourceDiv = $('#resourceList tbody');
@@ -172,23 +170,23 @@ function getResource () {
 	});
 }
 
-function openResourceModal () {
+function openResourceModal() {
 	content = this.id;
 	$('#selectResource').css('display', 'inherit');
 	$('#selectResourceBackground').css('display', 'block');
 	getResource();
 }
 
-function closeResourceModal () {
+function closeResourceModal() {
 	$('#selectResourceBackground').css('display', 'none');
 	$('#selectResource').css('display', 'none');
 }
 
-function highlightUnsaved (id) {
+function highlightUnsaved(id) {
 	$('#' + id).addClass('unsaved');
 }
 
-function deleteTopic (contentIDs) {
+function deleteTopic(contentIDs) {
 	contentIDs = JSON.stringify(contentIDs);
 	$.ajax({
 		url: '../../content/deleteTopic/',
@@ -207,7 +205,7 @@ function deleteTopic (contentIDs) {
 	});
 }
 
-function saveTopic () {
+function saveTopic() {
 	var imodID = $('#imodID').val();
 	var contentData = [];
 	var hasError = false;
@@ -262,7 +260,7 @@ function saveTopic () {
 	});
 }
 
-function getTopicSavedItems (currentRow) {
+function getTopicSavedItems(currentRow) {
 	var topicID = currentRow.id;
 	var rowData = {
 		title: $('#topicTitle' + topicID),
@@ -278,7 +276,7 @@ function getTopicSavedItems (currentRow) {
 }
 
 // TODO is the function unused?
-function refreshSaves () {
+function refreshSaves() {
 	$('#topicList tbody tr').each(
 		function () {
 			var rowData = getTopicSavedItems(this);
@@ -290,7 +288,7 @@ function refreshSaves () {
 	);
 }
 
-function revertChanges () {
+function revertChanges() {
 	$('#topicList tbody tr').each(
 		function () {
 			var rowData = getTopicSavedItems(this);
@@ -301,8 +299,7 @@ function revertChanges () {
 
 			if ($(rowData.dimensionsSaved).val() === '') {
 				contentIDs.push(this.id);
-			}
-			else {
+			} else {
 				$(rowData.title).val($(rowData.titleSaved).val());
 				$(rowData.dimensions).val($(rowData.dimensionsSaved).val());
 				$(rowData.priority).val($(rowData.prioritySaved).val());
@@ -316,8 +313,7 @@ function revertChanges () {
 				);
 				if (dimensionShort === '') {
 					icon = $('#imgNone').attr('href');
-				}
-				else {
+				} else {
 					icon = $('#img' + dimensionShort).attr('href');
 				}
 				$(rowData.dimensions).siblings('img').attr('src', icon);
@@ -327,7 +323,7 @@ function revertChanges () {
 	);
 }
 
-function addTopic () {
+function addTopic() {
 	var imodID = $('#imodID').val();
 	$.ajax({
 		url: '../../content/addNewTopic',
@@ -393,7 +389,7 @@ function addTopic () {
 	});
 }
 
-function addResource () {
+function addResource() {
 	var contentID = content.split('topicResources');
 	contentID = contentID[1];
 	$.ajax({
@@ -435,7 +431,7 @@ function addResource () {
 	});
 }
 
-function saveResource () {
+function saveResource() {
 	var imodID = $('#imodID').val();
 	var resourceData = [];
 	var hasError = false;
@@ -482,7 +478,7 @@ function saveResource () {
 	});
 }
 
-function deleteResource (resourceIDs) {
+function deleteResource(resourceIDs) {
 	resourceIDs = JSON.stringify(resourceIDs);
 	$.ajax({
 		url: '../../content/deleteResource/',
@@ -565,8 +561,7 @@ $(
 						.find('> i')
 						.removeClass('fa-check-square')
 						.addClass('fa-square-o');
-				}
-				else {
+				} else {
 					$(this).parents('table')
 						.find('tbody')
 						.find('tr')

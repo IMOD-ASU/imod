@@ -33,7 +33,7 @@ class CourseOverviewController {
             def webPage = it.webPage
             def location = it.location
 
-            if(it.id == null) {
+            if (it.id == null) {
                 def newInstructor = new Instructor(
                     firstName: firstName,
                     lastName: lastName,
@@ -47,7 +47,8 @@ class CourseOverviewController {
 
                 // save new instructor and the updated user to database
                 newInstructor.save()
-            } else {
+            }
+            else {
                 def newInstructor = Instructor.get(it.id)
                 newInstructor.firstName = firstName
                 newInstructor.lastName = lastName
@@ -133,12 +134,15 @@ class CourseOverviewController {
         text += '</ul>'
 
         renderPdf(
-            template: "/courseOverview/syllabus", 
-            model: [currentImod: currentImod,
-            currentPage: 'syllabus',
-            learningObjectives: learningObjectives,
-            contentList: text],
-            filename: currentImod?.name.replaceAll(" ", "_")+".pdf");
+            template: "/courseOverview/syllabus",
+            model: [
+                currentImod: currentImod,
+                currentPage: 'syllabus',
+                learningObjectives: learningObjectives,
+                contentList: text
+            ],
+            filename: currentImod?.name.replaceAll(' ', '_') + '.pdf'
+        );
     }
 
     private def getSubContent(Content current) {

@@ -31,15 +31,20 @@
 			<br />
 
 			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" id="selected-action-word-category" />
-
+			<div>
+			<label for="action-word-category" class="action-word-category">
+				Action Word Category
+			</label>
 			<div class="icons assign">
 				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}" status="i">
 					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"/><label for="radio${i}">
 						${actionWordCategory}
 					</label>
 				</g:each>
-			</div>
-
+			</div></div>
+			<label for="action-words">
+			Action Words
+			</label>
 			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" style="margin-bottom:10px;width:150px">
 				<option>
 					${actionWord}
