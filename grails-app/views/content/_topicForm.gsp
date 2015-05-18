@@ -99,7 +99,7 @@
 
 <div id="selectKnowledgeDimensionBackground" class="modalBackground"></div>
 
-<div id="selectKnowledgeDimensions">
+<div id="selectKnowledgeDimensions" class="draggable">
 	<!-- FIXME replace with g:hiddenField, this also may not be necessary -->
 	<input type="hidden" id="topicID" />
 	<span>
@@ -122,7 +122,7 @@
 </div>
 <div id="selectResourceBackground" class="modalBackground">
 </div>	
-<div id="selectResource">
+<div id="selectResource" class="draggable">
 <fieldset class="buttons resourceButtonField">
 		<span class="resourceButtonGradient">
 			<g:actionSubmit

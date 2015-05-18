@@ -231,7 +231,7 @@
 	</div>
 	<div id="selectKnowledgeDimensionBackground" class="modalBackground">
 </div>
-<div id="selectKnowledgeDimensions">
+<div id="selectKnowledgeDimensions" class="draggable">
 	<input type="hidden" id="topicID" />
 	<span>
 		<ul>
@@ -261,7 +261,7 @@
 
 <div id="selectResourceBackground" class="modalBackground">
 </div>	
-<div id="selectResource">
+<div id="selectResource" class="draggable">
 <fieldset class="buttons resourceButtonField">
 		<span class="resourceButtonGradient">
 			<g:actionSubmit
