@@ -3,7 +3,7 @@
 <%@ page import="imod.KnowledgeDimensionEnum"%>
 
 <div id="topicDialogBackground" class="modalBackground"></div>
-<div id="topicDialog">
+<div id="topicDialog" class="draggable">
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
