@@ -127,6 +127,7 @@ class LearningObjective {
 	}
 
 	public buildDefinition() {
+		
 		definition = ''
 		if (isEmpty()) {
 			definition = 'Empty Learning Objective'

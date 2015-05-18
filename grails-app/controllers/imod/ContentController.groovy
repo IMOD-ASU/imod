@@ -185,6 +185,10 @@ class ContentController {
 			contentList.each() {
 				learningObjectiveInstance.addToContents(it)
 			}
+
+			// reset the definition
+			learningObjectiveInstance.buildDefinition()
+
 			learningObjectiveInstance.save(failOnError:true)
 		}
 		else {
