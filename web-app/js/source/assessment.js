@@ -312,27 +312,29 @@ function displayAssessmentPlan(data) {
 function assessmentPlanData(data) {
 	var allAssessmentData = '';
 
-	for (var index = 0; index < data.assessmentTechInstance.length; index++) {
-		var assessmentPlan = data.assessmentTechInstance[index];
+	for (var techniqueIndex = 0; techniqueIndex < data.assessmentTechInstance.length; techniqueIndex++) {
+		var assessmentPlan = data.assessmentTechInstance[techniqueIndex];
 
-		var techkd = '';
-		for (var ind = 0; ind < assessmentPlan.knowledgeDimension.length; ind++) {
-			var xx = assessmentPlan.knowledgeDimension[ind];
-			techkd = xx.id;
+		// FIXME this looks like it access the last element, why not access directly
+		var techniqueKnowledgeDimension = '';
+		for (var knowledgeDimenisionIndex = 0; knowledgeDimenisionIndex < assessmentPlan.knowledgeDimension.length; knowledgeDimenisionIndex++) {
+			techniqueKnowledgeDimension = assessmentPlan.knowledgeDimension[knowledgeDimenisionIndex].id;
 		}
 
-		var xkd = '';
-		var xdc = '';
-		var xld = '';
-		var kd = '';
+		var knowledgeDimension = '';
+		// FIXME domain catgory is never assigned
+		var domainCategory = '';
+		// FIXME learning domain is never assigned
+		var learningDomain = '';
 
 		for (var index1 = 0; index1 < data.knowledgeDimensions.length; index1++) {
-			kd = data.knowledgeDimensions[index1];
+			var temporaryKnowledgeDimension = data.knowledgeDimensions[index1];
 
-			if (kd.id === techkd) {
-				var xkd = kd.description;
+			if (temporaryKnowledgeDimension.id === techniqueKnowledgeDimension) {
+				knowledgeDimension = temporaryKnowledgeDimension.description;
 
-				alert('final X::' + xkd);
+				// FIXME what is this for?
+				alert('final X::' + knowledgeDimension);
 			}
 		}
 
@@ -356,15 +358,15 @@ function assessmentPlanData(data) {
 		allAssessmentData += '  </span>';
 		allAssessmentData += '  <br/>';
 		allAssessmentData += '  <span>';
-		allAssessmentData += '    DomainCategory :' + xdc;
+		allAssessmentData += '    DomainCategory :' + domainCategory;
 		allAssessmentData += '  </span>';
 		allAssessmentData += '  <br/>';
 		allAssessmentData += '  <span>';
-		allAssessmentData += '    Learning Domain :' + xld;
+		allAssessmentData += '    Learning Domain :' + learningDomain;
 		allAssessmentData += '  </span>';
 		allAssessmentData += '  <br/>';
 		allAssessmentData += '  <span>';
-		allAssessmentData += '    Knowledge Dimension : ' + xkd;
+		allAssessmentData += '    Knowledge Dimension : ' + knowledgeDimension;
 		allAssessmentData += '  </span>';
 		allAssessmentData += '  <br/>';
 		allAssessmentData += '  <span>';
