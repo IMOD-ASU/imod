@@ -45,7 +45,7 @@
 										<g:link action="create" id="${currentImod.id}">
 											<button title="${ message( code:'imod.learningObjective.add' ) }" >
 												<span class="fa fa-plus"></span>
-												Add
+												Add new
 											</button>
 										</g:link>
 									</span>
