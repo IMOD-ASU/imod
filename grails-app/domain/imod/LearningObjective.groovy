@@ -128,6 +128,7 @@ class LearningObjective {
 	}
 
 	public buildDefinition() {
+		
 		definition = ''
 		if(actionWord == 'Enter the details here'){
 			actionWord = '';

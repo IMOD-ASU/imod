@@ -54,7 +54,19 @@
 									<g:each var="learningObjective" in="${learningObjectives}">
 										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
 											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
-												${ learningObjective.definition }
+
+												<g:if test="${ learningObjective.definition}">
+
+													
+													${ learningObjective.definition }
+
+												</g:if>
+												<g:else>
+
+													Empty Learning Objective
+
+												</g:else>
+
 											</g:link>
 										</li>
 									</g:each>
