@@ -243,12 +243,22 @@
                                                 Course Policy
                                             </span>
                                         </div>
+                                        <div style="font-size:14">
+                                        	<div style="height:05px">&nbsp;</div>
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	<g:radio id="coursePolicyRadioDefault" name="coursePolicyRadio" title=" Select for Default policies" value="Default Policies" checked="true" />&nbsp;Default
+                                        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        	<g:radio id="coursePolicyRadioCustom" name="coursePolicyRadio" title="Select for custom policies" value="Custom" />&nbsp;Custom
+                                        </div>
                                         <div id="accordion">
                                             <h3>
                                                 Grading procedure
                                             </h3>
                                             <div>
-                                                <div>
+                                                <div style="align:centre">
                                                     <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
                                                     Competency Based
                                                 </div>
@@ -269,7 +279,7 @@
                                                 Attendance and tardiness
                                             </h3>
                                             <div>
-                                                <g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
+                                                <g:textArea name="attendance" id="attendance-tardiness" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
                                             </div>
                                             <h3>
                                                 Class participation
@@ -323,7 +333,7 @@
                                                     <span class="topicButtonGradient">
                                                         <input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
                                                     </span>
-                                                    <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
+                                                    <g:if test="${currentImod?.instructors != null }"> <!-- && !currentImod?.instructors.isEmpty() -->
                                                         <span class="remove-instructor topicButtonGradient">
                                                             <input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
                                                         </span>
