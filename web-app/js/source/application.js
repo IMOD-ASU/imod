@@ -43,17 +43,14 @@ $(document).ready(
 			}
 		);
 
+		// Make modals draggable
+		$('.draggable').drags();
 
-		$('.draggable').drags(); // make modals draggable
-
-		// hide modal when background is clicked
-		$(document).on('click', '.modalBackground', function() {
-				
+		// Hide modal when background is clicked
+		$(document).on('click', '.modalBackground', function () {
 			$('.draggable').hide();
 			$('.modalBackground').hide();
-
 		});
-
 	}
 );
 
