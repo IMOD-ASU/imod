@@ -17,16 +17,16 @@
 				<g:layoutTitle default="IMOD" />
 			</title>
 			<g:javascript>
-			function checkSave(saved, id){
+			function checkSave(saved, id, page){
 				if(!saved)
 				{
-					alert("Please save the course overview page before proceeding to Learning Objective");
+					alert("Please save the course overview page before proceeding to " + page);
 					var url = "../index/"+id;
 					$(location).attr('href',url);
 					return false;
 				}
 				return true;
-				}
+			}
 		</g:javascript>
 
 			<g:layoutHead/>
@@ -64,7 +64,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/learning objective/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id});" controller="learningObjective" action="performance" id="${currentImod?.id}" class="ui-tabs-anchor">
+						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id},'Learning Objective');" controller="learningObjective" action="performance" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
 							<span id="lo-tab-title">
 								Learning Objectives
@@ -72,7 +72,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/^content/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link controller="content" action="index" id="${currentImod?.id}" params=" [ ${objectiveId: params.objectiveId} ] " class="ui-tabs-anchor">
+						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id},'Content');" controller="content" action="index" id="${currentImod?.id}" params=" [ ${objectiveId: params.objectiveId} ] " class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'content_icon.png')}" alt=""/>
 							<span id="content-tab-title">
 								Content
@@ -80,7 +80,7 @@
 						</g:link>
 					</li>
 					<li class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link controller="assessment" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
+						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id},'Assessment');" controller="assessment" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
 							<span id="assess-tab-title">
 								Assessment
@@ -88,7 +88,7 @@
 						</g:link>
 					</li>
 					<li onclick="return false;" class="tab-disabled ui-state-default ui-corner-top ${ currentPage.find(/pedagogy/) == null ? '' : 'ui-tabs-active ui-state-active'}">
-						<g:link controller="pedagogy" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
+						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id},'Pedagogy');" controller="pedagogy" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
 							<span id="pedagogy-tab-title">
 								Pedagogy

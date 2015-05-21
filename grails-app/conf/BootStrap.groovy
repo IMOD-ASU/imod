@@ -1221,12 +1221,12 @@ if (KnowledgeDimension.count() < 1) {
 
 			new KnowledgeDimension(
 				description: 'Procedural',
-				info: 'The knowledge of subject specific skills and techniques; “the knowledge of criteria for when to use appropriate procedures.'
+				info: 'The knowledge of subject specific skills and techniques; “the knowledge of criteria for when to use appropriate procedures.“'
 			).save()
 
 			new KnowledgeDimension(
 				description: 'Metacognitive',
-				info: 'The knowledge about cognitive tasks; strategic knowledge; self-knowledge.'
+				info: 'The knowledge about cognitive tasks, strategic knowledge, self-knowledge.'
 			).save()
 		}
 
