@@ -81,7 +81,9 @@ class Imod {
 		/**
 		 * All of the Topics and Resources to be covered in the course
 		 */
-		contents:			Content
+		contents:			Content,
+
+		syllabus: 			SyllabusPrefs
 	]
 
 
