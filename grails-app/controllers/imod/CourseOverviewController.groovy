@@ -9,9 +9,11 @@ class CourseOverviewController {
     static allowedMethods = [
         delete:           'POST',
         create:           'POST',
+        syllabusUpdate:   'POST',
     ]
 
 	def index(Long id) {
+
         [
 			currentImod: Imod.get(id),
 			currentPage: 'course overview'
@@ -33,7 +35,7 @@ class CourseOverviewController {
             def webPage = it.webPage
             def location = it.location
 
-            if (it.id == null) {
+            if(it.id == null) {
                 def newInstructor = new Instructor(
                     firstName: firstName,
                     lastName: lastName,
@@ -47,8 +49,7 @@ class CourseOverviewController {
 
                 // save new instructor and the updated user to database
                 newInstructor.save()
-            }
-            else {
+            } else {
                 def newInstructor = Instructor.get(it.id)
                 newInstructor.firstName = firstName
                 newInstructor.lastName = lastName
@@ -96,7 +97,16 @@ class CourseOverviewController {
 
     // syllabus html page
     def syllabus(Long id) {
+
         def currentImod = Imod.get(id)
+        // def syllabus = SyllabusSettings.get(771);
+        // def pref = SyllabusPref.findById(800);
+
+        // print syllabus
+        // print pref
+
+        // syllabus.removeFromPref(pref)
+        // pref.save()
 
         def learningObjectives = LearningObjective.findAllByImod(currentImod)
 
@@ -110,11 +120,14 @@ class CourseOverviewController {
 
         text += '</ul>'
 
+        def settings = SyllabusSettings.list()
+
         [
             currentImod: currentImod,
             currentPage: 'syllabus',
             learningObjectives: learningObjectives,
-            contentList: text
+            contentList: text,
+            settings: settings,
         ]
     }
 
@@ -135,14 +148,59 @@ class CourseOverviewController {
 
         renderPdf(
             template: "/courseOverview/syllabus",
-            model: [
-                currentImod: currentImod,
-                currentPage: 'syllabus',
-                learningObjectives: learningObjectives,
-                contentList: text
-            ],
-            filename: currentImod?.name.replaceAll(' ', '_') + '.pdf'
-        );
+            model: [currentImod: currentImod,
+            currentPage: 'syllabus',
+            learningObjectives: learningObjectives,
+            contentList: text],
+            filename: currentImod?.name.replaceAll(" ", "_")+".pdf");
+    }
+
+    def syllabusUpdate(){
+
+        def currentImod = Imod.get(params.imod)
+
+        def jsonParser = new JsonSlurper()
+        def settings = jsonParser.parseText(params.settings)
+        def pref = null
+        def syllabus = null
+
+        settings.each() {
+
+            def prefs = currentImod.syllabus.pref;
+            // currentImod.syllabus.pref.clear();
+            syllabus = SyllabusSettings.get(it.id)
+
+
+            // print test
+
+            prefs.each() { p->
+
+                if(p[0] != null){
+                    syllabus.removeFromPref(p[0])
+                }
+
+            }
+
+            pref = new SyllabusPref(
+                sortNumber: it.sort_number,
+                selected: it.selected,
+            )
+
+            syllabus.addToPref(pref);
+            pref.save();
+
+            currentImod.addToSyllabus(syllabus)
+
+        }
+
+
+        render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+
+
     }
 
     private def getSubContent(Content current) {
