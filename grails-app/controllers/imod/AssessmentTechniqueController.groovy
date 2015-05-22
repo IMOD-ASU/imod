@@ -9,25 +9,29 @@ class AssessmentTechniqueController {
 		create: 'POST',
 		display: 'GET',
 		assessmentplan: 'POST'
+
 	]
 
 
 	def assessmentplan(Long id, Long learningObjectiveID) {
+
 		def assessmentTechInstance = AssessmentTechnique.findAllByAssigncheck(true)
 		def domainCategories = DomainCategory.list()
-		def knowledgeDimensions = KnowledgeDimension.list()
-		def learningDomains = LearningDomain.list()
-		def assessmentFeedback = AssessmentFeedback.list()
+        def knowledgeDimensions = KnowledgeDimension.list()
+        def learningDomains = LearningDomain.list()
+        def assessmentFeedback = AssessmentFeedback.list()
+
 
 		println(assessmentTechInstance)
 		render (
 			[
-				assessmentTechInstance: assessmentTechInstance,
-				domainCategories: domainCategories,
-				knowledgeDimensions: knowledgeDimensions,
-				learningDomains: learningDomains,
-				assessmentFeedback: assessmentFeedback,
-			] as JSON
+			assessmentTechInstance: assessmentTechInstance,
+			domainCategories: domainCategories,
+			knowledgeDimensions: knowledgeDimensions,
+			learningDomains: learningDomains,
+			assessmentFeedback: assessmentFeedback,
+
+			]as JSON
 		)
 	}
 
@@ -92,27 +96,27 @@ class AssessmentTechniqueController {
 
 		// This checks when a technique is assigned to a learning objective
 
-		if (params.assigncheck == true) {
-			// get current user object
-			def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
+		if(params.assigncheck == true) {
+							// get current user object
+		def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
 
-			// add the technique to the user's favorite list
-			currentLearningObjective.addToAssessmentTechniques(newTechnique)
+		// add the technique to the user's favorite list
+		currentLearningObjective.addToAssessmentTechniques(newTechnique)
 
-			// store relationship
-			currentLearningObjective.save()
+		// store relationship
+		currentLearningObjective.save()
 		}
 
 		// This checks when a technique is favoritized  to by a user
-		if (params.favcheck == true) {
-			// get current user object
-			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		if(params.favcheck == true) {
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
-			// add the technique to the user's favorite list
-			currentUser.addToFavoriteAssessmentTechnique(newTechnique)
+		// add the technique to the user's favorite list
+		currentUser.addToFavoriteAssessmentTechnique(newTechnique)
 
-			// store relationship
-			currentUser.save()
+		// store relationship
+		currentUser.save()
 		}
 
 
@@ -134,6 +138,7 @@ class AssessmentTechniqueController {
 
 		if (params.techniqueId) {
 			newTechnique = AssessmentTechnique.get(params.techniqueId)
+
 		}
 
 		// Store text fields
@@ -162,28 +167,29 @@ class AssessmentTechniqueController {
 		// persist new technique to database
 		newTechnique.save()
 
-		// This checks when a technique is assigned to a learning objective
-		if (params.assigncheck == true) {
-			// get current user object
-			def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
+// This checks when a technique is assigned to a learning objective
 
-			// add the technique to the user's favorite list
-			currentLearningObjective.addToAssessmentTechniques(newTechnique)
+		if(params.assigncheck == true) {
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
 
-			// store relationship
-			currentLearningObjective.save()
+		// add the technique to the user's favorite list
+		currentLearningObjective.addToAssessmentTechniques(newTechnique)
+
+		// store relationship
+		currentLearningObjective.save()
 		}
 
-		// This checks when a technique is favoritized  to by a user
-		if (params.favcheck == true) {
-			// get current user object
-			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+// This checks when a technique is favoritized  to by a user
+		if(params.favcheck == true) {
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
-			// add the technique to the user's favorite list
-			currentUser.addToFavoriteAssessmentTechnique(newTechnique)
+		// add the technique to the user's favorite list
+		currentUser.addToFavoriteAssessmentTechnique(newTechnique)
 
-			// store relationship
-			currentUser.save()
+		// store relationship
+		currentUser.save()
 		}
 
 		redirect(

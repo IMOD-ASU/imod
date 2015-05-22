@@ -131,7 +131,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:datePicker name="schedule.endDate"id="schedule-end-date" precision="day" value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+                                            <g:datePicker name="schedule.endDate" precision="day" value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
                                         </div>
 
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
@@ -164,7 +164,7 @@
                                             <label id="duration"></label>
                                         </div>
 
-                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'schedule.scheduleWeekDays', 'error')} style="padding:0" ">
+                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'schedule.scheduleWeekDays', 'error')} ">
                                         <label for="scheduleWeekDays">
                                                 <g:message code="imod.scheduleWeekDays.label" default="Repeats On" />
                                             </label>
