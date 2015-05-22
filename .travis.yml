@@ -13,3 +13,19 @@ before_script:
 
 script:
   - ./grailsw war
+=======
+language: groovy
+
+sudo: false
+
+jdk: oraclejdk8
+
+cache:
+  directories:
+    - ~/.grails
+
+before_script:
+  - npm install -g bower
+
+script:
+  - ./grailsw war
