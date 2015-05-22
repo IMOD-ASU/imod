@@ -1,3 +1,4 @@
+
 package imod
 
 /**
@@ -123,12 +124,15 @@ class LearningObjective {
 	}
 
 	String toString() {
-	    return definition
+		return definition
 	}
 
 	public buildDefinition() {
 		
 		definition = ''
+		if(actionWord == 'Enter the details here'){
+			actionWord = '';
+		}
 		if (isEmpty()) {
 			definition = 'Empty Learning Objective'
 			return

@@ -1,22 +1,18 @@
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# editorconfig.org
+
 root = true
 
+
 [*]
-end_of_line = crlf
-insert_final_newline = true
-trim_trailing_whitespace = true
-charset = utf-8
+
+# Change these settings to your own preference
 indent_style = tab
-indent_size = 4
+tab_width = 4
 
-[grailsw]
+# We recommend you to keep these unchanged
 end_of_line = lf
-
-[*.sh]
-end_of_line = lf
-
-[*.bat]
-end_of_line = cr
-
-[.travis.yml]
-indent_style = space
-indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
