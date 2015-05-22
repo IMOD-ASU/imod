@@ -12,7 +12,6 @@
 		<g:external dir="css/source" file="learningObjective.css" />
 		<g:external dir="css/source" file="iconModule.css" />
 		<g:javascript src="source/assessment.js" defer="defer" />
-
 	</head>
 
 	<body>
@@ -156,11 +155,13 @@
 								${selectionLine}
 							</div>
 
-							<h3 title="" class="showHover">
+							<h3 title="" class="showHover" id="idealCollapser">
 								Ideal matches
 							</h3>
 
 							<div id="ideal-matches1" class="AllMatches">
+
+
 							</div>
 
 							<div class="favDiv">
@@ -174,7 +175,7 @@
 								<div id="assessmentFavoritesDiv1" class="AllMatches"  >
 								</div>
 							</div>
-							<h3 title="" class="showHover">
+							<h3 title="" class="showHover" id="extCollapser">
 								Extended Match
 							</h3>
 
@@ -211,156 +212,191 @@
 					<%--Dialog box for Add New Technique --%>
 					<div id="new-technique" title="Add New Technique">
 						<%--To render the add new Technique dialog box--%>
+
 						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
-							<label>
-								Title
-							</label>
-							<g:textField name="title" />
-							<br />
+							<span>
+								<label >
+									Assign
+								</label>
+								<g:checkBox class="assignBtn" name="assignedToLearningObjective" />
 
-							<label>
-								Description
-							</label>
-							<g:textArea name="description" />
-							<br />
+								<label >
+									Favorite
+								</label>
+								<g:checkBox class="favBtn" name="favoriteTechnique" />
+							</span>
+							<br/>
+							<br/>
 
-							<label>
-								Procedure
-							</label>
-							<g:textArea name="procedure" />
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Title
+								</label>
+								<g:textField name="title" class="form-inputs"/>
+							</p>
+							<br/>
 
-							<label>
-								Duration
-							</label>
-							<g:field type="number" name="duration" min="01" max="60" class="allInputs"/>
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Description
+								</label>
+								<g:textArea name="description" class="form-inputs"/>
+							</p>
+							<br/>
 
-							<label>
-								Feedback Mechanism
-							</label>
-							<g:select name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Procedure
+								</label>
+								<g:textArea name="procedure" class="form-inputs"/>
+							</p>
+							<br/>
 
-							<label>
-								Assign to Current Learning Objective
-							</label>
-							<g:checkBox name="assignedToLearningObjective" />
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Duration
+								</label>
+								<g:field type="number" name="duration" min="01" max="60" class="allInputs"/>
+							</p>
+							<br/>
 
-							<label>
-								Favorite Technique
-							</label>
-							<g:checkBox name="favoriteTechnique" />
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Feedback Mechanism
+								</label>
+								<g:select class="form-inputs" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
+							</p>
+							<br/>
 
-							<label>
-								Learning Domain
-							</label>
-							<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Learning Domain
+								</label>
+								<g:select class="form-inputs" name="learningDomain" from="${learningDomains}" optionKey="name" />
+							</p>
+							<br/>
 
-							<label>
-								Domain Category
-							</label>
-							<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Domain Category
+								</label>
+								<g:select class="form-inputs" name="domainCategory" from="${domainCategories}" optionKey="name" />
+							</p>
+							<br/>
 
-							<label>
-								Knowledge Dimension
-							</label>
-							<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Knowledge Dimension
+								</label>
+								<g:select class="form-inputs" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+							</p>
+							<br/>
 
-							<g:actionSubmit value="Save" action="save" />
-							<g:actionSubmit value="Cancel" action="cancel" />
+							<div id="modalButtons">
+								<g:actionSubmit value="Save" action="save" />
+								<g:actionSubmit value="Cancel" action="cancel" />
+							</div>
 						</g:form>
 					</div>
 
-					<%--Dialog box for Displaying Technique --%>
+					<%--Dialog box for Displaying in edit and View mode Technique --%>
 					<div id="display-new-technique" title="Display Technique">
 						<%--To render the add new Technique dialog box--%>
 						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
-							<span>
-								<input type="button" value="Edit" id="Edit" />
-								<input type="button" value="View" id="View" />
+							<span class="editviewButtons">
+								<label >
+									Assign
+								</label>
+								<g:checkBox class="assignBtn" name="assignedToLearningObjective" />
+
+								<label >
+									Favorite
+								</label>
+								<g:checkBox class="favBtn" name="favoriteTechnique" />
+
+								<input type="button" value="Edit" id="editModal" />
+								<input type="button" value="View" id="viewModal" />
+
 							</span>
 							<br/>
 
 							<g:hiddenField name="techniqueId1" />
-							<label>
-								Title
-							</label>
-							<g:textField name="title1"  class="allInputs"/>
-							<g:textField name="title2"  class="allInputs1"/>
-							<br />
-
-							<label>
-								Description
-							</label>
-							<g:textField name="description1"  class="allInputs"/>
-							<g:textField name="description2"  class="allInputs1"/>
-							<br />
-
-							<label>
-								Procedure
-							</label>
-							<g:textArea name="procedure1"  class="allInputs"/>
-							<g:textArea name="procedure2"  class="allInputs1"/>
-							<br />
-
-							<label>
-								Duration
-							</label>
-							<g:field type="number" name="duration1" min="01" max="60" class="allInputs"/>
-							<g:field type="number" name="duration2" min="01" max="60" class="allInputs1"/>
-							<br />
-
-							<label>
-								Feedback Mechanism
-							</label>
-							<g:select name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
-							<br />
-							<label>
-								Assign to Current Learning Objective
-							</label>
-							<g:checkBox name="assignedToLearningObjective"  value="${true}"/>
-							<br />
-
-							<label>
-								Favorite Technique
-							</label>
-							<g:checkBox name="favoriteTechnique"  value="${true}"/>
-							<br />
-
-							<label>
-								Learning Domain
-							</label>
-							<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+							<p class="form-align">
+								<label class="form-labels">
+									Title
+								</label>
+								<g:textField name="title1"  class="allInputs"/>
+								<g:textField name="title2"  class="allInputs1"/>
+							</p>
 							<br/>
-							<label>Learning Domain</label>
+							<p class="form-align">
+								<label class="form-labels">
+									Description
+								</label>
+								<g:textField name="description1"  class="allInputs"/>
+								<g:textField name="description2"  class="allInputs1"/>
+							</p>
+							<br/>
 
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Procedure
+								</label>
+								<g:textArea name="procedure1"  class="allInputs"/>
+								<g:textArea name="procedure2"  class="allInputs1"/>
+							</p>
+							<br/>
 
-							<label>
-								Domain Category
-							</label>
-							<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Duration
+								</label>
+								<g:field type="number" name="duration1" min="01" max="60" class="allInputs"/>
+								<g:field type="number" name="duration2" min="01" max="60" class="allInputs1"/>
+							</p>
+							<br/>
 
-							<label>
-								Knowledge Dimension
-							</label>
-							<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+							<p class="form-align">
+								<label class="form-labels">
+									Feedback Mechanism
+								</label>
+								<g:select name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
+							</p>
+							<br/>
 
-							<br />
+							<p class="form-align">
+								<label class="form-labels">
+									Learning Domain
+								</label>
+								<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+							</p>
+							<br/>
 
-							<g:actionSubmit value="Save" action="save1" />
-							<g:actionSubmit value="Cancel" action="cancel" />
+							<p class="form-align">
+								<label class="form-labels">
+									Domain Category
+								</label>
+								<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
+							</p>
+							<br/>
+
+							<p class="form-align">
+								<label class="form-labels">
+									Knowledge Dimension
+								</label>
+								<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+							</p>
+							<br/>
+
+							<div id="modalButtons">
+								<g:actionSubmit value="Save" action="save1" />
+								<g:actionSubmit value="Cancel" action="cancel" />
+							</div>
 						</g:form>
 					</div>
 
+					<%--Dialog box for Assessement Plans--%>
 					<div id="assessment-plan" >
 						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<label>
@@ -369,9 +405,9 @@
 								</h2>
 							</label>
 							<br/>
-						
+
 							<span>
-								<g:if test="${learningObjectives}">
+								<g:if test="${learningObjectives.definition !=null}">
 									<g:each var="learningObjective" in="${learningObjectives}">
 										<div class="assessment-plan learning-objective">
 											${learningObjective.id} : ${ learningObjective.definition }
@@ -385,8 +421,10 @@
 							<br/>
 
 							<div id='individualAssessments'>
-								<div id='assignTitle'></div>
-								<div id='assignTitle1'></div>
+								<div id='assignTitle'>
+								</div>
+								<div id='assignTitle1'>
+								</div>
 							</div>
 						</g:form>
 					</div>

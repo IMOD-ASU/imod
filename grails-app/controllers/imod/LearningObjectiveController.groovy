@@ -76,7 +76,7 @@ class LearningObjectiveController {
 			case 'performance':
 				selectedLearningObjective.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
 				selectedLearningObjective.performance = params.DCL
-				if(params.actionWord == 'other') {
+				if (params.actionWord == 'other') {
 					selectedLearningObjective.actionWord = params.customActionWord
 				}
 				else {
@@ -93,7 +93,7 @@ class LearningObjectiveController {
 					selectedLearningObjective.condition = params.customCondition
 				}
 				selectedLearningObjective.hideFromLearningObjectiveCondition = (params.hideCondition == 'on' ? true : false)
-				if(LearningObjective.genericConditions.contains(selectedLearningObjective.condition)) {
+				if (LearningObjective.genericConditions.contains(selectedLearningObjective.condition)) {
 					selectedLearningObjective.customCondition = ''
 				}
 				else {
@@ -193,16 +193,16 @@ class LearningObjectiveController {
 		def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 		def contentList2 = contentList
 		def contents = []
-		
+
 		contentList.collect(contents) {
 			getSubContent(it, currentLearningObjective)
 		}
 		contents = new groovy.json.JsonBuilder(contents).toString()
 
 		def text = null
-		
-		if(contentList != null){
-			
+
+		if (contentList != null) {
+
 			text = '<ul id="contentTree">'
 	        contentList2.each() {
 	            text += getSubContentHTML(it, currentLearningObjective)
