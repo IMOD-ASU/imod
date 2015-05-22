@@ -181,7 +181,7 @@ class CourseOverviewController {
 
             }
 
-            pref = new SyllabusPref(
+            pref = new SyllabusPrefs(
                 sortNumber: it.sort_number,
                 selected: it.selected,
             )
