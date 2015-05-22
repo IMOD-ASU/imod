@@ -122,8 +122,6 @@ class CourseOverviewController {
 
         def settings = SyllabusSettings.list()
 
-        print settings
-
         [
             currentImod: currentImod,
             currentPage: 'syllabus',
