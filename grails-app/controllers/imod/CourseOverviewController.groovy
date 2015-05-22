@@ -119,12 +119,10 @@ class CourseOverviewController {
         }
 
         text += '</ul>'
-        
-        def settings = currentImod.syllabus
 
-        if(settings == null || settings.empty){
-            settings = SyllabusSettings.findAll("from SyllabusSettings as s" + " order by s.id asc");
-        }
+        def settings = SyllabusSettings.list()
+
+        print settings
 
         [
             currentImod: currentImod,
@@ -151,7 +149,7 @@ class CourseOverviewController {
         text += '</ul>'
 
         renderPdf(
-            template: "/courseOverview/syllabus", 
+            template: "/courseOverview/syllabus",
             model: [currentImod: currentImod,
             currentPage: 'syllabus',
             learningObjectives: learningObjectives,
@@ -173,15 +171,15 @@ class CourseOverviewController {
             def prefs = currentImod.syllabus.pref;
             // currentImod.syllabus.pref.clear();
             syllabus = SyllabusSettings.get(it.id)
-            
+
 
             // print test
 
             prefs.each() { p->
 
                 if(p[0] != null){
-                    syllabus.removeFromPref(p[0])    
-                }                
+                    syllabus.removeFromPref(p[0])
+                }
 
             }
 

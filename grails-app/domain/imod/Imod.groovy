@@ -83,7 +83,10 @@ class Imod {
 		 */
 		contents:			Content,
 
-		syllabus: 			SyllabusPrefs
+		/**
+		 * All of the Syllabus Preferences for this course
+		 */
+		syllabusPrefs: 			SyllabusPrefs
 	]
 
 

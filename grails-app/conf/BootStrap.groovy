@@ -20,7 +20,7 @@ import imod.ScheduleRepeats
 import imod.ScheduleRepeatsEvery
 import imod.ScheduleWeekDays
 import imod.Audience
-
+import imod.SyllabusSettings
 
 class BootStrap {
 
@@ -1299,6 +1299,30 @@ if (KnowledgeDimension.count() < 1) {
 			new PedagogyActivityFocus(
 				focus:'Presenting'
 			).save()
+		}
+
+		if(SyllabusSettings.count() == 0){
+
+			new SyllabusSettings(
+				description: 'Course Details'
+			).save()
+
+			new SyllabusSettings(
+				description: 'Schedule'
+			).save()
+
+			new SyllabusSettings(
+				description: 'Course Description'
+			).save()
+
+			new SyllabusSettings(
+				description: 'Course Policy'
+			).save()
+
+			new SyllabusSettings(
+				description: 'Instructor'
+			).save()
+
 		}
 
 		if(PedagogyTechnique.count() == 0){

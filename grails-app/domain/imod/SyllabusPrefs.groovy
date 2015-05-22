@@ -7,6 +7,9 @@ class SyllabusPrefs {
 
     static constraints = {
     }
-    
-    static belongsTo = [syllabus: SyllabusSettings]
+
+    static belongsTo = [
+    	syllabus: SyllabusSettings,
+    	imod: Imod
+    ]
 }

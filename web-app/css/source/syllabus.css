@@ -63,6 +63,19 @@ body.syllabus_pdf .wrapper{
     padding: 0; border: none;
 }
 
+.pref-modal-wrap{
+	position: fixed; left: 0; top: 0;
+	width: 100%; height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	padding-top: 50px;
+	display: none;
+}
+
+.pref-modal {
+	width: 400px; margin: 0 auto; background: #fff;
+	padding: 10px 20px 20px;
+}
+
 @media print {
     body {
         font-family: Arial;

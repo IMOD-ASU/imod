@@ -24,7 +24,10 @@
 
                     <div class="options">
 
-                        <a href="#" class="edit-pref">Edit Preferences</a>
+                    	<g:if env="development">
+		                    <a href="#" class="edit-pref">Edit Preferences</a>
+		                </g:if>
+
                         <a href="javascript:window.print()">Print</a>
                         <a href="../syllabuspdf/${currentImod?.id}" class="download-pdf">Download</a>
 
@@ -124,8 +127,8 @@
                         <label for="scheduleWeekDays">
                             Repeats On
                         </label>
-                        <g:each in="${imod.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">                           
-                            <g:if test="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}">                           
+                        <g:each in="${imod.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
+                            <g:if test="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}">
                                 <label for="weekdays">
                                     <strong>${scheduleWeekDays.description.encodeAsCustomEscape()}</strong>
                                 </label>
@@ -306,6 +309,7 @@
             </g:if>
         </div>
 
+        <g:if env="development">
         <div class="pref-modal-wrap">
             <div class="pref-modal">
 
@@ -318,7 +322,7 @@
 
                         <li data-id="${setting.id}">
                             <label>
-                                <g:checkBox name="setting_checkbox" value="${setting.pref.selected[0]}" />
+                                <g:checkBox name="setting_checkbox" value="${setting.prefs.selected[0]}" />
                                 <span>${setting.description}</span>
                             </label>
                         </li>
@@ -331,6 +335,7 @@
 
             </div>
         </div>
+        </g:if>
 
         <g:external dir="bower_components/jquery/dist" file="jquery.min.js"/>
         <g:external dir="bower_components/jquery-sortable/source/js" file="jquery-sortable-min.js"/>
@@ -338,7 +343,24 @@
 
             $(function() {
 
-                $("ol.pref-sortable").sortable();
+                // $("ol.pref-sortable").sortable();
+
+                // syllabus preferences hide/show
+                $('.pref-modal-wrap').click(function() {
+                	$(this).hide();
+                	return false;
+                });
+
+                $('.edit-pref').click(function() {
+                	$('.pref-modal-wrap').show();
+                	return false;
+                });
+
+                $('.pref-modal').click(function(event) {
+
+                	event.stopPropagation();
+
+                });
 
                 $('.pref-modal .submit').click(function() {
 
