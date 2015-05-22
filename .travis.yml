@@ -13,3 +13,5 @@ before_script:
 
 script:
   - ./grailsw war
+  - ./grailsw codenarc
+  - cat static-analysis.txt

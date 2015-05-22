@@ -72,7 +72,7 @@ class PedagogyTechniqueController {
 		// persist new technique to database
 		newTechnique.save()
 
-		if (params.assignedToLearningObjective != null) {
+		if(params.assignedToLearningObjective != null) {
 			// get current user object
 			def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
 
@@ -83,7 +83,7 @@ class PedagogyTechniqueController {
 			currentLearningObjective.save()
 		}
 
-		if (params.favoriteTechnique != null) {
+		if(params.favoriteTechnique != null) {
 			// get current user object
 			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
