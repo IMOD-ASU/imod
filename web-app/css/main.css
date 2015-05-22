@@ -844,16 +844,16 @@ p {
 
 @media screen and (max-width: 480px) {
     #status {
-        display: none;
+    	display: none;
     }
 
     #page-body {
-        height: 90%;
-        margin: 0 1em 1em;
+    	height: 90%;
+    	margin: 0 1em 1em;
     }
 
     #page-body h1 {
-        margin-top: 0;
+    	margin-top: 0;
     }
 }
 
@@ -1178,7 +1178,7 @@ a.ui-tabs-anchor {
 }
 
 label[for=weekdays] {
-    width: 10%;
+    width: 2%;
     margin-left: 1%;
 }
 
@@ -1189,9 +1189,9 @@ label[for=weekdays] {
 /* hide learning objectives initially so that
     we can hide empty learning objectives using JavaScript
  */
-.learning-objective.list-wrapper {
+/*.learning-objective.list-wrapper {
     display: none;
-}
+}*/
 .saveIcon {
     font-size: 16px;
 }

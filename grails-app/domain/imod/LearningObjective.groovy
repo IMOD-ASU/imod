@@ -1,3 +1,4 @@
+
 package imod
 
 /**
@@ -61,7 +62,8 @@ class LearningObjective {
 
 	static hasMany = [
 		contents: Content,
-		pedagogyTechniques: PedagogyTechnique
+		pedagogyTechniques: PedagogyTechnique,
+		assessmentTechniques: AssessmentTechnique
 	]
 
 	public static final List genericConditions = [
@@ -122,11 +124,15 @@ class LearningObjective {
 	}
 
 	String toString() {
-	    return definition
+		return definition
 	}
 
 	public buildDefinition() {
+		
 		definition = ''
+		if(actionWord == 'Enter the details here'){
+			actionWord = '';
+		}
 		if (isEmpty()) {
 			definition = 'Empty Learning Objective'
 			return

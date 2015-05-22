@@ -36,23 +36,24 @@ this is the basic layout with only the IMOD header and footer
 		<g:external dir="css" file="main.css" />
 
 		<!-- core javascript libraries -->
-		<g:external dir="bower_components/jquery/dist" file="jquery.min.js" defer="defer" />
-		<g:external dir="bower_components/jquery.ui/ui" file="core.js" defer="defer" />
-		<g:external dir="bower_components/jquery.ui/ui" file="widget.js" defer="defer" />
+		<g:external dir="bower_components/jquery/dist" file="jquery.min.js" />
+		<g:external dir="bower_components/jquery.ui/ui" file="core.js" />
+		<g:external dir="bower_components/jquery.ui/ui" file="widget.js" />
 
 		<!-- ui widgets -->
-		<g:external dir="bower_components/jquery.ui/ui" file="accordion.js" defer="defer" />
-		<g:external dir="bower_components/jquery.ui/ui" file="button.js" defer="defer" />
-		<g:external dir="bower_components/jquery.ui/ui" file="dialog.js" defer="defer" />
+		<g:external dir="bower_components/jquery.ui/ui" file="accordion.js" />
+		<g:external dir="bower_components/jquery.ui/ui" file="button.js" />
+		<g:external dir="bower_components/jquery.ui/ui" file="dialog.js" />
 
 		<!-- plugins to javascript libraries -->
-		<g:external dir="bower_components/qtip2" file="jquery.qtip.min.js" defer="defer" />
-		<g:external dir="bower_components/jstree/dist" file="jstree.min.js" defer="defer" />
-		<g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" defer="defer" />
-		<g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" defer="defer" />
+		<g:external dir="bower_components/qtip2" file="jquery.qtip.min.js" />
+		<g:external dir="bower_components/jstree/dist" file="jstree.min.js" />
+		<g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" />
+		<g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" />
+		<g:external dir="js/plugins" file="jquery.custom.draggable.js"/>
 
 		<!-- internal javascript -->
-		<g:javascript src="source/application.js" defer="defer" />
+		<g:javascript src="source/application.js"/>
 
 		<g:layoutHead/>
 	</head>
@@ -102,11 +103,11 @@ this is the basic layout with only the IMOD header and footer
 			Copyright &copy; 2015 IMOD&trade;
 		</div>
 
-		<g:if env="development">
+		<g:if env="developments">
 			<!-- automated html style checking -->
-			<g:external dir="bower_components/log" file="log.min.js" defer="defer" />
-			<g:external dir="bower_components/htmlhint/lib" file="htmlhint.js" defer="defer" />
-			<g:javascript src="source/lintHTML.js" defer="defer" />
+			<g:external dir="bower_components/log" file="log.min.js" />
+			<g:external dir="bower_components/htmlhint/lib" file="htmlhint.js" />
+			<g:javascript src="source/lintHTML.js" />
 		</g:if>
 
 	</body>

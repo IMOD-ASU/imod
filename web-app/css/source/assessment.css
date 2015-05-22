@@ -1,19 +1,153 @@
+.assignBtn {
+    width: 20px !important;
+}
+.favBtn {
+    width: 20px !important;
+}
+
+#editModal {
+    width: 50px !important;
+}
+
+#viewModal {
+    width: 50px !important;
+}
+
+.editviewButtons {
+    float: right;
+
+    text-align: center;
+}
+
+.new-technique {
+    display: table;
+
+    font-family: helvetica;
+    font-size: 1em;
+}
+.form-align {
+    display: table-row;
+
+    font-family: helvetica;
+    font-size: 1em;
+}
+.form-labels {
+    display: table-cell;
+
+    width: 150px;
+
+    font-family: helvetica;
+    font-size: 1em;
+}
+.form-inputs {
+    display: table-cell;
+
+    width: 200px;
+
+    font-family: helvetica;
+    font-size: 1em;
+}
+.allInputs {
+    display: table-cell;
+
+    width: 200px;
+
+    font-family: helvetica;
+    font-size: 1em;
+}
+.allInputs1 {
+    display: table-cell;
+
+    width: 200px;
+
+    font-family: helvetica;
+    font-size: 1em;
+}
+.allspans1 {
+    display: table-cell;
+
+    width: 200px;
+
+    font-family: helvetica;
+    font-size: 1em;
+}
+
+#modalButtons {
+    float: right;
+
+    text-align: center;
+}
+
+
+
+.ui-dialog-titlebar {
+    background: #f0eeee;
+}
+
+
+.ui-dialog .ui-dialog-titlebar-close {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+
+    width: 25px;
+    height: 25px;
+    margin: 0 0 0 0;
+
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    background: #172751 none;
+}
+
+.favDiv {
+    display: none;
+    visibility: hidden;
+}
+
+#unfavorites {
+    display: none;
+}
+
+#assessmentFavorites {
+    display: none;
+    visibility: hidden;
+}
+
+#assessmentFavoritesDiv {
+    display: none;
+    visibility: hidden;
+}
+
+
+
+
 .no-objective-defined {
     text-align: center;
     vertical-align: middle;
-    /*pointer-events: none;*/
-    /* for "disabled" effect */
 
     opacity: 0.5;
+            border-radius: 0;
     background: #cccccc;
+
+    -webkit-border-radius: 0;
+    /*pointer-events: none;*/
+    /* for "disabled" effect */
+       -moz-border-radius: 0;
 }
 
 
 
 .assessment-page-buttons {
     height: 50px;
+    padding-top: 10px;
 
     text-align: center;
+    text-align: center;
+    vertical-align: middle;
+
+    background: #f0eeee none;
 }
 
 .assessment-page-buttons-disabled {
@@ -26,6 +160,77 @@
     opacity: 0.5;
     background: #cccccc;
 }
+
+#new-technique-button {
+    width: 155px;
+    height: 25px;
+
+    color: #000000;
+            border-radius: 0;
+    background: white none;
+    background-image: url('../../images/add.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    box-shadow: none !important;
+
+    font: Helvetica;
+
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+}
+#favorites {
+    width: 155px;
+    height: 25px;
+
+    color: #000000;
+            border-radius: 0;
+    background: white none;
+    background-image: url('../../images/fav.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 30% 70%;
+    box-shadow: none !important;
+
+    font: Helvetica;
+
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+}
+#unfavorites {
+    width: 155px;
+    height: 25px;
+
+    color: #000000;
+            border-radius: 0;
+    background: white none;
+    background-image: url('../../images/unfav.png');
+    background-repeat: no-repeat;
+    background-position: left left;
+    background-size: 30% 70%;
+    box-shadow: none !important;
+
+    font: Helvetica;
+
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+}
+#assessment-plan-button {
+    width: 155px;
+    height: 25px;
+
+    color: #000000;
+            border-radius: 0;
+    background: white none;
+    background-repeat: no-repeat;
+    background-position: left left;
+    box-shadow: none !important;
+
+    font: Helvetica;
+
+    -webkit-border-radius: 0;
+       -moz-border-radius: 0;
+}
+
 
 .video-control {
     text-align: center;
