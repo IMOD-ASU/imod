@@ -57,7 +57,7 @@
 
 												<g:if test="${ learningObjective.definition}">
 
-													
+
 													${ learningObjective.definition }
 
 												</g:if>
