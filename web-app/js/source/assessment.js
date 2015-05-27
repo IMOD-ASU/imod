@@ -297,24 +297,68 @@ function displayAssessmentPlan(data) {
 function assessmentPlanData(data) {
 	var allAssessmentData = '';
 
-	for (var index = 0; index < data.assessmentTechInstance.length; index++) {
-		var assessmentPlan = data.assessmentTechInstance[index];
-		for (var ind = 0; ind < assessmentPlan.knowledgeDimension.length; ind++) {
-			var xx = assessmentPlan.knowledgeDimension[ind];
-			var techkd = xx.id;
+	for (var techniqueIndex = 0; techniqueIndex < data.assessmentTechInstance.length; techniqueIndex++) {
+		var assessmentPlan = data.assessmentTechInstance[techniqueIndex];
 
-			var xkd = '';
-			var kd = '';
+		// FIXME this looks like it access the last element, why not access directly
+		var techniqueKnowledgeDimension = '';
+		for (var knowledgeDimenisionIndex = 0; knowledgeDimenisionIndex < assessmentPlan.knowledgeDimension.length; knowledgeDimenisionIndex++) {
+			techniqueKnowledgeDimension = assessmentPlan.knowledgeDimension[knowledgeDimenisionIndex].id;
+		}
 
-			for (var index1 = 0; index1 < data.knowledgeDimensions.length; index1++) {
-				kd = data.knowledgeDimensions[index1];
-				if (kd.id === techkd) {
-					var xkd = kd.description;
-				}
+		var knowledgeDimension = '';
+		// FIXME domain catgory is never assigned
+		var domainCategory = '';
+		// FIXME learning domain is never assigned
+		var learningDomain = '';
+
+		for (var index1 = 0; index1 < data.knowledgeDimensions.length; index1++) {
+			var temporaryKnowledgeDimension = data.knowledgeDimensions[index1];
+
+			if (temporaryKnowledgeDimension.id === techniqueKnowledgeDimension) {
+				knowledgeDimension = temporaryKnowledgeDimension.description;
+
+				// FIXME what is this for?
+				alert('final X::' + knowledgeDimension);
 			}
 			allAssessmentData += '<div id="' + assessmentPlan.id + '"><span><h2>' + assessmentPlan.title + '</h2></span><br/><span> Description : ' + assessmentPlan.description + '</span><br/><span>' + assessmentPlan.procedure + '</span><br/><span>' + assessmentPlan.duration + '</span><br/><span> Knowledge Dimension : ' + xkd.description + '</span><br/><span>' + assessmentPlan.assessmentFeedback.name + '</span></div>';
 		}
-		$('#assessmentData').html(allAssessmentData);
+
+		allAssessmentData += '<div id="' + assessmentPlan.id + '">';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    <h2>';
+		allAssessmentData += '      ' + assessmentPlan.title;
+		allAssessmentData += '    </h2>';
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    Description : ' + assessmentPlan.description;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    ' + assessmentPlan.procedure;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    ' + assessmentPlan.duration;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    DomainCategory :' + domainCategory;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    Learning Domain :' + learningDomain;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    Knowledge Dimension : ' + knowledgeDimension;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '  <br/>';
+		allAssessmentData += '  <span>';
+		allAssessmentData += '    ' + assessmentPlan.assessmentFeedback.name;
+		allAssessmentData += '  </span>';
+		allAssessmentData += '</div>';
 	}
 }
 

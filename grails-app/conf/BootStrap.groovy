@@ -489,37 +489,37 @@ class BootStrap {
 		if(ScheduleWeekDays.count() < 1)
 		{
 			def ScheduleSunday = new ScheduleWeekDays(
-				description:'Sunday'
+				description:'S'
 				)
 			ScheduleSunday.save()
 
 			def ScheduleMonday = new ScheduleWeekDays(
-				description:'Monday'
+				description:'M'
 				)
 			ScheduleMonday.save()
 
 			def ScheduleTuesday = new ScheduleWeekDays(
-				description:'Tuesday'
+				description:'T'
 				)
 			ScheduleTuesday.save()
 
 			def ScheduleWednesday = new ScheduleWeekDays(
-				description:'Wednesday'
+				description:'W'
 				)
 			ScheduleWednesday.save()
 
 			def ScheduleThursday = new ScheduleWeekDays(
-				description:'Thursday'
+				description:'T'
 				)
 			ScheduleThursday.save()
 
 			def ScheduleFriday = new ScheduleWeekDays(
-				description:'Friday'
+				description:'F'
 				)
 			ScheduleFriday.save()
 
 			def ScheduleSaturday = new ScheduleWeekDays(
-				description:'Saturday'
+				description:'S'
 				)
 			ScheduleSaturday.save()
 		}

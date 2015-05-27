@@ -93,14 +93,14 @@ class ContentController {
 
 			// remove any parent association
 			def oldParent = deletedContent.parentContent
-			if(oldParent != null) {
+			if (oldParent != null) {
 				oldParent.removeFromSubContents(deletedContent)
 			}
 
 			// remove all children association
 			def childrenList = []
 			def children = deletedContent.subContents
-			if(children != null) {
+			if (children != null) {
 				childrenList.addAll(children)
 
 				childrenList.each() { child ->
@@ -112,7 +112,7 @@ class ContentController {
 			def learningObjectives = deletedContent.objectives
 
 			// remove learning objective association
-			if(learningObjectives != null) {
+			if (learningObjectives != null) {
 				learningObjectiveList.addAll(learningObjectives)
 				learningObjectiveList.each() {
 					deletedContent.removeFromObjectives(it)
@@ -136,10 +136,10 @@ class ContentController {
 		def idArray = data.idArray
 
 		contents.each() {
-			buildHierarchy(it, null)			
+			buildHierarchy(it, null)
 		}
 
-		setLearningObjective(data.objId, idArray);	
+		setLearningObjective(data.objId, idArray);
 
 		render(
 			[
@@ -152,7 +152,7 @@ class ContentController {
 
 		def childContent = Content.get(content.id)
 		def oldParent = childContent.parentContent
-		if(oldParent != null) {
+		if (oldParent != null) {
 			oldParent.removeFromSubContents(childContent)
 		}
 		if (parentID != null) {
@@ -164,8 +164,8 @@ class ContentController {
 			childContent.parentContent = null
 		}
 
-		if(content.child != ''){
-			
+		if (content.child != '') {
+
 			content.child.each(){
 
 				buildHierarchy(it, content.id)
@@ -185,6 +185,10 @@ class ContentController {
 			contentList.each() {
 				learningObjectiveInstance.addToContents(it)
 			}
+
+			// reset the definition
+			learningObjectiveInstance.buildDefinition()
+
 			learningObjectiveInstance.save(failOnError:true)
 		}
 		else {

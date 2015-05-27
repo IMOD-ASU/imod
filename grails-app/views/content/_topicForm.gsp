@@ -3,7 +3,7 @@
 <%@ page import="imod.KnowledgeDimensionEnum"%>
 
 <div id="topicDialogBackground" class="modalBackground"></div>
-<div id="topicDialog">
+<div id="topicDialog" class="draggable">
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
@@ -99,7 +99,7 @@
 
 <div id="selectKnowledgeDimensionBackground" class="modalBackground"></div>
 
-<div id="selectKnowledgeDimensions">
+<div id="selectKnowledgeDimensions" class="draggable">
 	<!-- FIXME replace with g:hiddenField, this also may not be necessary -->
 	<input type="hidden" id="topicID" />
 	<span>
@@ -121,8 +121,8 @@
 	</button>
 </div>
 <div id="selectResourceBackground" class="modalBackground">
-</div>	
-<div id="selectResource">
+</div>
+<div id="selectResource" class="draggable">
 <fieldset class="buttons resourceButtonField">
 		<span class="resourceButtonGradient">
 			<g:actionSubmit

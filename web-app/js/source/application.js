@@ -43,14 +43,14 @@ $(document).ready(
 			}
 		);
 
-		$('.learning-objective.list-item').each(
-			function () {
-				if ($(this).find('.list-link').text().trim() === 'Empty Learning Objective' || $(this).find('.list-link').text().trim() === '' || $(this).find('.list-link').text().trim() === null) {
-					$(this).hide();
-				}
-			}
-		);
-		$('.learning-objective.list-wrapper').show();
+		// Make modals draggable
+		$('.draggable').drags();
+
+		// Hide modal when background is clicked
+		$(document).on('click', '.modalBackground', function () {
+			$('.draggable').hide();
+			$('.modalBackground').hide();
+		});
 	}
 );
 
