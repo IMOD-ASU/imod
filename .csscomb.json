@@ -23,7 +23,6 @@
 	"space-before-closing-brace": "\n",
 	"strip-spaces": true,
 	"tab-size": 4,
-	"unitless-zero": true,
 	"vendor-prefix-align": true,
 
 	"sort-order": [
