@@ -53,6 +53,10 @@ function instructorValidator() {
 	}
 }
 
+function fnCoursePolicyRadio(){
+	alert($('.coursePolicyRadio').value);
+}
+
 // Compares startTime and EndTime
 function compareStartEndTimes() {
 	// Check if end time is greater than start time
@@ -120,6 +124,8 @@ $(document).ready(
 			'change',
 			populateRepeatsEvery
 		);
+		
+		
 
 		// Delete instructor logic
 		$('.delete-instructor').click(
@@ -202,7 +208,24 @@ $(document).ready(
 				return false;
 			}
 		);
-
+		
+		$("#coursePolicyRadioCustom").click(function() { 
+			$("#attendance-tardiness").val("");
+			$("#class-participation").val("");
+			$("#professional-conduct").val("");
+			$("#missed-exams").val("");
+			$("#missed-assignments").val("");
+		});
+		
+		$("#coursePolicyRadioDefault").click(function() { 
+			$("#attendance-tardiness").val("Regular on-time attendance in this course is expected");
+			$("#class-participation").val("Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.");
+			$("#professional-conduct").val("All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/");
+			$("#missed-exams").val("The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements");
+			$("#missed-assignments").val("Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.");
+		});
+		
+		
 		$('.topicButtonGradient .add').click(
 			function () {
 				var row = '';

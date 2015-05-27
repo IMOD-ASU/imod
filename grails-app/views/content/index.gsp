@@ -35,8 +35,8 @@
 	</head>
 	<body>
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
-	
-	
+
+
 	<div id="contentTable">
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
@@ -134,8 +134,8 @@
 							/>
 						</td>
 					</tr>
-	</g:each> 
-	
+	</g:each>
+
 			<g:if test="${contentList.getClass()!=String}">
 				<g:each var="contentItem" in="${contentList}">
 					<tr id="${contentItem.id}" class="topicItem">
@@ -204,7 +204,7 @@
 			</g:if>
 		</tbody>
 	</table>
-	
+
 		<fieldset id="topicModalClose" class="buttons topicButtonField">
 		<span class="topicButtonGradient saveBG">
 			<button
@@ -231,7 +231,7 @@
 	</div>
 	<div id="selectKnowledgeDimensionBackground" class="modalBackground">
 </div>
-<div id="selectKnowledgeDimensions">
+<div id="selectKnowledgeDimensions" class="draggable">
 	<input type="hidden" id="topicID" />
 	<span>
 		<ul>
@@ -257,11 +257,11 @@
 		/>
 	</span>
 	<button id="knowDimFinished" type="button">Save</button>
-</div>	
+</div>
 
 <div id="selectResourceBackground" class="modalBackground">
-</div>	
-<div id="selectResource">
+</div>
+<div id="selectResource" class="draggable">
 <fieldset class="buttons resourceButtonField">
 		<span class="resourceButtonGradient">
 			<g:actionSubmit

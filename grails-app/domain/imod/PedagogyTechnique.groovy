@@ -7,6 +7,7 @@ package imod
 class PedagogyTechnique {
 	String title
 	String description
+	String location
 	String direction
 	String materials
 	String reference
@@ -43,6 +44,7 @@ class PedagogyTechnique {
 		activityFocus nullable: true
 		assignedLearningObjective nullable: true
 		description nullable: true, blank: true
+		location nullable: true
 		direction nullable: true
 		materials nullable: true
 		reference nullable: true

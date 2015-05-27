@@ -32,7 +32,7 @@ function populateActionWords(event) {
 			if (event === true) {
 				var originalActionWord = $('#action-words').val();
 			}
-
+			actionWordsHTML += '<option selected value="select"> --Select-- </option>';
 			// Store the data from the call back
 			if (data.value !== null) {
 				if (data.value.verb !== undefined && data.value.verb !== null && data.value.verb !== '') {
@@ -95,6 +95,10 @@ function populateActionWords(event) {
 		}
 	});
 }
+
+//function fnOtherOnClick(){
+//	alert('hi');
+//}
 
 /**
  * Ajax to pull Action Words based on which Domain Category was selected,
@@ -222,6 +226,21 @@ $(document).ready(
 				}
 			}
 		);
+		
+		$('#custom-action-words').click(function(){
+			if($('#custom-action-words').val()==='Enter the details here'){
+				$('#custom-action-words').val('');
+			}
+		});
+		
+		
+		$('#performance-save').click(function(){
+			if($('#action-words').val()==='select'){
+				alert('Please select an action word or select --Other-- field at the end of list');
+				abort();
+			}
+		});
+		
 
 		$(':button').hover(
 			function () {

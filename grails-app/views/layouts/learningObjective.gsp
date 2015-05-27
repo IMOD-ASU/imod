@@ -45,7 +45,7 @@
 										<g:link action="create" id="${currentImod.id}">
 											<button title="${ message( code:'imod.learningObjective.add' ) }" >
 												<span class="fa fa-plus"></span>
-												Add
+												Add new
 											</button>
 										</g:link>
 									</span>
@@ -54,7 +54,19 @@
 									<g:each var="learningObjective" in="${learningObjectives}">
 										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
 											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
-												${ learningObjective.definition }
+
+												<g:if test="${ learningObjective.definition}">
+
+
+													${ learningObjective.definition }
+
+												</g:if>
+												<g:else>
+
+													Empty Learning Objective
+
+												</g:else>
+
 											</g:link>
 										</li>
 									</g:each>
@@ -68,7 +80,7 @@
 									<i class="fa fa-pencil" title="click to edit"></i>
 								</div>
 								<g:form class="learning-objective definition-edit" action="saveDefinition" id="${currentImod.id}" method="post">
-									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" />
+									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" title="${ message( code:'imod.learningObjective.editDetails' ) }"/>
 									<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 									<g:hiddenField name="pageType" value="criteria" id="page-type" />
 								</g:form>

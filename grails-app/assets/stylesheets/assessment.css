@@ -1,14 +1,30 @@
+.favDiv {
+    display: none;
+    visibility: hidden;
+}
+
+#unfavorites {
+    display: none;
+}
+
+#assessmentFavorites {
+    display: none;
+    visibility: hidden;
+}
+
+#assessmentFavoritesDiv {
+    display: none;
+    visibility: hidden;
+}
+
+
 .no-objective-defined {
     text-align: center;
     vertical-align: middle;
-    /*pointer-events: none;*/
-    /* for "disabled" effect */
 
     opacity: 0.5;
     background: #cccccc;
 }
-
-
 
 .assessment-page-buttons {
     height: 50px;
@@ -34,7 +50,6 @@
 .video-center {
     margin: 0 auto;
 }
-
 
 .learning-objective.definition-cell {
     height: 5em;
