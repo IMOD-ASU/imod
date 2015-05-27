@@ -96,10 +96,6 @@ function populateActionWords(event) {
 	});
 }
 
-//function fnOtherOnClick(){
-//	alert('hi');
-//}
-
 /**
  * Ajax to pull Action Words based on which Domain Category was selected,
  * then populate page with selectable action word category boxes
@@ -226,21 +222,19 @@ $(document).ready(
 				}
 			}
 		);
-		
-		$('#custom-action-words').click(function(){
-			if($('#custom-action-words').val()==='Enter the details here'){
+
+		$('#custom-action-words').click(function () {
+			if ($('#custom-action-words').val() === 'Enter the details here') {
 				$('#custom-action-words').val('');
 			}
 		});
-		
-		
-		$('#performance-save').click(function(){
-			if($('#action-words').val()==='select'){
+
+		$('#performance-save').click(function () {
+			if ($('#action-words').val() === 'select') {
 				alert('Please select an action word or select --Other-- field at the end of list');
 				abort();
 			}
 		});
-		
 
 		$(':button').hover(
 			function () {
