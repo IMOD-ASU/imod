@@ -121,7 +121,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:datePicker name="schedule.startDate" id="schedule-start-date" precision="day"  value="${currentImod?.schedule?.startDate}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+                                            <g:datePicker name="schedule.startDate" id="schedule-start-date" precision="day" default="none" noSelection="['':'']" value="${currentImod?.schedule?.startDate}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
@@ -131,7 +131,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:datePicker name="schedule.endDate" id="schedule-end-date" precision="day" value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+                                            <g:datePicker name="schedule.endDate" id="schedule-end-date" precision="day" default="none" noSelection="['':'']" value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
                                         </div>
 
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
@@ -139,13 +139,13 @@
                                                 <g:message code="imod.schedule.startTime.label" default="Start Time" />
                                             </label>
 
-                                        <joda:timePicker name="schedule.startTime" id="schedule-start-time" value="${currentImod?.schedule?.startTime}"  />
+                                        <joda:timePicker name="schedule.startTime" default="none" noSelection="['':'']" id="schedule-start-time" value="${currentImod?.schedule?.startTime}"  />
                                         </div>
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'endTime', 'error')} ">
                                             <label for="endTime">
                                                 <g:message code="imod.schedule.endTime.label" default="End Time" />
                                             </label>
-                                        <joda:timePicker name="schedule.endTime" id="schedule-end-time" value="${currentImod?.schedule?.endTime}" />
+                                        <joda:timePicker name="schedule.endTime" default="none" noSelection="['':'']" id="schedule-end-time" value="${currentImod?.schedule?.endTime}" />
                                         </div>
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'repeats', 'error')} ">
                                             <label for="repeats">
