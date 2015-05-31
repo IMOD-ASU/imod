@@ -20,10 +20,9 @@
 			<label for="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 				Learning Domain
 			</label>
-			<g:select name="LDL" id="learning-domain-list" from="${domainList.name}" noSelection="${['null':'-- Select --']}" value="${selectedDomain?.name?:""}" title="${ message( code:'imod.learningObjective.learningDomain' ) }" />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+			&nbsp;<g:select name="LDL" id="learning-domain-list" from="${domainList.name}" noSelection="${['null':'-- Select --']}" value="${selectedDomain?.name?:""}" title="${ message( code:'imod.learningObjective.learningDomain' ) }" />
+			<br/>
+			<div style="height:5px"></div>
 			<label for="domain-category-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
 				Domain Category
 			</label>
@@ -45,12 +44,13 @@
 			<label for="action-words">
 			Action Words
 			</label>
-			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" style="margin-bottom:10px;width:150px">
+			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" style="margin-bottom:5px;width:180px">
 				<option>
 					${actionWord}
 				</option>
-			</select>	
-			<input name="customActionWord" type="text" id="custom-action-words" value="Enter the details here" >
+			</select>
+			<br/>
+			<input name="customActionWord" type="text" id="custom-action-words" value="Enter the details here" style="margin-bottom:10px;width:170px">
 		</g:form>
 	</body>
 </html>
