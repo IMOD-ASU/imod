@@ -26,6 +26,49 @@ class LearningObjectiveService {
     }
 
     /**
+        Remove the selected learning objective, linked to the imod
+    */
+    LearningObjective remove(Imod currentImod,Long learningObjectiveID) {
+
+        def deletedObjective = LearningObjective.get(learningObjectiveID)
+        def contentsList = []
+        def contents = deletedObjective.contents
+
+        // remove contents association
+        if (contents != null) {
+            contentsList.addAll(contents)
+            contentsList.each() {
+                deletedObjective.removeFromContents(it)
+            }
+        }
+
+        // remove pedagogyTechniques association
+        def pedagogyTechniquesList = []
+        def pedagogyTechniques = deletedObjective.pedagogyTechniques
+        if (pedagogyTechniques != null) {
+            pedagogyTechniquesList.addAll(pedagogyTechniques)
+            pedagogyTechniquesList.each() {
+                deletedObjective.removeFromPedagogyTechniques(it)
+            }
+        }
+
+        // remove assessmentTechniques association
+        def assessmentTechniquesList = []
+        def assessmentTechniques = deletedObjective.assessmentTechniques
+        if (assessmentTechniques != null) {
+            assessmentTechniquesList.addAll(assessmentTechniques)
+            assessmentTechniquesList.each() {
+                deletedObjective.removeFromAssessmentTechniques(it)
+            }
+        }
+
+        deletedObjective.delete(flush:true)
+        LearningObjective objective = currentImod.learningObjectives.first()
+        return objective
+    }
+
+    
+    /**
      * Ensure that the Imod has at least one learning objective
      */
     def ensureLearningObjectiveExists(Imod currentImod) {
