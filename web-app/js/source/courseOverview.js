@@ -352,7 +352,7 @@ $(document).ready(
 					required: true
 				},
 				url: {
-					required: false,
+					required: true,
 					urlRule: /^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i
 				},
 				subjectArea: {
