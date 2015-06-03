@@ -97,9 +97,8 @@ class Imod {
 	static constraints = {
 		// These are required to create an IMOD
 		name			nullable: false,	blank: false
-		url				nullable: false,	blank: false
 		subjectArea		nullable: false,	blank: false
-
+		url 			nullable: false,	blank: false
 		// These are optional string atrributes of an IMOD
 		overview			nullable: true, maxSize: 65000
 		courseSemester		nullable: true
