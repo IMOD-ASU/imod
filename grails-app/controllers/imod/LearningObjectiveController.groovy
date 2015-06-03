@@ -15,7 +15,6 @@ class LearningObjectiveController {
 		performance: 				'GET',
 		save: 						'POST',
 		saveDefinition:				'POST',
-		remove:						'GET',
 	]
 
 	// same as having index action redirect to performance tab
@@ -40,26 +39,6 @@ class LearningObjectiveController {
 		)
 	}
 
-	/**
-	 * Removes a Learning Objective
-	 * @param  id of the IMOD that learning objective will be linked to
-	 * @return    redirects to the performance tab to allow editing
-	 */
-	def remove(Long id,Long learningObjectiveID) {
-		def currentImod = Imod.get(id)
-		def learningObjectiveId = learningObjectiveService.remove(currentImod,learningObjectiveID)
-
-		// redirects to the performance page to allow for newly created learning objective to be edited
-		redirect(
-			action: 'performance',
-			id: id,
-			params: [
-				learningObjectiveID: learningObjectiveId
-			]
-		)
-	}
-
-	
 	def saveDefinition(Long id, Long learningObjectiveID, String pageType) {
 		def currentImod = Imod.get(id)
 		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)

@@ -42,37 +42,28 @@
 								<div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 									<span class="title-text">
 										Learning Objectives
+										<g:link action="create" id="${currentImod.id}">
+											<button title="${ message( code:'imod.learningObjective.add' ) }" >
+												<span class="fa fa-plus"></span>
+												Add new
+											</button>
+										</g:link>
 									</span>
 								</div>
-								<fieldset class="buttons topicButtonField">
-								<span class="topicButtonGradient">
-								<g:link action="create" id="${currentImod.id}">
-									<button class="add show-hover-new topicButton" title="${ message( code:'imod.learningObjective.add' ) }" >
-										Add
-									</button>
-								</g:link>
-								</span>
-								<span class="topicButtonGradient">
-								<g:link action="remove" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
-									<button class="remove show-hover-new topicButton" title="${ message( code:'imod.learningObjective.remove' ) }" >
-										Remove
-									</button>
-								</g:link>
-								</span>
-								</fieldset>
 								<ul class="learning-objective list-wrapper">
 									<g:each var="learningObjective" in="${learningObjectives}">
-										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }" >
-											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link ${(learningObjective.definition) ? '' : 'new'  }">
+										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
+											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
 
 												<g:if test="${ learningObjective.definition}">
+
 
 													${ learningObjective.definition }
 
 												</g:if>
 												<g:else>
 
-													Define New Learning Objective
+													Empty Learning Objective
 
 												</g:else>
 
