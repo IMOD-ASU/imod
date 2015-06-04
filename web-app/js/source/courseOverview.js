@@ -328,7 +328,12 @@ $(document).ready(
 		// Regex method for url
 		$.validator.addMethod('urlRule',
 			function (value, element, regexpr) {
-				return regexpr.test(value);
+			if (value== null|| value=="){
+			return true
+			}
+			else{
+			return regexpr.test(value);
+			}
 			},
 			'Please enter a valid URL.'
 		);
@@ -352,7 +357,7 @@ $(document).ready(
 					required: true
 				},
 				url: {
-					required: true,
+					required: false,
 					urlRule: /^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i
 				},
 				subjectArea: {

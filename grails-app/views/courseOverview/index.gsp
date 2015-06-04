@@ -85,9 +85,7 @@
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
                                             <label for="url">
                                                 <g:message code="imod.url.label" default="Course URL" />
-                                                <span class="required-indicator">
-                                                    *
-                                                </span>
+                                                
                                             </label>
                                             <g:textField name="url" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
                                         </div>
@@ -254,12 +252,12 @@
                                                 </div>
 
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure != 'Custom' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
                                                     Standardized
                                                 </div>
 
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
+                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure == 'Custom'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
                                                     Custom
                                                     <br>
                                                     <g:textArea name="gradingProcedure" id="grading-procedure-text" value="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ? currentImod?.gradingProcedure:''}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
