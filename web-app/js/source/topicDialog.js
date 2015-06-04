@@ -65,7 +65,7 @@ function toggleSelected(event) {
 	}
 }
 
-function closeDimModal() {
+function saveDimModal() {
 	var contentID = $('#topicID').val();
 	var dimensions = [];
 	var dialog = $('#selectKnowledgeDimensions');
@@ -99,6 +99,44 @@ function closeDimModal() {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
+function closeDimModal(){
+
+	var contentID = $('#topicID').val();
+	var dimensions = [];
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
+	var contentDimensions = $('#knowDimensionList' + contentID);
+
+	$(this).siblings('span').find('input').each(
+		function () {
+			if (this.checked) {
+				dimensions.push($(this).val());
+			}
+		}
+	);
+	if (dimensions.length === 0) {
+		dimensions = '';
+	} else {
+		dimensions = dimensions.toString();
+	}
+	$('#topicID').val('');
+	dialog.find('input:checkbox').each(
+		function () {
+			$(this).prop('checked', false);
+		}
+	);
+
+	if (contentDimensions.val() !== dimensions) {
+		
+		$('#' + contentID).addClass('unsaved');
+	}
+	
+	
+	dialog.css('display', 'none');
+	background.css('display', 'none');
+
+}
+
 
 function openDimModal() {
 	var contentID = $(this).parents('.topicItem').attr('id');
@@ -510,7 +548,8 @@ $(
 			}
 		);
 		$('.knowledgeDimensionButton').click(openDimModal);
-		$('#knowDimFinished').click(closeDimModal);
+		$('#knowDimFinished').click(saveDimModal);
+		$('#closeKnowDim').click(closeDimModal);
 		$('.ResourceButton').click(openResourceModal);
 		$('#addResource').click(addResource);
 		$('#cancelResource').click(closeResourceModal);

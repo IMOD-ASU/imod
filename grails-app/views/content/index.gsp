@@ -257,6 +257,7 @@
 		/>
 	</span>
 	<button id="knowDimFinished" type="button">Save</button>
+	<button id="closeKnowDim" type="button">Close</button>
 </div>
 
 <div id="selectResourceBackground" class="modalBackground">
