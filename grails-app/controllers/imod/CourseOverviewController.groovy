@@ -17,6 +17,7 @@ class CourseOverviewController {
 			currentPage: 'course overview'
         ]
 	}
+	
 
     def create() {
 
