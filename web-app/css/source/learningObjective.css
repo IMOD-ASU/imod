@@ -654,9 +654,15 @@ input[disabled='disabled'] {
     position: relative;
     left: 10%;
 
-    width: 80%;
+    width: 40%%;
 }
 
+#selectKnowledgeDimensions #closeKnowDim{
+    position: relative;
+    left: 10%;
+
+    width: 40%;
+}
 #selectResourceBackground {
     z-index: 3;
 }
