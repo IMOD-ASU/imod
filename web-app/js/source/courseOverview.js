@@ -103,8 +103,8 @@ function compareStartEndTimes() {
 	
 	if (endDate <= startDate)
 	{
-		var errorLabel = '<label id="date-error" class="error">End date has to be greater than start time</label>';
-		$('#schedule-end-time_hour').parent().append(errorLabel);
+		var errorLabel = '<label id="date-error" class="error">End date has to be greater than start Date</label>';
+		$('#schedule-end-date_day').parent().append(errorLabel);
 		return false;
 	}
 	
@@ -151,9 +151,26 @@ function toggleSelected(event) {
 	}
 }
 
+function setDefaultHint() {
+
+	var courseName = $('#courseName').val();
+	var courseNumber = $('#courseNumber').val();
+	var courseUrl= $('#courseUrl').val();
+
+	if( courseName=='New Imod' && courseUrl=='example.com')
+	{
+		$('#courseName').val('');
+		$('#imod-number').val('');
+		$('#courseUrl').val('');
+		$('#subject-area').val('');
+	}
+
+}
+
 $(document).ready(
 	function () {
 		populateRepeatsEvery();
+		setDefaultHint();
 		$('#repeats').on(
 			'change',
 			populateRepeatsEvery

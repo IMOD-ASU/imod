@@ -69,7 +69,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="name" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
+                                            <g:textField name="name" id = "courseName" placeholder ="New Imod" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
@@ -79,7 +79,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="imodNumber" value="${currentImod?.imodNumber}" required="" id="imod-number" title="${ message( code:'imod.courseOverview.courseNumber' ) }"/>
+                                            <g:textField name="imodNumber" placeholder ="1" value="${currentImod?.imodNumber}" required="" id="imod-number" title="${ message( code:'imod.courseOverview.courseNumber' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
@@ -87,7 +87,7 @@
                                                 <g:message code="imod.url.label" default="Course URL" />
                                                 
                                             </label>
-                                            <g:textField name="url" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
+                                            <g:textField name="url" id = "courseUrl" placeholder ="example.com" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'courseLocation', 'error')} ">
@@ -199,7 +199,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="subjectArea" id="subject-area" required="" value="${currentImod?.subjectArea}" title="${ message( code:'imod.courseOverview.subjectArea')}"/>
+                                            <g:textField name="subjectArea" id="subject-area" placeholder="sample" required="" value="${currentImod?.subjectArea}" title="${ message( code:'imod.courseOverview.subjectArea')}"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'audience', 'error')} ">
