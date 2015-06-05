@@ -370,9 +370,7 @@ $(document).ready(
 		//When save button on condition sub-tab is clicked
 		$('#saveCondition').click(
 			function () {
-
 				savedData = true;
-				alert("condition saveed"+savedData);
 			}
 		);
 
@@ -468,7 +466,6 @@ $(document).ready(
 		// When learning domain isn't selected, do not save learning objective
 		$('.learning-objective-button.save').click(
 			function () {
-				alert("saved");
 				if ($('#learning-domain-list').val() === 'null' || $('#domain-category-list').val() === 'null' || $('input[name=actionWordCategory]').is(':checked') === false) {
 					alert('Learning Domain, Domain Category and Action Word Categories are required');
 					return false;
