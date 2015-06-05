@@ -112,7 +112,7 @@
                                                 Schedule
                                             </span>
                                         </div>
-                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'startDate', 'error')} required">
+                                        <div class="dateFields fieldcontain ${hasErrors(bean: currentImod, field: 'startDate', 'error')} required">
                                             <label for="startDate">
                                                 <g:message code="imod.schedule.startDate.label" default="Start Date" />
                                                 <span class="required-indicator">
@@ -122,7 +122,7 @@
                                             <g:datePicker name="schedule.startDate" id="schedule-start-date" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
                                         </div>
 
-                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
+                                        <div class="dateFields fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
                                             <label for="endDate">
                                                 <g:message code="imod.schedule.endDate.label" default="End Date" />
                                                 <span class="required-indicator">

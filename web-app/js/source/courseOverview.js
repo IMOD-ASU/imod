@@ -89,6 +89,25 @@ function compareStartEndTimes() {
 
 	var startTime = new Date(year, month, day, startHour, startMinute);
 	var endTime = new Date(year, month, day, endHour, endMinute);
+	var startYear = parseInt(($('#schedule-start-date_year').val()),10);
+	var endYear = parseInt(($('#schedule-end-date_year').val()),10);
+	var startMonth =  parseInt(($('#schedule-end-date_month').val()),10);
+	var endMonth =  parseInt(($('#schedule-end-date_month').val()),10);
+	var startDay =  parseInt(($('#schedule-end-date_day').val()),10);
+	var endDay =  parseInt(($('#schedule-end-date_day').val()),10);
+	
+	var startDate = startYear + startMonth + startDay;
+	
+	var endDate = endYear  + endMonth + endDay;
+	$('#date-error').remove();
+	
+	if (endDate <= startDate)
+	{
+		var errorLabel = '<label id="date-error" class="error">End date has to be greater than start time</label>';
+		$('#schedule-end-time_hour').parent().append(errorLabel);
+		return false;
+	}
+	
 
 	$('#time-error').remove();
 
@@ -348,6 +367,15 @@ $(document).ready(
 				}
 			}
 		);
+		$('.dateFields').find('select').change(
+			function () {
+				var isValid = compareStartEndTimes();
+				if (!isValid) {
+					return false;
+				}
+			}
+		);
+		
 
 		// Course overview validation
 		$('.courseoverview').validate({
