@@ -210,11 +210,14 @@ function getMinHeight(liArray) {
 
 // On page load
 $(document).ready(
+
 	function () {
+		var savedData = true;
 		$('#custom-action-words').css('visibility', 'hidden');
 
 		$('#action-words').change(
 			function () {
+				savedData = false;
 				if (this.value === 'other') {
 					$('#custom-action-words').css('visibility', 'visible');
 				} else {
@@ -233,7 +236,39 @@ $(document).ready(
 			if ($('#action-words').val() === 'select') {
 				alert('Please select an action word or select --Other-- field at the end of list');
 				abort();
+			}else{
+				savedData = true;
 			}
+		});
+		/** If current tab's data is not saved, throw an alert
+		*/
+		$('.content').click(function () {
+			if(savedData == false){
+				alert("Please save your data before moving to other tab");
+				return false;
+			}
+
+		});
+		$('.criteria').click(function () {
+			if(savedData == false){
+				alert("Please save your data before moving to other tab");
+				return false;
+			}
+
+		});
+		$('.performance').click(function () {
+			if(savedData == false){
+				alert("Please save your data before moving to other tab");
+				return false;
+			}
+
+		});
+		$('.conditionTab').click(function () {
+			if(savedData == false){
+				alert("Please save your data before moving to other tab");
+				return false;
+			}
+
 		});
 
 		$(':button').hover(
@@ -275,6 +310,7 @@ $(document).ready(
 		$('#learning-domain-list').on(
 			'change',
 			function () {
+				savedData = false;
 				populateDomainCategories();
 			});
 
@@ -282,6 +318,7 @@ $(document).ready(
 		$('#domain-category-list').on(
 			'change',
 			function () {
+				savedData = false;
 				populateActionWordCategories();
 			});
 
@@ -319,7 +356,8 @@ $(document).ready(
 				if (this.value === 'Generic') {
 					$('#custom-condition-text').css('display', 'none');
 					$('.learning-objective.condition.generic').css('display', 'block');
-				} else {
+				}
+				else {
 					$('.learning-objective.condition.generic').css('display', 'none');
 					$('#custom-condition-text').css('display', 'block');
 				}
@@ -328,6 +366,15 @@ $(document).ready(
 
 		// Manually tiggers the radio box change event
 		$('input:radio[name=conditionType]:checked').change();
+
+		//When save button on condition sub-tab is clicked
+		$('#saveCondition').click(
+			function () {
+
+				savedData = true;
+				alert("condition saveed"+savedData);
+			}
+		);
 
 		// Trigger jquery ui button for better radio buttons
 		var category = $('input[name=selectedActionWordCategory]').val();
@@ -342,6 +389,7 @@ $(document).ready(
 			'click',
 			'.icons label',
 			function () {
+				savedData = false;
 				if ($(this).hasClass('is-active')) {
 					$('.icons label').removeClass('is-active');
 					setTimeout(
@@ -361,6 +409,7 @@ $(document).ready(
 		$('#enable-accuracy').on(
 			'click',
 			function () {
+				savedData = false;
 				$('#accuracy-text').prop(
 					'disabled', !$('#enable-accuracy').is(':checked')
 				);
@@ -375,6 +424,7 @@ $(document).ready(
 		$('#enable-quality').on(
 			'click',
 			function () {
+				savedData = false;
 				$('#quality-text').prop(
 					'disabled', !$('#enable-quality').is(':checked')
 				);
@@ -389,6 +439,7 @@ $(document).ready(
 		$('#enable-quantity').on(
 			'click',
 			function () {
+				savedData = false;
 				$('#quantity-text').prop(
 					'disabled', !$('#enable-quantity').is(':checked')
 				);
@@ -403,6 +454,7 @@ $(document).ready(
 		$('#enable-speed').on(
 			'click',
 			function () {
+				savedData = false;
 				$('#speed-text').prop(
 					'disabled', !$('#enable-speed').is(':checked')
 				);
@@ -416,9 +468,12 @@ $(document).ready(
 		// When learning domain isn't selected, do not save learning objective
 		$('.learning-objective-button.save').click(
 			function () {
+				alert("saved");
 				if ($('#learning-domain-list').val() === 'null' || $('#domain-category-list').val() === 'null' || $('input[name=actionWordCategory]').is(':checked') === false) {
 					alert('Learning Domain, Domain Category and Action Word Categories are required');
 					return false;
+				}else{
+					savedData = true;
 				}
 			}
 		);

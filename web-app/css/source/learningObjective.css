@@ -229,8 +229,8 @@ input[disabled='disabled'] {
     color: #f7941d;
 }
 
-.learning-objective.sub-nav .active .condition,
-.learning-objective.sub-nav .active.condition {
+.learning-objective.sub-nav .active .conditionTab,
+.learning-objective.sub-nav .active.conditionTab {
     color: #ec008c;
 }
 

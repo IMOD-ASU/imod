@@ -113,7 +113,7 @@
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
-										<g:link action="condition" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="condition">
+										<g:link action="condition" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="conditionTab">
 											Condition
 										</g:link>
 									</li>
