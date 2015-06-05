@@ -328,7 +328,7 @@ $(document).ready(
 		// Regex method for url
 		$.validator.addMethod('urlRule',
 			function (value, element, regexpr) {
-			if (value== null|| value=="){
+			if (value== null|| value==""){
 			return true
 			}
 			else{

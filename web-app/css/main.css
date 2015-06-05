@@ -302,6 +302,35 @@ label {
     cursor: pointer;
 }
 
+.learning-domain-list {
+    display: inline-block;
+
+    margin: 0 0.25em 0 3em;
+
+    cursor: pointer;
+}
+.action-word-category {
+    display: inline-block;
+
+    margin: 0 0.25em 0 3em;
+
+    cursor: pointer;
+}
+.domain-category-list{
+    display: inline-block;
+
+    margin: 0 0.25em 0 3em;
+
+    cursor: pointer;
+}
+.action-words {
+    display: inline-block;
+
+    margin: 0 0.25em 0 3em;
+
+    cursor: pointer;
+}
+
 input,
 select,
 textarea {
