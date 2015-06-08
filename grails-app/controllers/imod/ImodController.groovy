@@ -19,6 +19,7 @@ class ImodController {
 			params: params
 		)
 	}
+	
 
 	def list() {
         // get current user object

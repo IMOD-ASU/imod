@@ -302,6 +302,35 @@ label {
     cursor: pointer;
 }
 
+.learning-domain-list {
+    display: inline-block;
+
+    margin: 0 0.25em 0 3em;
+
+    cursor: pointer;
+}
+.action-word-category {
+    display: inline-block;
+
+    margin: 0 0.25em 0 3em;
+
+    cursor: pointer;
+}
+.domain-category-list{
+    display: inline-block;
+
+    margin: 0 0.25em 0 3em;
+
+    cursor: pointer;
+}
+.action-words {
+    display: inline-block;
+
+    margin: 0 0.25em 0 3em;
+
+    cursor: pointer;
+}
+
 input,
 select,
 textarea {
@@ -875,15 +904,6 @@ p {
     padding: 0;
 }
 
-#tabs-container {
-    margin-top: 1%;
-    margin-right: 17.5%;
-    margin-bottom: 10.5%;
-    margin-left: 2.5%;
-
-    font-size: 12px;
-}
-
 .ui-tabs-anchor {
     font-family: 'Ubuntu';
 }
@@ -992,15 +1012,6 @@ table.inner-table {
     min-height: 200px;
 }
 
-img.tab-icon {
-    width: 20%;
-    height: 43px;
-}
-
-a.ui-tabs-anchor {
-    width: 90%;
-}
-
 #overview-tab-title {
     position: absolute;
     top: 10px;
@@ -1022,7 +1033,7 @@ a.ui-tabs-anchor {
 #content-tab-title {
     position: absolute;
     top: 10px;
-    left: 80px;
+    left: 60px;
 
     color: black;
 
@@ -1032,7 +1043,7 @@ a.ui-tabs-anchor {
 #assess-tab-title {
     position: absolute;
     top: 10px;
-    left: 80px;
+    left: 60px;
 
     color: black;
 
@@ -1042,23 +1053,62 @@ a.ui-tabs-anchor {
 #pedagogy-tab-title {
     position: absolute;
     top: 10px;
-    left: 70px;
+    left: 60px;
 
     color: black;
 
     font-size: 150%;
 }
 
-.ui-tabs .ui-tabs-nav {
-    padding: 0;
+img.tab-icon {
+    width: 17%;
+    height: 30px;
 }
 
-.ui-tabs-nav li {
-    width: 19%;
-    height: 43px;
+#tabs-container {
+    margin-top: 1%;
+    margin-right: 17.5%;
+    margin-bottom: 10.5%;
+    margin-left: 2.5%;
 
+    font-size: 14px;
+
+
+}
+
+a.ui-tabs-anchor {
+    width: 90%;
+}
+
+
+.ui-tabs .ui-tabs-nav{
+    padding: 0;
+    list-style: none outside none;
+    white-space: nowrap;
+}
+
+
+.ui-tabs-nav li {
+    height: 43px;
     border-top-left-radius: 5px 5px;
     border-top-right-radius: 5px;
+    display:inline;
+}
+
+#a{
+    width: 20%;
+}
+#b{
+    width: 23%;
+}
+#c{
+    width: 16%;
+}
+#d{
+    width: 19%;
+}
+#e{
+    width: 16%;
 }
 
 #help-placeholder {
@@ -1178,8 +1228,8 @@ a.ui-tabs-anchor {
 }
 
 label[for=weekdays] {
-    width: 10%;
-    margin-left: 1%;
+    width: 4%;
+    margin-left: 0%;
 }
 
 #grading-procedure-text {
@@ -1189,9 +1239,9 @@ label[for=weekdays] {
 /* hide learning objectives initially so that
     we can hide empty learning objectives using JavaScript
  */
-.learning-objective.list-wrapper {
+/*.learning-objective.list-wrapper {
     display: none;
-}
+}*/
 .saveIcon {
     font-size: 16px;
 }
