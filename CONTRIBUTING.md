@@ -174,7 +174,8 @@ NOTE: this is only used for reference so developers know what tools and versions
 2. Run `sudo reboot`
 3. Wait a few minutes
 4. SSH into the server again
-5. Run `sudo /opt/apache-tomcat-7.0.61/bin/startup.sh`
+5. Run `sudo /usr/local/apache2/bin/apachectl start`
+6. Run `sudo /opt/apache-tomcat-7.0.61/bin/startup.sh`
 
 ##### Recover from Travis CI depandancy lock
 Sometimes when dependancies get updated Travis CI say all builds fail.
