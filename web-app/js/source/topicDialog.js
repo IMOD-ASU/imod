@@ -99,8 +99,7 @@ function saveDimModal() {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
-function closeDimModal(){
-
+function closeDimModal() {
 	var contentID = $('#topicID').val();
 	var dimensions = [];
 	var dialog = $('#selectKnowledgeDimensions');
@@ -114,11 +113,13 @@ function closeDimModal(){
 			}
 		}
 	);
+
 	if (dimensions.length === 0) {
 		dimensions = '';
 	} else {
 		dimensions = dimensions.toString();
 	}
+
 	$('#topicID').val('');
 	dialog.find('input:checkbox').each(
 		function () {
@@ -127,16 +128,12 @@ function closeDimModal(){
 	);
 
 	if (contentDimensions.val() !== dimensions) {
-		
 		$('#' + contentID).addClass('unsaved');
 	}
-	
-	
+
 	dialog.css('display', 'none');
 	background.css('display', 'none');
-
 }
-
 
 function openDimModal() {
 	var contentID = $(this).parents('.topicItem').attr('id');

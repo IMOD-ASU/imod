@@ -7,18 +7,14 @@ function isValidEmailAddress(emailAddress) {
 	var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
 	return pattern.test(emailAddress);
 }
-function isValidUrl(url){
+
+function isValidUrl(url) {
 	var pattern = new RegExp(/^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i);
 	return pattern.test(url);
-
 }
 
 function isRequired(fieldValue) {
-	if (fieldValue !== '' && fieldValue !== null && fieldValue !== undefined) {
-		return true;
-	} else {
-		return false;
-	}
+	return fieldValue !== '' && fieldValue !== null && fieldValue !== undefined;
 }
 
 // Custom validation function for instructors
@@ -41,8 +37,7 @@ function instructorValidator() {
 						message: 'Requires a valid email address'
 					});
 				}
-			}
-			else if ($(this).hasClass('web_page')) {
+			} else if ($(this).hasClass('web_page')) {
 				if (!isValidUrl($(this).val())) {
 					errorList.push({
 						element: $(this),
@@ -50,7 +45,6 @@ function instructorValidator() {
 					});
 				}
 			}
-			
 		});
 
 	if (errorList.length > 0) {
@@ -66,7 +60,6 @@ function instructorValidator() {
 		return true;
 	}
 }
-
 
 function fnCoursePolicyRadio() {
 	alert($('.coursePolicyRadio').value);
@@ -89,25 +82,23 @@ function compareStartEndTimes() {
 
 	var startTime = new Date(year, month, day, startHour, startMinute);
 	var endTime = new Date(year, month, day, endHour, endMinute);
-	var startYear = parseInt(($('#schedule-start-date_year').val()),10);
-	var endYear = parseInt(($('#schedule-end-date_year').val()),10);
-	var startMonth =  parseInt(($('#schedule-end-date_month').val()),10);
-	var endMonth =  parseInt(($('#schedule-end-date_month').val()),10);
-	var startDay =  parseInt(($('#schedule-end-date_day').val()),10);
-	var endDay =  parseInt(($('#schedule-end-date_day').val()),10);
-	
+	var startYear = parseInt($('#schedule-start-date_year').val(), 10);
+	var endYear = parseInt($('#schedule-end-date_year').val(), 10);
+	var startMonth = parseInt($('#schedule-end-date_month').val(), 10);
+	var endMonth = parseInt($('#schedule-end-date_month').val(), 10);
+	var startDay = parseInt($('#schedule-end-date_day').val(), 10);
+	var endDay = parseInt($('#schedule-end-date_day').val(), 10);
+
 	var startDate = startYear + startMonth + startDay;
-	
-	var endDate = endYear  + endMonth + endDay;
+
+	var endDate = endYear + endMonth + endDay;
 	$('#date-error').remove();
-	
-	if (endDate <= startDate)
-	{
+
+	if (endDate <= startDate) {
 		var errorLabel = '<label id="date-error" class="error">End date has to be greater than start Date</label>';
 		$('#schedule-end-date_day').parent().append(errorLabel);
 		return false;
 	}
-	
 
 	$('#time-error').remove();
 
@@ -152,19 +143,15 @@ function toggleSelected(event) {
 }
 
 function setDefaultHint() {
-
 	var courseName = $('#courseName').val();
-	var courseNumber = $('#courseNumber').val();
-	var courseUrl= $('#courseUrl').val();
+	var courseUrl = $('#courseUrl').val();
 
-	if( courseName=='New Imod' && courseUrl=='example.com')
-	{
+	if (courseName === 'New Imod' && courseUrl === 'example.com') {
 		$('#courseName').val('');
 		$('#imod-number').val('');
 		$('#courseUrl').val('');
 		$('#subject-area').val('');
 	}
-
 }
 
 $(document).ready(
@@ -364,12 +351,11 @@ $(document).ready(
 		// Regex method for url
 		$.validator.addMethod('urlRule',
 			function (value, element, regexpr) {
-			if (value== null|| value==""){
-			return true
-			}
-			else{
-			return regexpr.test(value);
-			}
+				if (value === null || value === '') {
+					return true;
+				} else {
+					return regexpr.test(value);
+				}
 			},
 			'Please enter a valid URL.'
 		);
@@ -384,6 +370,7 @@ $(document).ready(
 				}
 			}
 		);
+
 		$('.dateFields').find('select').change(
 			function () {
 				var isValid = compareStartEndTimes();
@@ -392,7 +379,6 @@ $(document).ready(
 				}
 			}
 		);
-		
 
 		// Course overview validation
 		$('.courseoverview').validate({

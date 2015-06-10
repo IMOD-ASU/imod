@@ -5,8 +5,7 @@
  */
 function openAssessmentPlanModal() {
 	$('#assessment-plan').dialog('open');
-	$('#assessment-plan').dialog(
-	{
+	$('#assessment-plan').dialog({
 		resizable: false,
 		height: 'auto',
 		title:'Assessment Plan',
