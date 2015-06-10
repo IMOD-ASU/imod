@@ -210,7 +210,6 @@ function getMinHeight(liArray) {
 
 // On page load
 $(document).ready(
-
 	function () {
 		var savedData = true;
 		$('#custom-action-words').css('visibility', 'hidden');
@@ -236,39 +235,17 @@ $(document).ready(
 			if ($('#action-words').val() === 'select') {
 				alert('Please select an action word or select --Other-- field at the end of list');
 				abort();
-			}else{
+			} else {
 				savedData = true;
 			}
 		});
 		/** If current tab's data is not saved, throw an alert
 		*/
-		$('.content').click(function () {
-			if(savedData == false){
-				alert("Please save your data before moving to other tab");
+		$('.content, .criteria, .performance, .conditionTab').click(function () {
+			if (savedData === false) {
+				alert('Please save your data before moving to other tab');
 				return false;
 			}
-
-		});
-		$('.criteria').click(function () {
-			if(savedData == false){
-				alert("Please save your data before moving to other tab");
-				return false;
-			}
-
-		});
-		$('.performance').click(function () {
-			if(savedData == false){
-				alert("Please save your data before moving to other tab");
-				return false;
-			}
-
-		});
-		$('.conditionTab').click(function () {
-			if(savedData == false){
-				alert("Please save your data before moving to other tab");
-				return false;
-			}
-
 		});
 
 		$(':button').hover(
@@ -356,8 +333,7 @@ $(document).ready(
 				if (this.value === 'Generic') {
 					$('#custom-condition-text').css('display', 'none');
 					$('.learning-objective.condition.generic').css('display', 'block');
-				}
-				else {
+				} else {
 					$('.learning-objective.condition.generic').css('display', 'none');
 					$('#custom-condition-text').css('display', 'block');
 				}
@@ -367,7 +343,7 @@ $(document).ready(
 		// Manually tiggers the radio box change event
 		$('input:radio[name=conditionType]:checked').change();
 
-		//When save button on condition sub-tab is clicked
+		// When save button on condition sub-tab is clicked
 		$('#saveCondition').click(
 			function () {
 				savedData = true;
@@ -469,7 +445,7 @@ $(document).ready(
 				if ($('#learning-domain-list').val() === 'null' || $('#domain-category-list').val() === 'null' || $('input[name=actionWordCategory]').is(':checked') === false) {
 					alert('Learning Domain, Domain Category and Action Word Categories are required');
 					return false;
-				}else{
+				} else {
 					savedData = true;
 				}
 			}
