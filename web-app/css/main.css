@@ -316,7 +316,7 @@ label {
 
     cursor: pointer;
 }
-.domain-category-list{
+.domain-category-list {
     display: inline-block;
 
     margin: 0 0.25em 0 3em;
@@ -1072,8 +1072,6 @@ img.tab-icon {
     margin-left: 2.5%;
 
     font-size: 14px;
-
-
 }
 
 a.ui-tabs-anchor {
@@ -1081,33 +1079,37 @@ a.ui-tabs-anchor {
 }
 
 
-.ui-tabs .ui-tabs-nav{
+.ui-tabs .ui-tabs-nav {
     padding: 0;
+
     list-style: none outside none;
+
     white-space: nowrap;
 }
 
 
 .ui-tabs-nav li {
+    display: inline;
+
     height: 43px;
+
     border-top-left-radius: 5px 5px;
     border-top-right-radius: 5px;
-    display:inline;
 }
 
-#a{
+#a {
     width: 20%;
 }
-#b{
+#b {
     width: 23%;
 }
-#c{
+#c {
     width: 16%;
 }
-#d{
+#d {
     width: 19%;
 }
-#e{
+#e {
     width: 16%;
 }
 
@@ -1229,7 +1231,7 @@ a.ui-tabs-anchor {
 
 label[for=weekdays] {
     width: 4%;
-    margin-left: 0%;
+    margin-left: 0;
 }
 
 #grading-procedure-text {
