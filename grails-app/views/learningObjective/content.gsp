@@ -25,7 +25,7 @@
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
 		<g:external dir="bower_components/jquery-sortable/source/js" file="jquery-sortable-min.js" defer="defer" />
-		<g:javascript src="source/learningObjectiveContent.js" defer="defer" />
+		<!--<g:javascript src="source/learningObjectiveContent.js" defer="defer" />-->
 
 		<meta name="layout" content="learningObjective">
 	</head>
@@ -46,7 +46,7 @@
 			</span>
 		</fieldset>
 
-		<g:if test="${contentList2 != null}">			
+		<g:if test="${contentList2 != null}">
 			${contentList2}
 		</g:if>
 		<g:else>

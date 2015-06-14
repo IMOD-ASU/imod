@@ -208,6 +208,53 @@ function getMinHeight(liArray) {
 	return minHeight;
 }
 
+
+/**moved from learningObjectiveContent**/
+function deleteTopicSubTab(contentIDs) {
+	contentIDs = JSON.stringify(contentIDs);
+	$.ajax({
+		url: '../../content/deleteTopic/',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			contentIDs: contentIDs
+		},
+		success: function () {
+			window.location.reload();
+		}
+	});
+}
+
+function getTreeChildren(list, parents, idArray) {
+	list.each(function () {
+		var item = {};
+
+		var myItem = $(this);
+
+		item.id = myItem.data('itemid');
+		item.isChecked = myItem
+								.find('.sub-content-tree')
+								.find('.checkbox')
+								.hasClass('fa-check');
+		if (item.isChecked) {
+			idArray.push(item.id);
+		}
+
+		if ($(this).find('> ul > li').length) {
+			var childrenArr = [];
+			var children = getTreeChildren(myItem.find('> ul > li'), childrenArr, idArray);
+			item.child = children[0];
+		} else {
+			item.child = '';
+		}
+
+		parents.push(item);
+	});
+
+	return [parents, idArray];
+}
+/**moved from learningObjectiveContent**/
+
 // On page load
 $(document).ready(
 	function () {
@@ -243,12 +290,69 @@ $(document).ready(
 		*/
 		$('.content, .criteria, .performance, .conditionTab').click(function () {
 			if (savedData === false) {
-				alert('Please save your data before moving to other tab');
+				alert('Please save your data before moving to another tab');
 				return false;
 			}
 		});
+	/**moved from learningObjectiveContent.js**/
+	if ($('#contentTree').length) {
+		$('#contentTree').sortable();
 
-		$(':button').hover(
+		$('.delete-topic').click(function () {
+			var isDelete = confirm('Are you sure you want to delete this?');
+
+			if (isDelete) {
+				var contents = [];
+				var contentId = $(this).data('id');
+				contents.push(contentId);
+				deleteTopicSubTab(contents);
+			}
+
+			return false;
+		});
+
+		$('.sub-content-tree').click(function () {
+			var item = $(this);
+			savedData = false;
+			if (item.find('.checkbox').hasClass('fa-check')) {
+				item.parent().find('.checkbox').removeClass('fa-check');
+			} else {
+				item.parent().find('.checkbox').addClass('fa-check');
+			}
+
+			return false;
+		});
+
+		$('#save-content').click(function () {
+			var parents = [];
+			var idArray = [];
+
+			var content = getTreeChildren($('#contentTree > li'), parents, idArray);
+
+			var obj = {
+				topics: content[0],
+				idArray: content[1],
+				objId: $('input[name=learningObjectiveID]').val()
+			};
+
+			$.ajax({
+				url: '../../content/updateHierarchy',
+				type: 'POST',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				data: JSON.stringify(obj),
+				success: function () {
+					savedData = true;
+					window.location.reload();
+				},
+				error: function (xhr) {
+					console.log(xhr.responseText);
+				}
+			});
+		});
+	}
+	/**moved from learningObjectiveContent.js**/
+		$(':button,.content,.fa.fa-pencil').hover(
 			function () {
 				$('#qtip-place').html($(this).attr('title'));
 			},
@@ -319,7 +423,10 @@ $(document).ready(
 
 		// When a custom condition is added, display in the definition box above
 		$('#custom-condition-text').keyup(
-			propagateToDefinition(this.value, 'condition')
+			function () {
+				propagateToDefinition(this.value, 'condition');
+				savedData = false;
+			}
 		);
 
 		// When a standard condition is added, display in the definition box above
@@ -342,6 +449,14 @@ $(document).ready(
 
 		// Manually tiggers the radio box change event
 		$('input:radio[name=conditionType]:checked').change();
+
+		//When hide from objective checkbox is changed
+		$('#hide-condition').on(
+			'change',
+			function () {
+				savedData = false;
+			}
+		);
 
 		// When save button on condition sub-tab is clicked
 		$('#saveCondition').click(
