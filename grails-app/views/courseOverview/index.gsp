@@ -85,7 +85,7 @@
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
                                             <label for="url">
                                                 <g:message code="imod.url.label" default="Course URL" />
-                                                
+
                                             </label>
                                             <g:textField name="url" id = "courseUrl" placeholder ="example.com" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
                                         </div>

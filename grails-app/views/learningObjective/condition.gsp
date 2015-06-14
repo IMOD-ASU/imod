@@ -17,14 +17,14 @@
 				<g:hiddenField name="pageType" value="condition" id="page-type" />
 			</fieldset>
 			<div class="learning-objective condition radio-form">
-				<g:radio name="conditionType" checked="${!isCustom}" value="Generic" id="condition-generic" class="learning-objective condition radio" title="${ message( code:'imod.learningObjective.genericCondition' ) }" />
+				<g:radio name="conditionType" checked="${isCustom}" value="Generic" id="condition-generic" class="learning-objective condition radio" title="${ message( code:'imod.learningObjective.genericCondition' ) }" />
 				<label for="condition-generic" >
 					Generic
 				</label>
 				<span>
 					&nbsp;
 				</span>
-				<g:radio name="conditionType" checked="${isCustom}" value="Custom" id="condition-custom" class="learning-objective condition radio" title="${ message( code:'imod.learningObjective.customCondition' ) }" />
+				<g:radio name="conditionType" checked="${!isCustom}" value="Custom" id="condition-custom" class="learning-objective condition radio" title="${ message( code:'imod.learningObjective.customCondition' ) }" />
 				<label for="condition-custom" >
 					Custom
 				</label>
