@@ -17,15 +17,26 @@
 			</fieldset>
 
 			<section>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span >Hide from Students</span>
+			</section>
+
+			<section>
 				<g:checkBox value="${currentLearningObjective.criteriaAccuracyEnabled}" id="enable-accuracy" name="enableAccuracy" />
 				<label for="accuracy-text" class="criteria-label-equal-width">
 					Accuracy
 				</label>
 				<g:textField value="${currentLearningObjective.criteriaAccuracy}" disabled="${!currentLearningObjective.criteriaAccuracyEnabled}" id="accuracy-text" name="accuracy" title="${ message( code:'imod.learningObjective.accuracy' ) }"/>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<g:checkBox value="${currentLearningObjective.criteriaAccuracyHidden}" disabled="${!currentLearningObjective.criteriaAccuracyEnabled}" id="accuracy-hide" name="hideAccuracy" title="${ message( code:'imod.learningObjective.hideAccuracyFromObjective' ) }"  />
-				<label for="accuracy-hide">
+				<!--<label for="accuracy-hide">
 					hide
-				</label>
+				</label>-->
 			</section>
 
 			<section>
@@ -34,10 +45,11 @@
 					Quality
 				</label>
 				<g:textField value="${currentLearningObjective.criteriaQuality}" disabled="${!currentLearningObjective.criteriaQualityEnabled}" id="quality-text" name="quality" title="${ message( code:'imod.learningObjective.quality' ) }" />
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<g:checkBox id="quality-hide" name="hideQuality" value="${currentLearningObjective.criteriaQualityHidden}" disabled="${!currentLearningObjective.criteriaQualityEnabled}" title="${ message( code:'imod.learningObjective.hideQualityFromObjective' ) }"/>
-				<label for="quality-hide">
+				<!--<label for="quality-hide">
 					hide
-				</label>
+				</label>-->
 			</section>
 
 			<section>
@@ -46,10 +58,11 @@
 					Quantity
 				</label>
 				<g:textField value="${currentLearningObjective.criteriaQuantity}" disabled="${!currentLearningObjective.criteriaQuantityEnabled}" id="quantity-text" name="quantity" title="${ message( code:'imod.learningObjective.quantity' ) }" />
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<g:checkBox value="${currentLearningObjective.criteriaQuantityHidden}" disabled="${!currentLearningObjective.criteriaQuantityEnabled}" id="quantity-hide" name="hideQuantity" title="${ message( code:'imod.learningObjective.hideQuantityFromObjective' ) }"/>
-				<label for="quantity-hide">
+				<!--<label for="quantity-hide">
 					hide
-				</label>
+				</label>-->
 			</section>
 
 			<section>
@@ -58,10 +71,11 @@
 					Speed
 				</label>
 				<g:textField value="${currentLearningObjective.criteriaSpeed}" disabled="${!currentLearningObjective.criteriaSpeedEnabled}" id="speed-text" name="speed" title="${ message( code:'imod.learningObjective.speed' ) }" />
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<g:checkBox value="${currentLearningObjective.criteriaSpeedHidden}" disabled="${!currentLearningObjective.criteriaSpeedEnabled}" id="speed-hide" name="hideSpeed" title="${ message( code:'imod.learningObjective.hideSpeedFromObjective' ) }"/>
-				<label for="speed-hide">
+				<!--<label for="speed-hide">
 					hide
-				</label>
+				</label>-->
 			</section>
 		</g:form>
 	</body>
