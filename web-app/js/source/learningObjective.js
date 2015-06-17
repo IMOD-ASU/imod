@@ -208,8 +208,6 @@ function getMinHeight(liArray) {
 	return minHeight;
 }
 
-
-/**moved from learningObjectiveContent**/
 function deleteTopicSubTab(contentIDs) {
 	contentIDs = JSON.stringify(contentIDs);
 	$.ajax({
@@ -253,7 +251,6 @@ function getTreeChildren(list, parents, idArray) {
 
 	return [parents, idArray];
 }
-/**moved from learningObjectiveContent**/
 
 // On page load
 $(document).ready(
@@ -281,7 +278,6 @@ $(document).ready(
 		$('#performance-save').click(function () {
 			if ($('#action-words').val() === 'select') {
 				alert('Please select an action word or select --Other-- field at the end of list');
-				abort();
 			} else {
 				savedData = true;
 			}
@@ -294,64 +290,63 @@ $(document).ready(
 				return false;
 			}
 		});
-	/**moved from learningObjectiveContent.js**/
-	if ($('#contentTree').length) {
-		$('#contentTree').sortable();
+		if ($('#contentTree').length) {
+			$('#contentTree').sortable();
 
-		$('.delete-topic').click(function () {
-			var isDelete = confirm('Are you sure you want to delete this?');
+			$('.delete-topic').click(function () {
+				var isDelete = confirm('Are you sure you want to delete this?');
 
-			if (isDelete) {
-				var contents = [];
-				var contentId = $(this).data('id');
-				contents.push(contentId);
-				deleteTopicSubTab(contents);
-			}
-
-			return false;
-		});
-
-		$('.sub-content-tree').click(function () {
-			var item = $(this);
-			savedData = false;
-			if (item.find('.checkbox').hasClass('fa-check')) {
-				item.parent().find('.checkbox').removeClass('fa-check');
-			} else {
-				item.parent().find('.checkbox').addClass('fa-check');
-			}
-
-			return false;
-		});
-
-		$('#save-content').click(function () {
-			var parents = [];
-			var idArray = [];
-
-			var content = getTreeChildren($('#contentTree > li'), parents, idArray);
-
-			var obj = {
-				topics: content[0],
-				idArray: content[1],
-				objId: $('input[name=learningObjectiveID]').val()
-			};
-
-			$.ajax({
-				url: '../../content/updateHierarchy',
-				type: 'POST',
-				dataType: 'json',
-				contentType: 'application/json; charset=utf-8',
-				data: JSON.stringify(obj),
-				success: function () {
-					savedData = true;
-					window.location.reload();
-				},
-				error: function (xhr) {
-					console.log(xhr.responseText);
+				if (isDelete) {
+					var contents = [];
+					var contentId = $(this).data('id');
+					contents.push(contentId);
+					deleteTopicSubTab(contents);
 				}
+
+				return false;
 			});
-		});
-	}
-	/**moved from learningObjectiveContent.js**/
+
+			$('.sub-content-tree').click(function () {
+				var item = $(this);
+				savedData = false;
+				if (item.find('.checkbox').hasClass('fa-check')) {
+					item.parent().find('.checkbox').removeClass('fa-check');
+				} else {
+					item.parent().find('.checkbox').addClass('fa-check');
+				}
+
+				return false;
+			});
+
+			$('#save-content').click(function () {
+				var parents = [];
+				var idArray = [];
+
+				var content = getTreeChildren($('#contentTree > li'), parents, idArray);
+
+				var obj = {
+					topics: content[0],
+					idArray: content[1],
+					objId: $('input[name=learningObjectiveID]').val()
+				};
+
+				$.ajax({
+					url: '../../content/updateHierarchy',
+					type: 'POST',
+					dataType: 'json',
+					contentType: 'application/json; charset=utf-8',
+					data: JSON.stringify(obj),
+					success: function () {
+						savedData = true;
+						window.location.reload();
+					},
+					error: function (xhr) {
+						console.log(xhr.responseText);
+					}
+				});
+			});
+		}
+
 		$(':button,.content,.fa.fa-pencil').hover(
 			function () {
 				$('#qtip-place').html($(this).attr('title'));
@@ -450,7 +445,7 @@ $(document).ready(
 		// Manually tiggers the radio box change event
 		$('input:radio[name=conditionType]:checked').change();
 
-		//When hide from objective checkbox is changed
+		// When hide from objective checkbox is changed
 		$('#hide-condition').on(
 			'change',
 			function () {

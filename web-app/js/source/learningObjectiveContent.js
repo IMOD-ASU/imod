@@ -23,9 +23,10 @@ function getTreeChildren(list, parents, idArray) {
 
 		item.id = myItem.data('itemid');
 		item.isChecked = myItem
-								.find('.sub-content-tree')
-								.find('.checkbox')
-								.hasClass('fa-check');
+			.find('.sub-content-tree')
+			.find('.checkbox')
+			.hasClass('fa-check');
+
 		if (item.isChecked) {
 			idArray.push(item.id);
 		}
