@@ -11,6 +11,7 @@ class DomainCategory {
 	 * Name for the Category
 	 */
 	String name
+	int priority
 
 	static belongsTo = [
 		/**
@@ -30,7 +31,7 @@ class DomainCategory {
 	 * Categories are not versioned
 	 */
 	static mapping = {
-		sort 'name'
+		sort priority:"asc"
 		version false
 	}
 

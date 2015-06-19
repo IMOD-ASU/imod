@@ -619,7 +619,7 @@ input[disabled='disabled'] {
     z-index: 3;
 }
 #selectKnowledgeDimensions {
-    position: absolute;
+    position: fixed;
     z-index: 4;
     top: 33%;
     left: 40%;
@@ -669,7 +669,7 @@ input[disabled='disabled'] {
     z-index: 3;
 }
 #selectResource {
-    position: absolute;
+    position: fixed;
     z-index: 4;
     top: 33%;
     left: 20%;
@@ -773,5 +773,5 @@ input[disabled='disabled'] {
 .action-word-category {
     float: left;
 
-    padding-top: 50px;
+    padding-top: 15px;
 }
