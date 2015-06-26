@@ -554,32 +554,39 @@ class BootStrap {
 			 */
 			def domainCategoryRemembering = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: 'Remember'
+				name: 'Remember',
+				priority: 1
 			)
 
 			def domainCategoryUnderstanding = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: 'Understand'
+				name: 'Understand',
+				priority: 2
 			)
 
 			def domainCategoryApplying = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: 'Apply'
+				name: 'Apply',
+				priority: 3
 			)
 
 			def domainCategoryAnalyzing = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: 'Analyze'
+				name: 'Analyze',
+				priority: 4
 			)
 
 			def domainCategoryEvaluating = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: 'Evaluate'
+				name: 'Evaluate',
+				priority: 5
+				
 			)
 
 			def domainCategoryCreating = new DomainCategory(
 				domain: learningDomainCognitive,
-				name: 'Create'
+				name: 'Create',
+				priority: 6
 			)
 
 			/**
@@ -597,27 +604,32 @@ class BootStrap {
 			 */
 			def domainCategoryReceivingPhenomena = new DomainCategory(
 				domain: learningDomainAffective,
-				name: 'Receiving Phenomena'
+				name: 'Receiving Phenomena',
+				priority: 1
 			)
 
 			def domainCategoryResponding = new DomainCategory(
 				domain: learningDomainAffective,
-				name: 'Respond'
+				name: 'Respond',
+				priority: 2
 			)
 
 			def domainCategoryValuing = new DomainCategory(
 				domain: learningDomainAffective,
-				name: 'Value'
+				name: 'Value',
+				priority: 3
 			)
 
 			def domainCategoryOrganisation = new DomainCategory(
 				domain: learningDomainAffective,
-				name: 'Organization'
+				name: 'Organization',
+				priority: 4
 			)
 
 			def domainCategoryInternalisingValues = new DomainCategory(
 				domain: learningDomainAffective,
-				name: 'Internalizing Values'
+				name: 'Internalizing Values',
+				priority: 5
 			)
 
 			/**
@@ -634,37 +646,44 @@ class BootStrap {
 			 */
 			def domainCategoryPerception = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: 'Perception'
+				name: 'Perception',
+				priority: 1
 			)
 
 			def domainCategorySet = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: 'Set'
+				name: 'Set',
+				priority: 2
 			)
 
 			def domainCategoryGuidedResponse = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: 'Guided Response'
+				name: 'Guided Response',
+				priority: 3
 			)
 
 			def domainCategoryMechanism = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: 'Mechanism'
+				name: 'Mechanism',
+				priority: 4
 			)
 
 			def domainCategoryComplexOvertResponse = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: 'Complex Overt Response'
+				name: 'Complex Overt Response',
+				priority: 5
 			)
 
 			def domainCategoryAdaptation = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: 'Adaptation'
+				name: 'Adaptation',
+				priority: 6
 			)
 
 			def domainCategoryOrigination = new DomainCategory(
 				domain: learningDomainPsychomotor,
-				name: 'Origination'
+				name: 'Origination',
+				priority: 7
 			)
 
 			/**

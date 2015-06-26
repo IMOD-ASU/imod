@@ -8,12 +8,13 @@ function isValidEmailAddress(emailAddress) {
 	return pattern.test(emailAddress);
 }
 
+function isValidUrl(url) {
+	var pattern = new RegExp(/^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i);
+	return pattern.test(url);
+}
+
 function isRequired(fieldValue) {
-	if (fieldValue !== '' && fieldValue !== null && fieldValue !== undefined) {
-		return true;
-	} else {
-		return false;
-	}
+	return fieldValue !== '' && fieldValue !== null && fieldValue !== undefined;
 }
 
 // Custom validation function for instructors
@@ -22,7 +23,7 @@ function instructorValidator() {
 
 	$('.instructor-form').find('.error').remove();
 
-	$('.instructor-form').find('.first_name, .last_name, .email, .role').each(
+	$('.instructor-form').find('.first_name, .last_name, .email, .web_page,.role').each(
 		function () {
 			if (!isRequired($(this).val())) {
 				errorList.push({
@@ -34,6 +35,13 @@ function instructorValidator() {
 					errorList.push({
 						element: $(this),
 						message: 'Requires a valid email address'
+					});
+				}
+			} else if ($(this).hasClass('web_page')) {
+				if (!isValidUrl($(this).val())) {
+					errorList.push({
+						element: $(this),
+						message: 'Requires a valid webpage'
 					});
 				}
 			}
@@ -53,7 +61,7 @@ function instructorValidator() {
 	}
 }
 
-function fnCoursePolicyRadio(){
+function fnCoursePolicyRadio() {
 	alert($('.coursePolicyRadio').value);
 }
 
@@ -74,6 +82,24 @@ function compareStartEndTimes() {
 
 	var startTime = new Date(year, month, day, startHour, startMinute);
 	var endTime = new Date(year, month, day, endHour, endMinute);
+	var startYear = parseInt($('#schedule-start-date_year').val(), 10);
+	var endYear = parseInt($('#schedule-end-date_year').val(), 10);
+	var startMonth = parseInt($('#schedule-start-date_month').val(), 10);
+	var endMonth = parseInt($('#schedule-end-date_month').val(), 10);
+	var startDay = parseInt($('#schedule-start-date_day').val(), 10);
+	var endDay = parseInt($('#schedule-end-date_day').val(), 10);
+
+	var startDate = 365*startYear + 31*startMonth+ startDay;
+	var endDate =   365*endYear + 31*endMonth+ endDay;
+	
+	
+	$('#date-error').remove();
+
+	if (endDate < startDate) {
+		var errorLabel = '<label id="date-error" class="error">End date has to be greater than start Date</label>';
+		$('#schedule-end-date_day').parent().append(errorLabel);
+		return false;
+	}
 
 	$('#time-error').remove();
 
@@ -96,12 +122,12 @@ function gradingRadio(radio) {
 
 function populateRepeatsEvery() {
 	if ($('#repeats option:selected').text() === 'Daily') {
-		$('#duration').text('days');
+		$('#duration').text('Days');
 		$('#duration, label[for="repeatsEvery"], #repeats-every').css('visibility', 'visible');
 		$('label[for="scheduleWeekDays"], label[for="weekdays"], :checkbox').css('visibility', 'hidden');
 		$(':checkbox').removeAttr('checked');
 	} else if ($('#repeats option:selected').text() === 'Weekly') {
-		$('#duration').text('weeks');
+		$('#duration').text('Weeks');
 		$('#duration, label[for="repeatsEvery"], #repeatsEvery, label[for="scheduleWeekDays"], label[for="weekdays"], :checkbox, #repeats-every').css('visibility', 'visible');
 	} else {
 		$(':checkbox, label[for="weekdays"], label[for="scheduleWeekDays"], #duration, label[for="repeatsEvery"], #repeats-every').css('visibility', 'hidden');
@@ -117,15 +143,26 @@ function toggleSelected(event) {
 	}
 }
 
+function setDefaultHint() {
+	var courseName = $('#courseName').val();
+	var courseUrl = $('#courseUrl').val();
+
+	if (courseName === 'New Imod' && courseUrl === 'example.com') {
+		$('#courseName').val('');
+		$('#imod-number').val('');
+		$('#courseUrl').val('');
+		$('#subject-area').val('');
+	}
+}
+
 $(document).ready(
 	function () {
 		populateRepeatsEvery();
+		setDefaultHint();
 		$('#repeats').on(
 			'change',
 			populateRepeatsEvery
 		);
-		
-		
 
 		// Delete instructor logic
 		$('.delete-instructor').click(
@@ -208,24 +245,23 @@ $(document).ready(
 				return false;
 			}
 		);
-		
-		$("#coursePolicyRadioCustom").click(function() { 
-			$("#attendance-tardiness").val("");
-			$("#class-participation").val("");
-			$("#professional-conduct").val("");
-			$("#missed-exams").val("");
-			$("#missed-assignments").val("");
+
+		$('#coursePolicyRadioCustom').click(function () {
+			$('#attendance-tardiness').val('');
+			$('#class-participation').val('');
+			$('#professional-conduct').val('');
+			$('#missed-exams').val('');
+			$('#missed-assignments').val('');
 		});
-		
-		$("#coursePolicyRadioDefault").click(function() { 
-			$("#attendance-tardiness").val("Regular on-time attendance in this course is expected");
-			$("#class-participation").val("Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.");
-			$("#professional-conduct").val("All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/");
-			$("#missed-exams").val("The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements");
-			$("#missed-assignments").val("Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.");
+
+		$('#coursePolicyRadioDefault').click(function () {
+			$('#attendance-tardiness').val('Regular on-time attendance in this course is expected');
+			$('#class-participation').val('Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.');
+			$('#professional-conduct').val('All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/');
+			$('#missed-exams').val('The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements');
+			$('#missed-assignments').val('Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.');
 		});
-		
-		
+
 		$('.topicButtonGradient .add').click(
 			function () {
 				var row = '';
@@ -316,7 +352,11 @@ $(document).ready(
 		// Regex method for url
 		$.validator.addMethod('urlRule',
 			function (value, element, regexpr) {
-				return regexpr.test(value);
+				if (value === null || value === '') {
+					return true;
+				} else {
+					return regexpr.test(value);
+				}
 			},
 			'Please enter a valid URL.'
 		);
@@ -324,6 +364,15 @@ $(document).ready(
 		$('#time-ratio').mask('9:9');
 
 		$('.timeFields').find('select').change(
+			function () {
+				var isValid = compareStartEndTimes();
+				if (!isValid) {
+					return false;
+				}
+			}
+		);
+
+		$('.dateFields').find('select').change(
 			function () {
 				var isValid = compareStartEndTimes();
 				if (!isValid) {
@@ -340,7 +389,7 @@ $(document).ready(
 					required: true
 				},
 				url: {
-					required: true,
+					required: false,
 					urlRule: /^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i
 				},
 				subjectArea: {

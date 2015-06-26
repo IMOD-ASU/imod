@@ -42,28 +42,37 @@
 								<div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
 									<span class="title-text">
 										Learning Objectives
-										<g:link action="create" id="${currentImod.id}">
-											<button title="${ message( code:'imod.learningObjective.add' ) }" >
-												<span class="fa fa-plus"></span>
-												Add new
-											</button>
-										</g:link>
 									</span>
 								</div>
+								<fieldset class="buttons topicButtonField">
+								<span class="topicButtonGradient">
+								<g:link action="create" id="${currentImod.id}">
+									<button class="add show-hover-new topicButton" title="${ message( code:'imod.learningObjective.add' ) }" >
+										Add
+									</button>
+								</g:link>
+								</span>
+								<span class="topicButtonGradient">
+								<g:link action="remove" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
+									<button class="remove show-hover-new topicButton" title="${ message( code:'imod.learningObjective.remove' ) }" >
+										Remove
+									</button>
+								</g:link>
+								</span>
+								</fieldset>
 								<ul class="learning-objective list-wrapper">
 									<g:each var="learningObjective" in="${learningObjectives}">
-										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
-											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
+										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }" >
+											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link ${(learningObjective.definition) ? '' : 'new'  }">
 
 												<g:if test="${ learningObjective.definition}">
-
 
 													${ learningObjective.definition }
 
 												</g:if>
 												<g:else>
 
-													Empty Learning Objective
+													Define New Learning Objective
 
 												</g:else>
 
@@ -77,7 +86,7 @@
 							<div class="learning-objective definition" class="learning-objective-current">
 								<div class="learning-objective definition-display active">
 									${ currentLearningObjective.definition }
-									<i class="fa fa-pencil" title="click to edit"></i>
+									<i class="fa fa-pencil" title="Click to edit"></i>
 								</div>
 								<g:form class="learning-objective definition-edit" action="saveDefinition" id="${currentImod.id}" method="post">
 									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" title="${ message( code:'imod.learningObjective.editDetails' ) }"/>
@@ -99,12 +108,12 @@
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective content/) == null ? '' : 'active' }">
-										<g:link action="content" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="content">
+										<g:link action="content" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="content" title="${ message( code:'imod.learningObjective.contentSubtab' ) }">
 											Content
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
-										<g:link action="condition" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="condition">
+										<g:link action="condition" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="conditionTab">
 											Condition
 										</g:link>
 									</li>

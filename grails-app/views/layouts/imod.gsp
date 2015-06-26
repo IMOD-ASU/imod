@@ -41,8 +41,9 @@
 				<a id="open-button" href="#" onclick="toggleHelp()">
 					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_active.png')}" alt=""/>
 				</a>
-				<div id="qtip-place" style="float: right; text-align: center; position: absolute; margin: 10%; font-family: fantasy; width: 10em; height: 10em; overflow: auto;">
+				<div id="qtip-place" style="float: right; text-align: center; position: absolute; margin: 10%; font-family: fantasy; width: 10em; height: auto; max-height: 20em; background-color: #ffff5a;">
 				</div>
+
 			</div>
 			<div id="help-placeholder-2">
 				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
@@ -54,8 +55,8 @@
 				Please enter course overview data followed by learning objectives and content.
 			</div>
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-					<li class="ui-state-default ui-corner-top ${ currentPage.find(/course overview/) == null ? '' : 'ui-tabs-active ui-state-active'}">
+				<ul class="ui-tabs-nav ui-widget-header ui-corner-all">
+					<li id="a" class="ui-state-default ui-corner-top ${ currentPage.find(/course overview/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link controller="courseOverview" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/>
 							<span id="overview-tab-title">
@@ -63,7 +64,7 @@
 							</span>
 						</g:link>
 					</li>
-					<li class="ui-state-default ui-corner-top ${ currentPage.find(/learning objective/) == null ? '' : 'ui-tabs-active ui-state-active'}">
+					<li id="b" class="ui-state-default ui-corner-top ${ currentPage.find(/learning objective/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id},'Learning Objective');" controller="learningObjective" action="performance" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
 							<span id="lo-tab-title">
@@ -71,7 +72,7 @@
 							</span>
 						</g:link>
 					</li>
-					<li class="ui-state-default ui-corner-top ${ currentPage.find(/^content/) == null ? '' : 'ui-tabs-active ui-state-active'}">
+					<li  id="c" class="ui-state-default ui-corner-top ${ currentPage.find(/^content/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id},'Content');" controller="content" action="index" id="${currentImod?.id}" params=" [ ${objectiveId: params.objectiveId} ] " class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'content_icon.png')}" alt=""/>
 							<span id="content-tab-title">
@@ -79,7 +80,7 @@
 							</span>
 						</g:link>
 					</li>
-					<li class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
+					<li id="d" class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id},'Assessment');" controller="assessment" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>
 							<span id="assess-tab-title">
@@ -87,7 +88,7 @@
 							</span>
 						</g:link>
 					</li>
-					<li onclick="return false;" class="tab-disabled ui-state-default ui-corner-top ${ currentPage.find(/pedagogy/) == null ? '' : 'ui-tabs-active ui-state-active'}">
+					<li  id="e" onclick="return false;" class="tab-disabled ui-state-default ui-corner-top ${ currentPage.find(/pedagogy/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link onclick="return checkSave(${currentImod?.saved},${currentImod?.id},'Pedagogy');" controller="pedagogy" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
 							<span id="pedagogy-tab-title">

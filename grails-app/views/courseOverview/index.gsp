@@ -69,7 +69,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="name" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
+                                            <g:textField name="name" id = "courseName" placeholder ="New Imod" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
@@ -79,17 +79,15 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="imodNumber" value="${currentImod?.imodNumber}" required="" id="imod-number" title="${ message( code:'imod.courseOverview.courseNumber' ) }"/>
+                                            <g:textField name="imodNumber" placeholder ="1" value="${currentImod?.imodNumber}" required="" id="imod-number" title="${ message( code:'imod.courseOverview.courseNumber' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
                                             <label for="url">
                                                 <g:message code="imod.url.label" default="Course URL" />
-                                                <span class="required-indicator">
-                                                    *
-                                                </span>
+
                                             </label>
-                                            <g:textField name="url" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
+                                            <g:textField name="url" id = "courseUrl" placeholder ="example.com" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'courseLocation', 'error')} ">
@@ -114,24 +112,24 @@
                                                 Schedule
                                             </span>
                                         </div>
-                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'startDate', 'error')} required">
+                                        <div class="dateFields fieldcontain ${hasErrors(bean: currentImod, field: 'startDate', 'error')} required">
                                             <label for="startDate">
                                                 <g:message code="imod.schedule.startDate.label" default="Start Date" />
                                                 <span class="required-indicator">
                                                     *
                                                 </span>
                                             </label>
-                                            <g:datePicker name="schedule.startDate" id="schedule-start-date" precision="day"  value="${currentImod?.schedule?.startDate}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+                                            <g:datePicker name="schedule.startDate" id="schedule-start-date" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
                                         </div>
 
-                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
+                                        <div class="dateFields fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
                                             <label for="endDate">
                                                 <g:message code="imod.schedule.endDate.label" default="End Date" />
                                                 <span class="required-indicator">
                                                     *
                                                 </span>
                                             </label>
-                                            <g:datePicker name="schedule.endDate" id="schedule-end-date" precision="day" value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+                                            <g:datePicker name="schedule.endDate" id="schedule-end-date" default="none" noSelection="['':'']"precision="day" value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
                                         </div>
 
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
@@ -139,13 +137,13 @@
                                                 <g:message code="imod.schedule.startTime.label" default="Start Time" />
                                             </label>
 
-                                        <joda:timePicker name="schedule.startTime" id="schedule-start-time" value="${currentImod?.schedule?.startTime}"  />
+                                        <joda:timePicker name="schedule.startTime" id="schedule-start-time" default="none" noSelection="['':'']" value="${currentImod?.schedule?.startTime}"  />
                                         </div>
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'endTime', 'error')} ">
                                             <label for="endTime">
                                                 <g:message code="imod.schedule.endTime.label" default="End Time" />
                                             </label>
-                                        <joda:timePicker name="schedule.endTime" id="schedule-end-time" value="${currentImod?.schedule?.endTime}" />
+                                        <joda:timePicker name="schedule.endTime" id="schedule-end-time" default="none" noSelection="['':'']" value="${currentImod?.schedule?.endTime}" />
                                         </div>
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'repeats', 'error')} ">
                                             <label for="repeats">
@@ -161,7 +159,7 @@
                                             </label>
                                             <!-- FIXME all model queries should be run in controller -->
                                             <g:select id="repeats-every" name="schedule.repeatsEvery.id" from="${imod.ScheduleRepeatsEvery.list()}" optionKey="id" value="${currentImod?.schedule?.repeatsEvery?.id}" noSelection="${['null':'Nothing Selected']}" class="many-to-one" title="${ message( code:'imod.courseOverview.scheduleRepeatsEvery' ) }"/>
-                                            <label id="duration"></label>
+                                             <span id= "duration"></span>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'schedule.scheduleWeekDays', 'error')} style="padding:0" ">
@@ -201,7 +199,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="subjectArea" id="subject-area" required="" value="${currentImod?.subjectArea}" title="${ message( code:'imod.courseOverview.subjectArea')}"/>
+                                            <g:textField name="subjectArea" id="subject-area" placeholder="sample" required="" value="${currentImod?.subjectArea}" title="${ message( code:'imod.courseOverview.subjectArea')}"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'audience', 'error')} ">
@@ -245,7 +243,7 @@
                                         </div>
                                         <div id="accordion">
                                             <h3>
-                                                Grading procedure
+                                                Grading Procedure
                                             </h3>
                                             <div>
                                                 <div>
@@ -254,25 +252,25 @@
                                                 </div>
 
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure == 'Standardized Grades'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Standardized Grades"  checked="${currentImod?.gradingProcedure != 'Custom' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
                                                     Standardized
                                                 </div>
 
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
+                                                    <g:radio name="gradingProcedureRadio"  class="grading-radio" value="Custom" checked="${currentImod?.gradingProcedure == 'Custom'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
                                                     Custom
                                                     <br>
                                                     <g:textArea name="gradingProcedure" id="grading-procedure-text" value="${currentImod?.gradingProcedure != 'Standardized Grades' && currentImod?.gradingProcedure != 'Competency Based' ? currentImod?.gradingProcedure:''}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
                                                 </div>
                                             </div>
                                             <h3>
-                                                Attendance and tardiness
+                                                Attendance and Tardiness
                                             </h3>
                                             <div>
                                                 <g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
                                             </div>
                                             <h3>
-                                                Class participation
+                                                Class Participation
                                             </h3>
                                             <div>
 												<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.classParticipation')}" />
@@ -284,7 +282,7 @@
                                                 <g:textArea name="professionalConduct" id="professional-conduct" value="${currentImod?.professionalConduct}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.professionalConduct')}" />
                                             </div>
                                             <h3>
-                                                Missed exams/Make-up exams
+                                                Missed Exams/Make-up Exams
                                             </h3>
                                             <div>
                                                 <g:textArea name="missedExams" id="missed-exams" value="${currentImod?.missedExams}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedExams')}" />

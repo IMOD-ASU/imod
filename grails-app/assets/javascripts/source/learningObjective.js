@@ -96,10 +96,6 @@ function populateActionWords(event) {
 	});
 }
 
-//function fnOtherOnClick(){
-//	alert('hi');
-//}
-
 /**
  * Ajax to pull Action Words based on which Domain Category was selected,
  * then populate page with selectable action word category boxes
@@ -212,13 +208,59 @@ function getMinHeight(liArray) {
 	return minHeight;
 }
 
+function deleteTopicSubTab(contentIDs) {
+	contentIDs = JSON.stringify(contentIDs);
+	$.ajax({
+		url: '../../content/deleteTopic/',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			contentIDs: contentIDs
+		},
+		success: function () {
+			window.location.reload();
+		}
+	});
+}
+
+function getTreeChildren(list, parents, idArray) {
+	list.each(function () {
+		var item = {};
+
+		var myItem = $(this);
+
+		item.id = myItem.data('itemid');
+		item.isChecked = myItem
+								.find('.sub-content-tree')
+								.find('.checkbox')
+								.hasClass('fa-check');
+		if (item.isChecked) {
+			idArray.push(item.id);
+		}
+
+		if ($(this).find('> ul > li').length) {
+			var childrenArr = [];
+			var children = getTreeChildren(myItem.find('> ul > li'), childrenArr, idArray);
+			item.child = children[0];
+		} else {
+			item.child = '';
+		}
+
+		parents.push(item);
+	});
+
+	return [parents, idArray];
+}
+
 // On page load
 $(document).ready(
 	function () {
+		var savedData = true;
 		$('#custom-action-words').css('visibility', 'hidden');
 
 		$('#action-words').change(
 			function () {
+				savedData = false;
 				if (this.value === 'other') {
 					$('#custom-action-words').css('visibility', 'visible');
 				} else {
@@ -226,23 +268,86 @@ $(document).ready(
 				}
 			}
 		);
-		
-		$('#custom-action-words').click(function(){
-			if($('#custom-action-words').val()==='Enter the details here'){
+
+		$('#custom-action-words').click(function () {
+			if ($('#custom-action-words').val() === 'Enter the details here') {
 				$('#custom-action-words').val('');
 			}
 		});
-		
-		
-		$('#performance-save').click(function(){
-			if($('#action-words').val()==='select'){
+
+		$('#performance-save').click(function () {
+			if ($('#action-words').val() === 'select') {
 				alert('Please select an action word or select --Other-- field at the end of list');
-				abort();
+			} else {
+				savedData = true;
 			}
 		});
-		
+		/** If current tab's data is not saved, throw an alert
+		*/
+		$('.content, .criteria, .performance, .conditionTab').click(function () {
+			if (savedData === false) {
+				alert('Please save your data before moving to another tab');
+				return false;
+			}
+		});
+		if ($('#contentTree').length) {
+			$('#contentTree').sortable();
 
-		$(':button').hover(
+			$('.delete-topic').click(function () {
+				var isDelete = confirm('Are you sure you want to delete this?');
+
+				if (isDelete) {
+					var contents = [];
+					var contentId = $(this).data('id');
+					contents.push(contentId);
+					deleteTopicSubTab(contents);
+				}
+
+				return false;
+			});
+
+			$('.sub-content-tree').click(function () {
+				var item = $(this);
+				savedData = false;
+				if (item.find('.checkbox').hasClass('fa-check')) {
+					item.parent().find('.checkbox').removeClass('fa-check');
+				} else {
+					item.parent().find('.checkbox').addClass('fa-check');
+				}
+
+				return false;
+			});
+
+			$('#save-content').click(function () {
+				var parents = [];
+				var idArray = [];
+
+				var content = getTreeChildren($('#contentTree > li'), parents, idArray);
+
+				var obj = {
+					topics: content[0],
+					idArray: content[1],
+					objId: $('input[name=learningObjectiveID]').val()
+				};
+
+				$.ajax({
+					url: '../../content/updateHierarchy',
+					type: 'POST',
+					dataType: 'json',
+					contentType: 'application/json; charset=utf-8',
+					data: JSON.stringify(obj),
+					success: function () {
+						savedData = true;
+						window.location.reload();
+					},
+					error: function (xhr) {
+						console.log(xhr.responseText);
+					}
+				});
+			});
+		}
+
+		$(':button,.content,.fa.fa-pencil').hover(
 			function () {
 				$('#qtip-place').html($(this).attr('title'));
 			},
@@ -281,6 +386,7 @@ $(document).ready(
 		$('#learning-domain-list').on(
 			'change',
 			function () {
+				savedData = false;
 				populateDomainCategories();
 			});
 
@@ -288,6 +394,7 @@ $(document).ready(
 		$('#domain-category-list').on(
 			'change',
 			function () {
+				savedData = false;
 				populateActionWordCategories();
 			});
 
@@ -311,7 +418,10 @@ $(document).ready(
 
 		// When a custom condition is added, display in the definition box above
 		$('#custom-condition-text').keyup(
-			propagateToDefinition(this.value, 'condition')
+			function () {
+				propagateToDefinition(this.value, 'condition');
+				savedData = false;
+			}
 		);
 
 		// When a standard condition is added, display in the definition box above
@@ -335,6 +445,21 @@ $(document).ready(
 		// Manually tiggers the radio box change event
 		$('input:radio[name=conditionType]:checked').change();
 
+		// When hide from objective checkbox is changed
+		$('#hide-condition').on(
+			'change',
+			function () {
+				savedData = false;
+			}
+		);
+
+		// When save button on condition sub-tab is clicked
+		$('#saveCondition').click(
+			function () {
+				savedData = true;
+			}
+		);
+
 		// Trigger jquery ui button for better radio buttons
 		var category = $('input[name=selectedActionWordCategory]').val();
 		$('.icons input[value="' + category + '"]').prop('checked', true);
@@ -348,6 +473,7 @@ $(document).ready(
 			'click',
 			'.icons label',
 			function () {
+				savedData = false;
 				if ($(this).hasClass('is-active')) {
 					$('.icons label').removeClass('is-active');
 					setTimeout(
@@ -367,6 +493,7 @@ $(document).ready(
 		$('#enable-accuracy').on(
 			'click',
 			function () {
+				savedData = false;
 				$('#accuracy-text').prop(
 					'disabled', !$('#enable-accuracy').is(':checked')
 				);
@@ -381,6 +508,7 @@ $(document).ready(
 		$('#enable-quality').on(
 			'click',
 			function () {
+				savedData = false;
 				$('#quality-text').prop(
 					'disabled', !$('#enable-quality').is(':checked')
 				);
@@ -395,6 +523,7 @@ $(document).ready(
 		$('#enable-quantity').on(
 			'click',
 			function () {
+				savedData = false;
 				$('#quantity-text').prop(
 					'disabled', !$('#enable-quantity').is(':checked')
 				);
@@ -409,6 +538,7 @@ $(document).ready(
 		$('#enable-speed').on(
 			'click',
 			function () {
+				savedData = false;
 				$('#speed-text').prop(
 					'disabled', !$('#enable-speed').is(':checked')
 				);
@@ -425,6 +555,8 @@ $(document).ready(
 				if ($('#learning-domain-list').val() === 'null' || $('#domain-category-list').val() === 'null' || $('input[name=actionWordCategory]').is(':checked') === false) {
 					alert('Learning Domain, Domain Category and Action Word Categories are required');
 					return false;
+				} else {
+					savedData = true;
 				}
 			}
 		);
