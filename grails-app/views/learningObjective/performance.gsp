@@ -27,20 +27,22 @@
 				Domain Category
 			</label>
 			<g:select name="DCL" id="domain-category-list" from="${categoriesList.name}" noSelection="${['null':'Nothing Selected']}" value="${selectedDomainCategory?.name?:"" }" title="${ message( code:'imod.learningObjective.domainCategory' ) }" />
-			<br />
+			<br/>
 
 			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" id="selected-action-word-category" />
-			<div>
+			
 			<label for="action-word-category" class="action-word-category">
 				Action Word Category
 			</label>
+			
+			<br>
 			<div class="icons assign">
 				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}" status="i">
 					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"/><label for="radio${i}">
 						${actionWordCategory}
 					</label>
 				</g:each>
-			</div></div>
+			</div>
 			<label for="action-words" class="action-words">
 			Action Words
 			</label>
@@ -50,7 +52,8 @@
 				</option>
 			</select>
 			<br/>
-			<input name="customActionWord" type="text" id="custom-action-words" value="Enter the details here" style="margin-bottom:10px;width:170px">
+			<input name="customActionWord" type="text" id="custom-action-words" value="Enter the details here" style="margin-bottom:5px;width:180px">
+			
 		</g:form>
 	</body>
 </html>

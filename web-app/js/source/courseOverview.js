@@ -84,18 +84,19 @@ function compareStartEndTimes() {
 	var endTime = new Date(year, month, day, endHour, endMinute);
 	var startYear = parseInt($('#schedule-start-date_year').val(), 10);
 	var endYear = parseInt($('#schedule-end-date_year').val(), 10);
-	var startMonth = parseInt($('#schedule-end-date_month').val(), 10);
+	var startMonth = parseInt($('#schedule-start-date_month').val(), 10);
 	var endMonth = parseInt($('#schedule-end-date_month').val(), 10);
-	var startDay = parseInt($('#schedule-end-date_day').val(), 10);
+	var startDay = parseInt($('#schedule-start-date_day').val(), 10);
 	var endDay = parseInt($('#schedule-end-date_day').val(), 10);
 
-	var startDate = startYear + startMonth + startDay;
-
-	var endDate = endYear + endMonth + endDay;
+	var startDate = 365*startYear + 31*startMonth+ startDay;
+	var endDate =   365*endYear + 31*endMonth+ endDay;
+	
+	
 	$('#date-error').remove();
 
-	if (endDate <= startDate) {
-		var errorLabel = '<label id="date-error" class="error">End date has to be greater than start Date</label>';
+	if (endDate < startDate) {
+		var errorLabel = '<label id="date-error" class="error">End date has to be greater than start date</label>';
 		$('#schedule-end-date_day').parent().append(errorLabel);
 		return false;
 	}
