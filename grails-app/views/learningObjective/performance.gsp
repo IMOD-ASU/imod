@@ -52,7 +52,8 @@
 				</option>
 			</select>
 			<br/>
-			<input name="customActionWord" type="text" id="custom-action-words" value="Enter the details here" style="margin-bottom:10px;width:170px">
+			<input name="customActionWord" type="text" id="custom-action-words" value="Enter the details here" style="margin-bottom:5px;width:180px">
+			
 		</g:form>
 	</body>
 </html>
