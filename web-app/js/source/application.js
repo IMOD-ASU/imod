@@ -44,7 +44,9 @@ $(document).ready(
 		);
 
 		// Make modals draggable
-		$('.draggable').drags();
+		$('.draggable').not( document.getElementById( "topicList" ) )
+    .not( document.getElementById( "resourceList" ) )
+    .drags();
 
 		// Hide modal when background is clicked
 		$(document).on('click', '.modalBackground', function () {
