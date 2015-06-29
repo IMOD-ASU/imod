@@ -471,7 +471,7 @@ input[disabled='disabled'] {
 }
 
 #topicDialog {
-    position: absolute;
+    position: fixed;
     z-index: 2;
     top: 30%;
     left: 15%;
