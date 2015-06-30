@@ -69,7 +69,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="name" id = "courseName" placeholder ="New Imod" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
+                                            <g:textField name="name" id = "courseName" placeholder ="New Imods" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">

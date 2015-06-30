@@ -3,7 +3,7 @@
 	<head>
 		<meta name="layout" content="main"/>
 		<title>
-			Welcome to IMOD&trade;
+			Welcome to IMODS&trade;
 		</title>
 	</head>
 	<body>
@@ -12,7 +12,7 @@
 		</a>
 		<div id="page-body" role="main">
 			<h1>
-				Welcome to IMOD&trade;
+				Welcome to IMODS&trade;
 			</h1>
 			<p>
 				The Instructional Module Development (IMOD&trade;)
