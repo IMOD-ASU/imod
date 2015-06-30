@@ -187,7 +187,7 @@ $(document).ready(
 					type: 'POST',
 					dataType: 'json',
 					data: {
-						imod_id: $('#imodID').val(),
+						imodId: $('#imodID').val(),
 						selected: ids
 					},
 					success: function () {
@@ -327,7 +327,7 @@ $(document).ready(
 							type: 'POST',
 							dataType: 'json',
 							data: {
-								imod_id: $('input[name=id]').val(),
+								imodId: $('input[name=id]').val(),
 								parameters: JSON.stringify(parameterList)
 							},
 							success:

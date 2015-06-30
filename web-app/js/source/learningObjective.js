@@ -209,13 +209,12 @@ function getMinHeight (liArray) {
 
 function deleteTopicSubTab (contentIDs) {
 	'use strict';
-	contentIDs = JSON.stringify(contentIDs);
 	$.ajax({
 		url: '../../content/deleteTopic/',
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			contentIDs: contentIDs
+			contentIDs: JSON.stringify(contentIDs)
 		},
 		success: function () {
 			window.location.reload();
