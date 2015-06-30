@@ -1,13 +1,11 @@
-'use strict';
-
-function deleteTopicSubTab(contentIDs) {
-	contentIDs = JSON.stringify(contentIDs);
+function deleteTopicSubTab (contentIDs) {
+	'use strict';
 	$.ajax({
 		url: '../../content/deleteTopic/',
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			contentIDs: contentIDs
+			contentIDs: JSON.stringify(contentIDs)
 		},
 		success: function () {
 			window.location.reload();
@@ -15,11 +13,13 @@ function deleteTopicSubTab(contentIDs) {
 	});
 }
 
-function getTreeChildren(list, parents, idArray) {
+function getTreeChildren (list, parents, idArray) {
+	'use strict';
 	list.each(function () {
 		var item = {};
-
 		var myItem = $(this);
+		var childrenArr;
+		var children;
 
 		item.id = myItem.data('itemid');
 		item.isChecked = myItem
@@ -32,8 +32,8 @@ function getTreeChildren(list, parents, idArray) {
 		}
 
 		if ($(this).find('> ul > li').length) {
-			var childrenArr = [];
-			var children = getTreeChildren(myItem.find('> ul > li'), childrenArr, idArray);
+			childrenArr = [];
+			children = getTreeChildren(myItem.find('> ul > li'), childrenArr, idArray);
 			item.child = children[0];
 		} else {
 			item.child = '';
@@ -47,6 +47,9 @@ function getTreeChildren(list, parents, idArray) {
 
 $(
 	function () {
+		'use strict';
+		var contents;
+		var contentId;
 		if ($('#contentTree').length) {
 			$('#contentTree').sortable();
 
@@ -54,8 +57,8 @@ $(
 				var isDelete = confirm('Are you sure you want to delete this?');
 
 				if (isDelete) {
-					var contents = [];
-					var contentId = $(this).data('id');
+					contents = [];
+					contentId = $(this).data('id');
 					contents.push(contentId);
 					deleteTopicSubTab(contents);
 				}
@@ -95,9 +98,6 @@ $(
 					data: JSON.stringify(obj),
 					success: function () {
 						window.location.reload();
-					},
-					error: function (xhr) {
-						console.log(xhr.responseText);
 					}
 				});
 			});

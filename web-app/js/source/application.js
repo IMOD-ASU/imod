@@ -1,7 +1,6 @@
-'use strict';
-
 $(document).ready(
 	function () {
+		'use strict';
 		$('#accordion').accordion({
 			heightStyle: 'content'
 		});
@@ -44,9 +43,10 @@ $(document).ready(
 		);
 
 		// Make modals draggable
-		$('.draggable').not( document.getElementById( "topicList" ) )
-    .not( document.getElementById( "resourceList" ) )
-    .drags();
+		$('.draggable')
+			.not(document.getElementById('topicList'))
+			.not(document.getElementById('resourceList'))
+			.drags();
 
 		// Hide modal when background is clicked
 		$(document).on('click', '.modalBackground', function () {
@@ -56,47 +56,58 @@ $(document).ready(
 	}
 );
 
-function updateDatePicker(dateFormat) {
+function updateDatePicker (dateFormat) {
+	'use strict';
 	$('input[value="date.struct"]:hidden').each(
 		function () {
 			var name = $(this).attr('name');
+			var selectDay;
+			var selectMonth;
+			var selectYear;
+			var dateDay;
+			var dateMonth;
+			var dateYear;
+			var val;
+			var date;
+			var template;
+			var displayWidget;
 
 			// Create JQuery friendly ID
 			var id = name.replace('.', '_').replace('[', '_').replace(']', '_') + '_input';
 
 			if ($('#' + id).length === 0) {
 				// Find the select elements
-				var selectDay = $(this).nextAll('select:eq(0)').hide();
-				var selectMonth = $(this).nextAll('select:eq(1)').hide();
-				var selectYear = $(this).nextAll('select:eq(2)').hide();
+				selectDay = $(this).nextAll('select:eq(0)').hide();
+				selectMonth = $(this).nextAll('select:eq(1)').hide();
+				selectYear = $(this).nextAll('select:eq(2)').hide();
 
 				// Get the values
-				var dateDay = $(selectDay).val();
-				var dateMonth = $(selectMonth).val();
-				var dateYear = $(selectYear).val();
+				dateDay = $(selectDay).val();
+				dateMonth = $(selectMonth).val();
+				dateYear = $(selectYear).val();
 
 				// Calculate the current input value
-				var val = '';
+				val = '';
 				// If there is a date in the Selects then use it otherwise it's empty
 				if (dateDay !== '' && dateYear !== '' && dateMonth !== '') {
-					var date = new Date(dateYear, dateMonth - 1, dateDay);
+					date = new Date(dateYear, dateMonth - 1, dateDay);
 
 					val = $.datepicker.formatDate(dateFormat, date);
 				}
 
 				// Create element
-				var template = '<input type="text" name="' + id + '" id="' + id + '" value="' + val + '"/>';
+				template = '<input type="text" name="' + id + '" id="' + id + '" value="' + val + '"/>';
 
 				if ($(this).parent('.datePickerCalenderView').size()) {
 					template = '<div id="' + id + '" />';
 				}
 
 				$(this).before(template);
-				var displayWidget = $('#' + id);
+				displayWidget = $('#' + id);
 
 				displayWidget.blur(
 					function () {
-						var date = $.datepicker.parseDate(dateFormat, $(this).val());
+						date = $.datepicker.parseDate(dateFormat, $(this).val());
 
 						if (date === null) {
 							$(selectDay).val('');
@@ -142,7 +153,8 @@ function updateDatePicker(dateFormat) {
 	);
 }
 
-function toggleHelp() {
+function toggleHelp () {
+	'use strict';
 	var helpbox = $('#help-placeholder');
 	var helpbox2 = $('#help-placeholder-2');
 	var tabContainer = $('#tabs-container');
