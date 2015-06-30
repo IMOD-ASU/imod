@@ -63,6 +63,13 @@ $(document).ready(function () {
 		}
 	});
 
+	$('.ui-tabs-nav.ui-widget-header.ui-corner-all > li > a').click(function (event) {
+		if ($('meta[name="imod-is-saved"]').attr('value') === 'true') {
+			event.preventDefault();
+			alert('Please save the course overview page before proceeding to next page');
+		}
+	});
+
 	// Hide modal when background is clicked
 	$(document).on('click', '.modalBackground', function () {
 		$('.draggable').hide();
