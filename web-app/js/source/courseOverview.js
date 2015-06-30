@@ -162,6 +162,55 @@ $(document).ready(
 			populateRepeatsEvery
 		);
 
+		$('#please-select-instructor').dialog({
+			autoOpen: false
+		});
+
+		$('#instructor-removed-success').dialog({
+			autoOpen: false
+		});
+
+		$('#confirm-instructor-remove').dialog({
+			autoOpen: false,
+			buttons: {
+				yes: function () {
+					var ids = [];
+					$(this).dialog('close');
+
+					$('.instructor-list').find('.topicListRow.selected').each(
+						function () {
+							ids.push($(this).data('id'));
+						}
+					);
+
+					$.ajax({
+						url: baseUrl + 'courseOverview/delete',
+						type: 'POST',
+						dataType: 'json',
+						data: {
+							imodId: $('#imodID').val(),
+							selected: ids
+						},
+						success: function () {
+							var index;
+
+							$('#instructor-removed-success').dialog('open');
+							for (index = 0; index < ids.length; index++) {
+								$('#instructor' + ids[index]).remove();
+							}
+
+							if (!$('.instructor-list').find('tbody tr').length) {
+								$('.remove-instructor').remove();
+							}
+						}
+					});
+				},
+				no: function () {
+					$(this).dialog('close');
+				}
+			}
+		});
+
 		// Delete instructor logic
 		$('.delete-instructor').click(
 			function () {
@@ -174,34 +223,11 @@ $(document).ready(
 				);
 
 				if (ids.length < 1) {
-					alert('Please select an instructor to delete');
+					$('#please-select-instructor').dialog('open');
 					return false;
 				}
 
-				if (confirm('Are you sure you want to delete the instructor(s)?') === false) {
-					return false;
-				}
-
-				$.ajax({
-					url: baseUrl + 'courseOverview/delete',
-					type: 'POST',
-					dataType: 'json',
-					data: {
-						imodId: $('#imodID').val(),
-						selected: ids
-					},
-					success: function () {
-						var index;
-						alert('Instructors removed successfully');
-						for (index = 0; index < ids.length; index++) {
-							$('#instructor' + ids[index]).remove();
-						}
-
-						if (!$('.instructor-list').find('tbody tr').length) {
-							$('.remove-instructor').remove();
-						}
-					}
-				});
+				$('#confirm-instructor-remove').dialog('open');
 
 				return false;
 			}
