@@ -264,6 +264,31 @@ $(document).ready(
 
 		$('#custom-action-words').css('visibility', 'hidden');
 
+		$('#please-select-action-word').dialog({
+			autoOpen: false
+		});
+
+		$('#please-save-learning-objective').dialog({
+			autoOpen: false
+		});
+
+		$('#learning-objective-missing-required').dialog({
+			autoOpen: false
+		});
+
+		$('#confirm-remove-content').dialog({
+			autoOpen: false,
+			buttons: {
+				yes: function () {
+					$(this).dialog('close');
+					deleteTopicSubTab([$('.delete-topic').data('id')]);
+				},
+				no: function () {
+					$(this).dialog('close');
+				}
+			}
+		});
+
 		$('#action-words').change(
 			function () {
 				savedData = false;
@@ -283,16 +308,16 @@ $(document).ready(
 
 		$('#performance-save').click(function () {
 			if ($('#action-words').val() === 'select') {
-				alert('Please select an action word or select --Other-- field at the end of list');
-			} else {
-				savedData = true;
+				$('#please-select-action-word').dialog('open');
+				return false;
 			}
+			savedData = true;
 		});
 		/** If current tab's data is not saved, throw an alert
 		*/
 		$('.content, .criteria, .performance, .conditionTab').click(function () {
 			if (savedData === false) {
-				alert('Please save your data before moving to another tab');
+				$('#please-save-learning-objective').dialog('open');
 				return false;
 			}
 		});
@@ -300,12 +325,7 @@ $(document).ready(
 			$('#contentTree').sortable();
 
 			$('.delete-topic').click(function () {
-				var isDelete = confirm('Are you sure you want to delete this?');
-
-				if (isDelete) {
-					deleteTopicSubTab([$(this).data('id')]);
-				}
-
+				$('#confirm-remove-content').dialog('open');
 				return false;
 			});
 
@@ -553,7 +573,7 @@ $(document).ready(
 		$('.learning-objective-button.save').click(
 			function () {
 				if ($('#learning-domain-list').val() === 'null' || $('#domain-category-list').val() === 'null' || $('input[name=actionWordCategory]').is(':checked') === false) {
-					alert('Learning Domain, Domain Category and Action Word Categories are required');
+					$('#learning-objective-missing-required').dialog('open');
 					return false;
 				}
 				savedData = true;
