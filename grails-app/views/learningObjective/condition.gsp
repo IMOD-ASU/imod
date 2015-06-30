@@ -35,7 +35,7 @@
 				<g:select size="5" name="genericCondition" from="${LearningObjective.genericConditions}" value="${currentCondition}" class="learning-objective condition generic text" id="generic-condition-text" />
 			</div>
 			<g:checkBox name="hideCondition" checked="${hideCondition}" id="hide-condition" title="${ message( code:'imod.learningObjective.hideFromObjective' ) }" />
-			Hide from Objective
+			Hide from Students
 		</g:form>
 	</body>
 </html>
