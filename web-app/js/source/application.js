@@ -48,6 +48,8 @@ $(document).ready(
 			.not(document.getElementById('resourceList'))
 			.drags();
 
+		$('help-placeholder > open-button, help-placeholder2 > open-button', toggleHelp);
+
 		// Hide modal when background is clicked
 		$(document).on('click', '.modalBackground', function () {
 			$('.draggable').hide();
@@ -55,103 +57,6 @@ $(document).ready(
 		});
 	}
 );
-
-function updateDatePicker (dateFormat) {
-	'use strict';
-	$('input[value="date.struct"]:hidden').each(
-		function () {
-			var name = $(this).attr('name');
-			var selectDay;
-			var selectMonth;
-			var selectYear;
-			var dateDay;
-			var dateMonth;
-			var dateYear;
-			var val;
-			var date;
-			var template;
-			var displayWidget;
-
-			// Create JQuery friendly ID
-			var id = name.replace('.', '_').replace('[', '_').replace(']', '_') + '_input';
-
-			if ($('#' + id).length === 0) {
-				// Find the select elements
-				selectDay = $(this).nextAll('select:eq(0)').hide();
-				selectMonth = $(this).nextAll('select:eq(1)').hide();
-				selectYear = $(this).nextAll('select:eq(2)').hide();
-
-				// Get the values
-				dateDay = $(selectDay).val();
-				dateMonth = $(selectMonth).val();
-				dateYear = $(selectYear).val();
-
-				// Calculate the current input value
-				val = '';
-				// If there is a date in the Selects then use it otherwise it's empty
-				if (dateDay !== '' && dateYear !== '' && dateMonth !== '') {
-					date = new Date(dateYear, dateMonth - 1, dateDay);
-
-					val = $.datepicker.formatDate(dateFormat, date);
-				}
-
-				// Create element
-				template = '<input type="text" name="' + id + '" id="' + id + '" value="' + val + '"/>';
-
-				if ($(this).parent('.datePickerCalenderView').size()) {
-					template = '<div id="' + id + '" />';
-				}
-
-				$(this).before(template);
-				displayWidget = $('#' + id);
-
-				displayWidget.blur(
-					function () {
-						date = $.datepicker.parseDate(dateFormat, $(this).val());
-
-						if (date === null) {
-							$(selectDay).val('');
-							$(selectMonth).val('');
-							$(selectYear).val('');
-						} else {
-							$(selectDay).val(date.getDate());
-							$(selectMonth).val(date.getMonth() + 1);
-							$(selectYear).val(date.getFullYear());
-						}
-					}
-				).keydown(
-					function (event) {
-						// Show popup on Down Arrow
-						if (event.keyCode === 40) {
-							displayWidget.datepicker('show');
-						}
-					}
-				);
-
-				displayWidget.datepicker({
-					SchangeMonth: true,
-					changeYear: true,
-					dateFormat: dateFormat,
-					constrainInput: true,
-					showButtonPanel: true,
-					showWeeks: true,
-					showOn: 'button',
-					onSelect: function (dateText, inst) {
-						if (inst === null) {
-							$(selectDay).val('');
-							$(selectMonth).val('');
-							$(selectYear).val('');
-						} else {
-							$(selectDay).val(inst.selectedDay);
-							$(selectMonth).val(inst.selectedMonth + 1);
-							$(selectYear).val(inst.selectedYear);
-						}
-					}
-				});
-			}
-		}
-	);
-}
 
 function toggleHelp () {
 	'use strict';

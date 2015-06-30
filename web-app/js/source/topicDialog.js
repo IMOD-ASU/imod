@@ -60,15 +60,6 @@ function changePic () {
 	$('#dimImage').attr('src', iconName);
 }
 
-// TODO is this function unused?
-function toggleSelected (event) {
-	'use strict';
-	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
-		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-		$(this).toggleClass('selected');
-	}
-}
-
 function saveDimModal () {
 	'use strict';
 	var contentID = $('#topicID').val();
@@ -322,20 +313,6 @@ function getTopicSavedItems (currentRow) {
 	return rowData;
 }
 
-// TODO is the function unused?
-function refreshSaves () {
-	'use strict';
-	$('#topicList tbody tr').each(
-		function () {
-			var rowData = getTopicSavedItems(this);
-			$(rowData.titleSaved).val($(rowData.title).val());
-			$(rowData.dimensionsSaved).val($(rowData.dimensions).val());
-			$(rowData.prioritySaved).val($(rowData.priority).val());
-			$(rowData.preReqSaved).val($(rowData.preReq).val());
-		}
-	);
-}
-
 function revertChanges () {
 	'use strict';
 	$('#topicList tbody tr').each(
@@ -585,7 +562,6 @@ $(
 			}
 		);
 
-		// $('#topicList > tbody').on('click', 'tr', toggleSelected);
 		$('#topicList').on(
 			'click',
 			'.saveIcon',
@@ -622,7 +598,6 @@ $(
 			}
 		);
 
-		// $('#resourceList > tbody').on('click', 'tr', toggleSelected);
 		$('#resourceList').on(
 			'click',
 			'.saveIcon',

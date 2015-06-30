@@ -343,9 +343,6 @@ $(document).ready(
 					success: function () {
 						savedData = true;
 						window.location.reload();
-					},
-					error: function (xhr) {
-						console.log(xhr.responseText);
 					}
 				});
 			});

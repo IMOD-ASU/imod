@@ -38,7 +38,7 @@
 				<span style="font-family: fantasy;">
 					Quick tip
 				</Span>
-				<a id="open-button" href="#" onclick="toggleHelp()">
+				<a id="open-button" href="#">
 					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_active.png')}" alt=""/>
 				</a>
 				<div id="qtip-place" style="float: right; text-align: center; position: absolute; margin: 10%; font-family: fantasy; width: 10em; height: auto; max-height: 20em; background-color: #ffff5a;">
@@ -47,7 +47,7 @@
 			</div>
 			<div id="help-placeholder-2">
 				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
-				<a id="open-button" href="#" onclick="toggleHelp()">
+				<a id="open-button" href="#">
 					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_inactive.png')}" alt=""/>
 				</a>
 			</div>

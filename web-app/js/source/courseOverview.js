@@ -65,11 +65,6 @@ function instructorValidator () {
 	return true;
 }
 
-function fnCoursePolicyRadio () {
-	'use strict';
-	alert($('.coursePolicyRadio').value);
-}
-
 // Compares startTime and EndTime
 function compareStartEndTimes () {
 	'use strict';
@@ -144,15 +139,6 @@ function populateRepeatsEvery () {
 	}
 }
 
-// TODO is the method unused?
-function toggleSelected (event) {
-	'use strict';
-	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
-		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-		$(this).toggleClass('selected');
-	}
-}
-
 function setDefaultHint () {
 	'use strict';
 	var courseName = $('#courseName').val();
@@ -214,10 +200,6 @@ $(document).ready(
 						if (!$('.instructor-list').find('tbody tr').length) {
 							$('.remove-instructor').remove();
 						}
-					},
-					error: function (xhr) {
-						// When something goes wrong log to the browser console
-						console.log(xhr.responseText);
 					}
 				});
 
@@ -351,11 +333,6 @@ $(document).ready(
 							success:
 								function () {
 									$('.courseoverview').submit();
-								},
-							error:
-								function (xhr) {
-									// When something goes wrong log to the browser console
-									console.log(xhr.responseText);
 								}
 						});
 					}

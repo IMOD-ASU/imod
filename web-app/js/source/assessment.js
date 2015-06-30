@@ -148,29 +148,6 @@ function checkForAssign (data) {
 	}
 }
 
-function getFavorites (data) {
-	'use strict';
-	var index;
-	var currentTechnique;
-	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.idealAssessmentTechniqueMatch[index];
-		if (currentTechnique.favcheck === true && currentTechnique.assigncheck === false) {
-			$('#span1-' + currentTechnique.id).addClass('icons assessmentFavUnassign');
-		} else if (currentTechnique.favcheck === true && currentTechnique.assigncheck === true) {
-			$('#span1-' + currentTechnique.id).addClass('icons assessmentFavAssign');
-		}
-	}
-
-	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		if (currentTechnique.favcheck === true && currentTechnique.assigncheck === true) {
-			$('#span1-' + currentTechnique.id).addClass('icons assessmentFavUnassign');
-		} else if (currentTechnique.favcheck === true && currentTechnique.assigncheck === true) {
-			$('#span1-' + currentTechnique.id).addClass('icons assessmentFavAssign');
-		}
-	}
-}
-
 /**
  * Callback for find matching techniques grails action
  * this takes the json data and processes it into html code
