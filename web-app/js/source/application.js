@@ -63,10 +63,14 @@ $(document).ready(function () {
 		}
 	});
 
+	$('#save-before-leaving').dialog({
+		autoOpen: false
+	});
+
 	$('.ui-tabs-nav.ui-widget-header.ui-corner-all > li > a').click(function (event) {
-		if ($('meta[name="imod-is-saved"]').attr('value') === 'true') {
+		if ($('meta[name="imod-is-saved"]').attr('value') === 'false') {
 			event.preventDefault();
-			alert('Please save the course overview page before proceeding to next page');
+			$('#save-before-leaving').dialog('open');
 		}
 	});
 
