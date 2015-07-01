@@ -439,10 +439,10 @@ function addResource () {
 				'<td class="saveIcon">' +
 				'<i class="fa fa-square-o"></i>' +
 				'</td><td class="resourceName">' +
-				'<input type="text" id="resourceName' + id + '"> ' +
+				'<input type="text" id="resourceName' + id + '" autofocus> ' +
 				'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
 				'</td><td class="resourceDescription">' +
-				'<input type="text" id="resourceDescription' + id + '"> ' +
+				'<input type="text" id="resourceDescription' + id + '" autofocus> ' +
 				'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
 				'</td><td class="resourceType">' +
 				'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '"> ' +
