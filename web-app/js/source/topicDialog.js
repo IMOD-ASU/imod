@@ -1,20 +1,21 @@
-'use strict';
-
 var errorMessages = [];
 var isFlashing = null;
 var content = '';
 
-function showTopicDialog() {
+function showTopicDialog () {
+	'use strict';
 	$('#topicDialogBackground').css('display', 'block');
 	$('#topicDialog').css('display', 'block');
 }
 
-function hideTopicDialog() {
+function hideTopicDialog () {
+	'use strict';
 	$('#topicDialogBackground').css('display', 'none');
 	$('#topicDialog').css('display', 'none');
 }
 
-function flashError() {
+function flashError () {
+	'use strict';
 	var message = errorMessages.shift();
 	$('#errorMessage').text(message);
 	$('#errorMessage')
@@ -32,7 +33,8 @@ function flashError() {
 		);
 }
 
-function errorMessage(message) {
+function errorMessage (message) {
+	'use strict';
 	errorMessages.push(message);
 	if (isFlashing === null) {
 		flashError();
@@ -40,7 +42,8 @@ function errorMessage(message) {
 	}
 }
 
-function changePic() {
+function changePic () {
+	'use strict';
 	var iconName = '';
 	$('#selectKnowledgeDimensions').find('input:checkbox').each(
 		function () {
@@ -57,15 +60,8 @@ function changePic() {
 	$('#dimImage').attr('src', iconName);
 }
 
-// TODO is this function unused?
-function toggleSelected(event) {
-	if (!(event.target.nodeName in ['OPTION', 'INPUT', 'BUTTON', 'SELECT'])) {
-		$(this).find('.saveIcon > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-		$(this).toggleClass('selected');
-	}
-}
-
-function saveDimModal() {
+function saveDimModal () {
+	'use strict';
 	var contentID = $('#topicID').val();
 	var dimensions = [];
 	var dialog = $('#selectKnowledgeDimensions');
@@ -99,7 +95,8 @@ function saveDimModal() {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
-function closeDimModal() {
+function closeDimModal () {
+	'use strict';
 	var contentID = $('#topicID').val();
 	var dimensions = [];
 	var dialog = $('#selectKnowledgeDimensions');
@@ -135,18 +132,22 @@ function closeDimModal() {
 	background.css('display', 'none');
 }
 
-function openDimModal() {
+function openDimModal () {
+	'use strict';
 	var contentID = $(this).parents('.topicItem').attr('id');
 	var dimString = $('#knowDimensionList' + contentID).val();
 	var dimensionList = [];
 	var dialog = $('#selectKnowledgeDimensions');
 	var background = $('#selectKnowledgeDimensionBackground');
 
+	var index;
+	var findCheckBox;
+
 	if (dimString !== '') {
 		dimensionList = dimString.split(',');
 	}
-	for (var i = 0; i < dimensionList.length; i++) {
-		var findCheckBox = $(dialog).find('#' + dimensionList[i]);
+	for (index = 0; index < dimensionList.length; index++) {
+		findCheckBox = $(dialog).find('#' + dimensionList[index]);
 		if (findCheckBox.length === 1) {
 			findCheckBox.prop('checked', true);
 		}
@@ -157,12 +158,14 @@ function openDimModal() {
 	background.css('display', 'block');
 }
 
-function getResource() {
-	var contentID = content.split('topicResources');
-	contentID = contentID[1];
+function getResource () {
+	'use strict';
+	var contentID = content.split('topicResources')[1];
 	var resourceDiv = $('#resourceList tbody');
-	resourceDiv.html('');
 	var resourceOptions = '';
+
+	resourceDiv.html('');
+
 	$.ajax({
 		url: '../../content/getResource',
 		type: 'GET',
@@ -173,8 +176,9 @@ function getResource() {
 		success: function (data) {
 			var resources = data.resources;
 			var resourceTypes = data.resourceTypes;
-			for (var i = 0; i < resourceTypes.length; i++) {
-				resourceOptions += '<option value="' + resourceTypes[i] + '">' + resourceTypes[i] + '</option>';
+			var index;
+			for (index = 0; index < resourceTypes.length; index++) {
+				resourceOptions += '<option value="' + resourceTypes[index] + '">' + resourceTypes[index] + '</option>';
 			}
 			$.each(resources, function (key, value) {
 				var id = value.id;
@@ -198,37 +202,37 @@ function getResource() {
 				).appendTo(resourceDiv);
 				$('#resourceType' + id).val(value.resourceType);
 			});
-		},
-		error: function (xhr) {
-			alert(xhr.responseText);
 		}
 	});
 }
 
-function openResourceModal() {
+function openResourceModal () {
+	'use strict';
 	content = this.id;
 	$('#selectResource').css('display', 'inherit');
 	$('#selectResourceBackground').css('display', 'block');
 	getResource();
 }
 
-function closeResourceModal() {
+function closeResourceModal () {
+	'use strict';
 	$('#selectResourceBackground').css('display', 'none');
 	$('#selectResource').css('display', 'none');
 }
 
-function highlightUnsaved(id) {
+function highlightUnsaved (id) {
+	'use strict';
 	$('#' + id).addClass('unsaved');
 }
 
-function deleteTopic(contentIDs) {
-	contentIDs = JSON.stringify(contentIDs);
+function deleteTopic (contentIDs) {
+	'use strict';
 	$.ajax({
 		url: '../../content/deleteTopic/',
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			contentIDs: contentIDs
+			contentIDs: JSON.stringify(contentIDs)
 		},
 		success: function (data) {
 			data.result.forEach(
@@ -240,7 +244,8 @@ function deleteTopic(contentIDs) {
 	});
 }
 
-function saveTopic() {
+function saveTopic () {
+	'use strict';
 	var imodID = $('#imodID').val();
 	var contentData = [];
 	var hasError = false;
@@ -288,14 +293,12 @@ function saveTopic() {
 		},
 		success: function () {
 			location.reload();
-		},
-		error: function (xhr) {
-			alert(xhr.responseText);
 		}
 	});
 }
 
-function getTopicSavedItems(currentRow) {
+function getTopicSavedItems (currentRow) {
+	'use strict';
 	var topicID = currentRow.id;
 	var rowData = {
 		title: $('#topicTitle' + topicID),
@@ -310,20 +313,8 @@ function getTopicSavedItems(currentRow) {
 	return rowData;
 }
 
-// TODO is the function unused?
-function refreshSaves() {
-	$('#topicList tbody tr').each(
-		function () {
-			var rowData = getTopicSavedItems(this);
-			$(rowData.titleSaved).val($(rowData.title).val());
-			$(rowData.dimensionsSaved).val($(rowData.dimensions).val());
-			$(rowData.prioritySaved).val($(rowData.priority).val());
-			$(rowData.preReqSaved).val($(rowData.preReq).val());
-		}
-	);
-}
-
-function revertChanges() {
+function revertChanges () {
+	'use strict';
 	$('#topicList tbody tr').each(
 		function () {
 			var rowData = getTopicSavedItems(this);
@@ -358,7 +349,8 @@ function revertChanges() {
 	);
 }
 
-function addTopic() {
+function addTopic () {
+	'use strict';
 	var imodID = $('#imodID').val();
 	$.ajax({
 		url: '../../content/addNewTopic',
@@ -374,12 +366,13 @@ function addTopic() {
 			var dimensionOptions = '';
 			var prioritiesOptions = '';
 			var topicDiv = $('#topicList tbody');
+			var index;
 
-			for (var i = 0; i < dimensions.length; i++) {
-				dimensionOptions += '<option value="' + dimensions[i] + '">' + dimensions[i] + '</option>';
+			for (index = 0; index < dimensions.length; index++) {
+				dimensionOptions += '<option value="' + dimensions[index] + '">' + dimensions[index] + '</option>';
 			}
-			for (i = 0; i < priorities.length; i++) {
-				prioritiesOptions += '<option value="' + priorities[i] + '">' + priorities[i] + '</option>';
+			for (index = 0; index < priorities.length; index++) {
+				prioritiesOptions += '<option value="' + priorities[index] + '">' + priorities[index] + '</option>';
 			}
 			// FIXME move html block out of javascript file
 			$('<tr id="' + id + '" class="topicItem">' +
@@ -417,14 +410,12 @@ function addTopic() {
 			$('#topicTitle' + id).focus();
 			$('.knowledgeDimensionButton').click(openDimModal);
 			$('.ResourceButton').click(openResourceModal);
-		},
-		error: function (xhr) {
-			alert(xhr.responseText);
 		}
 	});
 }
 
-function addResource() {
+function addResource () {
+	'use strict';
 	var contentID = content.split('topicResources');
 	contentID = contentID[1];
 	$.ajax({
@@ -439,8 +430,9 @@ function addResource() {
 			var resources = data.resources;
 			var resourceOptions = '';
 			var resourceDiv = $('#resourceList tbody');
-			for (var i = 0; i < resources.length; i++) {
-				resourceOptions += '<option value="' + resources[i] + '">' + resources[i] + '</option>';
+			var index;
+			for (index = 0; index < resources.length; index++) {
+				resourceOptions += '<option value="' + resources[index] + '">' + resources[index] + '</option>';
 			}
 			// FIXME move html out of JS
 			$('<tr id="' + id + '" class="resourceItem">' +
@@ -459,14 +451,12 @@ function addResource() {
 				'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
 				'</td></tr>'
 			).appendTo(resourceDiv);
-		},
-		error: function (xhr) {
-			alert(xhr.responseText);
 		}
 	});
 }
 
-function saveResource() {
+function saveResource () {
+	'use strict';
 	var imodID = $('#imodID').val();
 	var resourceData = [];
 	var hasError = false;
@@ -506,21 +496,18 @@ function saveResource() {
 		},
 		success: function () {
 			closeResourceModal();
-		},
-		error: function (xhr) {
-			alert(xhr.responseText);
 		}
 	});
 }
 
-function deleteResource(resourceIDs) {
-	resourceIDs = JSON.stringify(resourceIDs);
+function deleteResource (resourceIDs) {
+	'use strict';
 	$.ajax({
 		url: '../../content/deleteResource/',
 		type: 'GET',
 		dataType: 'json',
 		data: {
-			resourceIDs: resourceIDs
+			resourceIDs: JSON.stringify(resourceIDs)
 		},
 		success: function (data) {
 			data.result.forEach(
@@ -534,6 +521,7 @@ function deleteResource(resourceIDs) {
 
 $(
 	function () {
+		'use strict';
 		// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(addTopic);
@@ -574,7 +562,6 @@ $(
 			}
 		);
 
-		// $('#topicList > tbody').on('click', 'tr', toggleSelected);
 		$('#topicList').on(
 			'click',
 			'.saveIcon',
@@ -611,7 +598,6 @@ $(
 			}
 		);
 
-		// $('#resourceList > tbody').on('click', 'tr', toggleSelected);
 		$('#resourceList').on(
 			'click',
 			'.saveIcon',

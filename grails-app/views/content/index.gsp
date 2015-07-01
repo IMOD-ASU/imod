@@ -29,7 +29,6 @@
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
-		<g:javascript src="source/learningObjectiveContent.js" defer="defer" />
 
 		<meta name="layout" content="imod">
 	</head>

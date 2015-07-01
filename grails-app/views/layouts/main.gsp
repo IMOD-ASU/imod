@@ -103,6 +103,12 @@ this is the basic layout with only the IMOD header and footer
 			Copyright &copy; 2015 IMODS&trade;
 		</div>
 
+		<div id="save-before-leaving" title="Please Save">
+			<p>
+				Please save before proceeding to next page.
+			</p>
+		</div>
+
 		<g:if env="developments">
 			<!-- automated html style checking -->
 			<g:external dir="bower_components/log" file="log.min.js" />

@@ -25,8 +25,6 @@
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
 		<g:external dir="bower_components/jquery-sortable/source/js" file="jquery-sortable-min.js" defer="defer" />
-		<!--<g:javascript src="source/learningObjectiveContent.js" defer="defer" />-->
-
 		<meta name="layout" content="learningObjective">
 	</head>
 	<body>
@@ -53,5 +51,10 @@
 			Please add a topic.
 		</g:else>
 		%{-- <div id="contentTree"></div> --}%
+		<div id="confirm-remove-content" title="Confirm">
+			<p>
+				Are you sure you want to delete?
+			</p>
+		</div>
 	</body>
 </html>

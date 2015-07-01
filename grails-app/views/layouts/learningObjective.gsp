@@ -129,6 +129,16 @@
 					</tr>
 				</table>
 			</fieldset>
+			<div id="please-save-learning-objective" title="Please Save">
+				<p>
+					Please save before proceeding to next page.
+				</p>
+	        </div>
+			<div id="learning-objective-missing-required" title="Missing Required">
+				<p>
+					Learning Domain, Domain Category and Action Word Categories are required.
+				</p>
+	        </div>
 		</body>
 	</html>
 </g:applyLayout>
