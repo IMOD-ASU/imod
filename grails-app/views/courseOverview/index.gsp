@@ -69,7 +69,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="name" id = "courseName" placeholder ="New Imod" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
+                                            <g:textField name="name" id = "courseName" placeholder ="New Imods" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
@@ -427,6 +427,24 @@
                     </fieldset>
                 </g:form>
             </div>
+        </div>
+
+        <div id="please-select-instructor" title="Please Select Instructor">
+            <p>
+                Please select an instructor to delete.
+            </p>
+        </div>
+
+        <div id="confirm-instructor-remove" title="Confirm">
+            <p>
+                Are you sure you want to delete instructors?
+            </p>
+        </div>
+
+        <div id="instructor-removed-success" title="Success">
+            <p>
+                Instructors removed successfully.
+            </p>
         </div>
     </body>
 </html>

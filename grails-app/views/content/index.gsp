@@ -29,7 +29,6 @@
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
-		<g:javascript src="source/learningObjectiveContent.js" defer="defer" />
 
 		<meta name="layout" content="imod">
 	</head>
@@ -52,6 +51,7 @@
 				id="removeTopic"
 				title="${Help.toolTip("OVERVIEW", "Delete Selected Topic")}"
 				value="${message(code: 'Remove Topic', default: 'Remove Topic')}"
+				onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"
 			/>
 		</span>
 		<span id="errorMessage"></span>
@@ -70,7 +70,8 @@
 			</tr>
 		</thead>
 		<tbody>
-		<g:each var="contentItem" in="${currentImod.contents}">
+		<!-- ${currentImod.contents} -->
+		<g:each var="contentItem" in="${currentImod.contents.sort{a,b-> a.topicTitle.compareTo(b.topicTitle)}}">
 		<input type="hidden" id="contentID" value="${contentItem.id }"/>
 	<tr id="${contentItem.id}" class="topicItem">
 						<td class="saveIcon">
@@ -211,9 +212,9 @@
 				class="save showHoverNew topicButton"
 				action="save"
 				id="saveTopic"
-				title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Finish")}"
+				title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}"
 			>
-				${message(code: 'Save Topic', default: ' Finish')}
+				${message(code: 'Save Topic', default: ' Save')}
 			</button>
 		</span>
 		<span class="topicButtonGradient cancelBG">
