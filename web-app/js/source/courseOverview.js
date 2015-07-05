@@ -98,7 +98,8 @@ function compareStartEndTimes () {
 	$('#date-error').remove();
 
 	if (endDate < startDate) {
-		errorLabel = '<label id="date-error" class="error">End date has to be greater than start date</label>';
+		//errorLabel = '<label id="date-error" class="error">End date has to be greater than start date</label>';
+		errorLabel = '<div  class="errorcontain"><label id="date-error" class="error">End date has to be greater than start date</label></div>';
 		$('#schedule-end-date_day').parent().append(errorLabel);
 		return false;
 	}
@@ -106,7 +107,8 @@ function compareStartEndTimes () {
 	$('#time-error').remove();
 
 	if (endTime <= startTime) {
-		errorLabel = '<label id="time-error" class="error">End time has to be greater than start time</label>';
+		errorLabel = '<div  class="errorcontain"><label id="time-error" class="error">End time has to be greater than start time</label></div>';
+		//errorLabel = '<label id="time-error" class="error">eEnd time has to be greater than start time</label>';
 		$('#schedule-end-time_hour').parent().append(errorLabel);
 		return false;
 	}
@@ -144,7 +146,7 @@ function setDefaultHint () {
 	var courseName = $('#courseName').val();
 	var courseUrl = $('#courseUrl').val();
 
-	if (courseName === 'New Imod' && courseUrl === 'example.com') {
+	if (courseName === 'New Imods' && courseUrl === 'example.com') {
 		$('#courseName').val('');
 		$('#imod-number').val('');
 		$('#courseUrl').val('');
