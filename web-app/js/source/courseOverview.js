@@ -98,7 +98,6 @@ function compareStartEndTimes () {
 	$('#date-error').remove();
 
 	if (endDate < startDate) {
-		//errorLabel = '<label id="date-error" class="error">End date has to be greater than start date</label>';
 		errorLabel = '<div  class="errorcontain"><label id="date-error" class="error">End date has to be greater than start date</label></div>';
 		$('#schedule-end-date_day').parent().append(errorLabel);
 		return false;
@@ -108,7 +107,6 @@ function compareStartEndTimes () {
 
 	if (endTime <= startTime) {
 		errorLabel = '<div  class="errorcontain"><label id="time-error" class="error">End time has to be greater than start time</label></div>';
-		//errorLabel = '<label id="time-error" class="error">eEnd time has to be greater than start time</label>';
 		$('#schedule-end-time_hour').parent().append(errorLabel);
 		return false;
 	}
