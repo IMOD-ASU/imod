@@ -55,7 +55,7 @@
 
 					<g:render template="/pedagogy/filter" />
 				</td>
-
+				<td></td>
 				<td>
 					<!-- body of the page -->
 					<table>
@@ -80,8 +80,8 @@
 												</button>
 											</span>
 										</div>
-
-										<g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+										<br>
+										<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
 
 										<ul class="learning-objective sub-nav">
 											<li class="performance active">
@@ -101,7 +101,7 @@
 										<div id="selectedFilter">
 											${selectionLine}
 										</div>
-
+										<br>
 										<h3 title="${Help.toolTip('PEDAGOGY', 'Ideal Match')}" class="showHover">
 											Ideal Match
 										</h3>
@@ -122,95 +122,72 @@
 					<%--Dialog box for Add New Technique --%>
 					<div id="add-new-technique" title="Add New Technique">
 						<%--To render the add new Technique dialog box--%>
+
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
-							<label>
-								Title
-							</label>
-							<g:textField name="title" />
-							<br />
-
-							<label>
-								Assign to Current Learning Objective
-							</label>
-							<g:checkBox name="assignedToLearningObjective" />
-							<br />
-
-							<label>
-								Favorite Technique
-							</label>
-							<g:checkBox name="favoriteTechnique" />
-							<br />
-
-							<label>
-								Learning Domain
-							</label>
-							<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
-							<br />
-
-							<label>
-								Domain Category
-							</label>
-							<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
-							<br />
-
-							<label>
-								Knowledge Dimension
-							</label>
-							<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
-							<br />
-
-							<label>
-								Delivery Mode
-							</label>
-							<g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
-							<br />
-
-							<label>
-								Location
-							</label>
-							<g:textField name="location" />
-							<br />
-
-							<label>
-								Focus
-							</label>
-							<g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
-							<br />
-
-							<label>
-								Direction
-							</label>
-							<g:textField name="direction" />
-							<br />
-
-							<label>
-								Materials Required
-							</label>
-							<g:textField name="materials" />
-							<br />
-
-							<label>
-								Reference
-							</label>
-							<g:textField name="reference" />
-							<br />
-
-							<label>
-								Description of Strategy
-							</label>
-							<g:textField name="strategyDescription" />
-							<br />
-
-							<label>
-								Description of Activity
-							</label>
-							<g:textField name="activityDescription" />
-							<br />
-
+							<table>
+							<tr>
+							<td width="40%"> Title </td>
+							<td width="60%"> <g:textField name="title" /></td>
+							</tr>
+							<tr>
+							<td width="40%"> Assign to Current Learning Objective </td>
+							<td width="60%"> <g:checkBox name="assignedToLearningObjective" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Favorite Technique </td>
+							<td width="60%"><g:checkBox name="favoriteTechnique" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Learning Domain	</td>
+							<td width="60%"><g:select name="learningDomain" from="${learningDomains}" optionKey="name" /><td>
+							</tr>
+							<tr>
+							<td width="40%">Domain Category</td>
+							<td width="60%"><g:select name="domainCategory" from="${domainCategories}" optionKey="name" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Knowledge Dimension</td>
+							<td width="60%"><g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Delivery Mode</td>
+							<td width="60%"><g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Location</td>
+							<td width="60%"><g:textField name="location" /> </td>
+							</tr>
+							<tr>
+							<td width="40%">Focus</td>
+							<td width="60%"><g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Direction</td>
+							<td width="60%"><g:textField name="direction" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Materials Required</td>
+							<td width="60%"><g:textField name="materials" /> </td>
+							</tr>
+							<tr>
+							<td width="40%">Reference</td>
+							<td width="60%"><g:textField name="reference" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Description of Strategy</td>
+							<td width="60%">
+							<g:textField name="strategyDescription" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Description of Activity</td>
+							<td width="60%"><g:textField name="activityDescription" /></td>
+							</tr>
+							</table>
 							<g:actionSubmit value="Save" action="save" />
 							<g:actionSubmit value="Cancel" action="cancel" />
 						</g:form>
+
 					</div>
 				</td>
 			</tr>

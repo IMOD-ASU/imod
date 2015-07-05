@@ -33,7 +33,7 @@ $(document).ready(function () {
 		}
 	);
 
-	$('input[type="checkbox"], input[type="radio"], .knowledge-dim-label').hover(
+	$('input[type="checkbox"], input[type="radio"], .knowledgeDimensionButton,.ResourceButton,.priority').hover(
 		function () {
 			$('#qtip-place').html($(this).attr('title'));
 		},
@@ -42,6 +42,16 @@ $(document).ready(function () {
 		}
 	);
 
+	$('.topicModalButton').hover(
+		function () {
+			$("#help-placeholder").css("height", "15em");
+			$('#qtip-place').html($(this).attr('title'));
+		},
+		function () {
+			$("#help-placeholder").css("height", "10em");
+			$('#qtip-place').html('');
+		}
+	);
 	// Make modals draggable
 	$('.draggable')
 		.not(document.getElementById('topicList'))
