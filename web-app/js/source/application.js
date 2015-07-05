@@ -44,11 +44,11 @@ $(document).ready(function () {
 
 	$('.topicModalButton').hover(
 		function () {
-			$("#help-placeholder").css("height", "15em");
+			$('#help-placeholder').css('height', '15em');
 			$('#qtip-place').html($(this).attr('title'));
 		},
 		function () {
-			$("#help-placeholder").css("height", "10em");
+			$('#help-placeholder').css('height', '10em');
 			$('#qtip-place').html('');
 		}
 	);
