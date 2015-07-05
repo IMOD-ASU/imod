@@ -40,16 +40,16 @@
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
 			<g:actionSubmit
-				class="add showHoverNew topicButton" action="add" id="addTopic"
-				title="${Help.toolTip("OVERVIEW", "Add New Topic")}"
+				class="add show-hover-new topicButton" action="add" id="addTopic"
+				title="${ message( code:'imod.content.add' ) }"
 				value="${message(code: 'Add Topic', default: 'Add Topic')}"
 			/>
 		</span>
 		<span class="topicButtonGradient">
 			<g:actionSubmit
-				class="remove showHoverNew topicButton" action="remove"
+				class="remove show-hover-new topicButton" action="remove"
 				id="removeTopic"
-				title="${Help.toolTip("OVERVIEW", "Delete Selected Topic")}"
+				title="${ message( code:'imod.content.remove' ) }"
 				value="${message(code: 'Remove Topic', default: 'Remove Topic')}"
 				onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"
 			/>
@@ -88,14 +88,15 @@
 								value="${contentItem.topicTitle}"
 							/>
 						</td>
-						<td class="topicDimensions">
+						<td class="show-hover-new topicDimensions">
 							<span>
 								<g:img
 									dir="images/content"
 									file="knowDim${contentItem.dimensions.sort(){it.value}.collect(){it.toString().charAt(0)}.join()?:'None'}.png"
 								/>
 								<button
-									class="knowledgeDimensionButton"
+									class="knowledgeDimensionButton show-hover-new"
+									title="${ message( code:'imod.content.knowledgeDimension' ) }"
 									value="${contentItem.dimensions.join(',')}"
 									type="button"
 									id="knowDimensionList${contentItem.id }"
@@ -113,6 +114,9 @@
 								name="topicPriority${contentItem.id}"
 								from="${Content.priorities()}"
 								value="${contentItem.priority}"
+								class = "show-hover-new priority"
+								title="${ message( code:'imod.content.priority' ) }"
+
 							/>
 							<input
 								type="hidden"
@@ -121,12 +125,19 @@
 							/>
 						</td>
 						<td class="topicResources">
-							<button class="ResourceButton" id="topicResources${contentItem.id}" type="button">Resources</button>
+							<button class="show-hover-new ResourceButton"
+									title="${ message( code:'imod.content.Resources' ) }"
+									id="topicResources${contentItem.id}"
+									type="button">
+							Resources
+							</button>
 						</td>
 						<td class="topicPreReq">
 							<g:checkBox
 								name="topicPreReq${contentItem.id}"
 								value="${contentItem.preReq }"
+								class="show-hover-new"
+								title="${ message( code:'imod.content.PreReq' ) }"
 							/>
 							<input
 								type="hidden"

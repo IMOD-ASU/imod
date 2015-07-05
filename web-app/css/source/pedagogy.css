@@ -133,3 +133,7 @@ select[disabled][disabled] {
 
     background-color: #a9a9a9;
 }
+
+.pedagogy.type-icon {
+     vertical-align: text-bottom;
+}

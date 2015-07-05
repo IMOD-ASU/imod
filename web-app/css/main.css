@@ -1283,3 +1283,46 @@ label[for=weekdays] {
 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
+
+/**
+Class for error message as label
+**/
+.errorcontain {
+    margin-top: 1em;
+}
+
+.errorcontain label,
+.errorcontain .property-label {
+    width: 60%;
+
+    text-align: right;
+
+
+}
+
+.errorcontain .property-label {
+    float: left;
+}
+
+.errorcontain .property-value {
+    display: block;
+
+    margin-left: 20%;
+}
+
+.errorcontain {
+    margin-right: -5em;
+    padding: 0 0 0 10px;
+}
+
+
+.errorcontain label,
+.errorcontain .property-label {
+    margin-left: 32px;
+
+    text-align: left;
+}
+
+.errorcontain {
+    margin-right: 0;
+}
