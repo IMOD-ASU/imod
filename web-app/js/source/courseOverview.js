@@ -155,21 +155,15 @@ function setDefaultHint () {
 $(document).ready(
 	function () {
 		'use strict';
-		
-		
 		populateRepeatsEvery();
 		$('#attendance-box').css('visibility','visible');
 		$('#participation-box').css('visibility','visible');
-		$('#professional-conduct-box').css('visibility','visible');
-		$('#missed-exams-box').css('visibility','visible');
-		$('#missed-assignments-box').css('visibility','visible');
+		$('#professional-conduct-box').css('visibility', 'visible');
+		$('#missed-exams-box').css('visibility', 'visible');
+		$('#missed-assignments-box').css('visibility', 'visible');
 		
 		setDefaultHint();
-		$('#repeats').on(
-			'change',
-			populateRepeatsEvery
-		);
-
+		$('#repeats').on('change',populateRepeatsEvery);
 		$('#please-select-instructor').dialog({
 			autoOpen: false
 		});
