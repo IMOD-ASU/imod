@@ -156,12 +156,14 @@ $(document).ready(
 	function () {
 		'use strict';
 		populateRepeatsEvery();
+		$('#attendance-box').css('visibility','visible');
+		$('#participation-box').css('visibility','visible');
+		$('#professional-conduct-box').css('visibility', 'visible');
+		$('#missed-exams-box').css('visibility', 'visible');
+		$('#missed-assignments-box').css('visibility', 'visible');
+		
 		setDefaultHint();
-		$('#repeats').on(
-			'change',
-			populateRepeatsEvery
-		);
-
+		$('#repeats').on('change',populateRepeatsEvery);
 		$('#please-select-instructor').dialog({
 			autoOpen: false
 		});
@@ -397,6 +399,39 @@ $(document).ready(
 				}
 			}
 		);
+		$('#attendance-box').click(
+			function () {
+			$('#attendance').val('Regular on-time attendance in this course is expected');
+			$('#attendance-box').removeAttr('checked');		
+			}
+		);
+		$('#participation-box').click(
+			function () {
+			$('#class-participation').val('Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.');
+			$('#participation-box').removeAttr('checked');		
+			}
+		);
+		$('#professional-conduct-box').click(
+			function () {
+			$('#professional-conduct').val('All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/');
+			$('#professional-conduct-box').removeAttr('checked');		
+			}
+		);
+        $('#missed-exams-box').click(
+			function () {
+			$('#missed-exams').val('The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements');
+			$('#missed-exams-box').removeAttr('checked');		
+			}
+		);
+		
+		$('#missed-assignments-box').click(
+			function () {
+			$('#missed-assignments').val('Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.');
+			$('#missed-assignments-box').removeAttr('checked');		
+			}
+		);
+
+
 
 		// Course overview validation
 		$('.courseoverview').validate({
