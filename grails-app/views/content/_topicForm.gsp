@@ -84,8 +84,8 @@
 	</table>
 	<fieldset id="topicModalClose" class="buttons topicButtonField">
 		<span class="topicButtonGradient saveBG">
-			<button class="save show-hover-new topicButton" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Finish")}">
-				${message(code: 'Save Topic', default: ' Finish')}
+			<button class="save show-hover-new topicButton" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}">
+				${message(code: 'Save Topic', default: ' Save')}
 			</button>
 		</span>
 		<span class="topicButtonGradient cancelBG">

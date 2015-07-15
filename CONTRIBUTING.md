@@ -21,11 +21,11 @@ Please follow the [Git Flow branching model](http://nvie.com/posts/a-successful-
 <br>
 ### Code Guidelines
 ##### HTML
-HTML and GSP code should be written using [HTML5](http://www.w3schools.com/tags/default.asp) following the [Google HTML style guide](https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml) (using tabs instead of two spaces)
+HTML and GSP code should be written using [HTML5](http://www.w3schools.com/tags/default.asp) following the [Google HTML style guide](https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml)
 
 ##### Javacript
 Javascript follows the [Yandex code style](https://github.com/yandex/codestyle/blob/master/javascript.md).
-Javascipt should pass [JShint](http://jshint.com/) static analysis and [JSCS](http://jscs.info/) style checking.
+Javascipt should pass [ESLint](http://eslint.org/) analysis and style checking.
 
 ##### CSS
 CSS follows the [Yandex code style](https://github.com/yandex/codestyle/blob/master/javascript.md).

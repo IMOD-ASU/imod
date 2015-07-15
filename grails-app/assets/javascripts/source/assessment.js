@@ -1,17 +1,16 @@
-'use strict';
-
 /**
  * Opens the modal to create a new assessment technique
  */
-function openAssessmentPlanModal() {
+function openAssessmentPlanModal () {
+	'use strict';
 	$('#assessment-plan').dialog('open');
 	$('#assessment-plan').dialog({
 		resizable: false,
 		height: 'auto',
-		title:'Assessment Plan',
+		title: 'Assessment Plan',
 		width: 400,
 		modal: true,
-		zindex: 1001, // Default is 1000
+		zindex: 1001,
 		buttons: {
 			Cancel: function () {
 				$(this).dialog('close');
@@ -25,21 +24,23 @@ function openAssessmentPlanModal() {
 /**
  * Opens the modal to create a new assessment technique
  */
-function openNewAssessmentTechniqueModal() {
+function openNewAssessmentTechniqueModal () {
+	'use strict';
 	$('#techniqueId').val('');
 	$('#new-technique').dialog('open');
 	$('#new-technique').dialog(
 	{
 		resizable: false,
 		height: 'auto',
-		title:'New Assessment Technique',
+		title: 'New Assessment Technique',
 		width: 'auto',
 		modal: true,
-		zindex: 1001 // Default is 1000
+		zindex: 1000
 	});
 }
 
-function populateAssessmentTechnique(data) {
+function populateAssessmentTechnique (data) {
+	'use strict';
 	var currentTechnique = data.assessmentTechnique;
 
 	// Set the text fields
@@ -68,7 +69,8 @@ function populateAssessmentTechnique(data) {
 	$('#View').hide();
 }
 
-function displayAssessmentInformationInEdit() {
+function displayAssessmentInformationInEdit () {
+	'use strict';
 	$('#techniqueId1').val($('label.ui-state-active').attr('for'));
 
 	$.ajax({
@@ -78,7 +80,8 @@ function displayAssessmentInformationInEdit() {
 		.done(populateAssessmentTechnique);
 }
 
-function showAssessmentTechnique() {
+function showAssessmentTechnique () {
+	'use strict';
 	$('#ideal-matches').buttonset().click(function () {
 		$('#display-new-technique').dialog('open');
 		displayAssessmentInformationInEdit();
@@ -89,10 +92,10 @@ function showAssessmentTechnique() {
 		$('#display-new-technique').dialog({
 			resizable: false,
 			height: 'auto',
-			title:'Display Technique',
+			title: 'Display Technique',
 			width: 'auto',
 			modal: true,
-			zindex: 1001, // Default is 1000
+			zindex: 1000
 		});
 		displayAssessmentInformationInEdit();
 	});
@@ -102,61 +105,41 @@ function showAssessmentTechnique() {
 		$('#display-new-technique').dialog({
 			resizable: false,
 			height: 'auto',
-			title:'Display Technique',
+			title: 'Display Technique',
 			width: 'auto',
 			modal: true,
-			zindex: 1001, // Default is 1000
+			zindex: 1000
 		});
 
 		displayAssessmentInformationInEdit();
 	});
 }
 
-function checkForAssign(data) {
-	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+function checkForAssign (data) {
+	'use strict';
+	var currentTechnique;
+	var index;
 
-		if (currentTechnique.assigncheck === true && currentTechnique.favcheck === false) {
+	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.idealAssessmentTechniqueMatch[index];
+
+		if (currentTechnique.favcheck === false) {
 			$('#span-' + currentTechnique.id).addClass('icons assessmentUnfavAssign');
-		} else if (currentTechnique.assigncheck === true && currentTechnique.favcheck === true) {
+		} else if (currentTechnique.assigncheck === true) {
 			$('#span-' + currentTechnique.id).addClass('icons assessmentFavAssign');
-		} else if (currentTechnique.assigncheck === false && currentTechnique.favcheck === true) {
+		} else if (currentTechnique.assigncheck === false) {
 			$('#span-' + currentTechnique.id).addClass('icons assessmentFavUnassign');
-		} else if (currentTechnique.assigncheck === false && currentTechnique.favcheck === false) {
-			$('#span-' + currentTechnique.id).addClass('icons assessmentUnfavUnassign');
 		}
 	}
 
-	for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		if (currentTechnique.assigncheck === true && currentTechnique.favcheck === false) {
+	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+		if (currentTechnique.favcheck === false) {
 			$('#span-' + currentTechnique.id).addClass('icons assessmentUnfavAssign');
-		} else if (currentTechnique.assigncheck === true && currentTechnique.favcheck === true) {
+		} else if (currentTechnique.assigncheck === true) {
 			$('#span-' + currentTechnique.id).addClass('icons assessmentFavAssign');
-		} else if (currentTechnique.assigncheck === false && currentTechnique.favcheck === true) {
+		} else if (currentTechnique.assigncheck === false) {
 			$('#span-' + currentTechnique.id).addClass('icons assessmentFavUnassign');
-		} else if (currentTechnique.assigncheck === false && currentTechnique.favcheck === false) {
-			$('#span-' + currentTechnique.id).addClass('icons assessmentUnfavUnassign');
-		}
-	}
-}
-
-function getFavorites(data) {
-	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
-		if (currentTechnique.favcheck === true && currentTechnique.assigncheck === false) {
-			$('#span1-' + currentTechnique.id).addClass('icons assessmentFavUnassign');
-		} else if (currentTechnique.favcheck === true && currentTechnique.assigncheck === true){
-			$('#span1-' + currentTechnique.id).addClass('icons assessmentFavAssign');
-		}
-	}
-
-	for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		if (currentTechnique.favcheck === true && currentTechnique.assigncheck === true) {
-			$('#span1-' + currentTechnique.id).addClass('icons assessmentFavUnassign');
-		} else if (currentTechnique.favcheck === true && currentTechnique.assigncheck === true) {
-			$('#span1-' + currentTechnique.id).addClass('icons assessmentFavAssign');
 		}
 	}
 }
@@ -165,11 +148,18 @@ function getFavorites(data) {
  * Callback for find matching techniques grails action
  * this takes the json data and processes it into html code
  */
-function displayAssessmentTechniques(data) {
+function displayAssessmentTechniques (data) {
+	'use strict';
 	var idealText1 = '';
+	var idealText2 = '';
+	var index;
+	var currentTechnique;
+	var extendedText = '';
+	var extendedText2 = '';
+
 	// Take the titles and make html code to display
-	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.idealAssessmentTechniqueMatch[index];
 		idealText1 += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '">';
 		idealText1 += '<span id="span-' + currentTechnique.id + '" class="icons">';
 		idealText1 += '  <label for="' + currentTechnique.id + '">';
@@ -178,14 +168,13 @@ function displayAssessmentTechniques(data) {
 		idealText1 += '</span>';
 	}
 
-	var idealText2 = '';
 	// Take the titles and make html code to display
-	for (var index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.idealAssessmentTechniqueMatch[index];
+	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.idealAssessmentTechniqueMatch[index];
 		if (currentTechnique.favcheck === true) {
 			if (currentTechnique.assigncheck === true) {
 				idealText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			} else if (currentTechnique.assigncheck === false){
+			} else if (currentTechnique.assigncheck === false) {
 				idealText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
 			}
 		}
@@ -194,17 +183,15 @@ function displayAssessmentTechniques(data) {
 		$('#assessmentFavoritesDiv').buttonset();
 	}
 
-	var extendedText = '';
 	// Take the titles and make html code to display
-	for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
 		extendedText += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span-' + currentTechnique.id + '" class="icons"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
 	}
 
-	var extendedText2 = '';
 	// Take the titles and make html code to display
-	for (var index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		var currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
 		if (currentTechnique.favcheck === true) {
 			if (currentTechnique.assigncheck === true) {
 				extendedText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign "><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
@@ -228,7 +215,8 @@ function displayAssessmentTechniques(data) {
  * Reads which filters are selected and sends information to server to update
  * visible assessment techniques
  */
-function filterAssessmentTechniques() {
+function filterAssessmentTechniques () {
+	'use strict';
 	// Get all of the selected checkboxes
 	var selectedKnowledgeDimensions = $('input[name=knowledgeDimension]:checked');
 	var selectedLearningDomains = $('input[name=learningDomain]:checked');
@@ -239,8 +227,11 @@ function filterAssessmentTechniques() {
 	var selectedLearningDomainsData = [];
 	var selectedDomainCategoriesData = [];
 
+	var index;
+	var data;
+
 	// Get the id of the grails domain from the value attribute in the html
-	for (var index = 0; index < selectedKnowledgeDimensions.length; index++) {
+	for (index = 0; index < selectedKnowledgeDimensions.length; index++) {
 		selectedKnowledgeDimensionsData[index] = selectedKnowledgeDimensions[index].value;
 	}
 	for (index = 0; index < selectedLearningDomains.length; index++) {
@@ -251,7 +242,7 @@ function filterAssessmentTechniques() {
 	}
 
 	// Bundle the data into an object
-	var data = {
+	data = {
 		selectedKnowledgeDimensions: selectedKnowledgeDimensionsData,
 		selectedLearningDomains: selectedLearningDomainsData,
 		selectedDomainCategories: selectedDomainCategoriesData
@@ -268,7 +259,8 @@ function filterAssessmentTechniques() {
 		.done(displayAssessmentTechniques, showAssessmentTechnique, checkForAssign);
 }
 
-function displayAssessmentPlan(data) {
+function displayAssessmentPlan (data) {
+	'use strict';
 	$.ajax({
 			url: '../../assessmentTechnique/assessmentplan',
 			method: 'post',
@@ -278,32 +270,35 @@ function displayAssessmentPlan(data) {
 		.done(assessmentPlanData);
 }
 
-function assessmentPlanData(data) {
+function assessmentPlanData (data) {
+	'use strict';
 	var allAssessmentData = '';
+	var techniqueIndex;
+	var assessmentPlan;
+	var techniqueKnowledgeDimension;
+	var knowledgeDimenisionIndex;
+	var knowledgeDimension = '';
+	// FIXME domain catgory is never assigned
+	var domainCategory = '';
+	// FIXME learning domain is never assigned
+	var learningDomain = '';
+	var index;
+	var temporaryKnowledgeDimension;
 
-	for (var techniqueIndex = 0; techniqueIndex < data.assessmentTechInstance.length; techniqueIndex++) {
-		var assessmentPlan = data.assessmentTechInstance[techniqueIndex];
+	for (techniqueIndex = 0; techniqueIndex < data.assessmentTechInstance.length; techniqueIndex++) {
+		assessmentPlan = data.assessmentTechInstance[techniqueIndex];
 
-		// FIXME this looks like it access the last element, why not access directly
-		var techniqueKnowledgeDimension = '';
-		for (var knowledgeDimenisionIndex = 0; knowledgeDimenisionIndex < assessmentPlan.knowledgeDimension.length; knowledgeDimenisionIndex++) {
+		// FIXME this looks like it access the last element, why not access directly?
+		techniqueKnowledgeDimension = '';
+		for (knowledgeDimenisionIndex = 0; knowledgeDimenisionIndex < assessmentPlan.knowledgeDimension.length; knowledgeDimenisionIndex++) {
 			techniqueKnowledgeDimension = assessmentPlan.knowledgeDimension[knowledgeDimenisionIndex].id;
 		}
 
-		var knowledgeDimension = '';
-		// FIXME domain catgory is never assigned
-		var domainCategory = '';
-		// FIXME learning domain is never assigned
-		var learningDomain = '';
-
-		for (var index1 = 0; index1 < data.knowledgeDimensions.length; index1++) {
-			var temporaryKnowledgeDimension = data.knowledgeDimensions[index1];
+		for (index = 0; index < data.knowledgeDimensions.length; index++) {
+			temporaryKnowledgeDimension = data.knowledgeDimensions[index];
 
 			if (temporaryKnowledgeDimension.id === techniqueKnowledgeDimension) {
 				knowledgeDimension = temporaryKnowledgeDimension.description;
-
-				// FIXME what is this for?
-				alert('final X::' + knowledgeDimension);
 			}
 			allAssessmentData += '<div id="' + assessmentPlan.id + '">';
 			allAssessmentData += '  <span>';
@@ -375,6 +370,7 @@ filterAssessmentTechniques();
 $('#filter-assessment-techniques').accordion();
 
 $('#favorites').click(function () {
+	'use strict';
 	$('.favDiv').css('visibility', 'visible');
 	$('.favDiv').css('display', 'block');
 	$('#assessmentFavorites').css('visibility', 'visible');
@@ -387,6 +383,7 @@ $('#favorites').click(function () {
 });
 
 $('#unfavorites').click(function () {
+	'use strict';
 	$('.favDiv').css('visibility', 'hidden');
 	$('.favDiv').css('display', 'none');
 	$('#assessmentFavorites').css('visibility', 'hidden');
@@ -427,12 +424,14 @@ $('#assessment-plan-button').on('click', openAssessmentPlanModal);
 
 // Clicking on edit and View in display technique modal
 $('#Edit').click(function () {
+	'use strict';
 	$('#View').show();
 	$('.allInputs').show();
 	$('.allspans1').hide();
 });
 
 $('#View').click(function () {
+	'use strict';
 	$('.allInputs').hide();
 	$('.allspans1').show();
 });

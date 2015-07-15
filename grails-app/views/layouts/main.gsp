@@ -100,7 +100,13 @@ this is the basic layout with only the IMOD header and footer
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
-			Copyright &copy; 2015 IMOD&trade;
+			Copyright &copy; 2015 IMODS&trade;
+		</div>
+
+		<div id="save-before-leaving" title="Please Save">
+			<p>
+				Please save before proceeding to next page.
+			</p>
 		</div>
 
 		<g:if env="developments">

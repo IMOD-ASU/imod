@@ -30,11 +30,11 @@
 			<br/>
 
 			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" id="selected-action-word-category" />
-			
+
 			<label for="action-word-category" class="action-word-category">
 				Action Word Category
 			</label>
-			
+
 			<br>
 			<div class="icons assign">
 				<g:each var="actionWordCategory" in="${actionWordCategoryList.actionWordCategory}" status="i">
@@ -52,7 +52,13 @@
 				</option>
 			</select>
 			<br/>
-			<input name="customActionWord" type="text" id="custom-action-words" value="Enter the details here" style="margin-bottom:10px;width:170px">
+			<input name="customActionWord" type="text" id="custom-action-words" value="Enter the details here" style="margin-bottom:5px;width:180px">
 		</g:form>
+
+		<div id="please-select-action-word" title="Please Select Action Word">
+            <p>
+                Please select an action word or select --Other-- field at the end of list
+            </p>
+        </div>
 	</body>
 </html>
