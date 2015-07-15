@@ -4,10 +4,6 @@ sudo: false
 
 jdk: oraclejdk8
 
-cache:
-  directories:
-    - ~/.grails
-
 before_script:
   - npm install -g bower eslint
 
