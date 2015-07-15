@@ -1,4 +1,4 @@
-# .gitignore for imods
+# .gitignore for Grails 3.0
 
 ### Node ###
 node_modules
@@ -7,10 +7,13 @@ node_modules
 bower_components
 
 
-### Grails 2.5 ###
+### Grails 3.0 ###
 # ignore static analysis report
 static-analysis.txt
 static-analysis.html
+
+.gradle
+build/
 
 # web application files
 /web-app/WEB-INF/classes
