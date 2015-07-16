@@ -159,9 +159,9 @@
 				class="save showHoverNew resourceButton"
 				action="save"
 				id="saveResource"
-				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Finish")}"
+				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 			>
-				${message(code: 'Save Resource', default: ' Finish')}
+				${message(code: 'Save Resource', default: ' Save')}
 			</button>
 		</span>
 		<span class="resourceButtonGradient cancelBG">

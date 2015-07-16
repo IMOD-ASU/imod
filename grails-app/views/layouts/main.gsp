@@ -61,20 +61,18 @@ this is the basic layout with only the IMOD header and footer
 	<body>
 		<div id="imodlogo" role="banner" style="background-color:#0C1625;">
 			<a href="${createLink(uri: '/')}">
-				<g:img dir="images" file="colorsignature_sml.png" id="imod-logo" alt="imod"/>
+				<g:img dir="images" file="imods_white_condensed.png" id="imod-logo" alt="imod"/>
 			</a>
 			<span>
 				<a class="banner-imod" href="${createLink(uri: '/imod')}">
 					<g:message code="My i-mods"/>
 				</a>
 				<a class="banner-home" href="${createLink(uri: '/')}">
-					<g:img dir="images" file="home_sm.png" class="resize-home"/>
-					<g:message code="default.home.label"/>
+					<g:img dir="images" file="home_sm.png" class="resize-home"/><g:message code="default.home.label"/>	
 				</a>
 				<nobr>
 					<div id="login-link-container" class="banner-link">
 						<sec:ifLoggedIn>
-						<g:img dir="images" file="home_sm.png" class="resize-home"/>
 							<g:img dir="images" file="user_sm.png" class="resize-home"/>
 							<sec:username/>
 							<a href='${createLink(uri: '/logout')}' id='logout-link' class='banner-link'>

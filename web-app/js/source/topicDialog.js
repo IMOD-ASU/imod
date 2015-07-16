@@ -522,10 +522,19 @@ function deleteResource (resourceIDs) {
 $(
 	function () {
 		'use strict';
+		var savedData = true;
 		// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
-		$('#addTopic').click(addTopic);
-		$('#saveTopic').click(saveTopic);
+		$('#addTopic').click(
+			function () {
+				savedData = false;
+				addTopic();
+			});
+		$('#saveTopic').click(
+			function () {
+				savedData = false;
+				saveTopic();
+			});
 		$('#cancelTopic').click(
 			function () {
 				revertChanges();
@@ -624,5 +633,17 @@ $(
 				highlightUnsaved(id);
 			}
 		);
+
+
+		$('#save-before-leaving').dialog({
+			autoOpen: false
+		});
+
+		$('#a, #b, #d, #e').click(function (event) {
+			if (savedData === false) {
+				event.preventDefault();
+				$('#save-before-leaving').dialog('open');
+			}
+		});
 	}
 );

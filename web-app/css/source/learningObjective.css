@@ -20,7 +20,7 @@ input[disabled='disabled'] {
 
 .learning-objective.list-item {
     padding: 5px;
-
+    font-weight: bold;
     list-style-type: none;
 
     border-bottom: 1px solid #707070;
@@ -28,7 +28,7 @@ input[disabled='disabled'] {
 
 .learning-objective.list-item.active {
     background-color: #808080;
-
+    font-weight: bold;
     font-color: #00ff00;
 }
 
@@ -66,7 +66,7 @@ input[disabled='disabled'] {
 .learning-objective.definition-display.active,
 .learning-objective.definition-edit.active {
     display: block;
-
+    font-weight: bold;
     text-align: center;
 }
 

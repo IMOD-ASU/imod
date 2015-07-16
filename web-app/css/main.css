@@ -788,6 +788,8 @@ a.banner-link {
 #imod-logo {
     position: relative;
     right: -25px;
+    width: 116px;
+    height: 41px;
 }
 .add {
     text-indent: 25px;
