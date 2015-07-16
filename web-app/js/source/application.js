@@ -78,7 +78,7 @@ $(document).ready(function () {
 	});
 
 	$('.ui-tabs-nav.ui-widget-header.ui-corner-all > li > a').click(function (event) {
-		if ($('meta[name="imod-is-saved"]').attr('value') === 'false') {
+		if ($('meta[name="imod-is-saved"]').attr('value') === false) {
 			event.preventDefault();
 			$('#save-before-leaving').dialog('open');
 		}

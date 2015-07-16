@@ -322,8 +322,14 @@ $(document).ready(
 			}
 		});
 		if ($('#contentTree').length) {
-			$('#contentTree').sortable();
-
+			// $('#contentTree').sortable();
+			$('#contentTree').sortable({
+				onDrop: function ($item, container) {
+					$item.removeClass(container.group.options.draggedClass).removeAttr('style');
+					$('body').removeClass(container.group.options.bodyClass);
+					savedData = false;
+				}
+			});
 			$('.delete-topic').click(function () {
 				$('#confirm-remove-content').dialog('open');
 				return false;

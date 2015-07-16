@@ -55,7 +55,7 @@
 
 					<g:render template="/pedagogy/filter" />
 				</td>
-				<td></td>
+				<td width="15px"></td>
 				<td>
 					<!-- body of the page -->
 					<table>
@@ -68,10 +68,12 @@
 
 												<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 												<button id="add-new-technique-button">
+													<i class="fa fa-plus"></i>
 													Add New Technique
 												</button>
 
-												<button id="newTechnique" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}">
+												<button id="favorites-button" class="showHover" title="${Help.toolTip('PEDAGOGY', 'Favorites')}">
+													<i class="fa fa-star"></i>
 													Favorites
 												</button>
 
@@ -81,9 +83,9 @@
 											</span>
 										</div>
 										<br>
-										<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
-
-										<ul class="learning-objective sub-nav">
+										<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
+										<g:img class="pedagogy type-icon" id="performance-tab" dir="images" file="content.png" alt="Content"/>
+										<!--<ul class="learning-objective sub-nav">
 											<li class="performance active">
 												Performance
 											</li>
@@ -96,7 +98,7 @@
 											<li class="criteria active">
 												Criteria
 											</li>
-										</ul>
+										</ul>-->
 
 										<div id="selectedFilter">
 											${selectionLine}

@@ -137,3 +137,19 @@ select[disabled][disabled] {
 .pedagogy.type-icon {
      vertical-align: text-bottom;
 }
+
+#add-new-technique-button i,
+#favorites-button i {
+    padding: 2px;
+
+    vertical-align: middle;
+
+    color: darkblue;
+
+    font-size: 1em;
+
+    size: 1em;
+}
+#favorites-button i {
+    color: gold;
+}

@@ -44,7 +44,7 @@
 				</g:each>
 			</div>
 			<label for="action-words" class="action-words">
-			Action Words
+			Action Word
 			</label>
 			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" style="margin-bottom:5px;width:180px">
 				<option>
