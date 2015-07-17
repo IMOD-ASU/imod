@@ -130,7 +130,7 @@ filterPedagogyTechniques();
 
 // The filters for the pedagogy technique are wrapped in a accordian
 $('#filter-pedagogy-techniques').accordion();
-
+$('#ideal-matches-toggle').accordion();
 // Add hide the add new technique modal
 $('#add-new-technique').dialog({
 	autoOpen: false
