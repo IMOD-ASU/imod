@@ -4,12 +4,14 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 function isValidEmailAddress (emailAddress) {
 	'use strict';
 	var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+
 	return pattern.test(emailAddress);
 }
 
 function isValidUrl (url) {
 	'use strict';
 	var pattern = new RegExp(/^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i);
+
 	return pattern.test(url);
 }
 
@@ -71,16 +73,12 @@ function compareStartEndTimes () {
 	// Check if end time is greater than start time
 	var startHour = $('#schedule-start-time_hour').val();
 	var startMinute = $('#schedule-start-time_minute').val();
-
 	var endHour = $('#schedule-end-time_hour').val();
 	var endMinute = $('#schedule-end-time_minute').val();
-
 	var currentDate = new Date();
-
 	var year = currentDate.getYear();
 	var month = currentDate.getMonth();
 	var day = currentDate.getDate();
-
 	var startTime = new Date(year, month, day, startHour, startMinute);
 	var endTime = new Date(year, month, day, endHour, endMinute);
 	var startYear = parseInt($('#schedule-start-date_year').val(), 10);
@@ -89,11 +87,10 @@ function compareStartEndTimes () {
 	var endMonth = parseInt($('#schedule-end-date_month').val(), 10);
 	var startDay = parseInt($('#schedule-start-date_day').val(), 10);
 	var endDay = parseInt($('#schedule-end-date_day').val(), 10);
-
 	var startDate = 365 * startYear + 31 * startMonth + startDay;
 	var endDate = 365 * endYear + 31 * endMonth + endDay;
-
 	var errorLabel;
+
 	$('#time-error').remove();
 	$('#date-error').remove();
 
@@ -106,7 +103,7 @@ function compareStartEndTimes () {
 
 	$('#time-error').remove();
 
-	if (endTime <startTime) {
+	if (endTime < startTime) {
 		errorLabel = '<div  class="errorcontain"><label id="time-error" class="error">End time has to be greater than start time</label></div>';
 		$('#schedule-end-time_hour').parent().append(errorLabel);
 		return false;
@@ -178,6 +175,7 @@ $(document).ready(
 			buttons: {
 				yes: function () {
 					var ids = [];
+
 					$(this).dialog('close');
 
 					$('.instructor-list').find('.topicListRow.selected').each(
@@ -290,6 +288,7 @@ $(document).ready(
 		$('.topicButtonGradient .add').click(
 			function () {
 				var row = '';
+
 				row += '<tr class="topicListRow">';
 				row += '<td class="saveIcon">';
 				row += '	<i class="fa fa-square-o"></i>';
@@ -386,6 +385,7 @@ $(document).ready(
 		$('.timeFields').find('select').change(
 			function () {
 				var isValid = compareStartEndTimes();
+
 				if (!isValid) {
 					return false;
 				}
@@ -395,6 +395,7 @@ $(document).ready(
 		$('.dateFields').find('select').change(
 			function () {
 				var isValid = compareStartEndTimes();
+
 				if (!isValid) {
 					return false;
 				}

@@ -10,6 +10,7 @@ function openNewPedagogyTechniqueModal () {
 function populatePedagogyTechnique (data) {
 	'use strict';
 	var currentTechnique = data.pedagogyTechnique;
+
 	// Set the text fields
 	$('#title').val(currentTechnique.title);
 	$('#location').val(currentTechnique.location);
@@ -88,12 +89,10 @@ function filterPedagogyTechniques () {
 	var selectedKnowledgeDimensions = $('input[name=knowledgeDimension]:checked');
 	var selectedLearningDomains = $('input[name=learningDomain]:checked');
 	var selectedDomainCategories = $('input[name=domainCategory]:checked');
-
 	// Arrays to store the data
 	var selectedKnowledgeDimensionsData = [];
 	var selectedLearningDomainsData = [];
 	var selectedDomainCategoriesData = [];
-
 	var index;
 	var data;
 

@@ -62,6 +62,7 @@ $(document).ready(function () {
 		var helpbox = $('#help-placeholder');
 		var helpbox2 = $('#help-placeholder-2');
 		var tabContainer = $('#tabs-container');
+
 		if (helpbox.css('display') === 'block') {
 			helpbox.css('display', 'none');
 			helpbox2.css('display', 'block');
