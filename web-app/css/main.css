@@ -20,6 +20,9 @@ textarea {
 .tabs-background {
     height: 4em;
 }
+.knowledge-dim-label{
+	font-size: large;
+}
 
 .ui-widget-header {
     border: none;
@@ -1272,6 +1275,10 @@ label[for=weekdays] {
     background-color: #f5f5f5;
 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+#select-resource{
+
+z-index:99999;
 }
 
 #qtip-place::-webkit-scrollbar {
