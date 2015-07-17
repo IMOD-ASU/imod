@@ -96,7 +96,6 @@ function compareStartEndTimes () {
 	var errorLabel;
 	$('#time-error').remove();
 	$('#date-error').remove();
-	alert(endTime);
 
 	if (endDate < startDate) {
 		$('#time-error').remove();
