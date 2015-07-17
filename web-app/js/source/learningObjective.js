@@ -115,8 +115,8 @@ function populateActionWordCategories () {
 			var actionWordCategories = data.value;
 			// This will temporarily store the html for the categories
 			var actionWordCategoriesHTML = '';
-
 			var index;
+
 			// For each category
 			for (index = 0; index < actionWordCategories.length; index++) {
 				// Create the html
@@ -171,6 +171,7 @@ function populateDomainCategories () {
 			// This stores the new html that will be added
 			var options = '';
 			var index;
+
 			// For each of the categories
 			for (index = 0; index < categories.length; index++) {
 				// Create the html for the category
@@ -188,15 +189,18 @@ function populateDomainCategories () {
 function propagateToDefinition (value, type) {
 	'use strict';
 	var definitionType = '.learning-objective-current .learning-objective-' + type;
+
 	$(definitionType).text(value);
 }
 
 function getMinHeight (liArray) {
 	'use strict';
 	var minHeight = Math.floor(liArray.eq(0).height());
+
 	liArray.each(
 		function () {
 			var refineText;
+
 			if (Math.floor($(this).height()) < minHeight) {
 				minHeight = Math.floor($(this).height());
 			}
@@ -337,6 +341,7 @@ $(document).ready(
 
 			$('.sub-content-tree').click(function () {
 				var item = $(this);
+
 				savedData = false;
 				if (item.find('.checkbox').hasClass('fa-check')) {
 					item.parent().find('.checkbox').removeClass('fa-check');
@@ -350,9 +355,7 @@ $(document).ready(
 			$('#save-content').click(function () {
 				var parents = [];
 				var idArray = [];
-
 				var content = getTreeChildren($('#contentTree > li'), parents, idArray);
-
 				var obj = {
 					topics: content[0],
 					idArray: content[1],
