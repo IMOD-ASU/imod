@@ -4,6 +4,7 @@
 function openNewPedagogyTechniqueModal () {
 	'use strict';
 	$('#techniqueId').val('');
+	$('#topicDialogBackground').css('display', 'block');
 	$('#add-new-technique').dialog('open');
 }
 
@@ -143,3 +144,8 @@ $('input[name=domainCategory]').on('change', filterPedagogyTechniques);
 
 // When add new technique button is clicked open modal
 $('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
+
+$(document).on('click', '.ui-dialog-titlebar-close', function () {
+	'use strict';
+	$('.modalBackground').hide();
+});
