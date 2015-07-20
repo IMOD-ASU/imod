@@ -32,7 +32,7 @@
 				</ul>
 			</g:hasErrors>
 		</div>
-
+		<div id="topicDialogBackground" class="modalBackground"></div>
 		<!-- Adding the  table layout as in Learning objective page -->
 		<table class="learning-objective inner-table">
 			<tr>
