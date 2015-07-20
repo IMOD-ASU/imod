@@ -472,7 +472,7 @@ input[disabled='disabled'] {
 
 #topicDialog {
     position: fixed;
-    z-index: 2;
+    z-index: 9999;
     top: 30%;
     left: 15%;
 
@@ -620,7 +620,7 @@ input[disabled='disabled'] {
 }
 #selectKnowledgeDimensions {
     position: fixed;
-    z-index: 4;
+    z-index: 1000;
     top: 33%;
     left: 40%;
 

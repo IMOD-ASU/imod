@@ -17,6 +17,7 @@ function hideTopicDialog () {
 function flashError () {
 	'use strict';
 	var message = errorMessages.shift();
+
 	$('#errorMessage').text(message);
 	$('#errorMessage')
 		.fadeIn('fast')
@@ -45,10 +46,11 @@ function errorMessage (message) {
 function changePic () {
 	'use strict';
 	var iconName = '';
+
 	$('#selectKnowledgeDimensions').find('input:checkbox').each(
 		function () {
 			if ($(this).prop('checked')) {
-				iconName = iconName + $(this).val().charAt(0);
+				iconName += $(this).val().charAt(0);
 			}
 		}
 	);
@@ -139,7 +141,6 @@ function openDimModal () {
 	var dimensionList = [];
 	var dialog = $('#selectKnowledgeDimensions');
 	var background = $('#selectKnowledgeDimensionBackground');
-
 	var index;
 	var findCheckBox;
 
@@ -177,11 +178,13 @@ function getResource () {
 			var resources = data.resources;
 			var resourceTypes = data.resourceTypes;
 			var index;
+
 			for (index = 0; index < resourceTypes.length; index++) {
 				resourceOptions += '<option value="' + resourceTypes[index] + '">' + resourceTypes[index] + '</option>';
 			}
 			$.each(resources, function (key, value) {
 				var id = value.id;
+
 				// FIXME move html out of JS
 				$('<tr id="' + id + '" class="resourceItem">' +
 					'<td class="saveIcon">' +
@@ -250,6 +253,7 @@ function saveTopic () {
 	var contentData = [];
 	var hasError = false;
 	var topicList = [];
+
 	$('#topicList tbody tr').each(
 		function () {
 			var contentID = this.id;
@@ -257,6 +261,7 @@ function saveTopic () {
 			var dimensions = $('#knowDimensionList' + contentID).val();
 			var priority = $('#topicPriority' + contentID).val();
 			var preReq = $('#topicPreReq' + contentID).is(':checked');
+
 			if (dimensions === '') {
 				errorMessage('Topic: ' + topicTitle + ' must have a Knowledge Dimension!');
 				hasError = true;
@@ -300,7 +305,8 @@ function saveTopic () {
 function getTopicSavedItems (currentRow) {
 	'use strict';
 	var topicID = currentRow.id;
-	var rowData = {
+
+	return {
 		title: $('#topicTitle' + topicID),
 		titleSaved: $('#topicTitleSaved' + topicID),
 		dimensions: $('#knowDimensionList' + topicID),
@@ -310,7 +316,6 @@ function getTopicSavedItems (currentRow) {
 		preReq: $('#topicPreReq' + topicID),
 		preReqSaved: $('#topicPreReq' + topicID)
 	};
-	return rowData;
 }
 
 function revertChanges () {
@@ -352,6 +357,7 @@ function revertChanges () {
 function addTopic () {
 	'use strict';
 	var imodID = $('#imodID').val();
+
 	$.ajax({
 		url: '../../content/addNewTopic',
 		type: 'GET',
@@ -417,6 +423,7 @@ function addTopic () {
 function addResource () {
 	'use strict';
 	var contentID = content.split('topicResources');
+
 	contentID = contentID[1];
 	$.ajax({
 		url: '../../content/addResource',
@@ -431,6 +438,7 @@ function addResource () {
 			var resourceOptions = '';
 			var resourceDiv = $('#resourceList tbody');
 			var index;
+
 			for (index = 0; index < resources.length; index++) {
 				resourceOptions += '<option value="' + resources[index] + '">' + resources[index] + '</option>';
 			}
@@ -460,12 +468,14 @@ function saveResource () {
 	var imodID = $('#imodID').val();
 	var resourceData = [];
 	var hasError = false;
+
 	$('#resourceList tbody tr').each(
 		function () {
 			var resourceID = this.id;
 			var resourceName = $('#resourceName' + resourceID).val();
 			var resourceDescription = $('#resourceDescription' + resourceID).val();
 			var resourceType = $('#resourceType' + resourceID).val();
+
 			if (resourceDescription === '') {
 				errorMessage('Resource: ' + resourceName + ' must have a Description!');
 				hasError = true;
@@ -523,6 +533,7 @@ $(
 	function () {
 		'use strict';
 		var savedData = true;
+
 		// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(
@@ -551,6 +562,7 @@ $(
 		$('#removeResource').click(
 			function () {
 				var resourceIDs = [];
+
 				$('#resourceList .selected').each(
 					function () {
 						resourceIDs.push(this.id);
@@ -562,6 +574,7 @@ $(
 		$('#removeTopic').click(
 			function () {
 				var contentIDs = [];
+
 				$('#topicList .selected').each(
 					function () {
 						contentIDs.push(this.id);
@@ -622,6 +635,7 @@ $(
 			'input',
 			function () {
 				var id = $(this).parents('tr .topicItem').attr('id');
+
 				highlightUnsaved(id);
 			}
 		);
@@ -630,6 +644,7 @@ $(
 			'select',
 			function () {
 				var id = $(this).parents('tr .topicItem').attr('id');
+
 				highlightUnsaved(id);
 			}
 		);
