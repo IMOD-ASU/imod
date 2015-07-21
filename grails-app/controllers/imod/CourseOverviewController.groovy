@@ -17,7 +17,7 @@ class CourseOverviewController {
 			currentPage: 'course overview'
         ]
 	}
-	
+
 
     def create() {
 
@@ -43,7 +43,7 @@ class CourseOverviewController {
                     officeHours: officeHours,
                     webPage: webPage,
                     location: location,
-                    createdBy: params.imod_id
+                    createdBy: params.imodId
                 )
 
                 // save new instructor and the updated user to database

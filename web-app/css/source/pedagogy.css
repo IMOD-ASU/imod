@@ -1,135 +1,122 @@
-.ui-dialog {
-    width: 800px !important;
+.ui-dialog{
+    position: fixed;
+    z-index: 2;
+    top: 10%;
+    left: 30%;
+
+    display: none;
+
+    width: 550px !important;
+
+    border: 1px solid #c4c2c2;
+    background: #ededef;
 }
 
-.ui-dialog-title {
-    color: black;
+.favDiv {
+    display: none;
+    visibility: hidden;
 }
 
-select[disabled][disabled] {
-    cursor: inherit;
-
-    color: GrayText;
-    background-color: ThreeDFace;
+#unfavorites {
+    display: none;
 }
 
-.smallblackarea {
-    position: absolute;
-    top: 50px;
-    left: 25px;
-
-    display: inline-block;
-
-    width: 100px;
-    margin-top: 0;
-    margin-right: 0;
-    padding: 5px;
-
-    font-family: arial;
-    font-size: 12px;
-    font-weight: bold;
+#pedagogyFavorites {
+    display: none;
+    visibility: hidden;
 }
 
-.imgblock {
+#pedagogyFavoritesDiv {
+    display: none;
+    visibility: hidden;
+}
+
+
+.no-objective-defined {
+    text-align: center;
+    vertical-align: middle;
+
+    opacity: 0.5;
+    background: #cccccc;
+}
+
+.pedagogy-page-buttons {
+    height: 50px;
+
+    text-align: center;
+}
+
+.pedagogy-page-buttons-disabled {
+    height: 50px;
+
+    text-align: center;
+    vertical-align: middle;
+    pointer-events: none;
+
+    opacity: 0.5;
+    background: #cccccc;
+}
+
+.video-control {
+    text-align: center;
+}
+
+.video-center {
+    margin: 0 auto;
+}
+
+.learning-objective.definition-cell {
+    height: 5em;
+    min-height: 2em;
+    padding-right: 0;
+
+    text-align: center;
+
+    border: 1px solid #c4c2c2;
+    border-radius: 5px;
+}
+
+#add-new-technique-button i,
+#favorites-button i {
+    padding: 2px;
+
+    vertical-align: middle;
+
+    color: darkblue;
+
+    font-size: 1em;
+
+    size: 1em;
+}
+#favorites-button i {
+    color: gold;
+}
+
+.pedagogy.type-icon {
     position: relative;
-
-    display: block;
-    float: left;
-
-    width: 140px;
-    height: 140px;
-    padding: 10px;
+    left: -45px;
+    display: inline-block;
+    float: center;
 }
 
-.ui-tooltip,
-.arrow:after {
-    border: 0.5px solid black;
-    background: white;
+.new-technique-popup-button{
+    top: 0;
+    color: #ffffff;
+    background: #0a1629;
+    background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
 }
-
-.ui-tooltip {
-    padding: 5px 10px;
-
-    font: bold 12px 'Helvetica Neue', Sans-Serif;
+#ideal-matches{
+    height: 300px;
 }
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
 
-.arrow {
-    position: absolute;
-    bottom: -16px;
-    left: 50%;
+    display: none;
 
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
 
-    width: 70px;
-    height: 16px;
-    margin-left: -35px;
-}
-
-.arrow.top {
-    top: -16px;
-    bottom: auto;
-}
-
-.arrow.left {
-    left: 20%;
-}
-
-.arrow:after {
-    position: absolute;
-    top: -20px;
-    left: 20px;
-
-    width: 25px;
-    height: 25px;
-
-    content: '';
-
-    box-shadow: 6px 5px 9px -9px black;
-
-    tranform: rotate(45deg);
-}
-
-.arrow.top:after {
-    top: auto;
-    bottom: -20px;
-}
-
-.graphErrorMessage {
-    margin: 120px;
-
-    font-weight: bold;
-}
-
-.treeEmptyMessage {
-    margin: 21px;
-    padding-top: 81px;
-
-    font-weight: bold;
-}
-
-.topicScheduleEmptyMessage {
-    margin: 15px;
-    padding-top: 107px;
-
-    font-weight: bold;
-}
-
-.firstChapter {
-    background-color: #e8e8e8 !important;
-}
-
-.greyBackColor {
-    background-color: #a9a9a9;
-}
-
-.qtip {
-    width: 196px !important;
-    margin-top: 15px;
-}
-
-.pc3_hover {
-    height: 50px !important;
-    margin-top: 15px;
-
-    background-color: #a9a9a9;
+    background-color: rgba(0,0,0,0.5);
 }

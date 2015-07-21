@@ -84,8 +84,8 @@
 	</table>
 	<fieldset id="topicModalClose" class="buttons topicButtonField">
 		<span class="topicButtonGradient saveBG">
-			<button class="save show-hover-new topicButton" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Finish")}">
-				${message(code: 'Save Topic', default: ' Finish')}
+			<button class="save show-hover-new topicButton" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}">
+				${message(code: 'Save Topic', default: ' Save')}
 			</button>
 		</span>
 		<span class="topicButtonGradient cancelBG">
@@ -118,6 +118,9 @@
 	</span>
 	<button id="knowDimFinished" type="button">
 		Save
+	</button>
+	<button id="closeKnowDim" type="button">
+	Close
 	</button>
 </div>
 <div id="selectResourceBackground" class="modalBackground">
@@ -159,9 +162,9 @@
 				class="save showHoverNew resourceButton"
 				action="save"
 				id="saveResource"
-				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Finish")}"
+				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 			>
-				${message(code: 'Save Resource', default: ' Finish')}
+				${message(code: 'Save Resource', default: ' Save')}
 			</button>
 		</span>
 		<span class="resourceButtonGradient cancelBG">

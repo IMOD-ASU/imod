@@ -20,6 +20,9 @@ textarea {
 .tabs-background {
     height: 4em;
 }
+.knowledge-dim-label{
+	font-size: large;
+}
 
 .ui-widget-header {
     border: none;
@@ -316,7 +319,7 @@ label {
 
     cursor: pointer;
 }
-.domain-category-list{
+.domain-category-list {
     display: inline-block;
 
     margin: 0 0.25em 0 3em;
@@ -325,6 +328,13 @@ label {
 }
 .action-words {
     display: inline-block;
+
+    margin: 0 0.25em 0 3em;
+
+    cursor: pointer;
+}
+.additional-tip{
+	display: inline-block;
 
     margin: 0 0.25em 0 3em;
 
@@ -781,6 +791,8 @@ a.banner-link {
 #imod-logo {
     position: relative;
     right: -25px;
+    width: 116px;
+    height: 41px;
 }
 .add {
     text-indent: 25px;
@@ -880,6 +892,7 @@ p {
     	height: 90%;
     	margin: 0 1em 1em;
     }
+
 
     #page-body h1 {
     	margin-top: 0;
@@ -1072,8 +1085,6 @@ img.tab-icon {
     margin-left: 2.5%;
 
     font-size: 14px;
-
-
 }
 
 a.ui-tabs-anchor {
@@ -1081,33 +1092,37 @@ a.ui-tabs-anchor {
 }
 
 
-.ui-tabs .ui-tabs-nav{
+.ui-tabs .ui-tabs-nav {
     padding: 0;
+
     list-style: none outside none;
+
     white-space: nowrap;
 }
 
 
 .ui-tabs-nav li {
+    display: inline;
+
     height: 43px;
+
     border-top-left-radius: 5px 5px;
     border-top-right-radius: 5px;
-    display:inline;
 }
 
-#a{
+#a {
     width: 20%;
 }
-#b{
+#b {
     width: 23%;
 }
-#c{
+#c {
     width: 16%;
 }
-#d{
+#d {
     width: 19%;
 }
-#e{
+#e {
     width: 16%;
 }
 
@@ -1212,6 +1227,7 @@ a.ui-tabs-anchor {
     min-width: 12em;
 }
 
+
 .list-imod-body {
     overflow-y: scroll;
 
@@ -1229,7 +1245,7 @@ a.ui-tabs-anchor {
 
 label[for=weekdays] {
     width: 4%;
-    margin-left: 0%;
+    margin-left: 0;
 }
 
 #grading-procedure-text {
@@ -1260,6 +1276,10 @@ label[for=weekdays] {
 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
+#select-resource{
+
+z-index:99999;
+}
 
 #qtip-place::-webkit-scrollbar {
     width: 8px;
@@ -1273,4 +1293,47 @@ label[for=weekdays] {
     background-color: #ebeb35;
 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+/**
+Class for error message as label
+**/
+.errorcontain {
+    margin-top: 1em;
+}
+
+.errorcontain label,
+.errorcontain .property-label {
+    width: 60%;
+
+    text-align: right;
+
+
+}
+
+.errorcontain .property-label {
+    float: left;
+}
+
+.errorcontain .property-value {
+    display: block;
+
+    margin-left: 20%;
+}
+
+.errorcontain {
+    margin-right: -5em;
+    padding: 0 0 0 10px;
+}
+
+
+.errorcontain label,
+.errorcontain .property-label {
+    margin-left: 32px;
+
+    text-align: left;
+}
+
+.errorcontain {
+    margin-right: 0;
 }

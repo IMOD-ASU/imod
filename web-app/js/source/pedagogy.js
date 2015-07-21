@@ -1,15 +1,17 @@
-'use strict';
-
 /**
  * Opens the modal to create a new pedagogy technique
  */
-function openNewPedagogyTechniqueModal() {
+function openNewPedagogyTechniqueModal () {
+	'use strict';
 	$('#techniqueId').val('');
+	$('#topicDialogBackground').css('display', 'block');
 	$('#add-new-technique').dialog('open');
 }
 
-function populatePedagogyTechnique(data) {
+function populatePedagogyTechnique (data) {
+	'use strict';
 	var currentTechnique = data.pedagogyTechnique;
+
 	// Set the text fields
 	$('#title').val(currentTechnique.title);
 	$('#location').val(currentTechnique.location);
@@ -24,7 +26,8 @@ function populatePedagogyTechnique(data) {
 	$('.domainCategory option[value=' + currentTechnique.domainCategory[0].id + ']').prop('selected', true);
 }
 
-function displayPedagogyInformationInEdit() {
+function displayPedagogyInformationInEdit () {
+	'use strict';
 	$('#techniqueId').val($('label.ui-state-active').attr('for'));
 	$.ajax({
 			url: '../../pedagogyTechnique/get/' + $('label.ui-state-active').attr('for'),
@@ -37,16 +40,20 @@ function displayPedagogyInformationInEdit() {
  * Callback for find matching techniques grails action
  * this takes the json data and processes it into html code
  */
-function displayPedagogyTechniques(data) {
+function displayPedagogyTechniques (data) {
+	'use strict';
 	var idealText = '';
+	var index;
+	var currentTechnique;
+	var extendedText = '';
+
 	// Take the titles and make html code to display
-	for (var index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
-		var currentTechnique = data.idealPedagogyTechniqueMatch[index];
+	for (index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
+		currentTechnique = data.idealPedagogyTechniqueMatch[index];
 		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
 		idealText += '<label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
 	}
 
-	var extendedText = '';
 	// Take the titles and make html code to display
 	for (index = 0; index < data.extendedPedagogyTechniqueMatch.length; index++) {
 		currentTechnique = data.extendedPedagogyTechniqueMatch[index];
@@ -77,19 +84,21 @@ function displayPedagogyTechniques(data) {
  * Reads which filters are selected and sends information to server to update
  * visible pedagogy techniques
  */
-function filterPedagogyTechniques() {
+function filterPedagogyTechniques () {
+	'use strict';
 	// Get all of the selected checkboxes
 	var selectedKnowledgeDimensions = $('input[name=knowledgeDimension]:checked');
 	var selectedLearningDomains = $('input[name=learningDomain]:checked');
 	var selectedDomainCategories = $('input[name=domainCategory]:checked');
-
 	// Arrays to store the data
 	var selectedKnowledgeDimensionsData = [];
 	var selectedLearningDomainsData = [];
 	var selectedDomainCategoriesData = [];
+	var index;
+	var data;
 
 	// Get the id of the grails domain from the value attribute in the html
-	for (var index = 0; index < selectedKnowledgeDimensions.length; index++) {
+	for (index = 0; index < selectedKnowledgeDimensions.length; index++) {
 		selectedKnowledgeDimensionsData[index] = selectedKnowledgeDimensions[index].value;
 	}
 	for (index = 0; index < selectedLearningDomains.length; index++) {
@@ -100,7 +109,7 @@ function filterPedagogyTechniques() {
 	}
 
 	// Bundle the data into an object
-	var data = {
+	data = {
 		selectedKnowledgeDimensions: selectedKnowledgeDimensionsData,
 		selectedLearningDomains: selectedLearningDomainsData,
 		selectedDomainCategories: selectedDomainCategoriesData
@@ -121,7 +130,7 @@ filterPedagogyTechniques();
 
 // The filters for the pedagogy technique are wrapped in a accordian
 $('#filter-pedagogy-techniques').accordion();
-
+$('#ideal-matches-toggle').accordion();
 // Add hide the add new technique modal
 $('#add-new-technique').dialog({
 	autoOpen: false
@@ -135,3 +144,8 @@ $('input[name=domainCategory]').on('change', filterPedagogyTechniques);
 
 // When add new technique button is clicked open modal
 $('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
+
+$(document).on('click', '.ui-dialog-titlebar-close', function () {
+	'use strict';
+	$('.modalBackground').hide();
+});

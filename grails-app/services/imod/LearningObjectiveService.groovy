@@ -28,7 +28,7 @@ class LearningObjectiveService {
     /**
         Remove the selected learning objective, linked to the imod
     */
-    LearningObjective remove(Imod currentImod,Long learningObjectiveID) {
+    def remove(Imod currentImod,Long learningObjectiveID) {
 
         def deletedObjective = LearningObjective.get(learningObjectiveID)
         def contentsList = []
@@ -63,8 +63,9 @@ class LearningObjectiveService {
         }
 
         deletedObjective.delete(flush:true)
-        LearningObjective objective = currentImod.learningObjectives.first()
-        return objective
+        def objectives = currentImod.learningObjectives.id
+        return objectives[0]
+
     }
 
     

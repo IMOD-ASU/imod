@@ -21,11 +21,11 @@ Please follow the [Git Flow branching model](http://nvie.com/posts/a-successful-
 <br>
 ### Code Guidelines
 ##### HTML
-HTML and GSP code should be written using [HTML5](http://www.w3schools.com/tags/default.asp) following the [Google HTML style guide](https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml) (using tabs instead of two spaces)
+HTML and GSP code should be written using [HTML5](http://www.w3schools.com/tags/default.asp) following the [Google HTML style guide](https://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml)
 
 ##### Javacript
 Javascript follows the [Yandex code style](https://github.com/yandex/codestyle/blob/master/javascript.md).
-Javascipt should pass [JShint](http://jshint.com/) static analysis and [JSCS](http://jscs.info/) style checking.
+Javascipt should pass [ESLint](http://eslint.org/) analysis and style checking.
 
 ##### CSS
 CSS follows the [Yandex code style](https://github.com/yandex/codestyle/blob/master/javascript.md).
@@ -174,7 +174,8 @@ NOTE: this is only used for reference so developers know what tools and versions
 2. Run `sudo reboot`
 3. Wait a few minutes
 4. SSH into the server again
-5. Run `sudo /opt/apache-tomcat-7.0.61/bin/startup.sh`
+5. Run `sudo /usr/local/apache2/bin/apachectl start`
+6. Run `sudo /opt/apache-tomcat-7.0.61/bin/startup.sh`
 
 ##### Recover from Travis CI depandancy lock
 Sometimes when dependancies get updated Travis CI say all builds fail.

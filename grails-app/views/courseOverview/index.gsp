@@ -69,7 +69,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="name" id = "courseName" placeholder ="New Imod" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
+                                            <g:textField name="name" id = "courseName" placeholder ="New Imods" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
@@ -79,13 +79,13 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="imodNumber" placeholder ="1" value="${currentImod?.imodNumber}" required="" id="imod-number" title="${ message( code:'imod.courseOverview.courseNumber' ) }"/>
+                                            <g:textField name="imodNumber" placeholder ="CST 100" value="${currentImod?.imodNumber}" required="" id="imod-number" title="${ message( code:'imod.courseOverview.courseNumber' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
                                             <label for="url">
                                                 <g:message code="imod.url.label" default="Course URL" />
-                                                
+
                                             </label>
                                             <g:textField name="url" id = "courseUrl" placeholder ="example.com" value="${currentImod?.url}" title="${ message( code:'imod.courseOverview.courseURL' ) }"/>
                                         </div>
@@ -119,7 +119,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:datePicker name="schedule.startDate" id="schedule-start-date" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+                                            <g:datePicker name="schedule.startDate" id="schedule-start-date" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
                                         </div>
 
                                         <div class="dateFields fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
@@ -129,7 +129,7 @@
                                                     *
                                                 </span>
                                             </label>
-                                            <g:datePicker name="schedule.endDate" id="schedule-end-date" default="none" noSelection="['':'']"precision="day" value="${currentImod?.schedule?.endDate}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+                                            <g:datePicker name="schedule.endDate" id="schedule-end-date" default="none" noSelection="['':'']"precision="day" value="${currentImod?.schedule?.endDate}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
                                         </div>
 
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
@@ -267,30 +267,36 @@
                                                 Attendance and Tardiness
                                             </h3>
                                             <div>
-                                                <g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
+												<input type="submit" name="attendanceCheck" id="attendance-box" class="attendance-check" value="Restore Default"/>
+												<g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
                                             </div>
                                             <h3>
                                                 Class Participation
                                             </h3>
                                             <div>
+											<input type="submit" name="participationCheck" id="participation-box" class="attendance-check" value="Restore Default"/>
+												
 												<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.classParticipation')}" />
                                             </div>
                                             <h3>
                                                 Professional Conduct
                                             </h3>
                                             <div>
+												<input type="submit" name="professionalConductCheck" id="professional-conduct-box" class="attendance-check" value="Restore Default"/>
                                                 <g:textArea name="professionalConduct" id="professional-conduct" value="${currentImod?.professionalConduct}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.professionalConduct')}" />
                                             </div>
                                             <h3>
                                                 Missed Exams/Make-up Exams
                                             </h3>
                                             <div>
+												<input type="submit"  name="missedExamsCheck" id="missed-exams-box" class="attendance-check" value="Restore Default"/>
                                                 <g:textArea name="missedExams" id="missed-exams" value="${currentImod?.missedExams}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedExams')}" />
                                             </div>
                                             <h3>
                                                 Missed Assignments
                                             </h3>
                                             <div>
+												<input type="submit"  name="missedAssignmentsCheck" id="missed-assignments-box" class="attendance-check" value="Restore Default"/>
                                                 <g:textArea name="missedAssignments" id="missed-assignments" value="${currentImod?.missedAssignments}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedAssignments')}" />
                                             </div>
                                         </div>
@@ -427,6 +433,24 @@
                     </fieldset>
                 </g:form>
             </div>
+        </div>
+
+        <div id="please-select-instructor" title="Please Select Instructor">
+            <p>
+                Please select an instructor to delete.
+            </p>
+        </div>
+
+        <div id="confirm-instructor-remove" title="Confirm">
+            <p>
+                Are you sure you want to delete instructors?
+            </p>
+        </div>
+
+        <div id="instructor-removed-success" title="Success">
+            <p>
+                Instructors removed successfully.
+            </p>
         </div>
     </body>
 </html>

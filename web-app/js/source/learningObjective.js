@@ -1,5 +1,3 @@
-'use strict';
-
 // Start at the beggining of the path, get the first '/' then and all the characters between that and the second '/'
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var prevKeyword = '';
@@ -10,12 +8,12 @@ var prevKeyword = '';
  * @param  {String} domain text from the action word category boxes
  * @return {XML}		Populates the page with action words
  */
-function populateActionWords(event) {
+function populateActionWords (event) {
+	'use strict';
 	if (prevKeyword === $('.icons').find('.ui-state-active').text()) {
 		return;
-	} else {
-		prevKeyword = $('.icons').find('.ui-state-active').text();
 	}
+	prevKeyword = $('.icons').find('.ui-state-active').text();
 
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWords',
@@ -28,51 +26,56 @@ function populateActionWords(event) {
 		success: function (data) {
 			var actionWordsHTML = '';
 			var flag = 0;
+			var originalActionWord;
+			var actionWordsVerb;
+			var actionWordsNoun;
+			var actionWordsAdj;
+			var index;
 
 			if (event === true) {
-				var originalActionWord = $('#action-words').val();
+				originalActionWord = $('#action-words').val();
 			}
 			actionWordsHTML += '<option selected value="select"> --Select-- </option>';
 			// Store the data from the call back
 			if (data.value !== null) {
-				if (data.value.verb !== undefined && data.value.verb !== null && data.value.verb !== '') {
-					var actionWordsVerb = data.value.verb.syn;
+				if (data.value.verb && data.value.verb !== '') {
+					actionWordsVerb = data.value.verb.syn;
 
 					// This will store the html for the action words
 					// For each action word
-					for (var i = 0; i < actionWordsVerb.length; i++) {
+					for (index = 0; index < actionWordsVerb.length; index++) {
 						// Create the html for the action word
-						if (actionWordsVerb[i] === originalActionWord) {
+						if (actionWordsVerb[index] === originalActionWord) {
 							flag = 1;
-							actionWordsHTML += '<option selected value="' + actionWordsVerb[i] + '">' + actionWordsVerb[i] + '</option>';
+							actionWordsHTML += '<option selected value="' + actionWordsVerb[index] + '">' + actionWordsVerb[index] + '</option>';
 						} else {
-							actionWordsHTML += '<option value="' + actionWordsVerb[i] + '">' + actionWordsVerb[i] + '</option>';
+							actionWordsHTML += '<option value="' + actionWordsVerb[index] + '">' + actionWordsVerb[index] + '</option>';
 						}
 					}
 				}
 
-				if (data.value.noun !== undefined && data.value.noun !== null && data.value.noun !== '') {
-					var actionWordsNoun = data.value.noun.syn;
-					for (i = 0; i < actionWordsNoun.length; i++) {
+				if (data.value.noun && data.value.noun !== '') {
+					actionWordsNoun = data.value.noun.syn;
+					for (index = 0; index < actionWordsNoun.length; index++) {
 						// Create the html for the action word
-						if (actionWordsNoun[i] === originalActionWord) {
+						if (actionWordsNoun[index] === originalActionWord) {
 							flag = 1;
-							actionWordsHTML += '<option selected value="' + actionWordsNoun[i] + '">' + actionWordsNoun[i] + '</option>';
+							actionWordsHTML += '<option selected value="' + actionWordsNoun[index] + '">' + actionWordsNoun[index] + '</option>';
 						} else {
-							actionWordsHTML += '<option value="' + actionWordsNoun[i] + '">' + actionWordsNoun[i] + '</option>';
+							actionWordsHTML += '<option value="' + actionWordsNoun[index] + '">' + actionWordsNoun[index] + '</option>';
 						}
 					}
 				}
 
-				if (data.value.adjective !== undefined && data.value.adjective !== null && data.value.adjective !== '') {
-					var actionWordsAdj = data.value.adjective.syn;
-					for (i = 0; i < actionWordsAdj.length; i++) {
+				if (data.value.adjective && data.value.adjective !== '') {
+					actionWordsAdj = data.value.adjective.syn;
+					for (index = 0; index < actionWordsAdj.length; index++) {
 						// Create the html for the action word
-						if (actionWordsAdj[i] === originalActionWord) {
+						if (actionWordsAdj[index] === originalActionWord) {
 							flag = 1;
-							actionWordsHTML += '<option selected value="' + actionWordsAdj[i] + '">' + actionWordsAdj[i] + '</option>';
+							actionWordsHTML += '<option selected value="' + actionWordsAdj[index] + '">' + actionWordsAdj[index] + '</option>';
 						} else {
-							actionWordsHTML += '<option value="' + actionWordsAdj[i] + '">' + actionWordsAdj[i] + '</option>';
+							actionWordsHTML += '<option value="' + actionWordsAdj[index] + '">' + actionWordsAdj[index] + '</option>';
 						}
 					}
 				}
@@ -88,10 +91,6 @@ function populateActionWords(event) {
 			}
 			// Display the html for the action words
 			$('#action-words').html(actionWordsHTML);
-		},
-		error: function (xhr) {
-			// When something goes wrong log to the browser console
-			console.log(xhr.responseText);
 		}
 	});
 }
@@ -102,7 +101,8 @@ function populateActionWords(event) {
  * @param  {String} domain text from the domain category select box
  * @return {XML}		Populates the page with action word categories
  */
-function populateActionWordCategories() {
+function populateActionWordCategories () {
+	'use strict';
 	$.ajax({
 		url: baseUrl + 'learningObjective/getActionWordCategories',
 		type: 'GET',
@@ -115,11 +115,13 @@ function populateActionWordCategories() {
 			var actionWordCategories = data.value;
 			// This will temporarily store the html for the categories
 			var actionWordCategoriesHTML = '';
+			var index;
+
 			// For each category
-			for (var i = 0; i < actionWordCategories.length; i++) {
+			for (index = 0; index < actionWordCategories.length; index++) {
 				// Create the html
-				actionWordCategoriesHTML += '<input type="radio" id="radio' + i + '" name="actionWordCategory" value="' + actionWordCategories[i].actionWordCategory + '">';
-				actionWordCategoriesHTML += '<label for="radio' + i + '">' + actionWordCategories[i].actionWordCategory + '</label>';
+				actionWordCategoriesHTML += '<input type="radio" id="radio' + index + '" name="actionWordCategory" value="' + actionWordCategories[index].actionWordCategory + '">';
+				actionWordCategoriesHTML += '<label for="radio' + index + '">' + actionWordCategories[index].actionWordCategory + '</label>';
 			}
 			// Display the html on the page
 			$('.icons').html(actionWordCategoriesHTML);
@@ -127,10 +129,6 @@ function populateActionWordCategories() {
 			$('.icons').buttonset();
 
 			populateActionWords();
-		},
-		error: function (xhr) {
-			// When something goes wrong log to the browser console
-			console.log(xhr.responseText);
 		}
 	});
 }
@@ -141,7 +139,8 @@ function populateActionWordCategories() {
  * @param  {String} domain text from the domain select box
  * @return {XML}		Populates the domain category box with options
  */
-function populateDomainCategories() {
+function populateDomainCategories () {
+	'use strict';
 	if ($('#learning-domain-list').val() !== 'null') {
 		$('label[for="domain-category-list"]').css('visibility', 'visible');
 		$('#domain-category-list').css('visibility', 'visible');
@@ -171,49 +170,128 @@ function populateDomainCategories() {
 			var categories = data.value;
 			// This stores the new html that will be added
 			var options = '';
+			var index;
+
 			// For each of the categories
-			for (var i = 0; i < categories.length; i++) {
+			for (index = 0; index < categories.length; index++) {
 				// Create the html for the category
-				options += '<option value="' + categories[i].name + '">' + categories[i].name + '</option>';
+				options += '<option value="' + categories[index].name + '">' + categories[index].name + '</option>';
 			}
 			// Store this to the page
 			$('#domain-category-list').html(options);
 
 			populateActionWordCategories();
-		},
-		error: function (xhr) {
-			// When something goes wrong log to the browser console
-			console.log(xhr.responseText);
 		}
 	});
 }
 
 // Add the data to the definition box, depending on which type of data it is
-function propagateToDefinition(value, type) {
+function propagateToDefinition (value, type) {
+	'use strict';
 	var definitionType = '.learning-objective-current .learning-objective-' + type;
+
 	$(definitionType).text(value);
 }
 
-function getMinHeight(liArray) {
+function getMinHeight (liArray) {
+	'use strict';
 	var minHeight = Math.floor(liArray.eq(0).height());
+
 	liArray.each(
 		function () {
+			var refineText;
+
 			if (Math.floor($(this).height()) < minHeight) {
 				minHeight = Math.floor($(this).height());
 			}
-			var refineText = $('a', this).text().replace(/[\s\t]+/g, ' ');
+			refineText = $('a', this).text().replace(/[\s\t]+/g, ' ');
 			$('a', this).text(refineText);
 		}
 	);
 	return minHeight;
 }
 
+function deleteTopicSubTab (contentIDs) {
+	'use strict';
+	$.ajax({
+		url: '../../content/deleteTopic/',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			contentIDs: JSON.stringify(contentIDs)
+		},
+		success: function () {
+			window.location.reload();
+		}
+	});
+}
+
+function getTreeChildren (list, parents, idArray) {
+	'use strict';
+	list.each(function () {
+		var item = {};
+		var myItem = $(this);
+		var childrenArr;
+		var children;
+
+		item.id = myItem.data('itemid');
+		item.isChecked = myItem
+								.find('.sub-content-tree')
+								.find('.checkbox')
+								.hasClass('fa-check');
+		if (item.isChecked) {
+			idArray.push(item.id);
+		}
+
+		if ($(this).find('> ul > li').length) {
+			childrenArr = [];
+			children = getTreeChildren(myItem.find('> ul > li'), childrenArr, idArray);
+			item.child = children[0];
+		} else {
+			item.child = '';
+		}
+
+		parents.push(item);
+	});
+
+	return [parents, idArray];
+}
+
 // On page load
 $(document).ready(
-
 	function () {
+		'use strict';
 		var savedData = true;
+		var category;
+		var $liArray;
+		var height;
+
 		$('#custom-action-words').css('visibility', 'hidden');
+
+		$('#please-select-action-word').dialog({
+			autoOpen: false
+		});
+
+		$('#please-save-learning-objective').dialog({
+			autoOpen: false
+		});
+
+		$('#learning-objective-missing-required').dialog({
+			autoOpen: false
+		});
+
+		$('#confirm-remove-content').dialog({
+			autoOpen: false,
+			buttons: {
+				yes: function () {
+					$(this).dialog('close');
+					deleteTopicSubTab([$('.delete-topic').data('id')]);
+				},
+				no: function () {
+					$(this).dialog('close');
+				}
+			}
+		});
 
 		$('#action-words').change(
 			function () {
@@ -234,44 +312,71 @@ $(document).ready(
 
 		$('#performance-save').click(function () {
 			if ($('#action-words').val() === 'select') {
-				alert('Please select an action word or select --Other-- field at the end of list');
-				abort();
-			}else{
-				savedData = true;
+				$('#please-select-action-word').dialog('open');
+				return false;
 			}
+			savedData = true;
 		});
 		/** If current tab's data is not saved, throw an alert
 		*/
-		$('.content').click(function () {
-			if(savedData == false){
-				alert("Please save your data before moving to other tab");
+		$('.content, .criteria, .performance, .conditionTab').click(function () {
+			if (savedData === false) {
+				$('#please-save-learning-objective').dialog('open');
 				return false;
 			}
-
 		});
-		$('.criteria').click(function () {
-			if(savedData == false){
-				alert("Please save your data before moving to other tab");
+		if ($('#contentTree').length) {
+			// $('#contentTree').sortable();
+			$('#contentTree').sortable({
+				onDrop: function ($item, container) {
+					$item.removeClass(container.group.options.draggedClass).removeAttr('style');
+					$('body').removeClass(container.group.options.bodyClass);
+					savedData = false;
+				}
+			});
+			$('.delete-topic').click(function () {
+				$('#confirm-remove-content').dialog('open');
 				return false;
-			}
+			});
 
-		});
-		$('.performance').click(function () {
-			if(savedData == false){
-				alert("Please save your data before moving to other tab");
+			$('.sub-content-tree').click(function () {
+				var item = $(this);
+
+				savedData = false;
+				if (item.find('.checkbox').hasClass('fa-check')) {
+					item.parent().find('.checkbox').removeClass('fa-check');
+				} else {
+					item.parent().find('.checkbox').addClass('fa-check');
+				}
+
 				return false;
-			}
+			});
 
-		});
-		$('.conditionTab').click(function () {
-			if(savedData == false){
-				alert("Please save your data before moving to other tab");
-				return false;
-			}
+			$('#save-content').click(function () {
+				var parents = [];
+				var idArray = [];
+				var content = getTreeChildren($('#contentTree > li'), parents, idArray);
+				var obj = {
+					topics: content[0],
+					idArray: content[1],
+					objId: $('input[name=learningObjectiveID]').val()
+				};
 
-		});
+				$.ajax({
+					url: '../../content/updateHierarchy',
+					type: 'POST',
+					dataType: 'json',
+					contentType: 'application/json; charset=utf-8',
+					data: JSON.stringify(obj),
+					success: function () {
+						savedData = true;
+						window.location.reload();
+					}
+				});
+			});
+		}
 
-		$(':button').hover(
+		$(':button,.content,.fa.fa-pencil').hover(
 			function () {
 				$('#qtip-place').html($(this).attr('title'));
 			},
@@ -342,7 +447,10 @@ $(document).ready(
 
 		// When a custom condition is added, display in the definition box above
 		$('#custom-condition-text').keyup(
-			propagateToDefinition(this.value, 'condition')
+			function () {
+				propagateToDefinition(this.value, 'condition');
+				savedData = false;
+			}
 		);
 
 		// When a standard condition is added, display in the definition box above
@@ -356,8 +464,7 @@ $(document).ready(
 				if (this.value === 'Generic') {
 					$('#custom-condition-text').css('display', 'none');
 					$('.learning-objective.condition.generic').css('display', 'block');
-				}
-				else {
+				} else {
 					$('.learning-objective.condition.generic').css('display', 'none');
 					$('#custom-condition-text').css('display', 'block');
 				}
@@ -367,7 +474,15 @@ $(document).ready(
 		// Manually tiggers the radio box change event
 		$('input:radio[name=conditionType]:checked').change();
 
-		//When save button on condition sub-tab is clicked
+		// When hide from objective checkbox is changed
+		$('#hide-condition').on(
+			'change',
+			function () {
+				savedData = false;
+			}
+		);
+
+		// When save button on condition sub-tab is clicked
 		$('#saveCondition').click(
 			function () {
 				savedData = true;
@@ -375,7 +490,7 @@ $(document).ready(
 		);
 
 		// Trigger jquery ui button for better radio buttons
-		var category = $('input[name=selectedActionWordCategory]').val();
+		category = $('input[name=selectedActionWordCategory]').val();
 		$('.icons input[value="' + category + '"]').prop('checked', true);
 		$('.icons').buttonset();
 
@@ -467,17 +582,16 @@ $(document).ready(
 		$('.learning-objective-button.save').click(
 			function () {
 				if ($('#learning-domain-list').val() === 'null' || $('#domain-category-list').val() === 'null' || $('input[name=actionWordCategory]').is(':checked') === false) {
-					alert('Learning Domain, Domain Category and Action Word Categories are required');
+					$('#learning-objective-missing-required').dialog('open');
 					return false;
-				}else{
-					savedData = true;
 				}
+				savedData = true;
 			}
 		);
 
 		// When hovered over LO side-tab list, it displays full text as tool-tip
-		var $liArray = $('ul.learning-objective.list-wrapper').children('li');
-		var height = getMinHeight($liArray);
+		$liArray = $('ul.learning-objective.list-wrapper').children('li');
+		height = getMinHeight($liArray);
 
 		$liArray.each(
 			function () {
