@@ -29,6 +29,8 @@
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
+		<g:external dir="js/plugins" file="jquery.piegraph.js"/>
+		<g:external dir="js/plugins" file="jquery.canvasjs.min.js"/>
 
 		<meta name="layout" content="imod">
 	</head>
@@ -120,6 +122,7 @@
 							/>
 							<input
 								type="hidden"
+								class="tv"
 								id="topicPrioritySaved${contentItem.id}"
 								value="${contentItem.priority}"
 							/>
@@ -193,6 +196,7 @@
 							/>
 							<input
 								type="hidden"
+								class="tv"
 								id="topicPrioritySaved${contentItem.id}"
 								value="${contentItem.priority}"
 							/>
@@ -330,6 +334,11 @@
 
 
 </fieldset>
+</div>
+<br>
+<br>
+<div id="chart" align="center">
+		
 </div>
 		<input type="hidden" id="treeData" value="${contentList}">
 	</body>
