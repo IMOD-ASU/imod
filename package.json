@@ -9,6 +9,6 @@
   "devDependencies": {
     "bower": "1.4.1",
     "csscomb": "3.1.8",
-    "eslint": "1.0.0-rc-3"
+    "eslint": "1.0.0"
   }
 }
