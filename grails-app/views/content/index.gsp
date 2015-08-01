@@ -34,7 +34,29 @@
 	</head>
 	<body>
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
-
+	<fieldset id="topicModalClose" class="buttons topicButtonField" style="margin-right: 15%;">
+	<span class="topicButtonGradient saveBG">
+		<button
+			class="save showHoverNew topicButton"
+			action="save"
+			id="saveTopic"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}"
+		>
+			${message(code: 'Save Topic', default: ' Save')}
+		</button>
+	</span>
+	<span class="topicButtonGradient cancelBG">
+		<button
+			class="showHoverNew topicButton"
+			action="cancel"
+			id="cancelTopic"
+			title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}"
+		>
+			<i class="fa fa-times"></i>
+			${message(code: 'Cancel Topics', default: ' Cancel')}
+		</button>
+	</span>
+</fieldset>
 
 	<div id="contentTable">
 	<fieldset class="buttons topicButtonField">
@@ -217,29 +239,7 @@
 		</tbody>
 	</table>
 
-		<fieldset id="topicModalClose" class="buttons topicButtonField">
-		<span class="topicButtonGradient saveBG">
-			<button
-				class="save showHoverNew topicButton"
-				action="save"
-				id="saveTopic"
-				title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}"
-			>
-				${message(code: 'Save Topic', default: ' Save')}
-			</button>
-		</span>
-		<span class="topicButtonGradient cancelBG">
-			<button
-				class="showHoverNew topicButton"
-				action="cancel"
-				id="cancelTopic"
-				title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}"
-			>
-				<i class="fa fa-times"></i>
-				${message(code: 'Cancel Topics', default: ' Cancel')}
-			</button>
-		</span>
-	</fieldset>
+
 	</div>
 	<div id="selectKnowledgeDimensionBackground" class="modalBackground">
 </div>

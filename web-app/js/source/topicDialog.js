@@ -543,11 +543,12 @@ $(
 			});
 		$('#saveTopic').click(
 			function () {
-				savedData = false;
+				savedData = true;
 				saveTopic();
 			});
 		$('#cancelTopic').click(
 			function () {
+				savedData = true;
 				revertChanges();
 				hideTopicDialog();
 			}
