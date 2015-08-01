@@ -4,8 +4,10 @@
 function openNewPedagogyTechniqueModal () {
 	'use strict';
 	$('#techniqueId').val('');
+	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
-	$('#add-new-technique').dialog('open');
+	//$('#add-new-technique').dialog('open');
+
 }
 
 function populatePedagogyTechnique (data) {
@@ -67,14 +69,14 @@ function displayPedagogyTechniques (data) {
 
 	$('#ideal-matches').buttonset().click(
 		function () {
-			$('#add-new-technique').dialog('open');
+			$('#add-new-technique').css('display', 'block');
 			displayPedagogyInformationInEdit();
 		}
 	);
 
 	$('#extended-matches').buttonset().click(
 		function () {
-			$('#add-new-technique').dialog('open');
+			$('#add-new-technique').css('display', 'block');
 			displayPedagogyInformationInEdit();
 		}
 	);
@@ -125,6 +127,24 @@ function filterPedagogyTechniques () {
 	}).done(displayPedagogyTechniques);
 }
 
+function getMinHeight (liArray) {
+	'use strict';
+	var minHeight = Math.floor(liArray.eq(0).height());
+
+	liArray.each(
+		function () {
+			var refineText;
+
+			if (Math.floor($(this).height()) < minHeight) {
+				minHeight = Math.floor($(this).height());
+			}
+			refineText = $('a', this).text().replace(/[\s\t]+/g, ' ');
+			$('a', this).text(refineText);
+		}
+	);
+	return minHeight;
+}
+
 // Load techniques on page load
 filterPedagogyTechniques();
 
@@ -132,9 +152,9 @@ filterPedagogyTechniques();
 $('#filter-pedagogy-techniques').accordion();
 $('#ideal-matches-toggle').accordion();
 // Add hide the add new technique modal
-$('#add-new-technique').dialog({
+/*$('#add-new-technique').dialog({
 	autoOpen: false
-});
+});*/
 
 // Attach a listener to the checkboxes, to update the pedaogy techniques
 // when the filters have been changed
@@ -149,3 +169,19 @@ $(document).on('click', '.ui-dialog-titlebar-close', function () {
 	'use strict';
 	$('.modalBackground').hide();
 });
+
+// When hovered over LO side-tab list, it displays full text as tool-tip
+$liArray = $('ul.learning-objective.list-wrapper').children('li');
+height = getMinHeight($liArray);
+
+$liArray.each(
+	function () {
+		$('a', this).attr('title', $('a', this).text());
+		if (Math.floor($(this).height()) !== height) {
+			$('a', this).text($('a', this).text().substring(0, 70) + '...');
+		}
+		if ($(this).hasClass('active')) {
+			$('a', this).text($('a', this).attr('title'));
+		}
+	}
+);

@@ -636,8 +636,8 @@ th.desc a {
     padding: 0.3em;
 
     border: none;
-    background-color: #efefef;
-    box-shadow: 0 0 3px 1px #aaaaaa;
+    /*background-color: #efefef;
+    box-shadow: 0 0 3px 1px #aaaaaa;*/
 }
 
 .buttons input,
@@ -1337,3 +1337,8 @@ Class for error message as label
 .errorcontain {
     margin-right: 0;
 }
+
+
+.ui-dialog {
+left: 500px !important;
+ }
