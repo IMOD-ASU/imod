@@ -4,10 +4,9 @@
 function openNewPedagogyTechniqueModal () {
 	'use strict';
 	$('#techniqueId').val('');
+	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
-	$('#add-new-technique').dialog('open');
 }
-
 function populatePedagogyTechnique (data) {
 	'use strict';
 	var currentTechnique = data.pedagogyTechnique;
@@ -67,14 +66,14 @@ function displayPedagogyTechniques (data) {
 
 	$('#ideal-matches').buttonset().click(
 		function () {
-			$('#add-new-technique').dialog('open');
+			$('#add-new-technique').css('display', 'block');
 			displayPedagogyInformationInEdit();
 		}
 	);
 
 	$('#extended-matches').buttonset().click(
 		function () {
-			$('#add-new-technique').dialog('open');
+			$('#add-new-technique').css('display', 'block');
 			displayPedagogyInformationInEdit();
 		}
 	);
@@ -125,27 +124,63 @@ function filterPedagogyTechniques () {
 	}).done(displayPedagogyTechniques);
 }
 
-// Load techniques on page load
-filterPedagogyTechniques();
-
-// The filters for the pedagogy technique are wrapped in a accordian
-$('#filter-pedagogy-techniques').accordion();
-$('#ideal-matches-toggle').accordion();
-// Add hide the add new technique modal
-$('#add-new-technique').dialog({
-	autoOpen: false
-});
-
-// Attach a listener to the checkboxes, to update the pedaogy techniques
-// when the filters have been changed
-$('input[name=knowledgeDimension]').on('change', filterPedagogyTechniques);
-$('input[name=learningDomain]').on('change', filterPedagogyTechniques);
-$('input[name=domainCategory]').on('change', filterPedagogyTechniques);
-
-// When add new technique button is clicked open modal
-$('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
-
-$(document).on('click', '.ui-dialog-titlebar-close', function () {
+function getMinHeight (liArray) {
 	'use strict';
-	$('.modalBackground').hide();
-});
+	var minHeight = Math.floor(liArray.eq(0).height());
+
+	liArray.each(
+		function () {
+			var refineText;
+
+			if (Math.floor($(this).height()) < minHeight) {
+				minHeight = Math.floor($(this).height());
+			}
+			refineText = $('a', this).text().replace(/[\s\t]+/g, ' ');
+			$('a', this).text(refineText);
+		}
+	);
+	return minHeight;
+}
+
+$(document).ready(
+	function () {
+		'use strict';
+		var $liArray;
+		var height;
+
+		// Load techniques on page load
+		filterPedagogyTechniques();
+		// The filters for the pedagogy technique are wrapped in a accordian
+		$('#filter-pedagogy-techniques').accordion();
+		$('#ideal-matches-toggle').accordion();
+
+		// Attach a listener to the checkboxes, to update the pedaogy techniques
+		// when the filters have been changed
+		$('input[name=knowledgeDimension]').on('change', filterPedagogyTechniques);
+		$('input[name=learningDomain]').on('change', filterPedagogyTechniques);
+		$('input[name=domainCategory]').on('change', filterPedagogyTechniques);
+
+		// When add new technique button is clicked open modal
+		$('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
+
+		$(document).on('click', '.ui-dialog-titlebar-close', function () {
+			$('.modalBackground').hide();
+		});
+
+		// When hovered over LO side-tab list, it displays full text as tool-tip
+		$liArray = $('ul.learning-objective.list-wrapper').children('li');
+		height = getMinHeight($liArray);
+
+		$liArray.each(
+			function () {
+				$('a', this).attr('title', $('a', this).text());
+				if (Math.floor($(this).height()) !== height) {
+					$('a', this).text($('a', this).text().substring(0, 70) + '...');
+				}
+				if ($(this).hasClass('active')) {
+					$('a', this).text($('a', this).attr('title'));
+				}
+			}
+		);
+	}
+);

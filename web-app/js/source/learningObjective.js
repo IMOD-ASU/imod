@@ -376,7 +376,7 @@ $(document).ready(
 			});
 		}
 
-		$(':button,.content,.fa.fa-pencil').hover(
+		$(':button,.content,.fa.fa-pencil,.criteria').hover(
 			function () {
 				$('#qtip-place').html($(this).attr('title'));
 			},
@@ -416,14 +416,81 @@ $(document).ready(
 			'change',
 			function () {
 				savedData = false;
+				if ($('#learning-domain-list').val() === 'Cognitive') {
+					$('#qtip-place').html('Mental skills (knowledge)');
+				}else if ($('#learning-domain-list').val() === 'Affective') {
+					$('#qtip-place').html('Growth in feelings or emotional areas (attitude or self)');
+				}else {
+					$('#qtip-place').html('Manual or physical skills (skills)');
+				}
 				populateDomainCategories();
 			});
 
+		$('#learning-domain-list').on(
+				'click',
+				function () {
+					$('#help-placeholder').css('height', '10em');
+				});
 		// Listen for the selected domain category to change, when it does call ajax
 		$('#domain-category-list').on(
 			'change',
 			function () {
 				savedData = false;
+				$('#help-placeholder').css('height', '10em');
+				if ($('#domain-category-list').val() === 'Remember') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('Recall or retrieve previous learned information.');
+				}else if ($('#domain-category-list').val() === 'Understand') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('Comprehending the meaning, translation, interpolation, and interpretation of instructions and problems. State a problem in one\'s own words.');
+				}else if ($('#domain-category-list').val() === 'Apply') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('Use a concept in a new situation or unprompted use of an abstraction. Applies what was learned in the classroom into novel situations in the work place.');
+				}else if ($('#domain-category-list').val() === 'Analyze') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('Separates material or concepts into component parts so that its organizational structure may be understood. Distinguishes between facts and inferences.');
+				}else if ($('#domain-category-list').val() === 'Evaluate') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('Make judgments about the value of ideas or materials.');
+				}else if ($('#domain-category-list').val() === 'Create') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('Builds a structure or pattern from diverse elements. Put parts together to form a whole, with emphasis on creating a new meaning or structure.');
+				}else if ($('#domain-category-list').val() === 'Receiving Phenomena') {
+					$('#qtip-place').html('Awareness, willingness to hear, selected attention.');
+				}else if ($('#domain-category-list').val() === 'Respond') {
+					$('#help-placeholder').css('height', '15em');
+					$('#qtip-place').html('Active participation on the part of the learners. Attend and react to a particular phenomenon. Learning outcomes may emphasize compliance in responding, willingness to respond, or satisfaction in responding (motivation).');
+				}else if ($('#domain-category-list').val() === 'Value') {
+					$('#help-placeholder').css('height', '20em');
+					$('#qtip-place').html('The worth or value a person attaches to a particular object, phenomenon, or behavior. This ranges from simple acceptance to the more complex state of commitment. Valuing is based on the internalization of a set of specified values, while clues to these values are expressed in the learner\'s overt behavior and are often identifiable.');
+				}else if ($('#domain-category-list').val() === 'Organization') {
+					$('#help-placeholder').css('height', '13em');
+					$('#qtip-place').html('Organizes values into priorities by contrasting different values, resolving conflicts between them, and creating an unique value system. The emphasis is on comparing, relating, and synthesizing values.');
+				}else if ($('#domain-category-list').val() === 'Internalizing Values') {
+					$('#help-placeholder').css('height', '20em');
+					$('#qtip-place').html('Has a value system that controls their behavior. The behavior is pervasive, consistent, predictable, and most important characteristic of the learner. Instructional objectives are concerned with the student\'s general patterns of adjustment (personal, social, emotional).');
+				}else if ($('#domain-category-list').val() === 'Perception') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('The ability to use sensory cues to guide motor activity.  This ranges from sensory stimulation, through cue selection, to translation.');
+				}else if ($('#domain-category-list').val() === 'Set') {
+					$('#help-placeholder').css('height', '13em');
+					$('#qtip-place').html('Readiness to act. It includes mental, physical, and emotional sets. These three sets are dispositions that predetermine a person\'s response to different situations (sometimes called mindsets).');
+				}else if ($('#domain-category-list').val() === 'Guided Response') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('The early stages in learning a complex skill that includes imitation and trial and error. Adequacy of performance is achieved by practicing.');
+				}else if ($('#domain-category-list').val() === 'Mechanism') {
+					$('#help-placeholder').css('height', '13em');
+					$('#qtip-place').html('This is the intermediate stage in learning a complex skill. Learned responses have become habitual and the movements can be performed with some confidence and proficiency.');
+				}else if ($('#domain-category-list').val() === 'Complex Overt Response') {
+					$('#help-placeholder').css('height', '20em');
+					$('#qtip-place').html('The skillful performance of motor acts that involve complex movement patterns. Proficiency is indicated by a quick, accurate, and highly coordinated performance, requiring a minimum of energy. This category includes performing without hesitation, and automatic performance.');
+				}else if ($('#domain-category-list').val() === 'Adaptation') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('Skills are well developed and the individual can modify movement patterns to fit special requirements.');
+				}else if ($('#domain-category-list').val() === 'Origination') {
+					$('#help-placeholder').css('height', '10em');
+					$('#qtip-place').html('Creating new movement patterns to fit a particular situation or specific problem. Learning outcomes emphasize creativity based upon highly developed skills.');
+				}
 				populateActionWordCategories();
 			});
 
@@ -431,6 +498,8 @@ $(document).ready(
 		$('.icons').on(
 			'click',
 			function () {
+				$('#help-placeholder').css('height', '10em');
+				$('#qtip-place').html('');
 				populateActionWords();
 			});
 
@@ -485,6 +554,7 @@ $(document).ready(
 		// When save button on condition sub-tab is clicked
 		$('#saveCondition').click(
 			function () {
+				$('#help-placeholder').css('height', '10em');
 				savedData = true;
 			}
 		);
