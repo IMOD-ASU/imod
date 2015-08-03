@@ -150,65 +150,62 @@ function checkForAssign (data) {
  */
 function displayAssessmentTechniques (data) {
 	'use strict';
-	var idealText1 = '';
-	var idealText2 = '';
+	var text = '';
 	var index;
 	var currentTechnique;
-	var extendedText = '';
-	var extendedText2 = '';
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 		currentTechnique = data.idealAssessmentTechniqueMatch[index];
-		idealText1 += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '">';
-		idealText1 += '<span id="span-' + currentTechnique.id + '" class="icons">';
-		idealText1 += '  <label for="' + currentTechnique.id + '">';
-		idealText1 += '    ' + currentTechnique.title;
-		idealText1 += '  </label>';
-		idealText1 += '</span>';
+		text += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '">';
+		text += '<span id="span-' + currentTechnique.id + '" class="icons">';
+		text += '  <label for="' + currentTechnique.id + '">';
+		text += '    ' + currentTechnique.title;
+		text += '  </label>';
+		text += '</span>';
 	}
 
-	// Take the titles and make html code to display
-	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.idealAssessmentTechniqueMatch[index];
-		if (currentTechnique.favcheck === true) {
-			if (currentTechnique.assigncheck === true) {
-				idealText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			} else if (currentTechnique.assigncheck === false) {
-				idealText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			}
-		}
-
-		$('#assessmentFavoritesDiv').html(idealText2);
-		$('#assessmentFavoritesDiv').buttonset();
-	}
-
-	// Take the titles and make html code to display
-	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		extendedText += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span-' + currentTechnique.id + '" class="icons"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-	}
-
-	// Take the titles and make html code to display
-	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		if (currentTechnique.favcheck === true) {
-			if (currentTechnique.assigncheck === true) {
-				extendedText2 += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign "><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			} else if (currentTechnique.assigncheck === false) {
-				extendedText2 += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="fav' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			}
-		}
-		$('#assessmentFavoritesDiv1').html(extendedText2);
-		$('#assessmentFavoritesDiv1').buttonset();
-	}
-
-	// Add html code to the page
-	$('#ideal-matches1').html(idealText1);
-	$('#extended-matches').html(extendedText);
-
+	$('#ideal-matches1').html(text);
 	$('#ideal-matches1').buttonset();
+	text = '';
+
+	// Take the titles and make html code to display
+	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.idealAssessmentTechniqueMatch[index];
+		if (currentTechnique.favcheck === true && currentTechnique.assigncheck === true) {
+			text += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+		} else if (currentTechnique.assigncheck === false) {
+			text += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+		}
+	}
+
+	$('#assessmentFavoritesDiv').html(text);
+	$('#assessmentFavoritesDiv').buttonset();
+	text = '';
+
+	// Take the titles and make html code to display
+	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+		text += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span-' + currentTechnique.id + '" class="icons"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+	}
+
+	$('#extended-matches').html(text);
 	$('#extended-matches').buttonset();
+	text = '';
+
+	// Take the titles and make html code to display
+	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+		if (currentTechnique.favcheck === true) {
+			if (currentTechnique.assigncheck === true) {
+				text += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign "><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+			} else if (currentTechnique.assigncheck === false) {
+				text += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="fav' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
+			}
+		}
+	}
+	$('#assessmentFavoritesDiv1').html(text);
+	$('#assessmentFavoritesDiv1').buttonset();
 }
 
 /**
