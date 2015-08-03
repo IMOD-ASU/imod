@@ -60,16 +60,16 @@ $(document).ready(function () {
 
 	$('#help-placeholder > #open-button, #help-placeholder-2 > #open-button').click(function () {
 		var helpbox = $('#help-placeholder');
-		var helpbox2 = $('#help-placeholder-2');
+		var helpboxTwo = $('#help-placeholder-2');
 		var tabContainer = $('#tabs-container');
 
 		if (helpbox.css('display') === 'block') {
 			helpbox.css('display', 'none');
-			helpbox2.css('display', 'block');
+			helpboxTwo.css('display', 'block');
 			tabContainer.css('margin-right', '5.5%');
 		} else {
 			helpbox.css('display', 'block');
-			helpbox2.css('display', 'none');
+			helpboxTwo.css('display', 'none');
 			tabContainer.css('margin-right', '17.5%');
 		}
 	});

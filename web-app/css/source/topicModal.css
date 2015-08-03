@@ -157,8 +157,8 @@
     width: auto;
 }
 .error {
-    border: none;
     color: red !important;
+    border: none;
 }
 
 #time-ratio {

@@ -73,10 +73,12 @@ rules:
     comma-spacing: 2
     computed-property-spacing: 2
     consistent-this: 2
+    id-length: 2
     eol-last: 2
     indent:
         - 2
         - tab
+        - SwitchCase: 1
     key-spacing: 2
     linebreak-style: 2
     max-nested-callbacks:
@@ -112,6 +114,9 @@ rules:
     quotes:
         - 2
         - single
+    id-match:
+        - 2
+        - ^[a-zA-Z]+$
     semi-spacing: 2
     semi: 2
     space-after-keywords: 2

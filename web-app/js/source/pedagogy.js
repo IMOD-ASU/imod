@@ -145,7 +145,7 @@ function getMinHeight (liArray) {
 $(document).ready(
 	function () {
 		'use strict';
-		var $liArray;
+		var liArray;
 		var height;
 
 		// Load techniques on page load
@@ -168,10 +168,10 @@ $(document).ready(
 		});
 
 		// When hovered over LO side-tab list, it displays full text as tool-tip
-		$liArray = $('ul.learning-objective.list-wrapper').children('li');
-		height = getMinHeight($liArray);
+		liArray = $('ul.learning-objective.list-wrapper').children('li');
+		height = getMinHeight(liArray);
 
-		$liArray.each(
+		liArray.each(
 			function () {
 				$('a', this).attr('title', $('a', this).text());
 				if (Math.floor($(this).height()) !== height) {
