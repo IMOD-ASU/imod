@@ -13,7 +13,7 @@ class AssessmentTechniqueController {
 	]
 
 
-	def assessmentplan(Long id, Long learningObjectiveID) {
+	def assessmentplan() {
 		def assessmentTechInstance = AssessmentTechnique.findAllByAssigncheck(true)
 		def domainCategories = DomainCategory.list()
 		def knowledgeDimensions = KnowledgeDimension.list()
