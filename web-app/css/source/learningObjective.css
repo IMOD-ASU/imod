@@ -11,27 +11,31 @@ input[disabled='disabled'] {
 
 /* learning objective left panel */
 .learning-objective.list-wrapper {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    max-height: 585px;
     margin: 5px;
 
     border: 1px solid #707070;
-
     background-color: #ffffff;
-    max-height:585px;
-    overflow-y:auto;
-    overflow-x:hidden;
 }
 
 .learning-objective.list-item {
     padding: 5px;
-    font-weight: bold;
+
     list-style-type: none;
 
     border-bottom: 1px solid #707070;
+
+    font-weight: bold;
 }
 
 .learning-objective.list-item.active {
     background-color: #808080;
+
     font-weight: bold;
+
     font-color: #00ff00;
 }
 
@@ -69,8 +73,10 @@ input[disabled='disabled'] {
 .learning-objective.definition-display.active,
 .learning-objective.definition-edit.active {
     display: block;
-    font-weight: bold;
+
     text-align: center;
+
+    font-weight: bold;
 }
 
 .learning-objective.definition-edit input[name=update] {
@@ -261,8 +267,9 @@ input[disabled='disabled'] {
 
     margin: 0.1em 10px 0 0;
     padding: 0.3em;
-    border-radius: 4px;
+
     border: none;
+    border-radius: 4px;
     background-color: #efefef;
     box-shadow: 0 0 3px 1px #aaaaaa;
 }

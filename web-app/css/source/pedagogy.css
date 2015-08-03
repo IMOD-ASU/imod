@@ -63,9 +63,10 @@
 }
 
 .learning-objective.list-wrapper {
-    max-height:300px !important;
-    overflow-y:auto;
-    overflow-x:hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    max-height: 300px !important;
 }
 
 #add-new-technique-button i,
@@ -87,17 +88,19 @@
 .pedagogy.type-icon {
     position: relative;
     left: -45px;
+
     display: inline-block;
     float: center;
 }
 
-.new-technique-popup-button{
+.new-technique-popup-button {
     top: 0;
+
     color: #ffffff;
     background: #0a1629;
     background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
 }
-#ideal-matches{
+#ideal-matches {
     height: 300px;
 }
 .modalBackground {
@@ -164,14 +167,14 @@
     position: relative;
     top: initial;
     right: initial;
-    text-align: left;
-    vertical-align: middle;
+
     width: auto;
     height: 2.5em;
     margin: 0;
 
+    text-align: left;
+    vertical-align: middle;
     /*background: rgba(0,0,0,0.05);
-
     box-shadow: none;*/
 
     border-top: 1px solid rgba(0,0,0,0.05) ;
