@@ -32,7 +32,6 @@ class BootStrap {
 		/**
 		 * Generates the user security roles
 		 */
-		// FIXME there should be a single check to see if data exists that is shared by all domains
 		if (Role.list().size() == 0) {
 			new Role(
 				authority: 'ROLE_ANONYMOUS'
@@ -45,13 +44,7 @@ class BootStrap {
 			tempRole = new Role(
 				authority: 'ROLE_USER'
 			).save()
-		}
 
-		/**
-		 * Generates a sample IMOD user
-		 * with project default username and password
-		 */
-		if (ImodUser.count() < 1){
 			def developer = new ImodUser(
 				username: 'postgres',
 				password: 'postgres',
@@ -66,13 +59,7 @@ class BootStrap {
 				imodUser: developer,
 				role: tempRole
 			).save()
-		}
 
-
-		/**
-		 * This is filling the information for the help box
-		 */
-		if (Help.count() == 0) {
 			/**
 			 *
 			 * These are the help information for the Course Overview tab
@@ -425,11 +412,7 @@ class BootStrap {
 				tabFieldName: 'Web Page',
 				text: 'Clicking on Refresh displays the techniques that belongs the selections on the Domain, Domain Category and Knowledge Dimension in the Extended match.'
 			).save()
-		}
 
-
-		// Populate Audience types
-		if (Audience.count() < 1) {
 			def audience = new Audience(
 				description: 'Lower Division'
 			).save()
@@ -445,11 +428,7 @@ class BootStrap {
 			def audience4 = new Audience(
 				description: 'Graduate'
 			).save()
-		}
 
-
-		if(ScheduleRepeats.count() < 1)
-		{
 			def ScheduleRepeatsDaily = new ScheduleRepeats(
 				description: 'Daily'
 				)
@@ -474,20 +453,13 @@ class BootStrap {
 				description: 'Weekly'
 				)
 			ScheduleRepeatsWeekly.save()
-		}
 
-		if(ScheduleRepeatsEvery.count() < 1)
-		{
-			for(int i =1; i <= 30; i++)
-			{
+			for (int i =1; i <= 30; i++) {
 				def ScheduleRepeatsE = new ScheduleRepeatsEvery(
 					description: i)
 				ScheduleRepeatsE.save()
 			}
-		}
 
-		if(ScheduleWeekDays.count() < 1)
-		{
 			def ScheduleSunday = new ScheduleWeekDays(
 				description:'S'
 				)
@@ -522,10 +494,7 @@ class BootStrap {
 				description:'S'
 				)
 			ScheduleSaturday.save()
-		}
 
-
-		if (LearningDomain.count() < 1) {
 			/**
 			 * Generate Learning Domains, Domain Categories and Action Words
 			 */
@@ -580,7 +549,7 @@ class BootStrap {
 				domain: learningDomainCognitive,
 				name: 'Evaluate',
 				priority: 5
-				
+
 			)
 
 			def domainCategoryCreating = new DomainCategory(
@@ -1222,12 +1191,6 @@ class BootStrap {
 
 			domainCategoryOrigination.save()
 
-
-		}
-
-
-
-if (KnowledgeDimension.count() < 1) {
 			new KnowledgeDimension(
 				description: 'Factual',
 				info: 'The knowledge of terminology, details, or elements.'
@@ -1247,9 +1210,7 @@ if (KnowledgeDimension.count() < 1) {
 				description: 'Metacognitive',
 				info: 'The knowledge about cognitive tasks; strategic knowledge and self-knowledge.'
 			).save()
-		}
 
-		if (ResourceType.count() == 0) {
 			new ResourceType(
 				description: 'Document'
 			).save()
@@ -1265,10 +1226,7 @@ if (KnowledgeDimension.count() < 1) {
 			new ResourceType(
 				description: 'URL'
 			).save()
-		}
 
-
-		if(AssessmentFeedback.count() == 0){
 			new AssessmentFeedback(
 				name:"In Person"
 			).save()
@@ -1280,9 +1238,7 @@ if (KnowledgeDimension.count() < 1) {
 			new AssessmentFeedback(
 				name:"Both"
 			).save()
-		}
 
-		if(PedagogyMode.count() == 0){
 			new PedagogyMode(
 				name:'online'
 			).save()
@@ -1294,9 +1250,7 @@ if (KnowledgeDimension.count() < 1) {
 			new PedagogyMode(
 				name:'hybrid'
 			).save()
-		}
 
-		if(PedagogyReferenceType.count() == 0){
 			new PedagogyReferenceType(
 				description:'Book'
 			).save()
@@ -1304,9 +1258,7 @@ if (KnowledgeDimension.count() < 1) {
 			new PedagogyReferenceType(
 				description:'Web'
 			).save()
-		}
 
-		if(PedagogyActivityDuration.count() == 0){
 			new PedagogyActivityDuration(
 				duration:'Single Session'
 			).save()
@@ -1318,8 +1270,7 @@ if (KnowledgeDimension.count() < 1) {
 			new PedagogyActivityDuration(
 				duration:'Both Session'
 			).save()
-		}
-		if(PedagogyActivityFocus.count() == 0){
+
 			new PedagogyActivityFocus(
 				focus:'Reading'
 			).save()
@@ -1335,33 +1286,25 @@ if (KnowledgeDimension.count() < 1) {
 			new PedagogyActivityFocus(
 				focus:'Presenting'
 			).save()
-		}
 
+			/*Pedagogy Technique*/
+			def assessmentTech = new AssessmentTechnique(
+				title:"Minute Papers",
+				domain: LearningDomain.findAllByNameInList([
+					'Cognitive'
+				]),//'Cognitive','Affective', 'Psychomotor'
+				category:DomainCategory.findAllByNameInList([
+					'Remembering'
+				]),
+				knowledge:KnowledgeDimension.findAllByDescriptionInList([
+					"Factual",
+					"Conceptual",
+					"Procedural",
+					"Metacognitive"
+				]),
+				assessmentFeedback: AssessmentFeedback.findByName("Online")
+			).save()
 
-
-		if(AssessmentTechnique.count() == 0){
-	/*Pedagogy Technique*/
-	def assessmentTech = new AssessmentTechnique(
-		title:"Minute Papers",
-		domain: LearningDomain.findAllByNameInList([
-			'Cognitive'
-		]),//'Cognitive','Affective', 'Psychomotor'
-		category:DomainCategory.findAllByNameInList([
-			'Remembering'
-		]),
-		knowledge:KnowledgeDimension.findAllByDescriptionInList([
-			"Factual",
-			"Conceptual",
-			"Procedural",
-			"Metacognitive"
-		]),
-		assessmentFeedback: AssessmentFeedback.findByName("Online")
-		).save()
-
-}
-
-
-		if(PedagogyTechnique.count() == 0){
 			/*Pedagogy Technique*/
 			def pedagogyTech = new PedagogyTechnique(
 				title:'Jigsaw',
