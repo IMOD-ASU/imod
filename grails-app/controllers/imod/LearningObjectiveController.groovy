@@ -27,7 +27,7 @@ class LearningObjectiveController {
 	 * @return    redirects to the performance tab to allow editing
 	 */
 	def create(Long id) {
-		def currentImod = Imod.get(id)
+		final currentImod = Imod.get(id)
 		def learningObjectiveId = learningObjectiveService.create(currentImod)
 
 		// redirects to the performance page to allow for newly created learning objective to be edited
@@ -46,7 +46,7 @@ class LearningObjectiveController {
 	 * @return    redirects to the performance tab to allow editing
 	 */
 	def remove(Long id,Long learningObjectiveID) {
-		def currentImod = Imod.get(id)
+		final currentImod = Imod.get(id)
 		def learningObjectiveId = learningObjectiveService.remove(currentImod,learningObjectiveID)
 
 		// redirects to the performance page to allow for newly created learning objective to be edited
@@ -59,9 +59,9 @@ class LearningObjectiveController {
 		)
 	}
 
-	
+
 	def saveDefinition(Long id, Long learningObjectiveID, String pageType) {
-		def currentImod = Imod.get(id)
+		final currentImod = Imod.get(id)
 		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		selectedLearningObjective.definition = params.customDefinition
@@ -89,7 +89,7 @@ class LearningObjectiveController {
 	// FIXME each page should have its own save
 	def save (Long id, Long learningObjectiveID, String pageType) {
 		//gets the learning objective to be updated
-		def currentImod = Imod.get(id)
+		final currentImod = Imod.get(id)
 		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		switch (pageType) {
@@ -100,7 +100,7 @@ class LearningObjectiveController {
 				if (params.actionWord == 'other') {
 					selectedLearningObjective.actionWord = params.customActionWord
 				}else if(params.actionWord == 'select'){
-					selectedLearningObjective.actionWord = 'Enter the details here';
+					selectedLearningObjective.actionWord = 'Enter the details here'
 				}else {
 					selectedLearningObjective.actionWord = params.actionWord
 				}
@@ -176,22 +176,22 @@ class LearningObjectiveController {
 	 */
 	def performance(Long id, Long learningObjectiveID) {
 		// get relevant imod
-		def currentImod = Imod.get(id)
+		final currentImod = Imod.get(id)
 
 		// get a list of all of the learning objectives for this imod
-		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 
 
 		// get all performance data to set in the Performance page
-		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-		def selectedActionWordCategory = currentLearningObjective.actionWordCategory
-		def selectedDomainCategory = selectedActionWordCategory?.domainCategory
-		def selectedDomain = selectedDomainCategory?.learningDomain
+		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+		final selectedActionWordCategory = currentLearningObjective.actionWordCategory
+		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
+		final selectedDomain = selectedDomainCategory?.learningDomain
 
 		// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
-		def domainList = LearningDomain.list()
-		def domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
-		def actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
+		final domainList = LearningDomain.list()
+		final domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
+		final actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
 
 		[
 			actionWord: 				currentLearningObjective.actionWord,
@@ -224,14 +224,12 @@ class LearningObjectiveController {
 		def text = null
 
 		if (contentList != null) {
-
 			text = '<ul id="contentTree">'
 	        contentList2.each() {
 	            text += getSubContentHTML(it, currentLearningObjective)
 	        }
 
 	        text += '</ul>'
-
         }
 
 		[

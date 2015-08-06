@@ -20,19 +20,17 @@ class CourseOverviewController {
 
 
     def create() {
-
-        def jsonParser = new JsonSlurper()
-        def parameters = jsonParser.parseText(params.parameters)
+        final jsonParser = new JsonSlurper()
+        final parameters = jsonParser.parseText(params.parameters)
 
         parameters.each() {
-
-            def firstName = it.firstName
-            def lastName = it.lastName
-            def email = it.email
-            def role = it.role
-            def officeHours = it.officeHours
-            def webPage = it.webPage
-            def location = it.location
+            final firstName = it.firstName
+            final lastName = it.lastName
+            final email = it.email
+            final role = it.role
+            final officeHours = it.officeHours
+            final webPage = it.webPage
+            final location = it.location
 
             if (it.id == null) {
                 def newInstructor = new Instructor(
@@ -97,11 +95,9 @@ class CourseOverviewController {
 
     // syllabus html page
     def syllabus(Long id) {
-        def currentImod = Imod.get(id)
-
-        def learningObjectives = LearningObjective.findAllByImod(currentImod)
-
-        def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+        final currentImod = Imod.get(id)
+        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+        final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 
         def text = '<ul>'
 
@@ -120,11 +116,9 @@ class CourseOverviewController {
     }
 
      def syllabuspdf(Long id) {
-        def currentImod = Imod.get(id)
-
-        def learningObjectives = LearningObjective.findAllByImod(currentImod)
-
-        def contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+        final currentImod = Imod.get(id)
+        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+        final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
 
         def text = '<ul>'
 
@@ -143,13 +137,11 @@ class CourseOverviewController {
                 contentList: text
             ],
             filename: currentImod?.name.replaceAll(' ', '_') + '.pdf'
-        );
+        )
     }
 
     private def getSubContent(Content current) {
-        def text = ''
-
-        text += '<li>' + current.topicTitle
+        def text = '<li>' + current.topicTitle
 
         if (current.subContents != null) {
             text += '<ul>'

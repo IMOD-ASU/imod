@@ -68,13 +68,13 @@ class LearningObjectiveService {
 
     }
 
-    
+
     /**
      * Ensure that the Imod has at least one learning objective
      */
     def ensureLearningObjectiveExists(Imod currentImod) {
         // get a list of all of the learning objectives for this imod
-        def learningObjectives = LearningObjective.findAllByImod(currentImod)
+        final learningObjectives = LearningObjective.findAllByImod(currentImod)
 
         // if there are no learning objectives create one
         if (learningObjectives.size() < 1) {

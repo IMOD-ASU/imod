@@ -13,12 +13,12 @@ public enum KnowledgeDimensionEnum {
 	private final String info
 
 	KnowledgeDimensionEnum(String value, String info){
-		this.value=value
-		this.info=info
+		this.value = value
+		this.info = info
 	}
 
-	public String value(){return value}
-	public String info(){return info}
+	public String value() {return value}
+	public String info() {return info}
 
 	@Override
 	String toString(){
