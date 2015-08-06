@@ -16,19 +16,19 @@ class AssessmentController {
 	def index(Long id, Long learningObjectiveID) {
 
 		// get the selected imod
-		def currentImod = Imod.get(id)
+		final currentImod = Imod.get(id)
 
 		// finds all the learning objective linked to this imod
-		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 
 		// select current learning objective
-		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		// get all of the filters used to find Assessment techniques
-		def domainCategories = DomainCategory.list()
-		def knowledgeDimensions = KnowledgeDimension.list()
-		def learningDomains = LearningDomain.list()
-		def assessmentFeedback = AssessmentFeedback.list()
+		final domainCategories = DomainCategory.list()
+		final knowledgeDimensions = KnowledgeDimension.list()
+		final learningDomains = LearningDomain.list()
+		final assessmentFeedback = AssessmentFeedback.list()
 
 		[
 			currentImod: currentImod,
@@ -50,12 +50,13 @@ class AssessmentController {
 	 * - learning domain: name of each selected domain
 	 */
 	def findMatchingTechniques() {
-		def data = request.JSON
+		final data = request.JSON
 
 		// process strings to longs
 		def selectedKnowledgeDimensions = []
 		def selectedDomainCategories = []
 		def selectedLearningDomains = []
+
 		for (def knowledgeDimension in data.selectedKnowledgeDimensions) {
 			selectedKnowledgeDimensions.add(knowledgeDimension.toLong())
 		}
@@ -67,7 +68,7 @@ class AssessmentController {
 		}
 
 		// find all technique where both the knowledge dimension and the domain category match
-		def idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
+		final idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
 			and {
 				knowledgeDimension {
 					'in' ('id', selectedKnowledgeDimensions)
@@ -85,7 +86,7 @@ class AssessmentController {
 		}
 
 		// find all technique that are not ideal, but have the learning domain
-		def extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
+		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
 			and {
     			learningDomain {
     				'in' ('id', selectedLearningDomains)

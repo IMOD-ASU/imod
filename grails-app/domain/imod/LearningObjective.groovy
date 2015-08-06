@@ -130,7 +130,7 @@ class LearningObjective {
 
 		definition = ''
 		if(actionWord == 'Enter the details here'){
-			actionWord = '';
+			actionWord = ''
 		}
 		if (isEmpty()) {
 			definition = 'Empty Learning Objective'
@@ -167,7 +167,7 @@ class LearningObjective {
 	}
 
 	private String listToSentence(list, openingSpace = ' ') {
-		String returnString = '';
+		String returnString = ''
 		if(list != null) {
 			// there is only one item in the list
 			if (list.size() == 1) {
