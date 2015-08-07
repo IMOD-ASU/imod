@@ -28,8 +28,7 @@ function openNewAssessmentTechniqueModal () {
 	'use strict';
 	$('#techniqueId').val('');
 	$('#new-technique').dialog('open');
-	$('#new-technique').dialog(
-	{
+	$('#new-technique').dialog({
 		resizable: false,
 		height: 'auto',
 		title: 'New Assessment Technique',
@@ -74,10 +73,10 @@ function displayAssessmentInformationInEdit () {
 	$('#techniqueId1').val($('label.ui-state-active').attr('for'));
 
 	$.ajax({
-			url: '../../assessmentTechnique/display/' + $('label.ui-state-active').attr('for'),
-			method: 'GET'
-		})
-		.done(populateAssessmentTechnique);
+		url: '../../assessmentTechnique/display/' + $('label.ui-state-active').attr('for'),
+		method: 'GET'
+	})
+	.done(populateAssessmentTechnique);
 }
 
 function showAssessmentTechnique () {
@@ -248,23 +247,23 @@ function filterAssessmentTechniques () {
 	// Send the data to the find matching techniques action in grails
 	// and process the response with the display pedagogy techniques callback
 	$.ajax({
-			url: '../findMatchingTechniques',
-			method: 'post',
-			data: JSON.stringify(data),
-			contentType: 'application/json'
-		})
-		.done(displayAssessmentTechniques, showAssessmentTechnique, checkForAssign);
+		url: '../findMatchingTechniques',
+		method: 'post',
+		data: JSON.stringify(data),
+		contentType: 'application/json'
+	})
+	.done(displayAssessmentTechniques, showAssessmentTechnique, checkForAssign);
 }
 
 function displayAssessmentPlan (data) {
 	'use strict';
 	$.ajax({
-			url: '../../assessmentTechnique/assessmentplan',
-			method: 'post',
-			data: JSON.stringify(data),
-			contentType: 'application/json'
-		})
-		.done(assessmentPlanData);
+		url: '../../assessmentTechnique/assessmentplan',
+		method: 'post',
+		data: JSON.stringify(data),
+		contentType: 'application/json'
+	})
+	.done(assessmentPlanData);
 }
 
 function assessmentPlanData (data) {

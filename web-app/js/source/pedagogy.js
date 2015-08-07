@@ -29,10 +29,10 @@ function displayPedagogyInformationInEdit () {
 	'use strict';
 	$('#techniqueId').val($('label.ui-state-active').attr('for'));
 	$.ajax({
-			url: '../../pedagogyTechnique/get/' + $('label.ui-state-active').attr('for'),
-			method: 'GET'
-		})
-		.done(populatePedagogyTechnique);
+		url: '../../pedagogyTechnique/get/' + $('label.ui-state-active').attr('for'),
+		method: 'GET'
+	})
+	.done(populatePedagogyTechnique);
 }
 
 /**
