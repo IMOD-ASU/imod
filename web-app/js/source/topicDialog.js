@@ -2,6 +2,26 @@ var errorMessages = [];
 var isFlashing = null;
 var content = '';
 
+function showPieChart() {
+	var numberOfCriticalTopics=0;
+	var numberOfVeryImportantTopics=0;
+	var numberOfGoodToKnowTopics=0;
+	$("input[id^='topicPrioritySaved']").each(function (i, el) {
+		if ($(this).val()=='Critical'){
+			numberOfCriticalTopics=numberOfCriticalTopics+1;
+		}
+		if ($(this).val()=='Very Important'){
+			numberOfVeryImportantTopics=numberOfVeryImportantTopics+1;
+		}
+		if ($(this).val()=='Good To Know'){
+			numberOfGoodToKnowTopics=numberOfGoodToKnowTopics+1;
+		}
+	});
+	console.log($(this).val());
+	console.log(numberOfCriticalTopics);
+	console.log(numberOfVeryImportantTopics);
+	console.log(numberOfGoodToKnowTopics);
+}
 function showTopicDialog () {
 	'use strict';
 	$('#topicDialogBackground').css('display', 'block');
@@ -531,9 +551,59 @@ function deleteResource (resourceIDs) {
 
 $(
 	function () {
+	    // Pie chart
+		var numberOfCriticalTopics=0;
+		var numberOfVeryImportantTopics=0;
+		var numberOfGoodToKnowTopics=0;
+		$("input[id^='topicPrioritySaved']").each(function (i, el) {
+			if ($(this).val()=='Critical'){
+				numberOfCriticalTopics=numberOfCriticalTopics+1;
+			}
+			if ($(this).val()=='Very Important'){
+				numberOfVeryImportantTopics=numberOfVeryImportantTopics+1;
+			}
+			if ($(this).val()=='Good to Know'){
+				numberOfGoodToKnowTopics=numberOfGoodToKnowTopics+1;
+			}
+		});
+		$("#chart").chart({
+			data : new Array(numberOfCriticalTopics,numberOfGoodToKnowTopics,numberOfVeryImportantTopics),
+
+		    labels : new Array("Critical", "Good To Know", "Very Important"),
+
+			width : 500,
+
+			height : 400
+		});  
+		$("#chart").CanvasJSChart({
+		
+			title:{
+				text: "Topic Priorities"
+			},
+			subtitle:{
+				fontSize: "16"
+			},
+			legend: {
+				maxWidth: 350,
+				itemWidth: 120,
+				fontSize:12
+			},
+			data: [
+			{
+				type: "pie",
+				indexLabelFontSize: 16,
+				showInLegend: true,
+				legendText: "{indexLabel}",
+				dataPoints: [
+					{ y: numberOfCriticalTopics, indexLabel: "Critical" },
+					{ y: numberOfVeryImportantTopics, indexLabel: "Very Important" },
+					{ y: numberOfGoodToKnowTopics, indexLabel: "Good to Know"}
+				]
+			}
+			]
+	});
 		'use strict';
 		var savedData = true;
-
 		// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(

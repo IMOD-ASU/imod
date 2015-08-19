@@ -159,7 +159,6 @@ $(document).ready(
 		$('#professional-conduct-box').css('visibility', 'visible');
 		$('#missed-exams-box').css('visibility', 'visible');
 		$('#missed-assignments-box').css('visibility', 'visible');
-
 		setDefaultHint();
 		$('#repeats').on('change', populateRepeatsEvery);
 		$('#please-select-instructor').dialog({

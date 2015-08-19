@@ -440,8 +440,7 @@
                 </g:form>
             </div>
         </div>
-
-        <div id="please-select-instructor" title="Please Select Instructor">
+	    <div id="please-select-instructor" title="Please Select Instructor">
             <p>
                 Please select an instructor to delete.
             </p>
