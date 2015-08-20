@@ -141,6 +141,9 @@
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
                                             <label for="startTime">
                                                 <g:message code="imod.schedule.startTime.label" default="Start Time" />
+												<span class="required-indicator">
+                                                    *
+                                                </span>
                                             </label>
 
                                         <joda:timePicker name="schedule.startTime" id="schedule-start-time" default="none" noSelection="['':'']" value="${currentImod?.schedule?.startTime}"  />
@@ -148,6 +151,9 @@
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'endTime', 'error')} ">
                                             <label for="endTime">
                                                 <g:message code="imod.schedule.endTime.label" default="End Time" />
+												<span class="required-indicator">
+                                                    *
+                                                </span>
                                             </label>
                                         <joda:timePicker name="schedule.endTime" id="schedule-end-time" default="none" noSelection="['':'']" value="${currentImod?.schedule?.endTime}" />
                                         </div>
