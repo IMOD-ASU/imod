@@ -29,8 +29,8 @@
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
-		<g:external dir="js/plugins" file="jquery.piegraph.js"/>
-		<g:external dir="js/plugins" file="jquery.canvasjs.min.js"/>
+		<g:external dir="bower_components/jquery.piegraph" file="jquery.piegraph.js"/>
+		<g:external dir="bower_components/canvas.js" file="index.js"/>
 
 		<meta name="layout" content="imod">
 	</head>
@@ -284,7 +284,7 @@
 	>
 				${message(code: 'Cancel Resource', default: ' Cancel')}
 	</button>
-	
+
 </div>
 
 <div id="selectResourceBackground" class="modalBackground">
@@ -347,7 +347,7 @@
 </fieldset>
 </div>
 <div id="chart" align="center">
-		
+
 </div>
 		<input type="hidden" id="treeData" value="${contentList}">
 	</body>
