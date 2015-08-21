@@ -6,6 +6,11 @@
 
     border: 1px solid;
 }
+#chart {
+  width: 500px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
 
 .message.banner {
     visibility: hidden;
