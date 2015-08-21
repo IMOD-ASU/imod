@@ -549,8 +549,8 @@ $(
 			}
 		});
 		$('#chart').chart({
-			data: new Array(numberOfCriticalTopics, numberOfGoodToKnowTopics, numberOfVeryImportantTopics),
-			labels: new Array('Critical', 'Good To Know', 'Very Important'),
+			data: [numberOfCriticalTopics, numberOfGoodToKnowTopics, numberOfVeryImportantTopics],
+			labels: ['Critical', 'Good To Know', 'Very Important'],
 			width: 500,
 			height: 400
 		});
