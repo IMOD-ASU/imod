@@ -12,21 +12,37 @@
             Syllabus
         </title>
         <g:external dir="css/source" file="syllabus.css" media="screen, print"/>
+		<g:external dir="bower_components/jquery/dist" file="jquery.min.js" />
+		<g:external dir="bower_components/jquery.ui/ui" file="core.js" />
+		<g:external dir="bower_components/jquery.ui/ui" file="widget.js" />
+
+		<!-- ui widgets -->
+		<g:external dir="bower_components/jquery.ui/ui" file="accordion.js" />
+		<g:external dir="bower_components/jquery.ui/ui" file="button.js" />
+		<g:external dir="bower_components/jquery.ui/ui" file="dialog.js" />
+
+		<!-- plugins to javascript libraries -->
+		<g:external dir="bower_components/qtip2" file="jquery.qtip.min.js" />
+		<g:external dir="bower_components/jstree/dist" file="jstree.min.js" />
+		<g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" />
+		<g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" />
+		<g:external dir="js/plugins" file="jquery.custom.draggable.js"/>
+		<g:external dir="js/plugins" file="jquery.cookie.js"/>
+		<g:javascript src="source/syllabus.js" defer="defer" />
+
     </head>
     <body>
         <div class="wrapper">
-            <div class="course-details">
+            <div class="course-details" >
                 <div class="form-title">
-                    <h3>Course Details</h3>
+                    <h3>
+					<input type="checkbox" checked id="course-details-check"  />
+					Course Details
+					</h3>
 
-                    <div class="options">
-
-                        <a href="javascript:window.print()">Print</a>
-                        <a href="../syllabuspdf/${currentImod?.id}" class="download-pdf">Download</a>
-
-                    </div>
 
                 </div>
+				<div id="course">
                 <div class="fieldcontain">
                     <label for="name">
                         <g:message code="imod.name.label" default="Course Title" />:
@@ -65,12 +81,17 @@
                         ${currentImod?.courseSemester.encodeAsCustomEscape()}
                     </strong>
                 </div>
+				</div>
             </div>%{-- course details --}%
 
             <div class="schedule">
                 <div class="form-title">
-                    <h3>Schedule</h3>
+                    <h3>
+					<input type="checkbox" checked  id="schedule-check"/>
+					Schedule
+					</h3>
                 </div>
+				<div id="schedule">
                 <div class="fieldcontain">
                     <label>Start Date:</label>
                     <strong>
@@ -130,12 +151,17 @@
 
                     </div>
                 </g:if>
+				</div>
             </div>%{-- schedule --}%
 
             <div class="course-description">
                 <div class="form-title">
-                    <h3>Course Description</h3>
+                    <h3>
+					<input type="checkbox" checked  id="course-description-check"/>
+					Course Description
+					</h3>
                 </div>
+				<div id="description">
                 <div class="fieldcontain">
                     <label>Overview:</label>
                     <strong>
@@ -178,69 +204,96 @@
                         ${currentImod?.numberOfSeats.encodeAsCustomEscape()}
                     </strong>
                 </div>
+			 </div>
             </div>%{-- course description --}%
 
             <div class="course-policy">
                 <div class="form-title">
-                    <h3>Course Policy</h3>
+                    <h3>
+					<input type="checkbox" checked  id="course-policy-check"/>
+					Course Policy
+					</h3>
                 </div>
-                <div class="fieldcontain">
+				<div id="policy">
+                <div class="fieldcontain" >
                     <h4>
+					<input type="checkbox" checked  id="grading-procedure-check"/>
                         <strong>Grading procedure:</strong>
                     </h4>
+					<div id="grading-procedure">
                     <p>
                         ${currentImod?.gradingProcedure.encodeAsCustomEscape()}
                     </p>
+					</div>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" >
                     <h4>
+					<input type="checkbox" checked  id="attendance-check"/>
                         <strong>Attendance and tardiness:</strong>
                     </h4>
+					<div id="attendance">
                     <p>
                         ${currentImod?.attendance.encodeAsCustomEscape()}
                     </p>
+					</div>
                 </div>
                 <div class="fieldcontain">
                     <h4>
+					<input type="checkbox" checked  id="participation-check"/>
                         <strong>Class participation:</strong>
                     </h4>
+					<div  id ="participation">
                     <p>
                         ${currentImod?.classParticipation.encodeAsCustomEscape()}
                     </p>
+					</div>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" >
                     <h4>
+						<input type="checkbox" checked  id="conduct-check"/>
                         <strong>Professional Conduct:</strong>
                     </h4>
+					<div id="conduct">
                     <p>
                         ${currentImod?.professionalConduct.encodeAsCustomEscape()}
                     </p>
+					</div>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" >
                     <h4>
+					<input type="checkbox" checked  id="exams-check"/>
                         <strong>Missed exams/Make-up exams:</strong>
                     </h4>
+					<div id="exams">
                     <p>
                         ${currentImod?.missedExams.encodeAsCustomEscape()}
                     </p>
+					</div>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" >
                     <h4>
+						<input type="checkbox" checked  id="missed-exams-check"/>
                         <strong>Missed Assignments:</strong>
                     </h4>
+					<div id="missed-exams">
                     <p>
                         ${currentImod?.missedAssignments.encodeAsCustomEscape()}
                     </p>
+					</div>
                 </div>
+			 </div>
             </div>%{-- course policy --}%
 
             <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
             <div class="instructors">
 
                 <div class="form-title">
-                    <h3>Instructor</h3>
+                    <h3>
+					<input type="checkbox" checked  id="instructor-check"/>
+					Instructor
+					</h3>
                 </div>
-
+				<div id="instructor">
                 <ul>
                 <g:each in="${currentImod?.instructors}" var="instructor">
 
@@ -269,7 +322,7 @@
 
                 </g:each>
                 </ul>
-
+			</div>
             </div>%{-- instructors --}%
             </g:if>
 
@@ -277,7 +330,10 @@
             <g:if test="${learningObjectives != null && learningObjectives.isEmpty()}">
             <div class="learning-objectives">
                 <div class="form-title">
-                    <h3>Learning Objectives</h3>
+                    <h3>
+					<input type="checkbox" checked  name="learning-objective-check"/>
+					Learning Objectives
+					</h3>
                 </div>
                 <ul class="learning-objective list-wrapper">
                     <g:each var="learningObjective" in="${learningObjectives}">
@@ -294,12 +350,16 @@
             <g:if test="${contentList != null && contentList.isEmpty()}">
             <div class="Content">
                 <div class="form-title">
-                    <h3>Content</h3>
+                    <h3>
+					<input type="checkbox" checked  name="content-check"/>
+					Content
+					</h3>
                 </div>
                 %{-- comes straight from the controller as text --}%
                 ${contentList.encodeAsCustomEscape()}
             </div>
             </g:if>
+			<button type="button" id="printpdf">Save</button>
         </div>
     </body>
 </html>
