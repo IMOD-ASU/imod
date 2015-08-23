@@ -273,7 +273,16 @@ $(document).ready(
 		});
 
 		$('#please-save-learning-objective').dialog({
-			autoOpen: false
+			autoOpen: false,
+			buttons: {
+				yes: function () {
+					$(this).dialog('close');
+				},
+				no: function () {
+					savedData = true;
+					$(this).dialog('close');
+				}
+			}
 		});
 
 		$('#learning-objective-missing-required').dialog({
