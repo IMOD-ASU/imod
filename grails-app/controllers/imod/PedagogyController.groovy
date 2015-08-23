@@ -15,20 +15,20 @@ class PedagogyController {
 	 */
 	def index(Long id, Long learningObjectiveID) {
 		// get the selected imod
-		def currentImod = Imod.get(id)
+		final currentImod = Imod.get(id)
 
 		// finds all the learning objective linked to this imod
-		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 
 		// select current learning objective
-		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		// get all of the filters used to find pedagogy techniques
-		def domainCategories = DomainCategory.list()
-		def knowledgeDimensions = KnowledgeDimension.list()
-		def learningDomains = LearningDomain.list()
-		def pedagogyModes = PedagogyMode.list()
-		def pedagogyFocuses = PedagogyActivityFocus.list()
+		final domainCategories = DomainCategory.list()
+		final knowledgeDimensions = KnowledgeDimension.list()
+		final learningDomains = LearningDomain.list()
+		final pedagogyModes = PedagogyMode.list()
+		final pedagogyFocuses = PedagogyActivityFocus.list()
 
 		[
 			currentImod: currentImod,
@@ -51,7 +51,7 @@ class PedagogyController {
 	 * - learning domain: name of each selected domain
 	 */
 	def findMatchingTechniques() {
-		def data = request.JSON
+		final data = request.JSON
 
 		// process strings to longs
 		def selectedKnowledgeDimensions = []
@@ -68,7 +68,7 @@ class PedagogyController {
 		}
 
 		// find all technique where both the knowledge dimension and the domain category match
-		def idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
+		final idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
 			and {
 				knowledgeDimension {
 					'in' ('id', selectedKnowledgeDimensions)
@@ -86,7 +86,7 @@ class PedagogyController {
 		}
 
 		// find all technique that are not ideal, but have the learning domain
-		def extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
+		final extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
 			and {
 				learningDomain {
 					'in' ('id', selectedLearningDomains)

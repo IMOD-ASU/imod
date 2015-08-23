@@ -7,11 +7,14 @@ grails.project.test.reports.dir = 'target/test-reports'
 grails.project.war.file = "target/${appName}.war"
 
 // This controls what java version is required to be able to run grails
-grails.project.target.level = 1.7
-grails.project.source.level = 1.7
+grails.project.target.level = 1.8
+grails.project.source.level = 1.8
 
 // This tells grails to grails to build the pages as part of the build
 grails.views.gsp.sitemesh.preprocess = true
+
+// TODO Workaround for https://github.com/chrismair/GrailsCodeNarcPlugin/issues/6
+codenarc.excludeBaseline = ''
 
 grails.project.dependency.resolver = 'maven'
 
@@ -72,9 +75,9 @@ grails.project.dependency.resolution = {
 		compile ':rest-client-builder:2.1.1'
 		compile ":rendering:1.0.0"
 
-		provided ':codenarc:0.23'
+		provided ':codenarc:0.24'
 
-		runtime ':hibernate4:4.3.8.1'
+		runtime ':hibernate4:4.3.10'
 		runtime ':jquery:1.11.1'
 	}
 }

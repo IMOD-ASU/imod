@@ -46,11 +46,17 @@
                                 <td>
 
                                     <fieldset class="buttons">
+                                        <span class="topicButtonGradient">
                                     	<a href="../syllabus/${currentImod?.id}" target="_blank">
                                             Show Syllabus
                                         </a>
+                                        </span>
+                                        <span class="topicButtonGradient">
                                         <g:actionSubmit class="save overview-save show-hover-new" action="update" title="${ message( code:'imod.courseOverview.save' ) }" value="${message(code: 'Save', default: 'Save')}"/>
+                                        </span>
+                                        <span class="topicButtonGradient">
                                         <g:actionSubmit class="delete show-hover-new" action="delete" title="${ message( code:'imod.courseOverview.delete' ) }" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+                                        </span>
                                     </fieldset>
                                 </td>
                             </tr>
@@ -62,14 +68,14 @@
                                                 Course Details
                                             </span>
                                         </div>
-                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'name', 'error')} required">
+                                        <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'name', 'error')}">
                                             <label for="name">
                                                 <g:message code="imod.name.label" default="Course Title" />
                                                 <span class="required-indicator">
                                                     *
                                                 </span>
                                             </label>
-                                            <g:textField name="name" id = "courseName" placeholder ="New Imods" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
+                                            <g:textField name="name" id = "courseName" placeholder ="New Imods" required="" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/>
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
@@ -135,6 +141,9 @@
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'startTime', 'error')} ">
                                             <label for="startTime">
                                                 <g:message code="imod.schedule.startTime.label" default="Start Time" />
+												<span class="required-indicator">
+                                                    *
+                                                </span>
                                             </label>
 
                                         <joda:timePicker name="schedule.startTime" id="schedule-start-time" default="none" noSelection="['':'']" value="${currentImod?.schedule?.startTime}"  />
@@ -142,6 +151,9 @@
                                         <div class="timeFields fieldcontain ${hasErrors(bean: currentImod, field: 'endTime', 'error')} ">
                                             <label for="endTime">
                                                 <g:message code="imod.schedule.endTime.label" default="End Time" />
+												<span class="required-indicator">
+                                                    *
+                                                </span>
                                             </label>
                                         <joda:timePicker name="schedule.endTime" id="schedule-end-time" default="none" noSelection="['':'']" value="${currentImod?.schedule?.endTime}" />
                                         </div>
@@ -275,7 +287,7 @@
                                             </h3>
                                             <div>
 											<input type="submit" name="participationCheck" id="participation-box" class="attendance-check" value="Restore Default"/>
-												
+
 												<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.classParticipation')}" />
                                             </div>
                                             <h3>

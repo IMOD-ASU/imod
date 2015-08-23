@@ -9,7 +9,7 @@ cache:
     - ~/.grails
 
 before_script:
-  - npm install -g bower eslint@1.0.0-rc-1
+  - npm install -g bower eslint@1.1.0
 
 script:
   - eslint web-app/js/source

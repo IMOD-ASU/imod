@@ -175,7 +175,7 @@ NOTE: this is only used for reference so developers know what tools and versions
 3. Wait a few minutes
 4. SSH into the server again
 5. Run `sudo /usr/local/apache2/bin/apachectl start`
-6. Run `sudo /opt/apache-tomcat-7.0.61/bin/startup.sh`
+6. Run `sudo /opt/apache-tomcat-{version}/bin/startup.sh`
 
 ##### Recover from Travis CI depandancy lock
 Sometimes when dependancies get updated Travis CI say all builds fail.
@@ -191,10 +191,10 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 ##### Update Apache Tomcat on Demo
 1. SSH into the server
 2. Goto `/opt`
-3. Run `sudo /opt/apache-tomcat-{new version}/bin/shutdown.sh`
+3. Run `sudo /opt/apache-tomcat-{old version}/bin/shutdown.sh`
 4. Open the [Apache Tomcat site](https://tomcat.apache.org/download-70.cgi)
-5. Get the latest code binary version `sudo wget http://whatever.tar.gz`
-6. Unzip file `sudo tar -zxvf whatever.tar.gz`
+5. Get the latest code binary version `sudo wget http://link-from-site.tar.gz`
+6. Unzip file `sudo tar -zxvf apache-tomcat-version.tar.gz`
 7. Copy the Tomcat Manager configuration from the old Tomcat config file to the new
 8. In `bin/catalina.sh` copy the Java version and Java Opts from the old tomcat to the new
 9. Run `sudo /opt/apache-tomcat-{new version}/bin/startup.sh`
@@ -203,8 +203,8 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 1. SSH into the server
 2. Goto `/opt`
 3. Open the [iojs website](https://iojs.org/en/index.html)
-4. Get the latest binary `sudo wget whatever.tar.gz`
-5. Unzip the file `sudo tar -zxvf whatever.tar.gz`
+4. Get the latest binary `sudo wget link-from-site.tar.gz`
+5. Unzip the file `sudo tar -zxvf iojs-32bit-version.tar.gz`
 6. cd into the new version
-7. run `bin/npm install bower`
+7. run `sudo ./bin/npm install -g bower`
 8. update the path to iojs in each of the Jenkins project configurations

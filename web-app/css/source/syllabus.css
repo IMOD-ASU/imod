@@ -81,3 +81,8 @@ body.syllabus_pdf .wrapper {
     	display: none;
     }
 }
+#printpdf {
+  width: 200px; // whatever your button's width
+  margin: 0 auto; // auto left/right margins
+  
+}

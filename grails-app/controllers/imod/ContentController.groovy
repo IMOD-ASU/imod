@@ -22,16 +22,19 @@ class ContentController {
 	}
 
 	def addNewTopic(Long id) {
-		def currentImod = Imod.get(id)
+		final currentImod = Imod.get(id)
+		final dimensions = KnowledgeDimensionEnum.values()*.value
+		final priorities = Content.priorities()
+
 		def contentInstance = new Content(imod: currentImod, failOnError: true)
+
 		contentInstance.save()
 		if (!contentInstance) {
 			contentInstance.errors.allErrors.each {
 				log.error messageSource.getMessage(it,null)
 			}
 		}
-		def dimensions = KnowledgeDimensionEnum.values()*.value
-		def priorities = Content.priorities()
+
 		render([
 			id: contentInstance.id,
 			dimensions: dimensions,
@@ -40,18 +43,21 @@ class ContentController {
 	}
 
 	def saveTopic(String JSONData) {
-		def jsonParser = new JsonSlurper()
-		def contentData = jsonParser.parseText(JSONData)
+		final jsonParser = new JsonSlurper()
+		final contentData = jsonParser.parseText(JSONData)
+
 		def success = []
 		def fail = []
-		contentData.each() {
-			def contentID = it.contentID.toLong()
-			def dimensions = []
-			def priority = it.priority
-			def preReq = it.preReq
-			def topicTitle = it.topicTitle
 
+		contentData.each() {
+			final contentID = it.contentID.toLong()
+			final priority = it.priority
+			final preReq = it.preReq
+			final topicTitle = it.topicTitle
+
+			def dimensions = []
 			def contentInstance = Content.get(contentID)
+
 			if (it.dimensions != '') {
 				dimensions = it.dimensions.split(',').collect() {
 					it.toUpperCase() as KnowledgeDimensionEnum
@@ -84,11 +90,11 @@ class ContentController {
 	}
 
 	def deleteTopic(String contentIDs) {
+		final contentIDList = new JsonSlurper().parseText(contentIDs)
+
 		def success = []
-		def contentIDList = new JsonSlurper().parseText(contentIDs)
 
 		contentIDList.each() { item ->
-
 			def deletedContent = Content.get(item)
 
 			// remove any parent association
@@ -130,10 +136,9 @@ class ContentController {
 	}
 
 	def updateHierarchy() {
-
-		def data = request.JSON
-		def contents = data.topics
-		def idArray = data.idArray
+		final data = request.JSON
+		final contents = data.topics
+		final idArray = data.idArray
 
 		contents.each() {
 			buildHierarchy(it, null)
@@ -149,12 +154,13 @@ class ContentController {
 	}
 
 	def buildHierarchy(content, Long parentID) {
-
 		def childContent = Content.get(content.id)
 		def oldParent = childContent.parentContent
+
 		if (oldParent != null) {
 			oldParent.removeFromSubContents(childContent)
 		}
+
 		if (parentID != null) {
 			def parentContent = Content.get(parentID)
 			parentContent.addToSubContents(childContent)
@@ -165,15 +171,10 @@ class ContentController {
 		}
 
 		if (content.child != '') {
-
 			content.child.each(){
-
 				buildHierarchy(it, content.id)
-
 			}
-
 		}
-
 	}
 
 	def setLearningObjective(String objectiveID, idArray) {
@@ -194,7 +195,6 @@ class ContentController {
 		else {
 			learningObjectiveInstance.contents = null
 		}
-
 	}
 
 	def addResource(Long contentID) {
@@ -221,16 +221,20 @@ class ContentController {
 	}
 
 	def saveResource(String JSONData) {
-		def jsonParser = new JsonSlurper()
-		def resourceData = jsonParser.parseText(JSONData)
+		final jsonParser = new JsonSlurper()
+		final resourceData = jsonParser.parseText(JSONData)
+
 		def success = []
 		def fail = []
+
 		resourceData.each() {
-			def resourceID = it.resourceID.toLong()
-			def resourceName = it.resourceName
-			def resourceDescription = it.resourceDescription
-			def resourceType = it.resourceType
+			final resourceID = it.resourceID.toLong()
+			final resourceName = it.resourceName
+			final resourceDescription = it.resourceDescription
+			final resourceType = it.resourceType
+
 			def resourceInstance = Resource.get(resourceID)
+
 			resourceInstance.name = resourceName
 			resourceInstance.description = resourceDescription
 			resourceInstance.resourceType = resourceType
@@ -256,8 +260,10 @@ class ContentController {
 	}
 
 	def deleteResource(String resourceIDs) {
+		final resourceIDList = new JsonSlurper().parseText(resourceIDs)
+
 		def success = []
-		def resourceIDList = new JsonSlurper().parseText(resourceIDs)
+
 		resourceIDList.each() {
 			def deletedResource = Resource.get(it)
 			deletedResource.delete()

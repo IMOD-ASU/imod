@@ -13,12 +13,12 @@ class AssessmentTechniqueController {
 	]
 
 
-	def assessmentplan(Long id, Long learningObjectiveID) {
-		def assessmentTechInstance = AssessmentTechnique.findAllByAssigncheck(true)
-		def domainCategories = DomainCategory.list()
-		def knowledgeDimensions = KnowledgeDimension.list()
-		def learningDomains = LearningDomain.list()
-		def assessmentFeedback = AssessmentFeedback.list()
+	def assessmentplan() {
+		final assessmentTechInstance = AssessmentTechnique.findAllByAssigncheck(true)
+		final domainCategories = DomainCategory.list()
+		final knowledgeDimensions = KnowledgeDimension.list()
+		final learningDomains = LearningDomain.list()
+		final assessmentFeedback = AssessmentFeedback.list()
 
 		println(assessmentTechInstance)
 		render (
@@ -37,7 +37,7 @@ class AssessmentTechniqueController {
 	 * get info on a selected technique
 	 */
 	def display(Long id) {
-		def assessmentTechInstance1 = AssessmentTechnique.findAllByAssigncheck(true)
+		final assessmentTechInstance1 = AssessmentTechnique.findAllByAssigncheck(true)
 		println(assessmentTechInstance1.id+assessmentTechInstance1.title)
 		render (
 			[
@@ -196,5 +196,4 @@ class AssessmentTechniqueController {
 			]
 		)
 	}
-
 }

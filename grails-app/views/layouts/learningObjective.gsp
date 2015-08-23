@@ -118,7 +118,7 @@
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective criteria/) == null ? '' : 'active' }">
-										<g:link action="criteria" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="criteria">
+										<g:link action="criteria" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="criteria" title="${ message( code:'imod.learningObjective.criteria' ) }">
 											Criteria
 										</g:link>
 									</li>

@@ -532,9 +532,55 @@ function deleteResource (resourceIDs) {
 $(
 	function () {
 		'use strict';
+		var numberOfCriticalTopics = 0;
+		var numberOfVeryImportantTopics = 0;
+		var numberOfGoodToKnowTopics = 0;
 		var savedData = true;
 
-		// Attach event listeners
+		$('input[id^="topicPrioritySaved"]').each(function () {
+			if ($(this).val() === 'Critical') {
+				numberOfCriticalTopics += 1;
+			}
+			if ($(this).val() === 'Very Important') {
+				numberOfVeryImportantTopics += 1;
+			}
+			if ($(this).val() === 'Good to Know') {
+				numberOfGoodToKnowTopics += 1;
+			}
+		});
+		$('#chart').chart({
+			data: [numberOfCriticalTopics, numberOfGoodToKnowTopics, numberOfVeryImportantTopics],
+			labels: ['Critical', 'Good To Know', 'Very Important'],
+			width: 500,
+			height: 400
+		});
+		$('#chart').CanvasJSChart({
+			title: {
+				text: 'Topic Priorities'
+			},
+			subtitle: {
+				fontSize: '16'
+			},
+			legend: {
+				maxWidth: 350,
+				itemWidth: 120,
+				fontSize: 12
+			},
+			data: [
+				{
+					type: 'pie',
+					indexLabelFontSize: 16,
+					showInLegend: true,
+					legendText: '{indexLabel}',
+					dataPoints: [
+						{y: numberOfCriticalTopics, indexLabel: 'Critical'},
+						{y: numberOfVeryImportantTopics, indexLabel: 'Very Important'},
+						{y: numberOfGoodToKnowTopics, indexLabel: 'Good to Know'}
+					]
+				}
+			]
+		});
+	// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(
 			function () {
@@ -543,11 +589,12 @@ $(
 			});
 		$('#saveTopic').click(
 			function () {
-				savedData = false;
+				savedData = true;
 				saveTopic();
 			});
 		$('#cancelTopic').click(
 			function () {
+				savedData = true;
 				revertChanges();
 				hideTopicDialog();
 			}
@@ -565,7 +612,7 @@ $(
 
 				$('#resourceList .selected').each(
 					function () {
-						resourceIDs.push(this.id);
+						resourceIDs.push($(this).parent().attr('id'));
 					}
 				);
 				deleteResource(resourceIDs);

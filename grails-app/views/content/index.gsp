@@ -29,12 +29,36 @@
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
+		<g:external dir="bower_components/jquery.piegraph" file="jquery.piegraph.js"/>
+		<g:external dir="bower_components/canvas.js" file="index.js"/>
 
 		<meta name="layout" content="imod">
 	</head>
 	<body>
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
-
+	<fieldset id="topicModalClose" class="buttons topicButtonField" style="margin-right: 15%;">
+	<span class="topicButtonGradient saveBG">
+		<button
+			class="save showHoverNew topicButton"
+			action="save"
+			id="saveTopic"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}"
+		>
+			${message(code: 'Save Topic', default: ' Save')}
+		</button>
+	</span>
+	<span class="topicButtonGradient cancelBG">
+		<button
+			class="showHoverNew topicButton"
+			action="cancel"
+			id="cancelTopic"
+			title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}"
+		>
+			<i class="fa fa-times"></i>
+			${message(code: 'Cancel Topics', default: ' Cancel')}
+		</button>
+	</span>
+</fieldset>
 
 	<div id="contentTable">
 	<fieldset class="buttons topicButtonField">
@@ -217,29 +241,7 @@
 		</tbody>
 	</table>
 
-		<fieldset id="topicModalClose" class="buttons topicButtonField">
-		<span class="topicButtonGradient saveBG">
-			<button
-				class="save showHoverNew topicButton"
-				action="save"
-				id="saveTopic"
-				title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}"
-			>
-				${message(code: 'Save Topic', default: ' Save')}
-			</button>
-		</span>
-		<span class="topicButtonGradient cancelBG">
-			<button
-				class="showHoverNew topicButton"
-				action="cancel"
-				id="cancelTopic"
-				title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}"
-			>
-				<i class="fa fa-times"></i>
-				${message(code: 'Cancel Topics', default: ' Cancel')}
-			</button>
-		</span>
-	</fieldset>
+
 	</div>
 	<div id="selectKnowledgeDimensionBackground" class="modalBackground">
 </div>
@@ -268,8 +270,21 @@
 			height="71"
 		/>
 	</span>
-	<button id="knowDimFinished" type="button">Save</button>
-	<button id="closeKnowDim" type="button">Close</button>
+	<button
+	  class="save showHoverNew resourceButton"
+				id="knowDimFinished"
+				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+	>
+				${message(code: 'Save Resource', default: ' Save')}
+	</button>
+	<button
+	  class="cancel showHoverNew resourceButton"
+				id="closeKnowDim"
+				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+	>
+				${message(code: 'Cancel Resource', default: ' Cancel')}
+	</button>
+
 </div>
 
 <div id="selectResourceBackground" class="modalBackground">
@@ -330,6 +345,9 @@
 
 
 </fieldset>
+</div>
+<div id="chart" align="center">
+
 </div>
 		<input type="hidden" id="treeData" value="${contentList}">
 	</body>

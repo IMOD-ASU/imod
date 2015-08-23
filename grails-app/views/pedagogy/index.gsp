@@ -209,13 +209,17 @@
 					</g:else>
 
 					<%--Dialog box for Add New Technique --%>
-					<div id="add-new-technique" title="Add Pedagogy Technique">
+					<div id="add-new-technique">
 						<%--To render the add new Technique dialog box--%>
+						<fieldset class="titleField">
+							<b>Add Pedagogy Technique</b>
+
+						</fieldset>
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
-							<table>
+							<table id="techniqueList">
 							<tr>
-							<td width="40%"> Title </td>
+							<td width="40%">Title</td>
 							<td width="60%"> <g:textField name="title" /></td>
 							</tr>
 							<!--<tr>
@@ -273,7 +277,7 @@
 							</tr>
 							</table>
 
-							<div id="modalButtons">
+							<div id="modalButtons" style="align:left">
 								<g:actionSubmit value="Save" action="save" class="new-technique-popup-button"/>
 								<g:actionSubmit value="Cancel" action="cancel" class="new-technique-popup-button" />
 							</div>

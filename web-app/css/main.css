@@ -20,8 +20,8 @@ textarea {
 .tabs-background {
     height: 4em;
 }
-.knowledge-dim-label{
-	font-size: large;
+.knowledge-dim-label {
+    font-size: large;
 }
 
 .ui-widget-header {
@@ -333,8 +333,8 @@ label {
 
     cursor: pointer;
 }
-.additional-tip{
-	display: inline-block;
+.additional-tip {
+    display: inline-block;
 
     margin: 0 0.25em 0 3em;
 
@@ -636,8 +636,8 @@ th.desc a {
     padding: 0.3em;
 
     border: none;
-    background-color: #efefef;
-    box-shadow: 0 0 3px 1px #aaaaaa;
+    /*background-color: #efefef;
+    box-shadow: 0 0 3px 1px #aaaaaa;*/
 }
 
 .buttons input,
@@ -791,6 +791,7 @@ a.banner-link {
 #imod-logo {
     position: relative;
     right: -25px;
+
     width: 116px;
     height: 41px;
 }
@@ -1276,9 +1277,8 @@ label[for=weekdays] {
 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
-#select-resource{
-
-z-index:99999;
+#select-resource {
+    z-index: 99999;
 }
 
 #qtip-place::-webkit-scrollbar {
@@ -1307,8 +1307,6 @@ Class for error message as label
     width: 60%;
 
     text-align: right;
-
-
 }
 
 .errorcontain .property-label {
@@ -1336,4 +1334,9 @@ Class for error message as label
 
 .errorcontain {
     margin-right: 0;
+}
+
+
+.ui-dialog {
+    left: 500px !important;
 }
