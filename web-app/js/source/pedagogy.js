@@ -64,16 +64,18 @@ function displayPedagogyTechniques (data) {
 	$('#ideal-matches').html(idealText);
 	$('#extended-matches').html(extendedText);
 
-	$('#ideal-matches').buttonset().click(
+	$('#ideal-matches').buttonset().find(':radio').click(
 		function () {
 			$('#add-new-technique').css('display', 'block');
+			$('#topicDialogBackground').css('display', 'block');
 			displayPedagogyInformationInEdit();
 		}
 	);
 
-	$('#extended-matches').buttonset().click(
+	$('#extended-matches').buttonset().find(':radio').click(
 		function () {
 			$('#add-new-technique').css('display', 'block');
+			$('#topicDialogBackground').css('display', 'block');
 			displayPedagogyInformationInEdit();
 		}
 	);
@@ -147,12 +149,44 @@ $(document).ready(
 		'use strict';
 		var liArray;
 		var height;
+		var currHeader;
+		var currContent;
+		var isPanelSelected;
 
 		// Load techniques on page load
 		filterPedagogyTechniques();
 		// The filters for the pedagogy technique are wrapped in a accordian
-		$('#filter-pedagogy-techniques').accordion();
-		$('#ideal-matches-toggle').accordion();
+		// beforeActivate is to be able to open both ideal & extended matches simultaneously
+		$('#filter-pedagogy-techniques').accordion({collapsible: true, heightStyle: 'content'});
+		$('#ideal-matches-toggle').accordion({collapsible: true,
+			beforeActivate: function (event, ui) {
+				// The accordion believes a panel is being opened
+				if (ui.newHeader[0]) {
+					currHeader = ui.newHeader;
+					currContent = currHeader.next('.ui-accordion-content');
+					// The accordion believes a panel is being closed
+				} else {
+					currHeader = ui.oldHeader;
+					currContent = currHeader.next('.ui-accordion-content');
+				}
+				// Since we've changed the default behavior, this detects the actual status
+				isPanelSelected = currHeader.attr('aria-selected') === 'true';
+				// Toggle the panel's header
+				currHeader.toggleClass('ui-corner-all', isPanelSelected).toggleClass('accordion-header-active ui-state-active ui-corner-top', !isPanelSelected).attr('aria-selected', ((!isPanelSelected).toString()));
+				// Toggle the panel's icon
+				currHeader.children('.ui-icon').toggleClass('ui-icon-triangle-1-e', isPanelSelected).toggleClass('ui-icon-triangle-1-s', !isPanelSelected);
+				// Toggle the panel's content
+				currContent.toggleClass('accordion-content-active', !isPanelSelected);
+				if (isPanelSelected) {
+					currContent.slideUp();
+				}else {
+					currContent.slideDown();
+				}
+				// Cancels the default action
+				return false;
+			}
+		});
+
 
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
@@ -162,10 +196,6 @@ $(document).ready(
 
 		// When add new technique button is clicked open modal
 		$('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
-
-		$(document).on('click', '.ui-dialog-titlebar-close', function () {
-			$('.modalBackground').hide();
-		});
 
 		// When hovered over LO side-tab list, it displays full text as tool-tip
 		liArray = $('ul.learning-objective.list-wrapper').children('li');
