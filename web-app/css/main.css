@@ -965,6 +965,13 @@ table.inner-table {
     width: auto;
 }
 
+#courseoverview-form {
+	display: inline-block;
+	*display: inline; /* ie7 hasLayout trigger*/
+	*zoom: 1;
+	width: 100%;
+}
+
 .course-overview-form,
 .topic-hierarchy-widget,
 .topic-information-widget,
