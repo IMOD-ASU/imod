@@ -38,7 +38,7 @@
                 <g:form url="[action:'update',controller:'imod']" method="post" class="courseoverview">
                     <g:hiddenField name="id" value="${currentImod?.id}"/>
                     <g:hiddenField name="version" value="${currentImod?.version}"/>
-                    <fieldset class="form">
+                    <fieldset id="courseoverview-form" class="form">
                         <table class="inner-table">
                             <tr height="50px">
                                 <td>
