@@ -54,8 +54,8 @@ $(document).ready(function () {
 	);
 	// Make modals draggable
 	$('.draggable').draggabilly({
-	  handle: ".draggable-handle"
-	})
+		handle: '.draggable-handle'
+	});
 
 	$('#help-placeholder > #open-button, #help-placeholder-2 > #open-button').click(function () {
 		var helpbox = $('#help-placeholder');
