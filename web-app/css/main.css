@@ -794,6 +794,9 @@ a.banner-link {
 
     width: 116px;
     height: 41px;
+    
+    padding-right: 13.5px;
+    padding-left: 13.5px;
 }
 .add {
     text-indent: 25px;

@@ -149,9 +149,9 @@
 
 							<div>
 							<span> <b> ${selectedDomain} </b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
-							<span> <b>${selectedDomainCategory}</b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
+							<span id="domainCategoryspan"> <b>${selectedDomainCategory}</b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
 							<g:if test="${dimension == null}">
-								<span> <b><i> No Content Selected  </i></b> </span>
+
 							</g:if>
 							<g:else>
 								<g:each var="kd" in="${dimension}" status="i">
