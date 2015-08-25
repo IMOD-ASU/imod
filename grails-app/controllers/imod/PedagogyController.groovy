@@ -29,7 +29,16 @@ class PedagogyController {
 		final learningDomains = LearningDomain.list()
 		final pedagogyModes = PedagogyMode.list()
 		final pedagogyFocuses = PedagogyActivityFocus.list()
-
+		final selectedActionWordCategory = currentLearningObjective.actionWordCategory
+		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
+		final selectedDomain = selectedDomainCategory?.learningDomain
+		final content = currentLearningObjective.contents
+		def dimension = content[0]?.dimensions
+		def dimensionSize = 0
+		if (dimension != null){
+			dimensionSize  = dimension.size() - 1
+		}
+		
 		[
 			currentImod: currentImod,
 			currentLearningObjective: currentLearningObjective,
@@ -40,6 +49,10 @@ class PedagogyController {
 			learningObjectives: learningObjectives,
 			pedagogyModes: pedagogyModes,
 			pedagogyFocuses: pedagogyFocuses,
+			selectedDomain:selectedDomain,
+			selectedDomainCategory:selectedDomainCategory,
+			dimension:dimension,
+			dimensionSize:dimensionSize
 		]
 	}
 

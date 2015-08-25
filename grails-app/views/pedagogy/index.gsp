@@ -76,7 +76,8 @@
 										<label for="knowledge-dimension-${index}">
 											${knowledgeDimension.description}
 										</label>
-										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" />
+										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}"
+										            checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}"/>
 									</li>
 								</g:each>
 							</ul>
@@ -91,7 +92,8 @@
 										<label for="learning-domain-${index}">
 											${learningDomain.name}
 										</label>
-										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" />
+										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}"
+										             checked="${learningDomain.name == selectedDomain.toString()}"/>
 									</li>
 								</g:each>
 							</ul>
@@ -106,7 +108,8 @@
 										<label for="domain-category-${index}">
 											${domainCategory.name}
 										</label>
-										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" />
+										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}"
+										             checked="${domainCategory.name == selectedDomainCategory.toString()}"/>
 									</li>
 								</g:each>
 							</ul>
@@ -143,20 +146,24 @@
 							<span style="float:center;"><g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/></span>
 							<span><g:img id="performance-tab" dir="images" file="content.png" alt="Content"/></span>
 							</div>
-							<!--<ul class="learning-objective sub-nav">
-								<li class="performance active">
-									Performance
-								</li>
-								<li class="content">
-									Content
-								</li>
-								<li class="condition">
-									Condition
-								</li>
-								<li class="criteria active">
-									Criteria
-								</li>
-							</ul>-->
+
+							<div>
+							<span> <b> ${selectedDomain} </b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
+							<span> <b>${selectedDomainCategory}</b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
+							<g:if test="${dimension == null}">
+								<span> <b><i> No Content Selected  </i></b> </span>
+							</g:if>
+							<g:else>
+								<g:each var="kd" in="${dimension}" status="i">
+							       <span> <b>${kd}</b></span>
+								   <g:if test="${dimensionSize != i}" >
+										<span ><b> or</b> <span>
+									</g:if>
+								 </g:each>
+
+							</g:else>
+
+							</div>
 
 							<div id="selectedFilter">
 								${selectionLine}
@@ -165,7 +172,7 @@
 							<br>
 							<div id="ideal-matches-toggle">
 							<h3 title="${Help.toolTip('PEDAGOGY', 'Ideal Match')}" class="showHover">
-								<b>Ideal Match</b>
+								<b>Ideal Matches</b>
 							</h3>
 
 							<div id="ideal-matches" class="icons favorite" style="height:300px"></div>

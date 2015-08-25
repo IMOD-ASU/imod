@@ -965,6 +965,13 @@ table.inner-table {
     width: auto;
 }
 
+#courseoverview-form {
+	display: inline-block;
+	*display: inline; /* ie7 hasLayout trigger*/
+	*zoom: 1;
+	width: 100%;
+}
+
 .course-overview-form,
 .topic-hierarchy-widget,
 .topic-information-widget,
@@ -1270,6 +1277,9 @@ label[for=weekdays] {
     font-weight: bold;
 }
 
+#qtip-heading {
+	font-family: fantasy, 'Ubuntu';
+}
 
 #qtip-place::-webkit-scrollbar-track {
     border-radius: 10px;
@@ -1293,6 +1303,18 @@ label[for=weekdays] {
     background-color: #ebeb35;
 
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#qtip-place {
+	float: right;
+	text-align: center;
+	position: absolute;
+	margin: 10%;
+	font-family: fantasy, 'Ubuntu';
+	width: 10em;
+	height: auto;
+	max-height: 20em;
+	background-color: #ffff5a;
 }
 
 /**
