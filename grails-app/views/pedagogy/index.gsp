@@ -216,11 +216,10 @@
 					</g:else>
 
 					<%--Dialog box for Add New Technique --%>
-					<div id="add-new-technique">
+					<div class="draggable" id="add-new-technique">
 						<%--To render the add new Technique dialog box--%>
-						<fieldset class="titleField">
+						<fieldset class="titleField draggable-handle">
 							<b>Add Pedagogy Technique</b>
-
 						</fieldset>
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
