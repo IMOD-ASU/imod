@@ -188,3 +188,8 @@
     text-align:left;
 
 }
+
+.ui-accordion .ui-accordion-content{
+    margin: 10px;
+    border-top: 1px solid #aaaaaa;
+}

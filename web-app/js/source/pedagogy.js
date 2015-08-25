@@ -144,6 +144,23 @@ function getMinHeight (liArray) {
 	return minHeight;
 }
 
+function updateTextArea () {
+	'use strict';
+	var allVals = [];
+	var valsLength;
+
+	$('input[name=domainCategory]:checked').each(function () {
+		allVals.push($(this).prev().prev().text().trim());
+	});
+	valsLength = allVals.length;
+
+	if (allVals.length > 2) {
+		$('#domainCategoryspan').html('<b>Domain Category (' + valsLength + ' Selections)</b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;');
+	} else {
+		$('#domainCategoryspan').html('<b>' + allVals + '</b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;');
+	}
+ }
+
 $(document).ready(
 	function () {
 		'use strict';
@@ -192,7 +209,11 @@ $(document).ready(
 		// when the filters have been changed
 		$('input[name=knowledgeDimension]').on('change', filterPedagogyTechniques);
 		$('input[name=learningDomain]').on('change', filterPedagogyTechniques);
-		$('input[name=domainCategory]').on('change', filterPedagogyTechniques);
+		$('input[name=domainCategory]').on('change',
+		function () {
+			updateTextArea();
+			filterPedagogyTechniques();
+		});
 
 		// When add new technique button is clicked open modal
 		$('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
