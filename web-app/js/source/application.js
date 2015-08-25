@@ -53,10 +53,9 @@ $(document).ready(function () {
 		}
 	);
 	// Make modals draggable
-	$('.draggable')
-		.not(document.getElementById('topicList'))
-		.not(document.getElementById('resourceList'))
-		.drags();
+	$('.draggable').draggabilly({
+	  handle: ".draggable-handle"
+	})
 
 	$('#help-placeholder > #open-button, #help-placeholder-2 > #open-button').click(function () {
 		var helpbox = $('#help-placeholder');
