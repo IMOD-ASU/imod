@@ -196,7 +196,7 @@ $(document).ready(
 				currContent.toggleClass('accordion-content-active', !isPanelSelected);
 				if (isPanelSelected) {
 					currContent.slideUp();
-				}else {
+				} else {
 					currContent.slideDown();
 				}
 				// Cancels the default action

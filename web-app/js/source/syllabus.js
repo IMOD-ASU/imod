@@ -1,84 +1,51 @@
 $('#course-details-check').click(function () {
 	'use strict';
-	if ($('#course-details-check').is(':checked')) {
-		$('#course').css('display', 'block');
-	} else {
-		$('#course').css('display', 'none');
-	}
+	toggleVisibility('#course-details-check', '#course');
 });
+
 $('#schedule-check').click(function () {
 	'use strict';
-	if ($('#schedule-check').is(':checked')) {
-		$('#schedule').css('display', 'block');
-	} else {
-		$('#schedule').css('display', 'none');
-	}
+	toggleVisibility('#schedule-check', '#schedule');
 });
 
 $('#course-description-check').click(function () {
 	'use strict';
-	if ($('#course-description-check').is(':checked')) {
-		$('#description').css('display', 'block');
-	} else {
-		$('#description').css('display', 'none');
-	}
+	toggleVisibility('#course-description-check', '#description');
 });
+
 $('#course-policy-check').click(function () {
 	'use strict';
-	if ($('#course-policy-check').is(':checked')) {
-		$('#policy').css('display', 'block');
-	} else {
-		$('#policy').css('display', 'none');
-	}
+	toggleVisibility('#course-policy-check', '#policy');
 });
+
 $('#instructor-check').click(function () {
 	'use strict';
-	if ($('#instructor-check').is(':checked')) {
-		$('#instructor').css('display', 'block');
-	} else {
-		$('#instructor').css('display', 'none');
-	}
+	toggleVisibility('#instructor-check', '#instructor');
 });
 
 $('#grading-procedure-check').click(function () {
 	'use strict';
-	if ($('#grading-procedure-check').is(':checked')) {
-		$('#grading-procedure').css('display', 'block');
-	} else {
-		$('#grading-procedure').css('display', 'none');
-	}
+	toggleVisibility('#grading-procedure-check', '#grading-procedure');
 });
+
 $('#attendance-check').click(function () {
 	'use strict';
-	if ($('#attendance-check').is(':checked')) {
-		$('#attendance').css('display', 'block');
-	} else {
-		$('#attendance').css('display', 'none');
-	}
+	toggleVisibility('#attendance-check', '#attendance');
 });
+
 $('#participation-check').click(function () {
 	'use strict';
-	if ($('#participation-check').is(':checked')) {
-		$('#participation').css('display', 'block');
-	} else {
-		$('#participation').css('display', 'none');
-	}
+	toggleVisibility('#participation-check', '#participation');
 });
+
 $('#conduct-check').click(function () {
 	'use strict';
-	if ($('#conduct-check').is(':checked')) {
-		$('#conduct').css('display', 'block');
-	} else {
-		$('#conduct').css('display', 'none');
-	}
+	toggleVisibility('#conduct-check', '#conduct');
 });
+
 $('#exams-check').click(function () {
 	'use strict';
-	if ($('#exams-check').is(':checked')) {
-		$('#exams').css('display', 'block');
-	} else {
-		$('#exams').css('display', 'none');
-	}
+	toggleVisibility('#exams-check', '#exams');
 });
 $('#missed-exams-check').click(function () {
 	'use strict';
@@ -91,61 +58,36 @@ $('#missed-exams-check').click(function () {
 
 $('#printpdf').click(function () {
 	'use strict';
-	if ($('#course-details-check').is(':checked')) {
-		$('#course-details-check').css('display', 'none');
-	} else {
-		$('#course').parent().css('display', 'none');
-	}
-	if ($('#schedule-check').is(':checked')) {
-		$('#schedule-check').css('display', 'none');
-	} else {
-		$('#schedule').parent().css('display', 'none');
-	}
-	if ($('#course-description-check').is(':checked')) {
-		$('#course-description-check').css('display', 'none');
-	} else {
-		$('#description').parent().css('display', 'none');
-	}
-	if ($('#course-policy-check').is(':checked')) {
-		$('#course-policy-check').css('display', 'none');
-	} else {
-		$('#policy').parent.css('display', 'none');
-	}
-	if ($('#instructor-check').is(':checked')) {
-		$('#instructor-check').css('display', 'none');
-	} else {
-		$('#instructor').parent().css('display', 'none');
-	}
-	if ($('#grading-procedure-check').is(':checked')) {
-		$('#grading-procedure-check').css('display', 'none');
-	} else {
-		$('#grading-procedure').parent().css('display', 'none');
-	}
-	if ($('#attendance-check').is(':checked')) {
-		$('#attendance-check').css('display', 'none');
-	} else {
-		$('#attendance').parent().css('display', 'none');
-	}
-	if ($('#participation-check').is(':checked')) {
-		$('#participation-check').css('display', 'none');
-	} else {
-		$('#participation').parent().css('display', 'none');
-	}
-	if ($('#conduct-check').is(':checked')) {
-		$('#conduct-check').css('display', 'none');
-	} else {
-		$('#conduct').parent().css('display', 'none');
-	}
-	if ($('#exams-check').is(':checked')) {
-		$('#exams-check').css('display', 'none');
-	} else {
-		$('#exams').parent().css('display', 'none');
-	}
-	if ($('#missed-exams-check').is(':checked')) {
-		$('#missed-exams-check').css('display', 'none');
-	} else {
-		$('#missed-exams').parent().css('display', 'none');
-	}
+	togglePrintView('#course-details-check', '#course');
+	togglePrintView('#schedule-check', '#schedule');
+	togglePrintView('#course-description-check', '#description');
+	togglePrintView('#course-policy-check', '#policy');
+	togglePrintView('#instructor-check', '#instructor');
+	togglePrintView('#grading-procedure-check', '#grading-procedure');
+	togglePrintView('#attendance-check', '#attendance');
+	togglePrintView('#participation-check', '#participation');
+	togglePrintView('#conduct-check', '#conduct');
+	togglePrintView('#exams-check', '#exams');
+	togglePrintView('#missed-exams-check', '#missed-exams');
+
 	$('#printpdf').css('visibility', 'hidden');
 	window.print();
 });
+
+function toggleVisibility (toggle, destination) {
+	'use strict';
+	if ($(toggle).is(':checked')) {
+		$(destination).css('display', 'block');
+	} else {
+		$(destination).css('display', 'none');
+	}
+}
+
+function togglePrintView (toggle, alternate) {
+	'use strict';
+	if ($(toggle).is(':checked')) {
+		$(toggle).css('display', 'none');
+	} else {
+		$(alternate).parent().css('display', 'none');
+	}
+}
