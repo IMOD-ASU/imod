@@ -99,9 +99,9 @@ class LearningObjectiveController {
 				selectedLearningObjective.performance = params.DCL
 				if (params.actionWord == 'other') {
 					selectedLearningObjective.actionWord = params.customActionWord
-				}else if(params.actionWord == 'select'){
+				} else if(params.actionWord == 'select'){
 					selectedLearningObjective.actionWord = 'Enter the details here'
-				}else {
+				} else {
 					selectedLearningObjective.actionWord = params.actionWord
 				}
 				break
