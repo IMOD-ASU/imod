@@ -21,8 +21,8 @@ function populatePedagogyTechnique (data) {
 	$('#activityDescription').val(currentTechnique.activityDescription);
 
 	// Choose correct item from selectables
-	$('.learningDomain option[value=' + currentTechnique.learningDomain[0].id + ']').prop('selected', true);
-	$('.domainCategory option[value=' + currentTechnique.domainCategory[0].id + ']').prop('selected', true);
+	$('#learningDomain option[value=' + data.learningDomain + ']').prop('selected', true);
+	$('#domainCategory option[value=' + data.domainCategory + ']').prop('selected', true);
 }
 
 function displayPedagogyInformationInEdit () {
@@ -56,8 +56,8 @@ function displayPedagogyTechniques (data) {
 	// Take the titles and make html code to display
 	for (index = 0; index < data.extendedPedagogyTechniqueMatch.length; index++) {
 		currentTechnique = data.extendedPedagogyTechniqueMatch[index];
-		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
-		idealText += '<label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
+		extendedText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
+		extendedText += '<label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
 	}
 
 	// Add html code to the page
