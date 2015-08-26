@@ -16,22 +16,22 @@ $(function () {
 	});
 });
 
-function toggleVisibility ($toggle, $target) {
+function toggleVisibility (toggle, target) {
 	'use strict';
 
-	if ($toggle.is(':checked')) {
-		$target.show();
+	if (toggle.is(':checked')) {
+		target.show();
 	} else {
-		$target.hide();
+		target.hide();
 	}
 }
 
-function togglePrintView ($toggle) {
+function togglePrintView (toggle) {
 	'use strict';
 
-	if ($toggle.is(':checked')) {
-		$toggle.hide();
+	if (toggle.is(':checked')) {
+		toggle.hide();
 	} else {
-		$toggle.parent().hide();
+		toggle.parent().hide();
 	}
 }
