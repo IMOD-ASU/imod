@@ -36,11 +36,9 @@
             <div class="course-details" >
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked id="course-details-check"  />
+					<input type="checkbox" checked class="display-toggle" data-id="course"  />
 					Course Details
 					</h3>
-
-
                 </div>
 				<div id="course">
                 <div class="fieldcontain">
@@ -87,7 +85,7 @@
             <div class="schedule">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked  id="schedule-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="schedule"/>
 					Schedule
 					</h3>
                 </div>
@@ -141,8 +139,8 @@
                         <label for="scheduleWeekDays">
                             Repeats On
                         </label>
-                        <g:each in="${imod.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">                           
-                            <g:if test="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}">                           
+                        <g:each in="${imod.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
+                            <g:if test="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}">
                                 <label for="weekdays">
                                     <strong>${scheduleWeekDays.description.encodeAsCustomEscape()}</strong>
                                 </label>
@@ -157,7 +155,7 @@
             <div class="course-description">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked  id="course-description-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="description"/>
 					Course Description
 					</h3>
                 </div>
@@ -210,14 +208,14 @@
             <div class="course-policy">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked  id="course-policy-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="policy"/>
 					Course Policy
 					</h3>
                 </div>
 				<div id="policy">
                 <div class="fieldcontain" >
                     <h4>
-					<input type="checkbox" checked  id="grading-procedure-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="grading-procedure"/>
                         <strong>Grading procedure:</strong>
                     </h4>
 					<div id="grading-procedure">
@@ -228,7 +226,7 @@
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-					<input type="checkbox" checked  id="attendance-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="attendance"/>
                         <strong>Attendance and tardiness:</strong>
                     </h4>
 					<div id="attendance">
@@ -239,7 +237,7 @@
                 </div>
                 <div class="fieldcontain">
                     <h4>
-					<input type="checkbox" checked  id="participation-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="participation"/>
                         <strong>Class participation:</strong>
                     </h4>
 					<div  id ="participation">
@@ -250,7 +248,7 @@
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-						<input type="checkbox" checked  id="conduct-check"/>
+						<input type="checkbox" checked class="display-toggle" data-id="conduct"/>
                         <strong>Professional Conduct:</strong>
                     </h4>
 					<div id="conduct">
@@ -261,7 +259,7 @@
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-					<input type="checkbox" checked  id="exams-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="exams"/>
                         <strong>Missed exams/Make-up exams:</strong>
                     </h4>
 					<div id="exams">
@@ -272,7 +270,7 @@
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-						<input type="checkbox" checked  id="missed-exams-check"/>
+						<input type="checkbox" checked class="display-toggle" data-id="missed-exams"/>
                         <strong>Missed Assignments:</strong>
                     </h4>
 					<div id="missed-exams">
@@ -289,7 +287,7 @@
 
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked  id="instructor-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="instructor"/>
 					Instructor
 					</h3>
                 </div>
@@ -326,16 +324,15 @@
             </div>%{-- instructors --}%
             </g:if>
 
-
-            <g:if test="${learningObjectives != null && learningObjectives.isEmpty()}">
+            <g:if test="${learningObjectives != null && !learningObjectives.isEmpty()}">
             <div class="learning-objectives">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked  name="learning-objective-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="learning-objectives-list"/>
 					Learning Objectives
 					</h3>
                 </div>
-                <ul class="learning-objective list-wrapper">
+                <ul id="learning-objectives-list" class="learning-objective list-wrapper">
                     <g:each var="learningObjective" in="${learningObjectives}">
                         <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
                             <li class="learning-objective list-item">
@@ -347,16 +344,18 @@
             </div>
             </g:if>
 
-            <g:if test="${contentList != null && contentList.isEmpty()}">
+            <g:if test="${contentList != null && !contentList.isEmpty()}">
             <div class="Content">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked  name="content-check"/>
+					<input type="checkbox" checked class="display-toggle" data-id="content-list"/>
 					Content
 					</h3>
                 </div>
-                %{-- comes straight from the controller as text --}%
-                ${contentList.encodeAsCustomEscape()}
+                <div id="content-list">
+                	%{-- comes straight from the controller as text --}%
+	                ${contentList.encodeAsCustomEscape()}
+                </div>
             </div>
             </g:if>
 			<button type="button" id="printpdf">Save</button>

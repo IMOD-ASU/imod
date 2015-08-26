@@ -116,7 +116,7 @@ rules:
         - single
     id-match:
         - 2
-        - ^[a-zA-Z]+$
+        - ^[a-zA-Z$]+$
     semi-spacing: 2
     semi: 2
     space-after-keywords: 2
