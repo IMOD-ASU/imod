@@ -15,7 +15,9 @@ class PedagogyTechniqueController {
 	def get(Long id) {
 		render (
 			[
-				pedagogyTechnique: PedagogyTechnique.get(id)
+				pedagogyTechnique: PedagogyTechnique.get(id),
+				learningDomain: LearningDomain.findById(PedagogyTechnique.get(id).learningDomain[0].id).toString(),
+				domainCategory: DomainCategory.findById(PedagogyTechnique.get(id).domainCategory[0].id).toString(),
 			] as JSON
 		)
 	}
@@ -53,6 +55,7 @@ class PedagogyTechniqueController {
 
 		// Store relationships
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
+		println params.pedagogyMode
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)
