@@ -357,7 +357,7 @@
                 </div>
             </div>
             </g:if>
-            <a href="../generatedSyllabus/${currentImod.id}" id="generate-syllabus">Generate Syllabus</a>
+            <button id="printpdf">Print Page</button>
         </div>
     </body>
 </html>

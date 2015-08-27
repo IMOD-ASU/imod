@@ -115,6 +115,27 @@ class CourseOverviewController {
         ]
     }
 
+    def generatedSyllabus(Long id) {
+        final currentImod = Imod.get(id)
+        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+        final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+
+        def text = '<ul>'
+
+        contentList.each() {
+            text += getSubContent(it)
+        }
+
+        text += '</ul>'
+
+        [
+            currentImod: currentImod,
+            currentPage: 'syllabus',
+            learningObjectives: learningObjectives,
+            contentList: text
+        ]
+    }
+
      def syllabuspdf(Long id) {
         final currentImod = Imod.get(id)
         final learningObjectives = LearningObjective.findAllByImod(currentImod)
