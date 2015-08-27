@@ -9,6 +9,7 @@ class CourseOverviewController {
     static allowedMethods = [
         delete:           'POST',
         create:           'POST',
+        updateSyllabusPrefs: 'POST',
     ]
 
 	def index(Long id) {
@@ -115,6 +116,32 @@ class CourseOverviewController {
         ]
     }
 
+    // Method to update syllabus contentlist
+    // to toggle hide show
+    def updateSyllabusPrefs() {
+
+    	def imod = Imod.get(params.imodId);
+    	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
+
+    	if( syllabusPrefs != null ) {
+    		syllabusPrefs.hideSectionsList = params.hideSectionsList
+    	} else {
+    		syllabusPrefs = new SyllabusPrefs(
+	    		hideSectionsList: params.hideSectionsList,
+	            imod: params.imodId
+	        )
+		}
+
+        // save new instructor and the updated user to database
+        syllabusPrefs.save()
+
+        render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+    }
+
     def generatedSyllabus(Long id) {
         final currentImod = Imod.get(id)
         final learningObjectives = LearningObjective.findAllByImod(currentImod)
@@ -125,6 +152,9 @@ class CourseOverviewController {
         contentList.each() {
             text += getSubContent(it)
         }
+
+        def imod = Imod.get(params.imodId);
+    	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
 
         text += '</ul>'
 
