@@ -246,51 +246,52 @@
 	<div id="selectKnowledgeDimensionBackground" class="modalBackground">
 </div>
 <div id="selectKnowledgeDimensions" class="draggable">
-	<input type="hidden" id="topicID" />
-	<span>
-		<ul>
-			<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
-				<li>
-					<input
-						type="checkbox"
-						id="${dimension}"
-						value="${dimension}"
-					/>
-					<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
-						${dimension}
-					</label>
-				</li>
-			</g:each>
-		</ul>
-		<g:img
-			dir="images/content"
-			file="knowDimNone.png"
-			id="dimImage"
-			width="71"
-			height="71"
-		/>
-	</span>
-	<button
-	  class="save showHoverNew resourceButton"
-				id="knowDimFinished"
-				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
-	>
-				${message(code: 'Save Resource', default: ' Save')}
-	</button>
-	<button
-	  class="cancel showHoverNew resourceButton"
-				id="closeKnowDim"
-				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
-	>
-				${message(code: 'Cancel Resource', default: ' Cancel')}
-	</button>
-
+	<div class="draggable-handle">
+		<input type="hidden" id="topicID" />
+		<span>
+			<ul>
+				<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
+					<li>
+						<input
+							type="checkbox"
+							id="${dimension}"
+							value="${dimension}"
+						/>
+						<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
+							${dimension}
+						</label>
+					</li>
+				</g:each>
+			</ul>
+			<g:img
+				dir="images/content"
+				file="knowDimNone.png"
+				id="dimImage"
+				width="71"
+				height="71"
+			/>
+		</span>
+		<button
+		  class="save showHoverNew resourceButton"
+					id="knowDimFinished"
+					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+		>
+					${message(code: 'Save Resource', default: ' Save')}
+		</button>
+		<button
+		  class="cancel showHoverNew resourceButton"
+					id="closeKnowDim"
+					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+		>
+					${message(code: 'Cancel Resource', default: ' Cancel')}
+		</button>
+	</div>
 </div>
 
 <div id="selectResourceBackground" class="modalBackground">
 </div>
 <div id="selectResource" class="draggable">
-<fieldset class="buttons resourceButtonField">
+	<fieldset class="buttons resourceButtonField draggable-handle">
 		<span class="resourceButtonGradient">
 			<g:actionSubmit
 				class="add showHoverNew resourceButton" action="add" id="addResource"

@@ -38,7 +38,7 @@ class PedagogyController {
 		if (dimension != null){
 			dimensionSize  = dimension.size() - 1
 		}
-		
+
 		[
 			currentImod: currentImod,
 			currentLearningObjective: currentLearningObjective,
