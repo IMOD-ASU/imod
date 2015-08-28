@@ -219,7 +219,9 @@
 					<div class="draggable" id="add-new-technique">
 						<%--To render the add new Technique dialog box--%>
 						<fieldset class="titleField draggable-handle">
-							<b>Add Pedagogy Technique</b>
+							<div id="editTitle">
+							<b> Add Pedagogy Technique</b>
+							</div>
 						</fieldset>
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
@@ -275,18 +277,20 @@
 							<tr>
 							<td width="40%">Description of Strategy</td>
 							<td width="60%">
-							<g:textField name="strategyDescription" /></td>
+							<g:textArea name="strategyDescription" rows="5" cols="30" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Description of Activity</td>
-							<td width="60%"><g:textField name="activityDescription" /></td>
+							<td width="60%"><g:textArea name="activityDescription" rows="5" cols="30" /></td>
 							</tr>
 							</table>
+							<br>
 
 							<div id="modalButtons" style="align:left">
 								<g:actionSubmit value="Save" action="save" class="new-technique-popup-button"/>
 								<g:actionSubmit value="Cancel" action="cancel" class="new-technique-popup-button" />
 							</div>
+							<br>
 						</g:form>
 					</div>
 				</td>
