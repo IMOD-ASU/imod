@@ -11,6 +11,7 @@ function populatePedagogyTechnique (data) {
 	'use strict';
 	var currentTechnique = data.pedagogyTechnique;
 
+	$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
 	// Set the text fields
 	$('#title').val(currentTechnique.title);
 	$('#location').val(currentTechnique.location);
