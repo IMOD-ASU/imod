@@ -358,7 +358,7 @@
             </div>
             </g:if>
             <input type="hidden" name="imodID" id="imodID" value="${currentImod.id}">
-            <a href="#" id="generate-syllabus">Generate Syllabus</a>
+            <a href="#" id="generate-syllabus">Save &amp; Generate Syllabus</a>
         </div>
     </body>
 </html>
