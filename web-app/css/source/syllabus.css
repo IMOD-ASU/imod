@@ -74,12 +74,17 @@ body.syllabus_pdf .wrapper {
     }
     .wrapper {
     	padding: 0;
-
     	border: none;
     }
     .options {
     	display: none;
     }
+    .display-toggle,
+    #generate-syllabus,
+    #printpdf {
+    	display: none;
+    }
+
 }
 
 

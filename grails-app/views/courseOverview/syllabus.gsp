@@ -9,7 +9,7 @@
 <html>
     <head>
         <title>
-            Syllabus
+            Generate Syllabus
         </title>
         <g:external dir="css/source" file="syllabus.css" media="screen, print"/>
         <g:external dir="bower_components/jquery/dist" file="jquery.min.js" />
@@ -35,7 +35,7 @@
             <div class="course-details" >
                 <div class="form-title">
                     <h3>
-                    <input type="checkbox" checked class="display-toggle" data-id="course"  />
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-course-') ? '' : 'checked'} data-id="course"  />
                     Course Details
                     </h3>
                 </div>
@@ -84,7 +84,7 @@
             <div class="schedule">
                 <div class="form-title">
                     <h3>
-                    <input type="checkbox" checked class="display-toggle" data-id="schedule"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-schedule-') ? '' : 'checked'} data-id="schedule"/>
                     Schedule
                     </h3>
                 </div>
@@ -154,7 +154,7 @@
             <div class="course-description">
                 <div class="form-title">
                     <h3>
-                    <input type="checkbox" checked class="display-toggle" data-id="description"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-description-') ? '' : 'checked'} data-id="description"/>
                     Course Description
                     </h3>
                 </div>
@@ -207,14 +207,14 @@
             <div class="course-policy">
                 <div class="form-title">
                     <h3>
-                    <input type="checkbox" checked class="display-toggle" data-id="policy"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-policy-') ? '' : 'checked'} data-id="policy"/>
                     Course Policy
                     </h3>
                 </div>
                 <div id="policy">
                 <div class="fieldcontain" >
                     <h4>
-                    <input type="checkbox" checked class="display-toggle" data-id="grading-procedure"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-grading-procedure-') ? '' : 'checked'} data-id="grading-procedure"/>
                         <strong>Grading procedure:</strong>
                     </h4>
                     <div id="grading-procedure">
@@ -225,7 +225,7 @@
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-                    <input type="checkbox" checked class="display-toggle" data-id="attendance"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-attendance-') ? '' : 'checked'} data-id="attendance"/>
                         <strong>Attendance and tardiness:</strong>
                     </h4>
                     <div id="attendance">
@@ -236,7 +236,7 @@
                 </div>
                 <div class="fieldcontain">
                     <h4>
-                    <input type="checkbox" checked class="display-toggle" data-id="participation"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-participation-') ? '' : 'checked'} data-id="participation"/>
                         <strong>Class participation:</strong>
                     </h4>
                     <div  id ="participation">
@@ -247,7 +247,7 @@
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-                        <input type="checkbox" checked class="display-toggle" data-id="conduct"/>
+                        <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-conduct-') ? '' : 'checked'} data-id="conduct"/>
                         <strong>Professional Conduct:</strong>
                     </h4>
                     <div id="conduct">
@@ -258,7 +258,7 @@
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-                    <input type="checkbox" checked class="display-toggle" data-id="exams"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-exams-') ? '' : 'checked'} data-id="exams"/>
                         <strong>Missed exams/Make-up exams:</strong>
                     </h4>
                     <div id="exams">
@@ -269,7 +269,7 @@
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-                        <input type="checkbox" checked class="display-toggle" data-id="missed-exams"/>
+                        <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-missed-exams-') ? '' : 'checked'} data-id="missed-exams"/>
                         <strong>Missed Assignments:</strong>
                     </h4>
                     <div id="missed-exams">
@@ -286,7 +286,7 @@
 
                 <div class="form-title">
                     <h3>
-                    <input type="checkbox" checked class="display-toggle" data-id="instructor"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-instructor-') ? '' : 'checked'} data-id="instructor"/>
                     Instructor
                     </h3>
                 </div>
@@ -327,7 +327,7 @@
             <div class="learning-objectives">
                 <div class="form-title">
                     <h3>
-                    <input type="checkbox" checked class="display-toggle" data-id="learning-objectives-list"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-learning-objectives-list-') ? '' : 'checked'} data-id="learning-objectives-list"/>
                     Learning Objectives
                     </h3>
                 </div>
@@ -347,7 +347,7 @@
             <div class="Content">
                 <div class="form-title">
                     <h3>
-                    <input type="checkbox" checked class="display-toggle" data-id="content-list"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-content-list-') ? '' : 'checked'} data-id="content-list"/>
                     Content
                     </h3>
                 </div>
@@ -358,7 +358,7 @@
             </div>
             </g:if>
             <input type="hidden" name="imodID" id="imodID" value="${currentImod.id}">
-            <a href="../generatedSyllabus/${currentImod.id}" id="generate-syllabus">Generate Syllabus</a>
+            <a href="#" id="generate-syllabus">Generate Syllabus</a>
         </div>
     </body>
 </html>

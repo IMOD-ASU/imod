@@ -108,11 +108,14 @@ class CourseOverviewController {
 
         text += '</ul>'
 
+        def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
+
         [
             currentImod: currentImod,
             currentPage: 'syllabus',
             learningObjectives: learningObjectives,
-            contentList: text
+            contentList: text,
+            hideSectionsList: syllabusPrefs.hideSectionsList
         ]
     }
 
@@ -153,16 +156,16 @@ class CourseOverviewController {
             text += getSubContent(it)
         }
 
-        def imod = Imod.get(params.imodId);
-    	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
-
         text += '</ul>'
+
+    	def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
         [
             currentImod: currentImod,
             currentPage: 'syllabus',
             learningObjectives: learningObjectives,
-            contentList: text
+            contentList: text,
+            hideSectionsList: syllabusPrefs.hideSectionsList
         ]
     }
 
