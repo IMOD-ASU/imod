@@ -794,6 +794,8 @@ a.banner-link {
 
     width: 116px;
     height: 41px;
+    padding-right: 13.5px;
+    padding-left: 13.5px;
 }
 .add {
     text-indent: 25px;
@@ -966,10 +968,12 @@ table.inner-table {
 }
 
 #courseoverview-form {
-	display: inline-block;
-	*display: inline; /* ie7 hasLayout trigger*/
-	*zoom: 1;
-	width: 100%;
+    display: inline-block;
+
+    width: 100%;
+
+    *display: inline; /* ie7 hasLayout trigger*/
+    *zoom: 1;
 }
 
 .course-overview-form,
@@ -1278,7 +1282,7 @@ label[for=weekdays] {
 }
 
 #qtip-heading {
-	font-family: fantasy, 'Ubuntu';
+    font-family: fantasy, 'Ubuntu';
 }
 
 #qtip-place::-webkit-scrollbar-track {
@@ -1306,15 +1310,26 @@ label[for=weekdays] {
 }
 
 #qtip-place {
-	float: right;
-	text-align: center;
-	position: absolute;
-	margin: 10%;
-	font-family: fantasy, 'Ubuntu';
-	width: 10em;
-	height: auto;
-	max-height: 20em;
-	background-color: #ffff5a;
+    position: absolute;
+
+    float: right;
+
+    width: 10em;
+    height: auto;
+    max-height: 20em;
+    margin: 10%;
+
+    text-align: center;
+
+    background-color: #ffff5a;
+
+    font-family: fantasy, 'Ubuntu';
+}
+
+
+/* Draggable handle cursor */
+.draggable-handle {
+	cursor: move !important;
 }
 
 /**

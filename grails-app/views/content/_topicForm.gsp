@@ -5,7 +5,7 @@
 <div id="topicDialogBackground" class="modalBackground"></div>
 <div id="topicDialog" class="draggable">
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
-	<fieldset class="buttons topicButtonField">
+	<fieldset class="buttons topicButtonField draggable-handle">
 		<span class="topicButtonGradient">
 			<g:actionSubmit class="add show-hover-new topicButton" action="add" id="addTopic" title="${Help.toolTip("OVERVIEW", "Add New Topic")}" value="${message(code: 'Add Topic', default: 'Add Topic')}" />
 		</span>
@@ -100,22 +100,24 @@
 <div id="selectKnowledgeDimensionBackground" class="modalBackground"></div>
 
 <div id="selectKnowledgeDimensions" class="draggable">
-	<!-- FIXME replace with g:hiddenField, this also may not be necessary -->
-	<input type="hidden" id="topicID" />
-	<span>
-		<ul>
-			<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
-				<li>
-					<!-- FIXME replace with g:checkbox tag -->
-					<input type="checkbox" id="${dimension}" value="${dimension}" />
-					<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
-						${dimension}
-					</label>
-				</li>
-			</g:each>
-		</ul>
-		<g:img dir="images/content" file="knowDimNone.png" id="dimImage" width="71" height="71" />
-	</span>
+	<div class="draggable-handle">
+		<!-- FIXME replace with g:hiddenField, this also may not be necessary -->
+		<input type="hidden" id="topicID" />
+		<span>
+			<ul>
+				<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
+					<li>
+						<!-- FIXME replace with g:checkbox tag -->
+						<input type="checkbox" id="${dimension}" value="${dimension}" />
+						<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
+							${dimension}
+						</label>
+					</li>
+				</g:each>
+			</ul>
+			<g:img dir="images/content" file="knowDimNone.png" id="dimImage" width="71" height="71" />
+		</span>
+	</div>
 	<button id="knowDimFinished" type="button">
 		Save
 	</button>
@@ -126,7 +128,7 @@
 <div id="selectResourceBackground" class="modalBackground">
 </div>
 <div id="selectResource" class="draggable">
-<fieldset class="buttons resourceButtonField">
+	<fieldset class="buttons resourceButtonField draggable-handle">
 		<span class="resourceButtonGradient">
 			<g:actionSubmit
 				class="add showHoverNew resourceButton" action="add" id="addResource"

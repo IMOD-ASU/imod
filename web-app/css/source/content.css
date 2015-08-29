@@ -7,9 +7,9 @@
     border: 1px solid;
 }
 #chart {
-  width: 500px ;
-  margin-left: auto ;
-  margin-right: auto ;
+    width: 500px ;
+    margin-right: auto ;
+    margin-left: auto ;
 }
 
 .message.banner {
