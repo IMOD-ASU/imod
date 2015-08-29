@@ -49,6 +49,7 @@ rules:
     no-throw-literal: 2
     no-unused-expressions: 2
     no-useless-call: 2
+    no-useless-concat: 2
     no-void: 2
     no-warning-comments: 1
     no-with: 2
@@ -73,7 +74,9 @@ rules:
     comma-spacing: 2
     computed-property-spacing: 2
     consistent-this: 2
-    id-length: 1 # temporarily change to warning, change to error when ESLint 3462 is merged
+    id-length:
+        - 2
+        - properties: never
     eol-last: 2
     indent:
         - 2
