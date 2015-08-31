@@ -11,6 +11,7 @@
         <title>
             Generate Syllabus
         </title>
+        <g:external dir="bower_components/fontawesome/css" file="font-awesome.min.css" />
         <g:external dir="css/source" file="syllabus.css" media="screen, print"/>
         <g:external dir="bower_components/jquery/dist" file="jquery.min.js" />
         <g:external dir="bower_components/jquery.ui/ui" file="core.js" />
@@ -32,6 +33,9 @@
     </head>
     <body>
         <div class="wrapper">
+        	<div class="right">
+            	<a href="#" class="generate-syllabus">Save &amp; Generate Syllabus</a>
+            </div>
             <div class="course-details" >
                 <div class="form-title">
                     <h3>
@@ -357,8 +361,11 @@
                 </div>
             </div>
             </g:if>
+
             <input type="hidden" name="imodID" id="imodID" value="${currentImod.id}">
-            <a href="#" id="generate-syllabus">Save &amp; Generate Syllabus</a>
+            <div class="right">
+            	<a href="#" class="generate-syllabus">Save &amp; Generate Syllabus</a>
+            </div>
         </div>
     </body>
 </html>
