@@ -9,26 +9,25 @@
 <html>
     <head>
         <title>
-            Syllabus
+            Generate Syllabus
         </title>
         <g:external dir="css/source" file="syllabus.css" media="screen, print"/>
-		<g:external dir="bower_components/jquery/dist" file="jquery.min.js" />
-		<g:external dir="bower_components/jquery.ui/ui" file="core.js" />
-		<g:external dir="bower_components/jquery.ui/ui" file="widget.js" />
+        <g:external dir="bower_components/jquery/dist" file="jquery.min.js" />
+        <g:external dir="bower_components/jquery.ui/ui" file="core.js" />
+        <g:external dir="bower_components/jquery.ui/ui" file="widget.js" />
 
-		<!-- ui widgets -->
-		<g:external dir="bower_components/jquery.ui/ui" file="accordion.js" />
-		<g:external dir="bower_components/jquery.ui/ui" file="button.js" />
-		<g:external dir="bower_components/jquery.ui/ui" file="dialog.js" />
+        <!-- ui widgets -->
+        <g:external dir="bower_components/jquery.ui/ui" file="accordion.js" />
+        <g:external dir="bower_components/jquery.ui/ui" file="button.js" />
+        <g:external dir="bower_components/jquery.ui/ui" file="dialog.js" />
 
-		<!-- plugins to javascript libraries -->
-		<g:external dir="bower_components/qtip2" file="jquery.qtip.min.js" />
-		<g:external dir="bower_components/jstree/dist" file="jstree.min.js" />
-		<g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" />
-		<g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" />
-		<g:external dir="js/plugins" file="jquery.custom.draggable.js"/>
-		<g:external dir="js/plugins" file="jquery.cookie.js"/>
-		<g:javascript src="source/syllabus.js" defer="defer" />
+        <!-- plugins to javascript libraries -->
+        <g:external dir="bower_components/qtip2" file="jquery.qtip.min.js" />
+        <g:external dir="bower_components/jstree/dist" file="jstree.min.js" />
+        <g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" />
+        <g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" />
+        <g:external dir="js/plugins" file="jquery.custom.draggable.js"/>
+        <g:javascript src="source/syllabus.js" defer="defer" />
 
     </head>
     <body>
@@ -36,11 +35,11 @@
             <div class="course-details" >
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked class="display-toggle" data-id="course"  />
-					Course Details
-					</h3>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-course-') ? '' : 'checked'} data-id="course"  />
+                    Course Details
+                    </h3>
                 </div>
-				<div id="course">
+                <div id="course">
                 <div class="fieldcontain">
                     <label for="name">
                         <g:message code="imod.name.label" default="Course Title" />:
@@ -79,17 +78,17 @@
                         ${currentImod?.courseSemester.encodeAsCustomEscape()}
                     </strong>
                 </div>
-				</div>
+                </div>
             </div>%{-- course details --}%
 
             <div class="schedule">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked class="display-toggle" data-id="schedule"/>
-					Schedule
-					</h3>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-schedule-') ? '' : 'checked'} data-id="schedule"/>
+                    Schedule
+                    </h3>
                 </div>
-				<div id="schedule">
+                <div id="schedule">
                 <div class="fieldcontain">
                     <label>Start Date:</label>
                     <strong>
@@ -149,17 +148,17 @@
 
                     </div>
                 </g:if>
-				</div>
+                </div>
             </div>%{-- schedule --}%
 
             <div class="course-description">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked class="display-toggle" data-id="description"/>
-					Course Description
-					</h3>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-description-') ? '' : 'checked'} data-id="description"/>
+                    Course Description
+                    </h3>
                 </div>
-				<div id="description">
+                <div id="description">
                 <div class="fieldcontain">
                     <label>Overview:</label>
                     <strong>
@@ -202,84 +201,84 @@
                         ${currentImod?.numberOfSeats.encodeAsCustomEscape()}
                     </strong>
                 </div>
-			 </div>
+             </div>
             </div>%{-- course description --}%
 
             <div class="course-policy">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked class="display-toggle" data-id="policy"/>
-					Course Policy
-					</h3>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-policy-') ? '' : 'checked'} data-id="policy"/>
+                    Course Policy
+                    </h3>
                 </div>
-				<div id="policy">
+                <div id="policy">
                 <div class="fieldcontain" >
                     <h4>
-					<input type="checkbox" checked class="display-toggle" data-id="grading-procedure"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-grading-procedure-') ? '' : 'checked'} data-id="grading-procedure"/>
                         <strong>Grading procedure:</strong>
                     </h4>
-					<div id="grading-procedure">
+                    <div id="grading-procedure">
                     <p>
                         ${currentImod?.gradingProcedure.encodeAsCustomEscape()}
                     </p>
-					</div>
+                    </div>
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-					<input type="checkbox" checked class="display-toggle" data-id="attendance"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-attendance-') ? '' : 'checked'} data-id="attendance"/>
                         <strong>Attendance and tardiness:</strong>
                     </h4>
-					<div id="attendance">
+                    <div id="attendance">
                     <p>
                         ${currentImod?.attendance.encodeAsCustomEscape()}
                     </p>
-					</div>
+                    </div>
                 </div>
                 <div class="fieldcontain">
                     <h4>
-					<input type="checkbox" checked class="display-toggle" data-id="participation"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-participation-') ? '' : 'checked'} data-id="participation"/>
                         <strong>Class participation:</strong>
                     </h4>
-					<div  id ="participation">
+                    <div  id ="participation">
                     <p>
                         ${currentImod?.classParticipation.encodeAsCustomEscape()}
                     </p>
-					</div>
+                    </div>
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-						<input type="checkbox" checked class="display-toggle" data-id="conduct"/>
+                        <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-conduct-') ? '' : 'checked'} data-id="conduct"/>
                         <strong>Professional Conduct:</strong>
                     </h4>
-					<div id="conduct">
+                    <div id="conduct">
                     <p>
                         ${currentImod?.professionalConduct.encodeAsCustomEscape()}
                     </p>
-					</div>
+                    </div>
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-					<input type="checkbox" checked class="display-toggle" data-id="exams"/>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-exams-') ? '' : 'checked'} data-id="exams"/>
                         <strong>Missed exams/Make-up exams:</strong>
                     </h4>
-					<div id="exams">
+                    <div id="exams">
                     <p>
                         ${currentImod?.missedExams.encodeAsCustomEscape()}
                     </p>
-					</div>
+                    </div>
                 </div>
                 <div class="fieldcontain" >
                     <h4>
-						<input type="checkbox" checked class="display-toggle" data-id="missed-exams"/>
+                        <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-missed-exams-') ? '' : 'checked'} data-id="missed-exams"/>
                         <strong>Missed Assignments:</strong>
                     </h4>
-					<div id="missed-exams">
+                    <div id="missed-exams">
                     <p>
                         ${currentImod?.missedAssignments.encodeAsCustomEscape()}
                     </p>
-					</div>
+                    </div>
                 </div>
-			 </div>
+             </div>
             </div>%{-- course policy --}%
 
             <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
@@ -287,11 +286,11 @@
 
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked class="display-toggle" data-id="instructor"/>
-					Instructor
-					</h3>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-instructor-') ? '' : 'checked'} data-id="instructor"/>
+                    Instructor
+                    </h3>
                 </div>
-				<div id="instructor">
+                <div id="instructor">
                 <ul>
                 <g:each in="${currentImod?.instructors}" var="instructor">
 
@@ -320,7 +319,7 @@
 
                 </g:each>
                 </ul>
-			</div>
+            </div>
             </div>%{-- instructors --}%
             </g:if>
 
@@ -328,9 +327,9 @@
             <div class="learning-objectives">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked class="display-toggle" data-id="learning-objectives-list"/>
-					Learning Objectives
-					</h3>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-learning-objectives-list-') ? '' : 'checked'} data-id="learning-objectives-list"/>
+                    Learning Objectives
+                    </h3>
                 </div>
                 <ul id="learning-objectives-list" class="learning-objective list-wrapper">
                     <g:each var="learningObjective" in="${learningObjectives}">
@@ -348,17 +347,18 @@
             <div class="Content">
                 <div class="form-title">
                     <h3>
-					<input type="checkbox" checked class="display-toggle" data-id="content-list"/>
-					Content
-					</h3>
+                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-content-list-') ? '' : 'checked'} data-id="content-list"/>
+                    Content
+                    </h3>
                 </div>
                 <div id="content-list">
-                	%{-- comes straight from the controller as text --}%
-	                ${contentList.encodeAsCustomEscape()}
+                    %{-- comes straight from the controller as text --}%
+                    ${contentList.encodeAsCustomEscape()}
                 </div>
             </div>
             </g:if>
-			<button type="button" id="printpdf">Save</button>
+            <input type="hidden" name="imodID" id="imodID" value="${currentImod.id}">
+            <a href="#" id="generate-syllabus">Save &amp; Generate Syllabus</a>
         </div>
     </body>
 </html>

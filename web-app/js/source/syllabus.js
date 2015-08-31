@@ -1,5 +1,12 @@
+var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+
 $(function () {
 	'use strict';
+
+	// hide unchecked areas on page load
+	$('.display-toggle').each(function () {
+		toggleVisibility($(this), $('#' + $(this).data('id')));
+	});
 
 	$('.display-toggle').click(function () {
 		toggleVisibility($(this), $('#' + $(this).data('id')));
@@ -13,6 +20,34 @@ $(function () {
 		$('#printpdf').css('visibility', 'hidden');
 
 		window.print();
+	});
+
+	// Save the syllabus hide/show data for the imod
+	// and redirect the user to generate syllabus
+	$('#generate-syllabus').click(function () {
+		var hideSectionsList = [];
+
+		$('.display-toggle').each(function () {
+			if (!$(this).is(':checked')) {
+				hideSectionsList.push('-' + $(this).data('id') + '-');
+			}
+		});
+
+		$.ajax({
+			url: baseUrl + 'courseOverview/updateSyllabusPrefs',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				imodId: $('#imodID').val(),
+				hideSectionsList: hideSectionsList.join()
+			},
+			async: false,
+			success: function () {
+				window.open(baseUrl + 'courseOverview/generatedSyllabus/' + $('#imodID').val(), '_blank');
+			}
+		});
+
+		return false;
 	});
 });
 
