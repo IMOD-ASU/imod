@@ -148,19 +148,20 @@
 							</div>
 
 							<div>
-							<span> <b> ${selectedDomain} </b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
+							<span id="learningDomainspan"> <b> ${selectedDomain} </b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
 							<span id="domainCategoryspan"> <b>${selectedDomainCategory}</b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
 							<g:if test="${dimension == null}">
 
 							</g:if>
 							<g:else>
+								<span id="knowledgeDimensionspan">
 								<g:each var="kd" in="${dimension}" status="i">
-							       <span> <b>${kd}</b></span>
+							        <b>${kd}</b>
 								   <g:if test="${dimensionSize != i}" >
-										<span ><b> or</b> <span>
+										<b> or</b>
 									</g:if>
 								 </g:each>
-
+								 </span>
 							</g:else>
 
 							</div>
@@ -222,6 +223,7 @@
 							<div id="editTitle">
 							<b> Add Pedagogy Technique</b>
 							</div>
+							<span id="errorMessage"></span>
 						</fieldset>
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
@@ -287,7 +289,7 @@
 							<br>
 
 							<div id="modalButtons" style="align:left">
-								<g:actionSubmit value="Save" action="save" class="new-technique-popup-button"/>
+								<g:actionSubmit value="Save" id="saveButton" action="save" class="new-technique-popup-button"/>
 								<g:actionSubmit value="Cancel" action="cancel" class="new-technique-popup-button" />
 							</div>
 							<br>
