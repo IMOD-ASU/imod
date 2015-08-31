@@ -11,6 +11,7 @@ function populatePedagogyTechnique (data) {
 	'use strict';
 	var currentTechnique = data.pedagogyTechnique;
 
+	$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
 	// Set the text fields
 	$('#title').val(currentTechnique.title);
 	$('#location').val(currentTechnique.location);
@@ -27,9 +28,20 @@ function populatePedagogyTechnique (data) {
 
 function displayPedagogyInformationInEdit () {
 	'use strict';
-	$('#techniqueId').val($('label.ui-state-active').attr('for'));
+	var res = '';
+
+	var str = $('label.ui-state-active').attr('for');
+	var indexNo = str.indexOf('Extended');
+
+	if (indexNo > -1) {
+		res = str.substring(0, indexNo);
+	} else {
+		res = $('label.ui-state-active').attr('for');
+	}
+
+	$('#techniqueId').val(res);
 	$.ajax({
-		url: '../../pedagogyTechnique/get/' + $('label.ui-state-active').attr('for'),
+		url: '../../pedagogyTechnique/get/' + res,
 		method: 'GET'
 	})
 	.done(populatePedagogyTechnique);
@@ -50,14 +62,14 @@ function displayPedagogyTechniques (data) {
 	for (index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
 		currentTechnique = data.idealPedagogyTechniqueMatch[index];
 		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
-		idealText += '<label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
+		idealText += '<label for="' + currentTechnique.id + '"><span>' + currentTechnique.title + '</span></label>';
 	}
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.extendedPedagogyTechniqueMatch.length; index++) {
 		currentTechnique = data.extendedPedagogyTechniqueMatch[index];
-		extendedText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
-		extendedText += '<label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label>';
+		extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
+		extendedText += '<label for="' + currentTechnique.id + 'Extended"><span>' + currentTechnique.title + '</span></label>';
 	}
 
 	// Add html code to the page
@@ -144,22 +156,39 @@ function getMinHeight (liArray) {
 	return minHeight;
 }
 
-function updateTextArea () {
+function updateTextArea (checkBoxName) {
 	'use strict';
 	var allVals = [];
 	var valsLength;
+	var text = '';
+	var right = '';
 
-	$('input[name=domainCategory]:checked').each(function () {
+	$('input[name=' + checkBoxName + ']:checked').each(function () {
 		allVals.push($(this).prev().prev().text().trim());
 	});
 	valsLength = allVals.length;
 
-	if (allVals.length > 2) {
-		$('#domainCategoryspan').html('<b>Domain Category (' + valsLength + ' Selections)</b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;');
-	} else {
-		$('#domainCategoryspan').html('<b>' + allVals + '</b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;');
+	switch (checkBoxName) {
+		case 'domainCategory':
+			text = 'Domain Category';
+			right = '&nbsp;&nbsp;<i class="fa fa-caret-right"></i>';
+			break;
+		case 'learningDomain':
+			text = 'Learning Domain';
+			right = '&nbsp;&nbsp;<i class="fa fa-caret-right"></i>';
+			break;
+		case 'knowledgeDimension':
+			text = 'Knowledge Dimension';
+			right = '';
+			break;
 	}
- }
+
+	if (allVals.length > 2) {
+		$('#' + checkBoxName + 'span').html('<b>' + text + ' (' + valsLength + ' Selections)</b>' + right + '</span>&nbsp;&nbsp;');
+	} else {
+		$('#' + checkBoxName + 'span').html('<b>' + allVals + '</b>' + right + '</span>&nbsp;&nbsp;');
+	}
+}
 
 $(document).ready(
 	function () {
@@ -169,6 +198,8 @@ $(document).ready(
 		var currHeader;
 		var currContent;
 		var isPanelSelected;
+		var checkBoxName;
+		var hasError = false;
 
 		// Load techniques on page load
 		filterPedagogyTechniques();
@@ -207,12 +238,36 @@ $(document).ready(
 
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
-		$('input[name=knowledgeDimension]').on('change', filterPedagogyTechniques);
-		$('input[name=learningDomain]').on('change', filterPedagogyTechniques);
+		$('input[name=knowledgeDimension]').on('change',
+		function () {
+			checkBoxName = 'knowledgeDimension';
+			updateTextArea(checkBoxName);
+			filterPedagogyTechniques();
+		});
+		$('input[name=learningDomain]').on('change',
+		function () {
+			checkBoxName = 'learningDomain';
+			updateTextArea(checkBoxName);
+			filterPedagogyTechniques();
+		});
 		$('input[name=domainCategory]').on('change',
 		function () {
-			updateTextArea();
+			checkBoxName = 'domainCategory';
+			updateTextArea(checkBoxName);
 			filterPedagogyTechniques();
+		});
+		$('#saveButton').on('click',
+		function () {
+			if ($('#title').val() === '') {
+				$('#errorMessage').text('Technique must have a title!');
+				hasError = true;
+			} else {
+				hasError = false;
+			}
+
+			if (hasError === true) {
+				return false;
+			}
 		});
 
 		// When add new technique button is clicked open modal
