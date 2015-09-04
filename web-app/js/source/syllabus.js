@@ -3,6 +3,13 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 $(function () {
 	'use strict';
 
+	var sortArrows;
+	var contentList;
+	var sortIdList;
+	var index;
+	var id;
+	var parent;
+
 	// hide unchecked areas on page load
 	$('.display-toggle').each(function () {
 		toggleVisibility($(this), $('#' + $(this).data('id')));
@@ -51,7 +58,7 @@ $(function () {
 	});
 
 	// Generate sorting arrows
-	var sortArrows = '<div class="sort-arrows">';
+	sortArrows = '<div class="sort-arrows">';
 
 	sortArrows += '<i class="fa fa-sort-up"></i>';
 	sortArrows += '<i class="fa fa-sort-down"></i>';
@@ -87,13 +94,13 @@ $(function () {
 
 	// order the sections based on the id list generated
 	if ($('#sortIdList').val() !== '') {
-		var contentList = [];
-		var sortIdList = $('#sortIdList').val();
+		contentList = [];
+		sortIdList = $('#sortIdList').val();
 
 		sortIdList = sortIdList.split(',');
-		for (var index = 0; index < sortIdList.length; index++) {
-			var id = sortIdList[index].substring(1, sortIdList[index].length - 1);
-			var parent = $('#' + id).parent();
+		for (index = 0; index < sortIdList.length; index++) {
+			id = sortIdList[index].substring(1, sortIdList[index].length - 1);
+			parent = $('#' + id).parent();
 
 			contentList.push(parent.clone());
 			parent.remove();
