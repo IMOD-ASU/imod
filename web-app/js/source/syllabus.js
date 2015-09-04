@@ -52,11 +52,12 @@ $(function () {
 
 	// Generate sorting arrows
 	var sortArrows = '<div class="sort-arrows">';
+
 	sortArrows += '<i class="fa fa-sort-up"></i>';
 	sortArrows += '<i class="fa fa-sort-down"></i>';
-	sortArrows += '</div>'
+	sortArrows += '</div>';
 
-	$('.form-title').each( function () {
+	$('.form-title').each(function () {
 		$(this).find('h3').prepend(sortArrows);
 		$(this).addClass('form-title-sort-arrows');
 	});
@@ -65,6 +66,7 @@ $(function () {
 		var target = $(this).parent().parent().parent().parent();
 		var previous = target.prev();
 		var next = previous.clone();
+
 		previous.remove();
 		target.after(next);
 		sortSections();
@@ -75,6 +77,7 @@ $(function () {
 		var target = $(this).parent().parent().parent().parent();
 		var next = target.next();
 		var previous = next.clone();
+
 		next.remove();
 		target.before(previous);
 		sortSections();
@@ -83,22 +86,23 @@ $(function () {
 
 
 	// order the sections based on the id list generated
-	if( $('#sortIdList').val() != '' ) {
+	if ($('#sortIdList').val() !== '') {
 		var contentList = [];
 		var sortIdList = $('#sortIdList').val();
+
 		sortIdList = sortIdList.split(',');
-		for (var i = 0; i < sortIdList.length; i++) {
-		    var id = sortIdList[i].substring(1, sortIdList[i].length - 1 );
-		    var parent = $('#' + id).parent();
-		    contentList.push(parent.clone());
-		    parent.remove();
+		for (var index = 0; index < sortIdList.length; index++) {
+			var id = sortIdList[index].substring(1, sortIdList[index].length - 1);
+			var parent = $('#' + id).parent();
+
+			contentList.push(parent.clone());
+			parent.remove();
 		}
 
-		for (var i = 0; i < contentList.length; i++) {
-			$('#syllabus-content').append(contentList[i]);
+		for (index = 0; index < contentList.length; index++) {
+			$('#syllabus-content').append(contentList[index]);
 		}
 	}
-
 });
 
 function toggleVisibility (toggle, target) {
@@ -127,7 +131,7 @@ function sortSections () {
 
 	var sortIdList = [];
 
-	$('.form-title').each( function () {
+	$('.form-title').each(function () {
 		// get the next div's id
 		// and add it to the array
 		sortIdList.push('-' + $(this).next().prop('id') + '-');
