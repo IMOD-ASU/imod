@@ -110,14 +110,31 @@ class CourseOverviewController {
 
         def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        [
-            currentImod: currentImod,
-            currentPage: 'syllabus',
-            learningObjectives: learningObjectives,
-            contentList: text,
-            hideSectionsList: syllabusPrefs.hideSectionsList,
-            sortIdList: syllabusPrefs.sortIdList
-        ]
+        if(syllabusPrefs == null) {
+
+        	[
+	            currentImod: currentImod,
+	            currentPage: 'syllabus',
+	            learningObjectives: learningObjectives,
+	            contentList: text,
+	            hideSectionsList: '',
+	            sortIdList: ''
+	        ]
+
+    	} else {
+
+    		[
+	            currentImod: currentImod,
+	            currentPage: 'syllabus',
+	            learningObjectives: learningObjectives,
+	            contentList: text,
+	            hideSectionsList: syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList
+	        ]
+
+    	}
+
+
     }
 
     // Method to update syllabus contentlist
@@ -181,14 +198,29 @@ class CourseOverviewController {
 
     	def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        [
-            currentImod: currentImod,
-            currentPage: 'syllabus',
-            learningObjectives: learningObjectives,
-            contentList: text,
-            hideSectionsList: syllabusPrefs.hideSectionsList,
-            sortIdList: syllabusPrefs.sortIdList
-        ]
+        if(syllabusPrefs == null) {
+
+        	[
+	            currentImod: currentImod,
+	            currentPage: 'syllabus',
+	            learningObjectives: learningObjectives,
+	            contentList: text,
+	            hideSectionsList: '',
+	            sortIdList: ''
+	        ]
+
+    	} else {
+
+    		[
+	            currentImod: currentImod,
+	            currentPage: 'syllabus',
+	            learningObjectives: learningObjectives,
+	            contentList: text,
+	            hideSectionsList: syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList
+	        ]
+
+    	}
     }
 
      def syllabuspdf(Long id) {
