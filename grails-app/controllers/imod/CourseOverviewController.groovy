@@ -115,7 +115,8 @@ class CourseOverviewController {
             currentPage: 'syllabus',
             learningObjectives: learningObjectives,
             contentList: text,
-            hideSectionsList: syllabusPrefs.hideSectionsList
+            hideSectionsList: syllabusPrefs.hideSectionsList,
+            sortIdList: syllabusPrefs.sortIdList
         ]
     }
 
@@ -123,7 +124,7 @@ class CourseOverviewController {
     // to toggle hide show
     def updateSyllabusPrefs() {
 
-    	def imod = Imod.get(params.imodId);
+    	def imod = Imod.get(params.imodId)
     	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
 
     	if( syllabusPrefs != null ) {
@@ -135,7 +136,7 @@ class CourseOverviewController {
 	        )
 		}
 
-        // save new instructor and the updated user to database
+        // save syllabus preferences to DB
         syllabusPrefs.save()
 
         render (
@@ -143,6 +144,26 @@ class CourseOverviewController {
                 value: 'success'
             ] as JSON
         )
+    }
+
+    // Stores the syllabus sections order
+    // in the DB
+    def updateSyllabusOrder() {
+
+    	def imod = Imod.get(params.imodId)
+    	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
+
+    	syllabusPrefs.sortIdList = params.sortIdList
+
+    	// save syllabus preferences to DB
+        syllabusPrefs.save()
+
+        render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+
     }
 
     def generatedSyllabus(Long id) {
@@ -165,7 +186,8 @@ class CourseOverviewController {
             currentPage: 'syllabus',
             learningObjectives: learningObjectives,
             contentList: text,
-            hideSectionsList: syllabusPrefs.hideSectionsList
+            hideSectionsList: syllabusPrefs.hideSectionsList,
+            sortIdList: syllabusPrefs.sortIdList
         ]
     }
 

@@ -54,7 +54,6 @@ rules:
     no-warning-comments: 1
     no-with: 2
     radix: 2
-    vars-on-top: 2
     yoda: 2
     # Strict Mode
     strict:
