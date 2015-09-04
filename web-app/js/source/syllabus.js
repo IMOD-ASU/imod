@@ -81,6 +81,24 @@ $(function () {
 		return false;
 	});
 
+
+	// order the sections based on the id list generated
+	if( $('#sortIdList').val() != '' ) {
+		var contentList = [];
+		var sortIdList = $('#sortIdList').val();
+		sortIdList = sortIdList.split(',');
+		for (var i = 0; i < sortIdList.length; i++) {
+		    var id = sortIdList[i].substring(1, sortIdList[i].length - 1 );
+		    var parent = $('#' + id).parent();
+		    contentList.push(parent.clone());
+		    parent.remove();
+		}
+
+		for (var i = 0; i < contentList.length; i++) {
+			$('#syllabus-content').append(contentList[i]);
+		}
+	}
+
 });
 
 function toggleVisibility (toggle, target) {

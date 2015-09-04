@@ -3,6 +3,7 @@ package imod
 class SyllabusPrefs {
 
 	String hideSectionsList
+	String sortIdList
 
 	Imod imod
 
@@ -12,5 +13,6 @@ class SyllabusPrefs {
 
     static constraints = {
     	hideSectionsList	nullable:	true
+    	sortIdList			nullable:	true
     }
 }
