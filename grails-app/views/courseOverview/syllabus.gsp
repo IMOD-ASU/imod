@@ -365,7 +365,6 @@
 	            </g:if>
 
             </div>
-
             <input type="hidden" name="imodID" id="imodID" value="${currentImod.id}">
             <input type="hidden" id="sortIdList" value="${sortIdList}">
             <div class="right">
