@@ -24,7 +24,7 @@ $(function () {
 
 	// Save the syllabus hide/show data for the imod
 	// and redirect the user to generate syllabus
-	$('#generate-syllabus').click(function () {
+	$('.generate-syllabus').click(function () {
 		var hideSectionsList = [];
 
 		$('.display-toggle').each(function () {
@@ -49,6 +49,56 @@ $(function () {
 
 		return false;
 	});
+
+	// Generate sorting arrows
+	var sortArrows = '<div class="sort-arrows">';
+	sortArrows += '<i class="fa fa-sort-up"></i>';
+	sortArrows += '<i class="fa fa-sort-down"></i>';
+	sortArrows += '</div>'
+
+	$('.form-title').each( function () {
+		$(this).find('h3').prepend(sortArrows);
+		$(this).addClass('form-title-sort-arrows');
+	});
+
+	$(document).on('click', '.fa-sort-up', function () {
+		var target = $(this).parent().parent().parent().parent();
+		var previous = target.prev();
+		var next = previous.clone();
+		previous.remove();
+		target.after(next);
+		sortSections();
+		return false;
+	});
+
+	$(document).on('click', '.fa-sort-down', function () {
+		var target = $(this).parent().parent().parent().parent();
+		var next = target.next();
+		var previous = next.clone();
+		next.remove();
+		target.before(previous);
+		sortSections();
+		return false;
+	});
+
+
+	// order the sections based on the id list generated
+	if( $('#sortIdList').val() != '' ) {
+		var contentList = [];
+		var sortIdList = $('#sortIdList').val();
+		sortIdList = sortIdList.split(',');
+		for (var i = 0; i < sortIdList.length; i++) {
+		    var id = sortIdList[i].substring(1, sortIdList[i].length - 1 );
+		    var parent = $('#' + id).parent();
+		    contentList.push(parent.clone());
+		    parent.remove();
+		}
+
+		for (var i = 0; i < contentList.length; i++) {
+			$('#syllabus-content').append(contentList[i]);
+		}
+	}
+
 });
 
 function toggleVisibility (toggle, target) {
@@ -69,4 +119,27 @@ function togglePrintView (toggle) {
 	} else {
 		toggle.parent().hide();
 	}
+}
+
+// saves the order of the sections to the DB
+function sortSections () {
+	'use strict';
+
+	var sortIdList = [];
+
+	$('.form-title').each( function () {
+		// get the next div's id
+		// and add it to the array
+		sortIdList.push('-' + $(this).next().prop('id') + '-');
+	});
+
+	$.ajax({
+		url: baseUrl + 'courseOverview/updateSyllabusOrder',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			imodId: $('#imodID').val(),
+			sortIdList: sortIdList.join()
+		}
+	});
 }
