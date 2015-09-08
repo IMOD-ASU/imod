@@ -1022,6 +1022,10 @@ table.inner-table {
     padding-left: 10px;
 }
 
+.restore-default {
+	margin-bottom: 10px;
+}
+
 /* disabled tab */
 .tab-disabled {
     opacity: 0.1;

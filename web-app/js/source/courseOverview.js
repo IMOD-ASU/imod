@@ -283,6 +283,7 @@ $(document).ready(
 			$('#professional-conduct').val('All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/');
 			$('#missed-exams').val('The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements');
 			$('#missed-assignments').val('Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.');
+			return false;
 		});
 
 		$('.topicButtonGradient .add').click(
@@ -405,24 +406,28 @@ $(document).ready(
 			function () {
 				$('#attendance').val('Regular on-time attendance in this course is expected');
 				$('#attendance-box').removeAttr('checked');
+				return false;
 			}
 		);
 		$('#participation-box').click(
 			function () {
 				$('#class-participation').val('Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.');
 				$('#participation-box').removeAttr('checked');
+				return false;
 			}
 		);
 		$('#professional-conduct-box').click(
 			function () {
 				$('#professional-conduct').val('All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/');
 				$('#professional-conduct-box').removeAttr('checked');
+				return false;
 			}
 		);
 		$('#missed-exams-box').click(
 			function () {
 				$('#missed-exams').val('The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements');
 				$('#missed-exams-box').removeAttr('checked');
+				return false;
 			}
 		);
 
@@ -430,6 +435,7 @@ $(document).ready(
 			function () {
 				$('#missed-assignments').val('Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.');
 				$('#missed-assignments-box').removeAttr('checked');
+				return false;
 			}
 		);
 

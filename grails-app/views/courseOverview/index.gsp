@@ -279,14 +279,14 @@
                                                 Attendance and Tardiness
                                             </h3>
                                             <div>
-												<input type="submit" name="attendanceCheck" id="attendance-box" class="attendance-check" value="Restore Default"/>
+												<input type="button" class="restore-default" name="attendanceCheck" id="attendance-box" class="attendance-check" value="Restore Default"/>
 												<g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
                                             </div>
                                             <h3>
                                                 Class Participation
                                             </h3>
                                             <div>
-											<input type="submit" name="participationCheck" id="participation-box" class="attendance-check" value="Restore Default"/>
+											<input type="button" class="restore-default" name="participationCheck" id="participation-box" class="attendance-check" value="Restore Default"/>
 
 												<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.classParticipation')}" />
                                             </div>
@@ -294,21 +294,21 @@
                                                 Professional Conduct
                                             </h3>
                                             <div>
-												<input type="submit" name="professionalConductCheck" id="professional-conduct-box" class="attendance-check" value="Restore Default"/>
+												<input type="button" class="restore-default" name="professionalConductCheck" id="professional-conduct-box" class="attendance-check" value="Restore Default"/>
                                                 <g:textArea name="professionalConduct" id="professional-conduct" value="${currentImod?.professionalConduct}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.professionalConduct')}" />
                                             </div>
                                             <h3>
                                                 Missed Exams/Make-up Exams
                                             </h3>
                                             <div>
-												<input type="submit"  name="missedExamsCheck" id="missed-exams-box" class="attendance-check" value="Restore Default"/>
+												<input type="button" class="restore-default" name="missedExamsCheck" id="missed-exams-box" class="attendance-check" value="Restore Default"/>
                                                 <g:textArea name="missedExams" id="missed-exams" value="${currentImod?.missedExams}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedExams')}" />
                                             </div>
                                             <h3>
                                                 Missed Assignments
                                             </h3>
                                             <div>
-												<input type="submit"  name="missedAssignmentsCheck" id="missed-assignments-box" class="attendance-check" value="Restore Default"/>
+												<input type="button" class="restore-default" name="missedAssignmentsCheck" id="missed-assignments-box" class="attendance-check" value="Restore Default"/>
                                                 <g:textArea name="missedAssignments" id="missed-assignments" value="${currentImod?.missedAssignments}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedAssignments')}" />
                                             </div>
                                         </div>
