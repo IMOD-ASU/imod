@@ -91,6 +91,12 @@ function compareStartEndTimes () {
 	var endDate = 365 * endYear + 31 * endMonth + endDay;
 	var errorLabel;
 	var isDateValid = true;
+	var startDateTime = new Date(startYear, startMonth - 1, startDay, startHour, startMinute);
+	var endDateTime = new Date(endYear, endMonth - 1, endDay, endHour, endMinute);
+	var startDateTimeMonth = parseInt(startDateTime.getMonth(), 10) + 1;
+	var startDateTimeDay = startDateTime.getDate();
+	var endDateTimeMonth = parseInt(endDateTime.getMonth(), 10) + 1;
+	var endDateTimeDay = endDateTime.getDate();
 
 	$('.time-error').remove();
 	$('.date-error').remove();
@@ -107,6 +113,19 @@ function compareStartEndTimes () {
 		isDateValid = false;
 	}
 
+	if (startDateTimeMonth !== startMonth || startDateTimeDay !== startDay) {
+		$('.time-error').remove();
+		errorLabel = '<div  class="errorcontain"><label class="date-error error">Start date is invalid</label></div>';
+		$('#schedule-start-date_year').parent().append(errorLabel);
+		isDateValid = false;
+	}
+
+	if (endDateTimeMonth !== endMonth || endDateTimeDay !== endDay) {
+		$('.time-error').remove();
+		errorLabel = '<div  class="errorcontain"><label class="date-error error">End date is invalid</label></div>';
+		$('#schedule-end-date_year').parent().append(errorLabel);
+		isDateValid = false;
+	}
 
 	if (isNaN(startDate)) {
 		$('.time-error').remove();
