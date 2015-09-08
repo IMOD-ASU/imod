@@ -90,26 +90,77 @@ function compareStartEndTimes () {
 	var startDate = 365 * startYear + 31 * startMonth + startDay;
 	var endDate = 365 * endYear + 31 * endMonth + endDay;
 	var errorLabel;
+	var isDateValid = true;
+	var startDateTime = new Date(startYear, startMonth - 1, startDay, startHour, startMinute);
+	var endDateTime = new Date(endYear, endMonth - 1, endDay, endHour, endMinute);
+	var startDateTimeMonth = parseInt(startDateTime.getMonth(), 10) + 1;
+	var startDateTimeDay = startDateTime.getDate();
+	var endDateTimeMonth = parseInt(endDateTime.getMonth(), 10) + 1;
+	var endDateTimeDay = endDateTime.getDate();
 
-	$('#time-error').remove();
-	$('#date-error').remove();
+	$('.time-error').remove();
+	$('.date-error').remove();
+
+	if (startHour === '' || startMinute === '') {
+		errorLabel = '<div  class="errorcontain"><label class="date-error error">Start time is required</label></div>';
+		$('#schedule-start-time_minute').parent().append(errorLabel);
+		isDateValid = false;
+	}
+
+	if (endHour === '' || endMinute === '') {
+		errorLabel = '<div  class="errorcontain"><label class="date-error error">End time is required</label></div>';
+		$('#schedule-end-time_minute').parent().append(errorLabel);
+		isDateValid = false;
+	}
+
+	if (startDateTimeMonth !== startMonth || startDateTimeDay !== startDay) {
+		$('.time-error').remove();
+		errorLabel = '<div  class="errorcontain"><label class="date-error error">Start date is invalid</label></div>';
+		$('#schedule-start-date_year').parent().append(errorLabel);
+		isDateValid = false;
+	}
+
+	if (endDateTimeMonth !== endMonth || endDateTimeDay !== endDay) {
+		$('.time-error').remove();
+		errorLabel = '<div  class="errorcontain"><label class="date-error error">End date is invalid</label></div>';
+		$('#schedule-end-date_year').parent().append(errorLabel);
+		isDateValid = false;
+	}
+
+	if (isNaN(startDate)) {
+		$('.time-error').remove();
+		errorLabel = '<div  class="errorcontain"><label class="date-error error">Start date is required</label></div>';
+		$('#schedule-start-date_year').parent().append(errorLabel);
+		isDateValid = false;
+	}
+
+	if (isNaN(endDate)) {
+		$('.time-error').remove();
+		errorLabel = '<div  class="errorcontain"><label class="date-error error">End date is required</label></div>';
+		$('#schedule-end-date_day').parent().append(errorLabel);
+		isDateValid = false;
+	}
 
 	if (endDate < startDate) {
-		$('#time-error').remove();
-		errorLabel = '<div  class="errorcontain"><label id="date-error" class="error">End date has to be greater than start date</label></div>';
+		$('.time-error').remove();
+		errorLabel = '<div  class="errorcontain"><label class="date-error error">End date has to be greater than start date</label></div>';
 		$('#schedule-end-date_day').parent().append(errorLabel);
-		return false;
+		isDateValid = false;
 	}
 
-	$('#time-error').remove();
+	$('.time-error').remove();
 
 	if (endTime < startTime) {
-		errorLabel = '<div  class="errorcontain"><label id="time-error" class="error">End time has to be greater than start time</label></div>';
+		errorLabel = '<div  class="errorcontain"><label class="time-error error">End time has to be greater than start time</label></div>';
 		$('#schedule-end-time_hour').parent().append(errorLabel);
-		return false;
+		isDateValid = false;
 	}
 
-	return true;
+	if (isDateValid) {
+		return true;
+	}
+
+	return false;
 }
 
 function gradingRadio (radio) {
