@@ -110,15 +110,15 @@ class CourseOverviewController {
 
         def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        if(syllabusPrefs != null && syllabusPrefs.hideSectionsList == null && syllabusPrefs.sortIdList) {
+        if(syllabusPrefs != null) {
 
-    		[
+        	[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList
+	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' :syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList  == null ? '' :syllabusPrefs.sortIdList
 	        ]
 
     	} else {
@@ -198,15 +198,15 @@ class CourseOverviewController {
 
     	def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        if(syllabusPrefs != null && syllabusPrefs.hideSectionsList != null && syllabusPrefs.sortIdList) {
+        if(syllabusPrefs != null) {
 
         	[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList
+	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' :syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList  == null ? '' :syllabusPrefs.sortIdList
 	        ]
 
     	} else {
