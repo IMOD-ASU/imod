@@ -649,8 +649,6 @@ th.desc a {
 
     cursor: pointer;
     text-decoration: none;
-
-    color: #666666;
     border: 0;
     border-radius: 0.3em;
     background-color: transparent;
@@ -662,7 +660,6 @@ th.desc a {
 .buttons a:focus {
     color: #ffffff;
     outline: none;
-    background-color: #999999;
     box-shadow: none;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
@@ -696,6 +693,40 @@ th.desc a {
 
 .buttons .save {
     background-image: url(../images/skin/database_save.png);
+}
+
+.topicButtonGradient {
+    display: inline-block;
+    height: auto;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-radius: 4px;
+    background: linear-gradient(#113b70, #0b2f5e);
+    box-shadow: 0 1px 2px #888888;
+    color: #fff;
+}
+
+.topicButtonGradient:hover {
+	background: linear-gradient(#0b2f5e, #1857a3);
+}
+
+.topicButtonGradient a,
+.topicButtonGradient input,
+.topicButtonGradient button {
+	color: #fff;
+}
+
+.topicButtonGradient a:hover,
+.topicButtonGradient input:hover,
+.topicButtonGradient button:hover {
+	background-color: transparent;
+}
+
+.topicButtonGradient.cancelBG i {
+    color: darkred;
+    font-size: 1.5em;
 }
 
 
@@ -1281,7 +1312,7 @@ label[for=weekdays] {
 }
 
 .message.banner {
-    margin-top: 3.5%;
+    margin-top: 1.5%;
 
     font-size: 20px;
     font-weight: bold;

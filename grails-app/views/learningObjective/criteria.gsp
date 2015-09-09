@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<g:form action="save">
-			<fieldset class="learning-objective-button">
+			<fieldset class="learning-objective-button topicButtonGradient">
 				<g:actionSubmit action="save" type="criteria" value="${message(code: 'Save', default: 'Save')}" id="${currentImod.id}" learningObjectiveID="${currentLearningObjective.id }" class="save show-hover-new" title="${ message( code:'imod.learningObjective.save' ) }" />
 				<g:hiddenField name="id" value="${currentImod.id}" id="current-imod" />
 				<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />

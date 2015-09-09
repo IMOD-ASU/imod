@@ -34,7 +34,7 @@
     <body>
         <div class="wrapper">
         	<div class="right">
-            	<a href="#" class="generate-syllabus">Save &amp; Generate Syllabus</a>
+            	<a href="#" class="topicButtonGradient generate-syllabus">Save &amp; Generate Syllabus</a>
             </div>
 
             <div id="syllabus-content">
@@ -368,7 +368,7 @@
             <input type="hidden" name="imodID" id="imodID" value="${currentImod.id}">
             <input type="hidden" id="sortIdList" value="${sortIdList}">
             <div class="right">
-            	<a href="#" class="generate-syllabus">Save &amp; Generate Syllabus</a>
+            	<a href="#" class="topicButtonGradient generate-syllabus">Save &amp; Generate Syllabus</a>
             </div>
         </div>
     </body>

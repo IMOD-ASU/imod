@@ -30,6 +30,39 @@ h4 {
     font-size: 0.8em;
 }
 
+.topicButtonGradient {
+    display: inline-block;
+    height: auto;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-radius: 4px;
+    background: linear-gradient(#113b70, #0b2f5e);
+    box-shadow: 0 1px 2px #888888;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: none;
+}
+
+.topicButtonGradient:hover {
+	background: linear-gradient(#0b2f5e, #1857a3);
+}
+
+.topicButtonGradient a,
+.topicButtonGradient input,
+.topicButtonGradient button {
+	color: #fff;
+}
+
+.topicButtonGradient a:hover,
+.topicButtonGradient input:hover,
+.topicButtonGradient button:hover {
+	background-color: transparent;
+}
+
+
 .wrapper {
     max-width: 800px;
     margin: 20px auto;
@@ -129,14 +162,15 @@ body.syllabus_pdf .wrapper {
     }
     .display-toggle,
     #generate-syllabus,
-    #printpdf {
+    .printpdf {
     	display: none;
     }
 
 }
 
 
-#printpdf {
+.printpdf {
     width: 200px;
     margin: 0 auto;
+    cursor: pointer;
 }
