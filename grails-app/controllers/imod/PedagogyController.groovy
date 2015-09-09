@@ -86,10 +86,10 @@ class PedagogyController {
 				knowledgeDimension {
 					'in' ('id', selectedKnowledgeDimensions)
 				}
+				domainCategory {
+					'in' ('id', selectedDomainCategories)
+				}
 				or {
-					domainCategory {
-						'in' ('id', selectedDomainCategories)
-					}
 					learningDomain {
 						'in' ('id', selectedLearningDomains)
 					}
