@@ -125,7 +125,7 @@
 		                    </strong>
 		                </div>
 
-		                <g:if test="${currentImod?.schedule?.repeats?.description == "Weekly" || currentImod?.schedule?.repeats?.description == "Daily"}">
+		                <g:if test="${(currentImod?.schedule?.repeats?.description == "Weekly" || currentImod?.schedule?.repeats?.description == "Daily") && currentImod?.schedule?.repeatsEvery?.description != null}">
 		                    <div class="fieldcontain">
 		                        <label>
 		                            Repeats Every
