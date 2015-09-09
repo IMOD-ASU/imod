@@ -59,7 +59,7 @@ this is the basic layout with only the IMOD header and footer
 	</head>
 
 	<body>
-		<div id="imodlogo" role="banner" style="background-color:#0C1625;">
+		<div id="imodlogo" role="banner">
 			<a href="${createLink(uri: '/')}">
 				<g:img dir="images" file="imods_white_condensed.png" id="imod-logo" alt="imod"/>
 			</a>
@@ -68,7 +68,7 @@ this is the basic layout with only the IMOD header and footer
 					<g:message code="My i-mods"/>
 				</a>
 				<a class="banner-home" href="${createLink(uri: '/')}">
-					<g:img dir="images" file="home_sm.png" class="resize-home"/><g:message code="default.home.label"/>	
+					<g:img dir="images" file="home_sm.png" class="resize-home"/><g:message code="default.home.label"/>
 				</a>
 				<nobr>
 					<div id="login-link-container" class="banner-link">

@@ -19,12 +19,10 @@ $(function () {
 		toggleVisibility($(this), $('#' + $(this).data('id')));
 	});
 
-	$('#printpdf').click(function () {
+	$('.printpdf').click(function () {
 		$('.display-toggle').each(function () {
 			togglePrintView($(this));
 		});
-
-		$('#printpdf').css('visibility', 'hidden');
 
 		window.print();
 	});

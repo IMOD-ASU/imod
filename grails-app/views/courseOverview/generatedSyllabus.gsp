@@ -33,6 +33,10 @@
     <body>
         <div class="wrapper">
 
+        	<div class="right">
+            	<button class="topicButtonGradient printpdf">Print Page</button>
+            </div>
+
         	<div id="syllabus-content">
 	        	<g:if test="${!hideSectionsList.contains('-course-')}">
 		            <div class="course-details" >
@@ -125,7 +129,7 @@
 		                    </strong>
 		                </div>
 
-		                <g:if test="${currentImod?.schedule?.repeats?.description == "Weekly" || currentImod?.schedule?.repeats?.description == "Daily"}">
+		                <g:if test="${(currentImod?.schedule?.repeats?.description == "Weekly" || currentImod?.schedule?.repeats?.description == "Daily") && currentImod?.schedule?.repeatsEvery?.description != null}">
 		                    <div class="fieldcontain">
 		                        <label>
 		                            Repeats Every
@@ -380,7 +384,9 @@
 	            </g:if>
 	        </div>
 
-            <button id="printpdf">Print Page</button>
+	        <div class="right">
+            	<button class="topicButtonGradient printpdf">Print Page</button>
+            </div>
 
             <input type="hidden" id="sortIdList" value="${sortIdList}">
 
