@@ -1,6 +1,9 @@
 package imod
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.joda.time.LocalTime
+import org.joda.time.DateTime
+import org.jadira.usertype.dateandtime.joda.PersistentLocalTime
 
 class ImodController {
 	def learningObjectiveService
@@ -185,6 +188,8 @@ class ImodController {
 
 		schedule.scheduleWeekDays = null
 
+		print params
+
 		params.each {
 			if (it.key.contains('scheduleWeekDays_')) {
 				if (it.value.contains('on')) {
@@ -330,6 +335,20 @@ class ImodController {
             newInstructor.save()
 
             def currentImod = newImod
+
+            DateTime startDate = new DateTime(new Date());
+			DateTime endDate = startDate.plusYears(1);
+
+            def schedule = new Schedule(
+            	startDate: startDate,
+            	endDate: endDate,
+            	startTime: new LocalTime(18,0),
+            	endTime: new LocalTime(19,15),
+            	imod: currentImod
+            )
+
+            // save schedule
+            schedule.save()
 
             // add learning objectives
             // LO(1)
