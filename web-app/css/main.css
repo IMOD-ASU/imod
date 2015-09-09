@@ -1113,10 +1113,9 @@ a.ui-tabs-anchor {
 
 .ui-tabs .ui-tabs-nav {
     padding: 0;
-
     list-style: none outside none;
-
     white-space: nowrap;
+    overflow: hidden;
 }
 
 
