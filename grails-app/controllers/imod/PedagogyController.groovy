@@ -86,10 +86,10 @@ class PedagogyController {
 				knowledgeDimension {
 					'in' ('id', selectedKnowledgeDimensions)
 				}
+				domainCategory {
+					'in' ('id', selectedDomainCategories)
+				}
 				or {
-					domainCategory {
-						'in' ('id', selectedDomainCategories)
-					}
 					learningDomain {
 						'in' ('id', selectedLearningDomains)
 					}
@@ -120,6 +120,7 @@ class PedagogyController {
 					}
 				}
 			}
+			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
 
 		render(

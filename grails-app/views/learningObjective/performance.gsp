@@ -13,7 +13,7 @@
 		<g:form name="performance" action="save" id="${currentImod.id}">
 			<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 			<g:hiddenField name="pageType" value="performance" id="page-type" />
-			<fieldset class="learning-objective-button">
+			<fieldset class="learning-objective-button topicButtonGradient">
 				<g:submitButton class="save show-hover-new" id="performance-save" name="update" value="Save" title="${ message( code:'imod.learningObjective.save' ) }" />
 			</fieldset>
 

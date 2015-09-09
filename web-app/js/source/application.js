@@ -1,7 +1,8 @@
 $(document).ready(function () {
 	'use strict';
 	$('#accordion').accordion({
-		heightStyle: 'content'
+		heightStyle: 'content',
+		collapsible: true
 	});
 	$('#help-placeholder-2').css('display', 'none');
 	$('.show-hover-new').qtip({

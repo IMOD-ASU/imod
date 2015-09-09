@@ -81,7 +81,12 @@ class Imod {
 		/**
 		 * All of the Topics and Resources to be covered in the course
 		 */
-		contents:			Content
+		contents:			Content,
+
+		/**
+		 * All of the Topics and Resources to be covered in the course
+		 */
+		prefs: 				SyllabusPrefs
 	]
 
 
@@ -98,7 +103,7 @@ class Imod {
 		// These are required to create an IMOD
 		name			nullable: false,	blank: false
 		subjectArea		nullable: false,	blank: false
-		url 			nullable: true	
+		url 			nullable: true
 		// These are optional string atrributes of an IMOD
 		overview			nullable: true, maxSize: 65000
 		courseSemester		nullable: true

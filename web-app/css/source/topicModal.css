@@ -51,26 +51,7 @@
     background-repeat: no-repeat;
     background-position-y: center;
 }
-.topicButtonGradient {
-    display: inline-block;
 
-    height: auto;
-    margin-right: 5px;
-    margin-left: 5px;
-    padding-right: 5px;
-    padding-left: 5px;
-
-    border-radius: 4px;
-    background: linear-gradient(#f0f0f0,white);
-    box-shadow: 0 1px 2px #888888;
-}
-
-
-.topicButtonGradient.cancelBG i {
-    color: darkred;
-
-    font-size: 1.5em;
-}
 #topicList {
     width: 100%;
     margin: 0;

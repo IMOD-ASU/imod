@@ -9,6 +9,7 @@ class CourseOverviewController {
     static allowedMethods = [
         delete:           'POST',
         create:           'POST',
+        updateSyllabusPrefs: 'POST',
     ]
 
 	def index(Long id) {
@@ -107,12 +108,119 @@ class CourseOverviewController {
 
         text += '</ul>'
 
-        [
-            currentImod: currentImod,
-            currentPage: 'syllabus',
-            learningObjectives: learningObjectives,
-            contentList: text
-        ]
+        def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
+
+        if(syllabusPrefs != null) {
+
+        	[
+	            currentImod: currentImod,
+	            currentPage: 'syllabus',
+	            learningObjectives: learningObjectives,
+	            contentList: text,
+	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' :syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList  == null ? '' :syllabusPrefs.sortIdList
+	        ]
+
+    	} else {
+
+    		[
+	            currentImod: currentImod,
+	            currentPage: 'syllabus',
+	            learningObjectives: learningObjectives,
+	            contentList: text,
+	            hideSectionsList: '',
+	            sortIdList: ''
+	        ]
+
+    	}
+
+
+    }
+
+    // Method to update syllabus contentlist
+    // to toggle hide show
+    def updateSyllabusPrefs() {
+
+    	def imod = Imod.get(params.imodId)
+    	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
+
+    	if( syllabusPrefs != null ) {
+    		syllabusPrefs.hideSectionsList = params.hideSectionsList
+    	} else {
+    		syllabusPrefs = new SyllabusPrefs(
+	    		hideSectionsList: params.hideSectionsList,
+	            imod: params.imodId
+	        )
+		}
+
+        // save syllabus preferences to DB
+        syllabusPrefs.save()
+
+        render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+    }
+
+    // Stores the syllabus sections order
+    // in the DB
+    def updateSyllabusOrder() {
+
+    	def imod = Imod.get(params.imodId)
+    	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
+
+    	syllabusPrefs.sortIdList = params.sortIdList
+
+    	// save syllabus preferences to DB
+        syllabusPrefs.save()
+
+        render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+
+    }
+
+    def generatedSyllabus(Long id) {
+        final currentImod = Imod.get(id)
+        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+        final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+
+        def text = '<ul>'
+
+        contentList.each() {
+            text += getSubContent(it)
+        }
+
+        text += '</ul>'
+
+    	def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
+
+        if(syllabusPrefs != null) {
+
+        	[
+	            currentImod: currentImod,
+	            currentPage: 'syllabus',
+	            learningObjectives: learningObjectives,
+	            contentList: text,
+	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' :syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList  == null ? '' :syllabusPrefs.sortIdList
+	        ]
+
+    	} else {
+
+    		[
+	            currentImod: currentImod,
+	            currentPage: 'syllabus',
+	            learningObjectives: learningObjectives,
+	            contentList: text,
+	            hideSectionsList: '',
+	            sortIdList: ''
+	        ]
+
+    	}
     }
 
      def syllabuspdf(Long id) {
