@@ -110,15 +110,15 @@ class CourseOverviewController {
 
         def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        if(syllabusPrefs == null) {
+        if(syllabusPrefs != null && syllabusPrefs.hideSectionsList == null && syllabusPrefs.sortIdList) {
 
-        	[
+    		[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: '',
-	            sortIdList: ''
+	            hideSectionsList: syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList
 	        ]
 
     	} else {
@@ -128,8 +128,8 @@ class CourseOverviewController {
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList
+	            hideSectionsList: '',
+	            sortIdList: ''
 	        ]
 
     	}
@@ -198,15 +198,15 @@ class CourseOverviewController {
 
     	def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        if(syllabusPrefs == null) {
+        if(syllabusPrefs != null && syllabusPrefs.hideSectionsList != null && syllabusPrefs.sortIdList) {
 
         	[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: '',
-	            sortIdList: ''
+	            hideSectionsList: syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList
 	        ]
 
     	} else {
@@ -216,8 +216,8 @@ class CourseOverviewController {
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList
+	            hideSectionsList: '',
+	            sortIdList: ''
 	        ]
 
     	}
