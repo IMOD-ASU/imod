@@ -32,34 +32,37 @@ h4 {
 
 .topicButtonGradient {
     display: inline-block;
+
     height: auto;
     margin-right: 5px;
     margin-left: 5px;
+    padding: 5px 10px;
     padding-right: 5px;
     padding-left: 5px;
+
+    text-decoration: none;
+
+    color: #ffffff;
+    border: none;
     border-radius: 4px;
     background: linear-gradient(#113b70, #0b2f5e);
     box-shadow: 0 1px 2px #888888;
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 10px;
-    border: none;
 }
 
 .topicButtonGradient:hover {
-	background: linear-gradient(#0b2f5e, #1857a3);
+    background: linear-gradient(#0b2f5e, #1857a3);
 }
 
 .topicButtonGradient a,
 .topicButtonGradient input,
 .topicButtonGradient button {
-	color: #fff;
+    color: #ffffff;
 }
 
 .topicButtonGradient a:hover,
 .topicButtonGradient input:hover,
 .topicButtonGradient button:hover {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 
@@ -101,51 +104,57 @@ body.syllabus_pdf .wrapper {
 }
 
 .wrapper {
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .right {
-	float: right;
-	position: relative;
-	z-index: 2;
+    position: relative;
+    z-index: 2;
+
+    float: right;
 }
 
 .form-title-sort-arrows {
-	margin-left: -20px;
-	padding-left: 20px;
+    margin-left: -20px;
+    padding-left: 20px;
 }
 
 .form-title-sort-arrows h3 {
-	padding-top: 15px;
-	position: relative;
+    position: relative;
+
+    padding-top: 15px;
 }
 
-.form-title-sort-arrows:hover .sort-arrows{
-	display: block;
+.form-title-sort-arrows:hover .sort-arrows {
+    display: block;
 }
 
 .sort-arrows {
-	position: absolute;
-	left: -22px;
-	top: 15px;
-	display: none;
+    position: absolute;
+    top: 15px;
+    left: -22px;
+
+    display: none;
 }
 
 .fa-sort-up,
 .fa-sort-down {
-	display: block;
-	width: 24px;
-	font-size: 30px;
-	height: 30px;
-	cursor: pointer;
+    display: block;
+
+    width: 24px;
+    height: 30px;
+
+    cursor: pointer;
+
+    font-size: 30px;
 }
 
 .fa-sort-down {
-	margin-top: -20px;
+    margin-top: -20px;
 }
 
 .sort-arrows .fa:hover {
-	color: blue;
+    color: blue;
 }
 
 @media print {
@@ -155,6 +164,7 @@ body.syllabus_pdf .wrapper {
     }
     .wrapper {
     	padding: 0;
+
     	border: none;
     }
     .options {
@@ -165,12 +175,12 @@ body.syllabus_pdf .wrapper {
     .printpdf {
     	display: none;
     }
-
 }
 
 
 .printpdf {
     width: 200px;
     margin: 0 auto;
+
     cursor: pointer;
 }

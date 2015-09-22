@@ -304,6 +304,7 @@ input[disabled='disabled'] {
 .no-borderradius .learning-objective-button a:hover,
 .no-borderradius .learning-objective-button a:focus {
     text-decoration: underline;
+
     background-color: transparent;
 }
 
@@ -324,7 +325,7 @@ input[disabled='disabled'] {
 }
 
 .content-save {
-	margin-top: 5px;
+    margin-top: 5px;
 }
 
 /* individual delete button styling */
