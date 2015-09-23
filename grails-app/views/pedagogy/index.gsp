@@ -234,7 +234,7 @@
 							<div id="editTitle">
 							<b> Add Pedagogy Technique</b>
 							</div>
-							<span id="errorMessage"></span>
+							<span id="errorMessage" style="color:red"></span>
 						</fieldset>
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
@@ -269,31 +269,32 @@
 							<td width="40%">Delivery Mode</td>
 							<td width="60%"><g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
 							</tr>
-							<tr>
+							<!-- Decided to remove Location - Item 2047-->
+							<!--<tr>
 							<td width="40%">Location</td>
 							<td width="60%"><g:textField name="location" /> </td>
-							</tr>
+							</tr>-->
 							<tr>
 							<td width="40%">Focus</td>
 							<td width="60%"><g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
 							</tr>
 							<tr>
-							<td width="40%">Direction</td>
-							<td width="60%"><g:textField name="direction" /></td>
+							<td width="40%">Duration</td>
+							<td width="60%"><g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Materials Required</td>
-							<td width="60%"><g:textField name="materials" /> </td>
+							<td width="60%"><g:textArea name="materials" rows="5" cols="30"/> </td>
 							</tr>
 							<tr>
 							<td width="40%">Reference</td>
-							<td width="60%"><g:textField name="reference" /></td>
+							<td width="60%"><g:textArea name="reference" rows="5" cols="30"/></td>
 							</tr>
-							<tr>
+							<!--<tr>
 							<td width="40%">Description of Strategy</td>
 							<td width="60%">
 							<g:textArea name="strategyDescription" rows="5" cols="30" /></td>
-							</tr>
+							</tr>-->
 							<tr>
 							<td width="40%">Description of Activity</td>
 							<td width="60%"><g:textArea name="activityDescription" rows="5" cols="30" /></td>

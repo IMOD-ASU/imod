@@ -46,16 +46,16 @@ class PedagogyTechniqueController {
 		// Store text fields
 		newTechnique.title = params.title
 		newTechnique.description = params.activityDescription
-		newTechnique.direction = params.direction
-		newTechnique.location = params.location
+		newTechnique.direction = params.duration
+		//newTechnique.location = params.location
 		newTechnique.materials = params.materials
 		newTechnique.reference = params.reference
-		newTechnique.strategyDescription = params.strategyDescription
+		//newTechnique.strategyDescription = params.strategyDescription
 		newTechnique.activityDescription = params.activityDescription
 
 		// Store relationships
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
-		println params.pedagogyMode
+
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)

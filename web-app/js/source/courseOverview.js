@@ -31,7 +31,7 @@ function instructorValidator () {
 
 	$('.instructor-form').find('.first_name, .last_name, .email, .web_page,.role').each(
 		function () {
-			if (!isRequired($(this).val())) {
+			if (!isRequired($(this).val()) && !($(this).hasClass('web_page'))) {
 				errorList.push({
 					element: $(this),
 					message: 'This field is required'
@@ -44,7 +44,7 @@ function instructorValidator () {
 					});
 				}
 			} else if ($(this).hasClass('web_page')) {
-				if (!isValidUrl($(this).val())) {
+				if (!isValidUrl($(this).val()) && ($(this).val() !== '')) {
 					errorList.push({
 						element: $(this),
 						message: 'Requires a valid webpage'

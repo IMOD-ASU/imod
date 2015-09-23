@@ -13,12 +13,13 @@ function populatePedagogyTechnique (data) {
 
 	$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
 	// Set the text fields
+	// Decided to remove location and strategy description fields.
 	$('#title').val(currentTechnique.title);
-	$('#location').val(currentTechnique.location);
-	$('#direction').val(currentTechnique.direction);
+	// $('#location').val(currentTechnique.location);
+	$('#duration').val(currentTechnique.direction);
 	$('#materials').val(currentTechnique.materials);
 	$('#reference').val(currentTechnique.reference);
-	$('#strategyDescription').val(currentTechnique.strategyDescription);
+	// $('#strategyDescription').val(currentTechnique.strategyDescription);
 	$('#activityDescription').val(currentTechnique.activityDescription);
 
 	// Choose correct item from selectables

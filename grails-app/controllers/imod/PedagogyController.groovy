@@ -29,6 +29,7 @@ class PedagogyController {
 		final learningDomains = LearningDomain.list()
 		final pedagogyModes = PedagogyMode.list()
 		final pedagogyFocuses = PedagogyActivityFocus.list()
+		final pedagogyDuration = PedagogyActivityDuration.list()
 		final selectedActionWordCategory = currentLearningObjective.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
@@ -49,6 +50,7 @@ class PedagogyController {
 			learningObjectives: learningObjectives,
 			pedagogyModes: pedagogyModes,
 			pedagogyFocuses: pedagogyFocuses,
+			pedagogyDuration: pedagogyDuration,
 			selectedDomain:selectedDomain,
 			selectedDomainCategory:selectedDomainCategory,
 			dimension:dimension,
