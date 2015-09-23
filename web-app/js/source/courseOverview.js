@@ -44,7 +44,7 @@ function instructorValidator () {
 					});
 				}
 			} else if ($(this).hasClass('web_page')) {
-				if (!isValidUrl($(this).val()) && ($(this).val() != '')) {
+				if (!isValidUrl($(this).val()) && ($(this).val() !== '')) {
 					errorList.push({
 						element: $(this),
 						message: 'Requires a valid webpage'

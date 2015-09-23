@@ -280,7 +280,7 @@
 							</tr>
 							<tr>
 							<td width="40%">Duration</td>
-							<td width="60%"><g:select name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Materials Required</td>
