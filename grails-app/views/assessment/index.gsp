@@ -118,21 +118,37 @@
 					<g:if test="${learningObjectives}">
 						<div class="topic_addition_widget">
 							<div class="assessment-page-buttons">
-								<span>
-									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-									<button id="new-technique-button">Add New Technique
-									</button>
+								<div>
+									<%-- Buttons for Add New Technique, Favorites and Assessment Plan--%>
+									<span id="new-technique-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-plus"></i>
+											Add New Technique
+										</button>
+									</span>
 
-									<button id="favorites">Favorites
-									</button>
+									<span id="favorites-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-star"></i>
+											Favorites
+										</button>
+									</span>
 
-									<button id="unfavorites">UnFavorites
-									</button>
+									<span  id="unfavorites" class="topicButtonGradient">
+										<button>
+											UnFavorites
+										</button>
+									</span>
 
-									<button id="assessment-plan-button">Assessment Plan
-									</button>
-								</span>
+									<span id="assessment-plan-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-graduation-cap"></i>
+											Instructional Plan
+										</button>
+									</span>
+								</div>
 							</div>
+
 
 							<g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
 

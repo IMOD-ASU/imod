@@ -42,6 +42,12 @@
 		</tr>
 	</table>
 
+	<g:if test="${flash.message == 'Sorry, we were not able to find a user with that username and password.'}">
+		<div class="message" role="status">
+			Invalid credentials. We were not able to find a user with that username and password.
+		</div>
+	</g:if>
+
 	<g:if test="${flash.message == 'Sorry, your account is locked.'}">
 		<div class="message" role="status">
 			Please verify your registration by clicking on the link sent to your email address.

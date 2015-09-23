@@ -122,24 +122,35 @@
 						<div class="topic_addition_widget">
 							<div class="pedagogy-page-buttons">
 								<br>
-								<span>
+								<div>
 									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-									<button id="add-new-technique-button">
-									<i class="fa fa-plus"></i>
-										Add New Technique
-									</button>
+									<span id="add-new-technique-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-plus"></i>
+											Add New Technique
+										</button>
+									</span>
 
-									<button id="favorites-button">
-									<i class="fa fa-star"></i>
-										Favorites
-									</button>
+									<span id="favorites-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-star"></i>
+											Favorites
+										</button>
+									</span>
 
-									<button id="unfavorites">UnFavorites
-									</button>
+									<span  id="unfavorites" class="topicButtonGradient">
+										<button>
+											UnFavorites
+										</button>
+									</span>
 
-									<button id="instruction-plan-button">Instructional Plan
-									</button>
-								</span>
+									<span id="instruction-plan-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-graduation-cap"></i>
+											Instructional Plan
+										</button>
+									</span>
+								</div>
 							</div>
 							<br>
 							<div class="learning-objective creator">
@@ -242,19 +253,21 @@
 							</tr>-->
 							<tr>
 							<td width="40%">Learning Domain	</td>
-							<td width="60%"><g:select name="learningDomain" from="${learningDomains}" optionKey="name" /><td>
+							<td width="60%"><g:select class="custom-dropdown" name="learningDomain" from="${learningDomains}" optionKey="name" /><td>
 							</tr>
 							<tr>
 							<td width="40%">Domain Category</td>
-							<td width="60%"><g:select name="domainCategory" from="${domainCategories}" optionKey="name" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="domainCategory" from="${domainCategories}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Knowledge Dimension</td>
-							<td width="60%"><g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" /></td>
+							<td width="60%">
+								<g:select class="custom-dropdown" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+							</td>
 							</tr>
 							<tr>
 							<td width="40%">Delivery Mode</td>
-							<td width="60%"><g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
 							</tr>
 							<!-- Decided to remove Location - Item 2047-->
 							<!--<tr>
@@ -263,7 +276,7 @@
 							</tr>-->
 							<tr>
 							<td width="40%">Focus</td>
-							<td width="60%"><g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Duration</td>
