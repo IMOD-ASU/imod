@@ -119,7 +119,7 @@
     z-index: 1;
 }
 #add-new-technique {
-    position: absolute;
+    position: absolute !important;
     z-index: 2;
     top: -124px;
     display: none;

@@ -716,7 +716,7 @@ th.desc a {
 
 .topicButtonGradient {
     display: inline-block;
-
+    vertical-align: middle;
     height: auto;
     margin-right: 5px;
     margin-left: 5px;
@@ -746,9 +746,9 @@ th.desc a {
 }
 
 .topicButtonGradient.cancelBG i {
-    color: darkred;
-
+    vertical-align: middle;
     font-size: 1.5em;
+    color: #fff;
 }
 
 
