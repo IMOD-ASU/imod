@@ -119,22 +119,20 @@
     z-index: 1;
 }
 #add-new-technique {
-    position: absolute;
+    position: absolute !important;
     z-index: 2;
     top: -124px;
-    left: 444px;
-
     display: none;
-
-    width: 40%;
+    width: 460px;
+    left: 50%;
+    margin-left: -230px;
 
     border: 1px solid #c4c2c2;
     background: #ededef;
 }
 
 #techniqueList {
-    width: 100%;
-    margin: 0;
+    margin: 10px;
     margin-bottom: 1px;
 }
 #techniqueList thead tr:last-child {
@@ -157,10 +155,17 @@
 
 #techniqueList input,
 #techniqueList select,
-#techniqueList button {
-    width: 95%;
+#techniqueList button,
+#techniqueList textarea {
+    width: 100%;
     height: inherit;
     min-height: inherit;
+    box-sizing: border-box;
+    -webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,.1);
+	-webkit-box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,.1);
+	box-shadow: inset 0px 2px 10px 0px rgba(0,0,0,.1);
 }
 
 .titleField {

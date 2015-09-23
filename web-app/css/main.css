@@ -381,6 +381,24 @@ textarea:focus {
     box-shadow: 0 0 0.5em #ffffff;
 }
 
+/* Custom Dropdown */
+.custom-dropdown {
+	overflow: hidden;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+	background: url(../images/dropdown_arrow.png) no-repeat center right #fff;
+	border: 1px solid #ccc;
+	height: 26px !important;
+}
+
+/*target Internet Explorer 9 and Internet Explorer 10:*/
+@media screen and (min-width:0\0) {
+    .custom-dropdown {
+        background:none;
+        padding: 5px;
+    }
+}
+
 .required-indicator {
     position: relative;
     top: 0.1em;
@@ -698,7 +716,7 @@ th.desc a {
 
 .topicButtonGradient {
     display: inline-block;
-
+    vertical-align: middle;
     height: auto;
     margin-right: 5px;
     margin-left: 5px;
@@ -728,9 +746,9 @@ th.desc a {
 }
 
 .topicButtonGradient.cancelBG i {
-    color: darkred;
-
+    vertical-align: middle;
     font-size: 1.5em;
+    color: #fff;
 }
 
 

@@ -242,19 +242,21 @@
 							</tr>-->
 							<tr>
 							<td width="40%">Learning Domain	</td>
-							<td width="60%"><g:select name="learningDomain" from="${learningDomains}" optionKey="name" /><td>
+							<td width="60%"><g:select class="custom-dropdown" name="learningDomain" from="${learningDomains}" optionKey="name" /><td>
 							</tr>
 							<tr>
 							<td width="40%">Domain Category</td>
-							<td width="60%"><g:select name="domainCategory" from="${domainCategories}" optionKey="name" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="domainCategory" from="${domainCategories}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Knowledge Dimension</td>
-							<td width="60%"><g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" /></td>
+							<td width="60%">
+								<g:select class="custom-dropdown" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+							</td>
 							</tr>
 							<tr>
 							<td width="40%">Delivery Mode</td>
-							<td width="60%"><g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Location</td>
@@ -262,7 +264,7 @@
 							</tr>
 							<tr>
 							<td width="40%">Focus</td>
-							<td width="60%"><g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Direction</td>
