@@ -248,7 +248,7 @@ class LearningObjectiveController {
 		def currentLearningObjective	=  learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 		def currentCondition			=  currentLearningObjective.condition?:''
 		def currentCustomCondition		=  currentLearningObjective.customCondition
-		def isCustom					=! ((boolean) (LearningObjective.genericConditions.find {it == currentCondition}))
+		def isCustom					= ((boolean) (LearningObjective.genericConditions.find {it == currentCondition}))
 		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
 
 		[

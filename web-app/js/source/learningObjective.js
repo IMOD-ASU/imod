@@ -564,9 +564,9 @@ $(document).ready(
 		);
 
 		// When a standard condition is added, display in the definition box above
-		$('.learning-objective.condition.generic.text').change(
+		/*$('.learning-objective.condition.generic.text').change(
 			propagateToDefinition(this.value, 'condition')
-		);
+		);*/
 
 		$('input:radio[name=conditionType]').on(
 			'change',
