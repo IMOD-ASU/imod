@@ -33,7 +33,7 @@ function populateActionWords (event) {
 			var index;
 			var word;
 			var indexOf = -1;
-			var duplicateWords = []
+			var duplicateWords = [];
 
 			if (event === true) {
 				originalActionWord = $('#action-words').val();
@@ -46,7 +46,7 @@ function populateActionWords (event) {
 
 					// find british and english words for "ise" "ize"
 					for (index = 0; index < actionWordsVerb.length; index++) {
-						if (actionWordsVerb[index].substr(actionWordsVerb[index].length - 3) == 'ize') {
+						if (actionWordsVerb[index].substr(actionWordsVerb[index].length - 3) === 'ize') {
 							word = actionWordsVerb[index].substring(0, actionWordsVerb[index].length - 3);
 							word += 'ise';
 							indexOf = actionWordsVerb.indexOf(word);
@@ -58,7 +58,6 @@ function populateActionWords (event) {
 
 					// remove the duplicates
 					for (index = duplicateWords.length - 1; index >= 0; index--) {
-						console.log(duplicateWords[index]);
 						actionWordsVerb.splice(duplicateWords[index], 1);
 					}
 
