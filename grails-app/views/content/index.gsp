@@ -307,7 +307,7 @@
 				value="${message(code: 'Remove Resource', default: 'Remove Resource')}"
 			/>
 		</span>
-		<span id="errorMessage"></span>
+		<span id="errorMessageResources"></span>
 	</fieldset>
 	<table id="resourceList">
 		<thead>
@@ -316,6 +316,7 @@
 				<td>Title</td>
 				<td>Description</td>
 				<td>Resource Type</td>
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>
