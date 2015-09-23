@@ -737,6 +737,8 @@ th.desc a {
 .topicButtonGradient input,
 .topicButtonGradient button {
     color: #ffffff;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 .topicButtonGradient a:hover,
@@ -749,6 +751,10 @@ th.desc a {
     vertical-align: middle;
     font-size: 1.5em;
     color: #fff;
+}
+
+.fa-graduation-cap {
+	color: #de368f;
 }
 
 

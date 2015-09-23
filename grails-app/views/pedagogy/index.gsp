@@ -122,24 +122,35 @@
 						<div class="topic_addition_widget">
 							<div class="pedagogy-page-buttons">
 								<br>
-								<span>
+								<div>
 									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-									<button id="add-new-technique-button">
-									<i class="fa fa-plus"></i>
-										Add New Technique
-									</button>
+									<span id="add-new-technique-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-plus"></i>
+											Add New Technique
+										</button>
+									</span>
 
-									<button id="favorites-button">
-									<i class="fa fa-star"></i>
-										Favorites
-									</button>
+									<span id="favorites-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-star"></i>
+											Favorites
+										</button>
+									</span>
 
-									<button id="unfavorites">UnFavorites
-									</button>
+									<span  id="unfavorites" class="topicButtonGradient">
+										<button>
+											UnFavorites
+										</button>
+									</span>
 
-									<button id="instruction-plan-button">Instructional Plan
-									</button>
-								</span>
+									<span id="instruction-plan-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-graduation-cap"></i>
+											Instructional Plan
+										</button>
+									</span>
+								</div>
 							</div>
 							<br>
 							<div class="learning-objective creator">
