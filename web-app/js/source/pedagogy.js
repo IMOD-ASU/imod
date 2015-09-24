@@ -7,9 +7,67 @@ function openNewPedagogyTechniqueModal () {
 	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
+function closeDimModal () {
+	'use strict';
+	var checked = '';
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
+
+	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
+		if ($(this).is(':checked')) {
+			checked = checked + ($(this).val()) + ',';
+		}
+	});
+	document.getElementById('knowledgeDimension').value = checked;
+	dialog.css('display', 'none');
+	background.css('display', 'none');
+}
+function changePic () {
+	'use strict';
+	var iconName = '';
+
+	$('#selectKnowledgeDimensions').find('input:checkbox').each(
+		function () {
+			if ($(this).prop('checked')) {
+				iconName += $(this).val().charAt(0);
+			}
+		}
+	);
+	if (iconName === '') {
+		iconName = $('#imgNone').attr('href');
+	} else {
+		iconName = $('#img' + iconName).attr('href');
+	}
+	$('#dimImage').attr('src', iconName);
+}
+function openDimModal () {
+	'use strict';
+	var dimString = $('#knowDimensionList').val();
+	var dimensionList = [];
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
+	var index;
+	var findCheckBox;
+
+	if (dimString !== '' && dimString !== null && typeof dimString !== 'undefined') {
+		dimensionList = dimString.split(',');
+	}
+	for (index = 0; index < dimensionList.length; index++) {
+		findCheckBox = $(dialog).find('#' + dimensionList[index]);
+		if (findCheckBox.length === 1) {
+			findCheckBox.prop('checked', true);
+		}
+	}
+	changePic();
+	dialog.css('display', 'inherit');
+	background.css('display', 'block');
+	return false;
+}
 function populatePedagogyTechnique (data) {
 	'use strict';
 	var currentTechnique = data.pedagogyTechnique;
+	var count;
+	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
 
 	$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
 	// Set the text fields
@@ -21,12 +79,15 @@ function populatePedagogyTechnique (data) {
 	$('#reference').val(currentTechnique.reference);
 	// $('#strategyDescription').val(currentTechnique.strategyDescription);
 	$('#activityDescription').val(currentTechnique.activityDescription);
-
+	for (count = 0; count < arrayOfKnowledgeDimensions.length; count++) {
+		if (arrayOfKnowledgeDimensions[count] !== '') {
+			$('#' + arrayOfKnowledgeDimensions[count]).prop('checked', true);
+		}
+	}
 	// Choose correct item from selectables
 	$('#learningDomain option[value=' + data.learningDomain + ']').prop('selected', true);
 	$('#domainCategory option[value=' + data.domainCategory + ']').prop('selected', true);
 }
-
 function displayPedagogyInformationInEdit () {
 	'use strict';
 	var res = '';
@@ -235,8 +296,9 @@ $(document).ready(
 				return false;
 			}
 		});
-
-
+		$('#k1').click(openDimModal);
+		$('#knowDimFinished').click(closeDimModal);
+		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
 		$('input[name=knowledgeDimension]').on('change',

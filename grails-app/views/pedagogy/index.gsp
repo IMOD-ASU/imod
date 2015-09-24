@@ -1,4 +1,5 @@
 <%@ page import="imod.Help" %>
+<%@ page import="imod.KnowledgeDimensionEnum"%>
 
 <html>
 	<head>
@@ -7,6 +8,23 @@
 		</title>
 
 		<meta name="layout" content="imod">
+		<!-- FIXME These should be loaded when needed, not prefetched -->
+		<link id="imgNone" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimNone.png')}">
+		<link id="imgC" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimC.png')}">
+		<link id="imgF" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimF.png')}">
+		<link id="imgM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimM.png')}">
+		<link id="imgP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimP.png')}">
+		<link id="imgCF" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCF.png')}">
+		<link id="imgCM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCM.png')}">
+		<link id="imgCP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCP.png')}">
+		<link id="imgFM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFM.png')}">
+		<link id="imgFP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFP.png')}">
+		<link id="imgMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimMP.png')}">
+		<link id="imgCFM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFM.png')}">
+		<link id="imgCFP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFP.png')}">
+		<link id="imgCMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCMP.png')}">
+		<link id="imgFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFMP.png')}">
+		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:external dir="css/source" file="pedagogy.css" />
 		<g:external dir="css/source" file="learningObjective.css" />
@@ -262,8 +280,9 @@
 							<tr>
 							<td width="40%">Knowledge Dimension</td>
 							<td width="60%">
-								<g:select class="custom-dropdown" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+								<button id="k1"> click me</button>
 							</td>
+							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="knowledge">
 							</tr>
 							<tr>
 							<td width="40%">Delivery Mode</td>
@@ -305,6 +324,7 @@
 							<div id="modalButtons" style="align:left">
 								<g:actionSubmit value="Save" id="saveButton" action="save" class="new-technique-popup-button"/>
 								<g:actionSubmit value="Cancel" action="cancel" class="new-technique-popup-button" />
+								<g:actionSubmit value="Clone" action="clone" class="new-technique-popup-button" />
 							</div>
 							<br>
 						</g:form>
@@ -312,5 +332,43 @@
 				</td>
 			</tr>
 		</table>
+		<div id="selectKnowledgeDimensionBackground" class="modalBackground">
+</div>
+<div id="selectKnowledgeDimensions" class="draggable">
+	<div class="draggable-handle">
+		<input type="hidden" id="topicID" />
+		<span>
+			<ul>
+				<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
+					<li>
+						<input
+							type="checkbox"
+							id="${dimension}"
+							value="${dimension}"
+						/>
+						<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
+							${dimension}
+						</label>
+					</li>
+				</g:each>
+			</ul>
+			<g:img
+				dir="images/content"
+				file="knowDimNone.png"
+				id="dimImage"
+				width="71"
+				height="71"
+			/>
+		</span>
+		<button
+		  class="save showHoverNew resourceButton"
+					id="knowDimFinished"
+					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+		>
+					${message(code: 'Save Resource', default: 'Done')}
+		</button>
+		
+	</div>
+</div>
 	</body>
 </html>
