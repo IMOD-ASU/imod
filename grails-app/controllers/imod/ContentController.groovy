@@ -26,31 +26,37 @@ class ContentController {
 		final dimensions = KnowledgeDimensionEnum.values()*.value
 		final priorities = Content.priorities()
 
-		def contentInstance = new Content(imod: currentImod, failOnError: true)
-
-		contentInstance.save()
-		if (!contentInstance) {
-			contentInstance.errors.allErrors.each {
-				log.error messageSource.getMessage(it,null)
-			}
-		}
-
 		render([
-			id: contentInstance.id,
 			dimensions: dimensions,
 			priorities: priorities,
 		] as JSON)
 	}
 
-	def saveTopic(String JSONData) {
+	def saveTopic(String JSONData, Long id) {
+		final currentImod = Imod.get(id)
 		final jsonParser = new JsonSlurper()
 		final contentData = jsonParser.parseText(JSONData)
-
+		def contentID = 0
 		def success = []
 		def fail = []
 
 		contentData.each() {
-			final contentID = it.contentID.toLong()
+
+			/* If a new topic is added, create an ID. Otherwise, the topic already exists, so use its ID*/
+			if(it.contentID == 'undefined'){
+				def contentInstance = new Content(imod: currentImod, failOnError: true)
+
+				contentInstance.save()
+				if (!contentInstance) {
+					contentInstance.errors.allErrors.each {
+						log.error messageSource.getMessage(it,null)
+					}
+				}
+				 contentID = contentInstance.id
+			}else{
+				 contentID = it.contentID.toLong()
+			}
+
 			final priority = it.priority
 			final preReq = it.preReq
 			final topicTitle = it.topicTitle
