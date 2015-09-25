@@ -31,7 +31,7 @@ function instructorValidator () {
 
 	$('.instructor-form').find('.first_name, .last_name, .email, .web_page,.role').each(
 		function () {
-			if (!isRequired($(this).val())) {
+			if (!isRequired($(this).val()) && !($(this).hasClass('web_page'))) {
 				errorList.push({
 					element: $(this),
 					message: 'This field is required'
@@ -44,7 +44,7 @@ function instructorValidator () {
 					});
 				}
 			} else if ($(this).hasClass('web_page')) {
-				if (!isValidUrl($(this).val())) {
+				if (!isValidUrl($(this).val()) && ($(this).val() !== '')) {
 					errorList.push({
 						element: $(this),
 						message: 'Requires a valid webpage'
@@ -329,10 +329,10 @@ $(document).ready(
 		});
 
 		$('#coursePolicyRadioDefault').click(function () {
-			$('#attendance-tardiness').val('Regular on-time attendance in this course is expected');
+			$('#attendance-tardiness').val('Regular on-time attendance in this course is expected.');
 			$('#class-participation').val('Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.');
-			$('#professional-conduct').val('All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/');
-			$('#missed-exams').val('The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements');
+			$('#professional-conduct').val('All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/.');
+			$('#missed-exams').val('The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate arrangements.');
 			$('#missed-assignments').val('Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.');
 			return false;
 		});
@@ -455,7 +455,7 @@ $(document).ready(
 		);
 		$('#attendance-box').click(
 			function () {
-				$('#attendance').val('Regular on-time attendance in this course is expected');
+				$('#attendance').val('Regular on-time attendance in this course is expected.');
 				$('#attendance-box').removeAttr('checked');
 				return false;
 			}
@@ -469,14 +469,14 @@ $(document).ready(
 		);
 		$('#professional-conduct-box').click(
 			function () {
-				$('#professional-conduct').val('All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/');
+				$('#professional-conduct').val('All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/.');
 				$('#professional-conduct-box').removeAttr('checked');
 				return false;
 			}
 		);
 		$('#missed-exams-box').click(
 			function () {
-				$('#missed-exams').val('The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements');
+				$('#missed-exams').val('The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate arrangements.');
 				$('#missed-exams-box').removeAttr('checked');
 				return false;
 			}

@@ -381,6 +381,24 @@ textarea:focus {
     box-shadow: 0 0 0.5em #ffffff;
 }
 
+/* Custom Dropdown */
+.custom-dropdown {
+	overflow: hidden;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+	background: url(../images/dropdown_arrow.png) no-repeat center right #fff;
+	border: 1px solid #ccc;
+	height: 26px !important;
+}
+
+/*target Internet Explorer 9 and Internet Explorer 10:*/
+@media screen and (min-width:0\0) {
+    .custom-dropdown {
+        background:none;
+        padding: 5px;
+    }
+}
+
 .required-indicator {
     position: relative;
     top: 0.1em;
@@ -649,6 +667,7 @@ th.desc a {
 
     cursor: pointer;
     text-decoration: none;
+
     border: 0;
     border-radius: 0.3em;
     background-color: transparent;
@@ -697,36 +716,45 @@ th.desc a {
 
 .topicButtonGradient {
     display: inline-block;
+    vertical-align: middle;
     height: auto;
     margin-right: 5px;
     margin-left: 5px;
     padding-right: 5px;
     padding-left: 5px;
+
+    color: #ffffff;
     border-radius: 4px;
     background: linear-gradient(#113b70, #0b2f5e);
     box-shadow: 0 1px 2px #888888;
-    color: #fff;
 }
 
 .topicButtonGradient:hover {
-	background: linear-gradient(#0b2f5e, #1857a3);
+    background: linear-gradient(#0b2f5e, #1857a3);
 }
 
 .topicButtonGradient a,
 .topicButtonGradient input,
 .topicButtonGradient button {
-	color: #fff;
+    color: #ffffff;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 .topicButtonGradient a:hover,
 .topicButtonGradient input:hover,
 .topicButtonGradient button:hover {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 .topicButtonGradient.cancelBG i {
-    color: darkred;
+    vertical-align: middle;
     font-size: 1.5em;
+    color: #fff;
+}
+
+.fa-graduation-cap {
+	color: #de368f;
 }
 
 
@@ -782,8 +810,9 @@ a.square {
 
 
 #imodlogo {
-	padding: 10px 0;
-	background: #0C1625;
+    padding: 10px 0;
+
+    background: #0c1625;
 }
 
 a.banner-home {
@@ -1057,7 +1086,7 @@ table.inner-table {
 }
 
 .restore-default {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 /* disabled tab */
@@ -1143,10 +1172,13 @@ a.ui-tabs-anchor {
 
 
 .ui-tabs .ui-tabs-nav {
-    padding: 0;
-    list-style: none outside none;
-    white-space: nowrap;
     overflow: hidden;
+
+    padding: 0;
+
+    list-style: none outside none;
+
+    white-space: nowrap;
 }
 
 
@@ -1366,7 +1398,7 @@ label[for=weekdays] {
 
 /* Draggable handle cursor */
 .draggable-handle {
-	cursor: move !important;
+    cursor: move !important;
 }
 
 /**

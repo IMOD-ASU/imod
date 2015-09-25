@@ -259,8 +259,8 @@
                                             </h3>
                                             <div>
                                                 <div>
-                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency Based" checked="${currentImod?.gradingProcedure == 'Competency Based'?true:false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
-                                                    Competency Based
+                                                    <g:radio name="gradingProcedureRadio" class="grading-radio" value="Competency-Based" checked="${currentImod?.gradingProcedure == 'Competency-Based' ? true : false}" title="${ message( code:'imod.courseOverview.gradingProcedure')}"/>
+                                                    Competency-Based
                                                 </div>
 
                                                 <div>

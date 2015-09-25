@@ -37,29 +37,28 @@
 	<body>
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
 	<fieldset id="topicModalClose" class="buttons topicButtonField" style="margin-right: 15%;">
-	<span class="topicButtonGradient saveBG">
-		<button
-			class="save showHoverNew topicButton"
-			action="save"
-			id="saveTopic"
-			title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}"
-		>
-			${message(code: 'Save Topic', default: ' Save')}
-		</button>
-	</span>
-	<span class="topicButtonGradient cancelBG">
-		<button
-			class="showHoverNew topicButton"
-			action="cancel"
-			id="cancelTopic"
-			title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}"
-		>
-			<i class="fa fa-times"></i>
-			${message(code: 'Cancel Topics', default: ' Cancel')}
-		</button>
-	</span>
-</fieldset>
-
+		<span class="topicButtonGradient saveBG">
+			<button
+				class="save showHoverNew topicButton"
+				action="save"
+				id="saveTopic"
+				title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}"
+			>
+				${message(code: 'Save Topic', default: ' Save')}
+			</button>
+		</span>
+		<span class="topicButtonGradient cancelBG">
+			<button
+				class="showHoverNew topicButton"
+				action="cancel"
+				id="cancelTopic"
+				title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}"
+			>
+				<i class="fa fa-times"></i>
+				${message(code: 'Cancel Topics', default: ' Cancel')}
+			</button>
+		</span>
+	</fieldset>
 	<div id="contentTable">
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
@@ -307,7 +306,7 @@
 				value="${message(code: 'Remove Resource', default: 'Remove Resource')}"
 			/>
 		</span>
-		<span id="errorMessage"></span>
+		<span id="errorMessageResources"></span>
 	</fieldset>
 	<table id="resourceList">
 		<thead>
@@ -316,6 +315,7 @@
 				<td>Title</td>
 				<td>Description</td>
 				<td>Resource Type</td>
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>

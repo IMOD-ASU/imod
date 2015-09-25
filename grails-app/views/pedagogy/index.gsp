@@ -1,4 +1,5 @@
 <%@ page import="imod.Help" %>
+<%@ page import="imod.KnowledgeDimensionEnum"%>
 
 <html>
 	<head>
@@ -7,6 +8,23 @@
 		</title>
 
 		<meta name="layout" content="imod">
+		<!-- FIXME These should be loaded when needed, not prefetched -->
+		<link id="imgNone" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimNone.png')}">
+		<link id="imgC" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimC.png')}">
+		<link id="imgF" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimF.png')}">
+		<link id="imgM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimM.png')}">
+		<link id="imgP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimP.png')}">
+		<link id="imgCF" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCF.png')}">
+		<link id="imgCM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCM.png')}">
+		<link id="imgCP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCP.png')}">
+		<link id="imgFM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFM.png')}">
+		<link id="imgFP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFP.png')}">
+		<link id="imgMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimMP.png')}">
+		<link id="imgCFM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFM.png')}">
+		<link id="imgCFP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFP.png')}">
+		<link id="imgCMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCMP.png')}">
+		<link id="imgFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFMP.png')}">
+		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:external dir="css/source" file="pedagogy.css" />
 		<g:external dir="css/source" file="learningObjective.css" />
@@ -122,24 +140,35 @@
 						<div class="topic_addition_widget">
 							<div class="pedagogy-page-buttons">
 								<br>
-								<span>
+								<div>
 									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-									<button id="add-new-technique-button">
-									<i class="fa fa-plus"></i>
-										Add New Technique
-									</button>
+									<span id="add-new-technique-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-plus"></i>
+											Add New Technique
+										</button>
+									</span>
 
-									<button id="favorites-button">
-									<i class="fa fa-star"></i>
-										Favorites
-									</button>
+									<span id="favorites-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-star"></i>
+											Favorites
+										</button>
+									</span>
 
-									<button id="unfavorites">UnFavorites
-									</button>
+									<span  id="unfavorites" class="topicButtonGradient">
+										<button>
+											UnFavorites
+										</button>
+									</span>
 
-									<button id="instruction-plan-button">Instructional Plan
-									</button>
-								</span>
+									<span id="instruction-plan-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-graduation-cap"></i>
+											Instructional Plan
+										</button>
+									</span>
+								</div>
 							</div>
 							<br>
 							<div class="learning-objective creator">
@@ -223,7 +252,7 @@
 							<div id="editTitle">
 							<b> Add Pedagogy Technique</b>
 							</div>
-							<span id="errorMessage"></span>
+							<span id="errorMessage" style="color:red"></span>
 						</fieldset>
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
@@ -242,45 +271,49 @@
 							</tr>-->
 							<tr>
 							<td width="40%">Learning Domain	</td>
-							<td width="60%"><g:select name="learningDomain" from="${learningDomains}" optionKey="name" /><td>
+							<td width="60%"><g:select class="custom-dropdown" name="learningDomain" from="${learningDomains}" optionKey="name" /><td>
 							</tr>
 							<tr>
 							<td width="40%">Domain Category</td>
-							<td width="60%"><g:select name="domainCategory" from="${domainCategories}" optionKey="name" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="domainCategory" from="${domainCategories}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Knowledge Dimension</td>
-							<td width="60%"><g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" /></td>
+							<td width="60%">
+								<button id="k1"> click me</button>
+							</td>
+							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="knowledge">
 							</tr>
 							<tr>
 							<td width="40%">Delivery Mode</td>
-							<td width="60%"><g:select name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
 							</tr>
-							<tr>
+							<!-- Decided to remove Location - Item 2047-->
+							<!--<tr>
 							<td width="40%">Location</td>
 							<td width="60%"><g:textField name="location" /> </td>
-							</tr>
+							</tr>-->
 							<tr>
 							<td width="40%">Focus</td>
-							<td width="60%"><g:select name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
+							<td width="60%"><g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
 							</tr>
 							<tr>
-							<td width="40%">Direction</td>
-							<td width="60%"><g:textField name="direction" /></td>
+							<td width="40%">Duration</td>
+							<td width="60%"><g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Materials Required</td>
-							<td width="60%"><g:textField name="materials" /> </td>
+							<td width="60%"><g:textArea name="materials" rows="5" cols="30"/> </td>
 							</tr>
 							<tr>
 							<td width="40%">Reference</td>
-							<td width="60%"><g:textField name="reference" /></td>
+							<td width="60%"><g:textArea name="reference" rows="5" cols="30"/></td>
 							</tr>
-							<tr>
+							<!--<tr>
 							<td width="40%">Description of Strategy</td>
 							<td width="60%">
 							<g:textArea name="strategyDescription" rows="5" cols="30" /></td>
-							</tr>
+							</tr>-->
 							<tr>
 							<td width="40%">Description of Activity</td>
 							<td width="60%"><g:textArea name="activityDescription" rows="5" cols="30" /></td>
@@ -291,6 +324,7 @@
 							<div id="modalButtons" style="align:left">
 								<g:actionSubmit value="Save" id="saveButton" action="save" class="new-technique-popup-button"/>
 								<g:actionSubmit value="Cancel" action="cancel" class="new-technique-popup-button" />
+								<g:actionSubmit value="Clone" action="clone" class="new-technique-popup-button" />
 							</div>
 							<br>
 						</g:form>
@@ -298,5 +332,43 @@
 				</td>
 			</tr>
 		</table>
+		<div id="selectKnowledgeDimensionBackground" class="modalBackground">
+</div>
+<div id="selectKnowledgeDimensions" class="draggable">
+	<div class="draggable-handle">
+		<input type="hidden" id="topicID" />
+		<span>
+			<ul>
+				<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
+					<li>
+						<input
+							type="checkbox"
+							id="${dimension}"
+							value="${dimension}"
+						/>
+						<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
+							${dimension}
+						</label>
+					</li>
+				</g:each>
+			</ul>
+			<g:img
+				dir="images/content"
+				file="knowDimNone.png"
+				id="dimImage"
+				width="71"
+				height="71"
+			/>
+		</span>
+		<button
+		  class="save showHoverNew resourceButton"
+					id="knowDimFinished"
+					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+		>
+					${message(code: 'Save Resource', default: 'Done')}
+		</button>
+		
+	</div>
+</div>
 	</body>
 </html>

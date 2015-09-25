@@ -14,12 +14,18 @@ function hideTopicDialog () {
 	$('#topicDialog').css('display', 'none');
 }
 
-function flashError () {
+function flashError (resourceId) {
 	'use strict';
 	var message = errorMessages.shift();
 
-	$('#errorMessage').text(message);
-	$('#errorMessage')
+	if (typeof a !== 'undefined') {
+		resourceId = resourceId;
+	} else {
+		resourceId = 'errorMessage';
+	}
+
+	$('#' + resourceId).text(message);
+	$('#' + resourceId)
 		.fadeIn('fast')
 		.delay(3000)
 		.fadeOut(
@@ -34,12 +40,21 @@ function flashError () {
 		);
 }
 
-function errorMessage (message) {
+function errorMessage (message, resourceId) {
 	'use strict';
 	errorMessages.push(message);
+
+	if (typeof a !== 'undefined') {
+		resourceId = resourceId;
+	} else {
+		resourceId = 'errorMessage';
+	}
+
 	if (isFlashing === null) {
-		flashError();
-		isFlashing = setInterval(flashError, 4000);
+		flashError(resourceId);
+		isFlashing = setInterval(function () {
+			flashError(resourceId);
+		}, 4000);
 	}
 }
 
@@ -477,11 +492,11 @@ function saveResource () {
 			var resourceType = $('#resourceType' + resourceID).val();
 
 			if (resourceDescription === '') {
-				errorMessage('Resource: ' + resourceName + ' must have a Description!');
+				errorMessage('Resource: ' + resourceName + ' must have a Description!', 'errorMessageResources');
 				hasError = true;
 			}
 			if (resourceName === '') {
-				errorMessage('Resource Name is required');
+				errorMessage('Resource Name is required', 'errorMessageResources');
 				hasError = true;
 			}
 			resourceData.push({
@@ -493,7 +508,7 @@ function saveResource () {
 		}
 	);
 	if (hasError) {
-		return;
+		return false;
 	}
 	resourceData = JSON.stringify(resourceData);
 	$.ajax({
