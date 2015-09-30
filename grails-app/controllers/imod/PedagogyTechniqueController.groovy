@@ -17,16 +17,12 @@ class PedagogyTechniqueController {
 		String  knowledgeDimensions="";
 
 
-		for(int i=0;i<knowledgedimensions.size();i++)
-		{		
-			
+		for(int i = 0; i< knowledgedimensions.size(); i++) {
 			knowledgeDimensions=knowledgeDimensions+knowledgedimensions[i]+",";
-
 		}
 
-//add some stuffif (KnowledgeDimension.findById(PedagogyTechnique.get(id).knowledgeDimension[i].id).toString()!=null)
-			//println(knowledgeDimensions);
-	
+		// add some stuff if (KnowledgeDimension.findById(PedagogyTechnique.get(id).knowledgeDimension[i].id).toString()!=null)
+		//println(knowledgeDimensions);
 		render (
 			[
 				pedagogyTechnique: PedagogyTechnique.get(id),
@@ -55,13 +51,12 @@ class PedagogyTechniqueController {
 		def newTechnique = new PedagogyTechnique()
 
 		if (params.techniqueId) {
-		 PedagogyTechnique.get(params.techniqueId)
-		 PedagogyTechnique.get(params.techniqueId).knowledgeDimension.clear()
+			PedagogyTechnique.get(params.techniqueId)
+			PedagogyTechnique.get(params.techniqueId).knowledgeDimension.clear()
 		}
 
-		 
+
 		// Store text fields
-	
 		newTechnique.title = params.title
 		newTechnique.description = params.activityDescription
 		newTechnique.direction = params.duration
@@ -69,23 +64,16 @@ class PedagogyTechniqueController {
 		newTechnique.reference = params.reference
 		newTechnique.activityDescription = params.activityDescription
 		String[] kD = params.knowledgeDimension.split(",");
-		//println kD;
-		if (kD!=null){
-		for(int i=0;i<kD.length;i++)
-       {
-          
-		  if (kD[i]!=null || kD[i]!="")
-          {
-		  newTechnique.addToKnowledgeDimension(
-		  KnowledgeDimension.findByDescription(kD[i]))
-		
 
-		
-
-
+		// println kD;
+		if (kD != null) {
+			for(int i=0; i < kD.length; i++) {
+				if (kD[i]!=null || kD[i] != "") {
+					newTechnique.addToKnowledgeDimension(
+					KnowledgeDimension.findByDescription(kD[i]))
+				}
+			}
 		}
-       }
-   }
 
 		// Store relationships
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
@@ -95,9 +83,6 @@ class PedagogyTechniqueController {
 		newTechnique.addToDomainCategory(
 			DomainCategory.findByName(params.domainCategory)
 		)
-		//newTechnique.addToKnowledgeDimension(
-			//KnowledgeDimension.findByDescription(params.knowledgeDimension)
-		//)
 		newTechnique.addToLearningDomain(
 			LearningDomain.findByName(params.learningDomain)
 		)
@@ -143,40 +128,27 @@ class PedagogyTechniqueController {
 	def clone(Long id, Long learningObjectiveID) {
 		def newTechnique = new PedagogyTechnique()
 
-		
-		
 		if (params.techniqueId) {
 			String [] knowledgedimensions = PedagogyTechnique.get(params.techniqueId).knowledgeDimension;
-			for(int i=0;i<knowledgedimensions.size();i++)
-		{		
-			newTechnique.addToKnowledgeDimension(
-		  KnowledgeDimension.findByDescription(knowledgedimensions[i]))
-
-		}
-			
-
-		 
+			for(int i = 0; i < knowledgedimensions.size(); i++) {
+				newTechnique.addToKnowledgeDimension(
+		  		KnowledgeDimension.findByDescription(knowledgedimensions[i]))
+			}
 		}
 
-		
-
-		
-
-		 
 		// Store text fields
-	
 		newTechnique.title = params.title
 		newTechnique.description = params.activityDescription
 		newTechnique.direction = params.duration
 		newTechnique.materials = params.materials
 		newTechnique.reference = params.reference
 		newTechnique.activityDescription = params.activityDescription
-		
+
 		String[] kD = params.knowledgeDimension.split(",");
 
 		// Store relationships
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
-		
+
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)
