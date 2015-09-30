@@ -3,10 +3,11 @@
     margin-top: 80px;
     margin-bottom: 20px;
     margin-left: 15%;
+
     border: 1px solid;
 }
 #topicModalClose {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 #chart {
     width: 500px ;
