@@ -29,6 +29,15 @@ class AssessmentController {
 		final knowledgeDimensions = KnowledgeDimension.list()
 		final learningDomains = LearningDomain.list()
 		final assessmentFeedback = AssessmentFeedback.list()
+		final selectedActionWordCategory = currentLearningObjective.actionWordCategory
+		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
+		final selectedDomain = selectedDomainCategory?.learningDomain
+		final content = currentLearningObjective.contents
+		def dimension = content[0]?.dimensions
+		def dimensionSize = 0
+		if (dimension != null){
+			dimensionSize  = dimension.size() - 1
+		}
 
 		[
 			currentImod: currentImod,
@@ -39,6 +48,10 @@ class AssessmentController {
 			learningDomains: learningDomains,
 			learningObjectives: learningObjectives,
 			assessmentFeedback: assessmentFeedback,
+			selectedDomain:selectedDomain,
+			selectedDomainCategory:selectedDomainCategory,
+			dimension:dimension,
+			dimensionSize:dimensionSize
 		]
 	}
 

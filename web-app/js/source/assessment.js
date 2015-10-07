@@ -37,7 +37,62 @@ function openNewAssessmentTechniqueModal () {
 		zindex: 1000
 	});
 }
+function closeDimModal () {
+	'use strict';
+	var checked = '';
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
 
+	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
+		if ($(this).is(':checked')) {
+			checked = checked + ($(this).val()) + ',';
+		}
+	});
+	document.getElementById('knowledgeDimension').value = checked;
+	dialog.css('display', 'none');
+	background.css('display', 'none');
+}
+function changePic () {
+	'use strict';
+	var iconName = '';
+
+	$('#selectKnowledgeDimensions').find('input:checkbox').each(
+		function () {
+			if ($(this).prop('checked')) {
+				iconName += $(this).val().charAt(0);
+			}
+		}
+	);
+	if (iconName === '') {
+		iconName = $('#imgNone').attr('href');
+	} else {
+		iconName = $('#img' + iconName).attr('href');
+	}
+	$('#dimImage').attr('src', iconName);
+}
+function openDimModal () {
+	'use strict';
+	var dimString = $('#knowDimensionList').val();
+	var dimensionList = [];
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
+	var index;
+	var findCheckBox;
+
+	if (dimString !== '' && dimString !== null && typeof dimString !== 'undefined') {
+		dimensionList = dimString.split(',');
+	}
+	for (index = 0; index < dimensionList.length; index++) {
+		findCheckBox = $(dialog).find('#' + dimensionList[index]);
+		if (findCheckBox.length === 1) {
+			findCheckBox.prop('checked', true);
+		}
+	}
+	changePic();
+	dialog.css('display', 'inherit');
+	background.css('display', 'block');
+	return false;
+}
 function populateAssessmentTechnique (data) {
 	'use strict';
 	var currentTechnique = data.assessmentTechnique;
@@ -245,7 +300,7 @@ function filterAssessmentTechniques () {
 	};
 
 	// Send the data to the find matching techniques action in grails
-	// and process the response with the display pedagogy techniques callback
+	// and process the response with the display assessment techniques callback
 	$.ajax({
 		url: '../findMatchingTechniques',
 		method: 'post',
@@ -362,7 +417,7 @@ function assessmentPlanData (data) {
 // Load techniques on page load
 filterAssessmentTechniques();
 
-// Filters for the pedagogy technique are wrapped in a accordian
+// Filters for the assessment technique are wrapped in a accordian
 $('#filter-assessment-techniques').accordion();
 
 $('#favorites').click(function () {
@@ -431,3 +486,195 @@ $('#View').click(function () {
 	$('.allInputs').hide();
 	$('.allspans1').show();
 });
+
+function getMinHeight (liArray) {
+	'use strict';
+	var minHeight = Math.floor(liArray.eq(0).height());
+
+	liArray.each(
+		function () {
+			var refineText;
+
+			if (Math.floor($(this).height()) < minHeight) {
+				minHeight = Math.floor($(this).height());
+			}
+			refineText = $('a', this).text().replace(/[\s\t]+/g, ' ');
+			$('a', this).text(refineText);
+		}
+	);
+	return minHeight;
+}
+
+/* Populate the text above ideal matches*/
+function updateTextArea (checkBoxName) {
+	'use strict';
+	var allVals = [];
+	var valsLength;
+	var text = '';
+	var right = '';
+
+	$('input[name=' + checkBoxName + ']:checked').each(function () {
+		allVals.push($(this).prev().prev().text().trim());
+	});
+	valsLength = allVals.length;
+
+	switch (checkBoxName) {
+		case 'domainCategory':
+			text = 'Domain Category';
+			right = '&nbsp;&nbsp;<i class="fa fa-caret-right"></i>';
+			break;
+		case 'learningDomain':
+			text = 'Learning Domain';
+			right = '&nbsp;&nbsp;<i class="fa fa-caret-right"></i>';
+			break;
+		case 'knowledgeDimension':
+			text = 'Knowledge Dimension';
+			right = '';
+			break;
+	}
+
+	if (allVals.length > 2) {
+		$('#' + checkBoxName + 'span').html('<b>' + text + ' (' + valsLength + ' Selections)</b>' + right + '</span>&nbsp;&nbsp;');
+	} else {
+		$('#' + checkBoxName + 'span').html('<b>' + allVals + '</b>' + right + '</span>&nbsp;&nbsp;');
+	}
+}
+
+/* callback added to do something when the response of the asyncronous ajax call has arrived*/
+function populateDomainCategories (callback) {
+	'use strict';
+	$.ajax({
+		url: baseUrl + 'learningObjective/getDomainCategories',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			domainName: $('#learning-domain').val().trim()
+		},
+		success: function (data) {
+			// Stores the data from the call back
+			var categories = data.value;
+			// This stores the new html that will be added
+			var options = '';
+			var index;
+
+			// For each of the categories
+			for (index = 0; index < categories.length; index++) {
+				// Create the html for the category
+				options += '<option value="' + categories[index].name + '">' + categories[index].name + '</option>';
+			}
+			// Store this to the page
+			$('#domain-category').empty().append(options);
+			callback();
+		}
+	});
+}
+
+
+$(document).ready(
+	function () {
+		'use strict';
+		var liArray;
+		var height;
+		var currHeader;
+		var currContent;
+		var isPanelSelected;
+		var checkBoxName;
+		var hasError = false;
+
+		// Load techniques on page load
+		filterAssessmentTechniques();
+		// The filters for the assessment technique are wrapped in a accordian
+		// beforeActivate is to be able to open both ideal & extended matches simultaneously
+		$('#filter-assessment-techniques').accordion({collapsible: true, heightStyle: 'content'});
+		$('#ideal-matches-toggle').accordion({collapsible: true,
+			beforeActivate: function (event, ui) {
+				// The accordion believes a panel is being opened
+				if (ui.newHeader[0]) {
+					currHeader = ui.newHeader;
+					currContent = currHeader.next('.ui-accordion-content');
+					// The accordion believes a panel is being closed
+				} else {
+					currHeader = ui.oldHeader;
+					currContent = currHeader.next('.ui-accordion-content');
+				}
+				// Since we've changed the default behavior, this detects the actual status
+				isPanelSelected = currHeader.attr('aria-selected') === 'true';
+				// Toggle the panel's header
+				currHeader.toggleClass('ui-corner-all', isPanelSelected).toggleClass('accordion-header-active ui-state-active ui-corner-top', !isPanelSelected).attr('aria-selected', ((!isPanelSelected).toString()));
+				// Toggle the panel's icon
+				currHeader.children('.ui-icon').toggleClass('ui-icon-triangle-1-e', isPanelSelected).toggleClass('ui-icon-triangle-1-s', !isPanelSelected);
+				// Toggle the panel's content
+				currContent.toggleClass('accordion-content-active', !isPanelSelected);
+				if (isPanelSelected) {
+					currContent.slideUp();
+				} else {
+					currContent.slideDown();
+				}
+				// Cancels the default action
+				return false;
+			}
+		});
+		$('#k1').click(openDimModal);
+		$('#knowDimFinished').click(closeDimModal);
+		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
+		// Attach a listener to the checkboxes, to update the pedaogy techniques
+		// when the filters have been changed
+		$('input[name=knowledgeDimension]').on('change',
+		function () {
+			checkBoxName = 'knowledgeDimension';
+			updateTextArea(checkBoxName);
+			filterAssessmentTechniques();
+		});
+		$('input[name=learningDomain]').on('change',
+		function () {
+			checkBoxName = 'learningDomain';
+			updateTextArea(checkBoxName);
+			filterAssessmentTechniques();
+		});
+		$('input[name=domainCategory]').on('change',
+		function () {
+			checkBoxName = 'domainCategory';
+			updateTextArea(checkBoxName);
+			filterAssessmentTechniques();
+		});
+		$('#saveButton').on('click',
+		function () {
+			if ($('#title').val() === '') {
+				$('#errorMessage').text('Technique must have a title!');
+				hasError = true;
+			} else {
+				hasError = false;
+			}
+
+			if (hasError === true) {
+				return false;
+			}
+		});
+
+		// When add new technique button is clicked open modal
+		$('#add-new-technique-button').on('click', openNewAssessmentTechniqueModal);
+
+		// When hovered over LO side-tab list, it displays full text as tool-tip
+		liArray = $('ul.learning-objective.list-wrapper').children('li');
+		height = getMinHeight(liArray);
+
+		liArray.each(
+			function () {
+				$('a', this).attr('title', $('a', this).text());
+				if (Math.floor($(this).height()) !== height) {
+					$('a', this).text($('a', this).text().substring(0, 70) + '...');
+				}
+				if ($(this).hasClass('active')) {
+					$('a', this).text($('a', this).attr('title'));
+				}
+			}
+		);
+
+		// Listen for the selected learning domain to change, when it does call ajax
+		$('#learning-domain').on(
+			'change',
+			function () {
+				populateDomainCategories(function () {});
+			});
+	}
+);

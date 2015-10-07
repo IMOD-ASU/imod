@@ -69,6 +69,10 @@
     max-height: 300px !important;
 }
 
+.pedagogy-nav-bar span {
+	margin-right: 15px;
+}
+
 #add-new-technique-button i,
 #favorites-button i {
     padding: 2px;
@@ -83,14 +87,6 @@
 }
 #favorites-button i {
     color: gold;
-}
-
-.pedagogy.type-icon {
-    position: relative;
-    left: -45px;
-
-    display: inline-block;
-    float: center;
 }
 
 .new-technique-popup-button {
