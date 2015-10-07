@@ -1,3 +1,5 @@
+var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+
 /**
  * Opens the modal to create a new assessment technique
  */
