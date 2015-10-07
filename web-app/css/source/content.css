@@ -1,20 +1,23 @@
 #contentTable {
-    width: 70%;
-    margin-top: 80px;
-    margin-bottom: 20px;
-    margin-left: 15%;
-
-    border: 1px solid;
+	width: 70%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 15%;
+	border: 1px solid;
 }
-#topicModalClose {
-    margin-top: 20px;
+.content-buttons {
+	margin-top: 20px;
+	width: 70%;
+	margin-left: 15%;
+	background: none !important;
+	text-align: right;
 }
 #chart {
-    width: 500px ;
-    margin-right: auto ;
-    margin-left: auto ;
+	width: 500px ;
+	margin-right: auto ;
+	margin-left: auto ;
 }
 
 .message.banner {
-    visibility: hidden;
+	visibility: hidden;
 }
