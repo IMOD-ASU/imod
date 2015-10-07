@@ -78,10 +78,3 @@
     background-repeat: no-repeat;
     background-position: right top;
 }
-
-.icons.favorite > .ui-selecting,
-.icons.favorite > .ui-state-active {
-    background-image: url('../../images/fav.png'),url('../../images/assign.png');
-    background-repeat: no-repeat, no-repeat;
-    background-position: left top, right top;
-}

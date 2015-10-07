@@ -3,6 +3,7 @@ import grails.converters.JSON
 
 class PedagogyController {
 	def learningObjectiveService
+	def springSecurityService
 
 	static allowedMethods = [
 		index: 'GET',
@@ -125,10 +126,28 @@ class PedagogyController {
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
 
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		final favoriteTechniques = currentUser.favoriteTechnique.id
+		def stringfavoriteTechniques = []
+		//Convert int to string
+		for (def favoriteTechnique in favoriteTechniques) {
+			stringfavoriteTechniques.add(favoriteTechnique.toString())
+		}
+
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		final LOPedagogyTechniques = currentLearningObjective.pedagogyTechniques.id
+		def stringLOPedagogyTechniques = []
+		//Convert int to string
+		for (def LOPedagogyTechnique in LOPedagogyTechniques) {
+			stringLOPedagogyTechniques.add(LOPedagogyTechnique.toString())
+		}
+
 		render(
 			[
 				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch,
-				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch
+				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch,
+				favoriteTechniques: stringfavoriteTechniques,
+				LOPedagogyTechniques: stringLOPedagogyTechniques
 			] as JSON
 		)
 	}

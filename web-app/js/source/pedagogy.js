@@ -1,3 +1,5 @@
+var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+
 /**
  * Opens the modal to create a new pedagogy technique
  */
@@ -85,20 +87,22 @@ function populatePedagogyTechnique (data) {
 		}
 	}
 	// Choose correct item from selectables
-	$('#learningDomain option[value=' + data.learningDomain + ']').prop('selected', true);
-	$('#domainCategory option[value=' + data.domainCategory + ']').prop('selected', true);
+	$('#learning-domain option[value=' + data.learningDomain + ']').prop('selected', true);
+	populateDomainCategories(function () {
+		$('#domain-category option[value=' + data.domainCategory + ']').prop('selected', true);
+	});
 }
 function displayPedagogyInformationInEdit () {
 	'use strict';
 	var res = '';
 
-	var str = $('label.ui-state-active').attr('for');
+	var str = $('label.ui-state-hover').attr('for');
 	var indexNo = str.indexOf('Extended');
 
 	if (indexNo > -1) {
 		res = str.substring(0, indexNo);
 	} else {
-		res = $('label.ui-state-active').attr('for');
+		res = $('label.ui-state-hover').attr('for');
 	}
 
 	$('#techniqueId').val(res);
@@ -119,40 +123,145 @@ function displayPedagogyTechniques (data) {
 	var index;
 	var currentTechnique;
 	var extendedText = '';
+	var favoriteImgToggle = '';
+	var assignImgToggle = '';
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
 		currentTechnique = data.idealPedagogyTechniqueMatch[index];
+		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			favoriteImgToggle = '../../images/fav.png';
+		} else {
+			favoriteImgToggle = '../../images/unfav.png';
+		}
+
+		if (data.LOPedagogyTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			assignImgToggle = '../../images/assign.png';
+		} else {
+			assignImgToggle = '../../images/unassign.png';
+		}
+
 		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
-		idealText += '<label for="' + currentTechnique.id + '"><span>' + currentTechnique.title + '</span></label>';
+		idealText += '<label for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div class="title" id="titleDiv"><span>' +
+					currentTechnique.title + '</span></div></label>';
 	}
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.extendedPedagogyTechniqueMatch.length; index++) {
 		currentTechnique = data.extendedPedagogyTechniqueMatch[index];
+		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			favoriteImgToggle = '../../images/fav.png';
+		} else {
+			favoriteImgToggle = '../../images/unfav.png';
+		}
+
+		if (data.LOPedagogyTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			assignImgToggle = '../../images/assign.png';
+		} else {
+			assignImgToggle = '../../images/unassign.png';
+		}
 		extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
-		extendedText += '<label for="' + currentTechnique.id + 'Extended"><span>' + currentTechnique.title + '</span></label>';
+		extendedText += '<label for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div id="titleDiv"><span>' +
+					currentTechnique.title + '</span></div></label>';
 	}
 
 	// Add html code to the page
 	$('#ideal-matches').html(idealText);
 	$('#extended-matches').html(extendedText);
 
-	$('#ideal-matches').buttonset().find(':radio').click(
-		function () {
-			$('#add-new-technique').css('display', 'block');
-			$('#topicDialogBackground').css('display', 'block');
-			displayPedagogyInformationInEdit();
-		}
-	);
+	$('#ideal-matches').buttonset();
 
-	$('#extended-matches').buttonset().find(':radio').click(
-		function () {
-			$('#add-new-technique').css('display', 'block');
-			$('#topicDialogBackground').css('display', 'block');
-			displayPedagogyInformationInEdit();
+	$('#topLeft img').click(function () {
+		var str = '';
+		var indexNo = '';
+		var res = '';
+
+		if ($(this).attr('src') === '../../images/fav.png') {
+			$(this).attr('src', '../../images/unfav.png');
+			str = $('label.ui-state-hover').attr('for');
+			indexNo = str.indexOf('Extended');
+			if (indexNo > -1) {
+				res = str.substring(0, indexNo);
+			} else {
+				res = str;
+			}
+			$.ajax({
+				url: '../../pedagogyTechnique/unassignFavorite/' + res,
+				method: 'GET'
+			});
+		} else {
+			$(this).attr('src', '../../images/fav.png');
+			str = $('label.ui-state-hover').attr('for');
+			indexNo = str.indexOf('Extended');
+			if (indexNo > -1) {
+				res = str.substring(0, indexNo);
+			} else {
+				res = str;
+			}
+			$.ajax({
+				url: '../../pedagogyTechnique/assignFavorite/' + res,
+				method: 'GET'
+			});
 		}
-	);
+	});
+
+	$('#topRight img').click(function () {
+		var str = '';
+		var indexNo = '';
+		var res = '';
+
+		if ($(this).attr('src') === '../../images/assign.png') {
+			$(this).attr('src', '../../images/unassign.png');
+			str = $('label.ui-state-hover').attr('for');
+			indexNo = str.indexOf('Extended');
+			if (indexNo > -1) {
+				res = str.substring(0, indexNo);
+			} else {
+				res = str;
+			}
+
+			data = {
+				learningObjectiveID: $('#learningObjectiveID').val(),
+				pedagogyTechniqueID: res
+			};
+			$.ajax({
+				url: '../../pedagogyTechnique/unassignToLearningObjective',
+				type: 'POST',
+				data: JSON.stringify(data),
+				contentType: 'application/json'
+			});
+		} else {
+			$(this).attr('src', '../../images/assign.png');
+			str = $('label.ui-state-hover').attr('for');
+			indexNo = str.indexOf('Extended');
+			if (indexNo > -1) {
+				res = str.substring(0, indexNo);
+			} else {
+				res = str;
+			}
+
+			data = {
+				learningObjectiveID: $('#learningObjectiveID').val(),
+				pedagogyTechniqueID: res
+			};
+			$.ajax({
+				url: '../../pedagogyTechnique/assignToLearningObjective',
+				type: 'POST',
+				data: JSON.stringify(data),
+				contentType: 'application/json'
+			});
+		}
+	});
+
+	$('.title span').click(function () {
+		$('#add-new-technique').css('display', 'block');
+		$('#topicDialogBackground').css('display', 'block');
+		displayPedagogyInformationInEdit();
+	});
+
+	$('#extended-matches').buttonset();
 }
 
 /**
@@ -187,7 +296,8 @@ function filterPedagogyTechniques () {
 	data = {
 		selectedKnowledgeDimensions: selectedKnowledgeDimensionsData,
 		selectedLearningDomains: selectedLearningDomainsData,
-		selectedDomainCategories: selectedDomainCategoriesData
+		selectedDomainCategories: selectedDomainCategoriesData,
+		learningObjectiveID: $('#learningObjectiveID').val()
 	};
 
 	// Send the data to the find matching techniques action in grails
@@ -218,6 +328,7 @@ function getMinHeight (liArray) {
 	return minHeight;
 }
 
+/* Populate the text above ideal matches*/
 function updateTextArea (checkBoxName) {
 	'use strict';
 	var allVals = [];
@@ -250,6 +361,35 @@ function updateTextArea (checkBoxName) {
 	} else {
 		$('#' + checkBoxName + 'span').html('<b>' + allVals + '</b>' + right + '</span>&nbsp;&nbsp;');
 	}
+}
+
+/* callback added to do something when the response of the asyncronous ajax call has arrived*/
+function populateDomainCategories (callback) {
+	'use strict';
+	$.ajax({
+		url: baseUrl + 'learningObjective/getDomainCategories',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			domainName: $('#learning-domain').val().trim()
+		},
+		success: function (data) {
+			// Stores the data from the call back
+			var categories = data.value;
+			// This stores the new html that will be added
+			var options = '';
+			var index;
+
+			// For each of the categories
+			for (index = 0; index < categories.length; index++) {
+				// Create the html for the category
+				options += '<option value="' + categories[index].name + '">' + categories[index].name + '</option>';
+			}
+			// Store this to the page
+			$('#domain-category').empty().append(options);
+			callback();
+		}
+	});
 }
 
 $(document).ready(
@@ -351,5 +491,12 @@ $(document).ready(
 				}
 			}
 		);
+
+		// Listen for the selected learning domain to change, when it does call ajax
+		$('#learning-domain').on(
+			'change',
+			function () {
+				populateDomainCategories(function () {});
+			});
 	}
 );

@@ -65,7 +65,6 @@ class PedagogyTechniqueController {
 		newTechnique.activityDescription = params.activityDescription
 		String[] kD = params.knowledgeDimension.split(",");
 
-		// println kD;
 		if (kD != null) {
 			for(int i=0; i < kD.length; i++) {
 				if (kD[i]!=null || kD[i] != "") {
@@ -93,28 +92,6 @@ class PedagogyTechniqueController {
 		// persist new technique to database
 		newTechnique.save()
 
-		if (params.assignedToLearningObjective != null) {
-			// get current user object
-			def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
-
-			// add the technique to the user's favorite list
-			currentLearningObjective.addToPedagogyTechniques(newTechnique)
-
-			// store relationship
-			currentLearningObjective.save()
-		}
-
-		if (params.favoriteTechnique != null) {
-			// get current user object
-			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
-
-			// add the technique to the user's favorite list
-			currentUser.addToFavoriteTechnique(newTechnique)
-
-			// store relationship
-			currentUser.save()
-		}
-
 		redirect(
 			controller: 'pedagogy',
 			action: 'index',
@@ -123,6 +100,49 @@ class PedagogyTechniqueController {
 				learningObjectiveID: learningObjectiveID
 			]
 		)
+	}
+
+	def assignFavorite(Long id){
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// add the technique to the users favorite list
+		currentUser.addToFavoriteTechnique(PedagogyTechnique.get(id))
+
+		// store relationship
+		currentUser.save()
+	}
+
+	def unassignFavorite(Long id){
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// add the technique to the users favorite list
+		currentUser.removeFromFavoriteTechnique(PedagogyTechnique.get(id))
+
+		// store relationship
+		currentUser.save()
+	}
+
+	def assignToLearningObjective(){
+		final data = request.JSON
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		// add the technique to the current learning objective
+		currentLearningObjective.addToPedagogyTechniques(PedagogyTechnique.get(data.pedagogyTechniqueID.toLong()))
+
+		// store relationship
+		currentLearningObjective.save()
+	}
+
+	def unassignToLearningObjective(){
+		final data = request.JSON
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+
+		// add the technique to the current learning objective
+		currentLearningObjective.removeFromPedagogyTechniques(PedagogyTechnique.get(data.pedagogyTechniqueID.toLong()))
+
+		// store relationship
+		currentLearningObjective.save()
 	}
 
 	def clone(Long id, Long learningObjectiveID) {

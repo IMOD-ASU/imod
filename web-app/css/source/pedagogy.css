@@ -203,3 +203,14 @@
 
     border-top: 1px solid #aaaaaa;
 }
+
+#ideal-matches { position: relative;}
+#topLeft { position: absolute; top:0; left:0}
+#topRight { position: absolute; top:0; left:73px}
+
+.icons > .ui-state-default {
+    background-color: #ffffcc;
+    background-image: none !important;
+    background-repeat: none !important;
+    background-position: none !important;
+}
