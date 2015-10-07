@@ -256,6 +256,7 @@
 						</fieldset>
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
+							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective.id}"/>
 							<table id="techniqueList">
 							<tr>
 							<td width="40%">Title</td>
@@ -271,11 +272,11 @@
 							</tr>-->
 							<tr>
 							<td width="40%">Learning Domain	</td>
-							<td width="60%"><g:select class="custom-dropdown" name="learningDomain" from="${learningDomains}" optionKey="name" /><td>
+							<td width="60%"><g:select class="custom-dropdown" id="learning-domain" name="learningDomain" from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
 							</tr>
 							<tr>
 							<td width="40%">Domain Category</td>
-							<td width="60%"><g:select class="custom-dropdown" name="domainCategory" from="${domainCategories}" optionKey="name" /></td>
+							<td width="60%"><g:select class="custom-dropdown" id="domain-category" name="domainCategory" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td width="40%">Knowledge Dimension</td>
@@ -367,7 +368,7 @@
 		>
 					${message(code: 'Save Resource', default: 'Done')}
 		</button>
-		
+
 	</div>
 </div>
 	</body>
