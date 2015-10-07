@@ -162,7 +162,7 @@
                                                 <g:message code="imod.repeats.label" default="Repeats" />
                                             </label>
                                             <!-- FIXME all model queries should be run in controller -->
-                                            <g:select id="repeats" name="schedule.repeats.id" from="${imod.ScheduleRepeats.list()}" optionKey="id" value="${currentImod?.schedule?.repeats?.id}" class="many-to-one" title="${ message( code:'imod.courseOverview.scheduleRepeats' ) }" />
+                                            <g:select id="repeats" name="schedule.repeats.id" from="${imod.ScheduleRepeats.list()}" optionKey="id" value="${currentImod?.schedule?.repeats?.id}" class="custom-dropdown many-to-one" title="${ message( code:'imod.courseOverview.scheduleRepeats' ) }" />
                                         </div>
 
                                         <div class="fieldcontain ${hasErrors(bean: currentImod, field: 'repeatsEvery', 'error')} ">
@@ -170,7 +170,7 @@
                                                 <g:message code="imod.repeatsEvery.label" default="Repeats Every" />
                                             </label>
                                             <!-- FIXME all model queries should be run in controller -->
-                                            <g:select id="repeats-every" name="schedule.repeatsEvery.id" from="${imod.ScheduleRepeatsEvery.list()}" optionKey="id" value="${currentImod?.schedule?.repeatsEvery?.id}" noSelection="${['null':'Nothing Selected']}" class="many-to-one" title="${ message( code:'imod.courseOverview.scheduleRepeatsEvery' ) }"/>
+                                            <g:select id="repeats-every" name="schedule.repeatsEvery.id" from="${imod.ScheduleRepeatsEvery.list()}" optionKey="id" value="${currentImod?.schedule?.repeatsEvery?.id}" noSelection="${['null':'Nothing Selected']}" class="custom-dropdown many-to-one" title="${ message( code:'imod.courseOverview.scheduleRepeatsEvery' ) }"/>
                                              <span id= "duration"></span>
                                         </div>
 
@@ -383,7 +383,7 @@
                                                                     <g:textField name="webPage[]" value="${instructor.webPage}" class="web_page"/>
                                                                 </td>
                                                                 <td>
-                                                                    <select name="role[]" id="role" class="role">
+                                                                    <select name="role[]" id="role" class="custom-dropdown role">
                                                                         <option value="">Select Role</option>
 
                                                                         <g:if test="${instructor.role == 'Assistant Professor'}">

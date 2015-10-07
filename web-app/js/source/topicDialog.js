@@ -211,7 +211,7 @@ function getResource () {
 					'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
 					'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
 					'</td><td class="resourceType">' +
-					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '"> ' +
+					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
 					resourceOptions +
 					'</select> ' +
 
@@ -416,7 +416,7 @@ function addTopic () {
 				'<input type="hidden" id="knowDimensionListSaved' + id + '" value=""> ' +
 				'</span> ' +
 				'</td><td class="topicPriority">' +
-				'<select size="1" name="topicPriority' + id + '" id="topicPriority' + id + '"> ' +
+				'<select size="1" name="topicPriority' + id + '" id="topicPriority' + id + '" class="custom-dropdown"> ' +
 				prioritiesOptions +
 				'</select> ' +
 				'<input type="hidden" name="topicPrioritySaved' + id + '"> ' +
@@ -468,7 +468,7 @@ function addResource () {
 				'<input type="text" id="resourceDescription' + id + '" autofocus> ' +
 				'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
 				'</td><td class="resourceType">' +
-				'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '"> ' +
+				'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
 				resourceOptions +
 				'</select> ' +
 				'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +

@@ -62,7 +62,7 @@
 							</span>
 						</td>
 						<td class="topicPriority">
-							<g:select size="1" name="topicPriority${contentItem.id}" from="${Content.priorities()}" value="${contentItem.priority}" />
+							<g:select class="custom-dropdown" size="1" name="topicPriority${contentItem.id}" from="${Content.priorities()}" value="${contentItem.priority}" />
 							<!-- FIXME replace with g:hiddenField -->
 							<input type="hidden" id="topicPrioritySaved${contentItem.id}" value="${contentItem.priority}" />
 						</td>
