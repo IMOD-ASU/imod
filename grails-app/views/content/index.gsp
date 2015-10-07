@@ -135,7 +135,7 @@
 								name="topicPriority${contentItem.id}"
 								from="${Content.priorities()}"
 								value="${contentItem.priority}"
-								class = "show-hover-new priority"
+								class = "custom-dropdown show-hover-new priority custom-dropdown"
 								title="${ message( code:'imod.content.priority' ) }"
 
 							/>
@@ -211,6 +211,7 @@
 									name="topicPriority${contentItem.id }"
 									from="${Content.priorities()}"
 									value="${contentItem.priority}"
+									class="custom-dropdown"
 								/>
 								<input
 									type="hidden"

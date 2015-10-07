@@ -281,7 +281,7 @@
 								<label class="form-labels">
 									Feedback Mechanism
 								</label>
-								<g:select class="form-inputs" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
+								<g:select class="custom-dropdown form-inputs" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
 							</p>
 							<br/>
 
@@ -289,7 +289,7 @@
 								<label class="form-labels">
 									Learning Domain
 								</label>
-								<g:select class="form-inputs" name="learningDomain" from="${learningDomains}" optionKey="name" />
+								<g:select class="custom-dropdown form-inputs" name="learningDomain" from="${learningDomains}" optionKey="name" />
 							</p>
 							<br/>
 
@@ -297,7 +297,7 @@
 								<label class="form-labels">
 									Domain Category
 								</label>
-								<g:select class="form-inputs" name="domainCategory" from="${domainCategories}" optionKey="name" />
+								<g:select class="custom-dropdown form-inputs" name="domainCategory" from="${domainCategories}" optionKey="name" />
 							</p>
 							<br/>
 
@@ -305,7 +305,7 @@
 								<label class="form-labels">
 									Knowledge Dimension
 								</label>
-								<g:select class="form-inputs" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+								<g:select class="custom-dropdown form-inputs" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
 							</p>
 							<br/>
 
@@ -377,7 +377,7 @@
 								<label class="form-labels">
 									Feedback Mechanism
 								</label>
-								<g:select name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
+								<g:select class="custom-dropdown" name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
 							</p>
 							<br/>
 
@@ -385,7 +385,7 @@
 								<label class="form-labels">
 									Learning Domain
 								</label>
-								<g:select name="learningDomain" from="${learningDomains}" optionKey="name" />
+								<g:select class="custom-dropdown" name="learningDomain" from="${learningDomains}" optionKey="name" />
 							</p>
 							<br/>
 
@@ -393,7 +393,7 @@
 								<label class="form-labels">
 									Domain Category
 								</label>
-								<g:select name="domainCategory" from="${domainCategories}" optionKey="name" />
+								<g:select class="custom-dropdown" name="domainCategory" from="${domainCategories}" optionKey="name" />
 							</p>
 							<br/>
 
@@ -401,7 +401,7 @@
 								<label class="form-labels">
 									Knowledge Dimension
 								</label>
-								<g:select name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+								<g:select class="custom-dropdown" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
 							</p>
 							<br/>
 

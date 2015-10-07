@@ -20,13 +20,13 @@
 			<label for="learning-domain-list" class="learning-domain-list title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 				Learning Domain
 			</label>
-			&nbsp;<g:select name="LDL" id="learning-domain-list" from="${domainList.name}" noSelection="${['null':'-- Select --']}" value="${selectedDomain?.name?:""}" title="${ message( code:'imod.learningObjective.learningDomain' ) }" />
+			&nbsp;<g:select name="LDL" id="learning-domain-list" class="custom-dropdown" from="${domainList.name}" noSelection="${['null':'-- Select --']}" value="${selectedDomain?.name?:""}" title="${ message( code:'imod.learningObjective.learningDomain' ) }" />
 			<br/>
 			<div style="height:5px"></div>
 			<label for="domain-category-list" class="domain-category-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
 				Domain Category
 			</label>
-			<g:select name="DCL" id="domain-category-list" from="${categoriesList.name}" noSelection="${['null':'Nothing Selected']}" value="${selectedDomainCategory?.name?:"" }" title="${ message( code:'imod.learningObjective.domainCategory' ) }" />
+			<g:select name="DCL" id="domain-category-list" class="custom-dropdown" from="${categoriesList.name}" noSelection="${['null':'Nothing Selected']}" value="${selectedDomainCategory?.name?:"" }" title="${ message( code:'imod.learningObjective.domainCategory' ) }" />
 			<br/>
 
 			<g:hiddenField name="selectedActionWordCategory" value="${selectedActionWordCategory}" id="selected-action-word-category" />
@@ -46,7 +46,7 @@
 			<label for="action-words" class="action-words">
 			Action Word
 			</label>
-			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" style="margin-bottom:5px;width:180px">
+			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" class="custom-dropdown" style="margin-bottom:5px;width:180px">
 				<option>
 					${actionWord}
 				</option>

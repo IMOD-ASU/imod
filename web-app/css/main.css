@@ -387,10 +387,13 @@ textarea:focus {
 }
 
 /* Custom Dropdown */
+.dateFields select,
+.timeFields select,
 .custom-dropdown {
     overflow: hidden;
 
     height: 26px !important;
+    padding-right: 35px;
 
     border: 1px solid #cccccc;
     background: url(../images/dropdown_arrow.png) no-repeat center right #ffffff;
