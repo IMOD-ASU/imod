@@ -37,7 +37,6 @@ h4 {
     margin-right: 5px;
     margin-left: 5px;
     padding: 5px 10px;
-    font-size: 16px;
 
     text-decoration: none;
 
@@ -46,6 +45,8 @@ h4 {
     border-radius: 4px;
     background: linear-gradient(#113b70, #0b2f5e);
     box-shadow: 0 1px 2px #888888;
+
+    font-size: 16px;
 }
 
 .topicButtonGradient:hover {
