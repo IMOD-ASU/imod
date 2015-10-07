@@ -259,7 +259,7 @@
 							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective.id}"/>
 							<table id="techniqueList">
 							<tr>
-							<td width="40%">Title</td>
+							<td class="td-label" width="40%">Title</td>
 							<td width="60%"> <g:textField name="title" /></td>
 							</tr>
 							<!--<tr>
@@ -271,22 +271,22 @@
 							<td width="60%"><g:checkBox name="favoriteTechnique" /></td>
 							</tr>-->
 							<tr>
-							<td width="40%">Learning Domain	</td>
+							<td class="td-label" width="40%">Learning Domain	</td>
 							<td width="60%"><g:select class="custom-dropdown" id="learning-domain" name="learningDomain" from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
 							</tr>
 							<tr>
-							<td width="40%">Domain Category</td>
+							<td class="td-label" width="40%">Domain Category</td>
 							<td width="60%"><g:select class="custom-dropdown" id="domain-category" name="domainCategory" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
 							</tr>
 							<tr>
-							<td width="40%">Knowledge Dimension</td>
+							<td class="td-label" width="40%">Knowledge Dimension</td>
 							<td width="60%">
 								<button id="k1"> click me</button>
 							</td>
 							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="knowledge">
 							</tr>
 							<tr>
-							<td width="40%">Delivery Mode</td>
+							<td class="td-label" width="40%">Delivery Mode</td>
 							<td width="60%"><g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
 							</tr>
 							<!-- Decided to remove Location - Item 2047-->
@@ -295,19 +295,19 @@
 							<td width="60%"><g:textField name="location" /> </td>
 							</tr>-->
 							<tr>
-							<td width="40%">Focus</td>
+							<td class="td-label" width="40%">Focus</td>
 							<td width="60%"><g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
 							</tr>
 							<tr>
-							<td width="40%">Duration</td>
+							<td class="td-label" width="40%">Duration</td>
 							<td width="60%"><g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" /></td>
 							</tr>
 							<tr>
-							<td width="40%">Materials Required</td>
+							<td class="td-label" width="40%">Materials Required</td>
 							<td width="60%"><g:textArea name="materials" rows="5" cols="30"/> </td>
 							</tr>
 							<tr>
-							<td width="40%">Reference</td>
+							<td class="td-label" width="40%">Reference</td>
 							<td width="60%"><g:textArea name="reference" rows="5" cols="30"/></td>
 							</tr>
 							<!--<tr>
@@ -316,7 +316,7 @@
 							<g:textArea name="strategyDescription" rows="5" cols="30" /></td>
 							</tr>-->
 							<tr>
-							<td width="40%">Description of Activity</td>
+							<td class="td-label" width="40%">Description of Activity</td>
 							<td width="60%"><g:textArea name="activityDescription" rows="5" cols="30" /></td>
 							</tr>
 							</table>

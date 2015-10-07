@@ -133,6 +133,12 @@
     background: #ededef;
 }
 
+#add-new-technique .td-label {
+	font-weight: bold;
+	vertical-align: top;
+    padding-top: 10px;
+}
+
 #techniqueList {
     margin: 10px;
     margin-bottom: 1px;
