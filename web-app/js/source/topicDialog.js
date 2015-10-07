@@ -191,7 +191,6 @@ function getResource () {
 		},
 		success: function (data) {
 			var resources = data.resources;
-			var index;
 
 			$.each(resources, function (key, value) {
 				var id = value.id;
@@ -433,7 +432,6 @@ function addTopic () {
 
 function addResource () {
 	'use strict';
-	var contentID = content.split('topicResources');
 	var id = null;
 	var resourceDiv = $('#resourceList tbody');
 
@@ -454,7 +452,6 @@ function addResource () {
 		'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
 		'</td></tr>'
 	).appendTo(resourceDiv);
-
 }
 
 function saveResource () {
@@ -463,7 +460,6 @@ function saveResource () {
 	var contentID = content.split('topicResources')[1];
 	var resourceData = [];
 	var hasError = false;
-	console.log(contentID);
 
 	$('#resourceList tbody tr').each(
 		function () {
