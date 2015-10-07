@@ -77,7 +77,7 @@
 				onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"
 			/>
 		</span>
-		<span id="errorMessage"></span>
+		<span id="errorMessage" class="globalErrorMessage"></span>
 	</fieldset>
 		<table id="topicList">
 		<thead>
@@ -306,7 +306,7 @@
 				value="${message(code: 'Remove Resource', default: 'Remove Resource')}"
 			/>
 		</span>
-		<span id="errorMessageResources"></span>
+		<span id="errorMessageResources" class="globalErrorMessage"></span>
 	</fieldset>
 	<table id="resourceList">
 		<thead>
