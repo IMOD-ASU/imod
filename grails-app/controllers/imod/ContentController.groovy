@@ -11,7 +11,8 @@ class ContentController {
 		deleteTopic:'GET',
 		updateHierarchy: 'POST',
 		setLearningObjective: 'POST',
-		saveResource: 'POST'
+		saveResource: 'POST',
+		getResourceTypes: 'GET',
 	]
 
 	def index(Long id) {
@@ -213,10 +214,8 @@ class ContentController {
 	def getResource(Long contentID) {
 		def contentInstance = Content.get(contentID)
 		def resources = contentInstance.getResources()
-		def resourceTypes = Resource.resourceTypes()
 		render([
 			resources: resources,
-			resourceTypes: resourceTypes,
 		] as JSON)
 	}
 

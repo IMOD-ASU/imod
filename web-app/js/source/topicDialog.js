@@ -179,7 +179,6 @@ function getResource () {
 	'use strict';
 	var contentID = content.split('topicResources')[1];
 	var resourceDiv = $('#resourceList tbody');
-	var resourceOptions = '';
 
 	resourceDiv.html('');
 
@@ -192,12 +191,8 @@ function getResource () {
 		},
 		success: function (data) {
 			var resources = data.resources;
-			var resourceTypes = data.resourceTypes;
 			var index;
 
-			for (index = 0; index < resourceTypes.length; index++) {
-				resourceOptions += '<option value="' + resourceTypes[index] + '">' + resourceTypes[index] + '</option>';
-			}
 			$.each(resources, function (key, value) {
 				var id = value.id;
 
