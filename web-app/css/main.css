@@ -381,6 +381,11 @@ textarea:focus {
     box-shadow: 0 0 0.5em #ffffff;
 }
 
+/* Global Error Message*/
+.globalErrorMessage {
+	color: red;
+}
+
 /* Custom Dropdown */
 .custom-dropdown {
     overflow: hidden;

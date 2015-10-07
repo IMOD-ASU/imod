@@ -278,11 +278,11 @@ function saveTopic () {
 			var preReq = $('#topicPreReq' + contentID).is(':checked');
 
 			if (dimensions === '') {
-				errorMessage('Topic: ' + topicTitle + ' must have a Knowledge Dimension!');
+				errorMessage('Topic: ' + topicTitle + ' must have a Knowledge Dimension!', 'errorMessage');
 				hasError = true;
 			}
 			if (topicTitle === '') {
-				errorMessage('Topic title is required');
+				errorMessage('Topic title is required', 'errorMessage');
 				hasError = true;
 			}
 			topicList.push({

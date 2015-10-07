@@ -12,7 +12,7 @@
 		<span class="topicButtonGradient">
 			<g:actionSubmit class="remove show-hover-new topicButton" action="remove"	id="removeTopic" title="${Help.toolTip("OVERVIEW", "Delete Selected Topic")}" value="${message(code: 'Remove Topic', default: 'Remove Topic')}" />
 		</span>
-		<span id="errorMessage"></span>
+		<span id="errorMessage" class="globalErrorMessage"></span>
 	</fieldset>
 	<table id="topicList">
 		<thead>
