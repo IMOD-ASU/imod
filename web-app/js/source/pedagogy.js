@@ -142,9 +142,8 @@ function displayPedagogyTechniques (data) {
 		}
 
 		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
-		idealText += '<label for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div class="title" id="titleDiv"><span>' +
-					currentTechnique.title + '</span></div></label>';
+		idealText += '<label class="pedagogy-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span></div></label>';
 	}
 
 	// Take the titles and make html code to display
@@ -162,9 +161,9 @@ function displayPedagogyTechniques (data) {
 			assignImgToggle = '../../images/unassign.png';
 		}
 		extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
-		extendedText += '<label for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div id="titleDiv"><span>' +
-					currentTechnique.title + '</span></div></label>';
+		extendedText += '<label class="pedagogy-block" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
+					truncateString(currentTechnique.title, 100) + '</span></div></label>';
 	}
 
 	// Add html code to the page
@@ -307,7 +306,45 @@ function filterPedagogyTechniques () {
 		method: 'post',
 		data: JSON.stringify(data),
 		contentType: 'application/json'
-	}).done(displayPedagogyTechniques);
+	}).done(function (data) {
+		displayPedagogyTechniques(data);
+		pedagogyEqualHeights('#ideal-matches');
+		pedagogyEqualHeights('#extended-matches');
+	});
+}
+
+function truncateString (string, count) {
+	'use strict';
+	if (string.length > count) {
+		return string.substring(0, count) + '...';
+	}
+
+	return string;
+}
+
+function pedagogyEqualHeights (parent) {
+	'use strict';
+	var max = 0;
+	var isOpen = false;
+	var parentBlock = $(parent);
+	var pedagogyBlock = parentBlock.find('.pedagogy-block');
+
+	if (parentBlock.css('display') === 'none') {
+		parentBlock.show();
+		isOpen = true;
+	}
+
+	pedagogyBlock.each(function () {
+		var height = $(this).height();
+
+		if (max < height) {
+			max = height;
+		}
+	});
+	pedagogyBlock.height(max);
+	if (isOpen) {
+		parentBlock.hide();
+	}
 }
 
 function getMinHeight (liArray) {
@@ -500,3 +537,9 @@ $(document).ready(
 			});
 	}
 );
+
+$(window).ready(function () {
+	'use strict';
+	pedagogyEqualHeights('#ideal-matches');
+	pedagogyEqualHeights('#extended-matches');
+});
