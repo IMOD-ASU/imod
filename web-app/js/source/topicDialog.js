@@ -602,12 +602,12 @@ $(
 				savedData = false;
 				addTopic();
 			});
-		$('#saveTopic').click(
+		$('.saveTopic').click(
 			function () {
 				savedData = true;
 				saveTopic();
 			});
-		$('#cancelTopic').click(
+		$('.cancelTopic').click(
 			function () {
 				savedData = true;
 				revertChanges();
