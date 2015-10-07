@@ -171,9 +171,13 @@
 								</div>
 							</div>
 							<br>
-							<div class="learning-objective creator">
-							<span style="float:center;"><g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/></span>
-							<span><g:img id="performance-tab" dir="images" file="content.png" alt="Content"/></span>
+							<div class="pedagogy-nav-bar learning-objective creator">
+								<span>
+									<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
+								</span>
+								<span>
+									<g:img id="performance-tab" dir="images" file="content.png" alt="Content"/>
+								</span>
 							</div>
 
 							<div>

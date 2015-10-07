@@ -76,7 +76,7 @@
 										<label for="knowledge-dimension-${index}">
 											${knowledgeDimension.description}
 										</label>
-										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" />
+										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}" />
 									</li>
 								</g:each>
 							</ul>
@@ -91,7 +91,7 @@
 										<label for="learning-domain-${index}">
 											${learningDomain.name}
 										</label>
-										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" />
+										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" checked="${learningDomain.name == selectedDomain.toString()}" />
 									</li>
 								</g:each>
 							</ul>
@@ -106,7 +106,7 @@
 										<label for="domain-category-${index}">
 											${domainCategory.name}
 										</label>
-										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" />
+										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" checked="${domainCategory.name == selectedDomainCategory.toString()}"/>
 									</li>
 								</g:each>
 							</ul>
@@ -118,6 +118,7 @@
 					<g:if test="${learningObjectives}">
 						<div class="topic_addition_widget">
 							<div class="assessment-page-buttons">
+								<br>
 								<div>
 									<%-- Buttons for Add New Technique, Favorites and Assessment Plan--%>
 									<span id="new-technique-button" class="topicButtonGradient">
@@ -148,34 +149,53 @@
 									</span>
 								</div>
 							</div>
+							<br>
+							<div class="pedagogy-nav-bar learning-objective creator">
+								<span>
+									<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
+								</span>
+								<span>
+									<g:img id="performance-tab" dir="images" file="content.png" alt="Content"/>
+								</span>
+							</div>
 
+							<div>
+							<span id="learningDomainspan"> <b> ${selectedDomain} </b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
+							<span id="domainCategoryspan"> <b>${selectedDomainCategory}</b>&nbsp;&nbsp;<i class="fa fa-caret-right"></i></span>&nbsp;&nbsp;
+							<g:if test="${dimension == null}">
 
-							<g:img id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+							</g:if>
+							<g:else>
+								<span id="knowledgeDimensionspan">
+								<g:each var="kd" in="${dimension}" status="i">
+							        <b>${kd}</b>
+								   <g:if test="${dimensionSize != i}" >
+										<b> or</b>
+									</g:if>
+								 </g:each>
+								 </span>
+							</g:else>
 
-							<ul class="learning-objective sub-nav">
-								<li class="performance active">
-									Performance
-								</li>
-								<li class="content">
-									Content
-								</li>
-								<li class="condition">
-									Condition
-								</li>
-								<li class="criteria active">
-									Criteria
-								</li>
-							</ul>
+							</div>
 
 							<div id="selectedFilter">
 								${selectionLine}
 							</div>
-
-							<h3 title="" class="showHover" id="idealCollapser">
-								Ideal matches
+							<br>
+							<div id="ideal-matches-toggle">
+							<h3 title="${Help.toolTip('ASSESSMENT', 'Ideal Match')}" class="showHover">
+								<b>Ideal Matches</b>
 							</h3>
 
-							<div id="ideal-matches1" class="AllMatches">
+							<div id="ideal-matches1" class="icons favorite AllMatches"  style="height:300px"></div>
+
+
+							<h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
+								<b>Extended Matches</b>
+							</h3>
+
+							<div id="extended-matches" class="icons favorite AllMatches"></div>
+							</div>
 
 
 							</div>
@@ -190,12 +210,6 @@
 
 								<div id="assessmentFavoritesDiv1" class="AllMatches"  >
 								</div>
-							</div>
-							<h3 title="" class="showHover" id="extCollapser">
-								Extended Match
-							</h3>
-
-							<div id="extended-matches" class="AllMatches">
 							</div>
 						</div>
 					</g:if>
