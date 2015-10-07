@@ -1,6 +1,7 @@
 var errorMessages = [];
 var isFlashing = null;
 var content = '';
+var resourceOptions = '';
 
 function showTopicDialog () {
 	'use strict';
@@ -178,7 +179,6 @@ function getResource () {
 	'use strict';
 	var contentID = content.split('topicResources')[1];
 	var resourceDiv = $('#resourceList tbody');
-	var resourceOptions = '';
 
 	resourceDiv.html('');
 
@@ -191,12 +191,7 @@ function getResource () {
 		},
 		success: function (data) {
 			var resources = data.resources;
-			var resourceTypes = data.resourceTypes;
-			var index;
 
-			for (index = 0; index < resourceTypes.length; index++) {
-				resourceOptions += '<option value="' + resourceTypes[index] + '">' + resourceTypes[index] + '</option>';
-			}
 			$.each(resources, function (key, value) {
 				var id = value.id;
 
@@ -437,50 +432,32 @@ function addTopic () {
 
 function addResource () {
 	'use strict';
-	var contentID = content.split('topicResources');
+	var id = null;
+	var resourceDiv = $('#resourceList tbody');
 
-	contentID = contentID[1];
-	$.ajax({
-		url: '../../content/addResource',
-		type: 'GET',
-		dataType: 'json',
-		data: {
-			contentID: contentID
-		},
-		success: function (data) {
-			var id = data.id;
-			var resources = data.resources;
-			var resourceOptions = '';
-			var resourceDiv = $('#resourceList tbody');
-			var index;
-
-			for (index = 0; index < resources.length; index++) {
-				resourceOptions += '<option value="' + resources[index] + '">' + resources[index] + '</option>';
-			}
-			// FIXME move html out of JS
-			$('<tr id="' + id + '" class="resourceItem">' +
-				'<td class="saveIcon">' +
-				'<i class="fa fa-square-o"></i>' +
-				'</td><td class="resourceName">' +
-				'<input type="text" id="resourceName' + id + '" autofocus> ' +
-				'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
-				'</td><td class="resourceDescription">' +
-				'<input type="text" id="resourceDescription' + id + '" autofocus> ' +
-				'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
-				'</td><td class="resourceType">' +
-				'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
-				resourceOptions +
-				'</select> ' +
-				'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
-				'</td></tr>'
-			).appendTo(resourceDiv);
-		}
-	});
+	// FIXME move html out of JS
+	$('<tr id="' + id + '" class="resourceItem">' +
+		'<td class="saveIcon">' +
+		'<i class="fa fa-square-o"></i>' +
+		'</td><td class="resourceName">' +
+		'<input type="text" id="resourceName' + id + '" autofocus> ' +
+		'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
+		'</td><td class="resourceDescription">' +
+		'<input type="text" id="resourceDescription' + id + '" autofocus> ' +
+		'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
+		'</td><td class="resourceType">' +
+		'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
+		resourceOptions +
+		'</select> ' +
+		'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
+		'</td></tr>'
+	).appendTo(resourceDiv);
 }
 
 function saveResource () {
 	'use strict';
 	var imodID = $('#imodID').val();
+	var contentID = content.split('topicResources')[1];
 	var resourceData = [];
 	var hasError = false;
 
@@ -503,7 +480,8 @@ function saveResource () {
 				resourceID: resourceID,
 				resourceName: resourceName,
 				resourceDescription: resourceDescription,
-				resourceType: resourceType
+				resourceType: resourceType,
+				contentID: contentID
 			});
 		}
 	);
@@ -595,7 +573,7 @@ $(
 				}
 			]
 		});
-	// Attach event listeners
+		// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(
 			function () {
@@ -614,6 +592,20 @@ $(
 				hideTopicDialog();
 			}
 		);
+		$.ajax({
+			url: '../../content/getResourceTypes',
+			type: 'GET',
+			dataType: 'json',
+			async: false,
+			success: function (data) {
+				var resources = data.resources;
+				var index;
+
+				for (index = 0; index < resources.length; index++) {
+					resourceOptions += '<option value="' + resources[index] + '">' + resources[index] + '</option>';
+				}
+			}
+		});
 		$('.knowledgeDimensionButton').click(openDimModal);
 		$('#knowDimFinished').click(saveDimModal);
 		$('#closeKnowDim').click(closeDimModal);

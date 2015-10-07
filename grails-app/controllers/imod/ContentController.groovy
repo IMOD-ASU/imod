@@ -11,7 +11,8 @@ class ContentController {
 		deleteTopic:'GET',
 		updateHierarchy: 'POST',
 		setLearningObjective: 'POST',
-		addResource: 'GET',
+		saveResource: 'POST',
+		getResourceTypes: 'GET',
 	]
 
 	def index(Long id) {
@@ -203,15 +204,9 @@ class ContentController {
 		}
 	}
 
-	def addResource(Long contentID) {
-		def contentInstance = Content.get(contentID)
-		def resourceInstance = new Resource(content: contentInstance)
-		resourceInstance.save()
-		contentInstance.addToResources(resourceInstance)
-
+	def getResourceTypes() {
 		def resources = Resource.resourceTypes()
 		render([
-			id: resourceInstance.id,
 			resources: resources,
 		] as JSON)
 	}
@@ -219,10 +214,8 @@ class ContentController {
 	def getResource(Long contentID) {
 		def contentInstance = Content.get(contentID)
 		def resources = contentInstance.getResources()
-		def resourceTypes = Resource.resourceTypes()
 		render([
 			resources: resources,
-			resourceTypes: resourceTypes,
 		] as JSON)
 	}
 
@@ -234,17 +227,34 @@ class ContentController {
 		def fail = []
 
 		resourceData.each() {
-			final resourceID = it.resourceID.toLong()
+
 			final resourceName = it.resourceName
 			final resourceDescription = it.resourceDescription
 			final resourceType = it.resourceType
+			def resourceInstance = null
+			def resourceID = null
 
-			def resourceInstance = Resource.get(resourceID)
+			if (it.resourceID == "null" ) {
+				def contentInstance = Content.get(it.contentID)
+				resourceInstance = new Resource(
+					content: contentInstance,
+					name: resourceName,
+					description: resourceDescription,
+					resourceType: resourceType
+				)
+				resourceInstance.save()
+				resourceID = resourceInstance.id
+				contentInstance.addToResources(resourceInstance)
+			} else {
+				resourceID = it.resourceID.toLong()
+				resourceInstance = Resource.get(resourceID)
 
-			resourceInstance.name = resourceName
-			resourceInstance.description = resourceDescription
-			resourceInstance.resourceType = resourceType
-			resourceInstance.save()
+				resourceInstance.name = resourceName
+				resourceInstance.description = resourceDescription
+				resourceInstance.resourceType = resourceType
+				resourceInstance.save()
+
+			}
 
 			if (!resourceInstance) {
 				resourceInstance.errors.allErrors.each {
