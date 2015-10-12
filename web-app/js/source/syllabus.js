@@ -48,7 +48,7 @@ $(function () {
 			},
 			async: false,
 			success: function () {
-				window.open(baseUrl + 'courseOverview/generatedSyllabus/' + $('#imodID').val(), '_blank');
+				sortSections();
 			}
 		});
 
@@ -74,7 +74,6 @@ $(function () {
 
 		previous.remove();
 		target.after(next);
-		sortSections();
 		return false;
 	});
 
@@ -85,7 +84,6 @@ $(function () {
 
 		next.remove();
 		target.before(previous);
-		sortSections();
 		return false;
 	});
 
@@ -146,9 +144,13 @@ function sortSections () {
 		url: baseUrl + 'courseOverview/updateSyllabusOrder',
 		type: 'POST',
 		dataType: 'json',
+		async: false,
 		data: {
 			imodId: $('#imodID').val(),
 			sortIdList: sortIdList.join()
+		},
+		success: function () {
+			window.open(baseUrl + 'courseOverview/generatedSyllabus/' + $('#imodID').val(), '_blank');
 		}
 	});
 }

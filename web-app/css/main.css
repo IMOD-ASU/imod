@@ -381,21 +381,33 @@ textarea:focus {
     box-shadow: 0 0 0.5em #ffffff;
 }
 
+/* Global Error Message*/
+.globalErrorMessage {
+    color: red;
+}
+
 /* Custom Dropdown */
+.dateFields select,
+.timeFields select,
 .custom-dropdown {
-	overflow: hidden;
-   -webkit-appearance: none;
-   -moz-appearance: none;
-	background: url(../images/dropdown_arrow.png) no-repeat center right #fff;
-	border: 1px solid #ccc;
-	height: 26px !important;
+    overflow: hidden;
+
+    height: 26px !important;
+    padding-right: 35px;
+
+    border: 1px solid #cccccc;
+    background: url(../images/dropdown_arrow.png) no-repeat center right #ffffff;
+
+    -webkit-appearance: none;
+       -moz-appearance: none;
 }
 
 /*target Internet Explorer 9 and Internet Explorer 10:*/
 @media screen and (min-width:0\0) {
     .custom-dropdown {
-        background:none;
-        padding: 5px;
+    	padding: 5px;
+
+    	background: none;
     }
 }
 
@@ -716,12 +728,14 @@ th.desc a {
 
 .topicButtonGradient {
     display: inline-block;
-    vertical-align: middle;
+
     height: auto;
     margin-right: 5px;
     margin-left: 5px;
     padding-right: 5px;
     padding-left: 5px;
+
+    vertical-align: middle;
 
     color: #ffffff;
     border-radius: 4px;
@@ -737,8 +751,8 @@ th.desc a {
 .topicButtonGradient input,
 .topicButtonGradient button {
     color: #ffffff;
-    background-color: transparent;
     border-color: transparent;
+    background-color: transparent;
 }
 
 .topicButtonGradient a:hover,
@@ -749,12 +763,14 @@ th.desc a {
 
 .topicButtonGradient.cancelBG i {
     vertical-align: middle;
+
+    color: #ffffff;
+
     font-size: 1.5em;
-    color: #fff;
 }
 
 .fa-graduation-cap {
-	color: #de368f;
+    color: #de368f;
 }
 
 

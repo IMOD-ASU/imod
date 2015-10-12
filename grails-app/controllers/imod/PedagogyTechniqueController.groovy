@@ -17,16 +17,12 @@ class PedagogyTechniqueController {
 		String  knowledgeDimensions="";
 
 
-		for(int i=0;i<knowledgedimensions.size();i++)
-		{		
-			
+		for(int i = 0; i< knowledgedimensions.size(); i++) {
 			knowledgeDimensions=knowledgeDimensions+knowledgedimensions[i]+",";
-
 		}
 
-//add some stuffif (KnowledgeDimension.findById(PedagogyTechnique.get(id).knowledgeDimension[i].id).toString()!=null)
-			//println(knowledgeDimensions);
-	
+		// add some stuff if (KnowledgeDimension.findById(PedagogyTechnique.get(id).knowledgeDimension[i].id).toString()!=null)
+		//println(knowledgeDimensions);
 		render (
 			[
 				pedagogyTechnique: PedagogyTechnique.get(id),
@@ -55,13 +51,12 @@ class PedagogyTechniqueController {
 		def newTechnique = new PedagogyTechnique()
 
 		if (params.techniqueId) {
-		 PedagogyTechnique.get(params.techniqueId)
-		 PedagogyTechnique.get(params.techniqueId).knowledgeDimension.clear()
+			PedagogyTechnique.get(params.techniqueId)
+			PedagogyTechnique.get(params.techniqueId).knowledgeDimension.clear()
 		}
 
-		 
+
 		// Store text fields
-	
 		newTechnique.title = params.title
 		newTechnique.description = params.activityDescription
 		newTechnique.direction = params.duration
@@ -69,23 +64,15 @@ class PedagogyTechniqueController {
 		newTechnique.reference = params.reference
 		newTechnique.activityDescription = params.activityDescription
 		String[] kD = params.knowledgeDimension.split(",");
-		//println kD;
-		if (kD!=null){
-		for(int i=0;i<kD.length;i++)
-       {
-          
-		  if (kD[i]!=null || kD[i]!="")
-          {
-		  newTechnique.addToKnowledgeDimension(
-		  KnowledgeDimension.findByDescription(kD[i]))
-		
 
-		
-
-
+		if (kD != null) {
+			for(int i=0; i < kD.length; i++) {
+				if (kD[i]!=null || kD[i] != "") {
+					newTechnique.addToKnowledgeDimension(
+					KnowledgeDimension.findByDescription(kD[i]))
+				}
+			}
 		}
-       }
-   }
 
 		// Store relationships
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
@@ -95,9 +82,6 @@ class PedagogyTechniqueController {
 		newTechnique.addToDomainCategory(
 			DomainCategory.findByName(params.domainCategory)
 		)
-		//newTechnique.addToKnowledgeDimension(
-			//KnowledgeDimension.findByDescription(params.knowledgeDimension)
-		//)
 		newTechnique.addToLearningDomain(
 			LearningDomain.findByName(params.learningDomain)
 		)
@@ -107,28 +91,6 @@ class PedagogyTechniqueController {
 
 		// persist new technique to database
 		newTechnique.save()
-
-		if (params.assignedToLearningObjective != null) {
-			// get current user object
-			def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
-
-			// add the technique to the user's favorite list
-			currentLearningObjective.addToPedagogyTechniques(newTechnique)
-
-			// store relationship
-			currentLearningObjective.save()
-		}
-
-		if (params.favoriteTechnique != null) {
-			// get current user object
-			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
-
-			// add the technique to the user's favorite list
-			currentUser.addToFavoriteTechnique(newTechnique)
-
-			// store relationship
-			currentUser.save()
-		}
 
 		redirect(
 			controller: 'pedagogy',
@@ -140,43 +102,73 @@ class PedagogyTechniqueController {
 		)
 	}
 
+	def assignFavorite(Long id){
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// add the technique to the users favorite list
+		currentUser.addToFavoriteTechnique(PedagogyTechnique.get(id))
+
+		// store relationship
+		currentUser.save()
+	}
+
+	def unassignFavorite(Long id){
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// add the technique to the users favorite list
+		currentUser.removeFromFavoriteTechnique(PedagogyTechnique.get(id))
+
+		// store relationship
+		currentUser.save()
+	}
+
+	def assignToLearningObjective(){
+		final data = request.JSON
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		// add the technique to the current learning objective
+		currentLearningObjective.addToPedagogyTechniques(PedagogyTechnique.get(data.pedagogyTechniqueID.toLong()))
+
+		// store relationship
+		currentLearningObjective.save()
+	}
+
+	def unassignToLearningObjective(){
+		final data = request.JSON
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+
+		// add the technique to the current learning objective
+		currentLearningObjective.removeFromPedagogyTechniques(PedagogyTechnique.get(data.pedagogyTechniqueID.toLong()))
+
+		// store relationship
+		currentLearningObjective.save()
+	}
+
 	def clone(Long id, Long learningObjectiveID) {
 		def newTechnique = new PedagogyTechnique()
 
-		
-		
 		if (params.techniqueId) {
 			String [] knowledgedimensions = PedagogyTechnique.get(params.techniqueId).knowledgeDimension;
-			for(int i=0;i<knowledgedimensions.size();i++)
-		{		
-			newTechnique.addToKnowledgeDimension(
-		  KnowledgeDimension.findByDescription(knowledgedimensions[i]))
-
-		}
-			
-
-		 
+			for(int i = 0; i < knowledgedimensions.size(); i++) {
+				newTechnique.addToKnowledgeDimension(
+		  		KnowledgeDimension.findByDescription(knowledgedimensions[i]))
+			}
 		}
 
-		
-
-		
-
-		 
 		// Store text fields
-	
 		newTechnique.title = params.title
 		newTechnique.description = params.activityDescription
 		newTechnique.direction = params.duration
 		newTechnique.materials = params.materials
 		newTechnique.reference = params.reference
 		newTechnique.activityDescription = params.activityDescription
-		
+
 		String[] kD = params.knowledgeDimension.split(",");
 
 		// Store relationships
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
-		
+
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)

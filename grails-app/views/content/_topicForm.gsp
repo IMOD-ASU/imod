@@ -12,7 +12,7 @@
 		<span class="topicButtonGradient">
 			<g:actionSubmit class="remove show-hover-new topicButton" action="remove"	id="removeTopic" title="${Help.toolTip("OVERVIEW", "Delete Selected Topic")}" value="${message(code: 'Remove Topic', default: 'Remove Topic')}" />
 		</span>
-		<span id="errorMessage"></span>
+		<span id="errorMessage" class="globalErrorMessage"></span>
 	</fieldset>
 	<table id="topicList">
 		<thead>
@@ -62,7 +62,7 @@
 							</span>
 						</td>
 						<td class="topicPriority">
-							<g:select size="1" name="topicPriority${contentItem.id}" from="${Content.priorities()}" value="${contentItem.priority}" />
+							<g:select class="custom-dropdown" size="1" name="topicPriority${contentItem.id}" from="${Content.priorities()}" value="${contentItem.priority}" />
 							<!-- FIXME replace with g:hiddenField -->
 							<input type="hidden" id="topicPrioritySaved${contentItem.id}" value="${contentItem.priority}" />
 						</td>

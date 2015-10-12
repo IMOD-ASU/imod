@@ -3,6 +3,7 @@ import grails.converters.JSON
 
 class PedagogyController {
 	def learningObjectiveService
+	def springSecurityService
 
 	static allowedMethods = [
 		index: 'GET',
@@ -34,7 +35,17 @@ class PedagogyController {
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
 		final content = currentLearningObjective.contents
-		def dimension = content[0]?.dimensions
+		def knowDimensionList = []
+		def dimension=[]
+		if (content != null){
+			content.each(){
+				knowDimensionList.push(it.dimensions)
+			}
+			// merge multiple lists into one
+			dimension = knowDimensionList.flatten()
+			//remove duplicates
+			dimension = dimension.unique { a, b -> a <=> b }
+		}
 		def dimensionSize = 0
 		if (dimension != null){
 			dimensionSize  = dimension.size() - 1
@@ -125,10 +136,28 @@ class PedagogyController {
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
 
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		final favoriteTechniques = currentUser.favoriteTechnique.id
+		def stringfavoriteTechniques = []
+		//Convert int to string
+		for (def favoriteTechnique in favoriteTechniques) {
+			stringfavoriteTechniques.add(favoriteTechnique.toString())
+		}
+
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		final LOPedagogyTechniques = currentLearningObjective.pedagogyTechniques.id
+		def stringLOPedagogyTechniques = []
+		//Convert int to string
+		for (def LOPedagogyTechnique in LOPedagogyTechniques) {
+			stringLOPedagogyTechniques.add(LOPedagogyTechnique.toString())
+		}
+
 		render(
 			[
 				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch,
-				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch
+				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch,
+				favoriteTechniques: stringfavoriteTechniques,
+				LOPedagogyTechniques: stringLOPedagogyTechniques
 			] as JSON
 		)
 	}
