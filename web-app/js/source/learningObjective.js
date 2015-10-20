@@ -161,14 +161,7 @@ function populateActionWordCategories () {
  */
 function populateDomainCategories () {
 	'use strict';
-	if ($('#learning-domain-list').val() !== 'null') {
-		$('label[for="domain-category-list"]').css('visibility', 'visible');
-		$('#domain-category-list').css('visibility', 'visible');
-		$('.icons').css('visibility', 'visible');
-		$('#action-words').css('visibility', 'visible');
-		$('label[for="action-word-category"]').css('visibility', 'visible');
-		$('label[for="action-words"]').css('visibility', 'visible');
-	} else {
+	if ($('#learning-domain-list').val() === 'null') {
 		$('label[for="domain-category-list"]').css('visibility', 'hidden');
 		$('#domain-category-list').css('visibility', 'hidden');
 		$('.icons').css('visibility', 'hidden');
@@ -176,6 +169,13 @@ function populateDomainCategories () {
 		$('#custom-action-words').css('visibility', 'hidden');
 		$('label[for="action-word-category"]').css('visibility', 'hidden');
 		$('label[for="action-words"]').css('visibility', 'hidden');
+	} else {
+		$('label[for="domain-category-list"]').css('visibility', 'visible');
+		$('#domain-category-list').css('visibility', 'visible');
+		$('.icons').css('visibility', 'visible');
+		$('#action-words').css('visibility', 'visible');
+		$('label[for="action-word-category"]').css('visibility', 'visible');
+		$('label[for="action-words"]').css('visibility', 'visible');
 	}
 
 	$.ajax({
