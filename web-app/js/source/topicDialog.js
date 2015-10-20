@@ -19,10 +19,10 @@ function flashError (resourceId) {
 	'use strict';
 	var message = errorMessages.shift();
 
-	if (typeof a !== 'undefined') {
-		resourceId = resourceId;
-	} else {
+	if (typeof a === 'undefined') {
 		resourceId = 'errorMessage';
+	} else {
+		resourceId = resourceId;
 	}
 
 	$('#' + resourceId).text(message);
@@ -45,10 +45,10 @@ function errorMessage (message, resourceId) {
 	'use strict';
 	errorMessages.push(message);
 
-	if (typeof a !== 'undefined') {
-		resourceId = resourceId;
-	} else {
+	if (typeof a === 'undefined') {
 		resourceId = 'errorMessage';
+	} else {
+		resourceId = resourceId;
 	}
 
 	if (isFlashing === null) {
