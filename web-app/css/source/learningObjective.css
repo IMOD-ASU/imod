@@ -628,6 +628,10 @@ input[disabled='disabled'] {
 
     font-weight: bold;
 }
+.instructor-list th {
+	vertical-align: middle;
+}
+
 #selectKnowledgeDimensionBackground {
     z-index: 3;
 }
