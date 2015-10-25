@@ -61,7 +61,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="course-overview-form-td">
                                     <div class="course-overview-form">
                                         <div class="form-title">
                                             <span class="title-text">
@@ -111,7 +111,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="course-overview-form-td">
                                     <div class="course-overview-form">
                                         <div class="form-title">
                                             <span class="title-text">
@@ -190,7 +190,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="course-overview-form-td">
                                     <div class="course-overview-form">
                                         <div class="form-title">
                                             <span class="title-text">
@@ -243,10 +243,10 @@
                                                 <g:message code="imod.numberOfSeats.label" default="Number Of Seats" />
                                             </label>
                                             <g:field name="numberOfSeats" id="number-of-seats" type="number" min="0" max="1000" value="${currentImod.numberOfSeats}" title="${ message( code:'imod.courseOverview.numberOfSeats')}"/>
-                                        </div>
+                                        </div><br><br>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="course-overview-form-td">
                                     <div class="policy-field course-overview-form" id="policy">
                                         <div class="form-title">
                                             <span class="title-text">
@@ -311,6 +311,7 @@
 												<input type="button" class="restore-default" name="missedAssignmentsCheck" id="missed-assignments-box" class="attendance-check" value="Restore Default"/>
                                                 <g:textArea name="missedAssignments" id="missed-assignments" value="${currentImod?.missedAssignments}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedAssignments')}" />
                                             </div>
+                                            <br><br>
                                         </div>
                                     </div>
                                 </td>
