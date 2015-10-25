@@ -755,6 +755,11 @@ th.desc a {
     background-color: transparent;
 }
 
+.buttons .topicButtonGradient button,
+.topicButtonGradient button {
+	padding: 1px 6px;
+}
+
 .topicButtonGradient a:hover,
 .topicButtonGradient input:hover,
 .topicButtonGradient button:hover {
