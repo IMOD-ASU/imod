@@ -592,6 +592,11 @@ $(
 				hideTopicDialog();
 			}
 		);
+		$('#cancelTopic').click(
+			function () {
+				hideTopicDialog();
+			}
+		);
 		$.ajax({
 			url: '../../content/getResourceTypes',
 			type: 'GET',
