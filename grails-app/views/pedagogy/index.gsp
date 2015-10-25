@@ -144,14 +144,14 @@
 									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 									<span id="add-new-technique-button" class="topicButtonGradient">
 										<button>
-											<i class="fa fa-plus"></i>
+											<i class="fa fa-plus green"></i>
 											Add New Technique
 										</button>
 									</span>
 
 									<span id="favorites-button" class="topicButtonGradient">
 										<button>
-											<i class="fa fa-star"></i>
+											<i class="fa fa-star yellow"></i>
 											Favorites
 										</button>
 									</span>
@@ -224,12 +224,12 @@
 							<span>
 								<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 								<button id="add-new-technique-button">
-									<i class="fa fa-plus"></i>
+									<i class="fa fa-plus green"></i>
 									Add New Technique
 								</button>
 
 								<button id="favorites-button">
-									<i class="fa fa-star"></i>
+									<i class="fa fa-star yellow"></i>
 									Favorites
 								</button>
 
@@ -327,9 +327,18 @@
 							<br>
 
 							<div id="modalButtons" style="align:left">
-								<g:actionSubmit value="Save" id="saveButton" action="save" class="new-technique-popup-button"/>
-								<g:actionSubmit value="Cancel" action="cancel" class="new-technique-popup-button" />
-								<g:actionSubmit value="Clone" action="clone" class="new-technique-popup-button" />
+								<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button">
+									<i class="fa fa-save green"></i>
+									Save
+								</button>
+								<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">
+									<i class="fa fa-times red"></i>
+									Cancel
+								</button>
+								<button type="submit" name="_action_clone" value="Clone" class="new-technique-popup-button">
+									<i class="fa fa-clone blue"></i>
+									Clone
+								</button>
 							</div>
 							<br>
 						</g:form>

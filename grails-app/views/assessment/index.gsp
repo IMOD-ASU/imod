@@ -123,14 +123,14 @@
 									<%-- Buttons for Add New Technique, Favorites and Assessment Plan--%>
 									<span id="new-technique-button" class="topicButtonGradient">
 										<button>
-											<i class="fa fa-plus"></i>
+											<i class="fa fa-plus green"></i>
 											Add New Technique
 										</button>
 									</span>
 
 									<span id="favorites-button" class="topicButtonGradient">
 										<button>
-											<i class="fa fa-star"></i>
+											<i class="fa fa-star yellow"></i>
 											Favorites
 										</button>
 									</span>
