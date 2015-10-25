@@ -1055,6 +1055,14 @@ table.inner-table {
     *zoom: 1;
 }
 
+#courseoverview-form .inner-table td {
+	width: 50%;
+}
+
+.course-overview-form-td {
+	height: 100%;
+}
+
 .course-overview-form,
 .topic-hierarchy-widget,
 .topic-information-widget,
@@ -1062,7 +1070,6 @@ table.inner-table {
 .topic-addition-widget,
 .topic-schedule-widget {
     height: 100%;
-    padding: 0 0 20px 0;
 
     border: solid 1px #c0c0c0;
     border-radius: 15px;
