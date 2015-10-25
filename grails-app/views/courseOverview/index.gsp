@@ -47,15 +47,21 @@
 
                                     <fieldset class="buttons">
                                         <span class="topicButtonGradient">
-                                    	<a href="../syllabus/${currentImod?.id}" target="_blank">
-                                            Show Syllabus
-                                        </a>
+	                                    	<a href="../syllabus/${currentImod?.id}" target="_blank">
+	                                            <i class="fa fa-file blue"></i> Show Syllabus
+	                                        </a>
                                         </span>
                                         <span class="topicButtonGradient">
-                                        <g:actionSubmit class="save overview-save show-hover-new" action="update" title="${ message( code:'imod.courseOverview.save' ) }" value="${message(code: 'Save', default: 'Save')}"/>
+                                        	<button type="submit" name="_action_update" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
+                                        		<i class="fa fa-save green"></i>
+                                        		Save
+                                        	</button>
                                         </span>
                                         <span class="topicButtonGradient">
-                                        <g:actionSubmit class="delete show-hover-new" action="delete" title="${ message( code:'imod.courseOverview.delete' ) }" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+                                        	<button type="submit" name="_action_delete" value="Delete" class="delete show-hover-new" title="Click on Delete button to delete the current course" formnovalidate="" onclick="return confirm(&#39;Are you sure?&#39;);">
+                                        		<i class="fa fa-minus-circle red"></i>
+                                        		Delete
+                                        	</button>
                                         </span>
                                     </fieldset>
                                 </td>
@@ -338,11 +344,15 @@
                                                 <input type="hidden" name="imodID" value="221" id="imodID">
                                                 <fieldset class="buttons topicButtonField">
                                                     <span class="topicButtonGradient">
-                                                        <input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
+                                                        <button type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
+                                                        	<i class="fa fa-user-plus green"></i> Add Instructor
+                                                        </button>
                                                     </span>
                                                     <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
                                                         <span class="remove-instructor topicButtonGradient">
-                                                            <input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
+                                                            <button type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
+                                                            	<i class="fa fa-user-times red"></i> Remove Instructor
+                                                            </button>
                                                         </span>
                                                     </g:if>
                                                     <span id="errorMessage"></span>

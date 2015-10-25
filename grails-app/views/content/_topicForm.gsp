@@ -7,10 +7,16 @@
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
 	<fieldset class="buttons topicButtonField draggable-handle">
 		<span class="topicButtonGradient">
-			<g:actionSubmit class="add show-hover-new topicButton" action="add" id="addTopic" title="${Help.toolTip("OVERVIEW", "Add New Topic")}" value="${message(code: 'Add Topic', default: 'Add Topic')}" />
+			<button type="submit" name="_action_add" value="Add Topic" class="add show-hover-new topicButton" id="addTopic">
+				<i class="fa fa-plus green"></i>
+				Add Topic
+			</button>
 		</span>
 		<span class="topicButtonGradient">
-			<g:actionSubmit class="remove show-hover-new topicButton" action="remove"	id="removeTopic" title="${Help.toolTip("OVERVIEW", "Delete Selected Topic")}" value="${message(code: 'Remove Topic', default: 'Remove Topic')}" />
+			<button type="submit" name="_action_remove" value="Remove Topic" class="remove show-hover-new topicButton" id="removeTopic">
+				<i class="fa fa-minus-circle red"></i>
+				Remove Topic
+			</button>
 		</span>
 		<span id="errorMessage" class="globalErrorMessage"></span>
 	</fieldset>
@@ -85,12 +91,13 @@
 	<fieldset id="topicModalClose" class="buttons topicButtonField">
 		<span class="topicButtonGradient saveBG">
 			<button class="save show-hover-new topicButton" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}">
+				<i class="fa fa-save green"></i>
 				${message(code: 'Save Topic', default: ' Save')}
 			</button>
 		</span>
 		<span class="topicButtonGradient cancelBG">
 			<button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}">
-				<i class="fa fa-times"></i>
+				<i class="fa fa-times red"></i>
 				${message(code: 'Cancel Topics', default: ' Cancel')}
 			</button>
 		</span>
@@ -129,20 +136,26 @@
 </div>
 <div id="selectResource" class="draggable">
 	<fieldset class="buttons resourceButtonField draggable-handle">
-		<span class="resourceButtonGradient">
-			<g:actionSubmit
+		<span class="topicButtonGradient">
+			<button
 				class="add showHoverNew resourceButton" action="add" id="addResource"
 				title="${Help.toolTip("OVERVIEW", "Add New Resource")}"
 				value="${message(code: 'Add Resource', default: 'Add Resource')}"
-			/>
+			>
+				<i class="fa fa-plus green"></i>
+				${message(code: 'Add Resource', default: 'Add Resource')}
+			</button>
 		</span>
-		<span class="resourceButtonGradient">
-			<g:actionSubmit
+		<span class="topicButtonGradient">
+			<button
 				class="remove showHoverNew resourceButton" action="remove"
 				id="removeResource"
 				title="${Help.toolTip("OVERVIEW", "Delete Selected Resource")}"
 				value="${message(code: 'Remove Resource', default: 'Remove Resource')}"
-			/>
+			>
+				<i class="fa fa-minus-circle red"></i>
+				${message(code: 'Remove Resource', default: 'Remove Resource')}
+			</button>
 		</span>
 		<span id="errorMessage"></span>
 	</fieldset>
@@ -159,24 +172,25 @@
 		</tbody>
 		</table>
 		<fieldset class="buttons resourceButtonField">
-		<span class="resourceButtonGradient saveBG">
+		<span class="topicButtonGradient saveBG">
 			<button
 				class="save showHoverNew resourceButton"
 				action="save"
 				id="saveResource"
 				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 			>
+				<i class="fa fa-save green"></i>
 				${message(code: 'Save Resource', default: ' Save')}
 			</button>
 		</span>
-		<span class="resourceButtonGradient cancelBG">
+		<span class="topicButtonGradient cancelBG">
 			<button
 				class="showHoverNew resourceButton"
 				action="cancel"
 				id="cancelResource"
 				title="${Help.toolTip("OVERVIEW", "Leave Add Resources without saving")}"
 			>
-				<i class="fa fa-times"></i>
+				<i class="fa fa-times red"></i>
 				${message(code: 'Cancel Resources', default: ' Cancel')}
 			</button>
 		</span>

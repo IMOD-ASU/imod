@@ -123,14 +123,14 @@
 									<%-- Buttons for Add New Technique, Favorites and Assessment Plan--%>
 									<span id="new-technique-button" class="topicButtonGradient">
 										<button>
-											<i class="fa fa-plus"></i>
+											<i class="fa fa-plus green"></i>
 											Add New Technique
 										</button>
 									</span>
 
 									<span id="favorites-button" class="topicButtonGradient">
 										<button>
-											<i class="fa fa-star"></i>
+											<i class="fa fa-star yellow"></i>
 											Favorites
 										</button>
 									</span>
@@ -152,7 +152,7 @@
 							<br>
 							<div class="pedagogy-nav-bar learning-objective creator">
 								<span>
-									<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
+									<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
 								</span>
 								<span>
 									<g:img id="performance-tab" dir="images" file="content.png" alt="Content"/>
