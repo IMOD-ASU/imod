@@ -270,7 +270,7 @@ input[disabled='disabled'] {
 
     border: none;
     border-radius: 4px;
-    box-shadow: 0 0 3px 1px #aaaaaa;
+    box-shadow: none;
 }
 
 .learning-objective-button input,
@@ -308,21 +308,6 @@ input[disabled='disabled'] {
     background-color: transparent;
 }
 
-.learning-objective-button .delete,
-.learning-objective-button .save {
-    text-indent: 25px;
-
-    background-repeat: no-repeat;
-    background-position: 0.7em center;
-}
-
-.learning-objective-button .delete {
-    background-image: url(../../images/skin/database_delete.png);
-}
-
-.learning-objective-button .save {
-    background-image: url(../../images/skin/database_save.png);
-}
 
 .content-save {
     margin-top: 5px;
@@ -441,20 +426,12 @@ input[disabled='disabled'] {
 
     line-height: 1.5em;
 }
-#addTopicModal i,
-#deleteTopicModal i {
-    padding: 2px;
-
-    vertical-align: middle;
-
-    color: darkblue;
-
-    font-size: 2em;
-
-    size: 2em;
+.topicModalButtonGradient.addTopicModalWrap {
+	box-shadow: none;
 }
 #addTopicModal {
     font-weight: bold;
+    height: 38px;
 }
 
 #deleteTopicModal {

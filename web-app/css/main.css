@@ -776,11 +776,7 @@ th.desc a {
 }
 
 .topicButtonGradient.cancelBG i {
-    vertical-align: middle;
-
-    color: #ffffff;
-
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 .fa-graduation-cap {

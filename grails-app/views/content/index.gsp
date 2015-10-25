@@ -313,14 +313,14 @@
 </div>
 <div id="selectResource" class="draggable">
 	<fieldset class="buttons resourceButtonField draggable-handle">
-		<span class="resourceButtonGradient">
+		<span class="topicButtonGradient">
 			<g:actionSubmit
 				class="add showHoverNew resourceButton" action="add" id="addResource"
 				title="${Help.toolTip("OVERVIEW", "Add New Resource")}"
 				value="${message(code: 'Add Resource', default: 'Add Resource')}"
 			/>
 		</span>
-		<span class="resourceButtonGradient">
+		<span class="topicButtonGradient">
 			<g:actionSubmit
 				class="remove showHoverNew resourceButton" action="remove"
 				id="removeResource"
@@ -344,7 +344,7 @@
 		</tbody>
 		</table>
 		<fieldset class="buttons resourceButtonField">
-		<span class="resourceButtonGradient saveBG">
+		<span class="topicButtonGradient saveBG">
 			<button
 				class="save showHoverNew resourceButton"
 				action="save"
@@ -354,7 +354,7 @@
 				${message(code: 'Save Resource', default: ' Save')}
 			</button>
 		</span>
-		<span class="resourceButtonGradient cancelBG">
+		<span class="topicButtonGradient cancelBG">
 			<button
 				class="showHoverNew resourceButton"
 				action="cancel"
