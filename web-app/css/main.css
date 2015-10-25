@@ -1067,6 +1067,14 @@ table.inner-table {
 	height: 100%;
 }
 
+.course-overview-form-td .topicButtonGradient {
+	margin-left: 0; margin-bottom: 5px;
+}
+
+.course-overview-form-td .topicButtonGradient button {
+	margin-bottom: 0px;
+}
+
 .course-overview-form,
 .topic-hierarchy-widget,
 .topic-information-widget,
