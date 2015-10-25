@@ -33,9 +33,13 @@
     <body>
         <div class="wrapper">
 
-        	<div class="right">
-            	<button class="topicButtonGradient printpdf">Print Page</button>
+        	<div class="float-wrapper">
+	        	<div class="right">
+	            	<button class="topicButtonGradient printpdf">Print Page</button>
+	            </div>
             </div>
+
+            <h2><center>${currentImod?.name.encodeAsCustomEscape()}</center></h2>
 
         	<div id="syllabus-content">
 	        	<g:if test="${!hideSectionsList.contains('-course-')}">
@@ -46,14 +50,6 @@
 		                    </h3>
 		                </div>
 		                <div id="course">
-		                <div class="fieldcontain">
-		                    <label for="name">
-		                        <g:message code="imod.name.label" default="Course Title" />:
-		                    </label>
-		                    <strong>
-		                        ${currentImod?.name.encodeAsCustomEscape()}
-		                    </strong>
-		                </div>
 		                <div class="fieldcontain">
 		                    <label for="imodNumber">
 		                        <g:message code="imod.imodNumber.label" default="Course Number" />:

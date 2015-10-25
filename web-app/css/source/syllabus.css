@@ -107,6 +107,10 @@ body.syllabus_pdf .wrapper {
     overflow: hidden;
 }
 
+.float-wrapper {
+	overflow: hidden;
+}
+
 .right {
     position: relative;
     z-index: 2;
