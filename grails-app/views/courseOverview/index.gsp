@@ -285,36 +285,59 @@
                                                 Attendance and Tardiness
                                             </h3>
                                             <div>
-												<input type="button" class="restore-default" name="attendanceCheck" id="attendance-box" class="attendance-check" value="Restore Default"/>
+                                            	<div class="topicButtonGradient">
+													<button type="button" class="restore-default" name="attendanceCheck" id="attendance-box" class="attendance-check" value="Restore Default">
+														<i class="fa fa-mail-reply blue"></i> Restore Default
+													</button>
+												</div>
 												<g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
                                             </div>
                                             <h3>
                                                 Class Participation
                                             </h3>
                                             <div>
-											<input type="button" class="restore-default" name="participationCheck" id="participation-box" class="attendance-check" value="Restore Default"/>
-
-												<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.classParticipation')}" />
+                                            	<div class="topicButtonGradient">
+                                            		<button type="button" class="restore-default" name="participationCheck" id="participation-box" class="attendance-check" value="Restore Default">
+                                            			<i class="fa fa-mail-reply blue"></i>
+                                            			Restore Default
+                                            		</button>
+                                        		</div>
+                                            	<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.classParticipation')}" />
                                             </div>
                                             <h3>
                                                 Professional Conduct
                                             </h3>
                                             <div>
-												<input type="button" class="restore-default" name="professionalConductCheck" id="professional-conduct-box" class="attendance-check" value="Restore Default"/>
+                                            	<div class="topicButtonGradient">
+													<button type="button" class="restore-default" name="professionalConductCheck" id="professional-conduct-box" class="attendance-check" value="Restore Default">
+														<i class="fa fa-mail-reply blue"></i>
+                                            			Restore Default
+													</button>
+												</div>
                                                 <g:textArea name="professionalConduct" id="professional-conduct" value="${currentImod?.professionalConduct}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.professionalConduct')}" />
                                             </div>
                                             <h3>
                                                 Missed Exams/Make-up Exams
                                             </h3>
                                             <div>
-												<input type="button" class="restore-default" name="missedExamsCheck" id="missed-exams-box" class="attendance-check" value="Restore Default"/>
+                                            	<div class="topicButtonGradient">
+													<button type="button" class="restore-default" name="missedExamsCheck" id="missed-exams-box" class="attendance-check" value="Restore Default">
+														<i class="fa fa-mail-reply blue"></i>
+                                            			Restore Default
+													</button>
+												</div>
                                                 <g:textArea name="missedExams" id="missed-exams" value="${currentImod?.missedExams}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedExams')}" />
                                             </div>
                                             <h3>
                                                 Missed Assignments
                                             </h3>
                                             <div>
-												<input type="button" class="restore-default" name="missedAssignmentsCheck" id="missed-assignments-box" class="attendance-check" value="Restore Default"/>
+                                            	<div class="topicButtonGradient">
+													<button type="button" class="restore-default" name="missedAssignmentsCheck" id="missed-assignments-box" class="attendance-check" value="Restore Default">
+														<i class="fa fa-mail-reply blue"></i>
+                                            			Restore Default
+													</button>
+												</div>
                                                 <g:textArea name="missedAssignments" id="missed-assignments" value="${currentImod?.missedAssignments}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedAssignments')}" />
                                             </div>
                                             <br><br>
