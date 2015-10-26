@@ -1,3 +1,6 @@
+var cleanForm;
+var formSubmitted = false;
+
 $(document).ready(function () {
 	'use strict';
 	$('#accordion').accordion({
@@ -90,4 +93,24 @@ $(document).ready(function () {
 		$('.draggable').hide();
 		$('.modalBackground').hide();
 	});
+
+	// checks if a form has been submitted
+	$("form").submit(function () {
+		formSubmitted = true;
+	});
+
 });
+
+window.onload = function(e) {
+	cleanForm = $("form, #contentTable").find("select, textarea, input").serialize();
+}
+window.onbeforeunload = function (e) {
+    var dirtyForm = $("form, #contentTable").find("select, textarea, input").serialize();
+	if (!formSubmitted) {
+		console.log(cleanForm);
+		console.log(dirtyForm);
+		if(cleanForm != dirtyForm) {
+	        return "You have unsaved changes. Please save them before proceeding.";
+	    }
+	}
+};
