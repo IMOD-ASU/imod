@@ -132,12 +132,13 @@ function displayAssessmentInformationInEdit () {
 function showAssessmentTechnique () {
 	'use strict';
 	$('#ideal-matches').buttonset().click(function () {
-		$('#display-new-technique').dialog('open');
+		openNewAssessmentTechniqueModal();
+		// $('#display-new-technique').dialog('open');
 		displayAssessmentInformationInEdit();
 	});
 
 	$('#ideal-matches1').buttonset().click(function () {
-		$('#display-new-technique').dialog('open');
+		/*$('#display-new-technique').dialog('open');
 		$('#display-new-technique').dialog({
 			resizable: false,
 			height: 'auto',
@@ -145,12 +146,13 @@ function showAssessmentTechnique () {
 			width: 'auto',
 			modal: true,
 			zindex: 1000
-		});
+		});*/
+		openNewAssessmentTechniqueModal();
 		displayAssessmentInformationInEdit();
 	});
 
 	$('#extended-matches').click(function () {
-		$('#display-new-technique').dialog('open');
+		/*$('#display-new-technique').dialog('open');
 		$('#display-new-technique').dialog({
 			resizable: false,
 			height: 'auto',
@@ -158,8 +160,8 @@ function showAssessmentTechnique () {
 			width: 'auto',
 			modal: true,
 			zindex: 1000
-		});
-
+		});*/
+		openNewAssessmentTechniqueModal();
 		displayAssessmentInformationInEdit();
 	});
 }

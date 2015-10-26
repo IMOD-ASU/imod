@@ -1,4 +1,5 @@
 <%@ page import="imod.Help" %>
+<%@ page import="imod.KnowledgeDimensionEnum"%>
 
 <html>
 	<head>
@@ -469,5 +470,41 @@
 				</td>
 			</tr>
 		</table>
+		<div id="selectKnowledgeDimensions" class="draggable">
+			<div class="draggable-handle">
+				<input type="hidden" id="topicID" />
+				<span>
+					<ul>
+						<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
+							<li>
+								<input
+									type="checkbox"
+									id="${dimension}"
+									value="${dimension}"
+								/>
+								<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
+									${dimension}
+								</label>
+							</li>
+						</g:each>
+					</ul>
+					<g:img
+						dir="images/content"
+						file="knowDimNone.png"
+						id="dimImage"
+						width="71"
+						height="71"
+					/>
+				</span>
+				<button
+				  class="save showHoverNew resourceButton"
+							id="knowDimFinished"
+							title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+				>
+							${message(code: 'Save Resource', default: 'Done')}
+				</button>
+
+			</div>
+		</div>
 	</body>
 </html>
