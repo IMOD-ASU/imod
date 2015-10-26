@@ -709,7 +709,7 @@ $(
 		);
 
 
-		/*$('#save-before-leaving').dialog({
+		$('#save-before-leaving').dialog({
 			autoOpen: false
 		});
 
@@ -718,6 +718,6 @@ $(
 				event.preventDefault();
 				$('#save-before-leaving').dialog('open');
 			}
-		});*/
+		});
 	}
 );

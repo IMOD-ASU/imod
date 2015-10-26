@@ -95,22 +95,23 @@ $(document).ready(function () {
 	});
 
 	// checks if a form has been submitted
-	$("form").submit(function () {
+	$('form').submit(function () {
 		formSubmitted = true;
 	});
-
 });
 
-window.onload = function(e) {
-	cleanForm = $("form, #contentTable").find("select, textarea, input").serialize();
-}
-window.onbeforeunload = function (e) {
-    var dirtyForm = $("form, #contentTable").find("select, textarea, input").serialize();
+window.onload = function () {
+	'use strict';
+	cleanForm = $('form').find('select, textarea, input').serialize();
+};
+window.onbeforeunload = function () {
+	'use strict';
+	var dirtyForm;
+
+	dirtyForm = $('form').find('select, textarea, input').serialize();
 	if (!formSubmitted) {
-		console.log(cleanForm);
-		console.log(dirtyForm);
-		if(cleanForm != dirtyForm) {
-	        return "You have unsaved changes. Please save them before proceeding.";
-	    }
+		if (cleanForm !== dirtyForm) {
+			return 'You have unsaved changes. Please save them before proceeding.';
+		}
 	}
 };
