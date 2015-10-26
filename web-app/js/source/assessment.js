@@ -138,29 +138,11 @@ function showAssessmentTechnique () {
 	});
 
 	$('#ideal-matches1').buttonset().click(function () {
-		/*$('#display-new-technique').dialog('open');
-		$('#display-new-technique').dialog({
-			resizable: false,
-			height: 'auto',
-			title: 'Display Technique',
-			width: 'auto',
-			modal: true,
-			zindex: 1000
-		});*/
 		openNewAssessmentTechniqueModal();
 		displayAssessmentInformationInEdit();
 	});
 
 	$('#extended-matches').click(function () {
-		/*$('#display-new-technique').dialog('open');
-		$('#display-new-technique').dialog({
-			resizable: false,
-			height: 'auto',
-			title: 'Display Technique',
-			width: 'auto',
-			modal: true,
-			zindex: 1000
-		});*/
 		openNewAssessmentTechniqueModal();
 		displayAssessmentInformationInEdit();
 	});
