@@ -240,93 +240,100 @@
 					</g:else>
 
 					<%--Dialog box for Add New Technique --%>
-					<div id="new-technique" title="Add New Technique">
+					<div id="add-new-technique" class="draggable" title="Add New Technique">
 						<%--To render the add new Technique dialog box--%>
+						<fieldset class="titleField draggable-handle">
+							<div id="editTitle">
+							<b> Add Assessment Technique</b>
+							</div>
+							<span id="errorMessage" style="color:red"></span>
+						</fieldset>
 
 						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
 							<g:hiddenField name="techniqueId" />
-							<span>
-								<label >
-									Assign
-								</label>
-								<g:checkBox class="assignBtn" name="assignedToLearningObjective" />
+							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective.id}"/>
+							<table id="techniqueList">
+							<tr>
+							<td class="td-label" width="40%">Title</td>
+							<td width="60%"> <g:textField name="title" /></td>
+							</tr>
+							<!--<tr>
+							<td width="40%"> Assign to Current Learning Objective </td>
+							<td width="60%"> <g:checkBox name="assignedToLearningObjective" /></td>
+							</tr>
+							<tr>
+							<td width="40%">Favorite Technique </td>
+							<td width="60%"><g:checkBox name="favoriteTechnique" /></td>
+							</tr>-->
+							<tr>
+							<td class="td-label" width="40%">Learning Domain	</td>
+							<td width="60%"><g:select class="custom-dropdown" id="learning-domain" name="learningDomain" from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							</tr>
+							<tr>
+							<td class="td-label" width="40%">Domain Category</td>
+							<td width="60%"><g:select class="custom-dropdown" id="domain-category" name="domainCategory" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
+							</tr>
+							<tr>
+							<td class="td-label" width="40%">Description of Activity</td>
+							<td width="60%"><g:textArea name="activityDescription" rows="5" cols="30" /></td>
+							</tr>
+							<tr>
+							<td class="td-label" width="40%">Procedure</td>
+							<td width="60%"><g:textArea name="assessmentProcedure" rows="5" cols="30" /></td>
+							</tr>
+							<tr>
+							<td class="td-label" width="40%">Knowledge Dimension</td>
+							<td width="60%">
+								<button id="k1"> click me</button>
+							</td>
+							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="knowledge">
+							</tr>
+							<tr>
+							<td class="td-label" width="40%">Duration</td>
+							<td width="60%"><g:textField name="duration" /></td>
+							</tr>
+							<tr>
+							<td class="td-label" width="40%">Difficulty</td>
+							<td width="60%">
+								<select class="custom-dropdown" name="assessmentDifficulty" from="${assessmentDifficulty}" optionKey="difficulty">
+									<option>Low</option>
+									<option>Medium</option>
+									<option>High</option>
+								</select>
+							</td>
+							</tr>
+							<tr>
+								<td class="td-label" width="40%">When To Carry Out</td>
+								<td width="60%">
+									<select class="custom-dropdown" name="assessmentDifficulty" from=	"${assessmentDifficulty}" optionKey="difficulty">
+										<option>Pre</option>
+										<option>Mid</option>
+										<option>Post</option>
+								</select>
+							</td>
+							</tr>
+							<tr>
+							<td class="td-label" width="40%">Feedback Mechanism</td>
+							<td width="60%"><g:select class="custom-dropdown" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" /></td>
+							</tr>
+							<tr>
+							<td class="td-label" width="40%">Sources</td>
+							<td width="60%"><g:textArea name="sources" rows="5" cols="30"/> </td>
+							</tr>
+							</table>
+							<br>
 
-								<label >
-									Favorite
-								</label>
-								<g:checkBox class="favBtn" name="favoriteTechnique" />
-							</span>
-							<br/>
-							<br/>
-
-							<p class="form-align">
-								<label class="form-labels">
-									Title
-								</label>
-								<g:textField name="title" class="form-inputs"/>
-							</p>
-							<br/>
-
-							<p class="form-align">
-								<label class="form-labels">
-									Description
-								</label>
-								<g:textArea name="description" class="form-inputs"/>
-							</p>
-							<br/>
-
-							<p class="form-align">
-								<label class="form-labels">
-									Procedure
-								</label>
-								<g:textArea name="procedure" class="form-inputs"/>
-							</p>
-							<br/>
-
-							<p class="form-align">
-								<label class="form-labels">
-									Duration
-								</label>
-								<g:field type="number" name="duration" min="01" max="60" class="allInputs"/>
-							</p>
-							<br/>
-
-							<p class="form-align">
-								<label class="form-labels">
-									Feedback Mechanism
-								</label>
-								<g:select class="custom-dropdown form-inputs" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" />
-							</p>
-							<br/>
-
-							<p class="form-align">
-								<label class="form-labels">
-									Learning Domain
-								</label>
-								<g:select class="custom-dropdown form-inputs" name="learningDomain" from="${learningDomains}" optionKey="name" />
-							</p>
-							<br/>
-
-							<p class="form-align">
-								<label class="form-labels">
-									Domain Category
-								</label>
-								<g:select class="custom-dropdown form-inputs" name="domainCategory" from="${domainCategories}" optionKey="name" />
-							</p>
-							<br/>
-
-							<p class="form-align">
-								<label class="form-labels">
-									Knowledge Dimension
-								</label>
-								<g:select class="custom-dropdown form-inputs" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
-							</p>
-							<br/>
 
 							<div id="modalButtons">
-								<g:actionSubmit value="Save" action="save" />
-								<g:actionSubmit value="Cancel" action="cancel" />
-							</div>
+								<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button">
+									<i class="fa fa-save green"></i>
+									Save
+								</button>
+								<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">
+									<i class="fa fa-times red"></i>
+									Cancel
+								</button>
+							</div><br>
 						</g:form>
 					</div>
 

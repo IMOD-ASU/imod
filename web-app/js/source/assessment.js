@@ -29,15 +29,8 @@ function openAssessmentPlanModal () {
 function openNewAssessmentTechniqueModal () {
 	'use strict';
 	$('#techniqueId').val('');
-	$('#new-technique').dialog('open');
-	$('#new-technique').dialog({
-		resizable: false,
-		height: 'auto',
-		title: 'New Assessment Technique',
-		width: 'auto',
-		modal: true,
-		zindex: 1000
-	});
+	$('#add-new-technique').css('display', 'block');
+	$('#topicDialogBackground').css('display', 'block');
 }
 function closeDimModal () {
 	'use strict';
