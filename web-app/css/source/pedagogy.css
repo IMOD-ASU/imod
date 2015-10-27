@@ -62,6 +62,12 @@
     border-radius: 5px;
 }
 
+.lo-d{
+    height: 5em;
+    min-height: 2em;
+    padding-right: 0;
+}
+
 .learning-objective.list-wrapper {
     overflow-x: hidden;
     overflow-y: auto;
@@ -125,6 +131,31 @@
 
     border: 1px solid #c4c2c2;
     background: #ededef;
+}
+#instruction-plan {
+    position: absolute !important;
+    z-index: 2;
+    top: -124px;
+    left: 50%;
+
+    display: none;
+
+    width: 460px;
+    margin-left: -230px;
+
+    border: 1px solid #c4c2c2;
+    background: #ededef;
+}
+
+#closeInstructionalPlan  {
+    cursor: pointer;
+
+        vertical-align: middle;
+
+        font-size: 1em;
+
+        size: 1em;
+
 }
 
 #add-new-technique .td-label {

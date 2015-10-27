@@ -6,7 +6,9 @@ class PedagogyTechniqueController {
 
 	static allowedMethods = [
 		create: 'POST',
-		get: 'GET'
+		get: 'GET',
+		unassignFavorite: 'GET',
+		assignFavorite: 'GET'
 	]
 
 	/**
@@ -110,6 +112,11 @@ class PedagogyTechniqueController {
 
 		// store relationship
 		currentUser.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
 	}
 
 	def unassignFavorite(Long id){
@@ -120,6 +127,11 @@ class PedagogyTechniqueController {
 
 		// store relationship
 		currentUser.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
 	}
 
 	def assignToLearningObjective(){
@@ -131,6 +143,11 @@ class PedagogyTechniqueController {
 
 		// store relationship
 		currentLearningObjective.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
 	}
 
 	def unassignToLearningObjective(){
@@ -143,6 +160,11 @@ class PedagogyTechniqueController {
 
 		// store relationship
 		currentLearningObjective.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
 	}
 
 	def clone(Long id, Long learningObjectiveID) {
