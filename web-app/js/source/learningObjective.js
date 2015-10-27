@@ -281,7 +281,7 @@ function getTreeChildren (list, parents, idArray) {
 $(document).ready(
 	function () {
 		'use strict';
-		var savedData = true;
+
 		var category;
 		var liArray;
 		var height;
@@ -290,19 +290,6 @@ $(document).ready(
 
 		$('#please-select-action-word').dialog({
 			autoOpen: false
-		});
-
-		$('#please-save-learning-objective').dialog({
-			autoOpen: false,
-			buttons: {
-				yes: function () {
-					$(this).dialog('close');
-				},
-				no: function () {
-					savedData = true;
-					$(this).dialog('close');
-				}
-			}
 		});
 
 		$('#learning-objective-missing-required').dialog({
@@ -324,7 +311,6 @@ $(document).ready(
 
 		$('#action-words').change(
 			function () {
-				savedData = false;
 				if (this.value === 'other') {
 					$('#custom-action-words').css('visibility', 'visible');
 				} else {
@@ -339,28 +325,12 @@ $(document).ready(
 			}
 		});
 
-		$('#performance-save').click(function () {
-			if ($('#action-words').val() === 'select') {
-				$('#please-select-action-word').dialog('open');
-				return false;
-			}
-			savedData = true;
-		});
-		/** If current tab's data is not saved, throw an alert
-		*/
-		$('.content, .criteria, .performance, .conditionTab').click(function () {
-			if (savedData === false) {
-				$('#please-save-learning-objective').dialog('open');
-				return false;
-			}
-		});
 		if ($('#contentTree').length) {
 			// $('#contentTree').sortable();
 			$('#contentTree').sortable({
 				onDrop: function (item, container) {
 					item.removeClass(container.group.options.draggedClass).removeAttr('style');
 					$('body').removeClass(container.group.options.bodyClass);
-					savedData = false;
 				}
 			});
 			$('.delete-topic').click(function () {
@@ -371,7 +341,6 @@ $(document).ready(
 			$('.sub-content-tree').click(function () {
 				var item = $(this);
 
-				savedData = false;
 				if (item.find('.checkbox').hasClass('fa-check')) {
 					item.parent().find('.checkbox').removeClass('fa-check');
 				} else {
@@ -398,7 +367,6 @@ $(document).ready(
 					contentType: 'application/json; charset=utf-8',
 					data: JSON.stringify(obj),
 					success: function () {
-						savedData = true;
 						window.location.reload();
 					}
 				});
@@ -444,7 +412,6 @@ $(document).ready(
 		$('#learning-domain-list').on(
 			'change',
 			function () {
-				savedData = false;
 				if ($('#learning-domain-list').val() === 'Cognitive') {
 					$('#qtip-place').html('Mental skills (knowledge)');
 				} else if ($('#learning-domain-list').val() === 'Affective') {
@@ -467,7 +434,6 @@ $(document).ready(
 				var helpPlaceholder = $('#help-placeholder');
 				var qtipPlace = $('#qtip-place');
 
-				savedData = false;
 				helpPlaceholder.css('height', '10em');
 				switch ($('#domain-category-list').val()) {
 					case 'Remember':
@@ -559,7 +525,6 @@ $(document).ready(
 		$('#custom-condition-text').keyup(
 			function () {
 				propagateToDefinition(this.value, 'condition');
-				savedData = false;
 			}
 		);
 
@@ -588,7 +553,7 @@ $(document).ready(
 		$('#hide-condition').on(
 			'change',
 			function () {
-				savedData = false;
+				// savedData = false;
 			}
 		);
 
@@ -596,7 +561,6 @@ $(document).ready(
 		$('#saveCondition').click(
 			function () {
 				$('#help-placeholder').css('height', '10em');
-				savedData = true;
 			}
 		);
 
@@ -613,7 +577,6 @@ $(document).ready(
 			'click',
 			'.icons label',
 			function () {
-				savedData = false;
 				if ($(this).hasClass('is-active')) {
 					$('.icons label').removeClass('is-active');
 					setTimeout(
@@ -633,7 +596,6 @@ $(document).ready(
 		$('#enable-accuracy').on(
 			'click',
 			function () {
-				savedData = false;
 				$('#accuracy-text').prop(
 					'disabled', !$('#enable-accuracy').is(':checked')
 				);
@@ -648,7 +610,6 @@ $(document).ready(
 		$('#enable-quality').on(
 			'click',
 			function () {
-				savedData = false;
 				$('#quality-text').prop(
 					'disabled', !$('#enable-quality').is(':checked')
 				);
@@ -663,7 +624,6 @@ $(document).ready(
 		$('#enable-quantity').on(
 			'click',
 			function () {
-				savedData = false;
 				$('#quantity-text').prop(
 					'disabled', !$('#enable-quantity').is(':checked')
 				);
@@ -678,7 +638,6 @@ $(document).ready(
 		$('#enable-speed').on(
 			'click',
 			function () {
-				savedData = false;
 				$('#speed-text').prop(
 					'disabled', !$('#enable-speed').is(':checked')
 				);
@@ -696,7 +655,6 @@ $(document).ready(
 					$('#learning-objective-missing-required').dialog('open');
 					return false;
 				}
-				savedData = true;
 			}
 		);
 

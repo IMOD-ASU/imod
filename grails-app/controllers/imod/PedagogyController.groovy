@@ -37,6 +37,7 @@ class PedagogyController {
 		final content = currentLearningObjective.contents
 		def knowDimensionList = []
 		def dimension=[]
+		def hasLO = '0'
 		if (content != null){
 			content.each(){
 				knowDimensionList.push(it.dimensions)
@@ -160,5 +161,29 @@ class PedagogyController {
 				LOPedagogyTechniques: stringLOPedagogyTechniques
 			] as JSON
 		)
+	}
+
+	/**
+	 * Find assigned techniques to a given Learning Objective
+	 * expects params
+	 *  - learning domain: ID of each selected domain
+	 */
+	def findAssignedTechniques() {
+		final data = request.JSON
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		final LOPedagogyTechniques = currentLearningObjective.pedagogyTechniques.title
+		def stringLOPedagogyTechniques = []
+
+		//Convert int to string
+		for (def LOPedagogyTechnique in LOPedagogyTechniques) {
+			stringLOPedagogyTechniques.add(LOPedagogyTechnique.toString())
+		}
+
+		render(
+				[
+					LOPedagogyTechniques: stringLOPedagogyTechniques,
+					currentLearningObjective: data.learningObjectiveID
+				] as JSON
+			  )
 	}
 }
