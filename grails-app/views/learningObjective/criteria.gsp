@@ -10,7 +10,10 @@
 	<body>
 		<g:form action="save">
 			<fieldset class="learning-objective-button topicButtonGradient">
-				<g:actionSubmit action="save" type="criteria" value="${message(code: 'Save', default: 'Save')}" id="${currentImod.id}" learningObjectiveID="${currentLearningObjective.id }" class="save show-hover-new" title="${ message( code:'imod.learningObjective.save' ) }" />
+				<button type="submit" name="_action_save" value="Save" type="criteria" id="${currentImod.id}" learningObjectiveID="${currentLearningObjective.id }" class="save show-hover-new" title="Click on save button to save data entered on the current sub-tab">
+					<i class="fa fa-save green"></i>
+					Save
+				</button>
 				<g:hiddenField name="id" value="${currentImod.id}" id="current-imod" />
 				<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 				<g:hiddenField name="pageType" value="criteria" id="page-type" />

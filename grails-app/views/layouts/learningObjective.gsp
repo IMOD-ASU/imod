@@ -48,6 +48,7 @@
 								<span class="topicButtonGradient">
 								<g:link action="create" id="${currentImod.id}">
 									<button class="add show-hover-new topicButton" title="${ message( code:'imod.learningObjective.add' ) }" >
+										<i class="fa fa-plus green"></i>
 										Add
 									</button>
 								</g:link>
@@ -55,6 +56,7 @@
 								<span class="topicButtonGradient">
 								<g:link action="remove" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
 									<button class="remove show-hover-new topicButton" title="${ message( code:'imod.learningObjective.remove' ) }" >
+										<i class="fa fa-minus-circle red"></i>
 										Remove
 									</button>
 								</g:link>
@@ -129,11 +131,6 @@
 					</tr>
 				</table>
 			</fieldset>
-			<div id="please-save-learning-objective" title="Please Save">
-				<p>
-					Please save before proceeding to next page.
-				</p>
-	        </div>
 			<div id="learning-objective-missing-required" title="Missing Required">
 				<p>
 					Learning Domain, Domain Category and Action Word Categories are required.

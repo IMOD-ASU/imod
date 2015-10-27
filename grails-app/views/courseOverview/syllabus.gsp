@@ -33,9 +33,14 @@
     </head>
     <body>
         <div class="wrapper">
-        	<div class="right">
-            	<a href="#" class="topicButtonGradient generate-syllabus">Save &amp; Generate Syllabus</a>
+
+        	<div class="float-wrapper">
+	        	<div class="right">
+	            	<a href="#" class="topicButtonGradient generate-syllabus">Save &amp; Generate Syllabus</a>
+	            </div>
             </div>
+
+            <h2><center>${currentImod?.name.encodeAsCustomEscape()}</center></h2>
 
             <div id="syllabus-content">
 	            <div class="course-details" >
@@ -46,14 +51,6 @@
 	                    </h3>
 	                </div>
 	                <div id="course">
-	                <div class="fieldcontain">
-	                    <label for="name">
-	                        <g:message code="imod.name.label" default="Course Title" />:
-	                    </label>
-	                    <strong>
-	                        ${currentImod?.name.encodeAsCustomEscape()}
-	                    </strong>
-	                </div>
 	                <div class="fieldcontain">
 	                    <label for="imodNumber">
 	                        <g:message code="imod.imodNumber.label" default="Course Number" />:

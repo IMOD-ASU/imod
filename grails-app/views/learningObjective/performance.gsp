@@ -14,7 +14,10 @@
 			<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
 			<g:hiddenField name="pageType" value="performance" id="page-type" />
 			<fieldset class="learning-objective-button topicButtonGradient">
-				<g:submitButton class="save show-hover-new" id="performance-save" name="update" value="Save" title="${ message( code:'imod.learningObjective.save' ) }" />
+				<button type="submit" class="save show-hover-new" id="performance-save" name="update" value="Save" title="Click on save button to save data entered on the current sub-tab">
+					<i class="fa fa-save green"></i>
+					Save
+				</button>
 			</fieldset>
 
 			<label for="learning-domain-list" class="learning-domain-list title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">

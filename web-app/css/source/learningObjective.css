@@ -270,7 +270,7 @@ input[disabled='disabled'] {
 
     border: none;
     border-radius: 4px;
-    box-shadow: 0 0 3px 1px #aaaaaa;
+    box-shadow: none;
 }
 
 .learning-objective-button input,
@@ -308,21 +308,6 @@ input[disabled='disabled'] {
     background-color: transparent;
 }
 
-.learning-objective-button .delete,
-.learning-objective-button .save {
-    text-indent: 25px;
-
-    background-repeat: no-repeat;
-    background-position: 0.7em center;
-}
-
-.learning-objective-button .delete {
-    background-image: url(../../images/skin/database_delete.png);
-}
-
-.learning-objective-button .save {
-    background-image: url(../../images/skin/database_save.png);
-}
 
 .content-save {
     margin-top: 5px;
@@ -441,20 +426,12 @@ input[disabled='disabled'] {
 
     line-height: 1.5em;
 }
-#addTopicModal i,
-#deleteTopicModal i {
-    padding: 2px;
-
-    vertical-align: middle;
-
-    color: darkblue;
-
-    font-size: 2em;
-
-    size: 2em;
+.topicModalButtonGradient.addTopicModalWrap {
+	box-shadow: none;
 }
 #addTopicModal {
     font-weight: bold;
+    height: 38px;
 }
 
 #deleteTopicModal {
@@ -481,7 +458,7 @@ input[disabled='disabled'] {
 
 #topicDialog {
     position: fixed;
-    z-index: 9999;
+    z-index: 1;
     top: 30%;
     left: 15%;
 
@@ -496,11 +473,15 @@ input[disabled='disabled'] {
     z-index: 1;
 }
 #topicModalClose {
-    float: right;
+    float: none;
+    text-align: right;
 
     margin-right: 10px;
 
     background: inherit;
+
+    padding-bottom: 0;
+    padding-top: 8px;
 }
 .modalBackground {
     position: fixed;
@@ -624,6 +605,10 @@ input[disabled='disabled'] {
 
     font-weight: bold;
 }
+.instructor-list th {
+	vertical-align: middle;
+}
+
 #selectKnowledgeDimensionBackground {
     z-index: 3;
 }

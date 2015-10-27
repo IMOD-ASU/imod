@@ -657,6 +657,20 @@ th.desc a {
 
 /* ACTION BUTTONS */
 
+/*Button Icon colors*/
+.blue {
+	color: #286eb6;
+}
+.yellow {
+	color: #f0d21b;
+}
+.green{
+	color: #a8d753;
+}
+.red {
+	color: #fb1507;
+}
+
 .buttons {
     overflow: hidden;
 
@@ -675,7 +689,7 @@ th.desc a {
     overflow: visible;
 
     margin: 0 0.25em 0;
-    padding: 0.25em 0.7em;
+    padding: 0.25em 0;
 
     cursor: pointer;
     text-decoration: none;
@@ -705,25 +719,13 @@ th.desc a {
     background-color: transparent;
 }
 
-.buttons .delete,
-.buttons .edit,
-.buttons .save {
-    text-indent: 25px;
-
-    background-repeat: no-repeat;
-    background-position: 0.7em center;
-}
-
 .buttons .delete {
-    background-image: url(../images/skin/database_delete.png);
 }
 
 .buttons .edit {
-    background-image: url(../images/skin/database_edit.png);
 }
 
 .buttons .save {
-    background-image: url(../images/skin/database_save.png);
 }
 
 .topicButtonGradient {
@@ -736,11 +738,18 @@ th.desc a {
     padding-left: 5px;
 
     vertical-align: middle;
+    font-weight: bold;
 
     color: #ffffff;
-    border-radius: 4px;
+    border-radius: 3px;
     background: linear-gradient(#113b70, #0b2f5e);
     box-shadow: 0 1px 2px #888888;
+}
+
+.topicButtonGradient input,
+.topicButtonGradient button {
+	font-weight: bold;
+	height: 28px;
 }
 
 .topicButtonGradient:hover {
@@ -755,6 +764,11 @@ th.desc a {
     background-color: transparent;
 }
 
+.buttons .topicButtonGradient button,
+.topicButtonGradient button {
+	padding: 1px 6px;
+}
+
 .topicButtonGradient a:hover,
 .topicButtonGradient input:hover,
 .topicButtonGradient button:hover {
@@ -762,11 +776,7 @@ th.desc a {
 }
 
 .topicButtonGradient.cancelBG i {
-    vertical-align: middle;
-
-    color: #ffffff;
-
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 .fa-graduation-cap {
@@ -877,16 +887,10 @@ a.banner-link {
     padding-left: 13.5px;
 }
 .add {
-    text-indent: 25px;
-
-    background-image: url(../images/add.png) !important;
     background-repeat: no-repeat;
     background-position: 0.7em center;
 }
 .remove {
-    text-indent: 25px;
-
-    background-image: url(../images/delete.gif) !important;
     background-repeat: no-repeat;
     background-position: 0.7em center;
 }
@@ -1055,6 +1059,22 @@ table.inner-table {
     *zoom: 1;
 }
 
+#courseoverview-form .inner-table td {
+	width: 50%;
+}
+
+.course-overview-form-td {
+	height: 100%;
+}
+
+.course-overview-form-td .topicButtonGradient {
+	margin-left: 0; margin-bottom: 5px;
+}
+
+.course-overview-form-td .topicButtonGradient button {
+	margin-bottom: 0px;
+}
+
 .course-overview-form,
 .topic-hierarchy-widget,
 .topic-information-widget,
@@ -1062,7 +1082,6 @@ table.inner-table {
 .topic-addition-widget,
 .topic-schedule-widget {
     height: 100%;
-    padding: 0 0 20px 0;
 
     border: solid 1px #c0c0c0;
     border-radius: 15px;

@@ -9,6 +9,54 @@ function openNewPedagogyTechniqueModal () {
 	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
+
+function repopulateCheckboxes () {
+	'use strict';
+	var checkboxValues = $.cookie('checkboxValues');
+
+	if (checkboxValues) {
+		Object.keys(checkboxValues).forEach(function (element) {
+			var checked = checkboxValues[element];
+
+			$('#' + element).prop('checked', checked);
+		});
+	}
+}
+function openInstructionalPlanModal () {
+	'use strict';
+	$('#instruction-plan').css('display', 'block');
+	$('#topicDialogBackground').css('display', 'block');
+}
+
+function populateInstructionalPlanTechniques () {
+	'use strict';
+	var data;
+	var index;
+	var assignedTechniques = '';
+
+	// Bundle the data into an object
+	data = {
+		learningObjectiveID: $(this).attr('id')
+	};
+
+	// Send the data to the find matching techniques action in grails
+	// and process the response with the display pedagogy techniques callback
+	$.ajax({
+		url: '../findAssignedTechniques',
+		method: 'post',
+		data: JSON.stringify(data),
+		contentType: 'application/json'
+	}).done(function (data) {
+		if (data.LOPedagogyTechniques.length > 0) {
+			for (index = 0; index < data.LOPedagogyTechniques.length; index++) {
+				assignedTechniques += '<li>' + data.LOPedagogyTechniques[index] + '</li>';
+			}
+			$('#assignedTechniques-' + data.currentLearningObjective).html('<ul>' + assignedTechniques + '</ul>');
+		} else {
+			$('#assignedTechniques-' + data.currentLearningObjective).html('No techniques are assigned to this Learning Objective');
+		}
+	});
+}
 function closeDimModal () {
 	'use strict';
 	var checked = '';
@@ -188,7 +236,9 @@ function displayPedagogyTechniques (data) {
 			}
 			$.ajax({
 				url: '../../pedagogyTechnique/unassignFavorite/' + res,
-				method: 'GET'
+				method: 'GET',
+				success: function () {}
+
 			});
 		} else {
 			$(this).attr('src', '../../images/fav.png');
@@ -201,7 +251,8 @@ function displayPedagogyTechniques (data) {
 			}
 			$.ajax({
 				url: '../../pedagogyTechnique/assignFavorite/' + res,
-				method: 'GET'
+				method: 'GET',
+				success: function () {}
 			});
 		}
 	});
@@ -229,7 +280,8 @@ function displayPedagogyTechniques (data) {
 				url: '../../pedagogyTechnique/unassignToLearningObjective',
 				type: 'POST',
 				data: JSON.stringify(data),
-				contentType: 'application/json'
+				contentType: 'application/json',
+				success: function () {}
 			});
 		} else {
 			$(this).attr('src', '../../images/assign.png');
@@ -249,7 +301,8 @@ function displayPedagogyTechniques (data) {
 				url: '../../pedagogyTechnique/assignToLearningObjective',
 				type: 'POST',
 				data: JSON.stringify(data),
-				contentType: 'application/json'
+				contentType: 'application/json',
+				success: function () {}
 			});
 		}
 	});
@@ -365,7 +418,7 @@ function getMinHeight (liArray) {
 	return minHeight;
 }
 
-/* Populate the text above ideal matches*/
+/* Populate the bread crumbs above ideal matches*/
 function updateTextArea (checkBoxName) {
 	'use strict';
 	var allVals = [];
@@ -440,11 +493,15 @@ $(document).ready(
 		var checkBoxName;
 		var hasError = false;
 
+		$.cookie.json = true;
+		repopulateCheckboxes();
+
 		// Load techniques on page load
 		filterPedagogyTechniques();
 		// The filters for the pedagogy technique are wrapped in a accordian
 		// beforeActivate is to be able to open both ideal & extended matches simultaneously
 		$('#filter-pedagogy-techniques').accordion({collapsible: true, heightStyle: 'content'});
+		$('#instruction-plan-accordion').accordion({collapsible: true, heightStyle: 'content', active: false});
 		$('#ideal-matches-toggle').accordion({collapsible: true,
 			beforeActivate: function (event, ui) {
 				// The accordion believes a panel is being opened
@@ -496,6 +553,17 @@ $(document).ready(
 			updateTextArea(checkBoxName);
 			filterPedagogyTechniques();
 		});
+
+		// fetching checkboxes and making a cookie
+		$(':checkbox').on('change', function () {
+			var checkboxValues = {};
+
+			$(':checkbox').each(function () {
+				checkboxValues[this.id] = this.checked;
+			});
+			$.cookie('checkboxValues', checkboxValues, {expires: 1, path: '/'});
+		});
+
 		$('#saveButton').on('click',
 		function () {
 			if ($('#title').val() === '') {
@@ -512,6 +580,18 @@ $(document).ready(
 
 		// When add new technique button is clicked open modal
 		$('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
+
+		// When instructional plan button is clicked open modal
+		$('#instruction-plan-button').on('click', openInstructionalPlanModal);
+
+		$('#instruction-plan-accordion h3').on('click', populateInstructionalPlanTechniques);
+
+		$('#closeInstructionalPlan').on('click',
+			function () {
+				$('#instruction-plan').css('display', 'none');
+				$('#topicDialogBackground').css('display', 'none');
+			}
+		);
 
 		// When hovered over LO side-tab list, it displays full text as tool-tip
 		liArray = $('ul.learning-objective.list-wrapper').children('li');

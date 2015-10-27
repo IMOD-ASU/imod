@@ -30,6 +30,7 @@
 		<g:external dir="css/source" file="learningObjective.css" />
 		<g:external dir="css/source" file="iconModule.css" />
 		<g:javascript src="source/pedagogy.js" defer="defer" />
+		<g:javascript src="plugins/jquery.cookie.js" defer="defer" />
 	</head>
 
 	<body>
@@ -144,14 +145,14 @@
 									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 									<span id="add-new-technique-button" class="topicButtonGradient">
 										<button>
-											<i class="fa fa-plus"></i>
+											<i class="fa fa-plus green"></i>
 											Add New Technique
 										</button>
 									</span>
 
 									<span id="favorites-button" class="topicButtonGradient">
 										<button>
-											<i class="fa fa-star"></i>
+											<i class="fa fa-star yellow"></i>
 											Favorites
 										</button>
 									</span>
@@ -224,12 +225,12 @@
 							<span>
 								<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 								<button id="add-new-technique-button">
-									<i class="fa fa-plus"></i>
+									<i class="fa fa-plus green"></i>
 									Add New Technique
 								</button>
 
 								<button id="favorites-button">
-									<i class="fa fa-star"></i>
+									<i class="fa fa-star yellow"></i>
 									Favorites
 								</button>
 
@@ -327,12 +328,61 @@
 							<br>
 
 							<div id="modalButtons" style="align:left">
-								<g:actionSubmit value="Save" id="saveButton" action="save" class="new-technique-popup-button"/>
-								<g:actionSubmit value="Cancel" action="cancel" class="new-technique-popup-button" />
-								<g:actionSubmit value="Clone" action="clone" class="new-technique-popup-button" />
+								<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button">
+									<i class="fa fa-save green"></i>
+									Save
+								</button>
+								<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">
+									<i class="fa fa-times red"></i>
+									Cancel
+								</button>
+								<button type="submit" name="_action_clone" value="Clone" class="new-technique-popup-button">
+									<i class="fa fa-clone blue"></i>
+									Clone
+								</button>
 							</div>
 							<br>
 						</g:form>
+					</div>
+
+					<%--Dialog box for Instructional Plan --%>
+					<div class="draggable" id="instruction-plan">
+						<%--To render the add new Technique dialog box--%>
+						<fieldset class="titleField draggable-handle">
+							<div id="editTitle">
+							 <span><b> Instructional Plan</b></span>
+							 <span id="closeInstructionalPlan" class="topicButtonGradient" style="float:right">
+ 								<button ><i class="fa fa-times white"></i><button>
+ 							</span>
+							</div>
+
+						</fieldset>
+						<!--<ul class="learning-objective">
+						    <table class="learning-objective" id="IPtable">-->
+							<div id="instruction-plan-accordion">
+							<g:if test="${learningObjectives}">
+								<g:each var="learningObjective" in="${learningObjectives}">
+								    <!--<tr>
+									<td width="5%"> <i class="fa fa-plus-circle blue"></i> </td>-->
+									<!--<li class="learning-objective list-item">
+										<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
+											<td class="lo-d" width="95%">${ learningObjective.definition }</td>
+										</g:link>-->
+										<h3 id="${learningObjective.id}">${ learningObjective.definition }</h3>
+										<div id="assignedTechniques-${learningObjective.id}"></div>
+									<!--</li>
+									</tr>-->
+								</g:each>
+							</g:if>
+							<g:else>
+								<div class="no-objective-defined">
+									There are no objectives defined
+									<g:render template="emptyStateTemplate" />
+								</div>
+							</g:else>
+							</div>
+						<!--</table>
+						</ul>-->
 					</div>
 				</td>
 			</tr>

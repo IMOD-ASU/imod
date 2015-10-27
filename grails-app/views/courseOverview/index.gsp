@@ -47,21 +47,27 @@
 
                                     <fieldset class="buttons">
                                         <span class="topicButtonGradient">
-                                    	<a href="../syllabus/${currentImod?.id}" target="_blank">
-                                            Show Syllabus
-                                        </a>
+	                                    	<a href="../syllabus/${currentImod?.id}" target="_blank">
+	                                            <i class="fa fa-file blue"></i> Show Syllabus
+	                                        </a>
                                         </span>
                                         <span class="topicButtonGradient">
-                                        <g:actionSubmit class="save overview-save show-hover-new" action="update" title="${ message( code:'imod.courseOverview.save' ) }" value="${message(code: 'Save', default: 'Save')}"/>
+                                        	<button type="submit" name="_action_update" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
+                                        		<i class="fa fa-save green"></i>
+                                        		Save
+                                        	</button>
                                         </span>
                                         <span class="topicButtonGradient">
-                                        <g:actionSubmit class="delete show-hover-new" action="delete" title="${ message( code:'imod.courseOverview.delete' ) }" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+                                        	<button type="submit" name="_action_delete" value="Delete" class="delete show-hover-new" title="Click on Delete button to delete the current course" formnovalidate="" onclick="return confirm(&#39;Are you sure?&#39;);">
+                                        		<i class="fa fa-minus-circle red"></i>
+                                        		Delete
+                                        	</button>
                                         </span>
                                     </fieldset>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="course-overview-form-td">
                                     <div class="course-overview-form">
                                         <div class="form-title">
                                             <span class="title-text">
@@ -111,7 +117,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="course-overview-form-td">
                                     <div class="course-overview-form">
                                         <div class="form-title">
                                             <span class="title-text">
@@ -190,7 +196,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="course-overview-form-td">
                                     <div class="course-overview-form">
                                         <div class="form-title">
                                             <span class="title-text">
@@ -243,10 +249,10 @@
                                                 <g:message code="imod.numberOfSeats.label" default="Number Of Seats" />
                                             </label>
                                             <g:field name="numberOfSeats" id="number-of-seats" type="number" min="0" max="1000" value="${currentImod.numberOfSeats}" title="${ message( code:'imod.courseOverview.numberOfSeats')}"/>
-                                        </div>
+                                        </div><br><br>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="course-overview-form-td">
                                     <div class="policy-field course-overview-form" id="policy">
                                         <div class="form-title">
                                             <span class="title-text">
@@ -279,38 +285,62 @@
                                                 Attendance and Tardiness
                                             </h3>
                                             <div>
-												<input type="button" class="restore-default" name="attendanceCheck" id="attendance-box" class="attendance-check" value="Restore Default"/>
+                                            	<div class="topicButtonGradient">
+													<button type="button" class="restore-default" name="attendanceCheck" id="attendance-box" class="attendance-check" value="Restore Default">
+														<i class="fa fa-mail-reply blue"></i> Restore Default
+													</button>
+												</div>
 												<g:textArea name="attendance" value="${currentImod?.attendance}" rows="3" cols="30" title="${ message( code:'imod.courseOverview.attendance')}" />
                                             </div>
                                             <h3>
                                                 Class Participation
                                             </h3>
                                             <div>
-											<input type="button" class="restore-default" name="participationCheck" id="participation-box" class="attendance-check" value="Restore Default"/>
-
-												<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.classParticipation')}" />
+                                            	<div class="topicButtonGradient">
+                                            		<button type="button" class="restore-default" name="participationCheck" id="participation-box" class="attendance-check" value="Restore Default">
+                                            			<i class="fa fa-mail-reply blue"></i>
+                                            			Restore Default
+                                            		</button>
+                                        		</div>
+                                            	<g:textArea name="classParticipation" id="class-participation" value="${currentImod?.classParticipation}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.classParticipation')}" />
                                             </div>
                                             <h3>
                                                 Professional Conduct
                                             </h3>
                                             <div>
-												<input type="button" class="restore-default" name="professionalConductCheck" id="professional-conduct-box" class="attendance-check" value="Restore Default"/>
+                                            	<div class="topicButtonGradient">
+													<button type="button" class="restore-default" name="professionalConductCheck" id="professional-conduct-box" class="attendance-check" value="Restore Default">
+														<i class="fa fa-mail-reply blue"></i>
+                                            			Restore Default
+													</button>
+												</div>
                                                 <g:textArea name="professionalConduct" id="professional-conduct" value="${currentImod?.professionalConduct}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.professionalConduct')}" />
                                             </div>
                                             <h3>
                                                 Missed Exams/Make-up Exams
                                             </h3>
                                             <div>
-												<input type="button" class="restore-default" name="missedExamsCheck" id="missed-exams-box" class="attendance-check" value="Restore Default"/>
+                                            	<div class="topicButtonGradient">
+													<button type="button" class="restore-default" name="missedExamsCheck" id="missed-exams-box" class="attendance-check" value="Restore Default">
+														<i class="fa fa-mail-reply blue"></i>
+                                            			Restore Default
+													</button>
+												</div>
                                                 <g:textArea name="missedExams" id="missed-exams" value="${currentImod?.missedExams}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedExams')}" />
                                             </div>
                                             <h3>
                                                 Missed Assignments
                                             </h3>
                                             <div>
-												<input type="button" class="restore-default" name="missedAssignmentsCheck" id="missed-assignments-box" class="attendance-check" value="Restore Default"/>
+                                            	<div class="topicButtonGradient">
+													<button type="button" class="restore-default" name="missedAssignmentsCheck" id="missed-assignments-box" class="attendance-check" value="Restore Default">
+														<i class="fa fa-mail-reply blue"></i>
+                                            			Restore Default
+													</button>
+												</div>
                                                 <g:textArea name="missedAssignments" id="missed-assignments" value="${currentImod?.missedAssignments}" rows="2" cols="30" title="${ message( code:'imod.courseOverview.missedAssignments')}" />
                                             </div>
+                                            <br><br>
                                         </div>
                                     </div>
                                 </td>
@@ -337,11 +367,15 @@
                                                 <input type="hidden" name="imodID" value="221" id="imodID">
                                                 <fieldset class="buttons topicButtonField">
                                                     <span class="topicButtonGradient">
-                                                        <input type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
+                                                        <button type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
+                                                        	<i class="fa fa-user-plus green"></i> Add Instructor
+                                                        </button>
                                                     </span>
                                                     <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
                                                         <span class="remove-instructor topicButtonGradient">
-                                                            <input type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
+                                                            <button type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
+                                                            	<i class="fa fa-user-times red"></i> Remove Instructor
+                                                            </button>
                                                         </span>
                                                     </g:if>
                                                     <span id="errorMessage"></span>
