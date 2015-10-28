@@ -62,7 +62,7 @@
     border-radius: 5px;
 }
 
-.lo-d{
+.lo-d {
     height: 5em;
     min-height: 2em;
     padding-right: 0;
@@ -92,11 +92,13 @@
 
 .new-technique-popup-button {
     top: 0;
+
     height: 28px;
     padding: 0 10px;
-    border-radius: 3px;
+
     color: #ffffff;
     border: none;
+    border-radius: 3px;
     background: #0a1629;
     background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
 }
@@ -147,15 +149,13 @@
     background: #ededef;
 }
 
-#closeInstructionalPlan  {
+#closeInstructionalPlan {
     cursor: pointer;
+    vertical-align: middle;
 
-        vertical-align: middle;
+    font-size: 1em;
 
-        font-size: 1em;
-
-        size: 1em;
-
+    size: 1em;
 }
 
 #add-new-technique .td-label {
