@@ -277,18 +277,19 @@
 							</tr>-->
 							<tr>
 							<td class="td-label" width="40%">Learning Domain	</td>
-							<td width="60%"><g:select class="custom-dropdown" id="learning-domain" name="learningDomain" from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<td width="60%"><g:select class="custom-dropdown" id="learningDomain" name="learningDomain" from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select class="custom-dropdown" id="domain-category" name="domainCategory" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
+							<td width="60%"><g:select class="custom-dropdown" id="domainCategory" name="domainCategory" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
 							<td width="60%">
 								<button id="k1"> click me</button>
 							</td>
-							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="knowledge">
+							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
+							<input type="hidden" name="cloneDetect" id="cloneDetect" >
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Delivery Mode</td>
