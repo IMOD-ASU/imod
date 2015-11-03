@@ -31,6 +31,9 @@ class PedagogyTechniqueController {
 				learningDomain: LearningDomain.findById(PedagogyTechnique.get(id).learningDomain[0].id).toString(),
 				domainCategory: DomainCategory.findById(PedagogyTechnique.get(id).domainCategory[0].id).toString(),
 				knowledgeDimension:knowledgeDimensions,
+				activityFocus:PedagogyActivityFocus.findById(PedagogyTechnique.get(id).activityFocus[0].id).toString(),
+				pedagogyMode:(PedagogyTechnique.get(id).pedagogyMode).toString(),
+				pedagogyDuration:(PedagogyTechnique.get(id).pedagogyDuration).toString(),
 			] as JSON
 		)
 	}
@@ -52,9 +55,15 @@ class PedagogyTechniqueController {
 	def save(Long id, Long learningObjectiveID) {
 		def newTechnique = new PedagogyTechnique()
 
-		if (params.techniqueId) {
+		if (params.techniqueId && params.cloneDetect != 'clone') {
 			PedagogyTechnique.get(params.techniqueId)
 			PedagogyTechnique.get(params.techniqueId).knowledgeDimension.clear()
+			PedagogyTechnique.get(params.techniqueId).learningDomain.clear()
+			PedagogyTechnique.get(params.techniqueId).domainCategory.clear()
+			PedagogyTechnique.get(params.techniqueId).activityFocus.clear()
+
+
+
 		}
 
 
@@ -69,14 +78,18 @@ class PedagogyTechniqueController {
 
 		if (kD != null) {
 			for(int i=0; i < kD.length; i++) {
-				if (kD[i]!=null || kD[i] != "") {
+				
+				if (kD[i]!=null) {
+					println (kD[i])
 					newTechnique.addToKnowledgeDimension(
 					KnowledgeDimension.findByDescription(kD[i]))
 				}
-			}
+			
 		}
+	}
 
 		// Store relationships
+		newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration(params.pedagogyDuration)
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
@@ -190,7 +203,7 @@ class PedagogyTechniqueController {
 
 		// Store relationships
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
-
+		newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration(params.pedagogyDuration)
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)
@@ -241,4 +254,5 @@ class PedagogyTechniqueController {
 			]
 		)
 	}
+
 }

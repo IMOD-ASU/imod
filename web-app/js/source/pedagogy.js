@@ -118,11 +118,16 @@ function populatePedagogyTechnique (data) {
 	var currentTechnique = data.pedagogyTechnique;
 	var count;
 	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
+	var checked = '';
+	var cloneDetect = document.getElementById('cloneDetect').value;
 
-	$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
-	// Set the text fields
-	// Decided to remove location and strategy description fields.
-	$('#title').val(currentTechnique.title);
+	if (cloneDetect === 'clone') {
+		$('#editTitle').html('<b>Enter Alternate Name for Clone</b>');
+		$('#title').val('');
+	} else {
+		$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
+		$('#title').val(currentTechnique.title);
+	}
 	// $('#location').val(currentTechnique.location);
 	$('#duration').val(currentTechnique.direction);
 	$('#materials').val(currentTechnique.materials);
@@ -135,10 +140,17 @@ function populatePedagogyTechnique (data) {
 		}
 	}
 	// Choose correct item from selectables
-	$('#learning-domain option[value=' + data.learningDomain + ']').prop('selected', true);
-	populateDomainCategories(function () {
-		$('#domain-category option[value=' + data.domainCategory + ']').prop('selected', true);
+	$('#learningDomain option[value=' + data.learningDomain + ']').prop('selected', true);
+	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
+		if ($(this).is(':checked')) {
+			checked = checked + ($(this).val()) + ',';
+		}
 	});
+	document.getElementById('knowledgeDimension').value = checked;
+	$('#pedagogyFocus option[value=' + data.activityFocus + ']').prop('selected', true);
+	$('#pedagogyMode option[value=' + data.pedagogyMode + ']').prop('selected', true);
+	$('#pedagogyDuration option[value = "' + data.pedagogyDuration + '"]').prop('selected', true);
+	$('#domainCategory option[value= "' + data.domainCategory + '"]').attr('selected', 'selected');
 }
 function displayPedagogyInformationInEdit () {
 	'use strict';
@@ -191,7 +203,7 @@ function displayPedagogyTechniques (data) {
 
 		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
 		idealText += '<label class="pedagogy-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span></div></label>';
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i>Clone</button><span></span></div></label>';
 	}
 
 	// Take the titles and make html code to display
@@ -211,7 +223,7 @@ function displayPedagogyTechniques (data) {
 		extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
 		extendedText += '<label class="pedagogy-block" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
-					truncateString(currentTechnique.title, 100) + '</span></div></label>';
+					truncateString(currentTechnique.title, 100) + '</span><br><br><button  class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i>Clone</button><span></span></div></label>';
 	}
 
 	// Add html code to the page
@@ -533,6 +545,13 @@ $(document).ready(
 		$('#k1').click(openDimModal);
 		$('#knowDimFinished').click(closeDimModal);
 		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
+		$(document).on('click', '.clone', function () {
+			$('#add-new-technique').css('display', 'block');
+			$('#topicDialogBackground').css('display', 'block');
+			document.getElementById('cloneDetect').value = 'clone';
+			displayPedagogyInformationInEdit();
+		});
+
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
 		$('input[name=knowledgeDimension]').on('change',

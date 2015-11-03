@@ -14,6 +14,7 @@ class PedagogyTechnique {
 	String strategyDescription
 	String activityDescription
 	PedagogyMode pedagogyMode
+	PedagogyActivityDuration pedagogyDuration
 
 	static hasMany = [
 		activityFocus: PedagogyActivityFocus,
@@ -27,7 +28,8 @@ class PedagogyTechnique {
 	static belongsTo = [
 		ImodUser,
 		LearningObjective,
-		PedagogyMode
+		PedagogyMode,
+		PedagogyActivityDuration,
 	]
 
 	String toString() {
@@ -50,5 +52,6 @@ class PedagogyTechnique {
 		reference nullable: true
 		strategyDescription nullable: true
 		userFavorite nullable: true
+		pedagogyDuration nullable:true
     }
 }
