@@ -29,8 +29,8 @@
 		<g:external dir="css/source" file="pedagogy.css" />
 		<g:external dir="css/source" file="learningObjective.css" />
 		<g:external dir="css/source" file="iconModule.css" />
+		<g:external dir="bower_components/jquery.cookie" file="jquery.cookie.js" />
 		<g:javascript src="source/pedagogy.js" defer="defer" />
-		<g:javascript src="plugins/jquery.cookie.js" defer="defer" />
 	</head>
 
 	<body>
