@@ -352,27 +352,24 @@
 						<fieldset class="titleField draggable-handle">
 							<div id="editTitle">
 							 <span><b> Instructional Plan</b></span>
-							 <span id="closeInstructionalPlan" class="topicButtonGradient" style="float:right">
- 								<button ><i class="fa fa-times white"></i><button>
- 							</span>
+							 <div style="float:right">
+								<span id="printInstructionalPlan" class="topicButtonGradient" >
+									<button id="printInstructionalPlanButton">
+									<i class="fa fa-print white"></i>
+									Print
+									</button>
+								</span>
+								<span id="closeInstructionalPlan" class="topicButtonGradient" >
+									<button id="closeInstructionalPlanButton"><i class="fa fa-times white"></i></button>
+								</span>
 							</div>
-
+							</div>
 						</fieldset>
-						<!--<ul class="learning-objective">
-						    <table class="learning-objective" id="IPtable">-->
-							<div id="instruction-plan-accordion">
+						<div id="instruction-plan-accordion">
 							<g:if test="${learningObjectives}">
 								<g:each var="learningObjective" in="${learningObjectives}">
-								    <!--<tr>
-									<td width="5%"> <i class="fa fa-plus-circle blue"></i> </td>-->
-									<!--<li class="learning-objective list-item">
-										<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
-											<td class="lo-d" width="95%">${ learningObjective.definition }</td>
-										</g:link>-->
-										<h3 id="${learningObjective.id}">${ learningObjective.definition }</h3>
-										<div id="assignedTechniques-${learningObjective.id}"></div>
-									<!--</li>
-									</tr>-->
+										<h3 class="istructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
+										<div class="assignedTechniques" id="assignedTechniques-${learningObjective.id}"></div>
 								</g:each>
 							</g:if>
 							<g:else>
@@ -381,9 +378,7 @@
 									<g:render template="emptyStateTemplate" />
 								</div>
 							</g:else>
-							</div>
-						<!--</table>
-						</ul>-->
+						</div>
 					</div>
 				</td>
 			</tr>

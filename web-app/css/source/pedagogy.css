@@ -158,6 +158,10 @@
     size: 1em;
 }
 
+#closeInstructionalPlanButton{
+    cursor: pointer;
+}
+
 #add-new-technique .td-label {
     padding-top: 10px;
 
@@ -256,4 +260,7 @@
     background-image: none !important;
     background-repeat: none !important;
     background-position: none !important;
+}
+.istructional-plan-LO, .assignedTechniques{
+    text-align: left;
 }
