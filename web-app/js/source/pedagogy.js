@@ -24,6 +24,13 @@ function repopulateCheckboxes () {
 }
 function openInstructionalPlanModal () {
 	'use strict';
+	var instructionPlanBlock = $('#instruction-plan-accordion').find('.istructional-plan-LO');
+
+	instructionPlanBlock.each(function () {
+		var spanHTML = $(this).find('span').clone().wrap('<p>').parent().html();
+
+		$(this).html(spanHTML + truncateString($(this).text(), 80));
+	});
 	$('#instruction-plan').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
@@ -33,29 +40,40 @@ function populateInstructionalPlanTechniques () {
 	var data;
 	var index;
 	var assignedTechniques = '';
+	var headerText = '';
+	var spanHTML = '';
+	var accordionOpened = $('#instruction-plan-accordion').find('.ui-state-active').length;
 
+	headerText = $(this).text();
+
+	if (accordionOpened === 1) {
 	// Bundle the data into an object
-	data = {
-		learningObjectiveID: $(this).attr('id')
-	};
+		data = {
+			learningObjectiveID: $(this).attr('id')
+		};
 
-	// Send the data to the find matching techniques action in grails
-	// and process the response with the display pedagogy techniques callback
-	$.ajax({
-		url: '../findAssignedTechniques',
-		method: 'post',
-		data: JSON.stringify(data),
-		contentType: 'application/json'
-	}).done(function (data) {
-		if (data.LOPedagogyTechniques.length > 0) {
-			for (index = 0; index < data.LOPedagogyTechniques.length; index++) {
-				assignedTechniques += '<li>' + data.LOPedagogyTechniques[index] + '</li>';
+		$.ajax({
+			url: '../findAssignedTechniques',
+			method: 'post',
+			data: JSON.stringify(data),
+			contentType: 'application/json'
+		}).done(function (data) {
+			if (data.LOPedagogyTechniques.length > 0) {
+				for (index = 0; index < data.LOPedagogyTechniques.length; index++) {
+					assignedTechniques += '<li>' + data.LOPedagogyTechniques[index] + '</li>';
+				}
+				$('#assignedTechniques-' + data.currentLearningObjectiveID).html('<ul>' + assignedTechniques + '</ul>');
+			} else {
+				$('#assignedTechniques-' + data.currentLearningObjectiveID).html('No techniques are assigned to this Learning Objective');
 			}
-			$('#assignedTechniques-' + data.currentLearningObjective).html('<ul>' + assignedTechniques + '</ul>');
-		} else {
-			$('#assignedTechniques-' + data.currentLearningObjective).html('No techniques are assigned to this Learning Objective');
-		}
-	});
+			spanHTML = $('#' + data.currentLearningObjectiveID).find('span').clone().wrap('<p>').parent().html();
+
+			$('#' + data.currentLearningObjectiveID).html(spanHTML + data.currentLearningObjective);
+		});
+	} else {
+		spanHTML = $('#' + $(this).attr('id')).find('span').clone().wrap('<p>').parent().html();
+		$('#' + $(this).attr('id')).html(spanHTML + truncateString(headerText, 80));
+	}
 }
 function closeDimModal () {
 	'use strict';
@@ -139,6 +157,7 @@ function populatePedagogyTechnique (data) {
 			$('#' + arrayOfKnowledgeDimensions[count]).prop('checked', true);
 		}
 	}
+
 	// Choose correct item from selectables
 	$('#learningDomain option[value=' + data.learningDomain + ']').prop('selected', true);
 	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
@@ -574,14 +593,20 @@ $(document).ready(
 		});
 
 		// fetching checkboxes and making a cookie
-		$(':checkbox').on('change', function () {
+		$('input[name=knowledgeDimension],input[name=learningDomain],input[name=domainCategory]').on('change', function () {
 			var checkboxValues = {};
 
-			$(':checkbox').each(function () {
+			$('input[name=knowledgeDimension],input[name=learningDomain],input[name=domainCategory]').each(function () {
 				checkboxValues[this.id] = this.checked;
 			});
 			$.cookie('checkboxValues', checkboxValues, {expires: 1, path: '/'});
 		});
+
+		$('.learning-objective.list-item').on('click',
+			function () {
+				$.removeCookie('checkboxValues', {path: '/'});
+			}
+		);
 
 		$('#saveButton').on('click',
 		function () {

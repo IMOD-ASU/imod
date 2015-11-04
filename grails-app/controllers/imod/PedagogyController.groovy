@@ -37,7 +37,7 @@ class PedagogyController {
 		final content = currentLearningObjective.contents
 		def knowDimensionList = []
 		def dimension=[]
-		def hasLO = '0'
+		
 		if (content != null){
 			content.each(){
 				knowDimensionList.push(it.dimensions)
@@ -182,7 +182,8 @@ class PedagogyController {
 		render(
 				[
 					LOPedagogyTechniques: stringLOPedagogyTechniques,
-					currentLearningObjective: data.learningObjectiveID
+					currentLearningObjectiveID: data.learningObjectiveID,
+					currentLearningObjective: currentLearningObjective.toString()
 				] as JSON
 			  )
 	}
