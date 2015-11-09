@@ -778,6 +778,10 @@ th.desc a {
     font-size: 1.2em;
 }
 
+.topicButtonGradient.knowledgedimBtn {
+	padding: 5px; border: none;
+}
+
 .fa-graduation-cap {
     color: #de368f;
 }
