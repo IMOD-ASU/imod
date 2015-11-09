@@ -301,14 +301,15 @@
 			/>
 		</span>
 		<button
-		  class="save showHoverNew resourceButton"
+		  class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
 					id="knowDimFinished"
 					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
+					<i class="fa fa-save green"></i>
 					${message(code: 'Save Resource', default: ' Save')}
 		</button>
 		<button
-		  class="cancel showHoverNew resourceButton"
+		  class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
 					id="closeKnowDim"
 					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>

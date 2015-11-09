@@ -125,10 +125,11 @@
 			<g:img dir="images/content" file="knowDimNone.png" id="dimImage" width="71" height="71" />
 		</span>
 	</div>
-	<button id="knowDimFinished" type="button">
+	<button id="knowDimFinished" class="topicButtonGradient knowledgedimBtn" type="button">
+		<i class="fa fa-save green"></i>
 		Save
 	</button>
-	<button id="closeKnowDim" type="button">
+	<button id="closeKnowDim" class="topicButtonGradient knowledgedimBtn" type="button">
 	Close
 	</button>
 </div>

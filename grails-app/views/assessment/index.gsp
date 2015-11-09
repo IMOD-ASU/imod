@@ -154,10 +154,10 @@
 							<br>
 							<div class="pedagogy-nav-bar learning-objective creator">
 								<span>
-									<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+									<g:img class="pedagogy type-icon" id="performance-tab" dir="images" file="LO_assessment.png" alt="Performance"/>
 								</span>
 								<span>
-									<g:img id="performance-tab" dir="images" file="content.png" alt="Content"/>
+									<g:img id="performance-tab" dir="images" file="assessment-bar.png" alt="Content"/>
 								</span>
 							</div>
 
@@ -497,10 +497,11 @@
 					/>
 				</span>
 				<button
-				  class="save showHoverNew resourceButton"
+				  class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
 							id="knowDimFinished"
 							title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 				>
+							<i class="fa fa-save green"></i>
 							${message(code: 'Save Resource', default: 'Done')}
 				</button>
 
