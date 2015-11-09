@@ -354,10 +354,10 @@
 							 <span><b> Instructional Plan</b></span>
 							 <div style="float:right">
 								<span id="printInstructionalPlan" class="topicButtonGradient" >
-									<button id="printInstructionalPlanButton">
+									<a href="../instructionalPlan/${currentImod?.id}" target="_blank">
 									<i class="fa fa-print white"></i>
 									Print
-									</button>
+									</a>
 								</span>
 								<span id="closeInstructionalPlan" class="topicButtonGradient" >
 									<button id="closeInstructionalPlanButton"><i class="fa fa-times white"></i></button>
