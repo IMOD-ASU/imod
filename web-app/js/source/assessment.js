@@ -91,39 +91,67 @@ function openDimModal () {
 function populateAssessmentTechnique (data) {
 	'use strict';
 	var currentTechnique = data.assessmentTechnique;
+	var count;
+	var checked;
+	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
 
 	// Set the text fields
-	$('#title1').val(currentTechnique.title);
-	$('#title2').val(currentTechnique.title);
+	$('#title').val(currentTechnique.title);
+	// $('#title2').val(currentTechnique.title);
 
-	$('#description1').val(currentTechnique.description);
-	$('#description2').val(currentTechnique.description);
+	$('#description').val(currentTechnique.description);
+	// $('#description2').val(currentTechnique.description);
 
-	$('#procedure1').val(currentTechnique.procedure);
-	$('#procedure2').val(currentTechnique.procedure);
+	$('#procedure').val(currentTechnique.procedure);
+	// $('#procedure2').val(currentTechnique.procedure);
 
-	$('input[name=\'duration1\']').val(currentTechnique.duration);
-	$('input[name=\'duration2\']').val(currentTechnique.duration);
+	$('input[name=\'duration\']').val(currentTechnique.duration);
+	// $('input[name=\'duration2\']').val(currentTechnique.duration);
 
-	$('input[name=\'assessmentFeedback1\']').val(currentTechnique.assessmentFeedback);
+	$('#activityDescription').val(currentTechnique.description);
 
-	$('#domainCategory option[value=' + currentTechnique.domainCategory[0].id + ']').prop('selected', true);
+	$('#feedback-' + currentTechnique.assessmentFeedback.id).prop('selected', true);
 
-	$('.allInputs').hide();
+	$('#assessmentDifficulty option[value=' + currentTechnique.difficulty + ']').prop('selected', true);
+	$('#assessmentTime option[value=' + currentTechnique.whenToCarryOut + ']').prop('selected', true);
 
-	$('.allInputs1').replaceWith(function () {
-		return '<span class="allspans1"> :' + $(this).val() + '</span>';
+	$('#sources').val(currentTechnique.sources);
+
+	for (count = 0; count < arrayOfKnowledgeDimensions.length; count++) {
+		if (arrayOfKnowledgeDimensions[count] !== '') {
+			$('#' + arrayOfKnowledgeDimensions[count]).prop('checked', true);
+		}
+	}
+	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
+		if ($(this).is(':checked')) {
+			checked = checked + ($(this).val()) + ',';
+		}
 	});
+
+	$('#learning-domain option[value="' + data.learningDomain + '"]').prop('selected', true);
+	$('#domain-category option[value="' + data.domainCategory + '"]').prop('selected', true);
 
 	$('#View').hide();
 }
 
 function displayAssessmentInformationInEdit () {
 	'use strict';
-	$('#techniqueId1').val($('label.ui-state-active').attr('for'));
+	var res = '';
+
+	var str = $('label.ui-state-hover').attr('for');
+	var indexNo = str.indexOf('Extended');
+
+	if (indexNo > -1) {
+		res = str.substring(0, indexNo);
+	} else {
+		res = $('label.ui-state-hover').attr('for');
+	}
+
+	$('#techniqueId').val(res);
+
 
 	$.ajax({
-		url: '../../assessmentTechnique/display/' + $('label.ui-state-active').attr('for'),
+		url: '../../assessmentTechnique/display/' + res,
 		method: 'GET'
 	})
 	.done(populateAssessmentTechnique);
@@ -131,20 +159,25 @@ function displayAssessmentInformationInEdit () {
 
 function showAssessmentTechnique () {
 	'use strict';
-	$('#ideal-matches').buttonset().click(function () {
+	$('#ideal-matches label').click(function () {
+		$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
 		openNewAssessmentTechniqueModal();
-		// $('#display-new-technique').dialog('open');
 		displayAssessmentInformationInEdit();
+		return false;
 	});
 
-	$('#ideal-matches1').buttonset().click(function () {
+	$('#ideal-matches1 label').click(function () {
+		$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
 		openNewAssessmentTechniqueModal();
 		displayAssessmentInformationInEdit();
+		return false;
 	});
 
-	$('#extended-matches').click(function () {
+	$('#extended-matches label').click(function () {
+		$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
 		openNewAssessmentTechniqueModal();
 		displayAssessmentInformationInEdit();
+		return false;
 	});
 }
 
@@ -447,7 +480,11 @@ $('input[name=learningDomain]').on('change', filterAssessmentTechniques);
 $('input[name=domainCategory]').on('change', filterAssessmentTechniques);
 
 // When add new technique button is clicked open modal
-$('#new-technique-button').on('click', openNewAssessmentTechniqueModal);
+$('#new-technique-button').on('click', function () {
+	'use strict';
+	$('#editTitle').html('<strong>Add New Assessment Technique</strong>');
+	openNewAssessmentTechniqueModal();
+});
 
 // When add assessment  plan button is clicked open modal
 $('#assessment-plan-button').on('click', openAssessmentPlanModal);
@@ -631,7 +668,10 @@ $(document).ready(
 		});
 
 		// When add new technique button is clicked open modal
-		$('#add-new-technique-button').on('click', openNewAssessmentTechniqueModal);
+		$('#add-new-technique-button').on('click', function () {
+			$('#editTitle').html('<strong>Add New Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+		});
 
 		// When hovered over LO side-tab list, it displays full text as tool-tip
 		liArray = $('ul.learning-objective.list-wrapper').children('li');

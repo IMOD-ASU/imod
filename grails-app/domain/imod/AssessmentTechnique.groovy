@@ -9,6 +9,9 @@ class AssessmentTechnique {
 	String description
 	String procedure
 	String duration
+	String difficulty
+	String whenToCarryOut
+	String sources
 	Boolean assigncheck = Boolean.TRUE
 	Boolean favcheck = Boolean.TRUE
 	AssessmentFeedback assessmentFeedback
@@ -41,6 +44,8 @@ class AssessmentTechnique {
 		duration nullable: true, blank:true
 		userFavorite nullable: true
 		assessmentFeedback nullable:true
-
+		difficulty nullable:true, blank: true
+		whenToCarryOut nullable:true, blank: true
+		sources nullable:true, blank: true
     }
 }

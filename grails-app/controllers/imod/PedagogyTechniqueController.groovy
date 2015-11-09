@@ -55,15 +55,14 @@ class PedagogyTechniqueController {
 	def save(Long id, Long learningObjectiveID) {
 		def newTechnique = new PedagogyTechnique()
 
+		print params
+
 		if (params.techniqueId && params.cloneDetect != 'clone') {
 			PedagogyTechnique.get(params.techniqueId)
 			PedagogyTechnique.get(params.techniqueId).knowledgeDimension.clear()
 			PedagogyTechnique.get(params.techniqueId).learningDomain.clear()
 			PedagogyTechnique.get(params.techniqueId).domainCategory.clear()
 			PedagogyTechnique.get(params.techniqueId).activityFocus.clear()
-
-
-
 		}
 
 
@@ -78,15 +77,14 @@ class PedagogyTechniqueController {
 
 		if (kD != null) {
 			for(int i=0; i < kD.length; i++) {
-				
+
 				if (kD[i]!=null) {
-					println (kD[i])
 					newTechnique.addToKnowledgeDimension(
 					KnowledgeDimension.findByDescription(kD[i]))
 				}
-			
+
+			}
 		}
-	}
 
 		// Store relationships
 		newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration(params.pedagogyDuration)
