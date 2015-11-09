@@ -65,7 +65,6 @@ class AssessmentController {
 	 */
 	def findMatchingTechniques() {
 		final data = request.JSON
-		print data
 
 		// process strings to longs
 		def selectedKnowledgeDimensions = []
