@@ -264,3 +264,11 @@
 .istructional-plan-LO, .assignedTechniques{
     text-align: left;
 }
+#printInstructionalPlan{
+    font-size: 1em;
+    height: 2em !important;
+}
+#printInstructionalPlan a{
+    vertical-align: middle !important;
+    text-decoration: none;
+}

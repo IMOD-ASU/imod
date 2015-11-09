@@ -37,7 +37,7 @@ class PedagogyController {
 		final content = currentLearningObjective.contents
 		def knowDimensionList = []
 		def dimension=[]
-		
+
 		if (content != null){
 			content.each(){
 				knowDimensionList.push(it.dimensions)
@@ -186,5 +186,28 @@ class PedagogyController {
 					currentLearningObjective: currentLearningObjective.toString()
 				] as JSON
 			  )
+	}
+
+	/*print instructional plan*/
+	def instructionalPlan(Long id){
+		final currentImod = Imod.get(id)
+        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+		def arrayOfLOPedagogyTechniques = []
+		for (def learningObjective in learningObjectives) {
+			def currentLearningObjective = LearningObjective.findById(learningObjective.id)
+			final LOPedagogyTechniques = currentLearningObjective.pedagogyTechniques.title
+			def stringLOPedagogyTechniques = []
+
+			//Convert int to string
+			for (def LOPedagogyTechnique in LOPedagogyTechniques) {
+				stringLOPedagogyTechniques.add(LOPedagogyTechnique.toString())
+			}
+			arrayOfLOPedagogyTechniques.add(stringLOPedagogyTechniques)
+		}
+		
+		[
+			learningObjectives: learningObjectives,
+			arrayOfLOPedagogyTechniques: arrayOfLOPedagogyTechniques
+		]
 	}
 }
