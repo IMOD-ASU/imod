@@ -242,7 +242,7 @@
 					</g:else>
 
 					<%--Dialog box for Add New Technique --%>
-					<div id="add-new-technique" class="draggable" title="Add New Technique">
+					<div id="add-new-technique" class="draggable" title="Add New Technique" style="display:block">
 						<%--To render the add new Technique dialog box--%>
 						<fieldset class="titleField draggable-handle">
 							<div id="editTitle">
@@ -307,7 +307,7 @@
 							<tr>
 								<td class="td-label" width="40%">When To Carry Out</td>
 								<td width="60%">
-									<select class="custom-dropdown" name="assessmentDifficulty" from=	"${assessmentDifficulty}" optionKey="difficulty">
+									<select class="custom-dropdown" name="assessmentTime" from=	"${assessmentTime}" optionKey="assessmentTime">
 										<option>Pre</option>
 										<option>Mid</option>
 										<option>Post</option>

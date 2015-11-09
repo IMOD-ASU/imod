@@ -133,15 +133,20 @@ class AssessmentTechniqueController {
 	def save(Long id, Long learningObjectiveID) {
 		def newTechnique = new AssessmentTechnique()
 
+		print params
+
 		if (params.techniqueId) {
 			newTechnique = AssessmentTechnique.get(params.techniqueId)
 		}
 
 		// Store text fields
 		newTechnique.title = params.title
-		newTechnique.description = params.description
-		newTechnique.procedure = params.procedure
+		newTechnique.description = params.activityDescription
+		newTechnique.procedure = params.assessmentProcedure
 		newTechnique.duration= params.duration
+		newTechnique.difficulty = params.assessmentDifficulty
+		newTechnique.whenToCarryOut = params.assessmentTime
+		newTechnique.sources = params.sources
 		newTechnique.assigncheck = params.assignedToLearningObjective as boolean
 		newTechnique.favcheck = params.favoriteTechnique as boolean
 
@@ -153,9 +158,20 @@ class AssessmentTechniqueController {
 		newTechnique.addToDomainCategory(
 			DomainCategory.findByName(params.domainCategory)
 		)
-		newTechnique.addToKnowledgeDimension(
-			KnowledgeDimension.findByDescription(params.knowledgeDimension)
-		)
+
+		String[] kD = params.knowledgeDimension.split(",");
+
+		if (kD != null) {
+			for(int i=0; i < kD.length; i++) {
+
+				if (kD[i]!=null) {
+					newTechnique.addToKnowledgeDimension(
+					KnowledgeDimension.findByDescription(kD[i]))
+				}
+
+			}
+		}
+
 		newTechnique.addToLearningDomain(
 			LearningDomain.findByName(params.learningDomain)
 		)
