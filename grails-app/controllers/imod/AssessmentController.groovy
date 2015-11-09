@@ -126,7 +126,7 @@ class AssessmentController {
 		}
 
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
-		final favoriteTechniques = currentUser.favoriteTechnique.id
+		final favoriteTechniques = currentUser.favoriteAssessmentTechnique.id
 		def stringfavoriteTechniques = []
 		//Convert int to string
 		for (def favoriteTechnique in favoriteTechniques) {

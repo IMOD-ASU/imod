@@ -215,4 +215,67 @@ class AssessmentTechniqueController {
 			]
 		)
 	}
+
+	def assignFavorite(Long id){
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// add the technique to the users favorite list
+		currentUser.addToFavoriteAssessmentTechnique(AssessmentTechnique.get(id))
+
+		// store relationship
+		currentUser.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+	}
+
+	def unassignFavorite(Long id){
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// add the technique to the users favorite list
+		currentUser.removeFromFavoriteAssessmentTechnique(AssessmentTechnique.get(id))
+
+		// store relationship
+		currentUser.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+	}
+
+	def assignToLearningObjective(){
+		final data = request.JSON
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		// add the technique to the current learning objective
+		currentLearningObjective.addToAssessmentTechniques(AssessmentTechnique.get(data.assessmentTechniqueID.toLong()))
+
+		// store relationship
+		currentLearningObjective.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+	}
+
+	def unassignToLearningObjective(){
+		final data = request.JSON
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+
+		// add the technique to the current learning objective
+		currentLearningObjective.removeFromAssessmentTechniques(AssessmentTechnique.get(data.assessmentTechniqueID.toLong()))
+
+		// store relationship
+		currentLearningObjective.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+	}
 }
