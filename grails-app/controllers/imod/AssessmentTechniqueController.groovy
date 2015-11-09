@@ -20,7 +20,6 @@ class AssessmentTechniqueController {
 		final learningDomains = LearningDomain.list()
 		final assessmentFeedback = AssessmentFeedback.list()
 
-		println(assessmentTechInstance)
 		render (
 			[
 				assessmentTechInstance: assessmentTechInstance,
@@ -38,10 +37,15 @@ class AssessmentTechniqueController {
 	 */
 	def display(Long id) {
 		final assessmentTechInstance1 = AssessmentTechnique.findAllByAssigncheck(true)
-		println(assessmentTechInstance1.id+assessmentTechInstance1.title)
+
+		String [] knowledgedimensions = AssessmentTechnique.get(id).knowledgeDimension;
+
 		render (
 			[
-				assessmentTechnique: AssessmentTechnique.get(id)
+				assessmentTechnique: AssessmentTechnique.get(id),
+				learningDomain: LearningDomain.findById(AssessmentTechnique.get(id).learningDomain[0].id).toString(),
+				domainCategory: DomainCategory.findById(AssessmentTechnique.get(id).domainCategory[0].id).toString(),
+				knowledgeDimension:knowledgedimensions.join(",")
 			] as JSON
 		)
 	}
@@ -133,10 +137,9 @@ class AssessmentTechniqueController {
 	def save(Long id, Long learningObjectiveID) {
 		def newTechnique = new AssessmentTechnique()
 
-		print params
-
 		if (params.techniqueId) {
 			newTechnique = AssessmentTechnique.get(params.techniqueId)
+			newTechnique.knowledgeDimension.clear()
 		}
 
 		// Store text fields
