@@ -3,6 +3,7 @@ import grails.converters.JSON
 
 class AssessmentController {
 	def learningObjectiveService
+	def springSecurityService
 
 	static allowedMethods = [
 		index: 'GET',
@@ -64,6 +65,7 @@ class AssessmentController {
 	 */
 	def findMatchingTechniques() {
 		final data = request.JSON
+		print data
 
 		// process strings to longs
 		def selectedKnowledgeDimensions = []
@@ -123,10 +125,28 @@ class AssessmentController {
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
 
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		final favoriteTechniques = currentUser.favoriteTechnique.id
+		def stringfavoriteTechniques = []
+		//Convert int to string
+		for (def favoriteTechnique in favoriteTechniques) {
+			stringfavoriteTechniques.add(favoriteTechnique.toString())
+		}
+
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		final LOAssessmentTechniques = currentLearningObjective.assessmentTechniques.id
+		def stringLOAssessmentTechniques = []
+		//Convert int to string
+		for (def LOAssessmentTechnique in LOAssessmentTechniques) {
+			stringLOAssessmentTechniques.add(LOAssessmentTechnique.toString())
+		}
+
 		render(
 			[
 				idealAssessmentTechniqueMatch: idealAssessmentTechniqueMatch,
-				extendedAssessmentTechniqueMatch: extendedAssessmentTechniqueMatch
+				extendedAssessmentTechniqueMatch: extendedAssessmentTechniqueMatch,
+				favoriteTechniques: stringfavoriteTechniques,
+				LOAssessmentTechniques: stringLOAssessmentTechniques
 			] as JSON
 		)
 	}
