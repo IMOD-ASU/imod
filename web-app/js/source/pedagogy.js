@@ -90,6 +90,15 @@ function closeDimModal () {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
+function closeDimModalCancel () {
+	'use strict';
+
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
+
+	dialog.css('display', 'none');
+	background.css('display', 'none');
+}
 function changePic () {
 	'use strict';
 	var iconName = '';
@@ -136,6 +145,8 @@ function populatePedagogyTechnique (data) {
 	var currentTechnique = data.pedagogyTechnique;
 	var count;
 	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
+	var arrayOfLearningDomains = data.learningDomains.split(',');
+	var arrayOfDomainCategories = data.domainCategories.split(',');
 	var checked = '';
 	var cloneDetect = document.getElementById('cloneDetect').value;
 
@@ -157,9 +168,19 @@ function populatePedagogyTechnique (data) {
 			$('#' + arrayOfKnowledgeDimensions[count]).prop('checked', true);
 		}
 	}
+	for (count = 0; count < arrayOfLearningDomains.length; count++) {
+		if (arrayOfLearningDomains [count] !== '') {
+			$('#learningDomain option[value=' + arrayOfLearningDomains[count] + ']').attr('selected', 'selected');
+		}
+	}
+	for (count = 0; count < arrayOfDomainCategories.length; count++) {
+		if (arrayOfDomainCategories [count] !== '') {
+			$('#domainCategory option[value = ' + arrayOfDomainCategories[count] + ']').attr('selected', 'selected');
+		}
+	}
 
 	// Choose correct item from selectables
-	$('#learningDomain option[value=' + data.learningDomain + ']').prop('selected', true);
+	// $('#learningDomain option[value=' + data.learningDomain + ']').prop('selected', true);
 	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
 		if ($(this).is(':checked')) {
 			checked = checked + ($(this).val()) + ',';
@@ -563,6 +584,7 @@ $(document).ready(
 		});
 		$('#k1').click(openDimModal);
 		$('#knowDimFinished').click(closeDimModal);
+		$('#closeKnowDim').click(closeDimModalCancel);
 		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
 		$(document).on('click', '.clone', function () {
 			$('#add-new-technique').css('display', 'block');
@@ -610,10 +632,21 @@ $(document).ready(
 
 		$('#saveButton').on('click',
 		function () {
+			var tp = '';
+			var temp = '';
+
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
 				hasError = true;
 			} else {
+				$('#learningDomain :selected').each(function (identifier, selected) {
+					tp = tp + $(selected).text() + ',';
+				});
+				$('#domainCategory :selected').each(function (identifier, selected) {
+					temp = temp + $(selected).text() + ',';
+				});
+				document.getElementById('domainSelected').value = tp;
+				document.getElementById('domainCategorySelected').value = temp;
 				hasError = false;
 			}
 
