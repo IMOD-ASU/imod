@@ -24,3 +24,63 @@
 .message.banner {
     visibility: hidden;
 }
+
+#legendTable {
+	width: 100%;
+	margin: 0;
+	margin-bottom: 0px;
+}
+#legendTable thead tr:last-child {
+	width: 4em;
+	padding-right: 10px;
+}
+#legendTable tbody * {
+	vertical-align: middle;
+}
+
+#legendTable tbody img {
+	width: 20px;
+	height: 20px;
+	padding-right: 5px;
+}
+#legendTable tr {
+	border-top: 1px solid #c4c2c2;
+	border-bottom: 1px solid #c4c2c2;
+}
+
+#legendTable td {
+	padding: 5px;
+}
+
+#legend{
+	float: left;
+	height:auto;
+	width:13.5%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 1%;
+
+	border: 1px solid;
+}
+
+.legendFS{height:2em}
+
+#legendTitle{
+	font-weight: bold;
+	top:15%;
+	position: relative
+}
+
+#legendC{
+color:#CACCCE
+}
+
+#legendF{
+	color:#EC008B
+}
+#legendM{
+	color:#38B449
+}
+#legendP{
+	color:#2879BE
+}
