@@ -277,11 +277,15 @@
 							</tr>-->
 							<tr>
 							<td class="td-label" width="40%">Learning Domain	</td>
-							<td width="60%"><g:select class="custom-dropdown" id="learningDomain" name="learningDomain" from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<td width="60%"><g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<input type="hidden" name="domainSelected" id="domainSelected" >
+							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
+							
+
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select class="custom-dropdown" id="domainCategory" name="domainCategory" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
+							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
@@ -412,12 +416,18 @@
 			/>
 		</span>
 		<button
-		  class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+		  class="save showHoverNew resourceButton"
 					id="knowDimFinished"
 					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
-					<i class="fa fa-save green"></i>
-					${message(code: 'Save Resource', default: 'Done')}
+					${message(code: 'Save Resource', default: ' Save')}
+		</button>
+		<button
+		  class="cancel showHoverNew resourceButton"
+					id="closeKnowDim"
+					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+		>
+					${message(code: 'Cancel Resource', default: ' Cancel')}
 		</button>
 
 	</div>
