@@ -427,11 +427,12 @@ input[disabled='disabled'] {
     line-height: 1.5em;
 }
 .topicModalButtonGradient.addTopicModalWrap {
-	box-shadow: none;
+    box-shadow: none;
 }
 #addTopicModal {
-    font-weight: bold;
     height: 38px;
+
+    font-weight: bold;
 }
 
 #deleteTopicModal {
@@ -474,14 +475,14 @@ input[disabled='disabled'] {
 }
 #topicModalClose {
     float: none;
-    text-align: right;
 
     margin-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 0;
+
+    text-align: right;
 
     background: inherit;
-
-    padding-bottom: 0;
-    padding-top: 8px;
 }
 .modalBackground {
     position: fixed;
@@ -606,7 +607,7 @@ input[disabled='disabled'] {
     font-weight: bold;
 }
 .instructor-list th {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 #selectKnowledgeDimensionBackground {

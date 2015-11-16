@@ -154,10 +154,10 @@
 							<br>
 							<div class="pedagogy-nav-bar learning-objective creator">
 								<span>
-									<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-performance.png" alt="Performance"/>
+									<g:img class="pedagogy type-icon" id="performance-tab" dir="images" file="LO_assessment.png" alt="Performance"/>
 								</span>
 								<span>
-									<g:img id="performance-tab" dir="images" file="content.png" alt="Content"/>
+									<g:img id="performance-tab" dir="images" file="assessment-bar.png" alt="Content"/>
 								</span>
 							</div>
 
@@ -281,7 +281,7 @@
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Procedure</td>
-							<td width="60%"><g:textArea name="assessmentProcedure" rows="5" cols="30" /></td>
+							<td width="60%"><g:textArea id="procedure" name="assessmentProcedure" rows="5" cols="30" /></td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
@@ -297,26 +297,32 @@
 							<tr>
 							<td class="td-label" width="40%">Difficulty</td>
 							<td width="60%">
-								<select class="custom-dropdown" name="assessmentDifficulty" from="${assessmentDifficulty}" optionKey="difficulty">
-									<option>Low</option>
-									<option>Medium</option>
-									<option>High</option>
+								<select class="custom-dropdown" id="assessmentDifficulty" name="assessmentDifficulty" from="${assessmentDifficulty}" optionKey="difficulty">
+									<option value="Low">Low</option>
+									<option value="Medium">Medium</option>
+									<option value="High">High</option>
 								</select>
 							</td>
 							</tr>
 							<tr>
 								<td class="td-label" width="40%">When To Carry Out</td>
 								<td width="60%">
-									<select class="custom-dropdown" name="assessmentDifficulty" from=	"${assessmentDifficulty}" optionKey="difficulty">
-										<option>Pre</option>
-										<option>Mid</option>
-										<option>Post</option>
+									<select class="custom-dropdown" id="assessmentTime"  name="assessmentTime" from="${assessmentTime}" optionKey="assessmentTime" >
+										<option value="Pre">Pre</option>
+										<option value="Mid">Mid</option>
+										<option value="Post">Post</option>
 								</select>
 							</td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Feedback Mechanism</td>
-							<td width="60%"><g:select class="custom-dropdown" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name" /></td>
+							<td width="60%">
+								<select class="custom-dropdown" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name">
+									<g:each var="feedback" in="${assessmentFeedback}">
+										<option id="feedback-${feedback.id}" value="${feedback.name}">${feedback.name}</option>
+									</g:each>
+								</select>
+							</td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Sources</td>
@@ -497,10 +503,11 @@
 					/>
 				</span>
 				<button
-				  class="save showHoverNew resourceButton"
+				  class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
 							id="knowDimFinished"
 							title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 				>
+							<i class="fa fa-save green"></i>
 							${message(code: 'Save Resource', default: 'Done')}
 				</button>
 

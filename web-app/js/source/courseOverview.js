@@ -10,7 +10,7 @@ function isValidEmailAddress (emailAddress) {
 
 function isValidUrl (url) {
 	'use strict';
-	var pattern = /^[a-z0-9./?:@\-_=#]+\.([a-z0-9./?:@\-_=#])*$/i;
+	var pattern = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
 
 	return pattern.test(url);
 }
@@ -44,7 +44,7 @@ function instructorValidator () {
 					});
 				}
 			} else if ($(this).hasClass('web_page')) {
-				if (!isValidUrl($(this).val()) && ($(this).val() !== '')) {
+				if (!isValidUrl($(this).val())) {
 					errorList.push({
 						element: $(this),
 						message: 'Requires a valid webpage'

@@ -29,8 +29,8 @@
 		<g:external dir="css/source" file="pedagogy.css" />
 		<g:external dir="css/source" file="learningObjective.css" />
 		<g:external dir="css/source" file="iconModule.css" />
+		<g:external dir="bower_components/jquery.cookie" file="jquery.cookie.js" />
 		<g:javascript src="source/pedagogy.js" defer="defer" />
-		<g:javascript src="plugins/jquery.cookie.js" defer="defer" />
 	</head>
 
 	<body>
@@ -174,10 +174,10 @@
 							<br>
 							<div class="pedagogy-nav-bar learning-objective creator">
 								<span>
-									<g:img class="pedagogy type-icon" id="performance-tab" dir="images/learningObjectives" file="LO-content.png" alt="Content"/>
+									<g:img class="pedagogy type-icon" id="performance-tab" dir="images" file="LO_pedagogy.png" alt="Content"/>
 								</span>
 								<span>
-									<g:img id="performance-tab" dir="images" file="content.png" alt="Content"/>
+									<g:img id="performance-tab" dir="images" file="pedagogy-bar.png" alt="Content"/>
 								</span>
 							</div>
 
@@ -277,18 +277,23 @@
 							</tr>-->
 							<tr>
 							<td class="td-label" width="40%">Learning Domain	</td>
-							<td width="60%"><g:select class="custom-dropdown" id="learning-domain" name="learningDomain" from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<td width="60%"><g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<input type="hidden" name="domainSelected" id="domainSelected" >
+							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
+							
+
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select class="custom-dropdown" id="domain-category" name="domainCategory" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
+							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
 							<td width="60%">
 								<button id="k1"> click me</button>
 							</td>
-							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="knowledge">
+							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
+							<input type="hidden" name="cloneDetect" id="cloneDetect" >
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Delivery Mode</td>
@@ -351,27 +356,24 @@
 						<fieldset class="titleField draggable-handle">
 							<div id="editTitle">
 							 <span><b> Instructional Plan</b></span>
-							 <span id="closeInstructionalPlan" class="topicButtonGradient" style="float:right">
- 								<button ><i class="fa fa-times white"></i><button>
- 							</span>
+							 <div style="float:right">
+								<span id="printInstructionalPlan" class="topicButtonGradient" >
+									<a href="../instructionalPlan/${currentImod?.id}" target="_blank">
+									<i class="fa fa-print white"></i>
+									Print
+									</a>
+								</span>
+								<span id="closeInstructionalPlan" class="topicButtonGradient" >
+									<button id="closeInstructionalPlanButton"><i class="fa fa-times white"></i></button>
+								</span>
 							</div>
-
+							</div>
 						</fieldset>
-						<!--<ul class="learning-objective">
-						    <table class="learning-objective" id="IPtable">-->
-							<div id="instruction-plan-accordion">
+						<div id="instruction-plan-accordion">
 							<g:if test="${learningObjectives}">
 								<g:each var="learningObjective" in="${learningObjectives}">
-								    <!--<tr>
-									<td width="5%"> <i class="fa fa-plus-circle blue"></i> </td>-->
-									<!--<li class="learning-objective list-item">
-										<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
-											<td class="lo-d" width="95%">${ learningObjective.definition }</td>
-										</g:link>-->
-										<h3 id="${learningObjective.id}">${ learningObjective.definition }</h3>
-										<div id="assignedTechniques-${learningObjective.id}"></div>
-									<!--</li>
-									</tr>-->
+										<h3 class="istructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
+										<div class="assignedTechniques" id="assignedTechniques-${learningObjective.id}"></div>
 								</g:each>
 							</g:if>
 							<g:else>
@@ -380,9 +382,7 @@
 									<g:render template="emptyStateTemplate" />
 								</div>
 							</g:else>
-							</div>
-						<!--</table>
-						</ul>-->
+						</div>
 					</div>
 				</td>
 			</tr>
@@ -420,7 +420,14 @@
 					id="knowDimFinished"
 					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
-					${message(code: 'Save Resource', default: 'Done')}
+					${message(code: 'Save Resource', default: ' Save')}
+		</button>
+		<button
+		  class="cancel showHoverNew resourceButton"
+					id="closeKnowDim"
+					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+		>
+					${message(code: 'Cancel Resource', default: ' Cancel')}
 		</button>
 
 	</div>

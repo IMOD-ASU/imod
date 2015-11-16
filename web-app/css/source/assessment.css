@@ -1,3 +1,15 @@
+#topLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#topRight {
+    position: absolute;
+    top: 0;
+    left: 73px;
+}
+
 .favDiv {
     display: none;
     visibility: hidden;
@@ -93,15 +105,24 @@
     color: gold;
 }
 
+.ui-button-text .ui-button-text {
+	padding: 0;
+}
+
 .new-technique-popup-button {
     top: 0;
+
     height: 28px;
     padding: 0 10px;
-    border-radius: 3px;
+
     color: #ffffff;
     border: none;
+    border-radius: 3px;
     background: #0a1629;
     background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
+}
+.new-technique-popup-button.clone {
+	width: 80px;
 }
 #ideal-matches1 {
     height: 300px;

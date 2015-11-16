@@ -16,11 +16,22 @@ class PedagogyTechniqueController {
 	 */
 	def get(Long id) {
 		String [] knowledgedimensions = PedagogyTechnique.get(id).knowledgeDimension;
+		String [] learningdomains = PedagogyTechnique.get(id).learningDomain;
+		String [] domaincategories = PedagogyTechnique.get(id).domainCategory;
+
 		String  knowledgeDimensions="";
+		String  learningDomains="";
+		String  domainCategories="";
 
 
 		for(int i = 0; i< knowledgedimensions.size(); i++) {
 			knowledgeDimensions=knowledgeDimensions+knowledgedimensions[i]+",";
+		}
+		for(int i = 0; i< learningdomains.size(); i++) {
+			learningDomains=learningDomains+learningdomains[i]+",";
+		}
+		for(int i = 0; i< domaincategories.size(); i++) {
+			domainCategories=domainCategories+domaincategories[i]+",";
 		}
 
 		// add some stuff if (KnowledgeDimension.findById(PedagogyTechnique.get(id).knowledgeDimension[i].id).toString()!=null)
@@ -31,6 +42,11 @@ class PedagogyTechniqueController {
 				learningDomain: LearningDomain.findById(PedagogyTechnique.get(id).learningDomain[0].id).toString(),
 				domainCategory: DomainCategory.findById(PedagogyTechnique.get(id).domainCategory[0].id).toString(),
 				knowledgeDimension:knowledgeDimensions,
+				learningDomains : learningDomains,
+				domainCategories : domainCategories,
+				activityFocus:PedagogyActivityFocus.findById(PedagogyTechnique.get(id).activityFocus[0].id).toString(),
+				pedagogyMode:(PedagogyTechnique.get(id).pedagogyMode).toString(),
+				pedagogyDuration:(PedagogyTechnique.get(id).pedagogyDuration).toString(),
 			] as JSON
 		)
 	}
@@ -52,9 +68,17 @@ class PedagogyTechniqueController {
 	def save(Long id, Long learningObjectiveID) {
 		def newTechnique = new PedagogyTechnique()
 
-		if (params.techniqueId) {
+		print params
+
+		if (params.techniqueId && params.cloneDetect != 'clone') {
 			PedagogyTechnique.get(params.techniqueId)
 			PedagogyTechnique.get(params.techniqueId).knowledgeDimension.clear()
+			PedagogyTechnique.get(params.techniqueId).learningDomain.clear()
+			PedagogyTechnique.get(params.techniqueId).domainCategory.clear()
+			PedagogyTechnique.get(params.techniqueId).activityFocus.clear()
+
+
+
 		}
 
 
@@ -66,27 +90,54 @@ class PedagogyTechniqueController {
 		newTechnique.reference = params.reference
 		newTechnique.activityDescription = params.activityDescription
 		String[] kD = params.knowledgeDimension.split(",");
+		String[] lD = params.domainSelected.split(",");
+		String[] dC = params.domainCategorySelected.split(",");
 
 		if (kD != null) {
 			for(int i=0; i < kD.length; i++) {
-				if (kD[i]!=null || kD[i] != "") {
+				
+				if (kD[i]!=null) {
+					println (kD[i])
 					newTechnique.addToKnowledgeDimension(
 					KnowledgeDimension.findByDescription(kD[i]))
 				}
-			}
+			
 		}
+	}
+
+	if (lD != null) {
+			for(int i=0; i < lD.length; i++) {
+				
+				if (lD[i]!=null) {
+					println (lD[i])
+					newTechnique.addToLearningDomain(LearningDomain.findByName(lD[i]))
+				}
+			
+		}
+	}
+
+	if (dC != null) {
+			for(int i=0; i < dC.length; i++) {
+				
+				if (dC[i]!=null) {
+					println (dC[i])
+					if (DomainCategory.findByName(dC[i])!= null)
+					{
+					newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
+					}
+				}
+			
+		}
+	}
 
 		// Store relationships
+		newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration(params.pedagogyDuration)
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)
-		newTechnique.addToDomainCategory(
-			DomainCategory.findByName(params.domainCategory)
-		)
-		newTechnique.addToLearningDomain(
-			LearningDomain.findByName(params.learningDomain)
-		)
+		
+		//newTechnique.addToDomainCategory(DomainCategory.findByName(params.domainCategory))
 		newTechnique.addToActivityFocus(
 			PedagogyActivityFocus.findByFocus(params.pedagogyFocus)
 		)
@@ -167,78 +218,6 @@ class PedagogyTechniqueController {
         )
 	}
 
-	def clone(Long id, Long learningObjectiveID) {
-		def newTechnique = new PedagogyTechnique()
+	
 
-		if (params.techniqueId) {
-			String [] knowledgedimensions = PedagogyTechnique.get(params.techniqueId).knowledgeDimension;
-			for(int i = 0; i < knowledgedimensions.size(); i++) {
-				newTechnique.addToKnowledgeDimension(
-		  		KnowledgeDimension.findByDescription(knowledgedimensions[i]))
-			}
-		}
-
-		// Store text fields
-		newTechnique.title = params.title
-		newTechnique.description = params.activityDescription
-		newTechnique.direction = params.duration
-		newTechnique.materials = params.materials
-		newTechnique.reference = params.reference
-		newTechnique.activityDescription = params.activityDescription
-
-		String[] kD = params.knowledgeDimension.split(",");
-
-		// Store relationships
-		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
-
-		newTechnique.addToAssignedLearningObjective(
-			LearningObjective.get(learningObjectiveID)
-		)
-		newTechnique.addToDomainCategory(
-			DomainCategory.findByName(params.domainCategory)
-		)
-		//newTechnique.addToKnowledgeDimension(
-			//KnowledgeDimension.findByDescription(params.knowledgeDimension)
-		//)
-		newTechnique.addToLearningDomain(
-			LearningDomain.findByName(params.learningDomain)
-		)
-		newTechnique.addToActivityFocus(
-			PedagogyActivityFocus.findByFocus(params.pedagogyFocus)
-		)
-
-		// persist new technique to database
-		newTechnique.save()
-
-		if (params.assignedToLearningObjective != null) {
-			// get current user object
-			def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
-
-			// add the technique to the user's favorite list
-			currentLearningObjective.addToPedagogyTechniques(newTechnique)
-
-			// store relationship
-			currentLearningObjective.save()
-		}
-
-		if (params.favoriteTechnique != null) {
-			// get current user object
-			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
-
-			// add the technique to the user's favorite list
-			currentUser.addToFavoriteTechnique(newTechnique)
-
-			// store relationship
-			currentUser.save()
-		}
-
-		redirect(
-			controller: 'pedagogy',
-			action: 'index',
-			id: id,
-			params: [
-				learningObjectiveID: learningObjectiveID
-			]
-		)
-	}
 }

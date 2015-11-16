@@ -20,7 +20,6 @@ class AssessmentTechniqueController {
 		final learningDomains = LearningDomain.list()
 		final assessmentFeedback = AssessmentFeedback.list()
 
-		println(assessmentTechInstance)
 		render (
 			[
 				assessmentTechInstance: assessmentTechInstance,
@@ -38,10 +37,15 @@ class AssessmentTechniqueController {
 	 */
 	def display(Long id) {
 		final assessmentTechInstance1 = AssessmentTechnique.findAllByAssigncheck(true)
-		println(assessmentTechInstance1.id+assessmentTechInstance1.title)
+
+		String [] knowledgedimensions = AssessmentTechnique.get(id).knowledgeDimension;
+
 		render (
 			[
-				assessmentTechnique: AssessmentTechnique.get(id)
+				assessmentTechnique: AssessmentTechnique.get(id),
+				learningDomain: LearningDomain.findById(AssessmentTechnique.get(id).learningDomain[0].id).toString(),
+				domainCategory: DomainCategory.findById(AssessmentTechnique.get(id).domainCategory[0].id).toString(),
+				knowledgeDimension:knowledgedimensions.join(",")
 			] as JSON
 		)
 	}
@@ -135,13 +139,17 @@ class AssessmentTechniqueController {
 
 		if (params.techniqueId) {
 			newTechnique = AssessmentTechnique.get(params.techniqueId)
+			newTechnique.knowledgeDimension.clear()
 		}
 
 		// Store text fields
 		newTechnique.title = params.title
-		newTechnique.description = params.description
-		newTechnique.procedure = params.procedure
+		newTechnique.description = params.activityDescription
+		newTechnique.procedure = params.assessmentProcedure
 		newTechnique.duration= params.duration
+		newTechnique.difficulty = params.assessmentDifficulty
+		newTechnique.whenToCarryOut = params.assessmentTime
+		newTechnique.sources = params.sources
 		newTechnique.assigncheck = params.assignedToLearningObjective as boolean
 		newTechnique.favcheck = params.favoriteTechnique as boolean
 
@@ -153,9 +161,20 @@ class AssessmentTechniqueController {
 		newTechnique.addToDomainCategory(
 			DomainCategory.findByName(params.domainCategory)
 		)
-		newTechnique.addToKnowledgeDimension(
-			KnowledgeDimension.findByDescription(params.knowledgeDimension)
-		)
+
+		String[] kD = params.knowledgeDimension.split(",");
+
+		if (kD != null) {
+			for(int i=0; i < kD.length; i++) {
+
+				if (kD[i]!=null) {
+					newTechnique.addToKnowledgeDimension(
+					KnowledgeDimension.findByDescription(kD[i]))
+				}
+
+			}
+		}
+
 		newTechnique.addToLearningDomain(
 			LearningDomain.findByName(params.learningDomain)
 		)
@@ -195,5 +214,68 @@ class AssessmentTechniqueController {
 				learningObjectiveID: learningObjectiveID
 			]
 		)
+	}
+
+	def assignFavorite(Long id){
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// add the technique to the users favorite list
+		currentUser.addToFavoriteAssessmentTechnique(AssessmentTechnique.get(id))
+
+		// store relationship
+		currentUser.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+	}
+
+	def unassignFavorite(Long id){
+		// get current user object
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// add the technique to the users favorite list
+		currentUser.removeFromFavoriteAssessmentTechnique(AssessmentTechnique.get(id))
+
+		// store relationship
+		currentUser.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+	}
+
+	def assignToLearningObjective(){
+		final data = request.JSON
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		// add the technique to the current learning objective
+		currentLearningObjective.addToAssessmentTechniques(AssessmentTechnique.get(data.assessmentTechniqueID.toLong()))
+
+		// store relationship
+		currentLearningObjective.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
+	}
+
+	def unassignToLearningObjective(){
+		final data = request.JSON
+		// get current user object
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+
+		// add the technique to the current learning objective
+		currentLearningObjective.removeFromAssessmentTechniques(AssessmentTechnique.get(data.assessmentTechniqueID.toLong()))
+
+		// store relationship
+		currentLearningObjective.save()
+		render (
+            [
+                value: 'success'
+            ] as JSON
+        )
 	}
 }

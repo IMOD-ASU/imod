@@ -24,6 +24,13 @@ function repopulateCheckboxes () {
 }
 function openInstructionalPlanModal () {
 	'use strict';
+	var instructionPlanBlock = $('#instruction-plan-accordion').find('.istructional-plan-LO');
+
+	instructionPlanBlock.each(function () {
+		var spanHTML = $(this).find('span').clone().wrap('<p>').parent().html();
+
+		$(this).html(spanHTML + truncateString($(this).text(), 80));
+	});
 	$('#instruction-plan').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
@@ -33,29 +40,40 @@ function populateInstructionalPlanTechniques () {
 	var data;
 	var index;
 	var assignedTechniques = '';
+	var headerText = '';
+	var spanHTML = '';
+	var accordionOpened = $('#instruction-plan-accordion').find('.ui-state-active').length;
 
+	headerText = $(this).text();
+
+	if (accordionOpened === 1) {
 	// Bundle the data into an object
-	data = {
-		learningObjectiveID: $(this).attr('id')
-	};
+		data = {
+			learningObjectiveID: $(this).attr('id')
+		};
 
-	// Send the data to the find matching techniques action in grails
-	// and process the response with the display pedagogy techniques callback
-	$.ajax({
-		url: '../findAssignedTechniques',
-		method: 'post',
-		data: JSON.stringify(data),
-		contentType: 'application/json'
-	}).done(function (data) {
-		if (data.LOPedagogyTechniques.length > 0) {
-			for (index = 0; index < data.LOPedagogyTechniques.length; index++) {
-				assignedTechniques += '<li>' + data.LOPedagogyTechniques[index] + '</li>';
+		$.ajax({
+			url: '../findAssignedTechniques',
+			method: 'post',
+			data: JSON.stringify(data),
+			contentType: 'application/json'
+		}).done(function (data) {
+			if (data.LOPedagogyTechniques.length > 0) {
+				for (index = 0; index < data.LOPedagogyTechniques.length; index++) {
+					assignedTechniques += '<li>' + data.LOPedagogyTechniques[index] + '</li>';
+				}
+				$('#assignedTechniques-' + data.currentLearningObjectiveID).html('<ul>' + assignedTechniques + '</ul>');
+			} else {
+				$('#assignedTechniques-' + data.currentLearningObjectiveID).html('No techniques are assigned to this Learning Objective');
 			}
-			$('#assignedTechniques-' + data.currentLearningObjective).html('<ul>' + assignedTechniques + '</ul>');
-		} else {
-			$('#assignedTechniques-' + data.currentLearningObjective).html('No techniques are assigned to this Learning Objective');
-		}
-	});
+			spanHTML = $('#' + data.currentLearningObjectiveID).find('span').clone().wrap('<p>').parent().html();
+
+			$('#' + data.currentLearningObjectiveID).html(spanHTML + data.currentLearningObjective);
+		});
+	} else {
+		spanHTML = $('#' + $(this).attr('id')).find('span').clone().wrap('<p>').parent().html();
+		$('#' + $(this).attr('id')).html(spanHTML + truncateString(headerText, 80));
+	}
 }
 function closeDimModal () {
 	'use strict';
@@ -69,6 +87,15 @@ function closeDimModal () {
 		}
 	});
 	document.getElementById('knowledgeDimension').value = checked;
+	dialog.css('display', 'none');
+	background.css('display', 'none');
+}
+function closeDimModalCancel () {
+	'use strict';
+
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
+
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
@@ -118,11 +145,18 @@ function populatePedagogyTechnique (data) {
 	var currentTechnique = data.pedagogyTechnique;
 	var count;
 	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
+	var arrayOfLearningDomains = data.learningDomains.split(',');
+	var arrayOfDomainCategories = data.domainCategories.split(',');
+	var checked = '';
+	var cloneDetect = document.getElementById('cloneDetect').value;
 
-	$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
-	// Set the text fields
-	// Decided to remove location and strategy description fields.
-	$('#title').val(currentTechnique.title);
+	if (cloneDetect === 'clone') {
+		$('#editTitle').html('<b>Enter Alternate Name for Clone</b>');
+		$('#title').val('');
+	} else {
+		$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
+		$('#title').val(currentTechnique.title);
+	}
 	// $('#location').val(currentTechnique.location);
 	$('#duration').val(currentTechnique.direction);
 	$('#materials').val(currentTechnique.materials);
@@ -134,11 +168,29 @@ function populatePedagogyTechnique (data) {
 			$('#' + arrayOfKnowledgeDimensions[count]).prop('checked', true);
 		}
 	}
+	for (count = 0; count < arrayOfLearningDomains.length; count++) {
+		if (arrayOfLearningDomains [count] !== '') {
+			$('#learningDomain option[value=' + arrayOfLearningDomains[count] + ']').attr('selected', 'selected');
+		}
+	}
+	for (count = 0; count < arrayOfDomainCategories.length; count++) {
+		if (arrayOfDomainCategories [count] !== '') {
+			$('#domainCategory option[value = ' + arrayOfDomainCategories[count] + ']').attr('selected', 'selected');
+		}
+	}
+
 	// Choose correct item from selectables
-	$('#learning-domain option[value=' + data.learningDomain + ']').prop('selected', true);
-	populateDomainCategories(function () {
-		$('#domain-category option[value=' + data.domainCategory + ']').prop('selected', true);
+	// $('#learningDomain option[value=' + data.learningDomain + ']').prop('selected', true);
+	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
+		if ($(this).is(':checked')) {
+			checked = checked + ($(this).val()) + ',';
+		}
 	});
+	document.getElementById('knowledgeDimension').value = checked;
+	$('#pedagogyFocus option[value=' + data.activityFocus + ']').prop('selected', true);
+	$('#pedagogyMode option[value=' + data.pedagogyMode + ']').prop('selected', true);
+	$('#pedagogyDuration option[value = "' + data.pedagogyDuration + '"]').prop('selected', true);
+	$('#domainCategory option[value= "' + data.domainCategory + '"]').attr('selected', 'selected');
 }
 function displayPedagogyInformationInEdit () {
 	'use strict';
@@ -191,7 +243,7 @@ function displayPedagogyTechniques (data) {
 
 		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
 		idealText += '<label class="pedagogy-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span></div></label>';
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
 	// Take the titles and make html code to display
@@ -211,7 +263,7 @@ function displayPedagogyTechniques (data) {
 		extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
 		extendedText += '<label class="pedagogy-block" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
-					truncateString(currentTechnique.title, 100) + '</span></div></label>';
+					truncateString(currentTechnique.title, 100) + '</span><br><br><button  class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
 	// Add html code to the page
@@ -532,7 +584,15 @@ $(document).ready(
 		});
 		$('#k1').click(openDimModal);
 		$('#knowDimFinished').click(closeDimModal);
+		$('#closeKnowDim').click(closeDimModalCancel);
 		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
+		$(document).on('click', '.clone', function () {
+			$('#add-new-technique').css('display', 'block');
+			$('#topicDialogBackground').css('display', 'block');
+			document.getElementById('cloneDetect').value = 'clone';
+			displayPedagogyInformationInEdit();
+		});
+
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
 		$('input[name=knowledgeDimension]').on('change',
@@ -555,21 +615,38 @@ $(document).ready(
 		});
 
 		// fetching checkboxes and making a cookie
-		$(':checkbox').on('change', function () {
+		$('input[name=knowledgeDimension],input[name=learningDomain],input[name=domainCategory]').on('change', function () {
 			var checkboxValues = {};
 
-			$(':checkbox').each(function () {
+			$('input[name=knowledgeDimension],input[name=learningDomain],input[name=domainCategory]').each(function () {
 				checkboxValues[this.id] = this.checked;
 			});
 			$.cookie('checkboxValues', checkboxValues, {expires: 1, path: '/'});
 		});
 
+		$('.learning-objective.list-item').on('click',
+			function () {
+				$.removeCookie('checkboxValues', {path: '/'});
+			}
+		);
+
 		$('#saveButton').on('click',
 		function () {
+			var tp = '';
+			var temp = '';
+
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
 				hasError = true;
 			} else {
+				$('#learningDomain :selected').each(function (identifier, selected) {
+					tp = tp + $(selected).text() + ',';
+				});
+				$('#domainCategory :selected').each(function (identifier, selected) {
+					temp = temp + $(selected).text() + ',';
+				});
+				document.getElementById('domainSelected').value = tp;
+				document.getElementById('domainCategorySelected').value = temp;
 				hasError = false;
 			}
 

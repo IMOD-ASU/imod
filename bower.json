@@ -17,6 +17,7 @@
     "log": "0.3.0",
     "qtip2": "2.2.1",
     "ubuntu-fontface": "0.1.9",
-    "jquery-sortable": "0.9.13"
+    "jquery-sortable": "0.9.13",
+    "jquery.cookie": "jquery-cookie#~1.4.1"
   }
 }
