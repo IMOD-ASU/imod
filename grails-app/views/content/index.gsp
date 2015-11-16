@@ -7,6 +7,7 @@
 			Content
 		</title>
 
+
 		<g:external dir="css/source" file="learningObjective.css" />
 		<g:external dir="css/source" file="content.css" />
 
@@ -58,7 +59,26 @@
 			</button>
 		</span>
 	</fieldset>
+	<div id="legend">
+		<fieldset class="button topicButtonField legendFS">
+			<span id="legendTitle">Legend :</span>
+		</fieldset>
+
+		<table id="legendTable">
+		<thead></thead>
+		<tbody>
+		<tr><td id="legendC"><img src="/imod/images/content/knowDimC.png" />Conceptual</td></tr>
+		<tr ><td id="legendF"><img src="/imod/images/content/knowDimF.png" />Factual</td></tr>
+		<tr><td id="legendM"><img src="/imod/images/content/knowDimM.png" />Metacognitive</td></tr>
+		<tr><td id="legendP"><img src="/imod/images/content/knowDimP.png" />Procedural</td></tr>
+
+		</tbody>
+		</table>
+
+	</div>
 	<div id="contentTable">
+
+
 		<fieldset class="buttons topicButtonField">
 			<span class="topicButtonGradient">
 				<button
@@ -84,6 +104,7 @@
 			</span>
 			<span id="errorMessage" class="globalErrorMessage"></span>
 		</fieldset>
+
 		<table id="topicList">
 			<thead>
 				<tr>
@@ -118,16 +139,19 @@
 						</td>
 						<td class="show-hover-new topicDimensions">
 							<span>
+
 								<g:img
 									dir="images/content"
 									file="knowDim${contentItem.dimensions.sort(){it.value}.collect(){it.toString().charAt(0)}.join()?:'None'}.png"
+									title="${contentItem.dimensions.join(',')}"
 								/>
 								<button
-									class="knowledgeDimensionButton show-hover-new"
-									title="${ message( code:'imod.content.knowledgeDimension' ) }"
+									class="knowledgeDimensionButton "
+
 									value="${contentItem.dimensions.join(',')}"
 									type="button"
 									id="knowDimensionList${contentItem.id }"
+									title="${ message( code:'imod.content.knowledgeDimension' ) }"
 								>
 									Knowledge Dimensions
 								</button>
@@ -198,14 +222,17 @@
 									<g:img
 										dir="images/content"
 										file="knowDim${contentItem.dimensions.sort(){it.value}.collect(){it.toString().charAt(0)}.join()?:'None'}.png"
+										title="${contentItem.dimensions.join(',')}"
 									/>
 									<button
 										class="knowledgeDimensionButton"
 										value="${contentItem.dimensions.join(',')}"
 										type="button"
 										id="knowDimensionList${contentItem.id }"
+										title="${ message( code:'imod.content.knowledgeDimension' ) }"
+
 									>
-										Knowledge Dimensions
+										Knowledge Dimensionsaa
 									</button>
 									<input type="hidden"
 										id="knowDimensionListSaved${contentItem.id }"
