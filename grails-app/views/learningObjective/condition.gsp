@@ -15,7 +15,7 @@
 					<i class="fa fa-save green"></i> Save
 				</button>
 				<g:hiddenField name="id" value="${currentImod.id}" id="current-imod-d" />
-				<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
+				<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective?.id}" id="learning-objective-id" />
 				<g:hiddenField name="pageType" value="condition" id="page-type" />
 			</fieldset>
 			<div class="learning-objective condition radio-form">
