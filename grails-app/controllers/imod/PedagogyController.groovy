@@ -31,10 +31,11 @@ class PedagogyController {
 		final pedagogyModes = PedagogyMode.list()
 		final pedagogyFocuses = PedagogyActivityFocus.list()
 		final pedagogyDuration = PedagogyActivityDuration.list()
-		final selectedActionWordCategory = currentLearningObjective.actionWordCategory
+
+		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
-		final content = currentLearningObjective.contents
+		final content = currentLearningObjective?.contents
 		def knowDimensionList = []
 		def dimension=[]
 
@@ -146,7 +147,7 @@ class PedagogyController {
 		}
 
 		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
-		final LOPedagogyTechniques = currentLearningObjective.pedagogyTechniques.id
+		final LOPedagogyTechniques = currentLearningObjective?.pedagogyTechniques.id
 		def stringLOPedagogyTechniques = []
 		//Convert int to string
 		for (def LOPedagogyTechnique in LOPedagogyTechniques) {
@@ -204,7 +205,7 @@ class PedagogyController {
 			}
 			arrayOfLOPedagogyTechniques.add(stringLOPedagogyTechniques)
 		}
-		
+
 		[
 			learningObjectives: learningObjectives,
 			arrayOfLOPedagogyTechniques: arrayOfLOPedagogyTechniques

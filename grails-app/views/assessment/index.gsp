@@ -49,7 +49,7 @@
 						<ul class="learning-objective list-wrapper">
 							<g:if test="${learningObjectives}">
 								<g:each var="learningObjective" in="${learningObjectives}">
-									<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
+									<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective?.id) ? 'active' : ''  }">
 										<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
 											${ learningObjective.definition }
 										</g:link>
@@ -251,9 +251,9 @@
 							<span id="errorMessage" style="color:red"></span>
 						</fieldset>
 
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
-							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective.id}"/>
+							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
 							<tr>
 							<td class="td-label" width="40%">Title</td>
@@ -348,7 +348,7 @@
 					<%--Dialog box for Displaying in edit and View mode Technique --%>
 					<div id="display-new-technique" title="Display Technique">
 						<%--To render the add new Technique dialog box--%>
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<span class="editviewButtons">
 								<label >
 									Assign
@@ -443,7 +443,7 @@
 
 					<%--Dialog box for Assessement Plans--%>
 					<div id="assessment-plan" >
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<label>
 								<h2>
 									Learning Objective

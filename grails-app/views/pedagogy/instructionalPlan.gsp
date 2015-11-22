@@ -8,7 +8,7 @@
         <title>
             Print Instructional Plan
         </title>
-        <g:external dir="css/source" file="syllabus.css" media="screen, print"/>
+        <g:external dir="css/source" file="instructionalPlan.css" media="screen, print"/>
         <g:external dir="bower_components/jquery/dist" file="jquery.min.js" />
         <g:external dir="bower_components/jquery.ui/ui" file="core.js" />
         <g:external dir="bower_components/jquery.ui/ui" file="widget.js" />
@@ -49,7 +49,6 @@
                 <g:else>
                     <div class="no-objective-defined">
                         There are no objectives defined
-                        <g:render template="emptyStateTemplate" />
                     </div>
                 </g:else>
             </div>
