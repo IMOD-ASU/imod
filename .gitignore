@@ -52,3 +52,11 @@ web-app/development-bundle/**
 *.class
 
 *.project
+
+.idea/copyright/profiles_settings.xml
+
+.idea/encodings.xml
+
+.idea/misc.xml
+
+.idea/workspace.xml
