@@ -86,7 +86,6 @@ class LearningObjectiveService {
      * Gets all learning objectives linked to selected Imod
      */
     def getAllByImod(Imod currentImod) {
-        ensureLearningObjectiveExists(currentImod)
         return LearningObjective.findAllByImod(currentImod)
     }
 
@@ -95,16 +94,21 @@ class LearningObjectiveService {
      * selected Imods
      */
     LearningObjective safeGet(Imod currentImod, Long learningObjectiveID) {
-        ensureLearningObjectiveExists(currentImod)
+        
         LearningObjective objective
         // when there is not objective specified, pick first
         if (learningObjectiveID == null) {
-            objective = currentImod.learningObjectives.first()
+            if(currentImod.learningObjectives.size() > 0){
+                objective = currentImod.learningObjectives.first()
+            }else{
+                objective = null
+            }
+
         }
         // otherwise get that objective
         else {
             objective = LearningObjective.findWhere(imod: currentImod, id: learningObjectiveID)
-            // if that objective doesn't exist, get first
+            // if that objective doesnt exist, get first
             if (objective == null) {
                 objective = currentImod.learningObjectives.first()
             }

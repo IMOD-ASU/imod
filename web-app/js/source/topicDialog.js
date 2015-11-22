@@ -528,7 +528,6 @@ $(
 		var numberOfCriticalTopics = 0;
 		var numberOfVeryImportantTopics = 0;
 		var numberOfGoodToKnowTopics = 0;
-		var savedData = true;
 
 		$('input[id^="topicPrioritySaved"]').each(function () {
 			if ($(this).val() === 'Critical') {
@@ -577,17 +576,14 @@ $(
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(
 			function () {
-				savedData = false;
 				addTopic();
 			});
 		$('.saveTopic').click(
 			function () {
-				savedData = true;
 				saveTopic();
 			});
 		$('.cancelTopic').click(
 			function () {
-				savedData = true;
 				revertChanges();
 				hideTopicDialog();
 			}
@@ -707,17 +703,5 @@ $(
 				highlightUnsaved(id);
 			}
 		);
-
-
-		$('#save-before-leaving').dialog({
-			autoOpen: false
-		});
-
-		$('#a, #b, #d, #e').click(function (event) {
-			if (savedData === false) {
-				event.preventDefault();
-				$('#save-before-leaving').dialog('open');
-			}
-		});
 	}
 );

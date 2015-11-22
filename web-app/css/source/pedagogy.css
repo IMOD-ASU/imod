@@ -21,9 +21,12 @@
 .no-objective-defined {
     text-align: center;
     vertical-align: middle;
+    height: 100px;
+}
 
-    opacity: 0.5;
-    background: #cccccc;
+.no-objective-defined a{
+    vertical-align: middle !important;
+    text-decoration: none;
 }
 
 .pedagogy-page-buttons {

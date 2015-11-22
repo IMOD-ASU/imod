@@ -75,9 +75,16 @@
 							</g:if>
 							<g:else>
 								<div class="no-objective-defined">
-									There are no objectives defined
-									<g:render template="emptyStateTemplate" />
+									<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
+									<div>
+									<span class="topicButtonGradient" >
+										<a href="/imod/learningObjective/performance/${currentImod?.id}">
+											Define Objectives
+										</a>
+									</span>
+									</div>
 								</div>
+
 							</g:else>
 						</ul>
 					</div>
@@ -224,18 +231,32 @@
 						<div class="pedagogy-page-buttons-disabled">
 							<span>
 								<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-								<button id="add-new-technique-button">
-									<i class="fa fa-plus green"></i>
-									Add New Technique
-								</button>
+								<span id="add-new-technique-button" class="topicButtonGradient">
+									<button>
+										<i class="fa fa-plus green"></i>
+										Add New Technique
+									</button>
+								</span>
 
-								<button id="favorites-button">
-									<i class="fa fa-star yellow"></i>
-									Favorites
-								</button>
+								<span id="favorites-button" class="topicButtonGradient">
+									<button>
+										<i class="fa fa-star yellow"></i>
+										Favorites
+									</button>
+								</span>
 
-								<button id="instruction-plan-button">Instructional Plan
-								</button>
+								<span  id="unfavorites" class="topicButtonGradient">
+									<button>
+										UnFavorites
+									</button>
+								</span>
+
+								<span id="instruction-plan-button" class="topicButtonGradient">
+									<button>
+										<i class="fa fa-graduation-cap"></i>
+										Instructional Plan
+									</button>
+								</span>
 							</span>
 							<br/>
 						</div>
@@ -245,8 +266,14 @@
 							</video>
 						</div>
 						<div class="no-objective-defined">
-							There are no objectives defined
-							<g:render template="emptyStateTemplate" />
+							<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no learning objectives defined.</div>
+							<div>
+							<span class="topicButtonGradient">
+								<a href="/imod/learningObjective/performance/${currentImod?.id}">
+									Define Objectives
+								</a>
+							</span>
+							</div>
 						</div>
 					</g:else>
 
@@ -259,9 +286,9 @@
 							</div>
 							<span id="errorMessage" style="color:red"></span>
 						</fieldset>
-						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
-							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective.id}"/>
+							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
 							<tr>
 							<td class="td-label" width="40%">Title</td>
@@ -280,7 +307,7 @@
 							<td width="60%"><g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
 							<input type="hidden" name="domainSelected" id="domainSelected" >
 							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
-							
+
 
 							</tr>
 							<tr>
@@ -379,7 +406,7 @@
 							<g:else>
 								<div class="no-objective-defined">
 									There are no objectives defined
-									<g:render template="emptyStateTemplate" />
+
 								</div>
 							</g:else>
 						</div>
