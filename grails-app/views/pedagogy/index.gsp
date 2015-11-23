@@ -293,6 +293,7 @@
 							<tr>
 							<td class="td-label" width="40%">Title</td>
 							<td width="60%"> <g:textField name="title" /></td>
+							<input type="hidden" name="titlecheck" id="titlecheck" >
 							</tr>
 							<!--<tr>
 							<td width="40%"> Assign to Current Learning Objective </td>
@@ -312,12 +313,12 @@
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
+							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select --']}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
 							<td width="60%">
-								<button id="k1"> click me</button>
+								<button id="k1" class="knowledgeDimensionButton"> Knowledge Dimensions</button>
 							</td>
 							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
 							<input type="hidden" name="cloneDetect" id="cloneDetect" >
@@ -368,10 +369,7 @@
 									<i class="fa fa-times red"></i>
 									Cancel
 								</button>
-								<button type="submit" name="_action_clone" value="Clone" class="new-technique-popup-button">
-									<i class="fa fa-clone blue"></i>
-									Clone
-								</button>
+
 							</div>
 							<br>
 						</g:form>
@@ -447,11 +445,11 @@
 					id="knowDimFinished"
 					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
-					<i class="fa fa-save green"></i>
+		<i class="fa fa-save green"></i>
 					${message(code: 'Save Resource', default: ' Save')}
 		</button>
 		<button
-		  class="cancel showHoverNew resourceButton topicButtonGradient"
+		  class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
 					id="closeKnowDim"
 					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
