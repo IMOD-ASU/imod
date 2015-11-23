@@ -302,7 +302,7 @@
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
 							<td width="60%">
-								<button id="k1"> click me</button>
+								<button id="k1"> Knowledge Dimensions</button>
 							</td>
 							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="knowledge">
 							</tr>
@@ -324,7 +324,7 @@
 
 								<td class="td-label" width="40%">Type</td>
 								<td width="60%">
-									<select class="custom-dropdown" id="assessmentDifficulty" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
+									<select class="custom-dropdown" id="assessmentType" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
 										<option value="Summative">Summative</option>
 										<option value="Formative">Formative</option>
 									</select>
