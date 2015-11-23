@@ -5,6 +5,7 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
  */
 function openNewPedagogyTechniqueModal () {
 	'use strict';
+
 	$('#techniqueId').val('');
 	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
@@ -158,6 +159,8 @@ function populatePedagogyTechnique (data) {
 		$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
 		$('#title').val(currentTechnique.title);
 	}
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 	// $('#location').val(currentTechnique.location);
 	$('#duration').val(currentTechnique.direction);
 	$('#materials').val(currentTechnique.materials);
