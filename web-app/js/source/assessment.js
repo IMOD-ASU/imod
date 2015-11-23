@@ -47,6 +47,15 @@ function closeDimModal () {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
+function closeDimModalCancel () {
+	'use strict';
+
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
+
+	dialog.css('display', 'none');
+	background.css('display', 'none');
+}
 function changePic () {
 	'use strict';
 	var iconName = '';
@@ -806,6 +815,7 @@ $(document).ready(
 		});
 		$('#k1').click(openDimModal);
 		$('#knowDimFinished').click(closeDimModal);
+		$('#closeKnowDim').click(closeDimModalCancel);
 		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
