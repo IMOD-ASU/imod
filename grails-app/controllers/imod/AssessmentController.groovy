@@ -152,4 +152,13 @@ class AssessmentController {
 			] as JSON
 		)
 	}
+
+	/*print assessment plan*/
+	def assessmentPlan(Long id){
+		final currentImod = Imod.get(id)
+        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+		[
+			learningObjectives: learningObjectives
+		]
+	}
 }
