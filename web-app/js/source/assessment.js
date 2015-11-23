@@ -717,11 +717,27 @@ $(document).ready(
 		});
 		$('#saveButton').on('click',
 		function () {
+
+			hasError = false;
+
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
 				hasError = true;
-			} else {
-				hasError = false;
+			}
+
+			if ($('#knowledgeDimension').val() === '') {
+				$('#errorMessage').text('Knowledge Dimensions are required!');
+				hasError = true;
+			}
+
+			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
+				$('#errorMessage').text('Learning Domains are required');
+				hasError = true;
+			}
+
+			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
+				$('#errorMessage').text('Domain Categories are required');
+				hasError = true;
 			}
 
 			if (hasError === true) {
