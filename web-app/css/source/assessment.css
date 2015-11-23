@@ -156,6 +156,33 @@
     border: 1px solid #c4c2c2;
     background: #ededef;
 }
+#assessment-plan {
+    position: absolute !important;
+    z-index: 2;
+    top: -124px;
+    left: 50%;
+
+    display: none;
+
+    width: 460px;
+    margin-left: -230px;
+
+    border: 1px solid #c4c2c2;
+    background: #ededef;
+}
+
+#closeInstructionalPlan {
+    cursor: pointer;
+    vertical-align: middle;
+
+    font-size: 1em;
+
+    size: 1em;
+}
+
+#closeInstructionalPlanButton{
+    cursor: pointer;
+}
 
 #add-new-technique .td-label {
     padding-top: 10px;
@@ -330,4 +357,16 @@
     display: block;
 
     text-align: left;
+}
+
+.assessment-plan-LO, .assignedTechniques{
+    text-align: left;
+}
+#printAssessmentPlan{
+    font-size: 1em;
+    height: 2em !important;
+}
+#printAssessmentPlan a{
+    vertical-align: middle !important;
+    text-decoration: none;
 }

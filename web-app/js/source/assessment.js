@@ -5,22 +5,8 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
  */
 function openAssessmentPlanModal () {
 	'use strict';
-	$('#assessment-plan').dialog('open');
-	$('#assessment-plan').dialog({
-		resizable: false,
-		height: 'auto',
-		title: 'Assessment Plan',
-		width: 400,
-		modal: true,
-		zindex: 1001,
-		buttons: {
-			Cancel: function () {
-				$(this).dialog('close');
-			}
-		}
-	});
-
-	displayAssessmentPlan();
+	$('#topicDialogBackground').show();
+	$('#assessment-plan').show();
 }
 
 /**
@@ -507,110 +493,6 @@ function assessmentEqualHeights (parent) {
 	}
 }
 
-function displayAssessmentPlan (data) {
-	'use strict';
-	$.ajax({
-		url: '../../assessmentTechnique/assessmentplan',
-		method: 'post',
-		data: JSON.stringify(data),
-		contentType: 'application/json'
-	})
-	.done(assessmentPlanData);
-}
-
-function assessmentPlanData (data) {
-	'use strict';
-	var allAssessmentData = '';
-	var techniqueIndex;
-	var assessmentPlan;
-	var techniqueKnowledgeDimension;
-	var knowledgeDimenisionIndex;
-	var knowledgeDimension = '';
-	// FIXME domain catgory is never assigned
-	var domainCategory = '';
-	// FIXME learning domain is never assigned
-	var learningDomain = '';
-	var index;
-	var temporaryKnowledgeDimension;
-
-	for (techniqueIndex = 0; techniqueIndex < data.assessmentTechInstance.length; techniqueIndex++) {
-		assessmentPlan = data.assessmentTechInstance[techniqueIndex];
-
-		// FIXME this looks like it access the last element, why not access directly?
-		techniqueKnowledgeDimension = '';
-		for (knowledgeDimenisionIndex = 0; knowledgeDimenisionIndex < assessmentPlan.knowledgeDimension.length; knowledgeDimenisionIndex++) {
-			techniqueKnowledgeDimension = assessmentPlan.knowledgeDimension[knowledgeDimenisionIndex].id;
-		}
-
-		for (index = 0; index < data.knowledgeDimensions.length; index++) {
-			temporaryKnowledgeDimension = data.knowledgeDimensions[index];
-
-			if (temporaryKnowledgeDimension.id === techniqueKnowledgeDimension) {
-				knowledgeDimension = temporaryKnowledgeDimension.description;
-			}
-			allAssessmentData += '<div id="' + assessmentPlan.id + '">';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    <h2>';
-			allAssessmentData += '      ' + assessmentPlan.title;
-			allAssessmentData += '    </h2>';
-			allAssessmentData += '  </span>';
-			allAssessmentData += '  <br/>';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    Description : ' + assessmentPlan.description;
-			allAssessmentData += '  </span>';
-			allAssessmentData += '  <br/>';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    ' + assessmentPlan.procedure;
-			allAssessmentData += '  </span>';
-			allAssessmentData += '  <br/>';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    ' + assessmentPlan.duration;
-			allAssessmentData += '  </span>';
-			allAssessmentData += '  <br/>';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    ' + assessmentPlan.assessmentFeedback.name;
-			allAssessmentData += '  </span>';
-			allAssessmentData += '</div>';
-		}
-
-		allAssessmentData += '<div id="' + assessmentPlan.id + '">';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    <h2>';
-		allAssessmentData += '      ' + assessmentPlan.title;
-		allAssessmentData += '    </h2>';
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    Description : ' + assessmentPlan.description;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    ' + assessmentPlan.procedure;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    ' + assessmentPlan.duration;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    DomainCategory :' + domainCategory;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    Learning Domain :' + learningDomain;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    Knowledge Dimension : ' + knowledgeDimension;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    ' + assessmentPlan.assessmentFeedback.name;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '</div>';
-	}
-}
-
 // Load techniques on page load
 filterAssessmentTechniques();
 
@@ -644,9 +526,9 @@ $('#unfavorites').click(function () {
 });
 
 // Auto hide the assessment plan modal
-$('#assessment-plan').dialog({
-	autoOpen: false
-});
+// $('#assessment-plan').dialog({
+// 	autoOpen: false
+// });
 
 // Auto hide the add new technique modal
 $('#new-technique').dialog({
@@ -673,6 +555,12 @@ $('#new-technique-button').on('click', function () {
 
 // When add assessment  plan button is clicked open modal
 $('#assessment-plan-button').on('click', openAssessmentPlanModal);
+
+$('#closeAssessmentPlan').on('click', function () {
+	'use strict';
+	$('#assessment-plan').css('display', 'none');
+	$('#topicDialogBackground').css('display', 'none');
+});
 
 // Clicking on edit and View in display technique modal
 $('#Edit').click(function () {
@@ -787,6 +675,7 @@ $(document).ready(
 		// The filters for the assessment technique are wrapped in a accordian
 		// beforeActivate is to be able to open both ideal & extended matches simultaneously
 		$('#filter-assessment-techniques').accordion({collapsible: true, heightStyle: 'content'});
+		$('#assessment-plan-accordion').accordion({collapsible: true, heightStyle: 'content', active: false});
 		$('#ideal-matches-toggle').accordion({collapsible: true,
 			beforeActivate: function (event, ui) {
 				// The accordion believes a panel is being opened
