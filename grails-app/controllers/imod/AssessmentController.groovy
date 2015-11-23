@@ -152,4 +152,27 @@ class AssessmentController {
 			] as JSON
 		)
 	}
+
+	/*print assessment plan*/
+	def assessmentPlan(Long id){
+		final currentImod = Imod.get(id)
+        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+		def arrayOfLOAssessmentTechniques = []
+		for (def learningObjective in learningObjectives) {
+			def currentLearningObjective = LearningObjective.findById(learningObjective.id)
+			final LOAssessmentTechniques = currentLearningObjective.assessmentTechniques.title
+			def stringLOAssessmentTechniques = []
+
+			//Convert int to string
+			for (def LOAssessmentTechnique in LOAssessmentTechniques) {
+				stringLOAssessmentTechniques.add(LOAssessmentTechnique.toString())
+			}
+			arrayOfLOAssessmentTechniques.add(stringLOAssessmentTechniques)
+		}
+
+		[
+			learningObjectives: learningObjectives,
+			arrayOfLOAssessmentTechniques: arrayOfLOAssessmentTechniques
+		]
+	}
 }
