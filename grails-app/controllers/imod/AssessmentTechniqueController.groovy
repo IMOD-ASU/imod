@@ -39,13 +39,15 @@ class AssessmentTechniqueController {
 		final assessmentTechInstance1 = AssessmentTechnique.findAllByAssigncheck(true)
 
 		String [] knowledgedimensions = AssessmentTechnique.get(id).knowledgeDimension;
+		String [] learningdomains = AssessmentTechnique.get(id).learningDomain;
+		String [] domaincategories = AssessmentTechnique.get(id).domainCategory;
 
 		render (
 			[
 				assessmentTechnique: AssessmentTechnique.get(id),
-				learningDomain: LearningDomain.findById(AssessmentTechnique.get(id).learningDomain[0].id).toString(),
-				domainCategory: DomainCategory.findById(AssessmentTechnique.get(id).domainCategory[0].id).toString(),
-				knowledgeDimension:knowledgedimensions.join(",")
+				knowledgeDimension:knowledgedimensions.join(","),
+				learningDomains: learningdomains.join(","),
+				domainCategories: domaincategories.join(",")
 			] as JSON
 		)
 	}
@@ -136,7 +138,6 @@ class AssessmentTechniqueController {
 	 */
 	def save(Long id, Long learningObjectiveID) {
 
-		print "test"
 		def newTechnique = new AssessmentTechnique()
 
 		if (params.techniqueId) {
@@ -161,9 +162,12 @@ class AssessmentTechniqueController {
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)
-		newTechnique.addToDomainCategory(
-			DomainCategory.findByName(params.domainCategory)
-		)
+
+		params.domainCategory.each{
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName(it)
+			)
+		}
 
 		String[] kD = params.knowledgeDimension.split(",");
 
@@ -178,9 +182,11 @@ class AssessmentTechniqueController {
 			}
 		}
 
-		newTechnique.addToLearningDomain(
-			LearningDomain.findByName(params.learningDomain)
-		)
+		params.learningDomain.each{
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName(it)
+			)
+		}
 
 		// persist new technique to database
 		newTechnique.save()

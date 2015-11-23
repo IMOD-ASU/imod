@@ -285,11 +285,13 @@
 							</tr>-->
 							<tr>
 							<td class="td-label" width="40%">Learning Domain	</td>
-							<td width="60%"><g:select class="custom-dropdown" id="learning-domain" name="learningDomain" from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<td width="60%"><g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<input type="hidden" name="domainSelected" id="domainSelected" >
+							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select class="custom-dropdown" id="domain-category" name="domainCategory" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
+							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select --']}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Description of Activity</td>
@@ -302,7 +304,7 @@
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
 							<td width="60%">
-								<button id="k1"> click me</button>
+								<button id="k1"> Knowledge Dimensions</button>
 							</td>
 							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="knowledge">
 							</tr>
@@ -324,7 +326,7 @@
 
 								<td class="td-label" width="40%">Type</td>
 								<td width="60%">
-									<select class="custom-dropdown" id="assessmentDifficulty" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
+									<select class="custom-dropdown" id="assessmentType" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
 										<option value="Summative">Summative</option>
 										<option value="Formative">Formative</option>
 									</select>
