@@ -321,6 +321,16 @@
 							</td>
 							</tr>
 							<tr>
+
+								<td class="td-label" width="40%">Type</td>
+								<td width="60%">
+									<select class="custom-dropdown" id="assessmentDifficulty" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
+										<option value="Summative">Summative</option>
+										<option value="Formative">Formative</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
 								<td class="td-label" width="40%">When To Carry Out</td>
 								<td width="60%">
 									<select class="custom-dropdown" id="assessmentTime"  name="assessmentTime" from="${assessmentTime}" optionKey="assessmentTime" >
@@ -512,7 +522,7 @@
 				</td>
 			</tr>
 		</table>
-		<div id="selectKnowledgeDimensionBackground" class="modalBackground">
+		<div id="selectKnowledgeDimensionBackground" class="modalBackground"></div>
 		<div id="selectKnowledgeDimensions" class="draggable">
 			<div class="draggable-handle">
 				<input type="hidden" id="topicID" />
