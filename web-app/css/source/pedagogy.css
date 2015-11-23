@@ -197,7 +197,6 @@
 
 #techniqueList input,
 #techniqueList select,
-#techniqueList button,
 #techniqueList textarea {
     box-sizing: border-box;
     width: 100%;
@@ -257,6 +256,23 @@
     top: 0;
     left: 73px;
 }
+.clone {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 28px;
+    padding: 0 10px;
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    background: #0a1629;
+    background: linear-gradient(to right bottom, #1b4176 0%, #172751 100%);
+}
+
+.knowledgeDimensionButton {
+    width: 100%;
+}
+
 
 .icons > .ui-state-default {
     background-color: #ffffcc;
