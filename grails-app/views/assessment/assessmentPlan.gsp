@@ -29,21 +29,29 @@
 			<h2><center>Assessment Plan</center></h2>
 
 			<div id="instruction-plan-accordion">
-				<g:if test="${learningObjectives}">
-					<g:each var="learningObjective" in="${learningObjectives}" status="index">
-							<h3 class="istructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
-							<div class="assignedTechniques" id="assignedTechniques-${learningObjective.id}">
-							<g:if test="${arrayOfLOAssessmentTechniques[index]}">
-								<ul>
-								<g:each var="technique" in="${arrayOfLOAssessmentTechniques[index]}">
-									<li> ${technique}</li>
-								</g:each>
-								</ul>
-							</g:if>
-							<g:else>
-								No techniques are assigned to this Learning Objective
-							</g:else>
+				<g:if test="${learningObjectives != null }">
+					<g:each var="learningObjective" in="${learningObjectives}">
+						<g:if test="${learningObjective.definition != null && !learningObjective.definition.trim().isEmpty()}">
+							<h3 class="assessment-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
+							<div class="assignedTechniques" id="assignedTechniques-${ learningObjective.id }">
+
+								<g:if test="${learningObjective.assessmentTechniques.size()}">
+									<ul>
+									<g:each var="technique" in="${learningObjective.assessmentTechniques}">
+
+										<g:if test="${technique != null && !technique.title.isEmpty()}">
+											<li>${technique.title}</li>
+										</g:if>
+
+									</g:each>
+									</ul>
+								</g:if>
+								<g:else>
+									No techniques are assigned to this Learning Objective
+								</g:else>
+
 							</div>
+						</g:if>
 					</g:each>
 				</g:if>
 				<g:else>
