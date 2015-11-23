@@ -369,7 +369,7 @@
 									<i class="fa fa-times red"></i>
 									Cancel
 								</button>
-								
+
 							</div>
 							<br>
 						</g:form>
@@ -453,6 +453,7 @@
 					id="closeKnowDim"
 					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
+					<i class="fa fa-times red"></i>
 					${message(code: 'Cancel Resource', default: ' Cancel')}
 		</button>
 

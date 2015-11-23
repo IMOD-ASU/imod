@@ -326,6 +326,7 @@
 			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
 			id="closeKnowDim"
 			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
+			<i class="fa fa-times red"></i>
 			${message(code: 'Cancel Resource', default: ' Cancel')}
 		</button>
 	</div>
