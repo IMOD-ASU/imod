@@ -162,7 +162,7 @@
 									<span id="assessment-plan-button" class="topicButtonGradient">
 										<button>
 											<i class="fa fa-graduation-cap"></i>
-											Instructional Plan
+											Assessment Plan
 										</button>
 									</span>
 								</div>
@@ -458,36 +458,56 @@
 					</div>
 
 					<%--Dialog box for Assessement Plans--%>
-					<div id="assessment-plan" >
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
-							<label>
-								<h2>
-									Learning Objective
-								</h2>
-							</label>
-							<br/>
+					<div class="draggable" id="assessment-plan">
 
-							<span>
-								<g:if test="${learningObjectives.definition !=null}">
-									<g:each var="learningObjective" in="${learningObjectives}">
-										<div class="assessment-plan learning-objective">
-											${learningObjective.id} : ${ learningObjective.definition }
+						<fieldset class="titleField draggable-handle">
+							<div id="editTitle">
+							 <span><b> Assessment Plan</b></span>
+							 <div style="float:right">
+								<span id="printAssessmentPlan" class="topicButtonGradient" >
+									<a href="../assessmentPlan/${currentImod?.id}" target="_blank">
+									<i class="fa fa-print white"></i>
+									Print
+									</a>
+								</span>
+								<span id="closeAssessmentPlan" class="topicButtonGradient" >
+									<button id="closeAssessmentPlanButton"><i class="fa fa-times white"></i></button>
+								</span>
+							</div>
+							</div>
+						</fieldset>
+						<div id="assessment-plan-accordion">
+							<g:if test="${learningObjectives != null }">
+								<g:each var="learningObjective" in="${learningObjectives}">
+									<g:if test="${learningObjective.definition != null && !learningObjective.definition.trim().isEmpty()}">
+										<h3 class="assessment-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
+										<div class="assignedTechniques" id="assignedTechniques-${ learningObjective.id }">
+
+											<g:if test="${learningObjective.assessmentTechniques.size()}">
+												<ul>
+												<g:each var="technique" in="${learningObjective.assessmentTechniques}">
+
+													<g:if test="${technique != null && !technique.title.isEmpty()}">
+														<li>${technique.title}</li>
+													</g:if>
+
+												</g:each>
+												</ul>
+											</g:if>
+											<g:else>
+												No techniques are assigned to this Learning Objective
+											</g:else>
+
 										</div>
-									</g:each>
-								</g:if>
-							</span>
-
-							<div id="assessmentData">
-							</div>
-							<br/>
-
-							<div id='individualAssessments'>
-								<div id='assignTitle'>
+									</g:if>
+								</g:each>
+							</g:if>
+							<g:else>
+								<div class="no-objective-defined">
+									There are no objectives defined
 								</div>
-								<div id='assignTitle1'>
-								</div>
-							</div>
-						</g:form>
+							</g:else>
+						</div>
 					</div>
 				</td>
 			</tr>
