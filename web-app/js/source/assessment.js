@@ -91,6 +91,11 @@ function populateAssessmentTechnique (data, isClone) {
 	var count;
 	var checked = '';
 	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
+	var arrayOfLearningDomains = data.learningDomains.split(',');
+	var arrayOfDomainCategories = data.domainCategories.split(',');
+
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 
 	// Set the text fields
 	if (!isClone) {
@@ -129,8 +134,16 @@ function populateAssessmentTechnique (data, isClone) {
 	});
 	document.getElementById('knowledgeDimension').value = checked;
 
-	$('#learning-domain option[value="' + data.learningDomain + '"]').prop('selected', true);
-	$('#domain-category option[value="' + data.domainCategory + '"]').prop('selected', true);
+	for (count = 0; count < arrayOfLearningDomains.length; count++) {
+		if (arrayOfLearningDomains[count] !== '') {
+			$('#learningDomain option[value="' + arrayOfLearningDomains[count] + '"]').attr('selected', 'selected');
+		}
+	}
+	for (count = 0; count < arrayOfDomainCategories.length; count++) {
+		if (arrayOfDomainCategories [count] !== '') {
+			$('#domainCategory option[value = "' + arrayOfDomainCategories[count] + '"]').attr('selected', 'selected');
+		}
+	}
 
 	$('#View').hide();
 }
