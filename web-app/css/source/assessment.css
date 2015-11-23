@@ -123,6 +123,10 @@
 }
 .new-technique-popup-button.clone {
 	width: 80px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	top: inherit;
 }
 #ideal-matches1 {
     height: 300px;
@@ -267,6 +271,21 @@
     position: relative;
 }
 
+.icons > .ui-state-hover:hover {
+	color: inherit;
+}
+
+label.assessment-block:hover {
+	cursor: default;
+}
+
+label.assessment-block .ui-button-text:hover {
+	color: #1c94c4; cursor: pointer;
+}
+
+.clone:hover {
+	cursor: pointer;
+}
 
 .favDiv {
     display: none;
