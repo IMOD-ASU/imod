@@ -657,8 +657,7 @@ $(document).ready(
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
 				hasError = true;
-			}
-			else if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
+			} else if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
 				$('#errorMessage').text('Learning Domains are required');
 				hasError = true;
 			} else if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {

@@ -717,7 +717,6 @@ $(document).ready(
 		});
 		$('#saveButton').on('click',
 		function () {
-
 			hasError = false;
 
 			if ($('#title').val() === '') {
