@@ -1588,6 +1588,828 @@ class BootStrap {
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration('Single Session'),
 				pedagogyTechnique: pedagogyTech
 			).save()
+			def newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Background Knowledge Probe'
+			newTechnique.description = 'This activity goes beyond the common practice of asking students what courses they have already taken in the field. Using a survey, the instructor elicits information that can be used to focus instruction on appropriate content and level of difficulty.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Pre'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Remember')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Student-generated Test questions'
+			newTechnique.description = 'By having students write test questions and compose answers, faculty discover what students identify as key content, what they consider reasonable test questions and how well they can answer the questions they create. Instructors pre-determine the types of questions (essay, multiple choice, shortanswer, etc.) and the topics to be addressed. The questions can then be compiled for a study guide or, as an added incentive, chosen (if suitable) to appear on the actual test.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Remember')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Minute paper'
+			newTechnique.description = 'This technique helps ascertain what students felt was the most important information they learned during a particular class meeting and if they have any lingering questions about the content. Answers to these questions help faculty focus instruction, make mid-course corrections or identify areas that need more emphasis.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '1'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Pre'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Remember')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Muddiest point'
+			newTechnique.description = 'This very simple technique identifies areas of confusion from a lecture, discussion, homework or other activity. When students write out the answer to the question,  What was the muddiest point in _______? Students not only must reflect on the content material but also articulate their thoughts. This CAT works well when large amounts of information has been presented.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '5'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Remember')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Capstone project'
+			newTechnique.description = 'This is a simple technique in which students apply the concepts they have learnt on a project.'
+			newTechnique.procedure = ''
+			newTechnique.duration= ''
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Procedural')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Practicuum or internship'
+			newTechnique.description = 'The purpose of the practicum or internship is to provide students with supervised experience in an actual work setting similar to one in which the student might end up after graduating. Assessment generally involves analysis of work performance by the student’s supervisor, grading of a formal report by the faculty member, and a self-analysis written by the student.'
+			newTechnique.procedure = ''
+			newTechnique.duration= ''
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Procedural')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Midterm test'
+			newTechnique.description = 'The purpose of the Midterm test is to assess how much the students have learnt and are able to apply in answering questions related to the coursework.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '120 min'
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Procedural')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Remember')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Final Exam'
+			newTechnique.description = 'The purpose of the Final Examis to assess how much the students have learnt and are able to apply in answering questions related to the coursework.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '120 min'
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Procedural')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Remember')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Final Project'
+			newTechnique.description = 'This is a simple technique in which students apply the concepts they have learnt on a project.'
+			newTechnique.procedure = ''
+			newTechnique.duration= ''
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Procedural')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Focused Listing'
+			newTechnique.description = 'This technique focuses on the students attention on a single important term, name or  concept from a particular lesson or class session and directs them to list several ideas that are closely related to that focus point. It can help the faculty assess how well the students can describe or define a central point in the lesson.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Procedural')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Memory Matrix'
+			newTechnique.description = 'In a memory matrix the row and column headings are given but the cells the boces within are left empty.When the students fill in these boxes the feedback can be easily scanned and analysed.This technique assesses students recall of important course content and their skill at organizing that information into categories provided by the instructor'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Procedural')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Content,Form,and Function Outlines'
+			newTechnique.description = 'This assessment technique is called the" what how and why "outlines.The student writes brief notes answering the "what ,how and why " question in an outline format that can be quickly read and assessed.This technique is used to assess the students ability at separating and analyzing informational content.'
+
+			newTechnique.procedure = ''
+			newTechnique.duration= '20 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Procedural')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Misconception/Preconception Check'
+			newTechnique.description = 'This technique assesses the students prior knowledge by focusing on uncovering prior knowledge that may hinder or block further learning.This technique is designed to uncover specific instances of incorrect or incomplete knowledge,attitudes, values that represent lilely barriers to new learning.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Perception')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Empty Outlines'
+			newTechnique.description = 'The instructor provides students with an empty or partially completed outline of an in class presentation or homework assignment and gives them limited amount of time to fill in the blank spaces.It helps faculty fi nd out how well the students have caught the important points of a lecture.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Perception')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Categorizing Grid'
+			newTechnique.description = 'This technique  is the paper amnd pencil equivalent of sorting objects in a warehouse and putting the like ones together in a bin.This feedback allows the teacher to determine quickly whether ,how and how well students understand "what goes with what".  '
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Affective')
+				)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Mechanism')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Adaptation')
+				)
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Defining Features Matrix'
+			newTechnique.description = 'The defining matrix requires student to categorize concpts according to the presence (+) or absence (-) of important defining features thereby providing data on their analtyic and thinking abilities. '
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Analytic Memos'
+			newTechnique.description = 'This technique requires the student to write a one to two page analysis of a specific problem or issue.It helps to assess the students ability to communicate the analysis in a clear and concise manner.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Word Journal'
+			newTechnique.description = 'The word journal prompts a two part response .First the student summarises a short text in a single word. Second, the student writes a paragraph explaining why he or she chose that particular word to summarize the text.It assesses the students ability to read carefully and creaticely summarize it in a single word'
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Factual')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Concept Maps'
+			newTechnique.description = 'Concept maps are drawings or diagrams showing the mental connections that students make between a major concept the instructor focuses on and other concepts they have learned.This technique assesses the patterns of associations they make in relation to a focal concept'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Problem Recognition Tasks'
+			newTechnique.description = 'Problem Recognition Tasks present students with a few examples of common problem types. The students task is to recognize and identify particular type of problem each  example represents.This practice helps students develop a diagnostic skill.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Human Tableau or Class Modeling'
+			newTechnique.description = 'Group of students create "living" scenes or model processes to show what they know. Just as some students learen more effectively by listening,others learn more effectively by movement.This technique works well for kinesthetic learners. '
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Affective')
+				)
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Psychomotor')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Classroom opinion polls'
+			newTechnique.description = 'Many faculty already use de facto opinion polling in their classes when they ask students to raise their hands to indicate agreement  or disagreement with a particular statement.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Interest/Knowledge/Skills Checklist'
+			newTechnique.description = 'Teachers create checklists of topics covered in their courses and skills  strengthened  by or required for succeeding in those courses.Students rate their interest in the various topics and assess their levels of skill or knowledge in those topics, by indicating the appropriate responses on the checklist. '
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Goal Ranking and Matching'
+			newTechnique.description = 'Goal Ranking and Matching is a simple procedure that many faculty have adapted to use in first or second day of class. It takes only a few minutes for students to list a few learning they hope to achieve through the course and to rank the relative importance of those goals.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '30 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Pre'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Punctuated Lectures'
+			newTechnique.description = 'This technique requires students and teachers to go through five steps: listen, stop, reflect, write, and give feedback.After a part of the lecture or demonstration the students reflect on what they were doing the presentation and how it aided or hindered their understanding of the information'
+			newTechnique.procedure = ''
+			newTechnique.duration= '5 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Process Analysis'
+			newTechnique.description = 'Process analysis Requires that students keep records of actual steps taken while carrying out a specific assignment and conclusions they draw about their approaches to assignment'
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Diagnostic Learning Logs'
+			newTechnique.description = 'In Diagnostic learning logs are essentially limited, tightly  focused versions of the academic journals many teachers already use.In these logs, students keep records of each class or assignment.'
+			newTechnique.procedure = ''
+			newTechnique.duration= ''
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+					LearningDomain.findByName('Cognitive')
+				)
+			
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Conceptual')
+						)
+			newTechnique.addToKnowledgeDimension(
+						KnowledgeDimension.findByDescription('Metacognitive')
+						)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Understand')
+				)
+			
+			newTechnique.addToDomainCategory(
+					DomainCategory.findByName('Apply')
+				)
+			newTechnique.save()
+
+
+			
+
+
+
+
+
+
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
@@ -1597,7 +2419,7 @@ class BootStrap {
 				referenceType: PedagogyReferenceType.findByDescription('Book'),
 				pedagogyTechnique: pedagogyTech
 			).save()
-			def newTechnique = new PedagogyTechnique()
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Talking Chips'
 
 			newTechnique.materials = 'materials'
