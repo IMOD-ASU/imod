@@ -55,6 +55,8 @@ function closeDimModalCancel () {
 
 	dialog.css('display', 'none');
 	background.css('display', 'none');
+
+	return false;
 }
 function changePic () {
 	'use strict';

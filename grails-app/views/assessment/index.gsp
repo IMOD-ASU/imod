@@ -492,6 +492,7 @@
 				</td>
 			</tr>
 		</table>
+		<div id="selectKnowledgeDimensionBackground" class="modalBackground">
 		<div id="selectKnowledgeDimensions" class="draggable">
 			<div class="draggable-handle">
 				<input type="hidden" id="topicID" />
