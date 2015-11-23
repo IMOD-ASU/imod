@@ -7,6 +7,7 @@ package imod
 class AssessmentTechnique {
 	String title
 	String description
+	String assesmentype
 	String procedure
 	String duration
 	String difficulty
@@ -49,5 +50,6 @@ class AssessmentTechnique {
 		type nullable:true, blank: true
 		whenToCarryOut nullable:true, blank: true
 		sources nullable:true, blank: true
+		assesmentype nullable:true, blank: true
     }
 }
