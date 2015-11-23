@@ -85,7 +85,7 @@ function openDimModal () {
 	background.css('display', 'block');
 	return false;
 }
-function populateAssessmentTechnique (data) {
+function populateAssessmentTechnique (data, isClone) {
 	'use strict';
 	var currentTechnique = data.assessmentTechnique;
 	var count;
@@ -93,7 +93,9 @@ function populateAssessmentTechnique (data) {
 	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
 
 	// Set the text fields
-	$('#title').val(currentTechnique.title);
+	if (!isClone) {
+		$('#title').val(currentTechnique.title);
+	}
 	// $('#title2').val(currentTechnique.title);
 
 	$('#description').val(currentTechnique.description);
@@ -132,7 +134,7 @@ function populateAssessmentTechnique (data) {
 	$('#View').hide();
 }
 
-function displayAssessmentInformationInEdit () {
+function displayAssessmentInformationInEdit (isClone) {
 	'use strict';
 	var res = '';
 
@@ -152,31 +154,35 @@ function displayAssessmentInformationInEdit () {
 		url: '../../assessmentTechnique/display/' + res,
 		method: 'GET'
 	})
-	.done(populateAssessmentTechnique);
+	.done(function (data) {
+		populateAssessmentTechnique(data, isClone);
+	});
 }
-
 function showAssessmentTechnique () {
 	'use strict';
-	$('#ideal-matches label').click(function () {
-		$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
-		openNewAssessmentTechniqueModal();
-		displayAssessmentInformationInEdit();
-		return false;
-	});
+	$('#ideal-matches .text-block.title')
+		.click(function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false);
+			return false;
+		});
 
-	$('#ideal-matches1 label').click(function () {
-		$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
-		openNewAssessmentTechniqueModal();
-		displayAssessmentInformationInEdit();
-		return false;
-	});
+	$('#ideal-matches1 .text-block.title')
+		.click(function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false);
+			return false;
+		});
 
-	$('#extended-matches label').click(function () {
-		$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
-		openNewAssessmentTechniqueModal();
-		displayAssessmentInformationInEdit();
-		return false;
-	});
+	$('#extended-matches .text-block.title')
+		.click(function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false);
+			return false;
+		});
 }
 
 function checkForAssign (data) {
@@ -238,38 +244,11 @@ function displayAssessmentTechniques (data) {
 
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
 		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
 	}
 
 	$('#ideal-matches1').html(text);
 	$('#ideal-matches1').buttonset();
-	text = '';
-
-	// Take the titles and make html code to display
-	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.idealAssessmentTechniqueMatch[index];
-
-		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
-			favoriteImgToggle = '../../images/fav.png';
-		} else {
-			favoriteImgToggle = '../../images/unfav.png';
-		}
-
-		if (data.LOAssessmentTechniques.indexOf(currentTechnique.id.toString()) > -1) {
-			assignImgToggle = '../../images/assign.png';
-		} else {
-			assignImgToggle = '../../images/unassign.png';
-		}
-
-		if (currentTechnique.favcheck === true && currentTechnique.assigncheck === true) {
-			text += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-		} else if (currentTechnique.assigncheck === false) {
-			text += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-		}
-	}
-
-	$('#assessmentFavoritesDiv').html(text);
-	$('#assessmentFavoritesDiv').buttonset();
 	text = '';
 
 	// Take the titles and make html code to display
@@ -295,21 +274,6 @@ function displayAssessmentTechniques (data) {
 
 	$('#extended-matches').html(text);
 	$('#extended-matches').buttonset();
-	text = '';
-
-	// Take the titles and make html code to display
-	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		if (currentTechnique.favcheck === true) {
-			if (currentTechnique.assigncheck === true) {
-				text += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign "><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			} else if (currentTechnique.assigncheck === false) {
-				text += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="fav' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			}
-		}
-	}
-	$('#assessmentFavoritesDiv1').html(text);
-	$('#assessmentFavoritesDiv1').buttonset();
 
 	$('#topLeft img').click(function () {
 		var str = '';
@@ -676,6 +640,15 @@ $(document).ready(
 		// beforeActivate is to be able to open both ideal & extended matches simultaneously
 		$('#filter-assessment-techniques').accordion({collapsible: true, heightStyle: 'content'});
 		$('#assessment-plan-accordion').accordion({collapsible: true, heightStyle: 'content', active: false});
+		// clone
+		$(document).on('click', '.new-technique-popup-button.clone', function () {
+			$('#editTitle').html('<strong>Clone Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(true);
+			$('#title').val('');
+			$('#techniqueId').val('');
+			return false;
+		});
 		$('#ideal-matches-toggle').accordion({collapsible: true,
 			beforeActivate: function (event, ui) {
 				// The accordion believes a panel is being opened
