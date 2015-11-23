@@ -135,6 +135,8 @@ class AssessmentTechniqueController {
 	 * creates a new Assessment Technique
 	 */
 	def save(Long id, Long learningObjectiveID) {
+
+		print "test"
 		def newTechnique = new AssessmentTechnique()
 
 		if (params.techniqueId) {
@@ -152,6 +154,7 @@ class AssessmentTechniqueController {
 		newTechnique.sources = params.sources
 		newTechnique.assigncheck = params.assignedToLearningObjective as boolean
 		newTechnique.favcheck = params.favoriteTechnique as boolean
+		newTechnique.type = params.assessmentType
 
 		newTechnique.assessmentFeedback= AssessmentFeedback.findByName(params.assessmentFeedback)
 
