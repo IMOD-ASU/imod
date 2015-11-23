@@ -15,7 +15,7 @@ environments {
 	development {
 		dataSource {
 			dbCreate = 'update' // one of 'create', 'create-drop', 'update', 'validate', ''
-			url = 'jdbc:postgresql:sample'
+			url = 'jdbc:postgresql:sample30'
 		}
 	}
 	test {
