@@ -657,6 +657,16 @@ $(document).ready(
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
 				hasError = true;
+			}
+			else if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
+				$('#errorMessage').text('Learning Domains are required');
+				hasError = true;
+			} else if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
+				$('#errorMessage').text('Domain Categories are required');
+				hasError = true;
+			} else if ($('#knowledgeDimension').val() === '') {
+				$('#errorMessage').text('Knowledge Dimensions are required!');
+				hasError = true;
 			} else {
 				$('#learningDomain :selected').each(function (identifier, selected) {
 					tp = tp + $(selected).text() + ',';
