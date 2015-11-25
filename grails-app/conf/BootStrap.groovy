@@ -431,87 +431,73 @@ class BootStrap {
 
 			def ScheduleRepeatsDaily = new ScheduleRepeats(
 				description: 'Daily'
-				)
-			ScheduleRepeatsDaily.save()
+			).save()
 
 			def ScheduleRepeatsWeekDay = new ScheduleRepeats(
 				description: 'Every Weekday (Monday to Friday)'
-				)
-			ScheduleRepeatsWeekDay.save()
+			).save()
 
 			def ScheduleRepeatsMW = new ScheduleRepeats(
 				description: 'Every Monday and Wednesday'
-				)
-			ScheduleRepeatsMW.save()
+			).save()
 
 			def ScheduleRepeatsTTh = new ScheduleRepeats(
 				description: 'Every Tuesday and Thursday'
-				)
-			ScheduleRepeatsTTh.save()
+			).save()
 
 			def ScheduleRepeatsWeekly = new ScheduleRepeats(
 				description: 'Weekly'
-				)
-			ScheduleRepeatsWeekly.save()
+			).save()
 
 			for (int i =1; i <= 30; i++) {
 				def ScheduleRepeatsE = new ScheduleRepeatsEvery(
-					description: i)
+					description: i
+				)
 				ScheduleRepeatsE.save()
 			}
 
 			def ScheduleSunday = new ScheduleWeekDays(
-				description:'S'
-				)
-			ScheduleSunday.save()
+				description: 'S'
+			).save()
 
 			def ScheduleMonday = new ScheduleWeekDays(
-				description:'M'
-				)
-			ScheduleMonday.save()
+				description: 'M'
+			).save()
 
 			def ScheduleTuesday = new ScheduleWeekDays(
-				description:'T'
-				)
-			ScheduleTuesday.save()
+				description: 'T'
+			).save()
 
 			def ScheduleWednesday = new ScheduleWeekDays(
-				description:'W'
-				)
-			ScheduleWednesday.save()
+				description: 'W'
+			).save()
 
 			def ScheduleThursday = new ScheduleWeekDays(
-				description:'T'
-				)
-			ScheduleThursday.save()
+				description: 'T'
+			).save()
 
 			def ScheduleFriday = new ScheduleWeekDays(
-				description:'F'
-				)
-			ScheduleFriday.save()
+				description: 'F'
+			).save()
 
 			def ScheduleSaturday = new ScheduleWeekDays(
-				description:'S'
-				)
-			ScheduleSaturday.save()
+				description: 'S'
+			).save()
 
 			/**
 			 * Generate Learning Domains, Domain Categories and Action Words
 			 */
 			def learningDomainCognitive = new LearningDomain(
 				name: 'Cognitive'
-			)
-			learningDomainCognitive.save()
+			).save()
 
 			def learningDomainAffective = new LearningDomain(
 				name: 'Affective'
-			)
-			learningDomainAffective.save()
+			).save()
 
 			def learningDomainPsychomotor = new LearningDomain(
 				name: 'Psychomotor'
-			)
-			learningDomainPsychomotor.save()
+			).save()
 
 			/**
 			 * This creates the domain Category instances,
@@ -1228,68 +1214,68 @@ class BootStrap {
 			).save()
 
 			new AssessmentFeedback(
-				name:"In Person"
+				name: 'In Person'
 			).save()
 
 			new AssessmentFeedback(
-				name:"Online"
+				name: 'Online'
 			).save()
 
 			new AssessmentFeedback(
-				name:"Both"
+				name: 'Both'
 			).save()
 
 			new PedagogyMode(
-				name:'online'
+				name: 'online'
 			).save()
 
 			new PedagogyMode(
-				name:'in-person'
+				name: 'in-person'
 			).save()
 
 			new PedagogyMode(
-				name:'hybrid'
+				name: 'hybrid'
 			).save()
 
 			new PedagogyReferenceType(
-				description:'Book'
+				description: 'Book'
 			).save()
 
 			new PedagogyReferenceType(
-				description:'Web'
+				description: 'Web'
 			).save()
 
 			new PedagogyActivityDuration(
-				duration:'Single Session'
+				duration: 'Single Session'
 			).save()
 
 			new PedagogyActivityDuration(
-				duration:'Multiple Session'
+				duration: 'Multiple Session'
 			).save()
 
 			new PedagogyActivityDuration(
-				duration:'Both Session'
+				duration: 'Both Session'
 			).save()
 
 			new PedagogyActivityFocus(
-				focus:'Reading'
+				focus: 'Reading'
 			).save()
 
 			new PedagogyActivityFocus(
-				focus:'Writing'
+				focus: 'Writing'
 			).save()
 
 			new PedagogyActivityFocus(
-				focus:'Discussing'
+				focus: 'Discussing'
 			).save()
 
 			new PedagogyActivityFocus(
-				focus:'Presenting'
+				focus: 'Presenting'
 			).save()
 
 			/*Pedagogy Technique*/
 			def assessmentTech = new AssessmentTechnique(
-				title:"Minute Papers",
+				title: 'Minute Papers',
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),//'Cognitive','Affective', 'Psychomotor'
@@ -1297,17 +1283,17 @@ class BootStrap {
 					'Remembering'
 				]),
 				knowledge:KnowledgeDimension.findAllByDescriptionInList([
-					"Factual",
-					"Conceptual",
-					"Procedural",
-					"Metacognitive"
+					'Factual',
+					'Conceptual',
+					'Procedural',
+					'Metacognitive'
 				]),
-				assessmentFeedback: AssessmentFeedback.findByName("Online")
+				assessmentFeedback: AssessmentFeedback.findByName('Online')
 			).save()
 
 			/*Pedagogy Technique*/
 			def pedagogyTech = new PedagogyTechnique(
-				title:'Jigsaw',
+				title: 'Jigsaw',
 				description: 'As in a jigsaw puzzle, each piece representing each student\'s part is essential for the completion and full understanding of the final product.',
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
@@ -1329,29 +1315,29 @@ class BootStrap {
 				]),
 				pedagogyMode: PedagogyMode.findByName('in-person')
 			).save()
-			
+
 
 
 			new PedagogyActivity(
-				title:'jigsaw',
-				description:'Small tasks are split among each student in each group. Eventually each student will come back to her or his jigsaw group and will try to present a well-organized report to the group. As a team the students organize their work and present it as a whole.',
-				example:'Research on different computing languages was to be done. The students were split into five teams of four members each and each team was assigned a language. The students were asked to divide the the tasks to be researched based on the history, implementation, application of the language and comparison with other languages. Students worked individually and eventually put the wok together, then gave a presentation on each area of research.',
-				material:'clicker, paper',
+				title: 'jigsaw',
+				description: 'Small tasks are split among each student in each group. Eventually each student will come back to her or his jigsaw group and will try to present a well-organized report to the group. As a team the students organize their work and present it as a whole.',
+				example: 'Research on different computing languages was to be done. The students were split into five teams of four members each and each team was assigned a language. The students were asked to divide the the tasks to be researched based on the history, implementation, application of the language and comparison with other languages. Students worked individually and eventually put the wok together, then gave a presentation on each area of research.',
+				material: 'clicker, paper',
 				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration('Single Session'),
 				pedagogyTechnique:pedagogyTech
 			).save()
 
 			new PedagogyReference(
-				title:'Student_Engagement_Techniques',
-				author:'Elizabeth F. Barkley',
-				referenceLinkISBN:'978-0-470-28191-8',
+				title: 'Student_Engagement_Techniques',
+				author: 'Elizabeth F. Barkley',
+				referenceLinkISBN: '978-0-470-28191-8',
 				referenceType:PedagogyReferenceType.findByDescription('Book'),
 				pedagogyTechnique:pedagogyTech
 			).save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				title:'Structured Problem Solving',
+				title: 'Structured Problem Solving',
 				description: 'Provides students with a process for solving complex, content based problems within a specified amount of time. It breaks the problem into specific steps and thus students learn to identify, analyze, and solve problems in an organized way',
 				domain:LearningDomain.findAllByNameInList([
 					'Cognitive'
@@ -1374,7 +1360,7 @@ class BootStrap {
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:'Step-2',
+				title: 'Step-2',
 				description: 'ask students to solve the problem using specific steps you have identified as a problem solving technique',
 				example: 'The Dewey Six-Step Problem Solving Technique',
 				material: '',
@@ -2030,7 +2016,7 @@ class BootStrap {
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
@@ -2058,15 +2044,15 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2085,15 +2071,15 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2111,18 +2097,18 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Factual')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2140,18 +2126,18 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Metacognitive')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2170,18 +2156,18 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Metacognitive')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2205,18 +2191,18 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Psychomotor')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Metacognitive')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2235,18 +2221,18 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Metacognitive')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2265,18 +2251,18 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Metacognitive')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2295,18 +2281,18 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Metacognitive')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2325,18 +2311,18 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Metacognitive')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2355,18 +2341,18 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Metacognitive')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
@@ -2385,25 +2371,25 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 					LearningDomain.findByName('Cognitive')
 				)
-			
+
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Conceptual')
 						)
 			newTechnique.addToKnowledgeDimension(
 						KnowledgeDimension.findByDescription('Metacognitive')
 						)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Understand')
 				)
-			
+
 			newTechnique.addToDomainCategory(
 					DomainCategory.findByName('Apply')
 				)
 			newTechnique.save()
 
 
-			
+
 
 
 
@@ -2425,7 +2411,7 @@ class BootStrap {
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 117-121.'
 
-			newTechnique.activityDescription = 'Is a tehnnique in which students participate in a group discussion and surrender a token each time they speak.It is particularly usful for ensuring equitable participation.' 
+			newTechnique.activityDescription = 'Is a tehnnique in which students participate in a group discussion and surrender a token each time they speak.It is particularly usful for ensuring equitable participation.'
 
 			newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
 			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
@@ -2439,7 +2425,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.save()
-			
+
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Critical Debate'
 			newTechnique.materials = 'materials'
@@ -2559,7 +2545,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			
+
 			newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
@@ -2595,7 +2581,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			
+
 			newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
@@ -2616,7 +2602,7 @@ class BootStrap {
 
 
 
-			
+
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Fishbowl'

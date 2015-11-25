@@ -8,7 +8,7 @@
 //                             'file:${userHome}/.grails/${appName}-config.groovy']
 
 // if (System.properties['${appName}.config.location']) {
-//    grails.config.locations << 'file:' + System.properties['${appName}.config.location']
+//    grails.config.locations << 'file: ' + System.properties['${appName}.config.location']
 // }
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
@@ -86,7 +86,7 @@ log4j = {
 	// Example of changing the log pattern for the default console appender:
 	//
 	//appenders {
-	//    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+	//    console name: 'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
 	//}
 
 	error	'org.codehaus.groovy.grails.web.servlet',		// controllers
@@ -149,10 +149,10 @@ grails {
 		username = 'imod.grails@gmail.com'
 		password = 'B0bblegum'
 		props =	[
-					'mail.smtp.auth':'true',
-					'mail.smtp.socketFactory.port':'465',
-					'mail.smtp.socketFactory.class':'javax.net.ssl.SSLSocketFactory',
-					'mail.smtp.socketFactory.fallback':'false'
+					'mail.smtp.auth': 'true',
+					'mail.smtp.socketFactory.port': '465',
+					'mail.smtp.socketFactory.class': 'javax.net.ssl.SSLSocketFactory',
+					'mail.smtp.socketFactory.fallback': 'false'
 				]
 	}
  }

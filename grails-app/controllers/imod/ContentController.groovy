@@ -8,7 +8,7 @@ class ContentController {
 	static allowedMethods = [
 		addNewTopic: 'GET',
 		saveTopic: 'POST',
-		deleteTopic:'GET',
+		deleteTopic: 'GET',
 		updateHierarchy: 'POST',
 		setLearningObjective: 'POST',
 		saveResource: 'POST',

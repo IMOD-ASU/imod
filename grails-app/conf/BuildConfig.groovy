@@ -73,7 +73,7 @@ grails.project.dependency.resolution = {
 		compile ':spring-security-ui:1.0-RC2'
 		compile ':joda-time:1.5'
 		compile ':rest-client-builder:2.1.1'
-		compile ":rendering:1.0.0"
+		compile ':rendering:1.0.0'
 
 		provided ':codenarc:0.24'
 
