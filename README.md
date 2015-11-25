@@ -12,7 +12,7 @@ An IMODS is a course that uses Pedagogy, Content, and Assessment to generate Lea
 - Read the [Contributing Guidelines](https://github.com/IMOD-ASU/imod/blob/master/CONTRIBUTING.md)
 
 ###Installation Instructions
-* Install the Java Developement Kit version 8
+* Install the Java Development Kit version 8
 [(windows)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 [(linux)](http://openjdk.java.net/install/)
 * Install Grails version 2.5
@@ -28,11 +28,11 @@ An IMODS is a course that uses Pedagogy, Content, and Assessment to generate Lea
 ## Key Concepts
 
 ### Objectives Based Learning
-This is a style of course creation focused on an instructors goal of what a students primary, secondary and terceary knowledge should be leaving the course. Then using this information to focus on what topics and content should be covered in the couse.
+This is a style of course creation focused on an instructors goal of what a students primary, secondary and tertiary knowledge should be leaving the course. Then using this information to focus on what topics and content should be covered in the course.
 
 ### Learning Objectives
-Learning Objectives are a general concept in a field that an instuctor may teach.
-Learning Objectives come in various levels of importance: urgent, imporant and good to know.
+Learning Objectives are a general concept in a field that an instructor may teach.
+Learning Objectives come in various levels of importance: urgent, important and good to know.
 These levels of importance decide the topic's priority in the course.
 How much material of that topic will be covered and what weight it will carry in the course.
 
