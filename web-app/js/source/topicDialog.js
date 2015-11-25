@@ -333,8 +333,7 @@ function revertChanges () {
 
 	$('.topicItem').each(
 		function () {
-			if(this.id === "undefined"){
-
+			if (this.id === 'undefined'){
 				$(this).remove();
 			}
 		}
@@ -348,7 +347,7 @@ function revertChanges () {
 			var icon = '';
 			var contentIDs = [];
 
-			if ($(rowData.dimensionsSaved).val() === '' && $(rowData.dimensionsSaved).val() == undefined) {
+			if ($(rowData.dimensionsSaved).val() === '' || $(rowData.dimensionsSaved).val() === undefined) {
 				contentIDs.push(this.id);
 			} else {
 				$(rowData.title).val($(rowData.titleSaved).val());
@@ -368,11 +367,8 @@ function revertChanges () {
 					icon = $('#img' + dimensionShort).attr('href');
 				}
 				$(rowData.dimensions).siblings('img').attr('src', icon);
-			};
-
-			//deleteTopic(contentIDs);
-
-
+			}
+			//	deleteTopic(contentIDs);
 		}
 	);
 }
@@ -645,21 +641,18 @@ $(
 
 				$('#topicList .selected').each(
 					function () {
-						if(this.id != 'undefined'){
+						if (this.id !== 'undefined'){
 						contentIDs.push(this.id);}
-						else{
+						else {
 						// removing newly added unsaved topic
-							$(this).remove();
-						}
-					}
+							$(this).remove();}
+							}
 				);
 				if (contentIDs.length !== 0) {
-
 					deleteTopic(contentIDs);
 				}
 			}
 		);
-
 		$('#topicList').on(
 			'click',
 			'.saveIcon',
@@ -672,12 +665,10 @@ $(
 				}
 			}
 		);
-
 		$('.saveIcon-parent').click(
 			function () {
 				$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-				$(this).toggleClass('all-selected');
-
+				$(this).toggleClass ( 'all-selected' );
 				if ($(this).find('i').hasClass('fa-square-o')) {
 					$(this).parents('table')
 						.find('tbody')
