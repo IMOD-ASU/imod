@@ -78,7 +78,7 @@
 									<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
 									<div>
 									<span class="topicButtonGradient" >
-										<a href="/imod/learningObjective/performance/${currentImod?.id}">
+										<a href="../../learningObjective/performance/${currentImod?.id}">
 											Define Objectives
 										</a>
 									</span>
@@ -269,7 +269,7 @@
 							<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no learning objectives defined.</div>
 							<div>
 							<span class="topicButtonGradient">
-								<a href="/imod/learningObjective/performance/${currentImod?.id}">
+								<a href="../../learningObjective/performance/${currentImod?.id}">
 									Define Objectives
 								</a>
 							</span>
