@@ -106,7 +106,7 @@
 }
 
 .ui-button-text .ui-button-text {
-	padding: 0;
+    padding: 0;
 }
 
 .new-technique-popup-button {
@@ -122,11 +122,12 @@
     background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
 }
 .new-technique-popup-button.clone {
-	width: 80px;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	top: inherit;
+    position: absolute;
+    top: inherit;
+    right: 0;
+    bottom: 0;
+
+    width: 80px;
 }
 #ideal-matches1 {
     height: 300px;
@@ -184,7 +185,7 @@
     size: 1em;
 }
 
-#closeInstructionalPlanButton{
+#closeInstructionalPlanButton {
     cursor: pointer;
 }
 
@@ -235,7 +236,7 @@
 }
 
 #k1 {
-	width: 100%;
+    width: 100%;
 }
 
 .titleField {
@@ -275,19 +276,21 @@
 }
 
 .icons > .ui-state-hover:hover {
-	color: inherit;
+    color: inherit;
 }
 
 label.assessment-block:hover {
-	cursor: default;
+    cursor: default;
 }
 
 label.assessment-block .ui-button-text:hover {
-	color: #1c94c4; cursor: pointer;
+    cursor: pointer;
+
+    color: #1c94c4;
 }
 
 .clone:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .favDiv {
@@ -381,14 +384,16 @@ label.assessment-block .ui-button-text:hover {
     text-align: left;
 }
 
-.assessment-plan-LO, .assignedTechniques{
+.assessment-plan-LO,
+.assignedTechniques {
     text-align: left;
 }
-#printAssessmentPlan{
-    font-size: 1em;
+#printAssessmentPlan {
     height: 2em !important;
+
+    font-size: 1em;
 }
-#printAssessmentPlan a{
+#printAssessmentPlan a {
     vertical-align: middle !important;
     text-decoration: none;
 }
