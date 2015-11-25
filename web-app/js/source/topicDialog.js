@@ -648,7 +648,7 @@ $(
 						if(this.id != 'undefined'){
 						contentIDs.push(this.id);}
 						else{
-
+						// removing newly added unsaved topic
 							$(this).remove();
 						}
 					}
