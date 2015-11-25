@@ -2,10 +2,21 @@
 
 ### Node ###
 node_modules
+npm-debug.log*
+.npm
 
 ### Bower ###
 bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
 
+### Eclipse ###
+*.project
+
+### Intellij ###
+*.iml
+.idea/
 
 ### Grails 2.5 ###
 # ignore static analysis report
@@ -13,34 +24,31 @@ static-analysis.txt
 static-analysis.html
 
 # web application files
-/web-app/WEB-INF/classes
+web-app/WEB-INF/classes
 web-app/WEB-INF/tld/*
 
 # default HSQL database files for production mode
-/prodDb.*
+prodDb.*
 
 # general HSQL database files
 *Db.properties
 *Db.script
 
 # logs
-/stacktrace.log
-/test/reports
-/logs
+stacktrace.log
+test/reports
+logs
+*.log
 
 # project release file
-/*.war
+*.war
 
 # plugin release files
-/*.zip
-/plugin.xml
-
-# older plugin install locations
-/plugins
-/web-app/plugins
+*.zip
+plugin.xml
 
 # "temporary" build files
-/target
+target
 RemoteSystemsTempFiles
 target-eclipse/**
 .classpath
@@ -50,13 +58,3 @@ target/dependency-report
 .metadata/**
 web-app/development-bundle/**
 *.class
-
-*.project
-
-.idea/copyright/profiles_settings.xml
-
-.idea/encodings.xml
-
-.idea/misc.xml
-
-.idea/workspace.xml
