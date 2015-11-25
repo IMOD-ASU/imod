@@ -6,8 +6,10 @@
   "private": true,
   "dependencies": {
     "canvas.js": "https://canvasjs.com/assets/script/jquery.canvasjs.min.js",
-    "fontawesome": "4.4.0",
+    "fontawesome": "4.5.0",
     "htmlhint": "yaniswang/HTMLHint",
+    "jquery-sortable": "0.9.13",
+    "jquery.cookie": "jquery-cookie#~1.4.1",
     "jquery.maskedinput": "1.4.1",
     "jquery.piegraph": "edgardleal/jquery.piegraph",
     "jquery.ui": "1.11.4",
@@ -16,8 +18,6 @@
     "jstree": "3.2.1",
     "log": "0.3.0",
     "qtip2": "2.2.1",
-    "ubuntu-fontface": "0.1.9",
-    "jquery-sortable": "0.9.13",
-    "jquery.cookie": "jquery-cookie#~1.4.1"
+    "ubuntu-fontface": "0.1.10"
   }
 }

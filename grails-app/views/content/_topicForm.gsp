@@ -130,7 +130,8 @@
 		Save
 	</button>
 	<button id="closeKnowDim" class="topicButtonGradient knowledgedimBtn" type="button">
-	Close
+		<i class="fa fa-times red"></i>
+		Cancel
 	</button>
 </div>
 <div id="selectResourceBackground" class="modalBackground">

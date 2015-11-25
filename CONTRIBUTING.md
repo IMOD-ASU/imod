@@ -2,12 +2,12 @@
 * [Contributing Guidelines](#contributing-guidelines)
   - [Editor Guidelines](#editor-guidelines)
   - [Git Guidelines](#git-guidelines)
-  - [Code Guidlines](#code-guidelines)
-* [Maintainance Guidelines](#maintainance-guidelines)
+  - [Code Guidelines](#code-guidelines)
+* [Maintenance Guidelines](#maintenance-guidelines)
   - [Git Sprint Management](#git-sprint-management)
-  - [Code Maintainance](#code-maintainance)
-  - [Library Maintainance](#library-maintainance)
-  - [Server Maintainance](#server-maintainance)
+  - [Code Maintenance](#code-maintenance)
+  - [Library Maintenance](#library-maintenance)
+  - [Server Maintenance](#server-maintenance)
 
 # Contributing Guidelines
 
@@ -35,7 +35,7 @@ CSS files should be auto formatted using [CSScomb](http://www.csscomb.com/)
 <br>
 <br>
 <br>
-# Maintainance Guidelines
+# Maintenance Guidelines
 
 ### Git Sprint Management
 For Git management we follow the [Git Flow model](http://nvie.com/posts/a-successful-git-branching-model/).
@@ -62,22 +62,21 @@ For application versioning we follow [Semantic Versioning](http://semver.org/)
 
 <br>
 <br>
-### Code Maintainance
+### Code Maintenance
 There are six tools used to help maintain quality code.
 
 Its good to run these tools at least once a sprint to look for code smells and potential issues.
 
 * [CodeNarc](http://codenarc.sourceforge.net/) for Groovy and Grails static analysis
 * [FindBug](http://findbugs.sourceforge.net/) for more analysis of the compiled Groovy code and templates
-* [JShint](http://jshint.com/docs/) for static analysis of javascript
-* [JSCS](http://jscs.info/) for style checking javascript
-* [CSSComb](http://csscomb.com/docs) for automatic formatting of stylesheets
-* [HTML hint](http://htmlhint.com/) for HTML validation and stylechecking
+* [ESLint](http://eslint.org/docs/rules/) for static analysis of JavaScript
+* [CSSComb](http://csscomb.com/docs) for automatic formatting of style sheets
+* [HTML hint](http://htmlhint.com/) for HTML validation and style checking
 
 ##### Installing the tools
 * CodeNarc and HTMLhint are bundled with the grails application, nothing needed here
 * Findbugs can be downloaded [here](http://findbugs.sourceforge.net/downloads.html)
-* One command to install the rest `npm install -g jshint jscs csscomb`
+* One command to install the rest `npm install -g eslint csscomb`
 
 ##### Running CodeNarc
 1. open a terminal in the imods project folder
@@ -95,15 +94,9 @@ Its good to run these tools at least once a sprint to look for code smells and p
 7. filter by package `imod`
 8. resolve as many errors as possible
 
-##### Running JSHint
+##### Running ESLint
 1. open a terminal in the imods project folder
-2. run `jshint web-app/js/`
-3. errors will be displayed in the terminal
-4. resolve as many errors as possible
-
-##### Running JSCS
-1. open a terminal in the imods project folder
-2. run `jscs web-app/js/`
+2. run `eslint web-app/js/source/`
 3. errors will be displayed in the terminal
 4. resolve as many errors as possible
 
@@ -120,14 +113,14 @@ Its good to run these tools at least once a sprint to look for code smells and p
 
 <br>
 <br>
-### Library Maintainance
+### Library Maintenance
 There are two main package managers that are used in the project.
 
 * [Gant/Maven](https://maven.apache.org/) Manages Groovy on Rails packages
 * [Bower](http://bower.io/) Manages UI libraries
 
 and what that is semi used
-* [NPM](https://www.npmjs.com/) Mananges Node js libraries, used to keep what tools are used for code maintainance (and what version is used).
+* [NPM](https://www.npmjs.com/) Manages Node js libraries, used to keep what tools are used for code maintenance (and what version is used).
 
 ##### Checking for Grails package updates
 1. open a terminal in the imods project folder
@@ -143,7 +136,7 @@ and what that is semi used
 ##### Checking for Bower package updates
 1. open a terminal in the imods project folder
 2. run `bower list`
-3. Bower will show any stable libary updates
+3. Bower will show any stable library updates
 4. If there is a plugin that has a Major or Minor number change
    - [search for the plugin on the bower site](http://bower.io/search/)
    - Bower will link to the repo
@@ -162,7 +155,7 @@ NOTE: this is only used for reference so developers know what tools and versions
 
 <br>
 <br>
-### Server Maintainance
+### Server Maintenance
 
 ##### Update the Test/Demo Server
 1. SSH into the server
@@ -177,8 +170,8 @@ NOTE: this is only used for reference so developers know what tools and versions
 5. Run `sudo /usr/local/apache2/bin/apachectl start`
 6. Run `sudo /opt/apache-tomcat-{version}/bin/startup.sh`
 
-##### Recover from Travis CI depandancy lock
-Sometimes when dependancies get updated Travis CI say all builds fail.
+##### Recover from Travis CI dependency lock
+Sometimes when dependencies get updated Travis CI say all builds fail.
 
 1. Check the logs to make sure it is not a code mistake
 2. Goto the [Travis CI website](https://travis-ci.org/IMOD-ASU/imod/)
@@ -186,7 +179,7 @@ Sometimes when dependancies get updated Travis CI say all builds fail.
 4. Click Settings > Caches
 5. Click Delete all repository caches
 
-Done! the next Travis CI build will be a bit slow, but will not hang on installing dependancies.
+Done! the next Travis CI build will be a bit slow, but will not hang on installing dependencies.
 
 ##### Update Apache Tomcat on Demo
 1. SSH into the server
@@ -202,9 +195,9 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 ##### Update NodeJS on Demo
 1. SSH into the server
 2. Goto `/opt`
-3. Open the [iojs website](https://iojs.org/en/index.html)
-4. Get the latest binary `sudo wget link-from-site.tar.gz`
-5. Unzip the file `sudo tar -zxvf iojs-32bit-version.tar.gz`
+3. Open the [Node JS downloads page](https://nodejs.org/dist/latest/)
+4. Get the latest 32bit binary `sudo wget link-from-site.tar.gz`
+5. Unzip the file `sudo tar -zxvf link-from-site.tar.gz`
 6. cd into the new version
 7. run `sudo ./bin/npm install -g bower`
-8. update the path to iojs in each of the Jenkins project configurations
+8. update the path to Node JS in each of the Jenkins project configurations

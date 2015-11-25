@@ -379,13 +379,13 @@ input[disabled='disabled'] {
     border: 1px dashed #cccccc;
 }
 /*#contentTree li.placeholder:before {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    top: -8px;
-    left: 0;
-    background: url(../../images/arrow-small.png);
-    content: "";
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	top: -8px;
+	left: 0;
+	background: url(../../images/arrow-small.png);
+	content: "";
 }*/
 
 #contentTree li:hover > .delete-topic {
@@ -515,24 +515,24 @@ input[disabled='disabled'] {
     background-position-y: center;
 }
 /*.topicButtonGradient {
-    display: inline-block;
+	display: inline-block;
 
-    height: auto;
-    margin-right: 5px;
-    margin-left: 5px;
-    padding-right: 5px;
-    padding-left: 5px;
+	height: auto;
+	margin-right: 5px;
+	margin-left: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
 
-    border-radius: 4px;
-    background: linear-gradient(#f0f0f0,white);
-    box-shadow: 0 1px 2px #888888;
+	border-radius: 4px;
+	background: linear-gradient(#f0f0f0,white);
+	box-shadow: 0 1px 2px #888888;
 }
 
 
 .topicButtonGradient.cancelBG i {
-    color: darkred;
+	color: darkred;
 
-    font-size: 1.5em;
+	font-size: 1.5em;
 }*/
 #topicList {
     width: 100%;
@@ -659,6 +659,11 @@ input[disabled='disabled'] {
     left: 10%;
 
     width: 40%;
+
+    border: none;
+}
+#selectKnowledgeDimensions #closeKnowDim i {
+    font-size: 18px;
 }
 #selectResourceBackground {
     z-index: 3;

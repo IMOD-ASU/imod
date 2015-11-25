@@ -648,9 +648,16 @@ $(document).ready(
 			}
 		);
 
+		$('#learning-objective-missing, #learning-objective-missing-required').dialog({
+			autoOpen: false
+		});
 		// When learning domain isn't selected, do not save learning objective
-		$('.learning-objective-button.save').click(
+		$('.learning-objective-button button').click(
 			function () {
+				if ($('#learning-objective-id').val() === '') {
+					$('#learning-objective-missing').dialog('open');
+					return false;
+				}
 				if ($('#learning-domain-list').val() === 'null' || $('#domain-category-list').val() === 'null' || $('input[name=actionWordCategory]').is(':checked') === false) {
 					$('#learning-objective-missing-required').dialog('open');
 					return false;

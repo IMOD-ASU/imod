@@ -184,7 +184,7 @@ class LearningObjectiveController {
 
 		// get all performance data to set in the Performance page
 		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-		final selectedActionWordCategory = currentLearningObjective.actionWordCategory
+		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
 
@@ -194,7 +194,7 @@ class LearningObjectiveController {
 		final actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
 
 		[
-			actionWord: 				currentLearningObjective.actionWord,
+			actionWord: 				currentLearningObjective?.actionWord,
 			actionWordCategoryList:		actionWordCategoryList,
 			categoriesList:				domainCategoriesList,
 			currentImod:				currentImod,
@@ -246,10 +246,10 @@ class LearningObjectiveController {
 		def currentImod					=  Imod.get(id)
 		def learningObjectives			=  learningObjectiveService.getAllByImod(currentImod)
 		def currentLearningObjective	=  learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-		def currentCondition			=  currentLearningObjective.condition?:''
-		def currentCustomCondition		=  currentLearningObjective.customCondition
+		def currentCondition			=  currentLearningObjective?.condition?:''
+		def currentCustomCondition		=  currentLearningObjective?.customCondition
 		def isCustom					= ((boolean) (LearningObjective.genericConditions.find {it == currentCondition}))
-		def hideCondition				=  currentLearningObjective.hideFromLearningObjectiveCondition
+		def hideCondition				=  currentLearningObjective?.hideFromLearningObjectiveCondition
 
 		[
 			currentCondition:			currentCondition,
@@ -282,8 +282,10 @@ class LearningObjectiveController {
 		// FIXME remove html from controller
 		def listChildren = []
 		def topicSelected = 'topicNotSelected'
-		if (objective.contents.contains(current) as Boolean) {
-			topicSelected = 'topicSelected'
+		if(objective != null){
+			if (objective.contents.contains(current) as Boolean) {
+				topicSelected = 'topicSelected'
+			}
 		}
 		def currentID = current.id
 		def idValue = 'content' + currentID
@@ -321,8 +323,10 @@ class LearningObjectiveController {
         def text = ''
 
         def topicSelected = ''
-		if (objective.contents.contains(current) as Boolean) {
-			topicSelected = 'fa-check'
+		if(objective != null){
+			if (objective.contents.contains(current) as Boolean) {
+				topicSelected = 'fa-check'
+			}
 		}
 		def currentID = current.id
 		def topicTitle = '<span class="sub-content-tree fa-stack">' +

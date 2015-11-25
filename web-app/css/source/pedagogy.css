@@ -19,11 +19,15 @@
 
 
 .no-objective-defined {
+    height: 100px;
+
     text-align: center;
     vertical-align: middle;
+}
 
-    opacity: 0.5;
-    background: #cccccc;
+.no-objective-defined a {
+    vertical-align: middle !important;
+    text-decoration: none;
 }
 
 .pedagogy-page-buttons {
@@ -158,7 +162,7 @@
     size: 1em;
 }
 
-#closeInstructionalPlanButton{
+#closeInstructionalPlanButton {
     cursor: pointer;
 }
 
@@ -194,7 +198,6 @@
 
 #techniqueList input,
 #techniqueList select,
-#techniqueList button,
 #techniqueList textarea {
     box-sizing: border-box;
     width: 100%;
@@ -254,6 +257,25 @@
     top: 0;
     left: 73px;
 }
+.clone {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    height: 28px;
+    padding: 0 10px;
+
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    background: #0a1629;
+    background: linear-gradient(to right bottom, #1b4176 0%, #172751 100%);
+}
+
+.knowledgeDimensionButton {
+    width: 100%;
+}
+
 
 .icons > .ui-state-default {
     background-color: #ffffcc;
@@ -261,14 +283,16 @@
     background-repeat: none !important;
     background-position: none !important;
 }
-.istructional-plan-LO, .assignedTechniques{
+.istructional-plan-LO,
+.assignedTechniques {
     text-align: left;
 }
-#printInstructionalPlan{
-    font-size: 1em;
+#printInstructionalPlan {
     height: 2em !important;
+
+    font-size: 1em;
 }
-#printInstructionalPlan a{
+#printInstructionalPlan a {
     vertical-align: middle !important;
     text-decoration: none;
 }

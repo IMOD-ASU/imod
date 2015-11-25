@@ -5,6 +5,7 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
  */
 function openNewPedagogyTechniqueModal () {
 	'use strict';
+
 	$('#techniqueId').val('');
 	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
@@ -150,6 +151,7 @@ function populatePedagogyTechnique (data) {
 	var checked = '';
 	var cloneDetect = document.getElementById('cloneDetect').value;
 
+	$('#titlecheck').val(currentTechnique.title);
 	if (cloneDetect === 'clone') {
 		$('#editTitle').html('<b>Enter Alternate Name for Clone</b>');
 		$('#title').val('');
@@ -157,6 +159,8 @@ function populatePedagogyTechnique (data) {
 		$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
 		$('#title').val(currentTechnique.title);
 	}
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 	// $('#location').val(currentTechnique.location);
 	$('#duration').val(currentTechnique.direction);
 	$('#materials').val(currentTechnique.materials);
@@ -212,6 +216,20 @@ function displayPedagogyInformationInEdit () {
 	})
 	.done(populatePedagogyTechnique);
 }
+$('#title').change(function () {
+	'use strict';
+	var hasError = false;
+
+	if ($('#title').val() === $('#titlecheck').val()) {
+		$('#errorMessage').text('Enter title which is different from the original technique');
+		hasError = true;
+	} else {
+		hasError = false;
+	}
+	if (hasError === true) {
+		return false;
+	}
+});
 
 /**
  * Callback for find matching techniques grails action
@@ -243,7 +261,7 @@ function displayPedagogyTechniques (data) {
 
 		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
 		idealText += '<label class="pedagogy-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
 	// Take the titles and make html code to display
@@ -263,7 +281,7 @@ function displayPedagogyTechniques (data) {
 		extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
 		extendedText += '<label class="pedagogy-block" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
-					truncateString(currentTechnique.title, 100) + '</span><br><br><button  class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+					truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
 	// Add html code to the page
@@ -634,9 +652,19 @@ $(document).ready(
 		function () {
 			var tp = '';
 			var temp = '';
+			var cloneDetect = document.getElementById('cloneDetect').value;
 
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
+				hasError = true;
+			} else if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
+				$('#errorMessage').text('Learning Domains are required');
+				hasError = true;
+			} else if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
+				$('#errorMessage').text('Domain Categories are required');
+				hasError = true;
+			} else if ($('#knowledgeDimension').val() === '') {
+				$('#errorMessage').text('Knowledge Dimensions are required!');
 				hasError = true;
 			} else {
 				$('#learningDomain :selected').each(function (identifier, selected) {
@@ -649,7 +677,10 @@ $(document).ready(
 				document.getElementById('domainCategorySelected').value = temp;
 				hasError = false;
 			}
-
+			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
+				$('#errorMessage').text('Enter title which is different from the original technique');
+				hasError = true;
+			}
 			if (hasError === true) {
 				return false;
 			}

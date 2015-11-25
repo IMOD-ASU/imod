@@ -75,9 +75,16 @@
 							</g:if>
 							<g:else>
 								<div class="no-objective-defined">
-									There are no objectives defined
-									<g:render template="emptyStateTemplate" />
+									<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
+									<div>
+									<span class="topicButtonGradient" >
+										<a href="../../learningObjective/performance/${currentImod?.id}">
+											Define Objectives
+										</a>
+									</span>
+									</div>
 								</div>
+
 							</g:else>
 						</ul>
 					</div>
@@ -224,18 +231,32 @@
 						<div class="pedagogy-page-buttons-disabled">
 							<span>
 								<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-								<button id="add-new-technique-button">
-									<i class="fa fa-plus green"></i>
-									Add New Technique
-								</button>
+								<span id="add-new-technique-button" class="topicButtonGradient">
+									<button>
+										<i class="fa fa-plus green"></i>
+										Add New Technique
+									</button>
+								</span>
 
-								<button id="favorites-button">
-									<i class="fa fa-star yellow"></i>
-									Favorites
-								</button>
+								<span id="favorites-button" class="topicButtonGradient">
+									<button>
+										<i class="fa fa-star yellow"></i>
+										Favorites
+									</button>
+								</span>
 
-								<button id="instruction-plan-button">Instructional Plan
-								</button>
+								<span  id="unfavorites" class="topicButtonGradient">
+									<button>
+										UnFavorites
+									</button>
+								</span>
+
+								<span id="instruction-plan-button" class="topicButtonGradient">
+									<button>
+										<i class="fa fa-graduation-cap"></i>
+										Instructional Plan
+									</button>
+								</span>
 							</span>
 							<br/>
 						</div>
@@ -245,8 +266,14 @@
 							</video>
 						</div>
 						<div class="no-objective-defined">
-							There are no objectives defined
-							<g:render template="emptyStateTemplate" />
+							<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no learning objectives defined.</div>
+							<div>
+							<span class="topicButtonGradient">
+								<a href="../../learningObjective/performance/${currentImod?.id}">
+									Define Objectives
+								</a>
+							</span>
+							</div>
 						</div>
 					</g:else>
 
@@ -259,13 +286,14 @@
 							</div>
 							<span id="errorMessage" style="color:red"></span>
 						</fieldset>
-						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
-							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective.id}"/>
+							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
 							<tr>
 							<td class="td-label" width="40%">Title</td>
 							<td width="60%"> <g:textField name="title" /></td>
+							<input type="hidden" name="titlecheck" id="titlecheck" >
 							</tr>
 							<!--<tr>
 							<td width="40%"> Assign to Current Learning Objective </td>
@@ -280,17 +308,17 @@
 							<td width="60%"><g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
 							<input type="hidden" name="domainSelected" id="domainSelected" >
 							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
-							
+
 
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
+							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select --']}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
 							<td width="60%">
-								<button id="k1"> click me</button>
+								<button id="k1" class="knowledgeDimensionButton"> Knowledge Dimensions</button>
 							</td>
 							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
 							<input type="hidden" name="cloneDetect" id="cloneDetect" >
@@ -341,10 +369,7 @@
 									<i class="fa fa-times red"></i>
 									Cancel
 								</button>
-								<button type="submit" name="_action_clone" value="Clone" class="new-technique-popup-button">
-									<i class="fa fa-clone blue"></i>
-									Clone
-								</button>
+
 							</div>
 							<br>
 						</g:form>
@@ -379,7 +404,7 @@
 							<g:else>
 								<div class="no-objective-defined">
 									There are no objectives defined
-									<g:render template="emptyStateTemplate" />
+
 								</div>
 							</g:else>
 						</div>
@@ -416,17 +441,19 @@
 			/>
 		</span>
 		<button
-		  class="save showHoverNew resourceButton"
+		  class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
 					id="knowDimFinished"
 					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
+		<i class="fa fa-save green"></i>
 					${message(code: 'Save Resource', default: ' Save')}
 		</button>
 		<button
-		  class="cancel showHoverNew resourceButton"
+		  class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
 					id="closeKnowDim"
 					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
+					<i class="fa fa-times red"></i>
 					${message(code: 'Cancel Resource', default: ' Cancel')}
 		</button>
 

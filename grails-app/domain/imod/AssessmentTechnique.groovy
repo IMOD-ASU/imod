@@ -7,9 +7,11 @@ package imod
 class AssessmentTechnique {
 	String title
 	String description
+	String assesmentype
 	String procedure
 	String duration
 	String difficulty
+	String type
 	String whenToCarryOut
 	String sources
 	Boolean assigncheck = Boolean.TRUE
@@ -45,7 +47,9 @@ class AssessmentTechnique {
 		userFavorite nullable: true
 		assessmentFeedback nullable:true
 		difficulty nullable:true, blank: true
+		type nullable:true, blank: true
 		whenToCarryOut nullable:true, blank: true
 		sources nullable:true, blank: true
+		assesmentype nullable:true, blank: true
     }
 }

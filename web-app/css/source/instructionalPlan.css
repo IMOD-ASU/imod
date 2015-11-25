@@ -1,0 +1,190 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    outline: 0;
+}
+
+body {
+    padding: 0 20px;
+
+    background: #dddddd;
+
+    font-family: Verdana, Arial, Helvetica;
+    line-height: 1.5em;
+}
+
+h3 {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+
+    border-top: 1px solid #cccccc;
+
+    font-size: 1em;
+}
+
+h4 {
+    margin-bottom: 15px;
+
+    font-size: 0.8em;
+}
+
+.topicButtonGradient {
+    display: inline-block;
+
+    height: auto;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 5px 10px;
+
+    text-decoration: none;
+
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(#113b70, #0b2f5e);
+    box-shadow: 0 1px 2px #888888;
+
+    font-size: 16px;
+}
+
+.topicButtonGradient:hover {
+    background: linear-gradient(#0b2f5e, #1857a3);
+}
+
+.topicButtonGradient a,
+.topicButtonGradient input,
+.topicButtonGradient button {
+    color: #ffffff;
+}
+
+.topicButtonGradient a:hover,
+.topicButtonGradient input:hover,
+.topicButtonGradient button:hover {
+    background-color: transparent;
+}
+
+
+.wrapper {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px 30px;
+
+    word-wrap: break-word;
+
+    border: 1px solid #cccccc;
+    background: #ffffff;
+}
+
+.Content li {
+    text-transform: capitalize;
+}
+
+.course-details .form-title {
+    position: relative;
+}
+.course-details .options {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+body.syllabus_pdf {
+    background: none;
+
+    font-family: Arial;
+    font-size: 0.9em;
+}
+
+body.syllabus_pdf .wrapper {
+    padding: 0;
+
+    border: none;
+}
+
+.wrapper {
+    overflow: hidden;
+}
+
+.float-wrapper {
+    overflow: hidden;
+}
+
+.right {
+    position: relative;
+    z-index: 2;
+
+    float: right;
+}
+
+.form-title-sort-arrows {
+    margin-left: -20px;
+    padding-left: 20px;
+}
+
+.form-title-sort-arrows h3 {
+    position: relative;
+
+    padding-top: 15px;
+}
+
+.form-title-sort-arrows:hover .sort-arrows {
+    display: block;
+}
+
+.sort-arrows {
+    position: absolute;
+    top: 15px;
+    left: -22px;
+
+    display: none;
+}
+
+.fa-sort-up,
+.fa-sort-down {
+    display: block;
+
+    width: 24px;
+    height: 30px;
+
+    cursor: pointer;
+
+    font-size: 30px;
+}
+
+.fa-sort-down {
+    margin-top: -20px;
+}
+
+.sort-arrows .fa:hover {
+    color: blue;
+}
+
+@media print {
+    body {
+    	font-family: Arial;
+    	font-size: 0.9em;
+    }
+    .wrapper {
+    	padding: 0;
+
+    	border: none;
+    }
+    .options {
+    	display: none;
+    }
+    .display-toggle,
+    #generate-syllabus,
+    .printpdf {
+    	display: none;
+    }
+}
+
+
+.printpdf {
+    width: 200px;
+    margin: 0 auto;
+
+    cursor: pointer;
+}

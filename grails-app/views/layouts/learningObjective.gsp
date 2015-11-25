@@ -54,7 +54,7 @@
 								</g:link>
 								</span>
 								<span class="topicButtonGradient">
-								<g:link action="remove" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
+								<g:link action="remove" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
 									<button class="remove show-hover-new topicButton" title="${ message( code:'imod.learningObjective.remove' ) }" >
 										<i class="fa fa-minus-circle red"></i>
 										Remove
@@ -63,8 +63,8 @@
 								</span>
 								</fieldset>
 								<ul class="learning-objective list-wrapper">
-									<g:each var="learningObjective" in="${learningObjectives}">
-										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }" >
+								    <g:each var="learningObjective" in="${learningObjectives}">
+										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective?.id) ? 'active' : ''  }" >
 											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link ${(learningObjective.definition) ? '' : 'new'  }">
 
 												<g:if test="${ learningObjective.definition}">
@@ -87,12 +87,12 @@
 						<td class="learning-objective definition-cell">
 							<div class="learning-objective definition" class="learning-objective-current">
 								<div class="learning-objective definition-display active">
-									${ currentLearningObjective.definition }
+									${ currentLearningObjective?.definition }
 									<i class="fa fa-pencil" title="Click to edit"></i>
 								</div>
 								<g:form class="learning-objective definition-edit" action="saveDefinition" id="${currentImod.id}" method="post">
-									<g:textArea name="customDefinition" value="${ currentLearningObjective.definition }" rows="5" cols="40" title="${ message( code:'imod.learningObjective.editDetails' ) }"/>
-									<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective.id}" id="learning-objective-id" />
+									<g:textArea name="customDefinition" value="${ currentLearningObjective?.definition }" rows="5" cols="40" title="${ message( code:'imod.learningObjective.editDetails' ) }"/>
+									<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective?.id}" id="learning-objective-id" />
 									<g:hiddenField name="pageType" value="criteria" id="page-type" />
 								</g:form>
 							</div>
@@ -105,22 +105,22 @@
 								<img class="learning-objective type-icon" src="${resource(dir: 'images/learningObjectives', file: 'LO-' + currentPage.find(/\w+$/) + '.png')}" alt=""/>
 								<ul class="learning-objective sub-nav">
 									<li class="${ currentPage.find(/learning objective performance/) == null ? '' : 'active' }">
-										<g:link action="performance" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="performance">
+										<g:link action="performance" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="performance">
 											Performance
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective content/) == null ? '' : 'active' }">
-										<g:link action="content" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="content" title="${ message( code:'imod.learningObjective.contentSubtab' ) }">
+										<g:link action="content" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="content" title="${ message( code:'imod.learningObjective.contentSubtab' ) }">
 											Content
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
-										<g:link action="condition" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="conditionTab">
+										<g:link action="condition" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="conditionTab">
 											Condition
 										</g:link>
 									</li>
 									<li class="${ currentPage.find(/learning objective criteria/) == null ? '' : 'active' }">
-										<g:link action="criteria" params="[learningObjectiveID: currentLearningObjective.id]" id="${currentImod?.id}" class="criteria" title="${ message( code:'imod.learningObjective.criteria' ) }">
+										<g:link action="criteria" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="criteria" title="${ message( code:'imod.learningObjective.criteria' ) }">
 											Criteria
 										</g:link>
 									</li>
@@ -134,6 +134,11 @@
 			<div id="learning-objective-missing-required" title="Missing Required">
 				<p>
 					Learning Domain, Domain Category and Action Word Categories are required.
+				</p>
+	        </div>
+			<div id="learning-objective-missing" title="Missing">
+				<p>
+					Please click on Add to add a new learning objective.
 				</p>
 	        </div>
 		</body>

@@ -431,87 +431,73 @@ class BootStrap {
 
 			def ScheduleRepeatsDaily = new ScheduleRepeats(
 				description: 'Daily'
-				)
-			ScheduleRepeatsDaily.save()
+			).save()
 
 			def ScheduleRepeatsWeekDay = new ScheduleRepeats(
 				description: 'Every Weekday (Monday to Friday)'
-				)
-			ScheduleRepeatsWeekDay.save()
+			).save()
 
 			def ScheduleRepeatsMW = new ScheduleRepeats(
 				description: 'Every Monday and Wednesday'
-				)
-			ScheduleRepeatsMW.save()
+			).save()
 
 			def ScheduleRepeatsTTh = new ScheduleRepeats(
 				description: 'Every Tuesday and Thursday'
-				)
-			ScheduleRepeatsTTh.save()
+			).save()
 
 			def ScheduleRepeatsWeekly = new ScheduleRepeats(
 				description: 'Weekly'
-				)
-			ScheduleRepeatsWeekly.save()
+			).save()
 
 			for (int i =1; i <= 30; i++) {
 				def ScheduleRepeatsE = new ScheduleRepeatsEvery(
-					description: i)
+					description: i
+				)
 				ScheduleRepeatsE.save()
 			}
 
 			def ScheduleSunday = new ScheduleWeekDays(
-				description:'S'
-				)
-			ScheduleSunday.save()
+				description: 'S'
+			).save()
 
 			def ScheduleMonday = new ScheduleWeekDays(
-				description:'M'
-				)
-			ScheduleMonday.save()
+				description: 'M'
+			).save()
 
 			def ScheduleTuesday = new ScheduleWeekDays(
-				description:'T'
-				)
-			ScheduleTuesday.save()
+				description: 'T'
+			).save()
 
 			def ScheduleWednesday = new ScheduleWeekDays(
-				description:'W'
-				)
-			ScheduleWednesday.save()
+				description: 'W'
+			).save()
 
 			def ScheduleThursday = new ScheduleWeekDays(
-				description:'T'
-				)
-			ScheduleThursday.save()
+				description: 'T'
+			).save()
 
 			def ScheduleFriday = new ScheduleWeekDays(
-				description:'F'
-				)
-			ScheduleFriday.save()
+				description: 'F'
+			).save()
 
 			def ScheduleSaturday = new ScheduleWeekDays(
-				description:'S'
-				)
-			ScheduleSaturday.save()
+				description: 'S'
+			).save()
 
 			/**
 			 * Generate Learning Domains, Domain Categories and Action Words
 			 */
 			def learningDomainCognitive = new LearningDomain(
 				name: 'Cognitive'
-			)
-			learningDomainCognitive.save()
+			).save()
 
 			def learningDomainAffective = new LearningDomain(
 				name: 'Affective'
-			)
-			learningDomainAffective.save()
+			).save()
 
 			def learningDomainPsychomotor = new LearningDomain(
 				name: 'Psychomotor'
-			)
-			learningDomainPsychomotor.save()
+			).save()
 
 			/**
 			 * This creates the domain Category instances,
@@ -1228,68 +1214,68 @@ class BootStrap {
 			).save()
 
 			new AssessmentFeedback(
-				name:"In Person"
+				name: 'In Person'
 			).save()
 
 			new AssessmentFeedback(
-				name:"Online"
+				name: 'Online'
 			).save()
 
 			new AssessmentFeedback(
-				name:"Both"
+				name: 'Both'
 			).save()
 
 			new PedagogyMode(
-				name:'online'
+				name: 'online'
 			).save()
 
 			new PedagogyMode(
-				name:'in-person'
+				name: 'in-person'
 			).save()
 
 			new PedagogyMode(
-				name:'hybrid'
+				name: 'hybrid'
 			).save()
 
 			new PedagogyReferenceType(
-				description:'Book'
+				description: 'Book'
 			).save()
 
 			new PedagogyReferenceType(
-				description:'Web'
+				description: 'Web'
 			).save()
 
 			new PedagogyActivityDuration(
-				duration:'Single Session'
+				duration: 'Single Session'
 			).save()
 
 			new PedagogyActivityDuration(
-				duration:'Multiple Session'
+				duration: 'Multiple Session'
 			).save()
 
 			new PedagogyActivityDuration(
-				duration:'Both Session'
+				duration: 'Both Session'
 			).save()
 
 			new PedagogyActivityFocus(
-				focus:'Reading'
+				focus: 'Reading'
 			).save()
 
 			new PedagogyActivityFocus(
-				focus:'Writing'
+				focus: 'Writing'
 			).save()
 
 			new PedagogyActivityFocus(
-				focus:'Discussing'
+				focus: 'Discussing'
 			).save()
 
 			new PedagogyActivityFocus(
-				focus:'Presenting'
+				focus: 'Presenting'
 			).save()
 
 			/*Pedagogy Technique*/
 			def assessmentTech = new AssessmentTechnique(
-				title:"Minute Papers",
+				title: 'Minute Papers',
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
 				]),//'Cognitive','Affective', 'Psychomotor'
@@ -1297,17 +1283,17 @@ class BootStrap {
 					'Remembering'
 				]),
 				knowledge:KnowledgeDimension.findAllByDescriptionInList([
-					"Factual",
-					"Conceptual",
-					"Procedural",
-					"Metacognitive"
+					'Factual',
+					'Conceptual',
+					'Procedural',
+					'Metacognitive'
 				]),
-				assessmentFeedback: AssessmentFeedback.findByName("Online")
+				assessmentFeedback: AssessmentFeedback.findByName('Online')
 			).save()
 
 			/*Pedagogy Technique*/
 			def pedagogyTech = new PedagogyTechnique(
-				title:'Jigsaw',
+				title: 'Jigsaw',
 				description: 'As in a jigsaw puzzle, each piece representing each student\'s part is essential for the completion and full understanding of the final product.',
 				domain: LearningDomain.findAllByNameInList([
 					'Cognitive'
@@ -1329,29 +1315,29 @@ class BootStrap {
 				]),
 				pedagogyMode: PedagogyMode.findByName('in-person')
 			).save()
-			
+
 
 
 			new PedagogyActivity(
-				title:'jigsaw',
-				description:'Small tasks are split among each student in each group. Eventually each student will come back to her or his jigsaw group and will try to present a well-organized report to the group. As a team the students organize their work and present it as a whole.',
-				example:'Research on different computing languages was to be done. The students were split into five teams of four members each and each team was assigned a language. The students were asked to divide the the tasks to be researched based on the history, implementation, application of the language and comparison with other languages. Students worked individually and eventually put the wok together, then gave a presentation on each area of research.',
-				material:'clicker, paper',
+				title: 'jigsaw',
+				description: 'Small tasks are split among each student in each group. Eventually each student will come back to her or his jigsaw group and will try to present a well-organized report to the group. As a team the students organize their work and present it as a whole.',
+				example: 'Research on different computing languages was to be done. The students were split into five teams of four members each and each team was assigned a language. The students were asked to divide the the tasks to be researched based on the history, implementation, application of the language and comparison with other languages. Students worked individually and eventually put the wok together, then gave a presentation on each area of research.',
+				material: 'clicker, paper',
 				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration('Single Session'),
 				pedagogyTechnique:pedagogyTech
 			).save()
 
 			new PedagogyReference(
-				title:'Student_Engagement_Techniques',
-				author:'Elizabeth F. Barkley',
-				referenceLinkISBN:'978-0-470-28191-8',
+				title: 'Student_Engagement_Techniques',
+				author: 'Elizabeth F. Barkley',
+				referenceLinkISBN: '978-0-470-28191-8',
 				referenceType:PedagogyReferenceType.findByDescription('Book'),
 				pedagogyTechnique:pedagogyTech
 			).save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
-				title:'Structured Problem Solving',
+				title: 'Structured Problem Solving',
 				description: 'Provides students with a process for solving complex, content based problems within a specified amount of time. It breaks the problem into specific steps and thus students learn to identify, analyze, and solve problems in an organized way',
 				domain:LearningDomain.findAllByNameInList([
 					'Cognitive'
@@ -1374,7 +1360,7 @@ class BootStrap {
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
-				title:'Step-2',
+				title: 'Step-2',
 				description: 'ask students to solve the problem using specific steps you have identified as a problem solving technique',
 				example: 'The Dewey Six-Step Problem Solving Technique',
 				material: '',
@@ -1588,6 +1574,799 @@ class BootStrap {
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration('Single Session'),
 				pedagogyTechnique: pedagogyTech
 			).save()
+			def newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Background Knowledge Probe'
+			newTechnique.description = 'This activity goes beyond the common practice of asking students what courses they have already taken in the field. Using a survey, the instructor elicits information that can be used to focus instruction on appropriate content and level of difficulty.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Pre'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Remember')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Student-generated Test questions'
+			newTechnique.description = 'By having students write test questions and compose answers, faculty discover what students identify as key content, what they consider reasonable test questions and how well they can answer the questions they create. Instructors pre-determine the types of questions (essay, multiple choice, shortanswer, etc.) and the topics to be addressed. The questions can then be compiled for a study guide or, as an added incentive, chosen (if suitable) to appear on the actual test.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Remember')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Minute paper'
+			newTechnique.description = 'This technique helps ascertain what students felt was the most important information they learned during a particular class meeting and if they have any lingering questions about the content. Answers to these questions help faculty focus instruction, make mid-course corrections or identify areas that need more emphasis.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '1'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Pre'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Remember')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Muddiest point'
+			newTechnique.description = 'This very simple technique identifies areas of confusion from a lecture, discussion, homework or other activity. When students write out the answer to the question,  What was the muddiest point in _______? Students not only must reflect on the content material but also articulate their thoughts. This CAT works well when large amounts of information has been presented.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '5'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Remember')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Capstone project'
+			newTechnique.description = 'This is a simple technique in which students apply the concepts they have learnt on a project.'
+			newTechnique.procedure = ''
+			newTechnique.duration= ''
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Procedural')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Practicuum or internship'
+			newTechnique.description = 'The purpose of the practicum or internship is to provide students with supervised experience in an actual work setting similar to one in which the student might end up after graduating. Assessment generally involves analysis of work performance by the student’s supervisor, grading of a formal report by the faculty member, and a self-analysis written by the student.'
+			newTechnique.procedure = ''
+			newTechnique.duration= ''
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Procedural')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Midterm test'
+			newTechnique.description = 'The purpose of the Midterm test is to assess how much the students have learnt and are able to apply in answering questions related to the coursework.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '120 min'
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Procedural')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Remember')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Final Exam'
+			newTechnique.description = 'The purpose of the Final Examis to assess how much the students have learnt and are able to apply in answering questions related to the coursework.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '120 min'
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Procedural')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Remember')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Final Project'
+			newTechnique.description = 'This is a simple technique in which students apply the concepts they have learnt on a project.'
+			newTechnique.procedure = ''
+			newTechnique.duration= ''
+			newTechnique.difficulty = 'High'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Procedural')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Focused Listing'
+			newTechnique.description = 'This technique focuses on the students attention on a single important term, name or  concept from a particular lesson or class session and directs them to list several ideas that are closely related to that focus point. It can help the faculty assess how well the students can describe or define a central point in the lesson.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Procedural')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Memory Matrix'
+			newTechnique.description = 'In a memory matrix the row and column headings are given but the cells the boces within are left empty.When the students fill in these boxes the feedback can be easily scanned and analysed.This technique assesses students recall of important course content and their skill at organizing that information into categories provided by the instructor'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Procedural')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			)
+			newTechnique.save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Content,Form,and Function Outlines'
+			newTechnique.description = 'This assessment technique is called the" what how and why "outlines.The student writes brief notes answering the "what ,how and why " question in an outline format that can be quickly read and assessed.This technique is used to assess the students ability at separating and analyzing informational content.'
+
+			newTechnique.procedure = ''
+			newTechnique.duration= '20 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Procedural')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Misconception/Preconception Check'
+			newTechnique.description = 'This technique assesses the students prior knowledge by focusing on uncovering prior knowledge that may hinder or block further learning.This technique is designed to uncover specific instances of incorrect or incomplete knowledge,attitudes, values that represent lilely barriers to new learning.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Perception')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Empty Outlines'
+			newTechnique.description = 'The instructor provides students with an empty or partially completed outline of an in class presentation or homework assignment and gives them limited amount of time to fill in the blank spaces.It helps faculty fi nd out how well the students have caught the important points of a lecture.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Perception')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Categorizing Grid'
+			newTechnique.description = 'This technique  is the paper amnd pencil equivalent of sorting objects in a warehouse and putting the like ones together in a bin.This feedback allows the teacher to determine quickly whether ,how and how well students understand "what goes with what".  '
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Affective')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Mechanism')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Adaptation')
+			)
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Defining Features Matrix'
+			newTechnique.description = 'The defining matrix requires student to categorize concpts according to the presence (+) or absence (-) of important defining features thereby providing data on their analtyic and thinking abilities. '
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Analytic Memos'
+			newTechnique.description = 'This technique requires the student to write a one to two page analysis of a specific problem or issue.It helps to assess the students ability to communicate the analysis in a clear and concise manner.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Summative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			)
+			newTechnique.save()
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Word Journal'
+			newTechnique.description = 'The word journal prompts a two part response .First the student summarises a short text in a single word. Second, the student writes a paragraph explaining why he or she chose that particular word to summarize the text.It assesses the students ability to read carefully and creaticely summarize it in a single word'
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Factual')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			)
+			newTechnique.save()
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Concept Maps'
+			newTechnique.description = 'Concept maps are drawings or diagrams showing the mental connections that students make between a major concept the instructor focuses on and other concepts they have learned.This technique assesses the patterns of associations they make in relation to a focal concept'
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Problem Recognition Tasks'
+			newTechnique.description = 'Problem Recognition Tasks present students with a few examples of common problem types. The students task is to recognize and identify particular type of problem each  example represents.This practice helps students develop a diagnostic skill.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			)
+			newTechnique.save()
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Human Tableau or Class Modeling'
+			newTechnique.description = 'Group of students create "living" scenes or model processes to show what they know. Just as some students learen more effectively by listening,others learn more effectively by movement.This technique works well for kinesthetic learners. '
+			newTechnique.procedure = ''
+			newTechnique.duration= '15 minutes'
+			newTechnique.difficulty = 'Medium'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Affective')
+			)
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Psychomotor')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Classroom opinion polls'
+			newTechnique.description = 'Many faculty already use de facto opinion polling in their classes when they ask students to raise their hands to indicate agreement  or disagreement with a particular statement.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Interest/Knowledge/Skills Checklist'
+			newTechnique.description = 'Teachers create checklists of topics covered in their courses and skills  strengthened  by or required for succeeding in those courses.Students rate their interest in the various topics and assess their levels of skill or knowledge in those topics, by indicating the appropriate responses on the checklist. '
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Goal Ranking and Matching'
+			newTechnique.description = 'Goal Ranking and Matching is a simple procedure that many faculty have adapted to use in first or second day of class. It takes only a few minutes for students to list a few learning they hope to achieve through the course and to rank the relative importance of those goals.'
+			newTechnique.procedure = ''
+			newTechnique.duration= '30 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Pre'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Punctuated Lectures'
+			newTechnique.description = 'This technique requires students and teachers to go through five steps: listen, stop, reflect, write, and give feedback.After a part of the lecture or demonstration the students reflect on what they were doing the presentation and how it aided or hindered their understanding of the information'
+			newTechnique.procedure = ''
+			newTechnique.duration= '5 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Process Analysis'
+			newTechnique.description = 'Process analysis Requires that students keep records of actual steps taken while carrying out a specific assignment and conclusions they draw about their approaches to assignment'
+			newTechnique.procedure = ''
+			newTechnique.duration= '10 minutes'
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Post'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
+			newTechnique = new AssessmentTechnique()
+			newTechnique.title = 'Diagnostic Learning Logs'
+			newTechnique.description = 'In Diagnostic learning logs are essentially limited, tightly  focused versions of the academic journals many teachers already use.In these logs, students keep records of each class or assignment.'
+			newTechnique.procedure = ''
+			newTechnique.duration= ''
+			newTechnique.difficulty = 'Low'
+			newTechnique.whenToCarryOut = 'Mid'
+			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.type = 'Formative'
+			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
+			newTechnique.addToLearningDomain(
+				LearningDomain.findByName('Cognitive')
+			)
+
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Conceptual')
+			)
+			newTechnique.addToKnowledgeDimension(
+				KnowledgeDimension.findByDescription('Metacognitive')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Understand')
+			)
+
+			newTechnique.addToDomainCategory(
+				DomainCategory.findByName('Apply')
+			).save()
+
 
 			/*Pedagogy Reference*/
 			new PedagogyReference(
@@ -1597,13 +2376,13 @@ class BootStrap {
 				referenceType: PedagogyReferenceType.findByDescription('Book'),
 				pedagogyTechnique: pedagogyTech
 			).save()
-			def newTechnique = new PedagogyTechnique()
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Talking Chips'
 
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 117-121.'
 
-			newTechnique.activityDescription = 'Is a tehnnique in which students participate in a group discussion and surrender a token each time they speak.It is particularly usful for ensuring equitable participation.' 
+			newTechnique.activityDescription = 'Is a tehnnique in which students participate in a group discussion and surrender a token each time they speak.It is particularly usful for ensuring equitable participation.'
 
 			newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
 			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
@@ -1617,7 +2396,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.save()
-			
+
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Critical Debate'
 			newTechnique.materials = 'materials'
@@ -1737,7 +2516,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			
+
 			newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
@@ -1773,7 +2552,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			
+
 			newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
@@ -1794,7 +2573,7 @@ class BootStrap {
 
 
 
-			
+
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Fishbowl'
@@ -1831,323 +2610,287 @@ class BootStrap {
 			newTechnique.save()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Role Play'
-
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
-newTechnique.activityDescription = 'Is a tehnique in which students assume a different identity and act out a scenario. It is particularly useful for engaging students in a creative activity that helps them "learn by doing".'
-newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
-
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-
-newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-newTechnique.addToLearningDomain(LearningDomain.findByName('Psychomotor'))
-
-newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-newTechnique.save()
-
- newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Test Taking Teams'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 163-169.'
-newTechnique.activityDescription = 'Is a technique in which students prepare or a test in working groups, take the test individually, and then retake the tests in their groups. It is particularly useful for helping students assess and improve their undestanding of subject matter'
-newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-newTechnique.save()
-
-
-
-
-
-
-
-
-
- newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Buzz Groups'
-
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 112-117.'
-newTechnique.activityDescription = 'Is a technique in which students discuss course-related questions informally in small groups of peers.It is particularly useful for generating lots of information and ideas in a short period of time to prepare for and improve whole-class discussions.'
-newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Multiple Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
-newTechnique.save()
-
-
-
-
-
-
-
- newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Learning cell'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 140-145.'
-newTechnique.activityDescription = 'Is a tehnique in which students quiz each other using questions they have developed individually about a reading assignment or other learning activity. It is  useful for engaging students actively in thinking about content'
-newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Multiple Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
-
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
-
-newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-newTechnique.save()
-
-
- newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Group Investigation'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 199-205.'
-newTechnique.activityDescription = 'Is a technique in which students plan,conduct, and report on in-depth research projects. It is particularly useful for teaching students researh procedures and helping them to gain in-depth knowledge about a specifi area.'
-newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
-
-newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
-newTechnique.save()
-
-
-newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Affinity Grouping'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 207-211.'
-newTechnique.activityDescription = 'Is a technique in which students  generate ideas, identify common themes, and then sort and organize the ideas accordingly. It is partiularly useful for helping students "unpack" a complicated topic and identify and classify its constituent parts.'
-newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Multiple Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
-
-newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-newTechnique.save()
-
-
- newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Group Grid'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 211-216.'
-newTechnique.activityDescription = 'Is a technique in which students are given pieces of information and asked to place them in the blank cells of a grid according to category rubrics.  It is particularly useful for clarifying conceptual categories and developing sorting skills.'
-newTechnique.pedagogyMode = PedagogyMode.findByName('online')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
-
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
-newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
-newTechnique.save()
-
-
-
-
-
-
-newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Team Matrix'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 216-221.'
-newTechnique.activityDescription = 'Is a technique in which students  discriminate between similar concepts by noticing and marking on a chart the presence or absence of important defining features.It is particularly useful for distinguishing among closely related concepts.'
-newTechnique.pedagogyMode = PedagogyMode.findByName('online')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
-newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
-newTechnique.save()
-
-
- newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Sequence Chains'
-
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 221-226.'
-newTechnique.activityDescription = 'Is a technque in which students analyze and depict graphically a series of events,actions ,roles. It is useful for understanding the processes,cause and effect,and chronologial series, and organizing information in an orderly,coherent progression.'
-newTechnique.pedagogyMode = PedagogyMode.findByName('online')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
-newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-newTechnique.save()
-
-newTechnique = new PedagogyTechnique()
-newTechnique.title = 'World Webs'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 226-233.'
-newTechnique.activityDescription = 'Is a technique in which students generate a list of related ideas and then organize them ina graphic, identifying relationships by drawing lines or arrows to represent the connections.'
-newTechnique.pedagogyMode = PedagogyMode.findByName('online')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-
-newTechnique.save()
-
-
-newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Dyadic Essays'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 246-251.'
-newTechnique.activityDescription = 'Is a technique in which students write  essay questions and model answers for each other, exchange questions, and after responding compare their answers to the model answers.'
-newTechnique.pedagogyMode = PedagogyMode.findByName('online')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
-
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-
-newTechnique.save()
-
- newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Peer Editing'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 251-256.'
-newTechnique.activityDescription = 'Is a tecgnique in which students critially review and provide  feedback on a peers essay, report,argument,research paper,or other writing assignment. '
-newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
-
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
-
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
-
-newTechnique.save()
-
-
- newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Team Anthologies'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 262-267.'
-newTechnique.activityDescription = 'Is a technique in which students develop a compilation of course-related readings with student reactions to the material.It is particularly useful for experiencing the research process without writing a formal research paper.'
-newTechnique.pedagogyMode = PedagogyMode.findByName('online')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
-
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
-
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-
-newTechnique.save()
-
-
-newTechnique = new PedagogyTechnique()
-newTechnique.title = 'Paper Seminar'
-newTechnique.materials = 'materials'
-newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 267-273.'
-newTechnique.activityDescription = 'Is a technique in which students write and then present a paper, receive  feedback from  peers, and engage in a general discussion of the issues in the paper with the entire group. '
-newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
-newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
-newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
-
-newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
-newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
-
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
-newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
-
-newTechnique.save()
-
-
-
-
-
-
-
-
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Role Play'
+
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
+			newTechnique.activityDescription = 'Is a tehnique in which students assume a different identity and act out a scenario. It is particularly useful for engaging students in a creative activity that helps them "learn by doing".'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Psychomotor'))
+
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Test Taking Teams'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 163-169.'
+			newTechnique.activityDescription = 'Is a technique in which students prepare or a test in working groups, take the test individually, and then retake the tests in their groups. It is particularly useful for helping students assess and improve their undestanding of subject matter'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Buzz Groups'
+
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 112-117.'
+			newTechnique.activityDescription = 'Is a technique in which students discuss course-related questions informally in small groups of peers.It is particularly useful for generating lots of information and ideas in a short period of time to prepare for and improve whole-class discussions.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Multiple Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Learning cell'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 140-145.'
+			newTechnique.activityDescription = 'Is a tehnique in which students quiz each other using questions they have developed individually about a reading assignment or other learning activity. It is  useful for engaging students actively in thinking about content'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Multiple Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Group Investigation'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 199-205.'
+			newTechnique.activityDescription = 'Is a technique in which students plan,conduct, and report on in-depth research projects. It is particularly useful for teaching students researh procedures and helping them to gain in-depth knowledge about a specifi area.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Affinity Grouping'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 207-211.'
+			newTechnique.activityDescription = 'Is a technique in which students  generate ideas, identify common themes, and then sort and organize the ideas accordingly. It is partiularly useful for helping students "unpack" a complicated topic and identify and classify its constituent parts.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Multiple Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Group Grid'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 211-216.'
+			newTechnique.activityDescription = 'Is a technique in which students are given pieces of information and asked to place them in the blank cells of a grid according to category rubrics.  It is particularly useful for clarifying conceptual categories and developing sorting skills.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('online')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Team Matrix'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 216-221.'
+			newTechnique.activityDescription = 'Is a technique in which students  discriminate between similar concepts by noticing and marking on a chart the presence or absence of important defining features.It is particularly useful for distinguishing among closely related concepts.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('online')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Sequence Chains'
+
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 221-226.'
+			newTechnique.activityDescription = 'Is a technque in which students analyze and depict graphically a series of events,actions ,roles. It is useful for understanding the processes,cause and effect,and chronologial series, and organizing information in an orderly,coherent progression.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('online')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'World Webs'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 226-233.'
+			newTechnique.activityDescription = 'Is a technique in which students generate a list of related ideas and then organize them ina graphic, identifying relationships by drawing lines or arrows to represent the connections.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('online')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Dyadic Essays'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 246-251.'
+			newTechnique.activityDescription = 'Is a technique in which students write  essay questions and model answers for each other, exchange questions, and after responding compare their answers to the model answers.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('online')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Peer Editing'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 251-256.'
+			newTechnique.activityDescription = 'Is a tecgnique in which students critially review and provide  feedback on a peers essay, report,argument,research paper,or other writing assignment. '
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
+
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Team Anthologies'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 262-267.'
+			newTechnique.activityDescription = 'Is a technique in which students develop a compilation of course-related readings with student reactions to the material.It is particularly useful for experiencing the research process without writing a formal research paper.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('online')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Paper Seminar'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 267-273.'
+			newTechnique.activityDescription = 'Is a technique in which students write and then present a paper, receive  feedback from  peers, and engage in a general discussion of the issues in the paper with the entire group. '
+			newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
+
+			newTechnique.save()
 
 
 			/*Pedagogy Technique*/
