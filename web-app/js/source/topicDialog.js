@@ -333,7 +333,7 @@ function revertChanges () {
 
 	$('.topicItem').each(
 		function () {
-			if(this.id == "undefined"){
+			if(this.id === "undefined"){
 
 				$(this).remove();
 			}
@@ -645,7 +645,7 @@ $(
 
 				$('#topicList .selected').each(
 					function () {
-						if(this.id != "undefined"){
+						if(this.id != 'undefined'){
 						contentIDs.push(this.id);}
 						else{
 
@@ -653,7 +653,7 @@ $(
 						}
 					}
 				);
-				if (contentIDs.length != 0) {
+				if (contentIDs.length !== 0) {
 
 					deleteTopic(contentIDs);
 				}
