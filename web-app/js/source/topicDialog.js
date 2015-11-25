@@ -330,6 +330,15 @@ function getTopicSavedItems (currentRow) {
 
 function revertChanges () {
 	'use strict';
+
+	$('.topicItem').each(
+		function () {
+			if (this.id === 'undefined'){
+				$(this).remove();
+			}
+		}
+	);
+
 	$('#topicList tbody tr').each(
 		function () {
 			var rowData = getTopicSavedItems(this);
@@ -338,7 +347,7 @@ function revertChanges () {
 			var icon = '';
 			var contentIDs = [];
 
-			if ($(rowData.dimensionsSaved).val() === '') {
+			if ($(rowData.dimensionsSaved).val() === '' || $(rowData.dimensionsSaved).val() === undefined) {
 				contentIDs.push(this.id);
 			} else {
 				$(rowData.title).val($(rowData.titleSaved).val());
@@ -359,7 +368,7 @@ function revertChanges () {
 				}
 				$(rowData.dimensions).siblings('img').attr('src', icon);
 			}
-			deleteTopic(contentIDs);
+			//	deleteTopic(contentIDs);
 		}
 	);
 }
@@ -632,26 +641,34 @@ $(
 
 				$('#topicList .selected').each(
 					function () {
-						contentIDs.push(this.id);
-					}
+						if (this.id !== 'undefined'){
+						contentIDs.push(this.id);}
+						else {
+						// removing newly added unsaved topic
+							$(this).remove();}
+							}
 				);
-				deleteTopic(contentIDs);
+				if (contentIDs.length !== 0) {
+					deleteTopic(contentIDs);
+				}
 			}
 		);
-
 		$('#topicList').on(
 			'click',
 			'.saveIcon',
 			function () {
 				$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
 				$(this).parent().toggleClass('selected');
+				if (!$(this).parent().hasClass('selected') && $('.saveIcon-parent').hasClass('all-selected')){
+					$('.saveIcon-parent').find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
+					$('.saveIcon-parent').toggleClass('all-selected');
+				}
 			}
 		);
-
 		$('.saveIcon-parent').click(
 			function () {
 				$(this).find(' > i').toggleClass('fa-square-o').toggleClass('fa-check-square');
-
+				$(this).toggleClass ( 'all-selected' );
 				if ($(this).find('i').hasClass('fa-square-o')) {
 					$(this).parents('table')
 						.find('tbody')
