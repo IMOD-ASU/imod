@@ -623,7 +623,7 @@ input[disabled='disabled'] {
 
 	width: 20%;
 	min-height: 20%;
-	padding: 10px;
+	padding: 10px 10px 1px 10px;
 
 	border: 1px solid #c4c2c2 ;
 	background: white;
@@ -635,7 +635,7 @@ input[disabled='disabled'] {
 	display: inline-block;
 
 	margin-right: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 
 	list-style-type: none;
 

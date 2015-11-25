@@ -60,3 +60,15 @@ web-app/development-bundle/**
 .idea/misc.xml
 
 .idea/workspace.xml
+
+.idea/compiler.xml
+
+.idea/.name
+
+.idea/modules.xml
+
+.idea/vcs.xml
+
+imod-grailsPlugins.iml
+
+imod.iml

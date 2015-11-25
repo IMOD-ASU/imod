@@ -320,7 +320,7 @@
 			id="knowDimFinished"
 			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
 			<i class="fa fa-save green"></i>
-			${message(code: 'Save Resource', default: ' Save')}
+			${message(code: 'Save Resource', default: ' Continue')}
 		</button>
 		<button
 			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
@@ -379,7 +379,7 @@
 				id="saveResource"
 				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
 				<i class="fa fa-save green"></i>
-				${message(code: 'Save Resource', default: ' Save')}
+				${message(code: 'Save Resource', default: ' Continue')}
 			</button>
 		</span>
 		<span class="topicButtonGradient cancelBG">
