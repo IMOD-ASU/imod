@@ -8,6 +8,22 @@
 		</title>
 
 		<meta name="layout" content="imod">
+		<link id="imgNone" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimNone.png')}">
+		<link id="imgC" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimC.png')}">
+		<link id="imgF" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimF.png')}">
+		<link id="imgM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimM.png')}">
+		<link id="imgP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimP.png')}">
+		<link id="imgCF" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCF.png')}">
+		<link id="imgCM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCM.png')}">
+		<link id="imgCP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCP.png')}">
+		<link id="imgFM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFM.png')}">
+		<link id="imgFP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFP.png')}">
+		<link id="imgMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimMP.png')}">
+		<link id="imgCFM" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFM.png')}">
+		<link id="imgCFP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFP.png')}">
+		<link id="imgCMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCMP.png')}">
+		<link id="imgFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFMP.png')}">
+		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 		<g:external dir="css/source" file="assessment.css" />
 		<g:external dir="css/source" file="learningObjective.css" />
@@ -49,7 +65,7 @@
 						<ul class="learning-objective list-wrapper">
 							<g:if test="${learningObjectives}">
 								<g:each var="learningObjective" in="${learningObjectives}">
-									<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
+									<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective?.id) ? 'active' : ''  }">
 										<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
 											${ learningObjective.definition }
 										</g:link>
@@ -146,7 +162,7 @@
 									<span id="assessment-plan-button" class="topicButtonGradient">
 										<button>
 											<i class="fa fa-graduation-cap"></i>
-											Instructional Plan
+											Assessment Plan
 										</button>
 									</span>
 								</div>
@@ -251,9 +267,9 @@
 							<span id="errorMessage" style="color:red"></span>
 						</fieldset>
 
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
-							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective.id}"/>
+							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
 							<tr>
 							<td class="td-label" width="40%">Title</td>
@@ -269,11 +285,13 @@
 							</tr>-->
 							<tr>
 							<td class="td-label" width="40%">Learning Domain	</td>
-							<td width="60%"><g:select class="custom-dropdown" id="learning-domain" name="learningDomain" from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<td width="60%"><g:select id="learningDomain" name="learningDomain[]" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<input type="hidden" name="domainSelected" id="domainSelected" >
+							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select class="custom-dropdown" id="domain-category" name="domainCategory" from="${domainCategories}" noSelection="${['null':'Nothing Selected']}" optionKey="name" /></td>
+							<td width="60%"><g:select  id="domainCategory" name="domainCategory[]" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select --']}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Description of Activity</td>
@@ -286,9 +304,9 @@
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
 							<td width="60%">
-								<button id="k1"> click me</button>
+								<button id="k1"> Knowledge Dimensions</button>
 							</td>
-							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="knowledge">
+							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Duration</td>
@@ -303,6 +321,16 @@
 									<option value="High">High</option>
 								</select>
 							</td>
+							</tr>
+							<tr>
+
+								<td class="td-label" width="40%">Type</td>
+								<td width="60%">
+									<select class="custom-dropdown" id="assessmentType" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
+										<option value="Summative">Summative</option>
+										<option value="Formative">Formative</option>
+									</select>
+								</td>
 							</tr>
 							<tr>
 								<td class="td-label" width="40%">When To Carry Out</td>
@@ -348,7 +376,7 @@
 					<%--Dialog box for Displaying in edit and View mode Technique --%>
 					<div id="display-new-technique" title="Display Technique">
 						<%--To render the add new Technique dialog box--%>
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
+						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<span class="editviewButtons">
 								<label >
 									Assign
@@ -442,40 +470,61 @@
 					</div>
 
 					<%--Dialog box for Assessement Plans--%>
-					<div id="assessment-plan" >
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective.id]">
-							<label>
-								<h2>
-									Learning Objective
-								</h2>
-							</label>
-							<br/>
+					<div class="draggable" id="assessment-plan">
 
-							<span>
-								<g:if test="${learningObjectives.definition !=null}">
-									<g:each var="learningObjective" in="${learningObjectives}">
-										<div class="assessment-plan learning-objective">
-											${learningObjective.id} : ${ learningObjective.definition }
+						<fieldset class="titleField draggable-handle">
+							<div id="editTitle">
+							 <span><b> Assessment Plan</b></span>
+							 <div style="float:right">
+								<span id="printAssessmentPlan" class="topicButtonGradient" >
+									<a href="../assessmentPlan/${currentImod?.id}" target="_blank">
+									<i class="fa fa-print white"></i>
+									Print
+									</a>
+								</span>
+								<span id="closeAssessmentPlan" class="topicButtonGradient" >
+									<button id="closeAssessmentPlanButton"><i class="fa fa-times white"></i></button>
+								</span>
+							</div>
+							</div>
+						</fieldset>
+						<div id="assessment-plan-accordion">
+							<g:if test="${learningObjectives != null }">
+								<g:each var="learningObjective" in="${learningObjectives}">
+									<g:if test="${learningObjective.definition != null && !learningObjective.definition.trim().isEmpty()}">
+										<h3 class="assessment-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
+										<div class="assignedTechniques" id="assignedTechniques-${ learningObjective.id }">
+
+											<g:if test="${learningObjective.assessmentTechniques.size()}">
+												<ul>
+												<g:each var="technique" in="${learningObjective.assessmentTechniques}">
+
+													<g:if test="${technique != null && !technique.title.isEmpty()}">
+														<li>${technique.title}</li>
+													</g:if>
+
+												</g:each>
+												</ul>
+											</g:if>
+											<g:else>
+												No techniques are assigned to this Learning Objective
+											</g:else>
+
 										</div>
-									</g:each>
-								</g:if>
-							</span>
-
-							<div id="assessmentData">
-							</div>
-							<br/>
-
-							<div id='individualAssessments'>
-								<div id='assignTitle'>
+									</g:if>
+								</g:each>
+							</g:if>
+							<g:else>
+								<div class="no-objective-defined">
+									There are no objectives defined
 								</div>
-								<div id='assignTitle1'>
-								</div>
-							</div>
-						</g:form>
+							</g:else>
+						</div>
 					</div>
 				</td>
 			</tr>
 		</table>
+		<div id="selectKnowledgeDimensionBackground" class="modalBackground"></div>
 		<div id="selectKnowledgeDimensions" class="draggable">
 			<div class="draggable-handle">
 				<input type="hidden" id="topicID" />
@@ -508,7 +557,15 @@
 							title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 				>
 							<i class="fa fa-save green"></i>
-							${message(code: 'Save Resource', default: 'Done')}
+							${message(code: 'Save Resource', default: 'Continue')}
+				</button>
+				<button
+				  class="cancel showHoverNew resourceButton topicButtonGradient"
+							id="closeKnowDim"
+							title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+				>
+							<i class="fa fa-times red"></i>
+							${message(code: 'Cancel Resource', default: ' Cancel')}
 				</button>
 
 			</div>

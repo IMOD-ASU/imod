@@ -5,22 +5,8 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
  */
 function openAssessmentPlanModal () {
 	'use strict';
-	$('#assessment-plan').dialog('open');
-	$('#assessment-plan').dialog({
-		resizable: false,
-		height: 'auto',
-		title: 'Assessment Plan',
-		width: 400,
-		modal: true,
-		zindex: 1001,
-		buttons: {
-			Cancel: function () {
-				$(this).dialog('close');
-			}
-		}
-	});
-
-	displayAssessmentPlan();
+	$('#topicDialogBackground').show();
+	$('#assessment-plan').show();
 }
 
 /**
@@ -46,6 +32,17 @@ function closeDimModal () {
 	document.getElementById('knowledgeDimension').value = checked;
 	dialog.css('display', 'none');
 	background.css('display', 'none');
+}
+function closeDimModalCancel () {
+	'use strict';
+
+	var dialog = $('#selectKnowledgeDimensions');
+	var background = $('#selectKnowledgeDimensionBackground');
+
+	dialog.css('display', 'none');
+	background.css('display', 'none');
+
+	return false;
 }
 function changePic () {
 	'use strict';
@@ -88,15 +85,22 @@ function openDimModal () {
 	background.css('display', 'block');
 	return false;
 }
-function populateAssessmentTechnique (data) {
+function populateAssessmentTechnique (data, isClone) {
 	'use strict';
 	var currentTechnique = data.assessmentTechnique;
 	var count;
 	var checked = '';
 	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
+	var arrayOfLearningDomains = data.learningDomains.split(',');
+	var arrayOfDomainCategories = data.domainCategories.split(',');
+
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 
 	// Set the text fields
-	$('#title').val(currentTechnique.title);
+	if (!isClone) {
+		$('#title').val(currentTechnique.title);
+	}
 	// $('#title2').val(currentTechnique.title);
 
 	$('#description').val(currentTechnique.description);
@@ -114,6 +118,7 @@ function populateAssessmentTechnique (data) {
 
 	$('#assessmentDifficulty option[value=' + currentTechnique.difficulty + ']').prop('selected', true);
 	$('#assessmentTime option[value=' + currentTechnique.whenToCarryOut + ']').prop('selected', true);
+	$('#assessmentType option[value=' + currentTechnique.type + ']').prop('selected', true);
 
 	$('#sources').val(currentTechnique.sources);
 
@@ -129,13 +134,21 @@ function populateAssessmentTechnique (data) {
 	});
 	document.getElementById('knowledgeDimension').value = checked;
 
-	$('#learning-domain option[value="' + data.learningDomain + '"]').prop('selected', true);
-	$('#domain-category option[value="' + data.domainCategory + '"]').prop('selected', true);
+	for (count = 0; count < arrayOfLearningDomains.length; count++) {
+		if (arrayOfLearningDomains[count] !== '') {
+			$('#learningDomain option[value="' + arrayOfLearningDomains[count] + '"]').attr('selected', 'selected');
+		}
+	}
+	for (count = 0; count < arrayOfDomainCategories.length; count++) {
+		if (arrayOfDomainCategories [count] !== '') {
+			$('#domainCategory option[value = "' + arrayOfDomainCategories[count] + '"]').attr('selected', 'selected');
+		}
+	}
 
 	$('#View').hide();
 }
 
-function displayAssessmentInformationInEdit () {
+function displayAssessmentInformationInEdit (isClone) {
 	'use strict';
 	var res = '';
 
@@ -155,31 +168,35 @@ function displayAssessmentInformationInEdit () {
 		url: '../../assessmentTechnique/display/' + res,
 		method: 'GET'
 	})
-	.done(populateAssessmentTechnique);
+	.done(function (data) {
+		populateAssessmentTechnique(data, isClone);
+	});
 }
-
 function showAssessmentTechnique () {
 	'use strict';
-	$('#ideal-matches label').click(function () {
-		$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
-		openNewAssessmentTechniqueModal();
-		displayAssessmentInformationInEdit();
-		return false;
-	});
+	$('#ideal-matches .text-block.title')
+		.click(function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false);
+			return false;
+		});
 
-	$('#ideal-matches1 label').click(function () {
-		$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
-		openNewAssessmentTechniqueModal();
-		displayAssessmentInformationInEdit();
-		return false;
-	});
+	$('#ideal-matches1 .text-block.title')
+		.click(function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false);
+			return false;
+		});
 
-	$('#extended-matches label').click(function () {
-		$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
-		openNewAssessmentTechniqueModal();
-		displayAssessmentInformationInEdit();
-		return false;
-	});
+	$('#extended-matches .text-block.title')
+		.click(function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false);
+			return false;
+		});
 }
 
 function checkForAssign (data) {
@@ -241,38 +258,11 @@ function displayAssessmentTechniques (data) {
 
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
 		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
 	}
 
 	$('#ideal-matches1').html(text);
 	$('#ideal-matches1').buttonset();
-	text = '';
-
-	// Take the titles and make html code to display
-	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.idealAssessmentTechniqueMatch[index];
-
-		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
-			favoriteImgToggle = '../../images/fav.png';
-		} else {
-			favoriteImgToggle = '../../images/unfav.png';
-		}
-
-		if (data.LOAssessmentTechniques.indexOf(currentTechnique.id.toString()) > -1) {
-			assignImgToggle = '../../images/assign.png';
-		} else {
-			assignImgToggle = '../../images/unassign.png';
-		}
-
-		if (currentTechnique.favcheck === true && currentTechnique.assigncheck === true) {
-			text += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-		} else if (currentTechnique.assigncheck === false) {
-			text += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-		}
-	}
-
-	$('#assessmentFavoritesDiv').html(text);
-	$('#assessmentFavoritesDiv').buttonset();
 	text = '';
 
 	// Take the titles and make html code to display
@@ -298,21 +288,6 @@ function displayAssessmentTechniques (data) {
 
 	$('#extended-matches').html(text);
 	$('#extended-matches').buttonset();
-	text = '';
-
-	// Take the titles and make html code to display
-	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
-		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
-		if (currentTechnique.favcheck === true) {
-			if (currentTechnique.assigncheck === true) {
-				text += '<input  type="radio" id="fav' + currentTechnique.id + '" name="assessmentTech1" value="' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavAssign "><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			} else if (currentTechnique.assigncheck === false) {
-				text += '<input  type="radio" id="' + currentTechnique.id + '" name="assessmentTech1" value="fav' + currentTechnique.id + '"><span id="span1-' + currentTechnique.id + '" class="icons assessmentFavUnassign"><label for="' + currentTechnique.id + '">' + currentTechnique.title + '</label></span></input>';
-			}
-		}
-	}
-	$('#assessmentFavoritesDiv1').html(text);
-	$('#assessmentFavoritesDiv1').buttonset();
 
 	$('#topLeft img').click(function () {
 		var str = '';
@@ -496,110 +471,6 @@ function assessmentEqualHeights (parent) {
 	}
 }
 
-function displayAssessmentPlan (data) {
-	'use strict';
-	$.ajax({
-		url: '../../assessmentTechnique/assessmentplan',
-		method: 'post',
-		data: JSON.stringify(data),
-		contentType: 'application/json'
-	})
-	.done(assessmentPlanData);
-}
-
-function assessmentPlanData (data) {
-	'use strict';
-	var allAssessmentData = '';
-	var techniqueIndex;
-	var assessmentPlan;
-	var techniqueKnowledgeDimension;
-	var knowledgeDimenisionIndex;
-	var knowledgeDimension = '';
-	// FIXME domain catgory is never assigned
-	var domainCategory = '';
-	// FIXME learning domain is never assigned
-	var learningDomain = '';
-	var index;
-	var temporaryKnowledgeDimension;
-
-	for (techniqueIndex = 0; techniqueIndex < data.assessmentTechInstance.length; techniqueIndex++) {
-		assessmentPlan = data.assessmentTechInstance[techniqueIndex];
-
-		// FIXME this looks like it access the last element, why not access directly?
-		techniqueKnowledgeDimension = '';
-		for (knowledgeDimenisionIndex = 0; knowledgeDimenisionIndex < assessmentPlan.knowledgeDimension.length; knowledgeDimenisionIndex++) {
-			techniqueKnowledgeDimension = assessmentPlan.knowledgeDimension[knowledgeDimenisionIndex].id;
-		}
-
-		for (index = 0; index < data.knowledgeDimensions.length; index++) {
-			temporaryKnowledgeDimension = data.knowledgeDimensions[index];
-
-			if (temporaryKnowledgeDimension.id === techniqueKnowledgeDimension) {
-				knowledgeDimension = temporaryKnowledgeDimension.description;
-			}
-			allAssessmentData += '<div id="' + assessmentPlan.id + '">';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    <h2>';
-			allAssessmentData += '      ' + assessmentPlan.title;
-			allAssessmentData += '    </h2>';
-			allAssessmentData += '  </span>';
-			allAssessmentData += '  <br/>';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    Description : ' + assessmentPlan.description;
-			allAssessmentData += '  </span>';
-			allAssessmentData += '  <br/>';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    ' + assessmentPlan.procedure;
-			allAssessmentData += '  </span>';
-			allAssessmentData += '  <br/>';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    ' + assessmentPlan.duration;
-			allAssessmentData += '  </span>';
-			allAssessmentData += '  <br/>';
-			allAssessmentData += '  <span>';
-			allAssessmentData += '    ' + assessmentPlan.assessmentFeedback.name;
-			allAssessmentData += '  </span>';
-			allAssessmentData += '</div>';
-		}
-
-		allAssessmentData += '<div id="' + assessmentPlan.id + '">';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    <h2>';
-		allAssessmentData += '      ' + assessmentPlan.title;
-		allAssessmentData += '    </h2>';
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    Description : ' + assessmentPlan.description;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    ' + assessmentPlan.procedure;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    ' + assessmentPlan.duration;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    DomainCategory :' + domainCategory;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    Learning Domain :' + learningDomain;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    Knowledge Dimension : ' + knowledgeDimension;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '  <br/>';
-		allAssessmentData += '  <span>';
-		allAssessmentData += '    ' + assessmentPlan.assessmentFeedback.name;
-		allAssessmentData += '  </span>';
-		allAssessmentData += '</div>';
-	}
-}
-
 // Load techniques on page load
 filterAssessmentTechniques();
 
@@ -633,9 +504,9 @@ $('#unfavorites').click(function () {
 });
 
 // Auto hide the assessment plan modal
-$('#assessment-plan').dialog({
-	autoOpen: false
-});
+// $('#assessment-plan').dialog({
+// 	autoOpen: false
+// });
 
 // Auto hide the add new technique modal
 $('#new-technique').dialog({
@@ -662,6 +533,12 @@ $('#new-technique-button').on('click', function () {
 
 // When add assessment  plan button is clicked open modal
 $('#assessment-plan-button').on('click', openAssessmentPlanModal);
+
+$('#closeAssessmentPlan').on('click', function () {
+	'use strict';
+	$('#assessment-plan').css('display', 'none');
+	$('#topicDialogBackground').css('display', 'none');
+});
 
 // Clicking on edit and View in display technique modal
 $('#Edit').click(function () {
@@ -776,6 +653,16 @@ $(document).ready(
 		// The filters for the assessment technique are wrapped in a accordian
 		// beforeActivate is to be able to open both ideal & extended matches simultaneously
 		$('#filter-assessment-techniques').accordion({collapsible: true, heightStyle: 'content'});
+		$('#assessment-plan-accordion').accordion({collapsible: true, heightStyle: 'content', active: false});
+		// clone
+		$(document).on('click', '.new-technique-popup-button.clone', function () {
+			$('#editTitle').html('<strong>Clone Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(true);
+			$('#title').val('');
+			$('#techniqueId').val('');
+			return false;
+		});
 		$('#ideal-matches-toggle').accordion({collapsible: true,
 			beforeActivate: function (event, ui) {
 				// The accordion believes a panel is being opened
@@ -806,6 +693,7 @@ $(document).ready(
 		});
 		$('#k1').click(openDimModal);
 		$('#knowDimFinished').click(closeDimModal);
+		$('#closeKnowDim').click(closeDimModalCancel);
 		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
@@ -829,11 +717,26 @@ $(document).ready(
 		});
 		$('#saveButton').on('click',
 		function () {
+			hasError = false;
+
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
 				hasError = true;
-			} else {
-				hasError = false;
+			}
+
+			if ($('#knowledgeDimension').val() === '') {
+				$('#errorMessage').text('Knowledge Dimensions are required!');
+				hasError = true;
+			}
+
+			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
+				$('#errorMessage').text('Learning Domains are required');
+				hasError = true;
+			}
+
+			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
+				$('#errorMessage').text('Domain Categories are required');
+				hasError = true;
 			}
 
 			if (hasError === true) {
