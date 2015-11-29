@@ -90,7 +90,7 @@
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
 			<button
-				class="add show-hover-new topicButton" action="add" id="addTopic"
+				class="add  topicButton" action="add" id="addTopic"
 				title="${message(code: 'imod.content.add')}"
 				value="${message(code: 'Add Topic', default: 'Add Topic')}">
 				<i class="fa fa-plus green"></i>
@@ -99,7 +99,7 @@
 		</span>
 		<span class="topicButtonGradient">
 			<button
-				class="remove show-hover-new topicButton" action="remove"
+				class="remove  topicButton" action="remove"
 				id="removeTopic"
 				title="${message(code: 'imod.content.remove')}"
 				value="${message(code: 'Remove Topic', default: 'Remove Topic')}"
@@ -169,7 +169,7 @@
 							  name="topicPriority${contentItem.id}"
 							  from="${Content.priorities()}"
 							  value="${contentItem.priority}"
-							  class="custom-dropdown show-hover-new priority custom-dropdown"
+							  class="custom-dropdown  priority custom-dropdown"
 							  title="${message(code: 'imod.content.priority')}"/>
 					<input
 						type="hidden"
@@ -177,7 +177,7 @@
 						value="${contentItem.priority}"/>
 				</td>
 				<td class="topicResources">
-					<button class="show-hover-new ResourceButton"
+					<button class="ResourceButton"
 							title="${message(code: 'imod.content.Resources')}"
 							id="topicResources${contentItem.id}"
 							type="button">
@@ -320,7 +320,7 @@
 			id="knowDimFinished"
 			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
 			<i class="fa fa-save green"></i>
-			${message(code: 'Save Resource', default: ' Save')}
+			${message(code: 'Save Resource', default: ' Continue')}
 		</button>
 		<button
 			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
@@ -379,7 +379,7 @@
 				id="saveResource"
 				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
 				<i class="fa fa-save green"></i>
-				${message(code: 'Save Resource', default: ' Save')}
+				${message(code: 'Save Resource', default: ' Continue')}
 			</button>
 		</span>
 		<span class="topicButtonGradient cancelBG">
