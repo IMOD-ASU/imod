@@ -639,12 +639,12 @@ $(document).ready(
 			$('input[name=knowledgeDimension],input[name=learningDomain],input[name=domainCategory]').each(function () {
 				checkboxValues[this.id] = this.checked;
 			});
-			$.cookie('checkboxValues', checkboxValues, {expires: 1, path: '/'});
+			$.cookie('checkboxValues', checkboxValues);
 		});
 
-		$('.learning-objective.list-item').on('click',
+		$('.learning-objective.list-item,#a,#b,#c,#logout-link,.banner-imod,.banner-home,#imodlogo,.no-objective-defined').on('click',
 			function () {
-				$.removeCookie('checkboxValues', {path: '/'});
+				$.removeCookie('checkboxValues');
 			}
 		);
 
