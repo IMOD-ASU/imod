@@ -639,11 +639,10 @@ $(
 
 				$('#topicList .selected').each(
 					function () {
-						if (this.id !== 'undefined') {
-							contentIDs.push(this.id);
-						}
-						else {
+						if (this.id === 'undefined') {
 							$(this).remove();
+						} else {
+							contentIDs.push(this.id);
 						}
 					}
 				);
