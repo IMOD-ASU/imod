@@ -74,8 +74,14 @@
 							</g:if>
 							<g:else>
 								<div class="no-objective-defined">
-									There are no objectives defined
-									<g:render template="emptyStateTemplate" />
+									<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
+									<div>
+									<span class="topicButtonGradient" >
+										<a href="../../learningObjective/performance/${currentImod?.id}">
+											Define Objectives
+										</a>
+									</span>
+									</div>
 								</div>
 							</g:else>
 						</ul>
@@ -233,18 +239,37 @@
 					</g:if>
 					<g:else>
 						<div class="assessment-page-buttons-disabled">
-							<span>
-								<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-								<button id="new-technique-button">Add New Technique
-								</button>
 
-								<button id="favorites">Favorites
-								</button>
-
-								<button id="assessment-plan-button">Assessment Plan
+						<div>
+							<%-- Buttons for Add New Technique, Favorites and Assessment Plan--%>
+							<span id="new-technique-button" class="topicButtonGradient">
+								<button>
+									<i class="fa fa-plus green"></i>
+									Add New Technique
 								</button>
 							</span>
-							<br/>
+
+							<span id="favorites-button" class="topicButtonGradient">
+								<button>
+									<i class="fa fa-star yellow"></i>
+									Favorites
+								</button>
+							</span>
+
+							<span  id="unfavorites" class="topicButtonGradient">
+								<button>
+									UnFavorites
+								</button>
+							</span>
+
+							<span id="assessment-plan-button" class="topicButtonGradient">
+								<button>
+									<i class="fa fa-graduation-cap"></i>
+									Assessment Plan
+								</button>
+							</span>
+						</div>
+						<br>
 						</div>
 						<div class="video-control" style="">
 							<video class="video-center" controls src="http://media.w3.org/2010/05/bunny/movie.ogv" width="500">
@@ -252,8 +277,14 @@
 							</video>
 						</div>
 						<div class="no-objective-defined">
-							There are no objectives defined
-							<g:render template="emptyStateTemplate" />
+							<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
+							<div>
+							<span class="topicButtonGradient" >
+								<a href="../../learningObjective/performance/${currentImod?.id}">
+									Define Objectives
+								</a>
+							</span>
+							</div>
 						</div>
 					</g:else>
 

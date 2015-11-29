@@ -63,6 +63,7 @@
 								</span>
 								</fieldset>
 								<ul class="learning-objective list-wrapper">
+								<g:if test="${learningObjectives}">
 								    <g:each var="learningObjective" in="${learningObjectives}">
 										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective?.id) ? 'active' : ''  }" >
 											<g:link action="performance" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link ${(learningObjective.definition) ? '' : 'new'  }">
@@ -81,6 +82,10 @@
 											</g:link>
 										</li>
 									</g:each>
+								</g:if>
+								<g:else>
+									<li class="learning-objective list-item active"> Click on add button above to create new Learning Objective</li>
+								</g:else>
 								</ul>
 							</div>
 						</td>
@@ -88,10 +93,10 @@
 							<div class="learning-objective definition" class="learning-objective-current">
 								<div class="learning-objective definition-display active">
 									${ currentLearningObjective?.definition }
-									<i class="fa fa-pencil" title="Click to edit"></i>
+									<i class="fa fa-pencil" title="${(learningObjectives) ? 'Click to edit' : 'Click on add button to create new Learning Objective'}"></i>
 								</div>
 								<g:form class="learning-objective definition-edit" action="saveDefinition" id="${currentImod.id}" method="post">
-									<g:textArea name="customDefinition" value="${ currentLearningObjective?.definition }" rows="5" cols="40" title="${ message( code:'imod.learningObjective.editDetails' ) }"/>
+									<g:textArea name="customDefinition" value="${ currentLearningObjective?.definition }" rows="5" cols="40" title="${ message( code:'imod.learningObjective.editDetails' ) }" disabled="${(learningObjectives) ? 'false' : 'true'}"/>
 									<g:hiddenField name="learningObjectiveID" value="${currentLearningObjective?.id}" id="learning-objective-id" />
 									<g:hiddenField name="pageType" value="criteria" id="page-type" />
 								</g:form>

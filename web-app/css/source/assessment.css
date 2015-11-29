@@ -31,11 +31,14 @@
 
 
 .no-objective-defined {
+    height: 100px;
     text-align: center;
     vertical-align: middle;
+}
 
-    opacity: 0.5;
-    background: #cccccc;
+.no-objective-defined a {
+    vertical-align: middle !important;
+    text-decoration: none;
 }
 
 .assessment-page-buttons {
@@ -310,15 +313,6 @@ label.assessment-block .ui-button-text:hover {
 #assessmentFavoritesDiv {
     display: none;
     visibility: hidden;
-}
-
-
-.no-objective-defined {
-    text-align: center;
-    vertical-align: middle;
-
-    opacity: 0.5;
-    background: #cccccc;
 }
 
 .assessment-page-buttons {
