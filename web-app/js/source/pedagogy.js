@@ -137,6 +137,8 @@ function openDimModal () {
 		}
 	}
 	changePic();
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 	dialog.css('display', 'inherit');
 	background.css('display', 'block');
 	return false;

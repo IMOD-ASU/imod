@@ -305,7 +305,7 @@
 							</tr>-->
 							<tr>
 							<td class="td-label" width="40%">Learning Domain	</td>
-							<td width="60%"><g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
+							<td width="60%"><g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" /><td>
 							<input type="hidden" name="domainSelected" id="domainSelected" >
 							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
 
@@ -313,7 +313,7 @@
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select --']}" optionKey="name" /></td>
+							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" /></td>
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
@@ -345,7 +345,7 @@
 							<td width="60%"><g:textArea name="materials" rows="5" cols="30"/> </td>
 							</tr>
 							<tr>
-							<td class="td-label" width="40%">Reference</td>
+							<td class="td-label" width="40%">References</td>
 							<td width="60%"><g:textArea name="reference" rows="5" cols="30"/></td>
 							</tr>
 							<!--<tr>

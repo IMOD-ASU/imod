@@ -305,6 +305,7 @@
 							<tr>
 							<td class="td-label" width="40%">Title</td>
 							<td width="60%"> <g:textField name="title" /></td>
+							<input type="hidden" name="titlecheck" id="titlecheck" >
 							</tr>
 							<!--<tr>
 							<td width="40%"> Assign to Current Learning Objective </td>
@@ -338,6 +339,7 @@
 								<button id="k1"> Knowledge Dimensions</button>
 							</td>
 							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
+							<input type="hidden" name="cloneDetect" id="cloneDetect" >
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Duration</td>
@@ -384,8 +386,8 @@
 							</td>
 							</tr>
 							<tr>
-							<td class="td-label" width="40%">Sources</td>
-							<td width="60%"><g:textArea name="sources" rows="5" cols="30"/> </td>
+							<td class="td-label" width="40%">References</td>
+							<td width="60%"><g:textArea name="references" rows="5" cols="30"/> </td>
 							</tr>
 							</table>
 							<br>
