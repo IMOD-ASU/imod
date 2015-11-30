@@ -60,6 +60,7 @@ function changePic () {
 	} else {
 		iconName = $('#img' + iconName).attr('href');
 	}
+	$('#dimImageModal').attr('src', iconName);
 	$('#dimImage').attr('src', iconName);
 }
 function openDimModal () {
@@ -81,6 +82,8 @@ function openDimModal () {
 		}
 	}
 	changePic();
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 	dialog.css('display', 'inherit');
 	background.css('display', 'block');
 	return false;
@@ -94,6 +97,8 @@ function populateAssessmentTechnique (data, isClone) {
 	var arrayOfLearningDomains = data.learningDomains.split(',');
 	var arrayOfDomainCategories = data.domainCategories.split(',');
 
+	$('#titlecheck').val(currentTechnique.title);
+	$('#dimImageModal').attr('title', data.knowledgeDimension.substring(0, data.knowledgeDimension.length));
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 
@@ -120,7 +125,7 @@ function populateAssessmentTechnique (data, isClone) {
 	$('#assessmentTime option[value=' + currentTechnique.whenToCarryOut + ']').prop('selected', true);
 	$('#assessmentType option[value=' + currentTechnique.type + ']').prop('selected', true);
 
-	$('#sources').val(currentTechnique.sources);
+	$('#references').val(currentTechnique.reference);
 
 	for (count = 0; count < arrayOfKnowledgeDimensions.length; count++) {
 		if (arrayOfKnowledgeDimensions[count] !== '') {
@@ -132,6 +137,7 @@ function populateAssessmentTechnique (data, isClone) {
 			checked = checked + ($(this).val()) + ',';
 		}
 	});
+	changePic();
 	document.getElementById('knowledgeDimension').value = checked;
 
 	for (count = 0; count < arrayOfLearningDomains.length; count++) {
@@ -553,6 +559,20 @@ $('#View').click(function () {
 	$('.allInputs').hide();
 	$('.allspans1').show();
 });
+$('#title').change(function () {
+	'use strict';
+	var hasError = false;
+
+	if ($('#title').val() === $('#titlecheck').val()) {
+		$('#errorMessage').text('Enter title which is different from the original technique');
+		hasError = true;
+	} else {
+		hasError = false;
+	}
+	if (hasError === true) {
+		return false;
+	}
+});
 
 function getMinHeight (liArray) {
 	'use strict';
@@ -647,6 +667,7 @@ $(document).ready(
 		var isPanelSelected;
 		var checkBoxName;
 		var hasError = false;
+		var cloneDetect = '';
 
 		// Load techniques on page load
 		filterAssessmentTechniques();
@@ -659,6 +680,7 @@ $(document).ready(
 			$('#editTitle').html('<strong>Clone Assessment Technique</strong>');
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(true);
+			document.getElementById('cloneDetect').value = 'clone';
 			$('#title').val('');
 			$('#techniqueId').val('');
 			return false;
@@ -718,6 +740,7 @@ $(document).ready(
 		$('#saveButton').on('click',
 		function () {
 			hasError = false;
+			cloneDetect = document.getElementById('cloneDetect').value;
 
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
@@ -736,6 +759,10 @@ $(document).ready(
 
 			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
 				$('#errorMessage').text('Domain Categories are required');
+				hasError = true;
+			}
+			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
+				$('#errorMessage').text('Enter title which is different from the original technique');
 				hasError = true;
 			}
 

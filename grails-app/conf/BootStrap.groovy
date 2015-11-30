@@ -312,11 +312,11 @@ class BootStrap {
 			).save()
 
 			new Help(
-				tabFieldUiId: 'Resources Label',
+				tabFieldUiId: 'Rereference Label',
 				tabId: 'CONTENT',
 				tabFieldId: 16,
-				tabFieldName: 'Resources Label',
-				text: 'Resources'
+				tabFieldName: 'Rereference Label',
+				text: 'Rereference'
 			).save()
 
 			new Help(
@@ -1581,7 +1581,7 @@ class BootStrap {
 			newTechnique.duration= '15'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Pre'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1607,7 +1607,7 @@ class BootStrap {
 			newTechnique.duration= '15'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Summative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1636,7 +1636,7 @@ class BootStrap {
 			newTechnique.duration= '1'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Pre'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1665,7 +1665,7 @@ class BootStrap {
 			newTechnique.duration= '5'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1694,7 +1694,7 @@ class BootStrap {
 			newTechnique.duration= ''
 			newTechnique.difficulty = 'High'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Summative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1723,7 +1723,7 @@ class BootStrap {
 			newTechnique.duration= ''
 			newTechnique.difficulty = 'High'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Summative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1752,7 +1752,7 @@ class BootStrap {
 			newTechnique.duration= '120 min'
 			newTechnique.difficulty = 'High'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Summative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1784,7 +1784,7 @@ class BootStrap {
 			newTechnique.duration= '120 min'
 			newTechnique.difficulty = 'High'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Summative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1816,7 +1816,7 @@ class BootStrap {
 			newTechnique.duration= ''
 			newTechnique.difficulty = 'High'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Summative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1845,7 +1845,7 @@ class BootStrap {
 			newTechnique.duration= '15 minutes'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1874,7 +1874,7 @@ class BootStrap {
 			newTechnique.duration= '15 minutes'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1905,7 +1905,7 @@ class BootStrap {
 			newTechnique.duration= '20 minutes'
 			newTechnique.difficulty = 'Medium'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1938,7 +1938,7 @@ class BootStrap {
 			newTechnique.duration= '15 minutes'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1964,7 +1964,7 @@ class BootStrap {
 			newTechnique.duration= '15 minutes'
 			newTechnique.difficulty = 'Medium'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Summative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -1993,7 +1993,7 @@ class BootStrap {
 			newTechnique.duration= '15 minutes'
 			newTechnique.difficulty = 'Medium'
 			newTechnique.whenToCarryOut = 'Mid'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2026,7 +2026,7 @@ class BootStrap {
 			newTechnique.duration= '15 minutes'
 			newTechnique.difficulty = 'Medium'
 			newTechnique.whenToCarryOut = 'Mid'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2052,7 +2052,7 @@ class BootStrap {
 			newTechnique.duration= '15 minutes'
 			newTechnique.difficulty = 'Medium'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Summative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2078,7 +2078,7 @@ class BootStrap {
 			newTechnique.duration= '10 minutes'
 			newTechnique.difficulty = 'Medium'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2107,7 +2107,7 @@ class BootStrap {
 			newTechnique.duration= '15 minutes'
 			newTechnique.difficulty = 'Medium'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2136,7 +2136,7 @@ class BootStrap {
 			newTechnique.duration= '10 minutes'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Mid'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2165,7 +2165,7 @@ class BootStrap {
 			newTechnique.duration= '15 minutes'
 			newTechnique.difficulty = 'Medium'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2200,7 +2200,7 @@ class BootStrap {
 			newTechnique.duration= '10 minutes'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Mid'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2229,7 +2229,7 @@ class BootStrap {
 			newTechnique.duration= '10 minutes'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Mid'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2258,7 +2258,7 @@ class BootStrap {
 			newTechnique.duration= '30 minutes'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Pre'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2287,7 +2287,7 @@ class BootStrap {
 			newTechnique.duration= '5 minutes'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2316,7 +2316,7 @@ class BootStrap {
 			newTechnique.duration= '10 minutes'
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Post'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback = AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
@@ -2345,7 +2345,7 @@ class BootStrap {
 			newTechnique.duration= ''
 			newTechnique.difficulty = 'Low'
 			newTechnique.whenToCarryOut = 'Mid'
-			newTechnique.sources = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
+			newTechnique.reference = 'Thomas A. Angelo and K.Patricia Cross. “Classroom Assessment Techniques“, 2nd ed. James Rhem. California: Jossey-Bass.'
 			newTechnique.type = 'Formative'
 			newTechnique.assessmentFeedback= AssessmentFeedback.findByName('In Person')
 			newTechnique.addToLearningDomain(
