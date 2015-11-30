@@ -60,6 +60,7 @@ function changePic () {
 	} else {
 		iconName = $('#img' + iconName).attr('href');
 	}
+	$('#dimImageModal').attr('src', iconName);
 	$('#dimImage').attr('src', iconName);
 }
 function openDimModal () {
@@ -97,6 +98,7 @@ function populateAssessmentTechnique (data, isClone) {
 	var arrayOfDomainCategories = data.domainCategories.split(',');
 
 	$('#titlecheck').val(currentTechnique.title);
+	$('#dimImageModal').attr('title',data.knowledgeDimension.substring(0,data.knowledgeDimension.length));
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 
@@ -135,6 +137,7 @@ function populateAssessmentTechnique (data, isClone) {
 			checked = checked + ($(this).val()) + ',';
 		}
 	});
+	changePic();
 	document.getElementById('knowledgeDimension').value = checked;
 
 	for (count = 0; count < arrayOfLearningDomains.length; count++) {

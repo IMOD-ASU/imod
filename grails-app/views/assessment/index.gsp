@@ -335,8 +335,18 @@
 							</tr>
 							<tr>
 							<td class="td-label" width="40%">Knowledge Dimension</td>
-							<td width="60%">
-								<button id="k1"> Knowledge Dimensions</button>
+							<td width="60%" class="show-hover-new">
+							<span>
+								<g:img
+									dir="images/content"
+									file="knowDimNone.png"
+									id="dimImageModal"
+									width="71"
+									height="71"
+									title=""
+								/>
+								<button id="k1" class="knowledgeDimensionButton"> Knowledge Dimensions</button>
+							</span>
 							</td>
 							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
 							<input type="hidden" name="cloneDetect" id="cloneDetect" >

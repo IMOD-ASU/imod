@@ -46,6 +46,9 @@
 
     text-align: center;
 }
+.knowledgeDimensionButton {
+    width: 88%;
+}
 
 .assessment-page-buttons-disabled {
     height: 50px;
@@ -239,7 +242,7 @@
 }
 
 #k1 {
-    width: 100%;
+    width: 88%;
 }
 
 .titleField {

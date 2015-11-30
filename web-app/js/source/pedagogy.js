@@ -116,7 +116,9 @@ function changePic () {
 	} else {
 		iconName = $('#img' + iconName).attr('href');
 	}
+	$('#dimImageModal').attr('src', iconName);
 	$('#dimImage').attr('src', iconName);
+
 }
 function openDimModal () {
 	'use strict';
@@ -154,6 +156,7 @@ function populatePedagogyTechnique (data) {
 	var cloneDetect = document.getElementById('cloneDetect').value;
 
 	$('#titlecheck').val(currentTechnique.title);
+	$('#dimImageModal').attr('title',data.knowledgeDimension.substring(0,data.knowledgeDimension.length-1));
 	if (cloneDetect === 'clone') {
 		$('#editTitle').html('<b>Enter Alternate Name for Clone</b>');
 		$('#title').val('');
@@ -192,6 +195,7 @@ function populatePedagogyTechnique (data) {
 			checked = checked + ($(this).val()) + ',';
 		}
 	});
+	changePic();
 	document.getElementById('knowledgeDimension').value = checked;
 	$('#pedagogyFocus option[value=' + data.activityFocus + ']').prop('selected', true);
 	$('#pedagogyMode option[value=' + data.pedagogyMode + ']').prop('selected', true);
