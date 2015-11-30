@@ -98,7 +98,7 @@ function populateAssessmentTechnique (data, isClone) {
 	var arrayOfDomainCategories = data.domainCategories.split(',');
 
 	$('#titlecheck').val(currentTechnique.title);
-	$('#dimImageModal').attr('title',data.knowledgeDimension.substring(0,data.knowledgeDimension.length));
+	$('#dimImageModal').attr('title', data.knowledgeDimension.substring(0, data.knowledgeDimension.length));
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 
@@ -667,6 +667,7 @@ $(document).ready(
 		var isPanelSelected;
 		var checkBoxName;
 		var hasError = false;
+		var cloneDetect = '';
 
 		// Load techniques on page load
 		filterAssessmentTechniques();
@@ -739,6 +740,7 @@ $(document).ready(
 		$('#saveButton').on('click',
 		function () {
 			hasError = false;
+			cloneDetect = document.getElementById('cloneDetect').value;
 
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
