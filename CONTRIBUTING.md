@@ -71,10 +71,9 @@ Its good to run these tools at least once a sprint to look for code smells and p
 * [FindBug](http://findbugs.sourceforge.net/) for more analysis of the compiled Groovy code and templates
 * [ESLint](http://eslint.org/docs/rules/) for static analysis of JavaScript
 * [CSSComb](http://csscomb.com/docs) for automatic formatting of style sheets
-* [HTML hint](http://htmlhint.com/) for HTML validation and style checking
 
 ##### Installing the tools
-* CodeNarc and HTMLhint are bundled with the grails application, nothing needed here
+* CodeNarc is bundled with the grails application, nothing needed here
 * Findbugs can be downloaded [here](http://findbugs.sourceforge.net/downloads.html)
 * One command to install the rest `npm install -g eslint csscomb`
 
@@ -104,12 +103,6 @@ Its good to run these tools at least once a sprint to look for code smells and p
 1. open a terminal in the imods project folder
 2. run `csscomb web-app/css/`
 3. code will be auto formatted, commit the updated code
-
-##### Running HTMLHint
-* Start the grails application
-* Open the site in a web browser
-* Open developer console
-* Warnings will be showing this the console logs
 
 <br>
 <br>
