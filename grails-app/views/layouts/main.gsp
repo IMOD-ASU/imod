@@ -106,13 +106,5 @@ this is the basic layout with only the IMOD header and footer
 				Please save before proceeding to next page.
 			</p>
 		</div>
-
-		<g:if env="developments">
-			<!-- automated html style checking -->
-			<g:external dir="bower_components/log" file="log.min.js" />
-			<g:external dir="bower_components/htmlhint/lib" file="htmlhint.js" />
-			<g:javascript src="source/lintHTML.js" />
-		</g:if>
-
 	</body>
 </html>

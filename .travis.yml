@@ -12,5 +12,5 @@ before_script:
   - npm install -g bower eslint
 
 script:
-  - eslint web-app/js/source
+  - eslint web-app/js/source --disableInlineConfig
   - ./grailsw war
