@@ -34,7 +34,7 @@
 		<g:render template="/content/topicForm"/>
 
 		<fieldset class="content-save learning-objective-button topicButtonGradient">
-			<button type="submit" id="save-content" value="Save" name="save_content" class="save show-hover-new">
+			<button type="submit" id="save-content" value="Save" name="save_content" class="save show-hover-new" ${(learningObjectives) ? '' : 'disabled'}>
 				<i class="fa fa-save green"></i>
 					Save
 			</button>
@@ -42,7 +42,7 @@
 		<fieldset>
 			<span class="topicModalButtonGradient topicButtonGradient addTopicModalWrap">
 
-				<button id="addTopicModal" class="topicModalButton" title="${ message( code:'imod.learningObjective.addTopic' ) }">
+				<button id="addTopicModal" class="topicModalButton" title="${ message( code:'imod.learningObjective.addTopic' ) }" ${(learningObjectives) ? '' : 'disabled'}>
 					<i class="fa fa-plus green"></i>
 					Add Topics
 				</button>

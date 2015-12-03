@@ -116,6 +116,7 @@ function changePic () {
 	} else {
 		iconName = $('#img' + iconName).attr('href');
 	}
+	$('#dimImageModal').attr('src', iconName);
 	$('#dimImage').attr('src', iconName);
 }
 function openDimModal () {
@@ -137,6 +138,8 @@ function openDimModal () {
 		}
 	}
 	changePic();
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 	dialog.css('display', 'inherit');
 	background.css('display', 'block');
 	return false;
@@ -152,6 +155,7 @@ function populatePedagogyTechnique (data) {
 	var cloneDetect = document.getElementById('cloneDetect').value;
 
 	$('#titlecheck').val(currentTechnique.title);
+	$('#dimImageModal').attr('title', data.knowledgeDimension.substring(0, data.knowledgeDimension.length - 1));
 	if (cloneDetect === 'clone') {
 		$('#editTitle').html('<b>Enter Alternate Name for Clone</b>');
 		$('#title').val('');
@@ -190,6 +194,7 @@ function populatePedagogyTechnique (data) {
 			checked = checked + ($(this).val()) + ',';
 		}
 	});
+	changePic();
 	document.getElementById('knowledgeDimension').value = checked;
 	$('#pedagogyFocus option[value=' + data.activityFocus + ']').prop('selected', true);
 	$('#pedagogyMode option[value=' + data.pedagogyMode + ']').prop('selected', true);
@@ -639,12 +644,12 @@ $(document).ready(
 			$('input[name=knowledgeDimension],input[name=learningDomain],input[name=domainCategory]').each(function () {
 				checkboxValues[this.id] = this.checked;
 			});
-			$.cookie('checkboxValues', checkboxValues, {expires: 1, path: '/'});
+			$.cookie('checkboxValues', checkboxValues);
 		});
 
-		$('.learning-objective.list-item').on('click',
+		$('.learning-objective.list-item,#a,#b,#c,#logout-link,.banner-imod,.banner-home,#imodlogo,.no-objective-defined').on('click',
 			function () {
-				$.removeCookie('checkboxValues', {path: '/'});
+				$.removeCookie('checkboxValues');
 			}
 		);
 

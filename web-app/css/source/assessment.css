@@ -31,17 +31,23 @@
 
 
 .no-objective-defined {
+    height: 100px;
     text-align: center;
     vertical-align: middle;
+}
 
-    opacity: 0.5;
-    background: #cccccc;
+.no-objective-defined a {
+    vertical-align: middle !important;
+    text-decoration: none;
 }
 
 .assessment-page-buttons {
     height: 50px;
 
     text-align: center;
+}
+.knowledgeDimensionButton {
+    width: 88%;
 }
 
 .assessment-page-buttons-disabled {
@@ -236,7 +242,7 @@
 }
 
 #k1 {
-    width: 100%;
+    width: 88%;
 }
 
 .titleField {
@@ -310,15 +316,6 @@ label.assessment-block .ui-button-text:hover {
 #assessmentFavoritesDiv {
     display: none;
     visibility: hidden;
-}
-
-
-.no-objective-defined {
-    text-align: center;
-    vertical-align: middle;
-
-    opacity: 0.5;
-    background: #cccccc;
 }
 
 .assessment-page-buttons {
