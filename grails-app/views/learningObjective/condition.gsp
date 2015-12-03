@@ -20,14 +20,14 @@
 			</fieldset>
 			<div class="learning-objective condition radio-form">
 				<g:radio name="conditionType" checked="${isCustom}" value="Generic" id="condition-generic" class="learning-objective condition radio" title="${ message( code:'imod.learningObjective.genericCondition' ) }" disabled="${(learningObjectives) ? 'false' : 'true'}"/>
-				<label for="condition-generic" >
+				<label for="condition-generic">
 					Generic
 				</label>
 				<span>
 					&nbsp;
 				</span>
 				<g:radio name="conditionType" checked="${!isCustom}" value="Custom" id="condition-custom" class="learning-objective condition radio" title="${ message( code:'imod.learningObjective.customCondition' ) }" disabled="${(learningObjectives) ? 'false' : 'true'}"/>
-				<label for="condition-custom" >
+				<label for="condition-custom">
 					Custom
 				</label>
 			</div>

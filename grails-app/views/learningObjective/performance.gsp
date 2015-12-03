@@ -20,10 +20,11 @@
 				</button>
 			</fieldset>
 
-			<label for="learning-domain-list" class="learning-domain-list title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
+			<label for="learning-domain-list" class="learning-domain-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Domain')}">
 				Learning Domain
 			</label>
-			&nbsp;<g:select name="LDL" id="learning-domain-list" class="custom-dropdown" from="${domainList?.name}" noSelection="${['null':'-- Select --']}" value="${selectedDomain?.name?:""}" title="${ message( code:'imod.learningObjective.learningDomain' ) }" disabled="${(learningObjectives) ? 'false' : 'true'}"/>
+			&nbsp;
+			<g:select name="LDL" id="learning-domain-list" class="custom-dropdown" from="${domainList?.name}" noSelection="${['null':'-- Select --']}" value="${selectedDomain?.name?:""}" title="${ message( code:'imod.learningObjective.learningDomain' ) }" disabled="${(learningObjectives) ? 'false' : 'true'}"/>
 			<br/>
 			<div style="height:5px"></div>
 			<label for="domain-category-list" class="domain-category-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
@@ -41,7 +42,8 @@
 			<br>
 			<div class="icons assign">
 				<g:each var="actionWordCategory" in="${actionWordCategoryList?.actionWordCategory}" status="i">
-					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"/><label for="radio${i}">
+					<input type="radio" id="radio${i}" name="actionWordCategory" value="${actionWordCategory}"/>
+					<label for="radio${i}">
 						${actionWordCategory}
 					</label>
 				</g:each>

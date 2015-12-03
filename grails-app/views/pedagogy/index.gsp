@@ -284,90 +284,88 @@
 							<div id="editTitle">
 							<b> Add Pedagogy Technique</b>
 							</div>
-							<span id="errorMessage" style="color:red"></span>
+							<span id="errorMessage" class="red"></span>
 						</fieldset>
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
 							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
-							<tr>
-							<td class="td-label" width="40%">Title</td>
-							<td width="60%"> <g:textField name="title" /></td>
-							<input type="hidden" name="titlecheck" id="titlecheck" >
-							</tr>
-							<!--<tr>
-							<td width="40%"> Assign to Current Learning Objective </td>
-							<td width="60%"> <g:checkBox name="assignedToLearningObjective" /></td>
-							</tr>
-							<tr>
-							<td width="40%">Favorite Technique </td>
-							<td width="60%"><g:checkBox name="favoriteTechnique" /></td>
-							</tr>-->
-							<tr>
-							<td class="td-label" width="40%">Learning Domain	</td>
-							<td width="60%"><g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" /><td>
-							<input type="hidden" name="domainSelected" id="domainSelected" >
-							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
+								<tr>
+									<td class="td-label" width="40%">Title</td>
+									<td width="60%">
+										<g:textField name="title" />
+									</td>
+									<input type="hidden" name="titlecheck" id="titlecheck" >
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Learning Domain	</td>
+									<td width="60%">
+										<g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" />
+									<td>
+									<input type="hidden" name="domainSelected" id="domainSelected" >
+									<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Domain Category</td>
+									<td width="60%">
+										<g:select id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Knowledge Dimension</td>
+									<td width="60%" class="show-hover-new">
+										<span>
+											<g:img
+												dir="images/content"
+												file="knowDimNone.png"
+												id="dimImageModal"
+												width="71"
+												height="71"
+												title=""
+											/>
 
-
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Knowledge Dimension</td>
-							<td width="60%" class="show-hover-new">
-							<span>
-								<g:img
-									dir="images/content"
-									file="knowDimNone.png"
-									id="dimImageModal"
-									width="71"
-									height="71"
-									title=""
-								/>
-							
-								<button id="k1" class="knowledgeDimensionButton"> Knowledge Dimensions</button>
-							</span>
-							</td>
-							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
-							<input type="hidden" name="cloneDetect" id="cloneDetect" >
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Delivery Mode</td>
-							<td width="60%"><g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
-							</tr>
-							<!-- Decided to remove Location - Item 2047-->
-							<!--<tr>
-							<td width="40%">Location</td>
-							<td width="60%"><g:textField name="location" /> </td>
-							</tr>-->
-							<tr>
-							<td class="td-label" width="40%">Focus</td>
-							<td width="60%"><g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Duration</td>
-							<td width="60%"><g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Materials Required</td>
-							<td width="60%"><g:textArea name="materials" rows="5" cols="30"/> </td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">References</td>
-							<td width="60%"><g:textArea name="reference" rows="5" cols="30"/></td>
-							</tr>
-							<!--<tr>
-							<td width="40%">Description of Strategy</td>
-							<td width="60%">
-							<g:textArea name="strategyDescription" rows="5" cols="30" /></td>
-							</tr>-->
-							<tr>
-							<td class="td-label" width="40%">Description of Activity</td>
-							<td width="60%"><g:textArea name="activityDescription" rows="5" cols="30" /></td>
-							</tr>
+											<button id="k1" class="knowledgeDimensionButton"> Knowledge Dimensions</button>
+										</span>
+									</td>
+									<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
+									<input type="hidden" name="cloneDetect" id="cloneDetect" >
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Delivery Mode</td>
+									<td width="60%">
+										<g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Focus</td>
+									<td width="60%">
+										<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Duration</td>
+									<td width="60%">
+										<g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Materials Required</td>
+									<td width="60%">
+										<g:textArea name="materials" rows="5" cols="30"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">References</td>
+									<td width="60%">
+										<g:textArea name="reference" rows="5" cols="30"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Description of Activity</td>
+									<td width="60%">
+										<g:textArea name="activityDescription" rows="5" cols="30" />
+									</td>
+								</tr>
 							</table>
 							<br>
 
@@ -452,20 +450,20 @@
 			/>
 		</span>
 		<button
-		  class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
-					id="knowDimFinished"
-					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			id="knowDimFinished"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
-		<i class="fa fa-save green"></i>
-					${message(code: 'Save Resource', default: ' Continue')}
+			<i class="fa fa-save green"></i>
+			${message(code: 'Save Resource', default: ' Continue')}
 		</button>
 		<button
-		  class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
-					id="closeKnowDim"
-					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			id="closeKnowDim"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
-					<i class="fa fa-times red"></i>
-					${message(code: 'Cancel Resource', default: ' Cancel')}
+			<i class="fa fa-times red"></i>
+			${message(code: 'Cancel Resource', default: ' Cancel')}
 		</button>
 
 	</div>
