@@ -12,6 +12,18 @@ class AssessmentTechniqueController {
 		assessmentplan: 'POST'
 	]
 
+	def favorites() {
+
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		final favoriteTechniques = currentUser.favoriteAssessmentTechnique
+
+		 render(
+			[
+				assessmentTechniques: favoriteTechniques
+			] as JSON
+		)
+	}
+
 
 	def assessmentplan() {
 		final assessmentTechInstance = AssessmentTechnique.findAllByAssigncheck(true)
