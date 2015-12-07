@@ -571,8 +571,11 @@ $(document).ready(
 		$.cookie.json = true;
 		repopulateCheckboxes();
 
-		// Load techniques on page load
-		filterPedagogyTechniques();
+		// Load techniques when LOs exist
+		if ($('#learningObjectiveLength').val() === '1') {
+			filterPedagogyTechniques();
+		}
+
 		// The filters for the pedagogy technique are wrapped in a accordian
 		// beforeActivate is to be able to open both ideal & extended matches simultaneously
 		$('#filter-pedagogy-techniques').accordion({collapsible: true, heightStyle: 'content'});
