@@ -65,6 +65,7 @@
 						</div>
 						<ul class="learning-objective list-wrapper">
 							<g:if test="${learningObjectives}">
+								<g:hiddenField name="learningObjectiveLength" id="learningObjectiveLength" value="1"/>
 								<g:each var="learningObjective" in="${learningObjectives}">
 									<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
 										<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
@@ -74,6 +75,7 @@
 								</g:each>
 							</g:if>
 							<g:else>
+								<g:hiddenField name="learningObjectiveLength" id="learningObjectiveLength" value="0"/>
 								<div class="no-objective-defined">
 									<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
 									<div>
@@ -103,7 +105,8 @@
 											${knowledgeDimension.description}
 										</label>
 										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}"
-										            checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}"/>
+										            checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}"
+													disabled="${(learningObjectives) ? 'false' : 'true'}"/>
 									</li>
 								</g:each>
 							</ul>
@@ -119,7 +122,8 @@
 											${learningDomain.name}
 										</label>
 										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}"
-										             checked="${learningDomain.name == selectedDomain.toString()}"/>
+										             checked="${learningDomain.name == selectedDomain.toString()}"
+													 disabled="${(learningObjectives) ? 'false' : 'true'}"/>
 									</li>
 								</g:each>
 							</ul>
@@ -135,7 +139,8 @@
 											${domainCategory.name}
 										</label>
 										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}"
-										             checked="${domainCategory.name == selectedDomainCategory.toString()}"/>
+										             checked="${domainCategory.name == selectedDomainCategory.toString()}"
+													 disabled="${(learningObjectives) ? 'false' : 'true'}"/>
 									</li>
 								</g:each>
 							</ul>

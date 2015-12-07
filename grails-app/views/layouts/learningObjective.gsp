@@ -84,7 +84,7 @@
 									</g:each>
 								</g:if>
 								<g:else>
-									<li class="learning-objective list-item active"> Click on add button above to create new Learning Objective</li>
+									<li class="learning-objective list-item active"> <i> Click on add button above to create new Learning Objective </i></li>
 								</g:else>
 								</ul>
 							</div>

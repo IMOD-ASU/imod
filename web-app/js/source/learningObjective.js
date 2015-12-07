@@ -414,10 +414,13 @@ $(document).ready(
 			function () {
 				if ($('#learning-domain-list').val() === 'Cognitive') {
 					$('#qtip-place').html('Mental skills (knowledge)');
+					$('#learning-domain-list').attr('title', 'Mental skills (knowledge)');
 				} else if ($('#learning-domain-list').val() === 'Affective') {
 					$('#qtip-place').html('Growth in feelings or emotional areas (attitude or self)');
+					$('#learning-domain-list').attr('title', 'Growth in feelings or emotional areas (attitude or self)');
 				} else {
-					$('#qtip-place').html('Manual or physical skills (skills)');
+					$('#qtip-place').html('Manual or physical skill (skills)');
+					$('#learning-domain-list').attr('title', 'Manual or physical skill (skills)');
 				}
 				populateDomainCategories();
 			});
@@ -438,63 +441,81 @@ $(document).ready(
 				switch ($('#domain-category-list').val()) {
 					case 'Remember':
 						qtipPlace.html('Recall or retrieve previous learned information.');
+						$('#domain-category-list').attr('title', 'Recall or retrieve previous learned information.');
 						break;
 					case 'Understand':
 						qtipPlace.html('Comprehending the meaning, translation, interpolation, and interpretation of instructions and problems. State a problem in one\'s own words.');
+						$('#domain-category-list').attr('title', 'Comprehending the meaning, translation, interpolation, and interpretation of instructions and problems. State a problem in one\'s own words.');
 						break;
 					case 'Apply':
 						qtipPlace.html('Use a concept in a new situation or unprompted use of an abstraction. Applies what was learned in the classroom into novel situations in the work place.');
+						$('#domain-category-list').attr('title', 'Use a concept in a new situation or unprompted use of an abstraction. Applies what was learned in the classroom into novel situations in the work place.');
 						break;
 					case 'Analyze':
 						qtipPlace.html('Separates material or concepts into component parts so that its organizational structure may be understood. Distinguishes between facts and inferences.');
+						$('#domain-category-list').attr('title', 'Separates material or concepts into component parts so that its organizational structure may be understood. Distinguishes between facts and inferences.');
 						break;
 					case 'Evaluate':
 						qtipPlace.html('Make judgments about the value of ideas or materials.');
+						$('#domain-category-list').attr('title', 'Make judgments about the value of ideas or materials.');
 						break;
 					case 'Create':
 						qtipPlace.html('Builds a structure or pattern from diverse elements. Put parts together to form a whole, with emphasis on creating a new meaning or structure.');
+						$('#domain-category-list').attr('title', 'Builds a structure or pattern from diverse elements. Put parts together to form a whole, with emphasis on creating a new meaning or structure.');
 						break;
 					case 'Receiving Phenomena':
 						qtipPlace.html('Awareness, willingness to hear, selected attention.');
+						$('#domain-category-list').attr('title', 'Awareness, willingness to hear, selected attention.');
 						break;
 					case 'Respond':
 						helpPlaceholder.css('height', '15em');
 						qtipPlace.html('Active participation on the part of the learners. Attend and react to a particular phenomenon. Learning outcomes may emphasize compliance in responding, willingness to respond, or satisfaction in responding (motivation).');
+						$('#domain-category-list').attr('title', 'Active participation on the part of the learners. Attend and react to a particular phenomenon. Learning outcomes may emphasize compliance in responding, willingness to respond, or satisfaction in responding (motivation).');
 						break;
 					case 'Value':
 						helpPlaceholder.css('height', '20em');
+						$('#domain-category-list').attr('title', 'The worth or value a person attaches to a particular object, phenomenon, or behavior. This ranges from simple acceptance to the more complex state of commitment. Valuing is based on the internalization of a set of specified values, while clues to these values are expressed in the learner\'s overt behavior and are often identifiable.');
 						qtipPlace.html('The worth or value a person attaches to a particular object, phenomenon, or behavior. This ranges from simple acceptance to the more complex state of commitment. Valuing is based on the internalization of a set of specified values, while clues to these values are expressed in the learner\'s overt behavior and are often identifiable.');
 						break;
 					case 'Organization':
 						helpPlaceholder.css('height', '13em');
+						$('#domain-category-list').attr('title', 'Organizes values into priorities by contrasting different values, resolving conflicts between them, and creating an unique value system. The emphasis is on comparing, relating, and synthesizing values.');
 						qtipPlace.html('Organizes values into priorities by contrasting different values, resolving conflicts between them, and creating an unique value system. The emphasis is on comparing, relating, and synthesizing values.');
 						break;
 					case 'Internalizing Values':
 						helpPlaceholder.css('height', '20em');
+						$('#domain-category-list').attr('title', 'Has a value system that controls their behavior. The behavior is pervasive, consistent, predictable, and most important characteristic of the learner. Instructional objectives are concerned with the student\'s general patterns of adjustment (personal, social, emotional).');
 						qtipPlace.html('Has a value system that controls their behavior. The behavior is pervasive, consistent, predictable, and most important characteristic of the learner. Instructional objectives are concerned with the student\'s general patterns of adjustment (personal, social, emotional).');
 						break;
 					case 'Perception':
 						qtipPlace.html('The ability to use sensory cues to guide motor activity.  This ranges from sensory stimulation, through cue selection, to translation.');
+						$('#domain-category-list').attr('title', 'The ability to use sensory cues to guide motor activity.  This ranges from sensory stimulation, through cue selection, to translation.');
 						break;
 					case 'Set':
 						helpPlaceholder.css('height', '13em');
+						$('#domain-category-list').attr('title', 'Readiness to act. It includes mental, physical, and emotional sets. These three sets are dispositions that predetermine a person\'s response to different situations (sometimes called mindsets).');
 						qtipPlace.html('Readiness to act. It includes mental, physical, and emotional sets. These three sets are dispositions that predetermine a person\'s response to different situations (sometimes called mindsets).');
 						break;
 					case 'Guided Response':
+						$('#domain-category-list').attr('title', 'The early stages in learning a complex skill that includes imitation and trial and error. Adequacy of performance is achieved by practicing.');
 						qtipPlace.html('The early stages in learning a complex skill that includes imitation and trial and error. Adequacy of performance is achieved by practicing.');
 						break;
 					case 'Mechanism':
 						helpPlaceholder.css('height', '13em');
+						$('#domain-category-list').attr('title', 'This is the intermediate stage in learning a complex skill. Learned responses have become habitual and the movements can be performed with some confidence and proficiency.');
 						qtipPlace.html('This is the intermediate stage in learning a complex skill. Learned responses have become habitual and the movements can be performed with some confidence and proficiency.');
 						break;
 					case 'Complex Overt Response':
 						helpPlaceholder.css('height', '20em');
+						$('#domain-category-list').attr('title', 'The skillful performance of motor acts that involve complex movement patterns. Proficiency is indicated by a quick, accurate, and highly coordinated performance, requiring a minimum of energy. This category includes performing without hesitation, and automatic performance.');
 						qtipPlace.html('The skillful performance of motor acts that involve complex movement patterns. Proficiency is indicated by a quick, accurate, and highly coordinated performance, requiring a minimum of energy. This category includes performing without hesitation, and automatic performance.');
 						break;
 					case 'Adaptation':
+						$('#domain-category-list').attr('title', 'Skills are well developed and the individual can modify movement patterns to fit special requirements.');
 						qtipPlace.html('Skills are well developed and the individual can modify movement patterns to fit special requirements.');
 						break;
 					case 'Origination':
+						$('#domain-category-list').attr('title', 'Creating new movement patterns to fit a particular situation or specific problem. Learning outcomes emphasize creativity based upon highly developed skills.');
 						qtipPlace.html('Creating new movement patterns to fit a particular situation or specific problem. Learning outcomes emphasize creativity based upon highly developed skills.');
 						break;
 				}
