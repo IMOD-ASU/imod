@@ -15,11 +15,23 @@ class PedagogyController {
 	 * @param id
 	 */
 	def index(Long id, Long learningObjectiveID) {
+
 		// get the selected imod
 		final currentImod = Imod.get(id)
 
 		// finds all the learning objective linked to this imod
 		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+
+		// If no learning objective is selected
+		// select the first one if it exists
+		if (params.learningObjectiveID == null && learningObjectives.size > 0) {
+			redirect(
+  				controller: 'pedagogy',
+  				action: 'index',
+  				id:  id,
+  				params: [learningObjectiveID: learningObjectives[0].id]
+  			)
+		}
 
 		// select current learning objective
 		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)

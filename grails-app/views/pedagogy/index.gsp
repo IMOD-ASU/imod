@@ -411,8 +411,25 @@
 						<div id="instruction-plan-accordion">
 							<g:if test="${learningObjectives}">
 								<g:each var="learningObjective" in="${learningObjectives}">
-										<h3 class="istructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
-										<div class="assignedTechniques" id="assignedTechniques-${learningObjective.id}"></div>
+										<g:if test="${learningObjective.definition != null && !learningObjective.definition.trim().isEmpty()}">
+											<h3 class="istructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
+											<div class="assignedTechniques" id="assignedTechniques-${learningObjective.id}">
+												<g:if test="${learningObjective.pedagogyTechniques.size()}">
+								                    <ul>
+								                    <g:each var="technique" in="${learningObjective.pedagogyTechniques}">
+
+								                        <g:if test="${technique != null && !technique.title.isEmpty()}">
+								                            <li>${technique.title}</li>
+								                        </g:if>
+
+								                    </g:each>
+								                    </ul>
+								                </g:if>
+								                <g:else>
+								                    No techniques are assigned to this Learning Objective
+								                </g:else>
+											</div>
+										</g:if>
 								</g:each>
 							</g:if>
 							<g:else>
