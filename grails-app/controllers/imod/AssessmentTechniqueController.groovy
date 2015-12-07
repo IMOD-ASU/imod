@@ -143,6 +143,10 @@ class AssessmentTechniqueController {
 		if (params.techniqueId) {
 			newTechnique = AssessmentTechnique.get(params.techniqueId)
 			newTechnique.knowledgeDimension.clear()
+			newTechnique.learningDomain.clear()
+			newTechnique.domainCategory.clear()
+			newTechnique.activityFocus.clear()
+
 		}
 
 		// Store text fields
@@ -170,6 +174,8 @@ class AssessmentTechniqueController {
 		}
 
 		String[] kD = params.knowledgeDimension.split(",");
+		String[] lD = params.learningDomain;
+		String[] dC = params.domainCategory;
 
 		if (kD != null) {
 			for(int i=0; i < kD.length; i++) {
@@ -182,10 +188,29 @@ class AssessmentTechniqueController {
 			}
 		}
 
-		params.learningDomain.each{
-			newTechnique.addToLearningDomain(
-				LearningDomain.findByName(it)
-			)
+		if (lD != null) {
+			for(int i=0; i < lD.length; i++) {
+
+				if (lD[i]!=null) {
+					newTechnique.addToLearningDomain(LearningDomain.findByName(lD[i]))
+				}
+
+			}
+		}
+
+		if (dC != null) {
+			for(int i=0; i < dC.length; i++) {
+
+				if (dC[i]!=null) {
+					if (DomainCategory.findByName(dC[i])!= null)
+					{
+
+					println (dC[i])
+					newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
+					}
+				}
+
+			}
 		}
 
 		// persist new technique to database
