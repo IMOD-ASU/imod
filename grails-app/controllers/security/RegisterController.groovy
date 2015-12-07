@@ -3,6 +3,7 @@ package security
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.authentication.dao.NullSaltSource
 import grails.plugin.springsecurity.ui.RegistrationCode
+import imod.ImodUser
 
 class RegisterController extends grails.plugin.springsecurity.ui.RegisterController {
 
@@ -29,6 +30,17 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 			render view: 'index', model: [command: command]
 			return
 		}
+
+		def currentUser = ImodUser.findByEmail(params.email)
+		if (currentUser != null) {
+			// null means problem creating the user
+			flash.error = message(code: 'spring.security.ui.register.miscError')
+			flash.message = "A user with the email address already exists"
+			flash.chainedParams = params
+			redirect action: 'index'
+			return
+		}
+
 
 		String salt = saltSource instanceof NullSaltSource ? null : command.username
 		def user = lookupUserClass().newInstance(email: command.email, username: command.username,
