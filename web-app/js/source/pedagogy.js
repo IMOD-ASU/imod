@@ -47,7 +47,7 @@ function populateInstructionalPlanTechniques () {
 
 	headerText = $(this).text();
 
-	if (accordionOpened === 1) {
+	/*if (accordionOpened === 1) {
 	// Bundle the data into an object
 		data = {
 			learningObjectiveID: $(this).attr('id')
@@ -74,7 +74,7 @@ function populateInstructionalPlanTechniques () {
 	} else {
 		spanHTML = $('#' + $(this).attr('id')).find('span').clone().wrap('<p>').parent().html();
 		$('#' + $(this).attr('id')).html(spanHTML + truncateString(headerText, 80));
-	}
+	}*/
 }
 function closeDimModal () {
 	'use strict';
