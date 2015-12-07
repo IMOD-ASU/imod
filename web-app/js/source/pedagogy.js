@@ -36,7 +36,7 @@ function openInstructionalPlanModal () {
 	$('#topicDialogBackground').css('display', 'block');
 }
 
-function populateInstructionalPlanTechniques () {
+/*function populateInstructionalPlanTechniques () {
 	'use strict';
 	var data;
 	var index;
@@ -47,7 +47,7 @@ function populateInstructionalPlanTechniques () {
 
 	headerText = $(this).text();
 
-	/*if (accordionOpened === 1) {
+	if (accordionOpened === 1) {
 	// Bundle the data into an object
 		data = {
 			learningObjectiveID: $(this).attr('id')
@@ -74,8 +74,9 @@ function populateInstructionalPlanTechniques () {
 	} else {
 		spanHTML = $('#' + $(this).attr('id')).find('span').clone().wrap('<p>').parent().html();
 		$('#' + $(this).attr('id')).html(spanHTML + truncateString(headerText, 80));
-	}*/
-}
+	}
+}*/
+
 function closeDimModal () {
 	'use strict';
 	var checked = '';
@@ -700,7 +701,7 @@ $(document).ready(
 		// When instructional plan button is clicked open modal
 		$('#instruction-plan-button').on('click', openInstructionalPlanModal);
 
-		$('#instruction-plan-accordion h3').on('click', populateInstructionalPlanTechniques);
+		// $('#instruction-plan-accordion h3').on('click', populateInstructionalPlanTechniques);
 
 		$('#closeInstructionalPlan').on('click',
 			function () {
