@@ -443,9 +443,9 @@
 				</td>
 			</tr>
 		</table>
-		<div id="selectKnowledgeDimensionBackground" class="modalBackground">
+		<div id="selectKnowledgeDimensionBackground" class="modalBackground2">
 </div>
-<div id="selectKnowledgeDimensions" class="draggable">
+<div id="selectKnowledgeDimensions" class="draggable modelBackground2Target">
 	<div class="draggable-handle">
 		<input type="hidden" id="topicID" />
 		<span>

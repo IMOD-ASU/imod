@@ -484,7 +484,7 @@ input[disabled='disabled'] {
 
     background: inherit;
 }
-.modalBackground {
+.modalBackground, .modalBackground2 {
     position: fixed;
     top: 0;
     left: 0;
@@ -495,6 +495,9 @@ input[disabled='disabled'] {
     height: 100%;
 
     background-color: rgba(0,0,0,0.5);
+}
+.modalBackground2 {
+	z-index: 3;
 }
 .topicButtonField {
     position: relative;
