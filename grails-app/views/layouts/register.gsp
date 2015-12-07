@@ -17,15 +17,28 @@
 		<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.safari-checkbox.css',plugin:'spring-security-ui')}"/>
 		<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'auth.css',plugin:'spring-security-ui')}"/>
 
+		<style type="text/css">
+			.registration-error {
+				text-align: center; color: red;
+				margin-top: 10px;
+			}
+		</style>
+
 		<g:layoutHead />
 	</head>
 
 	<body>
+
 		<g:layoutBody />
 
 		<g:javascript src='jquery/jquery.jgrowl.js' plugin='spring-security-ui'/>
 		<g:javascript src='jquery/jquery.checkbox.js' plugin='spring-security-ui'/>
 		<g:javascript src='plugins/spring-security-ui.js'/>
+
+
+		<g:if test="${flash.error}">
+		    <div class="registration-error">${flash.message}</div>
+		</g:if>
 
 		<s2ui:showFlash/>
 	</body>
