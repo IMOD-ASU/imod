@@ -36,47 +36,6 @@ function openInstructionalPlanModal () {
 	$('#topicDialogBackground').css('display', 'block');
 }
 
-/*function populateInstructionalPlanTechniques () {
-	'use strict';
-	var data;
-	var index;
-	var assignedTechniques = '';
-	var headerText = '';
-	var spanHTML = '';
-	var accordionOpened = $('#instruction-plan-accordion').find('.ui-state-active').length;
-
-	headerText = $(this).text();
-
-	if (accordionOpened === 1) {
-	// Bundle the data into an object
-		data = {
-			learningObjectiveID: $(this).attr('id')
-		};
-
-		$.ajax({
-			url: '../findAssignedTechniques',
-			method: 'post',
-			data: JSON.stringify(data),
-			contentType: 'application/json'
-		}).done(function (data) {
-			if (data.LOPedagogyTechniques.length > 0) {
-				for (index = 0; index < data.LOPedagogyTechniques.length; index++) {
-					assignedTechniques += '<li>' + data.LOPedagogyTechniques[index] + '</li>';
-				}
-				$('#assignedTechniques-' + data.currentLearningObjectiveID).html('<ul>' + assignedTechniques + '</ul>');
-			} else {
-				$('#assignedTechniques-' + data.currentLearningObjectiveID).html('No techniques are assigned to this Learning Objective');
-			}
-			spanHTML = $('#' + data.currentLearningObjectiveID).find('span').clone().wrap('<p>').parent().html();
-
-			$('#' + data.currentLearningObjectiveID).html(spanHTML + data.currentLearningObjective);
-		});
-	} else {
-		spanHTML = $('#' + $(this).attr('id')).find('span').clone().wrap('<p>').parent().html();
-		$('#' + $(this).attr('id')).html(spanHTML + truncateString(headerText, 80));
-	}
-}*/
-
 function closeDimModal () {
 	'use strict';
 	var checked = '';
