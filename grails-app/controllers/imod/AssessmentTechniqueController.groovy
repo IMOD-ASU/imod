@@ -12,6 +12,18 @@ class AssessmentTechniqueController {
 		assessmentplan: 'POST'
 	]
 
+	def favorites() {
+
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		final favoriteTechniques = currentUser.favoriteAssessmentTechnique
+
+		 render(
+			[
+				assessmentTechniques: favoriteTechniques
+			] as JSON
+		)
+	}
+
 
 	def assessmentplan() {
 		final assessmentTechInstance = AssessmentTechnique.findAllByAssigncheck(true)
@@ -143,6 +155,10 @@ class AssessmentTechniqueController {
 		if (params.techniqueId) {
 			newTechnique = AssessmentTechnique.get(params.techniqueId)
 			newTechnique.knowledgeDimension.clear()
+			newTechnique.learningDomain.clear()
+			newTechnique.domainCategory.clear()
+			newTechnique.activityFocus.clear()
+
 		}
 
 		// Store text fields
@@ -152,7 +168,7 @@ class AssessmentTechniqueController {
 		newTechnique.duration= params.duration
 		newTechnique.difficulty = params.assessmentDifficulty
 		newTechnique.whenToCarryOut = params.assessmentTime
-		newTechnique.sources = params.sources
+		newTechnique.reference = params.references
 		newTechnique.assigncheck = params.assignedToLearningObjective as boolean
 		newTechnique.favcheck = params.favoriteTechnique as boolean
 		newTechnique.type = params.assessmentType
@@ -170,6 +186,8 @@ class AssessmentTechniqueController {
 		}
 
 		String[] kD = params.knowledgeDimension.split(",");
+		String[] lD = params.learningDomain;
+		String[] dC = params.domainCategory;
 
 		if (kD != null) {
 			for(int i=0; i < kD.length; i++) {
@@ -182,10 +200,29 @@ class AssessmentTechniqueController {
 			}
 		}
 
-		params.learningDomain.each{
-			newTechnique.addToLearningDomain(
-				LearningDomain.findByName(it)
-			)
+		if (lD != null) {
+			for(int i=0; i < lD.length; i++) {
+
+				if (lD[i]!=null) {
+					newTechnique.addToLearningDomain(LearningDomain.findByName(lD[i]))
+				}
+
+			}
+		}
+
+		if (dC != null) {
+			for(int i=0; i < dC.length; i++) {
+
+				if (dC[i]!=null) {
+					if (DomainCategory.findByName(dC[i])!= null)
+					{
+
+					println (dC[i])
+					newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
+					}
+				}
+
+			}
 		}
 
 		// persist new technique to database

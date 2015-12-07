@@ -8,6 +8,7 @@
 		</title>
 
 		<meta name="layout" content="imod">
+		<!-- FIXME These should be loaded when needed, not prefetched -->
 		<link id="imgNone" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimNone.png')}">
 		<link id="imgC" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimC.png')}">
 		<link id="imgF" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimF.png')}">
@@ -32,6 +33,11 @@
 	</head>
 
 	<body>
+		<div class="modalBackgroundFavorites"></div>
+		<div class="favorites-modal">
+			<div class="favorites-inner">
+			</div>
+		</div>
 		<div id="edit-imod" class="content scaffold-edit" role="main">
 			<g:if test="${flash.message}">
 				<div class="message" role="status">
@@ -51,6 +57,8 @@
 		</div>
 
 		<div id="topicDialogBackground" class="modalBackground"></div>
+
+
 		<!-- Adding the  table layout as in Learning objective page -->
 		<table class="learning-objective inner-table">
 			<tr>
@@ -74,8 +82,14 @@
 							</g:if>
 							<g:else>
 								<div class="no-objective-defined">
-									There are no objectives defined
-									<g:render template="emptyStateTemplate" />
+									<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
+									<div>
+									<span class="topicButtonGradient" >
+										<a href="../../learningObjective/performance/${currentImod?.id}">
+											Define Objectives
+										</a>
+									</span>
+									</div>
 								</div>
 							</g:else>
 						</ul>
@@ -233,18 +247,37 @@
 					</g:if>
 					<g:else>
 						<div class="assessment-page-buttons-disabled">
-							<span>
-								<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
-								<button id="new-technique-button">Add New Technique
-								</button>
 
-								<button id="favorites">Favorites
-								</button>
-
-								<button id="assessment-plan-button">Assessment Plan
+						<div>
+							<%-- Buttons for Add New Technique, Favorites and Assessment Plan--%>
+							<span id="new-technique-button" class="topicButtonGradient">
+								<button>
+									<i class="fa fa-plus green"></i>
+									Add New Technique
 								</button>
 							</span>
-							<br/>
+
+							<span id="favorites-button" class="topicButtonGradient">
+								<button>
+									<i class="fa fa-star yellow"></i>
+									Favorites
+								</button>
+							</span>
+
+							<span  id="unfavorites" class="topicButtonGradient">
+								<button>
+									UnFavorites
+								</button>
+							</span>
+
+							<span id="assessment-plan-button" class="topicButtonGradient">
+								<button>
+									<i class="fa fa-graduation-cap"></i>
+									Assessment Plan
+								</button>
+							</span>
+						</div>
+						<br>
 						</div>
 						<div class="video-control" style="">
 							<video class="video-center" controls src="http://media.w3.org/2010/05/bunny/movie.ogv" width="500">
@@ -252,8 +285,14 @@
 							</video>
 						</div>
 						<div class="no-objective-defined">
-							There are no objectives defined
-							<g:render template="emptyStateTemplate" />
+							<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
+							<div>
+							<span class="topicButtonGradient" >
+								<a href="../../learningObjective/performance/${currentImod?.id}">
+									Define Objectives
+								</a>
+							</span>
+							</div>
 						</div>
 					</g:else>
 
@@ -264,98 +303,110 @@
 							<div id="editTitle">
 							<b> Add Assessment Technique</b>
 							</div>
-							<span id="errorMessage" style="color:red"></span>
+							<span id="errorMessage" style="color: red"></span>
 						</fieldset>
 
 						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
 							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
-							<tr>
-							<td class="td-label" width="40%">Title</td>
-							<td width="60%"> <g:textField name="title" /></td>
-							</tr>
-							<!--<tr>
-							<td width="40%"> Assign to Current Learning Objective </td>
-							<td width="60%"> <g:checkBox name="assignedToLearningObjective" /></td>
-							</tr>
-							<tr>
-							<td width="40%">Favorite Technique </td>
-							<td width="60%"><g:checkBox name="favoriteTechnique" /></td>
-							</tr>-->
-							<tr>
-							<td class="td-label" width="40%">Learning Domain	</td>
-							<td width="60%"><g:select id="learningDomain" name="learningDomain[]" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
-							<input type="hidden" name="domainSelected" id="domainSelected" >
-							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select  id="domainCategory" name="domainCategory[]" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select --']}" optionKey="name" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Description of Activity</td>
-							<td width="60%"><g:textArea name="activityDescription" rows="5" cols="30" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Procedure</td>
-							<td width="60%"><g:textArea id="procedure" name="assessmentProcedure" rows="5" cols="30" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Knowledge Dimension</td>
-							<td width="60%">
-								<button id="k1"> Knowledge Dimensions</button>
-							</td>
-							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Duration</td>
-							<td width="60%"><g:textField name="duration" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Difficulty</td>
-							<td width="60%">
-								<select class="custom-dropdown" id="assessmentDifficulty" name="assessmentDifficulty" from="${assessmentDifficulty}" optionKey="difficulty">
-									<option value="Low">Low</option>
-									<option value="Medium">Medium</option>
-									<option value="High">High</option>
-								</select>
-							</td>
-							</tr>
-							<tr>
+								<tr>
+									<td class="td-label" width="40%">Title</td>
+									<td width="60%"> <g:textField name="title" /></td>
+									<input type="hidden" name="titlecheck" id="titlecheck" >
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Learning Domain	</td>
+									<td width="60%">
+										<g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" />
+									<td>
+									<input type="hidden" name="domainSelected" id="domainSelected" >
+									<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Domain Category</td>
+									<td width="60%">
+										<g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Description of Activity</td>
+									<td width="60%">
+										<g:textArea name="activityDescription" rows="5" cols="30" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Procedure</td>
+									<td width="60%">
+										<g:textArea id="procedure" name="assessmentProcedure" rows="5" cols="30" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Knowledge Dimension</td>
+									<td width="60%" class="show-hover-new">
+										<span>
+											<g:img
+												dir="images/content"
+												file="knowDimNone.png"
+												id="dimImageModal"
+												width="71"
+												height="71"
+												title=""
+											/>
+											<button id="k1" class="knowledgeDimensionButton"> Knowledge Dimensions</button>
+										</span>
+									</td>
+									<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
+									<input type="hidden" name="cloneDetect" id="cloneDetect" >
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Duration</td>
+									<td width="60%"><g:textField name="duration" /></td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Difficulty</td>
+									<td width="60%">
+										<select class="custom-dropdown" id="assessmentDifficulty" name="assessmentDifficulty" from="${assessmentDifficulty}" optionKey="difficulty">
+											<option value="Low">Low</option>
+											<option value="Medium">Medium</option>
+											<option value="High">High</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
 
-								<td class="td-label" width="40%">Type</td>
-								<td width="60%">
-									<select class="custom-dropdown" id="assessmentType" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
-										<option value="Summative">Summative</option>
-										<option value="Formative">Formative</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td class="td-label" width="40%">When To Carry Out</td>
-								<td width="60%">
-									<select class="custom-dropdown" id="assessmentTime"  name="assessmentTime" from="${assessmentTime}" optionKey="assessmentTime" >
-										<option value="Pre">Pre</option>
-										<option value="Mid">Mid</option>
-										<option value="Post">Post</option>
-								</select>
-							</td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Feedback Mechanism</td>
-							<td width="60%">
-								<select class="custom-dropdown" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name">
-									<g:each var="feedback" in="${assessmentFeedback}">
-										<option id="feedback-${feedback.id}" value="${feedback.name}">${feedback.name}</option>
-									</g:each>
-								</select>
-							</td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Sources</td>
-							<td width="60%"><g:textArea name="sources" rows="5" cols="30"/> </td>
-							</tr>
+									<td class="td-label" width="40%">Type</td>
+									<td width="60%">
+										<select class="custom-dropdown" id="assessmentType" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
+											<option value="Summative">Summative</option>
+											<option value="Formative">Formative</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">When To Carry Out</td>
+									<td width="60%">
+										<select class="custom-dropdown" id="assessmentTime"  name="assessmentTime" from="${assessmentTime}" optionKey="assessmentTime" >
+											<option value="Pre">Pre</option>
+											<option value="Mid">Mid</option>
+											<option value="Post">Post</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+								<td class="td-label" width="40%">Feedback Mechanism</td>
+									<td width="60%">
+										<select class="custom-dropdown" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name">
+											<g:each var="feedback" in="${assessmentFeedback}">
+												<option id="feedback-${feedback.id}" value="${feedback.name}">${feedback.name}</option>
+											</g:each>
+										</select>
+									</td>
+								</tr>
+								<tr>
+								<td class="td-label" width="40%">References</td>
+									<td width="60%"><g:textArea name="references" rows="5" cols="30"/> </td>
+								</tr>
 							</table>
 							<br>
 
@@ -479,11 +530,13 @@
 								<span id="printAssessmentPlan" class="topicButtonGradient" >
 									<a href="../assessmentPlan/${currentImod?.id}" target="_blank">
 									<i class="fa fa-print white"></i>
-									Print
+										Print
 									</a>
 								</span>
 								<span id="closeAssessmentPlan" class="topicButtonGradient" >
-									<button id="closeAssessmentPlanButton"><i class="fa fa-times white"></i></button>
+									<button id="closeAssessmentPlanButton">
+										<i class="fa fa-times white"></i>
+									</button>
 								</span>
 							</div>
 							</div>
@@ -524,8 +577,8 @@
 				</td>
 			</tr>
 		</table>
-		<div id="selectKnowledgeDimensionBackground" class="modalBackground"></div>
-		<div id="selectKnowledgeDimensions" class="draggable">
+		<div id="selectKnowledgeDimensionBackground" class="modalBackground2"></div>
+		<div id="selectKnowledgeDimensions" class="draggable modelBackground2Target">
 			<div class="draggable-handle">
 				<input type="hidden" id="topicID" />
 				<span>
@@ -557,7 +610,7 @@
 							title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 				>
 							<i class="fa fa-save green"></i>
-							${message(code: 'Save Resource', default: 'Save')}
+							${message(code: 'Save Resource', default: 'Continue')}
 				</button>
 				<button
 				  class="cancel showHoverNew resourceButton topicButtonGradient"
@@ -570,5 +623,7 @@
 
 			</div>
 		</div>
+
+
 	</body>
 </html>

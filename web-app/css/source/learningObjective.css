@@ -471,7 +471,7 @@ input[disabled='disabled'] {
     background: #ededef;
 }
 #topicDialogBackground {
-    z-index: 1;
+    z-index: 2;
 }
 #topicModalClose {
     float: none;
@@ -484,7 +484,7 @@ input[disabled='disabled'] {
 
     background: inherit;
 }
-.modalBackground {
+.modalBackground, .modalBackground2 {
     position: fixed;
     top: 0;
     left: 0;
@@ -495,6 +495,9 @@ input[disabled='disabled'] {
     height: 100%;
 
     background-color: rgba(0,0,0,0.5);
+}
+.modalBackground2 {
+	z-index: 3;
 }
 .topicButtonField {
     position: relative;
@@ -623,7 +626,7 @@ input[disabled='disabled'] {
 
     width: 20%;
     min-height: 20%;
-    padding: 10px;
+    padding: 10px 10px 1px 10px;
 
     border: 1px solid #c4c2c2 ;
     background: white;
@@ -635,7 +638,7 @@ input[disabled='disabled'] {
     display: inline-block;
 
     margin-right: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     list-style-type: none;
 

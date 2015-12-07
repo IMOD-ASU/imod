@@ -36,46 +36,6 @@ function openInstructionalPlanModal () {
 	$('#topicDialogBackground').css('display', 'block');
 }
 
-function populateInstructionalPlanTechniques () {
-	'use strict';
-	var data;
-	var index;
-	var assignedTechniques = '';
-	var headerText = '';
-	var spanHTML = '';
-	var accordionOpened = $('#instruction-plan-accordion').find('.ui-state-active').length;
-
-	headerText = $(this).text();
-
-	if (accordionOpened === 1) {
-	// Bundle the data into an object
-		data = {
-			learningObjectiveID: $(this).attr('id')
-		};
-
-		$.ajax({
-			url: '../findAssignedTechniques',
-			method: 'post',
-			data: JSON.stringify(data),
-			contentType: 'application/json'
-		}).done(function (data) {
-			if (data.LOPedagogyTechniques.length > 0) {
-				for (index = 0; index < data.LOPedagogyTechniques.length; index++) {
-					assignedTechniques += '<li>' + data.LOPedagogyTechniques[index] + '</li>';
-				}
-				$('#assignedTechniques-' + data.currentLearningObjectiveID).html('<ul>' + assignedTechniques + '</ul>');
-			} else {
-				$('#assignedTechniques-' + data.currentLearningObjectiveID).html('No techniques are assigned to this Learning Objective');
-			}
-			spanHTML = $('#' + data.currentLearningObjectiveID).find('span').clone().wrap('<p>').parent().html();
-
-			$('#' + data.currentLearningObjectiveID).html(spanHTML + data.currentLearningObjective);
-		});
-	} else {
-		spanHTML = $('#' + $(this).attr('id')).find('span').clone().wrap('<p>').parent().html();
-		$('#' + $(this).attr('id')).html(spanHTML + truncateString(headerText, 80));
-	}
-}
 function closeDimModal () {
 	'use strict';
 	var checked = '';
@@ -116,6 +76,7 @@ function changePic () {
 	} else {
 		iconName = $('#img' + iconName).attr('href');
 	}
+	$('#dimImageModal').attr('src', iconName);
 	$('#dimImage').attr('src', iconName);
 }
 function openDimModal () {
@@ -137,6 +98,8 @@ function openDimModal () {
 		}
 	}
 	changePic();
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 	dialog.css('display', 'inherit');
 	background.css('display', 'block');
 	return false;
@@ -152,6 +115,7 @@ function populatePedagogyTechnique (data) {
 	var cloneDetect = document.getElementById('cloneDetect').value;
 
 	$('#titlecheck').val(currentTechnique.title);
+	$('#dimImageModal').attr('title', data.knowledgeDimension.substring(0, data.knowledgeDimension.length - 1));
 	if (cloneDetect === 'clone') {
 		$('#editTitle').html('<b>Enter Alternate Name for Clone</b>');
 		$('#title').val('');
@@ -190,6 +154,7 @@ function populatePedagogyTechnique (data) {
 			checked = checked + ($(this).val()) + ',';
 		}
 	});
+	changePic();
 	document.getElementById('knowledgeDimension').value = checked;
 	$('#pedagogyFocus option[value=' + data.activityFocus + ']').prop('selected', true);
 	$('#pedagogyMode option[value=' + data.pedagogyMode + ']').prop('selected', true);
@@ -566,8 +531,11 @@ $(document).ready(
 		$.cookie.json = true;
 		repopulateCheckboxes();
 
-		// Load techniques on page load
-		filterPedagogyTechniques();
+		// Load techniques when LOs exist
+		if ($('#learningObjectiveLength').val() === '1') {
+			filterPedagogyTechniques();
+		}
+
 		// The filters for the pedagogy technique are wrapped in a accordian
 		// beforeActivate is to be able to open both ideal & extended matches simultaneously
 		$('#filter-pedagogy-techniques').accordion({collapsible: true, heightStyle: 'content'});
@@ -639,12 +607,12 @@ $(document).ready(
 			$('input[name=knowledgeDimension],input[name=learningDomain],input[name=domainCategory]').each(function () {
 				checkboxValues[this.id] = this.checked;
 			});
-			$.cookie('checkboxValues', checkboxValues, {expires: 1, path: '/'});
+			$.cookie('checkboxValues', checkboxValues);
 		});
 
-		$('.learning-objective.list-item').on('click',
+		$('.learning-objective.list-item,#a,#b,#c,#logout-link,.banner-imod,.banner-home,#imodlogo,.no-objective-defined').on('click',
 			function () {
-				$.removeCookie('checkboxValues', {path: '/'});
+				$.removeCookie('checkboxValues');
 			}
 		);
 
@@ -692,7 +660,7 @@ $(document).ready(
 		// When instructional plan button is clicked open modal
 		$('#instruction-plan-button').on('click', openInstructionalPlanModal);
 
-		$('#instruction-plan-accordion h3').on('click', populateInstructionalPlanTechniques);
+		// $('#instruction-plan-accordion h3').on('click', populateInstructionalPlanTechniques);
 
 		$('#closeInstructionalPlan').on('click',
 			function () {

@@ -65,6 +65,7 @@
 						</div>
 						<ul class="learning-objective list-wrapper">
 							<g:if test="${learningObjectives}">
+								<g:hiddenField name="learningObjectiveLength" id="learningObjectiveLength" value="1"/>
 								<g:each var="learningObjective" in="${learningObjectives}">
 									<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective.id) ? 'active' : ''  }">
 										<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
@@ -74,6 +75,7 @@
 								</g:each>
 							</g:if>
 							<g:else>
+								<g:hiddenField name="learningObjectiveLength" id="learningObjectiveLength" value="0"/>
 								<div class="no-objective-defined">
 									<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
 									<div>
@@ -103,7 +105,8 @@
 											${knowledgeDimension.description}
 										</label>
 										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}"
-										            checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}"/>
+										            checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}"
+													disabled="${(learningObjectives) ? 'false' : 'true'}"/>
 									</li>
 								</g:each>
 							</ul>
@@ -119,7 +122,8 @@
 											${learningDomain.name}
 										</label>
 										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}"
-										             checked="${learningDomain.name == selectedDomain.toString()}"/>
+										             checked="${learningDomain.name == selectedDomain.toString()}"
+													 disabled="${(learningObjectives) ? 'false' : 'true'}"/>
 									</li>
 								</g:each>
 							</ul>
@@ -135,7 +139,8 @@
 											${domainCategory.name}
 										</label>
 										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}"
-										             checked="${domainCategory.name == selectedDomainCategory.toString()}"/>
+										             checked="${domainCategory.name == selectedDomainCategory.toString()}"
+													 disabled="${(learningObjectives) ? 'false' : 'true'}"/>
 									</li>
 								</g:each>
 							</ul>
@@ -284,79 +289,88 @@
 							<div id="editTitle">
 							<b> Add Pedagogy Technique</b>
 							</div>
-							<span id="errorMessage" style="color:red"></span>
+							<span id="errorMessage" class="red"></span>
 						</fieldset>
 						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
 							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
-							<tr>
-							<td class="td-label" width="40%">Title</td>
-							<td width="60%"> <g:textField name="title" /></td>
-							<input type="hidden" name="titlecheck" id="titlecheck" >
-							</tr>
-							<!--<tr>
-							<td width="40%"> Assign to Current Learning Objective </td>
-							<td width="60%"> <g:checkBox name="assignedToLearningObjective" /></td>
-							</tr>
-							<tr>
-							<td width="40%">Favorite Technique </td>
-							<td width="60%"><g:checkBox name="favoriteTechnique" /></td>
-							</tr>-->
-							<tr>
-							<td class="td-label" width="40%">Learning Domain	</td>
-							<td width="60%"><g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select --']}"  optionKey="name" /><td>
-							<input type="hidden" name="domainSelected" id="domainSelected" >
-							<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
+								<tr>
+									<td class="td-label" width="40%">Title</td>
+									<td width="60%">
+										<g:textField name="title" />
+									</td>
+									<input type="hidden" name="titlecheck" id="titlecheck" >
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Learning Domain	</td>
+									<td width="60%">
+										<g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" />
+									<td>
+									<input type="hidden" name="domainSelected" id="domainSelected" >
+									<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Domain Category</td>
+									<td width="60%">
+										<g:select id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Knowledge Dimension</td>
+									<td width="60%" class="show-hover-new">
+										<span>
+											<g:img
+												dir="images/content"
+												file="knowDimNone.png"
+												id="dimImageModal"
+												width="71"
+												height="71"
+												title=""
+											/>
 
-
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Domain Category</td>
-							<td width="60%"><g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select --']}" optionKey="name" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Knowledge Dimension</td>
-							<td width="60%">
-								<button id="k1" class="knowledgeDimensionButton"> Knowledge Dimensions</button>
-							</td>
-							<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
-							<input type="hidden" name="cloneDetect" id="cloneDetect" >
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Delivery Mode</td>
-							<td width="60%"><g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" /></td>
-							</tr>
-							<!-- Decided to remove Location - Item 2047-->
-							<!--<tr>
-							<td width="40%">Location</td>
-							<td width="60%"><g:textField name="location" /> </td>
-							</tr>-->
-							<tr>
-							<td class="td-label" width="40%">Focus</td>
-							<td width="60%"><g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Duration</td>
-							<td width="60%"><g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" /></td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Materials Required</td>
-							<td width="60%"><g:textArea name="materials" rows="5" cols="30"/> </td>
-							</tr>
-							<tr>
-							<td class="td-label" width="40%">Reference</td>
-							<td width="60%"><g:textArea name="reference" rows="5" cols="30"/></td>
-							</tr>
-							<!--<tr>
-							<td width="40%">Description of Strategy</td>
-							<td width="60%">
-							<g:textArea name="strategyDescription" rows="5" cols="30" /></td>
-							</tr>-->
-							<tr>
-							<td class="td-label" width="40%">Description of Activity</td>
-							<td width="60%"><g:textArea name="activityDescription" rows="5" cols="30" /></td>
-							</tr>
+											<button id="k1" class="knowledgeDimensionButton"> Knowledge Dimensions</button>
+										</span>
+									</td>
+									<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
+									<input type="hidden" name="cloneDetect" id="cloneDetect" >
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Delivery Mode</td>
+									<td width="60%">
+										<g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Focus</td>
+									<td width="60%">
+										<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Duration</td>
+									<td width="60%">
+										<g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" />
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Materials Required</td>
+									<td width="60%">
+										<g:textArea name="materials" rows="5" cols="30"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">References</td>
+									<td width="60%">
+										<g:textArea name="reference" rows="5" cols="30"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="td-label" width="40%">Description of Activity</td>
+									<td width="60%">
+										<g:textArea name="activityDescription" rows="5" cols="30" />
+									</td>
+								</tr>
 							</table>
 							<br>
 
@@ -397,8 +411,25 @@
 						<div id="instruction-plan-accordion">
 							<g:if test="${learningObjectives}">
 								<g:each var="learningObjective" in="${learningObjectives}">
-										<h3 class="istructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
-										<div class="assignedTechniques" id="assignedTechniques-${learningObjective.id}"></div>
+										<g:if test="${learningObjective.definition != null && !learningObjective.definition.trim().isEmpty()}">
+											<h3 class="istructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
+											<div class="assignedTechniques" id="assignedTechniques-${learningObjective.id}">
+												<g:if test="${learningObjective.pedagogyTechniques.size()}">
+								                    <ul>
+								                    <g:each var="technique" in="${learningObjective.pedagogyTechniques}">
+
+								                        <g:if test="${technique != null && !technique.title.isEmpty()}">
+								                            <li>${technique.title}</li>
+								                        </g:if>
+
+								                    </g:each>
+								                    </ul>
+								                </g:if>
+								                <g:else>
+								                    No techniques are assigned to this Learning Objective
+								                </g:else>
+											</div>
+										</g:if>
 								</g:each>
 							</g:if>
 							<g:else>
@@ -412,9 +443,9 @@
 				</td>
 			</tr>
 		</table>
-		<div id="selectKnowledgeDimensionBackground" class="modalBackground">
+		<div id="selectKnowledgeDimensionBackground" class="modalBackground2">
 </div>
-<div id="selectKnowledgeDimensions" class="draggable">
+<div id="selectKnowledgeDimensions" class="draggable modelBackground2Target">
 	<div class="draggable-handle">
 		<input type="hidden" id="topicID" />
 		<span>
@@ -441,20 +472,20 @@
 			/>
 		</span>
 		<button
-		  class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
-					id="knowDimFinished"
-					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			id="knowDimFinished"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
-		<i class="fa fa-save green"></i>
-					${message(code: 'Save Resource', default: ' Save')}
+			<i class="fa fa-save green"></i>
+			${message(code: 'Save Resource', default: ' Continue')}
 		</button>
 		<button
-		  class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
-					id="closeKnowDim"
-					title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			id="closeKnowDim"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
 		>
-					<i class="fa fa-times red"></i>
-					${message(code: 'Cancel Resource', default: ' Cancel')}
+			<i class="fa fa-times red"></i>
+			${message(code: 'Cancel Resource', default: ' Cancel')}
 		</button>
 
 	</div>

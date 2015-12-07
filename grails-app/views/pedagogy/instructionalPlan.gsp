@@ -26,7 +26,9 @@
 	            </div>
             </div>
 
-            <h2><center>Instructional Plan</center></h2>
+            <h2>
+                <center>Instructional Plan</center>
+            </h2>
 
             <div id="instruction-plan-accordion">
                 <g:if test="${learningObjectives}">
@@ -57,7 +59,6 @@
             </div>
 
             <input type="hidden" id="sortIdList" value="${sortIdList}">
-
         </div>
     </body>
 </html>

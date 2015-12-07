@@ -60,6 +60,7 @@ function changePic () {
 	} else {
 		iconName = $('#img' + iconName).attr('href');
 	}
+	$('#dimImageModal').attr('src', iconName);
 	$('#dimImage').attr('src', iconName);
 }
 function openDimModal () {
@@ -81,6 +82,8 @@ function openDimModal () {
 		}
 	}
 	changePic();
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 	dialog.css('display', 'inherit');
 	background.css('display', 'block');
 	return false;
@@ -94,6 +97,8 @@ function populateAssessmentTechnique (data, isClone) {
 	var arrayOfLearningDomains = data.learningDomains.split(',');
 	var arrayOfDomainCategories = data.domainCategories.split(',');
 
+	$('#titlecheck').val(currentTechnique.title);
+	$('#dimImageModal').attr('title', data.knowledgeDimension.substring(0, data.knowledgeDimension.length));
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 
@@ -120,7 +125,7 @@ function populateAssessmentTechnique (data, isClone) {
 	$('#assessmentTime option[value=' + currentTechnique.whenToCarryOut + ']').prop('selected', true);
 	$('#assessmentType option[value=' + currentTechnique.type + ']').prop('selected', true);
 
-	$('#sources').val(currentTechnique.sources);
+	$('#references').val(currentTechnique.reference);
 
 	for (count = 0; count < arrayOfKnowledgeDimensions.length; count++) {
 		if (arrayOfKnowledgeDimensions[count] !== '') {
@@ -132,6 +137,7 @@ function populateAssessmentTechnique (data, isClone) {
 			checked = checked + ($(this).val()) + ',';
 		}
 	});
+	changePic();
 	document.getElementById('knowledgeDimension').value = checked;
 
 	for (count = 0; count < arrayOfLearningDomains.length; count++) {
@@ -332,6 +338,7 @@ function displayAssessmentTechniques (data) {
 		var str = '';
 		var indexNo = '';
 		var res = '';
+		var inputData = null;
 
 		if ($(this).attr('src') === '../../images/assign.png') {
 			$(this).attr('src', '../../images/unassign.png');
@@ -343,14 +350,14 @@ function displayAssessmentTechniques (data) {
 				res = str;
 			}
 
-			data = {
+			inputData = {
 				learningObjectiveID: $('#learningObjectiveID').val(),
 				assessmentTechniqueID: res
 			};
 			$.ajax({
 				url: '../../assessmentTechnique/unassignToLearningObjective',
 				type: 'POST',
-				data: JSON.stringify(data),
+				data: JSON.stringify(inputData),
 				contentType: 'application/json',
 				success: function () {}
 			});
@@ -364,14 +371,14 @@ function displayAssessmentTechniques (data) {
 				res = str;
 			}
 
-			data = {
+			inputData = {
 				learningObjectiveID: $('#learningObjectiveID').val(),
 				assessmentTechniqueID: res
 			};
 			$.ajax({
 				url: '../../assessmentTechnique/assignToLearningObjective',
 				type: 'POST',
-				data: JSON.stringify(data),
+				data: JSON.stringify(inputData),
 				contentType: 'application/json',
 				success: function () {}
 			});
@@ -379,6 +386,29 @@ function displayAssessmentTechniques (data) {
 
 		return false;
 	});
+}
+
+function displayAssessmentFavoriteTechniques (data) {
+	'use strict';
+	var text = '';
+	var index;
+	var currentTechnique;
+	var favoriteImgToggle = '';
+	var assignImgToggle = '';
+
+	for (index = 0; index < data.assessmentTechniques.length; index++) {
+		currentTechnique = data.assessmentTechniques[index];
+
+		favoriteImgToggle = '../../images/unfav.png';
+
+		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+	}
+
+	$('.favorites-inner').html(text);
+	$('.favorites-inner').buttonset();
+	assessmentEqualHeights('.favorites-inner');
 }
 
 /**
@@ -553,6 +583,20 @@ $('#View').click(function () {
 	$('.allInputs').hide();
 	$('.allspans1').show();
 });
+$('#title').change(function () {
+	'use strict';
+	var hasError = false;
+
+	if ($('#title').val() === $('#titlecheck').val()) {
+		$('#errorMessage').text('Enter title which is different from the original technique');
+		hasError = true;
+	} else {
+		hasError = false;
+	}
+	if (hasError === true) {
+		return false;
+	}
+});
 
 function getMinHeight (liArray) {
 	'use strict';
@@ -647,6 +691,7 @@ $(document).ready(
 		var isPanelSelected;
 		var checkBoxName;
 		var hasError = false;
+		var cloneDetect = '';
 
 		// Load techniques on page load
 		filterAssessmentTechniques();
@@ -659,6 +704,7 @@ $(document).ready(
 			$('#editTitle').html('<strong>Clone Assessment Technique</strong>');
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(true);
+			document.getElementById('cloneDetect').value = 'clone';
 			$('#title').val('');
 			$('#techniqueId').val('');
 			return false;
@@ -718,6 +764,7 @@ $(document).ready(
 		$('#saveButton').on('click',
 		function () {
 			hasError = false;
+			cloneDetect = document.getElementById('cloneDetect').value;
 
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
@@ -736,6 +783,10 @@ $(document).ready(
 
 			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
 				$('#errorMessage').text('Domain Categories are required');
+				hasError = true;
+			}
+			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
+				$('#errorMessage').text('Enter title which is different from the original technique');
 				hasError = true;
 			}
 
@@ -772,5 +823,35 @@ $(document).ready(
 			function () {
 				populateDomainCategories(function () {});
 			});
+
+
+		// Open favorite techniques
+		$('#favorites-button').click(function () {
+			$('.modalBackgroundFavorites').show();
+			$('.favorites-modal').show();
+
+			$.ajax({
+				url: '../../assessmentTechnique/favorites/',
+				method: 'GET'
+			})
+			.done(function (data) {
+				displayAssessmentFavoriteTechniques(data);
+			});
+
+			return false;
+		});
+
+		$('.modalBackgroundFavorites').click(function () {
+			$('.modalBackgroundFavorites').hide();
+			$('.favorites-modal').hide();
+		});
+
+		$(document)
+		.on('click', '.favorites-modal .text-block.title', function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false);
+			return false;
+		});
 	}
 );
