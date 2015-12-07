@@ -94,6 +94,11 @@ $(document).ready(function () {
 		$('.modalBackground').hide();
 	});
 
+	$(document).on('click', '.modalBackground2', function () {
+		$('.modelBackground2Target').hide();
+		$('.modalBackground2').hide();
+	});
+
 	// checks if a form has been submitted
 	$('form').submit(function () {
 		formSubmitted = true;
