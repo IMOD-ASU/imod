@@ -338,6 +338,7 @@ function displayAssessmentTechniques (data) {
 		var str = '';
 		var indexNo = '';
 		var res = '';
+		var inputData = null;
 
 		if ($(this).attr('src') === '../../images/assign.png') {
 			$(this).attr('src', '../../images/unassign.png');
@@ -349,14 +350,14 @@ function displayAssessmentTechniques (data) {
 				res = str;
 			}
 
-			data = {
+			inputData = {
 				learningObjectiveID: $('#learningObjectiveID').val(),
 				assessmentTechniqueID: res
 			};
 			$.ajax({
 				url: '../../assessmentTechnique/unassignToLearningObjective',
 				type: 'POST',
-				data: JSON.stringify(data),
+				data: JSON.stringify(inputData),
 				contentType: 'application/json',
 				success: function () {}
 			});
@@ -370,14 +371,14 @@ function displayAssessmentTechniques (data) {
 				res = str;
 			}
 
-			data = {
+			inputData = {
 				learningObjectiveID: $('#learningObjectiveID').val(),
 				assessmentTechniqueID: res
 			};
 			$.ajax({
 				url: '../../assessmentTechnique/assignToLearningObjective',
 				type: 'POST',
-				data: JSON.stringify(data),
+				data: JSON.stringify(inputData),
 				contentType: 'application/json',
 				success: function () {}
 			});
@@ -395,8 +396,6 @@ function displayAssessmentFavoriteTechniques (data) {
 	var favoriteImgToggle = '';
 	var assignImgToggle = '';
 
-	console.log(data);
-
 	for (index = 0; index < data.assessmentTechniques.length; index++) {
 		currentTechnique = data.assessmentTechniques[index];
 
@@ -410,7 +409,6 @@ function displayAssessmentFavoriteTechniques (data) {
 	$('.favorites-inner').html(text);
 	$('.favorites-inner').buttonset();
 	assessmentEqualHeights('.favorites-inner');
-
 }
 
 /**
@@ -828,7 +826,7 @@ $(document).ready(
 
 
 		// Open favorite techniques
-		$('#favorites-button').click( function() {
+		$('#favorites-button').click(function () {
 			$('.modalBackgroundFavorites').show();
 			$('.favorites-modal').show();
 
@@ -843,16 +841,17 @@ $(document).ready(
 			return false;
 		});
 
-		$('.modalBackgroundFavorites').click(function() {
+		$('.modalBackgroundFavorites').click(function () {
 			$('.modalBackgroundFavorites').hide();
 			$('.favorites-modal').hide();
 		});
 
-		$(document).on('click', '.favorites-modal .text-block.title', function () {
-				$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
-				openNewAssessmentTechniqueModal();
-				displayAssessmentInformationInEdit(false);
-				return false;
-			});
+		$(document)
+		.on('click', '.favorites-modal .text-block.title', function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false);
+			return false;
+		});
 	}
 );
