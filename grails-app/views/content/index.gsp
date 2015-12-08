@@ -30,8 +30,10 @@
 	<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
 	<g:javascript src="source/topicDialog.js" defer="defer"/>
+
 	<g:external dir="bower_components/jquery.piegraph" file="jquery.piegraph.js"/>
 	<g:external dir="bower_components/canvas.js" file="index.js"/>
+	<g:external dir="bower_components/lodash" file="lodash.js"/>
 
 	<meta name="layout" content="imod">
 </head>
@@ -41,18 +43,18 @@
 <fieldset class="buttons content-buttons topicButtonField">
 	<span class="topicButtonGradient saveBG">
 		<button
-			class="save showHoverNew topicButton saveTopic"
+			class="save show-hover-new topicButton saveTopic"
 			action="save"
-			title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}">
+			title="${message(code: 'imod.content.save')}">
 			<i class="fa fa-save green"></i>
 			${message(code: 'Save Topic', default: ' Save')}
 		</button>
 	</span>
 	<span class="topicButtonGradient cancelBG">
 		<button
-			class="showHoverNew topicButton cancelTopic"
+			class="show-hover-new topicButton cancelTopic"
 			action="cancel"
-			title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}">
+			title="${message(code: 'imod.content.cancel')}">
 			<i class="fa fa-times red"></i>
 			${message(code: 'Cancel Topics', default: ' Cancel')}
 		</button>
@@ -90,7 +92,7 @@
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
 			<button
-				class="add  topicButton" action="add" id="addTopic"
+				class="add  topicButton show-hover-new" action="add" id="addTopic"
 				title="${message(code: 'imod.content.add')}"
 				value="${message(code: 'Add Topic', default: 'Add Topic')}">
 				<i class="fa fa-plus green"></i>
@@ -99,7 +101,7 @@
 		</span>
 		<span class="topicButtonGradient">
 			<button
-				class="remove  topicButton" action="remove"
+				class="remove  topicButton show-hover-new" action="remove"
 				id="removeTopic"
 				title="${message(code: 'imod.content.remove')}"
 				value="${message(code: 'Remove Topic', default: 'Remove Topic')}"
@@ -227,7 +229,7 @@
 								type="button"
 								id="knowDimensionList${contentItem.id}"
 								title="${message(code: 'imod.content.knowledgeDimension')}">
-								Knowledge Dimensionsaa
+								Knowledge Dimensions
 							</button>
 							<input type="hidden"
 								   id="knowDimensionListSaved${contentItem.id}"
@@ -248,6 +250,7 @@
 					<td class="topicResources">
 						<button class="ResourceButton" id="topicResources${contentItem.id}"
 								type="button">Resources</button>
+
 					</td>
 					<td class="topicPreReq">
 						<g:checkBox
@@ -270,18 +273,18 @@
 <fieldset class="buttons content-buttons topicButtonField">
 	<span class="topicButtonGradient saveBG">
 		<button
-			class="save showHoverNew topicButton saveTopic"
+			class="save show-hover-new topicButton saveTopic"
 			action="save"
-			title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}">
+			title="${message(code: 'imod.content.save')}">
 			<i class="fa fa-save green"></i>
 			${message(code: 'Save Topic', default: ' Save')}
 		</button>
 	</span>
 	<span class="topicButtonGradient cancelBG">
 		<button
-			class="showHoverNew topicButton cancelTopic"
+			class="show-hover-new topicButton cancelTopic"
 			action="cancel"
-			title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}">
+			title="${message(code: 'imod.content.cancel')}">
 			<i class="fa fa-times red"></i>
 			${message(code: 'Cancel Topics', default: ' Cancel')}
 		</button>
@@ -400,5 +403,6 @@
 
 </div>
 <input type="hidden" id="treeData" value="${contentList}">
+<input type="hidden" id="resourceDataStore" >
 </body>
 </html>
