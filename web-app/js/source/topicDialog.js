@@ -2,20 +2,22 @@ var errorMessages = [];
 var isFlashing = null;
 var content = '';
 var resourceOptions = '';
+var resourceData = [];
+var unsavedResource = false;
 
-function showTopicDialog () {
+function showTopicDialog() {
 	'use strict';
 	$('#topicDialogBackground').css('display', 'block');
 	$('#topicDialog').css('display', 'block');
 }
 
-function hideTopicDialog () {
+function hideTopicDialog() {
 	'use strict';
 	$('#topicDialogBackground').css('display', 'none');
 	$('#topicDialog').css('display', 'none');
 }
 
-function flashError (resourceId) {
+function flashError(resourceId) {
 	'use strict';
 	var message = errorMessages.shift();
 
@@ -41,7 +43,7 @@ function flashError (resourceId) {
 		);
 }
 
-function errorMessage (message, resourceId) {
+function errorMessage(message, resourceId) {
 	'use strict';
 	errorMessages.push(message);
 
@@ -59,7 +61,7 @@ function errorMessage (message, resourceId) {
 	}
 }
 
-function changePic () {
+function changePic() {
 	'use strict';
 	var iconName = '';
 
@@ -78,7 +80,7 @@ function changePic () {
 	$('#dimImage').attr('src', iconName);
 }
 
-function saveDimModal () {
+function saveDimModal() {
 	'use strict';
 	var contentID = $('#topicID').val();
 	var dimensions = [];
@@ -113,7 +115,7 @@ function saveDimModal () {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
-function closeDimModal () {
+function closeDimModal() {
 	'use strict';
 	var contentID = $('#topicID').val();
 	var dimensions = [];
@@ -150,7 +152,7 @@ function closeDimModal () {
 	background.css('display', 'none');
 }
 
-function openDimModal () {
+function openDimModal() {
 	'use strict';
 	var contentID = $(this).parents('.topicItem').attr('id');
 	var dimString = $('#knowDimensionList' + contentID).val();
@@ -175,12 +177,14 @@ function openDimModal () {
 	background.css('display', 'block');
 }
 
-function getResource () {
+function getTempResource() {
 	'use strict';
 	var contentID = content.split('topicResources')[1];
 	var resourceDiv = $('#resourceList tbody');
 
 	resourceDiv.html('');
+
+
 
 	$.ajax({
 		url: '../../content/getResource',
@@ -192,7 +196,29 @@ function getResource () {
 		success: function (data) {
 			var resources = data.resources;
 
+			for (var i = 0; i < resourceData.length; i++) {
+				if (resourceData[i].contentID == contentID) {
+					resources.push({
+						class: "imod.Resource",
+						content: {
+							class: "imod.Content",
+							id: contentID
+						},
+						description: resourceData[i].resourceDescription,
+						id: resourceData[i].resourceID,
+						name: resourceData[i].resourceName,
+						resourceType: resourceData[i].resourceType
+					});
+				}
+			}
 			$.each(resources, function (key, value) {
+				value.id = value.id.toString();
+				value.content.id = value.content.id.toString();
+			});
+			var resources1 = removeDuplicateResource(resources);
+
+
+			$.each(resources1, function (key, value) {
 				var id = value.id;
 
 				// FIXME move html out of JS
@@ -218,27 +244,80 @@ function getResource () {
 		}
 	});
 }
+function getResource() {
+	'use strict';
+	var contentID = content.split('topicResources')[1];
+	var resourceDiv = $('#resourceList tbody');
 
-function openResourceModal () {
+	resourceDiv.html('');
+
+
+	$.ajax({
+		url: '../../content/getResource',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			contentID: contentID
+		},
+		success: function (data) {
+			var resources = data.resources;
+
+
+			$.each(resources, function (key, value) {
+				var id = value.id;
+
+
+				// FIXME move html out of JS
+				$('<tr id="' + id + '" class="resourceItem">' +
+					'<td class="saveIcon">' +
+					'<i class="fa fa-square-o"></i>' +
+					'</td><td class="resourceName">' +
+					'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
+					'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
+					'</td><td class="resourceDescription">' +
+					'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
+					'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
+					'</td><td class="resourceType">' +
+					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
+					resourceOptions +
+					'</select> ' +
+
+					'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
+					'</td></tr>'
+				).appendTo(resourceDiv);
+				$('#resourceType' + id).val(value.resourceType);
+			});
+		}
+	});
+}
+
+function openResourceModal() {
 	'use strict';
 	content = this.id;
 	$('#selectResource').css('display', 'inherit');
 	$('#selectResourceBackground').css('display', 'block');
-	getResource();
+	if (unsavedResource === true) {
+
+		getTempResource();
+	} else {
+
+		getResource();
+	}
+
 }
 
-function closeResourceModal () {
+function closeResourceModal() {
 	'use strict';
 	$('#selectResourceBackground').css('display', 'none');
 	$('#selectResource').css('display', 'none');
 }
 
-function highlightUnsaved (id) {
+function highlightUnsaved(id) {
 	'use strict';
 	$('#' + id).addClass('unsaved');
 }
 
-function deleteTopic (contentIDs) {
+function deleteTopic(contentIDs) {
 	'use strict';
 	$.ajax({
 		url: '../../content/deleteTopic/',
@@ -257,7 +336,7 @@ function deleteTopic (contentIDs) {
 	});
 }
 
-function saveTopic () {
+function saveTopic() {
 	'use strict';
 	var imodID = $('#imodID').val();
 	var contentData = [];
@@ -307,12 +386,13 @@ function saveTopic () {
 			JSONData: contentData
 		},
 		success: function () {
-			location.reload();
+			outerSaveResource();
+			//location.reload();
 		}
 	});
 }
 
-function getTopicSavedItems (currentRow) {
+function getTopicSavedItems(currentRow) {
 	'use strict';
 	var topicID = currentRow.id;
 
@@ -328,7 +408,7 @@ function getTopicSavedItems (currentRow) {
 	};
 }
 
-function revertChanges () {
+function revertChanges() {
 	'use strict';
 	$('.topicItem').each(
 		function () {
@@ -371,7 +451,7 @@ function revertChanges () {
 	);
 }
 
-function addTopic () {
+function addTopic() {
 	'use strict';
 	var imodID = $('#imodID').val();
 
@@ -437,7 +517,7 @@ function addTopic () {
 	});
 }
 
-function addResource () {
+function addResource() {
 	'use strict';
 	var id = null;
 	var resourceDiv = $('#resourceList tbody');
@@ -461,12 +541,13 @@ function addResource () {
 	).appendTo(resourceDiv);
 }
 
-function saveResource () {
+function saveResource() {
 	'use strict';
 	var imodID = $('#imodID').val();
 	var contentID = content.split('topicResources')[1];
-	var resourceData = [];
+	//var resourceData = [];
 	var hasError = false;
+	var contentResource = $('#resourceDataStore');
 
 	$('#resourceList tbody tr').each(
 		function () {
@@ -495,22 +576,56 @@ function saveResource () {
 	if (hasError) {
 		return false;
 	}
-	resourceData = JSON.stringify(resourceData);
+	var resourceData1 = removeDuplicateResource(resourceData);
+
+	var resource = JSON.stringify(resourceData1);
+	if (contentResource.val !== resource) {
+		contentResource.val(resource)
+	}
+
+	if (unsavedResource === false) {
+		unsavedResource = true
+	}
+
+
+	closeResourceModal();
+
+}
+function removeDuplicateResource(arr) {
+	var cleaned = [];
+	arr.forEach(function (itm) {
+		var unique = true;
+		cleaned.forEach(function (itm2) {
+			if (_.isEqual(itm, itm2)) unique = false;
+		});
+		if (unique)  cleaned.push(itm);
+	});
+	return cleaned;
+}
+
+
+function outerSaveResource() {
+	'use strict';
+	var imodID = $('#imodID').val();
+	var resource = $('#resourceDataStore').val();
+
 	$.ajax({
 		url: '../../content/saveResource/',
 		type: 'POST',
 		dataType: 'json',
 		data: {
 			id: imodID,
-			JSONData: resourceData
+			JSONData: resource
 		},
 		success: function () {
-			closeResourceModal();
+			unsavedResource = false
+			location.reload();
+			//closeResourceModal();
 		}
 	});
 }
 
-function deleteResource (resourceIDs) {
+function deleteResource(resourceIDs) {
 	'use strict';
 	$.ajax({
 		url: '../../content/deleteResource/',
