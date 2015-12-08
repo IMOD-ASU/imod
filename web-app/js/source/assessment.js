@@ -15,6 +15,8 @@ function openAssessmentPlanModal () {
 function openNewAssessmentTechniqueModal () {
 	'use strict';
 	$('#techniqueId').val('');
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
