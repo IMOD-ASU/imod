@@ -64,9 +64,9 @@ grails.project.dependency.resolution = {
 		build ':tomcat:7.0.55.3'
 
 		compile ':scaffolding:2.1.2'
-		compile ':postgresql-extensions:4.5.0'
+		compile ':postgresql-extensions:4.6.1'
 		compile ':cache:1.1.8'
-		compile ':spring-security-core:2.0-RC5'
+		compile ':spring-security-core:2.0.0'
 		compile ':mail:1.0.7'
 		compile ':jquery-ui:1.10.4'
 		compile ':famfamfam:1.0.1'
@@ -75,7 +75,7 @@ grails.project.dependency.resolution = {
 		compile ':rest-client-builder:2.1.1'
 		compile ':rendering:1.0.0'
 
-		provided ':codenarc:0.24'
+		provided ':codenarc:0.24.1'
 
 		runtime ':hibernate4:4.3.10'
 		runtime ':jquery:1.11.1'
