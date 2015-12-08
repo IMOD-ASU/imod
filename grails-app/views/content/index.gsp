@@ -33,7 +33,7 @@
 
 	<g:external dir="bower_components/jquery.piegraph" file="jquery.piegraph.js"/>
 	<g:external dir="bower_components/canvas.js" file="index.js"/>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+	<g:external dir="bower_components/underscore" file="underscore.js"/>
 
 	<meta name="layout" content="imod">
 </head>

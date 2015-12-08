@@ -181,9 +181,10 @@ function getTempResource () {
 	'use strict';
 	var contentID = content.split('topicResources')[1];
 	var resourceDiv = $('#resourceList tbody');
-	resourceDiv.html('');
 	var inc;
 	var resourcesNew;
+
+	resourceDiv.html('');
 
 	$.ajax({
 		url: '../../content/getResource',
@@ -195,7 +196,7 @@ function getTempResource () {
 		success: function (data) {
 			var resources = data.resources;
 
-			for ( inc = 0; inc < resourceData.length; inc++) {
+			for (inc = 0; inc < resourceData.length; inc++) {
 				if (resourceData[inc].contentID === contentID) {
 					resources.push({
 						class: 'imod.Resource',
@@ -574,9 +575,9 @@ function saveResource () {
 	if (hasError) {
 		return false;
 	}
-	 resourceDataNew = removeDuplicateResource(resourceData);
+	resourceDataNew = removeDuplicateResource(resourceData);
+	resource = JSON.stringify(resourceDataNew);
 
-	 resource = JSON.stringify(resourceDataNew);
 	if (contentResource.val !== resource) {
 		contentResource.val(resource);
 	}
@@ -596,10 +597,11 @@ function removeDuplicateResource (arr) {
 
 		cleaned.forEach(function (itmTwo) {
 			if (_.isEqual(itm, itmTwo)) {
-				unique = false}
+				unique = false;
+			}
 		});
 		if (unique) {
-			cleaned.push(itm)
+			cleaned.push(itm);
 		}
 	});
 	return cleaned;
