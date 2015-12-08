@@ -157,7 +157,7 @@ class AssessmentTechniqueController {
 			newTechnique.knowledgeDimension.clear()
 			newTechnique.learningDomain.clear()
 			newTechnique.domainCategory.clear()
-			newTechnique.activityFocus.clear()
+			
 
 		}
 

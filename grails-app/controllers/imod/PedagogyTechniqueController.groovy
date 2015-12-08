@@ -133,9 +133,6 @@ class PedagogyTechniqueController {
 		// Store relationships
 		newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration(params.pedagogyDuration)
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
-		newTechnique.addToAssignedLearningObjective(
-			LearningObjective.get(learningObjectiveID)
-		)
 		
 		//newTechnique.addToDomainCategory(DomainCategory.findByName(params.domainCategory))
 		newTechnique.addToActivityFocus(
