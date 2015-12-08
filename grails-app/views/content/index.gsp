@@ -33,7 +33,7 @@
 
 	<g:external dir="bower_components/jquery.piegraph" file="jquery.piegraph.js"/>
 	<g:external dir="bower_components/canvas.js" file="index.js"/>
-	<g:external dir="bower_components/underscore" file="underscore.js"/>
+	<g:external dir="bower_components/lodash" file="lodash.js"/>
 
 	<meta name="layout" content="imod">
 </head>
