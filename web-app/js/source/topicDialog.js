@@ -383,13 +383,11 @@ function saveTopic () {
 			JSONData: contentData
 		},
 		success: function () {
-			if (resourceData.length > 0){
+			if (resourceData.length > 0) {
 				outerSaveResource();
-			} else{
-				 location.reload();
+			} else {
+				location.reload();
 			}
-
-
 		}
 	});
 }
