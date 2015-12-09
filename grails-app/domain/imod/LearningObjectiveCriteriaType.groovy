@@ -7,7 +7,7 @@ class LearningObjectiveCriteriaType {
 		version false
 	}
 
-	String toString(){
+	String toString() {
 		description
 	}
 }

@@ -2,7 +2,6 @@ package imod
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
-
 /**
  * This describes what permissions a User of the IMODS system has
  */
@@ -27,7 +26,7 @@ class ImodUserRole implements Serializable {
 		}
 		if (role) {
 			builder.append(role.id)
-		} 
+		}
 		builder.toHashCode()
 	}
 

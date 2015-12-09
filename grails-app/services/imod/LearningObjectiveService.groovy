@@ -29,7 +29,7 @@ class LearningObjectiveService {
     /**
         Remove the selected learning objective, linked to the imod
     */
-    def remove(Imod currentImod,Long learningObjectiveID) {
+    def remove(Imod currentImod, Long learningObjectiveID) {
         def deletedObjective = LearningObjective.get(learningObjectiveID)
         def contentsList = []
         def contents = deletedObjective.contents
@@ -62,13 +62,12 @@ class LearningObjectiveService {
             }
         }
 
-        deletedObjective.delete(flush:true)
+        deletedObjective.delete(flush: true)
         def objectives = currentImod.learningObjectives.id
 
         // return objective
         objectives[0]
     }
-
 
     /**
      * Ensure that the Imod has at least one learning objective
@@ -86,7 +85,7 @@ class LearningObjectiveService {
     /**
      * Gets all learning objectives linked to selected Imod
      */
-    LearningObjective getAllByImod(Imod currentImod) {
+    List getAllByImod(Imod currentImod) {
         LearningObjective.findAllByImod(currentImod)
     }
 
@@ -98,7 +97,7 @@ class LearningObjectiveService {
         LearningObjective objective
         // when there is not objective specified, pick first
         if (learningObjectiveID == null) {
-            if(currentImod.learningObjectives.size() > 0){
+            if (currentImod.learningObjectives.size() > 0) {
                 objective = currentImod.learningObjectives.first()
             } else {
                 objective = null

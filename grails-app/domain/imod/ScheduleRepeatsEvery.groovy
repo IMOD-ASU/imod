@@ -13,7 +13,7 @@ class ScheduleRepeatsEvery {
 		version false
 	}
 
-	String toString(){
+	String toString() {
 		description
 	}
 }

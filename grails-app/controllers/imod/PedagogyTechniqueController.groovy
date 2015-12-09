@@ -1,4 +1,5 @@
 package imod
+
 import grails.converters.JSON
 
 class PedagogyTechniqueController {
@@ -23,15 +24,14 @@ class PedagogyTechniqueController {
 		String  learningDomains=''
 		String  domainCategories=''
 
-
-		for(int i = 0; i< knowledgedimensions.size(); i++) {
-			knowledgeDimensions=knowledgeDimensions+knowledgedimensions[i]+','
+		for (int i = 0; i < knowledgedimensions.size(); i++) {
+			knowledgeDimensions = knowledgeDimensions + knowledgedimensions[i] + ','
 		}
-		for(int i = 0; i< learningdomains.size(); i++) {
-			learningDomains=learningDomains+learningdomains[i]+','
+		for (int i = 0; i < learningdomains.size(); i++) {
+			learningDomains = learningDomains + learningdomains[i] + ','
 		}
-		for(int i = 0; i< domaincategories.size(); i++) {
-			domainCategories=domainCategories+domaincategories[i]+','
+		for (int i = 0; i < domaincategories.size(); i++) {
+			domainCategories = domainCategories + domaincategories[i] + ','
 		}
 
 		// add some stuff if (KnowledgeDimension.findById(PedagogyTechnique.get(id).knowledgeDimension[i].id).toString()!=null)
@@ -40,12 +40,12 @@ class PedagogyTechniqueController {
 				pedagogyTechnique: PedagogyTechnique.get(id),
 				learningDomain: LearningDomain.findById(PedagogyTechnique.get(id).learningDomain[0].id).toString(),
 				domainCategory: DomainCategory.findById(PedagogyTechnique.get(id).domainCategory[0].id).toString(),
-				knowledgeDimension:knowledgeDimensions,
-				learningDomains : learningDomains,
-				domainCategories : domainCategories,
-				activityFocus:PedagogyActivityFocus.findById(PedagogyTechnique.get(id).activityFocus[0].id).toString(),
-				pedagogyMode:(PedagogyTechnique.get(id).pedagogyMode).toString(),
-				pedagogyDuration:(PedagogyTechnique.get(id).pedagogyDuration).toString(),
+				knowledgeDimension: knowledgeDimensions,
+				learningDomains: learningDomains,
+				domainCategories: domainCategories,
+				activityFocus: PedagogyActivityFocus.findById(PedagogyTechnique.get(id).activityFocus[0].id).toString(),
+				pedagogyMode: (PedagogyTechnique.get(id).pedagogyMode).toString(),
+				pedagogyDuration: (PedagogyTechnique.get(id).pedagogyDuration).toString(),
 			] as JSON
 		)
 	}
@@ -75,11 +75,7 @@ class PedagogyTechniqueController {
 			PedagogyTechnique.get(params.techniqueId).learningDomain.clear()
 			PedagogyTechnique.get(params.techniqueId).domainCategory.clear()
 			PedagogyTechnique.get(params.techniqueId).activityFocus.clear()
-
-
-
 		}
-
 
 		// Store text fields
 		newTechnique.title = params.title
@@ -93,44 +89,37 @@ class PedagogyTechniqueController {
 		String[] dC = params.domainCategorySelected.split(',')
 
 		if (kD != null) {
-			for(int i=0; i < kD.length; i++) {
-
-				if (kD[i]!=null) {
+			for (int i = 0; i < kD.length; i++) {
+				if (kD[i] != null) {
 					println (kD[i])
 					newTechnique.addToKnowledgeDimension(
 					KnowledgeDimension.findByDescription(kD[i]))
 				}
-
+			}
 		}
-	}
 
-	if (lD != null) {
-			for(int i=0; i < lD.length; i++) {
-
-				if (lD[i]!=null) {
+		if (lD != null) {
+			for (int i = 0; i < lD.length; i++) {
+				if (lD[i] != null) {
 					println (lD[i])
 					newTechnique.addToLearningDomain(LearningDomain.findByName(lD[i]))
 				}
-
+			}
 		}
-	}
 
-	if (dC != null) {
-			for(int i=0; i < dC.length; i++) {
-
-				if (dC[i]!=null) {
+		if (dC != null) {
+			for (int i = 0; i < dC.length; i++) {
+				if (dC[i] != null) {
 					println (dC[i])
-					if (DomainCategory.findByName(dC[i])!= null)
-					{
-					newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
+					if (DomainCategory.findByName(dC[i]) != null) {
+						newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
 					}
 				}
-
+			}
 		}
-	}
 
 		// Store relationships
-		newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration(params.pedagogyDuration)
+		newTechnique.pedagogyDuration = PedagogyActivityDuration.findByDuration(params.pedagogyDuration)
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
 
 		//newTechnique.addToDomainCategory(DomainCategory.findByName(params.domainCategory))
@@ -151,7 +140,7 @@ class PedagogyTechniqueController {
 		)
 	}
 
-	def assignFavorite(Long id){
+	def assignFavorite(Long id) {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 		// add the technique to the users favorite list
@@ -166,7 +155,7 @@ class PedagogyTechniqueController {
         )
 	}
 
-	def unassignFavorite(Long id){
+	def unassignFavorite(Long id) {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 		// add the technique to the users favorite list
@@ -181,7 +170,7 @@ class PedagogyTechniqueController {
         )
 	}
 
-	def assignToLearningObjective(){
+	def assignToLearningObjective() {
 		final data = request.JSON
 		// get current user object
 		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
@@ -197,7 +186,7 @@ class PedagogyTechniqueController {
         )
 	}
 
-	def unassignToLearningObjective(){
+	def unassignToLearningObjective() {
 		final data = request.JSON
 		// get current user object
 		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
@@ -213,7 +202,4 @@ class PedagogyTechniqueController {
             ] as JSON
         )
 	}
-
-
-
 }

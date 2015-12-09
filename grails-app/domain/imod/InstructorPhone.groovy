@@ -7,7 +7,9 @@ class InstructorPhone {
 	String number
 	String type
 
-	static belongsTo = [instructor:Instructor]
+	static belongsTo = [
+		instructor: Instructor
+	]
 
 	static constraints = {
 	}
@@ -16,7 +18,7 @@ class InstructorPhone {
 		version false
 	}
 
-	String toString(){
+	String toString() {
 		number
 	}
 }

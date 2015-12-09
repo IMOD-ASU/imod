@@ -87,7 +87,7 @@ class LearningObjective {
 		indicator			nullable: true
 		performance			nullable: true
 		actionWord			nullable: true
-		hideFromLearningObjectiveCondition	nullable:true
+		hideFromLearningObjectiveCondition	nullable: true
 	}
 
 	static mapping = {
@@ -128,7 +128,7 @@ class LearningObjective {
 
 	def buildDefinition() {
 		definition = ''
-		if(actionWord == 'Enter the details here'){
+		if (actionWord == 'Enter the details here') {
 			actionWord = ''
 		}
 		if (isEmpty()) {
@@ -142,7 +142,9 @@ class LearningObjective {
 			definition += ' ' + actionWord
 		}
 
-		definition += listToSentence(contents.sort{it.topicTitle})
+		definition += listToSentence(contents.sort {
+			it.topicTitle
+		})
 
 		List<String> criteria = [] as String[]
 		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
@@ -167,7 +169,7 @@ class LearningObjective {
 
 	private String listToSentence(list, openingSpace = ' ') {
 		String returnString = ''
-		if(list != null) {
+		if (list != null) {
 			// there is only one item in the list
 			if (list.size() == 1) {
 				if (list[0].toString() != null) {

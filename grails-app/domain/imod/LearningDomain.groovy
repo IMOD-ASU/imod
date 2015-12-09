@@ -19,7 +19,7 @@ class LearningDomain {
 		sort 'id'
 	}
 
-	String toString(){
+	String toString() {
 		name
 	}
 }

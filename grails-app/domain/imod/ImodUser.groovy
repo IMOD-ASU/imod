@@ -8,7 +8,6 @@ package imod
  * each user has their own profile and preferances
  */
 class ImodUser {
-
 	transient springSecurityService
 
 	String email
@@ -19,33 +18,29 @@ class ImodUser {
 	boolean accountLocked
 	boolean passwordExpired
 
-
 	static hasMany = [
-			imods: Imod,
-			favoriteTechnique: PedagogyTechnique,
-			favoriteAssessmentTechnique: AssessmentTechnique
-		]
+		imods: Imod,
+		favoriteTechnique: PedagogyTechnique,
+		favoriteAssessmentTechnique: AssessmentTechnique
+	]
 
-		static hasOne = [
-			preferences: UserPreferences,
-			profile: UserProfile
-		]
+	static hasOne = [
+		preferences: UserPreferences,
+		profile: UserProfile
+	]
 
-
-		static constraints = {
-			username 	blank: false,	unique: true
-			password 	blank: false
-			email	 	unique: true, email: true
-			profile 	nullable: true
-			preferences nullable: true
-			favoriteTechnique nullable: true
-			favoriteAssessmentTechnique nullable:true
-		}
-
+	static constraints = {
+		username 	blank: false,	unique: true
+		password 	blank: false
+		email	 	unique: true, email: true
+		profile 	nullable: true
+		preferences nullable: true
+		favoriteTechnique nullable: true
+		favoriteAssessmentTechnique nullable: true
+	}
 
 	static mapping = {
 		password column: '`password`'
-
 	}
 
 	Set<Role> getAuthorities() {
@@ -69,7 +64,7 @@ class ImodUser {
 		password = springSecurityService.encodePassword(password)
 	}
 
-	String toString(){
+	String toString() {
 		username
 	}
 }

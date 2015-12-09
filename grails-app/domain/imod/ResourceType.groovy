@@ -10,7 +10,7 @@ class ResourceType {
 		version false
 	}
 
-	String toString(){
+	String toString() {
 		description
 	}
 }

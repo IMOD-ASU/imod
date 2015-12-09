@@ -11,7 +11,7 @@ class CourseComponentCode {
 		version false
 	}
 
-	String toString(){
+	String toString() {
 		description
 	}
 }
