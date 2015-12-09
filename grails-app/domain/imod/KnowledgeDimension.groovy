@@ -22,15 +22,15 @@ class KnowledgeDimension {
 	 * printing a Knowledge Dimension will give the instance's description
 	 * @return the description of the knowledge dimension
 	 */
-	def String toString() {
-		return description
+	String toString() {
+		description
 	}
 
 	/**
 	 * Lists all of the possible knowledge dimensions
 	 * @return List of dimensions
 	 */
-	public static List<KnowledgeDimension> values() {
-		return KnowledgeDimension.list() ?: []
+	static List<KnowledgeDimension> values() {
+		KnowledgeDimension.list() ?: []
 	}
 }

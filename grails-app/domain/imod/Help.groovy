@@ -41,14 +41,14 @@ class Help {
 	 * @return              Tool Tip Text
 	 */
 	static String toolTip(String tabId, String tabFieldUiId) {
-		return Help.findByTabIdAndTabFieldUiId(tabId, tabFieldUiId)?.text
+		Help.findByTabIdAndTabFieldUiId(tabId, tabFieldUiId)?.text
 	}
 
 	/**
 	 * printing the Help will give the tool tip text
 	 * @return tool tip text
 	 */
-	def String toString() {
-		return text
+	String toString() {
+		text
 	}
 }

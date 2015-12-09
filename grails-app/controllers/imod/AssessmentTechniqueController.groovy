@@ -48,18 +48,16 @@ class AssessmentTechniqueController {
 	 * get info on a selected technique
 	 */
 	def display(Long id) {
-		final assessmentTechInstance1 = AssessmentTechnique.findAllByAssigncheck(true)
-
-		String [] knowledgedimensions = AssessmentTechnique.get(id).knowledgeDimension;
-		String [] learningdomains = AssessmentTechnique.get(id).learningDomain;
-		String [] domaincategories = AssessmentTechnique.get(id).domainCategory;
+		String [] knowledgedimensions = AssessmentTechnique.get(id).knowledgeDimension
+		String [] learningdomains = AssessmentTechnique.get(id).learningDomain
+		String [] domaincategories = AssessmentTechnique.get(id).domainCategory
 
 		render (
 			[
 				assessmentTechnique: AssessmentTechnique.get(id),
-				knowledgeDimension:knowledgedimensions.join(","),
-				learningDomains: learningdomains.join(","),
-				domainCategories: domaincategories.join(",")
+				knowledgeDimension:knowledgedimensions.join(','),
+				learningDomains: learningdomains.join(','),
+				domainCategories: domaincategories.join(',')
 			] as JSON
 		)
 	}
@@ -157,7 +155,7 @@ class AssessmentTechniqueController {
 			newTechnique.knowledgeDimension.clear()
 			newTechnique.learningDomain.clear()
 			newTechnique.domainCategory.clear()
-			
+
 
 		}
 
@@ -185,9 +183,9 @@ class AssessmentTechniqueController {
 			)
 		}
 
-		String[] kD = params.knowledgeDimension.split(",");
-		String[] lD = params.learningDomain;
-		String[] dC = params.domainCategory;
+		String[] kD = params.knowledgeDimension.split(',')
+		String[] lD = params.learningDomain
+		String[] dC = params.domainCategory
 
 		if (kD != null) {
 			for(int i=0; i < kD.length; i++) {

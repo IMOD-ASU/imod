@@ -16,7 +16,7 @@ class InstructorPhone {
 		version false
 	}
 
-	def String toString(){
-		return number
+	String toString(){
+		number
 	}
 }

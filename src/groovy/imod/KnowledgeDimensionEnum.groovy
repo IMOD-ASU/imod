@@ -3,7 +3,7 @@ package imod
 /**
  * This stores the list of the Knowledge Dimension categories
  */
-public enum KnowledgeDimensionEnum {
+enum KnowledgeDimensionEnum {
 	CONCEPTUAL('Conceptual','The knowledge of terminology, details, or elements.'),
 	FACTUAL('Factual','The knowledge of classifications, generalizations, and theories.'),
 	METACOGNITIVE('Metacognitive','The knowledge of subject specific skills and techniques; the knowledge of criteria for when to use appropriate procedures.'),
@@ -17,8 +17,12 @@ public enum KnowledgeDimensionEnum {
 		this.info = info
 	}
 
-	public String value() {return value}
-	public String info() {return info}
+	String value() {
+		value
+	}
+	String info() {
+		info
+	}
 
 	@Override
 	String toString(){

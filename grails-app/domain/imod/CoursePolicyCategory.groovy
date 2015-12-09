@@ -20,7 +20,7 @@ class CoursePolicyCategory {
 	 * printing the Course Policy Category will give the display name for the category
 	 * @return dsiplay name
 	 */
-	def String toString(){
-		return name
+	String toString(){
+		name
 	}
 }

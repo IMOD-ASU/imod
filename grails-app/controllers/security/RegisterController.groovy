@@ -35,7 +35,7 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 		if (currentUser != null) {
 			// null means problem creating the user
 			flash.error = message(code: 'spring.security.ui.register.miscError')
-			flash.message = "A user with the email address already exists"
+			flash.message = 'A user with the email address already exists'
 			flash.chainedParams = params
 			redirect action: 'index'
 			return

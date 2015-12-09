@@ -20,6 +20,6 @@ class LearningDomain {
 	}
 
 	String toString(){
-		return name
+		name
 	}
 }

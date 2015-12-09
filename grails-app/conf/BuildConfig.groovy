@@ -13,11 +13,11 @@ grails.project.source.level = 1.8
 // This tells grails to grails to build the pages as part of the build
 grails.views.gsp.sitemesh.preprocess = true
 
-// TODO Workaround for https://github.com/chrismair/GrailsCodeNarcPlugin/issues/6
-codenarc.excludeBaseline = ''
-
 grails.project.dependency.resolver = 'maven'
 
+codenarc.ruleSetFiles='file:CodeNarc.groovy'
+codenarc.maxPriority1Violations = 0
+codenarc.maxPriority2Violations = 0
 codenarc.reports = {
     TextReport('text') {
         outputFile = 'static-analysis.txt'

@@ -22,14 +22,14 @@ class LearningObjectiveService {
         // saves the imod and the learning objective
         currentImod.save()
 
-        return newLearningObjective.id
+        // return the id
+        newLearningObjective.id
     }
 
     /**
         Remove the selected learning objective, linked to the imod
     */
     def remove(Imod currentImod,Long learningObjectiveID) {
-
         def deletedObjective = LearningObjective.get(learningObjectiveID)
         def contentsList = []
         def contents = deletedObjective.contents
@@ -37,7 +37,7 @@ class LearningObjectiveService {
         // remove contents association
         if (contents != null) {
             contentsList.addAll(contents)
-            contentsList.each() {
+            contentsList.each {
                 deletedObjective.removeFromContents(it)
             }
         }
@@ -47,7 +47,7 @@ class LearningObjectiveService {
         def pedagogyTechniques = deletedObjective.pedagogyTechniques
         if (pedagogyTechniques != null) {
             pedagogyTechniquesList.addAll(pedagogyTechniques)
-            pedagogyTechniquesList.each() {
+            pedagogyTechniquesList.each {
                 deletedObjective.removeFromPedagogyTechniques(it)
             }
         }
@@ -57,15 +57,16 @@ class LearningObjectiveService {
         def assessmentTechniques = deletedObjective.assessmentTechniques
         if (assessmentTechniques != null) {
             assessmentTechniquesList.addAll(assessmentTechniques)
-            assessmentTechniquesList.each() {
+            assessmentTechniquesList.each {
                 deletedObjective.removeFromAssessmentTechniques(it)
             }
         }
 
         deletedObjective.delete(flush:true)
         def objectives = currentImod.learningObjectives.id
-        return objectives[0]
 
+        // return objective
+        objectives[0]
     }
 
 
@@ -85,8 +86,8 @@ class LearningObjectiveService {
     /**
      * Gets all learning objectives linked to selected Imod
      */
-    def getAllByImod(Imod currentImod) {
-        return LearningObjective.findAllByImod(currentImod)
+    LearningObjective getAllByImod(Imod currentImod) {
+        LearningObjective.findAllByImod(currentImod)
     }
 
     /**
@@ -94,13 +95,12 @@ class LearningObjectiveService {
      * selected Imods
      */
     LearningObjective safeGet(Imod currentImod, Long learningObjectiveID) {
-        
         LearningObjective objective
         // when there is not objective specified, pick first
         if (learningObjectiveID == null) {
             if(currentImod.learningObjectives.size() > 0){
                 objective = currentImod.learningObjectives.first()
-            }else{
+            } else {
                 objective = null
             }
 
@@ -113,6 +113,6 @@ class LearningObjectiveService {
                 objective = currentImod.learningObjectives.first()
             }
         }
-        return objective
+        objective
     }
 }
