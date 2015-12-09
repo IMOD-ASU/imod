@@ -7,8 +7,8 @@ class CourseOverviewController {
     def springSecurityService
 
     static allowedMethods = [
-        delete:           'POST',
-        create:           'POST',
+        delete: 'POST',
+        create: 'POST',
         updateSyllabusPrefs: 'POST',
     ]
 
@@ -24,7 +24,7 @@ class CourseOverviewController {
         final jsonParser = new JsonSlurper()
         final parameters = jsonParser.parseText(params.parameters)
 
-        parameters.each() {
+        parameters.each {
             final firstName = it.firstName
             final lastName = it.lastName
             final email = it.email
@@ -102,7 +102,7 @@ class CourseOverviewController {
 
         def text = '<ul>'
 
-        contentList.each() {
+        contentList.each {
             text += getSubContent(it)
         }
 
@@ -190,7 +190,7 @@ class CourseOverviewController {
 
         def text = '<ul>'
 
-        contentList.each() {
+        contentList.each {
             text += getSubContent(it)
         }
 
@@ -230,14 +230,14 @@ class CourseOverviewController {
 
         def text = '<ul>'
 
-        contentList.each() {
+        contentList.each {
             text += getSubContent(it)
         }
 
         text += '</ul>'
 
         renderPdf(
-            template: "/courseOverview/syllabus",
+            template: '/courseOverview/syllabus',
             model: [
                 currentImod: currentImod,
                 currentPage: 'syllabus',
@@ -248,12 +248,12 @@ class CourseOverviewController {
         )
     }
 
-    private def getSubContent(Content current) {
+    private getSubContent(Content current) {
         def text = '<li>' + current.topicTitle
 
         if (current.subContents != null) {
             text += '<ul>'
-            current.subContents.each() {
+            current.subContents.each {
                 text += getSubContent(it)
             }
             text += '</ul>'
@@ -261,6 +261,7 @@ class CourseOverviewController {
 
         text +=  '</li>'
 
-        return text
+        // returns text
+        text
     }
 }

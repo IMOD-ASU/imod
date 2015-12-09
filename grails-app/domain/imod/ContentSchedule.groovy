@@ -33,8 +33,8 @@ class ContentSchedule {
 	 * printing the Content Schedule will give the topic name and start date for covering the topic
 	 * @return topic name and start date for covering the topic
 	 */
-	def String toString() {
+	String toString() {
 		DateFormat df = new SimpleDateFormat('MM/dd/yyyy')
-		return "${content.topicTitle + ':' + df.format(startDate)}"
+		"${content.topicTitle + ':' + df.format(startDate)}"
 	}
 }

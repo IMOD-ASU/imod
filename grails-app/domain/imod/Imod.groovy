@@ -142,7 +142,7 @@ class Imod {
 	 * printing the Help will give the tool tip text
 	 * @return tool tip text
 	 */
-	def String toString() {
-		return name
+	String toString() {
+		name
 	}
 }

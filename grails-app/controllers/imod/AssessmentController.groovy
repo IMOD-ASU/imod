@@ -97,7 +97,7 @@ class AssessmentController {
 		}
 
 		// find all technique where both the knowledge dimension and the domain category match
-		final idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
+		final idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
 				knowledgeDimension {
 					'in' ('id', selectedKnowledgeDimensions)
@@ -115,7 +115,7 @@ class AssessmentController {
 		}
 
 		// find all technique that are not ideal, but have the learning domain
-		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria() {
+		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
     			learningDomain {
     				'in' ('id', selectedLearningDomains)

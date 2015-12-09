@@ -89,24 +89,24 @@ class LoginController {
 	 * Callback after a failed login. Redirects to the auth page with a warning message.
 	 */
 	def authfail = {
-		def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
+		// def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
 		String msg = ''
 		def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
 		if (exception) {
 			if (exception instanceof AccountExpiredException) {
-				msg = g.message(code: "springSecurity.errors.login.expired")
+				msg = g.message(code: 'springSecurity.errors.login.expired')
 			}
 			else if (exception instanceof CredentialsExpiredException) {
-				msg = g.message(code: "springSecurity.errors.login.passwordExpired")
+				msg = g.message(code: 'springSecurity.errors.login.passwordExpired')
 			}
 			else if (exception instanceof DisabledException) {
-				msg = g.message(code: "springSecurity.errors.login.disabled")
+				msg = g.message(code: 'springSecurity.errors.login.disabled')
 			}
 			else if (exception instanceof LockedException) {
-				msg = g.message(code: "springSecurity.errors.login.locked")
+				msg = g.message(code: 'springSecurity.errors.login.locked')
 			}
 			else {
-				msg = g.message(code: "springSecurity.errors.login.fail")
+				msg = g.message(code: 'springSecurity.errors.login.fail')
 			}
 		}
 

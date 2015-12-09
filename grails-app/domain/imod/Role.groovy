@@ -12,7 +12,7 @@ class Role {
 		authority blank: false, unique: true
 	}
 
-	def String toString(){
-		return authority
+	String toString(){
+		authority
 	}
 }

@@ -33,7 +33,7 @@ class PedagogyTechnique {
 	]
 
 	String toString() {
-	    return title
+	    title
 	}
 
 	static mapping = {

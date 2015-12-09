@@ -52,7 +52,7 @@ class PedagogyController {
 		def dimension=[]
 
 		if (content != null){
-			content.each(){
+			content.each {
 				knowDimensionList.push(it.dimensions)
 			}
 			// merge multiple lists into one
@@ -108,7 +108,7 @@ class PedagogyController {
 		}
 
 		// find all technique where both the knowledge dimension and the domain category match
-		final idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
+		final idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
 				knowledgeDimension {
 					'in' ('id', selectedKnowledgeDimensions)
@@ -126,7 +126,7 @@ class PedagogyController {
 		}
 
 		// find all technique that are not ideal, but have the learning domain
-		final extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
+		final extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
 				learningDomain {
 					'in' ('id', selectedLearningDomains)

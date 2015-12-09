@@ -20,7 +20,7 @@ class ComponentDesignation {
 	 * printing the Component Designation will give the instance's description
 	 * @return the description of the Component Designation
 	 */
-	def String toString(){
-		return description
+	String toString(){
+		description
 	}
 }

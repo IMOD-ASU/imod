@@ -32,7 +32,7 @@ class Instructor {
 		version false
 	}
 
-	def String toString(){
+	String toString(){
 		def displayName = lastName
 		if(firstName != null) {
 			displayName = displayName + ' ' + firstName
@@ -40,6 +40,6 @@ class Instructor {
 		if(middleInitial != null){
 			displayName = displayName + ' ' + middleInitial
 		}
-		return displayName
+		displayName
 	}
 }

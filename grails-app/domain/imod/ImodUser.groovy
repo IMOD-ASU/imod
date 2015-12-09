@@ -49,7 +49,7 @@ class ImodUser {
 	}
 
 	Set<Role> getAuthorities() {
-		ImodUserRole.findAllByImodUser(this).collect { it.role } as Set
+		ImodUserRole.findAllByImodUser(this)*.role as Set
 	}
 
 	def beforeInsert() {
@@ -69,7 +69,7 @@ class ImodUser {
 		password = springSecurityService.encodePassword(password)
 	}
 
-	def String toString(){
-		return username
+	String toString(){
+		username
 	}
 }

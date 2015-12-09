@@ -15,27 +15,26 @@ class PedagogyTechniqueController {
 	 * get info on a selected technique
 	 */
 	def get(Long id) {
-		String [] knowledgedimensions = PedagogyTechnique.get(id).knowledgeDimension;
-		String [] learningdomains = PedagogyTechnique.get(id).learningDomain;
-		String [] domaincategories = PedagogyTechnique.get(id).domainCategory;
+		String [] knowledgedimensions = PedagogyTechnique.get(id).knowledgeDimension
+		String [] learningdomains = PedagogyTechnique.get(id).learningDomain
+		String [] domaincategories = PedagogyTechnique.get(id).domainCategory
 
-		String  knowledgeDimensions="";
-		String  learningDomains="";
-		String  domainCategories="";
+		String  knowledgeDimensions=''
+		String  learningDomains=''
+		String  domainCategories=''
 
 
 		for(int i = 0; i< knowledgedimensions.size(); i++) {
-			knowledgeDimensions=knowledgeDimensions+knowledgedimensions[i]+",";
+			knowledgeDimensions=knowledgeDimensions+knowledgedimensions[i]+','
 		}
 		for(int i = 0; i< learningdomains.size(); i++) {
-			learningDomains=learningDomains+learningdomains[i]+",";
+			learningDomains=learningDomains+learningdomains[i]+','
 		}
 		for(int i = 0; i< domaincategories.size(); i++) {
-			domainCategories=domainCategories+domaincategories[i]+",";
+			domainCategories=domainCategories+domaincategories[i]+','
 		}
 
 		// add some stuff if (KnowledgeDimension.findById(PedagogyTechnique.get(id).knowledgeDimension[i].id).toString()!=null)
-		//println(knowledgeDimensions);
 		render (
 			[
 				pedagogyTechnique: PedagogyTechnique.get(id),
@@ -89,36 +88,36 @@ class PedagogyTechniqueController {
 		newTechnique.materials = params.materials
 		newTechnique.reference = params.reference
 		newTechnique.activityDescription = params.activityDescription
-		String[] kD = params.knowledgeDimension.split(",");
-		String[] lD = params.domainSelected.split(",");
-		String[] dC = params.domainCategorySelected.split(",");
+		String[] kD = params.knowledgeDimension.split(',')
+		String[] lD = params.domainSelected.split(',')
+		String[] dC = params.domainCategorySelected.split(',')
 
 		if (kD != null) {
 			for(int i=0; i < kD.length; i++) {
-				
+
 				if (kD[i]!=null) {
 					println (kD[i])
 					newTechnique.addToKnowledgeDimension(
 					KnowledgeDimension.findByDescription(kD[i]))
 				}
-			
+
 		}
 	}
 
 	if (lD != null) {
 			for(int i=0; i < lD.length; i++) {
-				
+
 				if (lD[i]!=null) {
 					println (lD[i])
 					newTechnique.addToLearningDomain(LearningDomain.findByName(lD[i]))
 				}
-			
+
 		}
 	}
 
 	if (dC != null) {
 			for(int i=0; i < dC.length; i++) {
-				
+
 				if (dC[i]!=null) {
 					println (dC[i])
 					if (DomainCategory.findByName(dC[i])!= null)
@@ -126,14 +125,14 @@ class PedagogyTechniqueController {
 					newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
 					}
 				}
-			
+
 		}
 	}
 
 		// Store relationships
 		newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration(params.pedagogyDuration)
 		newTechnique.pedagogyMode = PedagogyMode.findByName(params.pedagogyMode)
-		
+
 		//newTechnique.addToDomainCategory(DomainCategory.findByName(params.domainCategory))
 		newTechnique.addToActivityFocus(
 			PedagogyActivityFocus.findByFocus(params.pedagogyFocus)
@@ -215,6 +214,6 @@ class PedagogyTechniqueController {
         )
 	}
 
-	
+
 
 }

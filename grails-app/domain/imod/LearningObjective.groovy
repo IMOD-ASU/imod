@@ -108,7 +108,7 @@ class LearningObjective {
 		autoTimestamp true
 	}
 
-	public isEmpty() {
+	def isEmpty() {
 		// check each of the criteria attributes
 		boolean criteriaAccuracyEmpty = criteriaAccuracyEnabled == false || criteriaAccuracy == null || criteriaAccuracyHidden == true
 		boolean criteriaQualityEmpty = criteriaQualityEnabled == false || criteriaQuality == null || criteriaQualityHidden == true
@@ -118,16 +118,15 @@ class LearningObjective {
 		boolean criteriaPageEmpty =  criteriaAccuracyEmpty && criteriaQualityEmpty && criteriaQuantityEmpty && criteriaSpeedEmpty
 		// check all the other attributes
 		boolean otherPagesEmpty = condition == null && indicator == null && performance == null
-		// put it all together
-		return otherPagesEmpty && criteriaPageEmpty
+		// return result
+		otherPagesEmpty && criteriaPageEmpty
 	}
 
 	String toString() {
-		return definition
+		definition
 	}
 
-	public buildDefinition() {
-
+	def buildDefinition() {
 		definition = ''
 		if(actionWord == 'Enter the details here'){
 			actionWord = ''

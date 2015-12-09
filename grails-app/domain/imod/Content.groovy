@@ -129,11 +129,11 @@ class Content {
 			'Very Important',
 			'Good to Know'
 		]
-		return priorityList
+		priorityList
 	}
 
 	String toString() {
-	    return topicTitle
+	    topicTitle
 	}
 
 	/**

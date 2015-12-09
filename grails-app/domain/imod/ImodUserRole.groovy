@@ -22,8 +22,12 @@ class ImodUserRole implements Serializable {
 
 	int hashCode() {
 		def builder = new HashCodeBuilder()
-		if (imodUser) builder.append(imodUser.id)
-		if (role) builder.append(role.id)
+		if (imodUser) {
+			builder.append(imodUser.id)
+		}
+		if (role) {
+			builder.append(role.id)
+		} 
 		builder.toHashCode()
 	}
 

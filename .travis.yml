@@ -13,4 +13,6 @@ before_script:
 
 script:
   - eslint web-app/js/source --inline-config=false
+  - ./grailsw codenarc
+  - cat static-analysis.txt
   - ./grailsw war
