@@ -20,7 +20,6 @@ class Imod {
 	String	url
 	String	subjectArea
 
-
 	/*
 	 ***********************
 	 * Optional Attributes *
@@ -48,7 +47,6 @@ class Imod {
 	 */
 	CoursePolicy	coursePolicy
 	Schedule		schedule
-
 
 	static belongsTo = [
 		/**
@@ -88,7 +86,6 @@ class Imod {
 		 */
 		prefs: 				SyllabusPrefs
 	]
-
 
 	/*
 	 *****************
@@ -130,7 +127,6 @@ class Imod {
 	static mapping = {
 		version false
 	}
-
 
 	/*
 	 *************

@@ -10,7 +10,7 @@ class ScheduleWeekDays {
 		version false
 	}
 
-	String toString(){
+	String toString() {
 		description
 	}
 }

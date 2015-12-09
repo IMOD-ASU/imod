@@ -1,8 +1,7 @@
 package security
+
 import grails.converters.JSON
-
 import javax.servlet.http.HttpServletResponse
-
 import grails.plugin.springsecurity.SpringSecurityUtils
 
 import org.springframework.security.authentication.AccountExpiredException

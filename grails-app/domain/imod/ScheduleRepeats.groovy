@@ -13,7 +13,7 @@ class ScheduleRepeats {
 		version false
 	}
 
-	String toString(){
+	String toString() {
 		description
 	}
 }

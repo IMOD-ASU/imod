@@ -15,7 +15,6 @@ class Resource {
 	 */
 	String name
 
-
 	/*
 	 ***********************
 	 * Optional Attributes *
@@ -50,7 +49,6 @@ class Resource {
 	static belongsTo = [
 		content: Content
 	]
-
 
 	/*
 	 *****************

@@ -24,7 +24,7 @@ class Instructor {
 		email nullable: true
 		officeHours nullable: true
 		webPage nullable: true
-		role nullable:true
+		role nullable: true
 		phoneNumber nullable: true
 	}
 
@@ -32,12 +32,12 @@ class Instructor {
 		version false
 	}
 
-	String toString(){
+	String toString() {
 		def displayName = lastName
-		if(firstName != null) {
+		if (firstName != null) {
 			displayName = displayName + ' ' + firstName
 		}
-		if(middleInitial != null){
+		if (middleInitial != null) {
 			displayName = displayName + ' ' + middleInitial
 		}
 		displayName

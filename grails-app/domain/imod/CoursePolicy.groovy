@@ -33,7 +33,7 @@ class CoursePolicy {
 	 * printing the Course Policy will give Display name for the policy
 	 * @return display name
 	 */
-	String toString(){
+	String toString() {
 		name
 	}
 }

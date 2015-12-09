@@ -4,7 +4,6 @@ import grails.converters.JSON
 import groovy.json.JsonSlurper
 
 class ContentController {
-
 	static allowedMethods = [
 		addNewTopic: 'GET',
 		saveTopic: 'POST',
@@ -41,19 +40,18 @@ class ContentController {
 		def fail = []
 
 		contentData.each {
-
-			/* If a new topic is added, create an ID. Otherwise, the topic already exists, so use its ID*/
-			if(it.contentID == 'undefined'){
+			// If a new topic is added, create an ID. Otherwise, the topic already exists, so use its ID
+			if (it.contentID == 'undefined') {
 				def contentInstance = new Content(imod: currentImod, failOnError: true)
 
 				contentInstance.save()
 				if (!contentInstance) {
 					contentInstance.errors.allErrors.each {
-						log.error messageSource.getMessage(it,null)
+						log.error messageSource.getMessage(it, null)
 					}
 				}
-				 contentID = contentInstance.id
-			}else{
+				contentID = contentInstance.id
+			} else {
 				 contentID = it.contentID.toLong()
 			}
 
@@ -78,11 +76,10 @@ class ContentController {
 
 			if (!contentInstance) {
 				contentInstance.errors.allErrors.each {
-					log.error messageSource.getMessage(it,null)
+					log.error messageSource.getMessage(it, null)
 				}
 				fail.add(contentID)
-			}
-			else {
+			} else {
 				success.add(contentID)
 			}
 		}
@@ -171,8 +168,7 @@ class ContentController {
 			def parentContent = Content.get(parentID)
 			parentContent.addToSubContents(childContent)
 			childContent.parentContent = parentContent
-		}
-		else {
+		} else {
 			childContent.parentContent = null
 		}
 
@@ -187,7 +183,9 @@ class ContentController {
 		def learningObjectiveInstance = LearningObjective.get(objectiveID)
 
 		if (idArray != null) {
-			def contentList = idArray.collect {Content.get(it)}
+			def contentList = idArray.collect {
+				Content.get(it)
+			}
 			learningObjectiveInstance.contents.clear()
 			contentList.each {
 				learningObjectiveInstance.addToContents(it)
@@ -196,9 +194,8 @@ class ContentController {
 			// reset the definition
 			learningObjectiveInstance.buildDefinition()
 
-			learningObjectiveInstance.save(failOnError:true)
-		}
-		else {
+			learningObjectiveInstance.save(failOnError: true)
+		} else {
 			learningObjectiveInstance.contents = null
 		}
 	}
@@ -226,7 +223,6 @@ class ContentController {
 		def fail = []
 
 		resourceData.each {
-
 			final resourceName = it.resourceName
 			final resourceDescription = it.resourceDescription
 			final resourceType = it.resourceType
@@ -252,16 +248,14 @@ class ContentController {
 				resourceInstance.description = resourceDescription
 				resourceInstance.resourceType = resourceType
 				resourceInstance.save()
-
 			}
 
 			if (!resourceInstance) {
 				resourceInstance.errors.allErrors.each {
-					log.error messageSource.getMessage(it,null)
+					log.error messageSource.getMessage(it, null)
 				}
 				fail.add(resourceID)
-			}
-			else {
+			} else {
 				success.add(resourceID)
 			}
 		}

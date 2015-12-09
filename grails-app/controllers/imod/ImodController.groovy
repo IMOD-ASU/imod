@@ -23,7 +23,6 @@ class ImodController {
 		)
 	}
 
-
 	def list() {
 		// get current user object
         def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
@@ -39,7 +38,6 @@ class ImodController {
             sort: 'name'
         ]
     }
-
 
 	def create() {
 		// get the current user
@@ -193,10 +191,9 @@ class ImodController {
 		params.each {
 			if (it.key.contains('scheduleWeekDays_')) {
 				if (it.value.contains('on')) {
-					if(schedule.scheduleWeekDays == null) {
+					if (schedule.scheduleWeekDays == null) {
 						currentImod.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer))
-					}
-					else {
+					} else {
 						currentImod.schedule.scheduleWeekDays << ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer)
 
 					}
@@ -269,7 +266,9 @@ class ImodController {
 
 	private generateSample (currentUser) {
 		// create sample imod if it doesn't exist
-        final sample = currentUser.imods.find {it.name == 'Object-Oriented Software Development - sample'}
+        final sample = currentUser.imods.find {
+			it.name == 'Object-Oriented Software Development - sample'
+		}
 
         if (sample == null) {
 			// get two action word categories
@@ -330,7 +329,6 @@ class ImodController {
                 createdBy: newImod.id
             )
 
-
             // save new instructor and the updated user to database
             newInstructor.save()
 
@@ -342,8 +340,8 @@ class ImodController {
             def schedule = new Schedule(
             	startDate: startDate,
             	endDate: endDate,
-            	startTime: new LocalTime(18,0),
-            	endTime: new LocalTime(19,15),
+            	startTime: new LocalTime(18, 0),
+            	endTime: new LocalTime(19, 15),
             	imod: currentImod
             )
 
@@ -575,8 +573,6 @@ class ImodController {
 			contentInstance.save()
 			lo2.addToContents(contentInstance)
 
-
-
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = 'FALSE'
 			contentInstance.priority = 'Critical'
@@ -650,8 +646,6 @@ class ImodController {
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
 			lo6.addToContents(contentInstance)
-
-
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = 'FALSE'
@@ -875,9 +869,6 @@ class ImodController {
 			contentInstance.parentContent = currentInstance
 			contentInstance.save()
 			lo4.addToContents(contentInstance)
-
-
-
 
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = 'FALSE'

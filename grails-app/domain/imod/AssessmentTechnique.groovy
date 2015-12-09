@@ -43,13 +43,13 @@ class AssessmentTechnique {
 		assignedLearningObjective nullable: true
 		description nullable: true, blank: true
 		procedure nullable: true, blank: true
-		duration nullable: true, blank:true
+		duration nullable: true, blank: true
 		userFavorite nullable: true
-		assessmentFeedback nullable:true
-		difficulty nullable:true, blank: true
-		type nullable:true, blank: true
-		whenToCarryOut nullable:true, blank: true
-		reference nullable:true, blank: true
-		assesmentype nullable:true, blank: true
+		assessmentFeedback nullable: true
+		difficulty nullable: true, blank: true
+		type nullable: true, blank: true
+		whenToCarryOut nullable: true, blank: true
+		reference nullable: true, blank: true
+		assesmentype nullable: true, blank: true
     }
 }

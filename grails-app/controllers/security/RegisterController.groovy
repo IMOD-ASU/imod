@@ -6,7 +6,6 @@ import grails.plugin.springsecurity.ui.RegistrationCode
 import imod.ImodUser
 
 class RegisterController extends grails.plugin.springsecurity.ui.RegisterController {
-
 	// override default value from base class
 	static defaultAction = 'index'
 
@@ -40,7 +39,6 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 			redirect action: 'index'
 			return
 		}
-
 
 		String salt = saltSource instanceof NullSaltSource ? null : command.username
 		def user = lookupUserClass().newInstance(email: command.email, username: command.username,

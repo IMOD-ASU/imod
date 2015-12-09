@@ -20,7 +20,7 @@ class Audience {
 	 * printing the Audience object will give the instance's description
 	 * @return the description of the audience
 	 */
-	String toString(){
+	String toString() {
 		description
 	}
 }

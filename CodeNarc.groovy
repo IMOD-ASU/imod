@@ -52,6 +52,39 @@ ruleset {
 	IfStatementBraces(priority: 2)
 	WhileStatementBraces(priority: 2)
 
+	// Formatting Rules
+	BlankLineBeforePackage(priority: 2)
+	BracesForClass(priority: 2)
+	BracesForForLoop(priority: 2)
+	BracesForIfElse(priority: 2)
+	BracesForMethod(priority: 2)
+	BracesForTryCatchFinally(priority: 2)
+	ClassJavadoc(enabled: false) // TODO enable
+	ClosureStatementOnOpeningLineOfMultipleLineClosure(priority: 2)
+	ConsecutiveBlankLines(priority: 2)
+	FileEndsWithoutNewline(priority: 2)
+	LineLength(enabled: false)
+	MissingBlankLineAfterImports(priority: 2)
+	MissingBlankLineAfterPackage(priority: 2)
+	SpaceAfterCatch(priority: 2)
+	SpaceAfterComma(priority: 2)
+	SpaceAfterClosingBrace(priority: 2)
+	SpaceAfterFor(priority: 2)
+	SpaceAfterIf(priority: 2)
+	SpaceAfterOpeningBrace(priority: 2)
+	SpaceAfterSemicolon(priority: 2)
+	SpaceAfterSwitch(priority: 2)
+	SpaceAfterWhile(priority: 2)
+	SpaceAroundClosureArrow(priority: 2)
+	SpaceAroundMapEntryColon (
+		priority: 2,
+		characterAfterColonRegex: /\s/
+	)
+	SpaceAroundOperator(priority: 2)
+	SpaceBeforeClosingBrace(priority: 2)
+	SpaceBeforeOpeningBrace(priority: 2)
+	TrailingWhitespace(priority: 2)
+
 	// Unnecessary Rules
 	AddEmptyString(priority: 2)
 	ConsecutiveLiteralAppends(priority: 2)
@@ -83,8 +116,7 @@ ruleset {
 	UnnecessaryIntegerInstantiation(priority: 2)
 	UnnecessaryLongInstantiation(priority: 2)
 	UnnecessaryModOne(priority: 2)
-	// TODO enable this rule
-	UnnecessaryObjectReferences(enabled: false)
+	UnnecessaryObjectReferences(enabled: false) // TODO enable
 	UnnecessaryNullCheck(priority: 2)
 	UnnecessaryNullCheckBeforeInstanceOf(priority: 2)
 	UnnecessaryOverridingMethod(priority: 2)

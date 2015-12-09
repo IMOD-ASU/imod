@@ -19,7 +19,6 @@ class CourseOverviewController {
         ]
 	}
 
-
     def create() {
         final jsonParser = new JsonSlurper()
         final parameters = jsonParser.parseText(params.parameters)
@@ -78,7 +77,6 @@ class CourseOverviewController {
 		)
     }
 
-
     def delete() {
         def instructorList = params.list('selected[]')
 
@@ -110,19 +108,16 @@ class CourseOverviewController {
 
         def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        if(syllabusPrefs != null) {
-
+        if (syllabusPrefs != null) {
         	[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' :syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList  == null ? '' :syllabusPrefs.sortIdList
+	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' : syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList == null ? '' : syllabusPrefs.sortIdList
 	        ]
-
     	} else {
-
     		[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
@@ -131,20 +126,16 @@ class CourseOverviewController {
 	            hideSectionsList: '',
 	            sortIdList: ''
 	        ]
-
     	}
-
-
     }
 
     // Method to update syllabus contentlist
     // to toggle hide show
     def updateSyllabusPrefs() {
-
     	def imod = Imod.get(params.imodId)
     	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
 
-    	if( syllabusPrefs != null ) {
+    	if ( syllabusPrefs != null ) {
     		syllabusPrefs.hideSectionsList = params.hideSectionsList
     	} else {
     		syllabusPrefs = new SyllabusPrefs(
@@ -166,7 +157,6 @@ class CourseOverviewController {
     // Stores the syllabus sections order
     // in the DB
     def updateSyllabusOrder() {
-
     	def imod = Imod.get(params.imodId)
     	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
 
@@ -180,7 +170,6 @@ class CourseOverviewController {
                 value: 'success'
             ] as JSON
         )
-
     }
 
     def generatedSyllabus(Long id) {
@@ -198,19 +187,16 @@ class CourseOverviewController {
 
     	def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        if(syllabusPrefs != null) {
-
+        if (syllabusPrefs != null) {
         	[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' :syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList  == null ? '' :syllabusPrefs.sortIdList
+	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' : syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList == null ? '' : syllabusPrefs.sortIdList
 	        ]
-
     	} else {
-
     		[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
@@ -219,7 +205,6 @@ class CourseOverviewController {
 	            hideSectionsList: '',
 	            sortIdList: ''
 	        ]
-
     	}
     }
 

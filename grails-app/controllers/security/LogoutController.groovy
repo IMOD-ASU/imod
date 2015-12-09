@@ -1,8 +1,8 @@
 package security
+
 import grails.plugin.springsecurity.SpringSecurityUtils
 
 class LogoutController {
-
 	/**
 	 * Index action. Redirects to the Spring security logout uri.
 	 */

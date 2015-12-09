@@ -1,4 +1,5 @@
 package imod
+
 import grails.converters.JSON
 
 class AssessmentController {
@@ -21,7 +22,6 @@ class AssessmentController {
 
 		// finds all the learning objective linked to this imod
 		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
-
 
 		// If no learning objective is selected
 		// select the first one if it exists
@@ -47,11 +47,11 @@ class AssessmentController {
 		final selectedDomain = selectedDomainCategory?.learningDomain
 		final content = currentLearningObjective?.contents
 		def dimension = []
-		if(content != null){
+		if (content != null) {
 			dimension = content[0]?.dimensions
 		}
 		def dimensionSize = 0
-		if (dimension != null){
+		if (dimension != null) {
 			dimensionSize  = dimension.size() - 1
 		}
 
@@ -64,10 +64,10 @@ class AssessmentController {
 			learningDomains: learningDomains,
 			learningObjectives: learningObjectives,
 			assessmentFeedback: assessmentFeedback,
-			selectedDomain:selectedDomain,
-			selectedDomainCategory:selectedDomainCategory,
-			dimension:dimension,
-			dimensionSize:dimensionSize
+			selectedDomain: selectedDomain,
+			selectedDomainCategory: selectedDomainCategory,
+			dimension: dimension,
+			dimensionSize: dimensionSize
 		]
 	}
 
@@ -166,7 +166,7 @@ class AssessmentController {
 	}
 
 	/*print assessment plan*/
-	def assessmentPlan(Long id){
+	def assessmentPlan(Long id) {
 		final currentImod = Imod.get(id)
         final learningObjectives = LearningObjective.findAllByImod(currentImod)
 		[

@@ -39,7 +39,7 @@ class DomainCategory {
 	 * printing the Domain Category will give the display name for the category
 	 * @return display name
 	 */
-	String toString(){
+	String toString() {
 		name
 	}
 }
