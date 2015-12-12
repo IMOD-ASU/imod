@@ -439,23 +439,16 @@ $(document).ready(
 
 		$('.timeFields').find('select').change(
 			function () {
-				var isValid = compareStartEndTimes();
-
-				if (!isValid) {
-					return false;
-				}
+				return compareStartEndTimes();
 			}
 		);
 
 		$('.dateFields').find('select').change(
 			function () {
-				var isValid = compareStartEndTimes();
-
-				if (!isValid) {
-					return false;
-				}
+				return compareStartEndTimes();
 			}
 		);
+
 		$('#attendance-box').click(
 			function () {
 				$('#attendance').val('Regular on-time attendance in this course is expected.');

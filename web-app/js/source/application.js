@@ -116,14 +116,13 @@ window.onload = function () {
 	'use strict';
 	cleanForm = $('form').find('select, textarea, input').serialize();
 };
+
 window.onbeforeunload = function () {
 	'use strict';
-	var dirtyForm;
+	var dirtyForm = $('form').find('select, textarea, input').serialize();
 
-	dirtyForm = $('form').find('select, textarea, input').serialize();
-	if (!formSubmitted) {
-		if (cleanForm !== dirtyForm) {
-			return 'You have unsaved changes. Please save them before proceeding.';
-		}
+	if (!formSubmitted && cleanForm !== dirtyForm) {
+		return 'You have unsaved changes. Please save them before proceeding.';
 	}
+	return null;
 };
