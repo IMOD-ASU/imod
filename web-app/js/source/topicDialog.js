@@ -588,7 +588,7 @@ function saveResource () {
 	if (unsavedResource === false) {
 		unsavedResource = true;
 	}
-	closeResourceModal();
+	return closeResourceModal();
 }
 
 function removeDuplicateResource (arr) {

@@ -683,6 +683,7 @@ $(document).ready(
 					$('#learning-objective-missing-required').dialog('open');
 					return false;
 				}
+				return true;
 			}
 		);
 
