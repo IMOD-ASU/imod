@@ -190,17 +190,11 @@ function displayPedagogyInformationInEdit () {
 }
 $('#title').change(function () {
 	'use strict';
-	var hasError = false;
-
 	if ($('#title').val() === $('#titlecheck').val()) {
 		$('#errorMessage').text('Enter title which is different from the original technique');
-		hasError = true;
-	} else {
-		hasError = false;
-	}
-	if (hasError === true) {
 		return false;
 	}
+	return true;
 });
 
 /**
@@ -533,7 +527,6 @@ $(document).ready(
 		var currContent;
 		var isPanelSelected;
 		var checkBoxName;
-		var hasError = false;
 
 		$.cookie.json = true;
 		repopulateCheckboxes();
@@ -623,42 +616,37 @@ $(document).ready(
 			}
 		);
 
-		$('#saveButton').on('click',
-		function () {
+		$('#saveButton').on('click', function () {
 			var tp = '';
 			var temp = '';
 			var cloneDetect = document.getElementById('cloneDetect').value;
 
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
-				hasError = true;
+				return false;
 			} else if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
 				$('#errorMessage').text('Learning Domains are required');
-				hasError = true;
+				return false;
 			} else if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
 				$('#errorMessage').text('Domain Categories are required');
-				hasError = true;
+				return false;
 			} else if ($('#knowledgeDimension').val() === '') {
 				$('#errorMessage').text('Knowledge Dimensions are required!');
-				hasError = true;
-			} else {
-				$('#learningDomain :selected').each(function (identifier, selected) {
-					tp = tp + $(selected).text() + ',';
-				});
-				$('#domainCategory :selected').each(function (identifier, selected) {
-					temp = temp + $(selected).text() + ',';
-				});
-				document.getElementById('domainSelected').value = tp;
-				document.getElementById('domainCategorySelected').value = temp;
-				hasError = false;
-			}
-			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
+				return false;
+			} else if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
 				$('#errorMessage').text('Enter title which is different from the original technique');
-				hasError = true;
-			}
-			if (hasError === true) {
 				return false;
 			}
+
+			$('#learningDomain :selected').each(function (identifier, selected) {
+				tp = tp + $(selected).text() + ',';
+			});
+			$('#domainCategory :selected').each(function (identifier, selected) {
+				temp = temp + $(selected).text() + ',';
+			});
+			document.getElementById('domainSelected').value = tp;
+			document.getElementById('domainCategorySelected').value = temp;
+			return true;
 		});
 
 		// When add new technique button is clicked open modal

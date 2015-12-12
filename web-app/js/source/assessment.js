@@ -591,19 +591,14 @@ $('#View').click(function () {
 	$('.allInputs').hide();
 	$('.allspans1').show();
 });
+
 $('#title').change(function () {
 	'use strict';
-	var hasError = false;
-
 	if ($('#title').val() === $('#titlecheck').val()) {
 		$('#errorMessage').text('Enter title which is different from the original technique');
-		hasError = true;
-	} else {
-		hasError = false;
-	}
-	if (hasError === true) {
 		return false;
 	}
+	return true;
 });
 
 function getMinHeight (liArray) {
@@ -698,7 +693,6 @@ $(document).ready(
 		var currContent;
 		var isPanelSelected;
 		var checkBoxName;
-		var hasError = false;
 		var cloneDetect = '';
 
 		// Load techniques on page load
@@ -769,38 +763,34 @@ $(document).ready(
 			updateTextArea(checkBoxName);
 			filterAssessmentTechniques();
 		});
-		$('#saveButton').on('click',
-		function () {
-			hasError = false;
+		$('#saveButton').on('click', function () {
 			cloneDetect = document.getElementById('cloneDetect').value;
 
 			if ($('#title').val() === '') {
 				$('#errorMessage').text('Technique must have a title!');
-				hasError = true;
+				return false;
 			}
 
 			if ($('#knowledgeDimension').val() === '') {
 				$('#errorMessage').text('Knowledge Dimensions are required!');
-				hasError = true;
+				return false;
 			}
 
 			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
 				$('#errorMessage').text('Learning Domains are required');
-				hasError = true;
+				return false;
 			}
 
 			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
 				$('#errorMessage').text('Domain Categories are required');
-				hasError = true;
+				return false;
 			}
 			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
 				$('#errorMessage').text('Enter title which is different from the original technique');
-				hasError = true;
-			}
-
-			if (hasError === true) {
 				return false;
 			}
+
+			return true;
 		});
 
 		// When add new technique button is clicked open modal
