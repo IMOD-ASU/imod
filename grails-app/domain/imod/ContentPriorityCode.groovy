@@ -7,11 +7,11 @@ class ContentPriorityCode {
 		version false
 	}
 
-	def String toString() {
-		return description
+	String toString() {
+		description
 	}
 
-	public static List<ContentPriorityCode> values() {
-		return ContentPriorityCode.list() ?: []
+	static List<ContentPriorityCode> values() {
+		ContentPriorityCode.list() ?: []
 	}
 }

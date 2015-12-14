@@ -2,6 +2,8 @@ var errorMessages = [];
 var isFlashing = null;
 var content = '';
 var resourceOptions = '';
+var resourceData = [];
+var unsavedResource = false;
 
 function showTopicDialog () {
 	'use strict';
@@ -175,10 +177,12 @@ function openDimModal () {
 	background.css('display', 'block');
 }
 
-function getResource () {
+function getTempResource () {
 	'use strict';
 	var contentID = content.split('topicResources')[1];
 	var resourceDiv = $('#resourceList tbody');
+	var inc;
+	var resourcesNew;
 
 	resourceDiv.html('');
 
@@ -192,8 +196,76 @@ function getResource () {
 		success: function (data) {
 			var resources = data.resources;
 
+			for (inc = 0; inc < resourceData.length; inc++) {
+				if (resourceData[inc].contentID === contentID) {
+					resources.push({
+						class: 'imod.Resource',
+						content: {
+							class: 'imod.Content',
+							id: contentID
+						},
+						description: resourceData[inc].resourceDescription,
+						id: resourceData[inc].resourceID,
+						name: resourceData[inc].resourceName,
+						resourceType: resourceData[inc].resourceType
+					});
+				}
+			}
+			$.each(resources, function (key, value) {
+				value.id = value.id.toString();
+				value.content.id = value.content.id.toString();
+			});
+			resourcesNew = removeDuplicateResource(resources);
+
+
+			$.each(resourcesNew, function (key, value) {
+				var id = value.id;
+
+				// FIXME move html out of JS
+				$('<tr id="' + id + '" class="resourceItem">' +
+					'<td class="saveIcon">' +
+					'<i class="fa fa-square-o"></i>' +
+					'</td><td class="resourceName">' +
+					'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
+					'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
+					'</td><td class="resourceDescription">' +
+					'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
+					'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
+					'</td><td class="resourceType">' +
+					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
+					resourceOptions +
+					'</select> ' +
+
+					'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
+					'</td></tr>'
+				).appendTo(resourceDiv);
+				$('#resourceType' + id).val(value.resourceType);
+			});
+		}
+	});
+}
+function getResource () {
+	'use strict';
+	var contentID = content.split('topicResources')[1];
+	var resourceDiv = $('#resourceList tbody');
+
+	resourceDiv.html('');
+
+
+	$.ajax({
+		url: '../../content/getResource',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			contentID: contentID
+		},
+		success: function (data) {
+			var resources = data.resources;
+
+
 			$.each(resources, function (key, value) {
 				var id = value.id;
+
 
 				// FIXME move html out of JS
 				$('<tr id="' + id + '" class="resourceItem">' +
@@ -224,7 +296,11 @@ function openResourceModal () {
 	content = this.id;
 	$('#selectResource').css('display', 'inherit');
 	$('#selectResourceBackground').css('display', 'block');
-	getResource();
+	if (unsavedResource === true) {
+		getTempResource();
+	} else {
+		getResource();
+	}
 }
 
 function closeResourceModal () {
@@ -307,7 +383,11 @@ function saveTopic () {
 			JSONData: contentData
 		},
 		success: function () {
-			location.reload();
+			if (resourceData.length > 0) {
+				outerSaveResource();
+			} else {
+				location.reload();
+			}
 		}
 	});
 }
@@ -463,10 +543,13 @@ function addResource () {
 
 function saveResource () {
 	'use strict';
-	var imodID = $('#imodID').val();
+	// var imodID = $('#imodID').val();
 	var contentID = content.split('topicResources')[1];
-	var resourceData = [];
+	// var resourceData = [];
 	var hasError = false;
+	var contentResource = $('#resourceDataStore');
+	var resourceDataNew;
+	var resource;
 
 	$('#resourceList tbody tr').each(
 		function () {
@@ -495,17 +578,55 @@ function saveResource () {
 	if (hasError) {
 		return false;
 	}
-	resourceData = JSON.stringify(resourceData);
+	resourceDataNew = removeDuplicateResource(resourceData);
+	resource = JSON.stringify(resourceDataNew);
+
+	if (contentResource.val !== resource) {
+		contentResource.val(resource);
+	}
+
+	if (unsavedResource === false) {
+		unsavedResource = true;
+	}
+	return closeResourceModal();
+}
+
+function removeDuplicateResource (arr) {
+	'use strict';
+	var cleaned = [];
+
+	arr.forEach(function (itm) {
+		var unique = true;
+
+		cleaned.forEach(function (itmTwo) {
+			if (_.isEqual(itm, itmTwo)) {
+				unique = false;
+			}
+		});
+		if (unique) {
+			cleaned.push(itm);
+		}
+	});
+	return cleaned;
+}
+
+function outerSaveResource () {
+	'use strict';
+	var imodID = $('#imodID').val();
+	var resource = $('#resourceDataStore').val();
+
 	$.ajax({
 		url: '../../content/saveResource/',
 		type: 'POST',
 		dataType: 'json',
 		data: {
 			id: imodID,
-			JSONData: resourceData
+			JSONData: resource
 		},
 		success: function () {
-			closeResourceModal();
+			unsavedResource = false;
+			location.reload();
+			// closeResourceModal();
 		}
 	});
 }

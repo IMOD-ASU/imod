@@ -7,8 +7,8 @@ class CourseOverviewController {
     def springSecurityService
 
     static allowedMethods = [
-        delete:           'POST',
-        create:           'POST',
+        delete: 'POST',
+        create: 'POST',
         updateSyllabusPrefs: 'POST',
     ]
 
@@ -19,12 +19,11 @@ class CourseOverviewController {
         ]
 	}
 
-
     def create() {
         final jsonParser = new JsonSlurper()
         final parameters = jsonParser.parseText(params.parameters)
 
-        parameters.each() {
+        parameters.each {
             final firstName = it.firstName
             final lastName = it.lastName
             final email = it.email
@@ -78,7 +77,6 @@ class CourseOverviewController {
 		)
     }
 
-
     def delete() {
         def instructorList = params.list('selected[]')
 
@@ -102,7 +100,7 @@ class CourseOverviewController {
 
         def text = '<ul>'
 
-        contentList.each() {
+        contentList.each {
             text += getSubContent(it)
         }
 
@@ -110,19 +108,16 @@ class CourseOverviewController {
 
         def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        if(syllabusPrefs != null) {
-
+        if (syllabusPrefs != null) {
         	[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' :syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList  == null ? '' :syllabusPrefs.sortIdList
+	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' : syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList == null ? '' : syllabusPrefs.sortIdList
 	        ]
-
     	} else {
-
     		[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
@@ -131,20 +126,16 @@ class CourseOverviewController {
 	            hideSectionsList: '',
 	            sortIdList: ''
 	        ]
-
     	}
-
-
     }
 
     // Method to update syllabus contentlist
     // to toggle hide show
     def updateSyllabusPrefs() {
-
     	def imod = Imod.get(params.imodId)
     	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
 
-    	if( syllabusPrefs != null ) {
+    	if ( syllabusPrefs != null ) {
     		syllabusPrefs.hideSectionsList = params.hideSectionsList
     	} else {
     		syllabusPrefs = new SyllabusPrefs(
@@ -166,7 +157,6 @@ class CourseOverviewController {
     // Stores the syllabus sections order
     // in the DB
     def updateSyllabusOrder() {
-
     	def imod = Imod.get(params.imodId)
     	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
 
@@ -180,7 +170,6 @@ class CourseOverviewController {
                 value: 'success'
             ] as JSON
         )
-
     }
 
     def generatedSyllabus(Long id) {
@@ -190,7 +179,7 @@ class CourseOverviewController {
 
         def text = '<ul>'
 
-        contentList.each() {
+        contentList.each {
             text += getSubContent(it)
         }
 
@@ -198,19 +187,16 @@ class CourseOverviewController {
 
     	def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        if(syllabusPrefs != null) {
-
+        if (syllabusPrefs != null) {
         	[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
 	            learningObjectives: learningObjectives,
 	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' :syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList  == null ? '' :syllabusPrefs.sortIdList
+	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' : syllabusPrefs.hideSectionsList,
+	            sortIdList: syllabusPrefs.sortIdList == null ? '' : syllabusPrefs.sortIdList
 	        ]
-
     	} else {
-
     		[
 	            currentImod: currentImod,
 	            currentPage: 'syllabus',
@@ -219,7 +205,6 @@ class CourseOverviewController {
 	            hideSectionsList: '',
 	            sortIdList: ''
 	        ]
-
     	}
     }
 
@@ -230,14 +215,14 @@ class CourseOverviewController {
 
         def text = '<ul>'
 
-        contentList.each() {
+        contentList.each {
             text += getSubContent(it)
         }
 
         text += '</ul>'
 
         renderPdf(
-            template: "/courseOverview/syllabus",
+            template: '/courseOverview/syllabus',
             model: [
                 currentImod: currentImod,
                 currentPage: 'syllabus',
@@ -248,12 +233,12 @@ class CourseOverviewController {
         )
     }
 
-    private def getSubContent(Content current) {
+    private getSubContent(Content current) {
         def text = '<li>' + current.topicTitle
 
         if (current.subContents != null) {
             text += '<ul>'
-            current.subContents.each() {
+            current.subContents.each {
                 text += getSubContent(it)
             }
             text += '</ul>'
@@ -261,6 +246,7 @@ class CourseOverviewController {
 
         text +=  '</li>'
 
-        return text
+        // returns text
+        text
     }
 }

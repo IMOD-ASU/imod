@@ -1,5 +1,5 @@
-
 package imod
+
 import grails.converters.JSON
 
 class AssessmentTechniqueController {
@@ -24,7 +24,6 @@ class AssessmentTechniqueController {
 		)
 	}
 
-
 	def assessmentplan() {
 		final assessmentTechInstance = AssessmentTechnique.findAllByAssigncheck(true)
 		final domainCategories = DomainCategory.list()
@@ -43,23 +42,20 @@ class AssessmentTechniqueController {
 		)
 	}
 
-
 	/**
 	 * get info on a selected technique
 	 */
 	def display(Long id) {
-		final assessmentTechInstance1 = AssessmentTechnique.findAllByAssigncheck(true)
-
-		String [] knowledgedimensions = AssessmentTechnique.get(id).knowledgeDimension;
-		String [] learningdomains = AssessmentTechnique.get(id).learningDomain;
-		String [] domaincategories = AssessmentTechnique.get(id).domainCategory;
+		String [] knowledgedimensions = AssessmentTechnique.get(id).knowledgeDimension
+		String [] learningdomains = AssessmentTechnique.get(id).learningDomain
+		String [] domaincategories = AssessmentTechnique.get(id).domainCategory
 
 		render (
 			[
 				assessmentTechnique: AssessmentTechnique.get(id),
-				knowledgeDimension:knowledgedimensions.join(","),
-				learningDomains: learningdomains.join(","),
-				domainCategories: domaincategories.join(",")
+				knowledgeDimension: knowledgedimensions.join(','),
+				learningDomains: learningdomains.join(','),
+				domainCategories: domaincategories.join(',')
 			] as JSON
 		)
 	}
@@ -91,7 +87,7 @@ class AssessmentTechniqueController {
 		newTechnique.assigncheck = params.assignedToLearningObjective as boolean
 		newTechnique.favcheck = params.favoriteTechnique as boolean
 
-		newTechnique.assessmentFeedback= AssessmentFeedback.findByName(params.assessmentFeedback1)
+		newTechnique.assessmentFeedback = AssessmentFeedback.findByName(params.assessmentFeedback1)
 
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
@@ -110,7 +106,6 @@ class AssessmentTechniqueController {
 		newTechnique.save()
 
 		// This checks when a technique is assigned to a learning objective
-
 		if (params.assigncheck == true) {
 			// get current user object
 			def currentLearningObjective = LearningObjective.findById(learningObjectiveID)
@@ -133,7 +128,6 @@ class AssessmentTechniqueController {
 			// store relationship
 			currentUser.save()
 		}
-
 
 		redirect(
 			controller: 'assessment',
@@ -157,15 +151,13 @@ class AssessmentTechniqueController {
 			newTechnique.knowledgeDimension.clear()
 			newTechnique.learningDomain.clear()
 			newTechnique.domainCategory.clear()
-			newTechnique.activityFocus.clear()
-
 		}
 
 		// Store text fields
 		newTechnique.title = params.title
 		newTechnique.description = params.activityDescription
 		newTechnique.procedure = params.assessmentProcedure
-		newTechnique.duration= params.duration
+		newTechnique.duration = params.duration
 		newTechnique.difficulty = params.assessmentDifficulty
 		newTechnique.whenToCarryOut = params.assessmentTime
 		newTechnique.reference = params.references
@@ -173,55 +165,47 @@ class AssessmentTechniqueController {
 		newTechnique.favcheck = params.favoriteTechnique as boolean
 		newTechnique.type = params.assessmentType
 
-		newTechnique.assessmentFeedback= AssessmentFeedback.findByName(params.assessmentFeedback)
+		newTechnique.assessmentFeedback = AssessmentFeedback.findByName(params.assessmentFeedback)
 
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)
 
-		params.domainCategory.each{
+		params.domainCategory.each {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName(it)
 			)
 		}
 
-		String[] kD = params.knowledgeDimension.split(",");
-		String[] lD = params.learningDomain;
-		String[] dC = params.domainCategory;
+		String[] kD = params.knowledgeDimension.split(',')
+		String[] lD = params.learningDomain
+		String[] dC = params.domainCategory
 
 		if (kD != null) {
-			for(int i=0; i < kD.length; i++) {
-
-				if (kD[i]!=null) {
+			for (int i = 0; i < kD.length; i++) {
+				if (kD[i] != null) {
 					newTechnique.addToKnowledgeDimension(
 					KnowledgeDimension.findByDescription(kD[i]))
 				}
-
 			}
 		}
 
 		if (lD != null) {
-			for(int i=0; i < lD.length; i++) {
-
-				if (lD[i]!=null) {
+			for (int i = 0; i < lD.length; i++) {
+				if (lD[i] != null) {
 					newTechnique.addToLearningDomain(LearningDomain.findByName(lD[i]))
 				}
-
 			}
 		}
 
 		if (dC != null) {
-			for(int i=0; i < dC.length; i++) {
-
-				if (dC[i]!=null) {
-					if (DomainCategory.findByName(dC[i])!= null)
-					{
-
-					println (dC[i])
-					newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
+			for (int i = 0; i < dC.length; i++) {
+				if (dC[i] != null) {
+					if (DomainCategory.findByName(dC[i]) != null) {
+						println (dC[i])
+						newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
 					}
 				}
-
 			}
 		}
 
@@ -262,7 +246,7 @@ class AssessmentTechniqueController {
 		)
 	}
 
-	def assignFavorite(Long id){
+	def assignFavorite(Long id) {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 		// add the technique to the users favorite list
@@ -277,7 +261,7 @@ class AssessmentTechniqueController {
         )
 	}
 
-	def unassignFavorite(Long id){
+	def unassignFavorite(Long id) {
 		// get current user object
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 		// add the technique to the users favorite list
@@ -292,7 +276,7 @@ class AssessmentTechniqueController {
         )
 	}
 
-	def assignToLearningObjective(){
+	def assignToLearningObjective() {
 		final data = request.JSON
 		// get current user object
 		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
@@ -308,7 +292,7 @@ class AssessmentTechniqueController {
         )
 	}
 
-	def unassignToLearningObjective(){
+	def unassignToLearningObjective() {
 		final data = request.JSON
 		// get current user object
 		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())

@@ -4,17 +4,10 @@ package imod
  * Describes a content topic that will be covered in the IMODS
  */
 class Content {
-	/*
-	 ***********************
-	 * Required Attributes *
-	 ***********************
-	 */
-
 	/**
 	 * FIXME: This is correct but needs to be set by jstree
 	 */
 	Content parentContent
-
 
 	/*
 	 ***********************
@@ -37,12 +30,6 @@ class Content {
 	 */
 	// FIXME rename to hasExternalPreRequisite
 	Boolean preReq
-
-	/*
-	 *****************
-	 * Relationships *
-	 *****************
-	 */
 
 	Imod imod
 
@@ -80,13 +67,6 @@ class Content {
 		Imod
 	]
 
-
-	/*
-	 *****************
-	 * Configuration *
-	 *****************
-	 */
-
 	/**
 	 * Describes which attributes an contain a null (empty) value
 	 */
@@ -112,13 +92,6 @@ class Content {
 	 */
 	static transients = ['priorities']
 
-
-	/*
-	 *************
-	 * Functions *
-	 *************
-	 */
-
 	/**
 	 * Lists all of the possible priorities that a content could have
 	 * @return array of priorities
@@ -129,11 +102,11 @@ class Content {
 			'Very Important',
 			'Good to Know'
 		]
-		return priorityList
+		priorityList
 	}
 
 	String toString() {
-	    return topicTitle
+	    topicTitle
 	}
 
 	/**
@@ -149,8 +122,7 @@ class Content {
 		}
 		if (currentContent == contentToAdd) {
 			errors.rejectValue('subContents', 'Cannot contain self')
-		}
-		else{
+		} else {
 			return checkRecursion(currentContent.parentContent, contentToAdd, errors)
 		}
 	}

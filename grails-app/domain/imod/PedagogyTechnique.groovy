@@ -33,7 +33,7 @@ class PedagogyTechnique {
 	]
 
 	String toString() {
-	    return title
+	    title
 	}
 
 	static mapping = {
@@ -52,6 +52,6 @@ class PedagogyTechnique {
 		reference nullable: true
 		strategyDescription nullable: true
 		userFavorite nullable: true
-		pedagogyDuration nullable:true
+		pedagogyDuration nullable: true
     }
 }

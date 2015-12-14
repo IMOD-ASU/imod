@@ -16,7 +16,7 @@ class PedagogyReference {
 	]
 
 	String toString() {
-	    return title
+	    title
 	}
 
 	static mapping = {

@@ -1,4 +1,5 @@
 package imod
+
 import grails.converters.JSON
 
 class PedagogyController {
@@ -15,7 +16,6 @@ class PedagogyController {
 	 * @param id
 	 */
 	def index(Long id, Long learningObjectiveID) {
-
 		// get the selected imod
 		final currentImod = Imod.get(id)
 
@@ -51,17 +51,19 @@ class PedagogyController {
 		def knowDimensionList = []
 		def dimension=[]
 
-		if (content != null){
-			content.each(){
+		if (content != null) {
+			content.each {
 				knowDimensionList.push(it.dimensions)
 			}
 			// merge multiple lists into one
 			dimension = knowDimensionList.flatten()
-			//remove duplicates
-			dimension = dimension.unique { a, b -> a <=> b }
+			// remove duplicates
+			dimension = dimension.unique { a, b ->
+				a <=> b
+			}
 		}
 		def dimensionSize = 0
-		if (dimension != null){
+		if (dimension != null) {
 			dimensionSize  = dimension.size() - 1
 		}
 
@@ -76,10 +78,10 @@ class PedagogyController {
 			pedagogyModes: pedagogyModes,
 			pedagogyFocuses: pedagogyFocuses,
 			pedagogyDuration: pedagogyDuration,
-			selectedDomain:selectedDomain,
-			selectedDomainCategory:selectedDomainCategory,
-			dimension:dimension,
-			dimensionSize:dimensionSize
+			selectedDomain: selectedDomain,
+			selectedDomainCategory: selectedDomainCategory,
+			dimension: dimension,
+			dimensionSize: dimensionSize
 		]
 	}
 
@@ -108,7 +110,7 @@ class PedagogyController {
 		}
 
 		// find all technique where both the knowledge dimension and the domain category match
-		final idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
+		final idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
 				knowledgeDimension {
 					'in' ('id', selectedKnowledgeDimensions)
@@ -126,7 +128,7 @@ class PedagogyController {
 		}
 
 		// find all technique that are not ideal, but have the learning domain
-		final extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria() {
+		final extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
 				learningDomain {
 					'in' ('id', selectedLearningDomains)
@@ -153,7 +155,7 @@ class PedagogyController {
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 		final favoriteTechniques = currentUser.favoriteTechnique.id
 		def stringfavoriteTechniques = []
-		//Convert int to string
+		// Convert int to string
 		for (def favoriteTechnique in favoriteTechniques) {
 			stringfavoriteTechniques.add(favoriteTechnique.toString())
 		}
@@ -161,7 +163,7 @@ class PedagogyController {
 		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
 		final LOPedagogyTechniques = currentLearningObjective?.pedagogyTechniques.id
 		def stringLOPedagogyTechniques = []
-		//Convert int to string
+		// Convert int to string
 		for (def LOPedagogyTechnique in LOPedagogyTechniques) {
 			stringLOPedagogyTechniques.add(LOPedagogyTechnique.toString())
 		}
@@ -178,8 +180,6 @@ class PedagogyController {
 
 	/**
 	 * Find assigned techniques to a given Learning Objective
-	 * expects params
-	 *  - learning domain: ID of each selected domain
 	 */
 	def findAssignedTechniques() {
 		final data = request.JSON
@@ -187,7 +187,7 @@ class PedagogyController {
 		final LOPedagogyTechniques = currentLearningObjective.pedagogyTechniques.title
 		def stringLOPedagogyTechniques = []
 
-		//Convert int to string
+		// Convert int to string
 		for (def LOPedagogyTechnique in LOPedagogyTechniques) {
 			stringLOPedagogyTechniques.add(LOPedagogyTechnique.toString())
 		}
@@ -201,8 +201,10 @@ class PedagogyController {
 			  )
 	}
 
-	/*print instructional plan*/
-	def instructionalPlan(Long id){
+	/**
+	 * Print instructional plan
+	 */
+	def instructionalPlan(Long id) {
 		final currentImod = Imod.get(id)
         final learningObjectives = LearningObjective.findAllByImod(currentImod)
 		def arrayOfLOPedagogyTechniques = []
@@ -211,7 +213,7 @@ class PedagogyController {
 			final LOPedagogyTechniques = currentLearningObjective.pedagogyTechniques.title
 			def stringLOPedagogyTechniques = []
 
-			//Convert int to string
+			// Convert int to string
 			for (def LOPedagogyTechnique in LOPedagogyTechniques) {
 				stringLOPedagogyTechniques.add(LOPedagogyTechnique.toString())
 			}

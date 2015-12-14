@@ -20,7 +20,6 @@ class Imod {
 	String	url
 	String	subjectArea
 
-
 	/*
 	 ***********************
 	 * Optional Attributes *
@@ -48,7 +47,6 @@ class Imod {
 	 */
 	CoursePolicy	coursePolicy
 	Schedule		schedule
-
 
 	static belongsTo = [
 		/**
@@ -88,7 +86,6 @@ class Imod {
 		 */
 		prefs: 				SyllabusPrefs
 	]
-
 
 	/*
 	 *****************
@@ -131,7 +128,6 @@ class Imod {
 		version false
 	}
 
-
 	/*
 	 *************
 	 * Functions *
@@ -142,7 +138,7 @@ class Imod {
 	 * printing the Help will give the tool tip text
 	 * @return tool tip text
 	 */
-	def String toString() {
-		return name
+	String toString() {
+		name
 	}
 }

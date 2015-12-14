@@ -4,7 +4,6 @@ import grails.converters.JSON
 import groovy.json.JsonSlurper
 
 class ContentController {
-
 	static allowedMethods = [
 		addNewTopic: 'GET',
 		saveTopic: 'POST',
@@ -22,8 +21,7 @@ class ContentController {
 		]
 	}
 
-	def addNewTopic(Long id) {
-		final currentImod = Imod.get(id)
+	def addNewTopic() {
 		final dimensions = KnowledgeDimensionEnum.values()*.value
 		final priorities = Content.priorities()
 
@@ -41,20 +39,19 @@ class ContentController {
 		def success = []
 		def fail = []
 
-		contentData.each() {
-
-			/* If a new topic is added, create an ID. Otherwise, the topic already exists, so use its ID*/
-			if(it.contentID == 'undefined'){
+		contentData.each {
+			// If a new topic is added, create an ID. Otherwise, the topic already exists, so use its ID
+			if (it.contentID == 'undefined') {
 				def contentInstance = new Content(imod: currentImod, failOnError: true)
 
 				contentInstance.save()
 				if (!contentInstance) {
 					contentInstance.errors.allErrors.each {
-						log.error messageSource.getMessage(it,null)
+						log.error messageSource.getMessage(it, null)
 					}
 				}
-				 contentID = contentInstance.id
-			}else{
+				contentID = contentInstance.id
+			} else {
 				 contentID = it.contentID.toLong()
 			}
 
@@ -66,7 +63,7 @@ class ContentController {
 			def contentInstance = Content.get(contentID)
 
 			if (it.dimensions != '') {
-				dimensions = it.dimensions.split(',').collect() {
+				dimensions = it.dimensions.split(',').collect {
 					it.toUpperCase() as KnowledgeDimensionEnum
 				}
 			}
@@ -79,11 +76,10 @@ class ContentController {
 
 			if (!contentInstance) {
 				contentInstance.errors.allErrors.each {
-					log.error messageSource.getMessage(it,null)
+					log.error messageSource.getMessage(it, null)
 				}
 				fail.add(contentID)
-			}
-			else {
+			} else {
 				success.add(contentID)
 			}
 		}
@@ -101,7 +97,7 @@ class ContentController {
 
 		def success = []
 
-		contentIDList.each() { item ->
+		contentIDList.each { item ->
 			def deletedContent = Content.get(item)
 
 			// remove any parent association
@@ -116,7 +112,7 @@ class ContentController {
 			if (children != null) {
 				childrenList.addAll(children)
 
-				childrenList.each() { child ->
+				childrenList.each { child ->
 					deletedContent.removeFromSubContents(child)
 				}
 			}
@@ -127,7 +123,7 @@ class ContentController {
 			// remove learning objective association
 			if (learningObjectives != null) {
 				learningObjectiveList.addAll(learningObjectives)
-				learningObjectiveList.each() {
+				learningObjectiveList.each {
 					deletedContent.removeFromObjectives(it)
 				}
 			}
@@ -147,11 +143,11 @@ class ContentController {
 		final contents = data.topics
 		final idArray = data.idArray
 
-		contents.each() {
+		contents.each {
 			buildHierarchy(it, null)
 		}
 
-		setLearningObjective(data.objId, idArray);
+		setLearningObjective(data.objId, idArray)
 
 		render(
 			[
@@ -172,13 +168,12 @@ class ContentController {
 			def parentContent = Content.get(parentID)
 			parentContent.addToSubContents(childContent)
 			childContent.parentContent = parentContent
-		}
-		else {
+		} else {
 			childContent.parentContent = null
 		}
 
 		if (content.child != '') {
-			content.child.each(){
+			content.child.each {
 				buildHierarchy(it, content.id)
 			}
 		}
@@ -188,18 +183,19 @@ class ContentController {
 		def learningObjectiveInstance = LearningObjective.get(objectiveID)
 
 		if (idArray != null) {
-			def contentList = idArray.collect {Content.get(it)}
+			def contentList = idArray.collect {
+				Content.get(it)
+			}
 			learningObjectiveInstance.contents.clear()
-			contentList.each() {
+			contentList.each {
 				learningObjectiveInstance.addToContents(it)
 			}
 
 			// reset the definition
 			learningObjectiveInstance.buildDefinition()
 
-			learningObjectiveInstance.save(failOnError:true)
-		}
-		else {
+			learningObjectiveInstance.save(failOnError: true)
+		} else {
 			learningObjectiveInstance.contents = null
 		}
 	}
@@ -226,15 +222,14 @@ class ContentController {
 		def success = []
 		def fail = []
 
-		resourceData.each() {
-
+		resourceData.each {
 			final resourceName = it.resourceName
 			final resourceDescription = it.resourceDescription
 			final resourceType = it.resourceType
 			def resourceInstance = null
 			def resourceID = null
 
-			if (it.resourceID == "null" ) {
+			if (it.resourceID == 'null') {
 				def contentInstance = Content.get(it.contentID)
 				resourceInstance = new Resource(
 					content: contentInstance,
@@ -253,16 +248,14 @@ class ContentController {
 				resourceInstance.description = resourceDescription
 				resourceInstance.resourceType = resourceType
 				resourceInstance.save()
-
 			}
 
 			if (!resourceInstance) {
 				resourceInstance.errors.allErrors.each {
-					log.error messageSource.getMessage(it,null)
+					log.error messageSource.getMessage(it, null)
 				}
 				fail.add(resourceID)
-			}
-			else {
+			} else {
 				success.add(resourceID)
 			}
 		}
@@ -280,7 +273,7 @@ class ContentController {
 
 		def success = []
 
-		resourceIDList.each() {
+		resourceIDList.each {
 			def deletedResource = Resource.get(it)
 			deletedResource.delete()
 			success.add(it)
