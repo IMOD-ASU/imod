@@ -97,14 +97,20 @@ class CourseOverviewController {
         final currentImod = Imod.get(id)
         final learningObjectives = LearningObjective.findAllByImod(currentImod)
         final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+        def count = 0;
 
         def text = '<ul>'
 
         contentList.each {
+        	count++ ;
             text += getSubContent(it)
         }
 
         text += '</ul>'
+
+        if (!count) {
+        	text = "";
+        }
 
         def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
@@ -176,14 +182,20 @@ class CourseOverviewController {
         final currentImod = Imod.get(id)
         final learningObjectives = LearningObjective.findAllByImod(currentImod)
         final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+        def count = 0;
 
         def text = '<ul>'
 
         contentList.each {
+        	count++;
             text += getSubContent(it)
         }
 
         text += '</ul>'
+
+        if (!count) {
+        	text = "";
+        }
 
     	def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 

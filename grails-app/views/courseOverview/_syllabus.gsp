@@ -14,7 +14,7 @@
         </title>
 
         <g:external dir="css/source" file="syllabus.css" media="screen, print"/>
-        
+
 
     </head>
     <body class="syllabus_pdf">
@@ -24,35 +24,35 @@
             <div class="course-details">
                 <div class="form-title">
                     <h3>Course Details</h3>
-                    
+
                 </div>
                 <div class="fieldcontain">
                     <label for="name">
-                        <g:message code="imod.name.label" default="Course Title" />: 
+                        <g:message code="imod.name.label" default="Course Title" />:
                     </label>
                     <strong>${currentImod?.name.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="imodNumber">
-                        <g:message code="imod.imodNumber.label" default="Course Number" />: 
+                        <g:message code="imod.imodNumber.label" default="Course Number" />:
                     </label>
                     <strong>${currentImod?.imodNumber.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="url">
-                        <g:message code="imod.url.label" default="Course URL" />: 
+                        <g:message code="imod.url.label" default="Course URL" />:
                     </label>
                     <strong>${currentImod?.url.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="courseLocation">
-                        <g:message code="imod.courseLocation.label" default="Classroom Location" />: 
+                        <g:message code="imod.courseLocation.label" default="Classroom Location" />:
                     </label>
                     <strong>${currentImod?.courseLocation.encodeAsCustomEscape()}</strong>
                 </div>
                 <div class="fieldcontain">
                     <label for="courseSemester">
-                        <g:message code="imod.courseSemester.label" default="Semester" />: 
+                        <g:message code="imod.courseSemester.label" default="Semester" />:
                     </label>
                     <strong>${currentImod?.courseSemester.encodeAsCustomEscape()}</strong>
                 </div>
@@ -86,7 +86,7 @@
                 </div>
 
                 <g:if test="${currentImod?.schedule?.repeats?.description == "Weekly" || currentImod?.schedule?.repeats?.description == "Daily"}">
-         
+
                     <div class="fieldcontain">
                         <label>
                             Repeats Every
@@ -97,14 +97,14 @@
                 </g:if>
 
                 <g:if test="${currentImod?.schedule?.repeats?.description == "Weekly" }">
-                    
+
                     <div class="fieldcontain">
                         <label for="scheduleWeekDays">
                             Repeats On
                         </label>
                         <g:each in="${imod.ScheduleWeekDays.list()}" var="scheduleWeekDays" status="i">
-                            
-                            <g:if test="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}">                           
+
+                            <g:if test="${scheduleWeekDays.description == currentImod?.schedule?.scheduleWeekDays?.find{p -> p.id == scheduleWeekDays?.id}.toString()}">
                                 <label for="weekdays">
                                     <strong>${scheduleWeekDays.description}</strong>
                                 </label>
@@ -136,7 +136,7 @@
                                 ,
                             </g:if>
                         </g:each>
-                        
+
                     </strong>
                 </div>
                 <div class="fieldcontain">
@@ -192,11 +192,11 @@
 
                 <ul>
                 <g:each in="${currentImod?.instructors}" var="instructor">
-                    
+
                     <li>
                         <strong>${instructor.firstName.encodeAsCustomEscape()} ${instructor.lastName.encodeAsCustomEscape()}</strong><br/>
                         ${instructor.role.encodeAsCustomEscape()}<br/>
-                        ${instructor.email.encodeAsCustomEscape()}<br/>                    
+                        ${instructor.email.encodeAsCustomEscape()}<br/>
                         <g:if test="${instructor.officeHours != null && !instructor.officeHours.isEmpty()}">
                             Office Hours: ${instructor.officeHours.encodeAsCustomEscape()}<br/>
                         </g:if>
@@ -222,7 +222,7 @@
                 </div>
 
                 <ul class="learning-objective list-wrapper">
-                    <g:each var="learningObjective" in="${learningObjectives}">                    
+                    <g:each var="learningObjective" in="${learningObjectives}">
                         <g:if test="${learningObjective.definition != null && learningObjective.definition != "" }">
                             <li class="learning-objective list-item">
                                 ${ learningObjective.definition.encodeAsCustomEscape() }
