@@ -441,6 +441,10 @@ class BootStrap {
 				description: 'Every Monday and Wednesday'
 			).save()
 
+			def ScheduleRepeatsMWF = new ScheduleRepeats(
+				description: 'Every Monday, Wednesday and Friday'
+			).save()
+
 			def ScheduleRepeatsTTh = new ScheduleRepeats(
 				description: 'Every Tuesday and Thursday'
 			).save()
