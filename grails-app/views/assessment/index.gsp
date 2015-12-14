@@ -35,6 +35,11 @@
 	<body>
 		<div class="modalBackgroundFavorites"></div>
 		<div class="favorites-modal">
+			<fieldset class="titleField draggable-handle">
+				<div id="editTitle">
+					<b> Favorite Assessment Techniques</b>
+				</div>
+			</fieldset>
 			<div class="favorites-inner">
 			</div>
 		</div>
