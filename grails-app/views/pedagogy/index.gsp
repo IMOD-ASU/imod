@@ -34,6 +34,11 @@
 	</head>
 
 	<body>
+		<div class="modalBackgroundFavorites"></div>
+		<div class="favorites-modal">
+			<div class="favorites-inner">
+			</div>
+		</div>
 		<div id="edit-imod" class="content scaffold-edit" role="main">
 			<g:if test="${flash.message}">
 				<div class="message" role="status">

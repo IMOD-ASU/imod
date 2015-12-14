@@ -11,6 +11,18 @@ class PedagogyTechniqueController {
 		assignFavorite: 'GET'
 	]
 
+	def favorites() {
+
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		final favoriteTechniques = currentUser.favoriteTechnique
+
+		 render(
+			[
+				pedagogyTechniques: favoriteTechniques
+			] as JSON
+		)
+	}
+
 	/**
 	 * get info on a selected technique
 	 */
@@ -95,30 +107,30 @@ class PedagogyTechniqueController {
 
 		if (kD != null) {
 			for(int i=0; i < kD.length; i++) {
-				
+
 				if (kD[i]!=null) {
 					println (kD[i])
 					newTechnique.addToKnowledgeDimension(
 					KnowledgeDimension.findByDescription(kD[i]))
 				}
-			
+
 		}
 	}
 
 	if (lD != null) {
 			for(int i=0; i < lD.length; i++) {
-				
+
 				if (lD[i]!=null) {
 					println (lD[i])
 					newTechnique.addToLearningDomain(LearningDomain.findByName(lD[i]))
 				}
-			
+
 		}
 	}
 
 	if (dC != null) {
 			for(int i=0; i < dC.length; i++) {
-				
+
 				if (dC[i]!=null) {
 					println (dC[i])
 					if (DomainCategory.findByName(dC[i])!= null)
@@ -126,7 +138,7 @@ class PedagogyTechniqueController {
 					newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
 					}
 				}
-			
+
 		}
 	}
 
@@ -136,7 +148,7 @@ class PedagogyTechniqueController {
 		newTechnique.addToAssignedLearningObjective(
 			LearningObjective.get(learningObjectiveID)
 		)
-		
+
 		//newTechnique.addToDomainCategory(DomainCategory.findByName(params.domainCategory))
 		newTechnique.addToActivityFocus(
 			PedagogyActivityFocus.findByFocus(params.pedagogyFocus)
@@ -218,6 +230,6 @@ class PedagogyTechniqueController {
         )
 	}
 
-	
+
 
 }

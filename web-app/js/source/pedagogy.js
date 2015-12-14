@@ -181,6 +181,30 @@ function displayPedagogyInformationInEdit () {
 	})
 	.done(populatePedagogyTechnique);
 }
+
+function displayPedagogyFavoriteTechniques (data) {
+	'use strict';
+	var text = '';
+	var index;
+	var currentTechnique;
+	var favoriteImgToggle = '';
+	var assignImgToggle = '';
+
+	for (index = 0; index < data.pedagogyTechniques.length; index++) {
+		currentTechnique = data.pedagogyTechniques[index];
+
+		favoriteImgToggle = '../../images/unfav.png';
+
+		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+	}
+
+	$('.favorites-inner').html(text);
+	$('.favorites-inner').buttonset();
+	pedagogyEqualHeights('.favorites-inner');
+}
+
 $('#title').change(function () {
 	'use strict';
 	var hasError = false;
@@ -691,7 +715,37 @@ $(document).ready(
 			function () {
 				populateDomainCategories(function () {});
 			});
+
+		// Open favorite techniques
+		$('#favorites-button').click(function () {
+			$('.modalBackgroundFavorites').show();
+			$('.favorites-modal').show();
+
+			$.ajax({
+				url: '../../pedagogyTechnique/favorites/',
+				method: 'GET'
+			})
+			.done(function (data) {
+				displayPedagogyFavoriteTechniques(data);
+			});
+
+			return false;
+		});
+
+		$('.modalBackgroundFavorites').click(function () {
+			$('.modalBackgroundFavorites').hide();
+			$('.favorites-modal').hide();
+		});
+
+		$(document)
+		.on('click', '.favorites-modal .text-block.title', function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewPedagogyTechniqueModal();
+			displayPedagogyInformationInEdit(false);
+			return false;
+		});
 	}
+
 );
 
 $(window).ready(function () {
