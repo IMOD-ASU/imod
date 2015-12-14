@@ -12,6 +12,18 @@ class PedagogyTechniqueController {
 		assignFavorite: 'GET'
 	]
 
+	def favorites() {
+
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		final favoriteTechniques = currentUser.favoriteTechnique
+
+		 render(
+			[
+				pedagogyTechniques: favoriteTechniques
+			] as JSON
+		)
+	}
+
 	/**
 	 * get info on a selected technique
 	 */

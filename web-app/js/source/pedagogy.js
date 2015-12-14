@@ -183,6 +183,47 @@ function displayPedagogyInformationInEdit () {
 	})
 	.done(populatePedagogyTechnique);
 }
+
+function displayPedagogyFavoriteTechniques (data) {
+	'use strict';
+	var text = '';
+	var index;
+	var currentTechnique;
+	var favoriteImgToggle = '';
+	var assignImgToggle = '';
+	var assignedIndex;
+	var assignedLOs;
+	var assignedId;
+	var learningObjectiveID = parseInt($('#learningObjectiveID').val(), 10);
+
+	for (index = 0; index < data.pedagogyTechniques.length; index++) {
+		currentTechnique = data.pedagogyTechniques[index];
+
+		assignedLOs = currentTechnique.assignedLearningObjective;
+		assignImgToggle = '../../images/unassign.png';
+
+		for (assignedIndex = 0; assignedIndex <= assignedLOs.length; assignedIndex++) {
+			if (typeof assignedLOs[assignedIndex] !== 'undefined') {
+				assignedId = assignedLOs[assignedIndex].id;
+			}
+			if (typeof assignedId !== 'undefined' && assignedId === learningObjectiveID) {
+				assignImgToggle = '../../images/assign.png';
+				break;
+			}
+		}
+
+		favoriteImgToggle = '../../images/fav.png';
+
+		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+	}
+
+	$('.favorites-inner').html(text);
+	$('.favorites-inner').buttonset();
+	pedagogyEqualHeights('.favorites-inner');
+}
+
 $('#title').change(function () {
 	'use strict';
 	if ($('#title').val() === $('#titlecheck').val()) {
@@ -251,7 +292,7 @@ function displayPedagogyTechniques (data) {
 
 	$('#ideal-matches').buttonset();
 
-	$('#topLeft img').click(function () {
+	$(document).on('click', '#topLeft img', function () {
 		var str = '';
 		var indexNo = '';
 		var res = '';
@@ -288,7 +329,7 @@ function displayPedagogyTechniques (data) {
 		}
 	});
 
-	$('#topRight img').click(function () {
+	$(document).on('click', '#topRight img', function () {
 		var str = '';
 		var indexNo = '';
 		var res = '';
@@ -681,7 +722,37 @@ $(document).ready(
 			function () {
 				populateDomainCategories(function () {});
 			});
+
+		// Open favorite techniques
+		$('#favorites-button').click(function () {
+			$('.modalBackgroundFavorites').show();
+			$('.favorites-modal').show();
+
+			$.ajax({
+				url: '../../pedagogyTechnique/favorites/',
+				method: 'GET'
+			})
+			.done(function (data) {
+				displayPedagogyFavoriteTechniques(data);
+			});
+
+			return false;
+		});
+
+		$('.modalBackgroundFavorites').click(function () {
+			$('.modalBackgroundFavorites').hide();
+			$('.favorites-modal').hide();
+		});
+
+		$(document)
+		.on('click', '.favorites-modal .text-block.title', function () {
+			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			openNewPedagogyTechniqueModal();
+			displayPedagogyInformationInEdit(false);
+			return false;
+		});
 	}
+
 );
 
 $(window).ready(function () {

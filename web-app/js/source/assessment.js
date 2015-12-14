@@ -1,4 +1,6 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+var isTopLeftClicked = 1;
+var isTopRightClicked = 1;
 
 /**
  * Opens the modal to create a new assessment technique
@@ -236,6 +238,31 @@ function checkForAssign (data) {
 	}
 }
 
+function assessmentEqualHeights (parent) {
+	'use strict';
+	var max = 0;
+	var isOpen = false;
+	var parentBlock = $(parent);
+	var assessmentBlock = parentBlock.find('.assessment-block');
+
+	if (parentBlock.css('display') === 'none') {
+		parentBlock.show();
+		isOpen = true;
+	}
+
+	assessmentBlock.each(function () {
+		var height = $(this).height();
+
+		if (max < height) {
+			max = height;
+		}
+	});
+	assessmentBlock.height(max);
+	if (isOpen) {
+		parentBlock.hide();
+	}
+}
+
 /**
  * Callback for find matching techniques grails action
  * this takes the json data and processes it into html code
@@ -265,7 +292,7 @@ function displayAssessmentTechniques (data) {
 		}
 
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
 	}
 
@@ -289,18 +316,25 @@ function displayAssessmentTechniques (data) {
 			assignImgToggle = '../../images/unassign.png';
 		}
 
+
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
 	$('#extended-matches').html(text);
 	$('#extended-matches').buttonset();
 
-	$('#topLeft img').click(function () {
+	$(document).on('click', '.topLeft img', function () {
 		var str = '';
 		var indexNo = '';
 		var res = '';
+
+		if (isTopLeftClicked) {
+			isTopLeftClicked = 0;
+			return false;
+		}
+
 
 		if ($(this).attr('src') === '../../images/fav.png') {
 			$(this).attr('src', '../../images/unfav.png');
@@ -314,7 +348,9 @@ function displayAssessmentTechniques (data) {
 			$.ajax({
 				url: '../../assessmentTechnique/unassignFavorite/' + res,
 				method: 'GET',
-				success: function () {}
+				success: function () {
+					isTopLeftClicked = 1;
+				}
 
 			});
 		} else {
@@ -329,18 +365,25 @@ function displayAssessmentTechniques (data) {
 			$.ajax({
 				url: '../../assessmentTechnique/assignFavorite/' + res,
 				method: 'GET',
-				success: function () {}
+				success: function () {
+					isTopLeftClicked = 1;
+				}
 			});
 		}
 
 		return false;
 	});
 
-	$('#topRight img').click(function () {
+	$(document).on('click', '#topRight img', function () {
 		var str = '';
 		var indexNo = '';
 		var res = '';
 		var inputData = null;
+
+		if (isTopRightClicked) {
+			isTopRightClicked = 0;
+			return false;
+		}
 
 		if ($(this).attr('src') === '../../images/assign.png') {
 			$(this).attr('src', '../../images/unassign.png');
@@ -361,7 +404,9 @@ function displayAssessmentTechniques (data) {
 				type: 'POST',
 				data: JSON.stringify(inputData),
 				contentType: 'application/json',
-				success: function () {}
+				success: function () {
+					isTopRightClicked = 1;
+				}
 			});
 		} else {
 			$(this).attr('src', '../../images/assign.png');
@@ -382,7 +427,9 @@ function displayAssessmentTechniques (data) {
 				type: 'POST',
 				data: JSON.stringify(inputData),
 				contentType: 'application/json',
-				success: function () {}
+				success: function () {
+					isTopRightClicked = 1;
+				}
 			});
 		}
 
@@ -394,17 +441,34 @@ function displayAssessmentFavoriteTechniques (data) {
 	'use strict';
 	var text = '';
 	var index;
+	var assignedIndex;
 	var currentTechnique;
 	var favoriteImgToggle = '';
 	var assignImgToggle = '';
+	var assignedLOs;
+	var assignedId;
+	var learningObjectiveID = parseInt($('#learningObjectiveID').val(), 10);
 
 	for (index = 0; index < data.assessmentTechniques.length; index++) {
 		currentTechnique = data.assessmentTechniques[index];
 
-		favoriteImgToggle = '../../images/unfav.png';
+		assignedLOs = currentTechnique.assignedLearningObjective;
+		assignImgToggle = '../../images/unassign.png';
+
+		for (assignedIndex = 0; assignedIndex <= assignedLOs.length; assignedIndex++) {
+			if (typeof assignedLOs[assignedIndex] !== 'undefined') {
+				assignedId = assignedLOs[assignedIndex].id;
+			}
+			if (typeof assignedId !== 'undefined' && assignedId === learningObjectiveID) {
+				assignImgToggle = '../../images/assign.png';
+				break;
+			}
+		}
+
+		favoriteImgToggle = '../../images/fav.png';
 
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
@@ -476,31 +540,6 @@ function truncateString (string, count) {
 	}
 
 	return string;
-}
-
-function assessmentEqualHeights (parent) {
-	'use strict';
-	var max = 0;
-	var isOpen = false;
-	var parentBlock = $(parent);
-	var assessmentBlock = parentBlock.find('.assessment-block');
-
-	if (parentBlock.css('display') === 'none') {
-		parentBlock.show();
-		isOpen = true;
-	}
-
-	assessmentBlock.each(function () {
-		var height = $(this).height();
-
-		if (max < height) {
-			max = height;
-		}
-	});
-	assessmentBlock.height(max);
-	if (isOpen) {
-		parentBlock.hide();
-	}
 }
 
 // Load techniques on page load
