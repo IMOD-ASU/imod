@@ -18,7 +18,7 @@
 						${flash.message}
 					</div>
 				</g:if>
-				<g:link class="dashed-square" action="create" >
+				<g:link class="dashed-square" action="newimod" >
 					<br/>
 					<br/>
 					New IMODS

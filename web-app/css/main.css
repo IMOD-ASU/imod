@@ -492,7 +492,7 @@ fieldset.embedded legend {
 }
 
 .message {
-    text-indent: 2.2em;
+    padding-left: 2.2em;
 
     background: transparent url(../images/skin/information.png) 0.5em 50% no-repeat;
 }
