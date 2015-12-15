@@ -12,11 +12,40 @@ class CourseOverviewController {
         updateSyllabusPrefs: 'POST',
     ]
 
-	def index(Long id) {
-        [
-			currentImod: Imod.get(id),
-			currentPage: 'course overview'
-        ]
+	def index(String id) {
+
+		if ( id != null && id == "new") {
+			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
+			def dummyImod = new Imod(
+				owner: currentUser,
+				name: 'New Imod',
+				url: 'example.com',
+				subjectArea: 'sample',
+				imodNumber: '1',
+				//	gradingProcedure: '',
+				attendance: 'Regular on-time attendance in this course is expected',
+				classParticipation: 'Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.',
+				professionalConduct: 'All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/',
+				missedExams: 'The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements',
+				missedAssignments: 'Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.',
+				saved: false
+			)
+
+			[
+				currentImod: dummyImod,
+				currentPage: 'course overview',
+				id: "new"
+	        ]
+		} else {
+
+			[
+				currentImod: Imod.get(Long.parseLong(id)),
+				currentPage: 'course overview',
+				id: id
+	        ]
+		}
+
 	}
 
     def create() {

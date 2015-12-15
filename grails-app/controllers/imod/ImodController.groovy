@@ -3,6 +3,8 @@ package imod
 import org.springframework.dao.DataIntegrityViolationException
 import org.joda.time.LocalTime
 import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 import org.jadira.usertype.dateandtime.joda.PersistentLocalTime
 
 class ImodController {
@@ -39,24 +41,40 @@ class ImodController {
         ]
     }
 
+    def newimod() {
+
+		redirect(
+			controller: 'CourseOverview',
+			action: 'index',
+			id: 'new'
+		)
+
+	}
+
 	def create() {
+
 		// get the current user
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 		// create a new imod
 		def newImod = new Imod(
 			owner: currentUser,
-			name: 'New Imod',
-			url: 'example.com',
-			subjectArea: 'sample',
-			imodNumber: '1',
-			//	gradingProcedure: '',
-			attendance: 'Regular on-time attendance in this course is expected',
-			classParticipation: 'Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.',
-			professionalConduct: 'All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/',
-			missedExams: 'The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements',
-			missedAssignments: 'Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.',
-			saved: false
+			name: params.name,
+	        url: params.url,
+	        subjectArea: params.subjectArea,
+	        imodNumber: params.imodNumber,
+	        courseLocation: params.courseLocation,
+	        overview: params.overview,
+	        courseSemester: params.courseSemester,
+	        gradingProcedure: params.gradingProcedure,
+	        attendance: params.attendance,
+	        classParticipation: params.classParticipation,
+	        professionalConduct: params.professionalConduct,
+	        missedExams: params.missedExams,
+	        missedAssignments: params.missedAssignments,
+	        creditHours: params.creditHours,
+	        timeRatio: params.timeRatio,
+	        numberOfSeats: params.numberOfSeats,
 		)
 
 		// update current user
@@ -64,6 +82,22 @@ class ImodController {
 
 		// save new imod and the updated user to database
 		currentUser.save()
+
+		DateTime startDate = new DateTime(params.schedule.startDate)
+		DateTime endDate = new DateTime(params.schedule.endDate)
+
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
+
+        def schedule = new Schedule(
+        	startDate: startDate,
+        	endDate:  endDate,
+        	startTime: fmt.parseLocalTime(params.schedule.startTime_hour + ":" + params.schedule.startTime_minute),
+        	endTime: fmt.parseLocalTime(params.schedule.endTime_hour + ":" + params.schedule.endTime_minute),
+        	imod: newImod
+        )
+
+        // save schedule
+        schedule.save()
 
 		// redirect to editing new Imod
 		redirect(
@@ -185,8 +219,6 @@ class ImodController {
 		def schedule = Schedule.findById(currentImod.properties.get('scheduleId'))
 
 		schedule.scheduleWeekDays = null
-
-		print params
 
 		params.each {
 			if (it.key.contains('scheduleWeekDays_')) {
@@ -333,7 +365,6 @@ class ImodController {
             newInstructor.save()
 
             def currentImod = newImod
-
             DateTime startDate = new DateTime(new Date())
 			DateTime endDate = startDate.plusYears(1)
 

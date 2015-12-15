@@ -35,7 +35,12 @@
                         </g:eachError>
                     </ul>
                 </g:hasErrors>
-                <g:form url="[action:'update',controller:'imod']" method="post" class="courseoverview">
+                <g:if test="${id == "new"}">
+                	<form action="../../imod/create" method="post" class="courseoverview">
+                </g:if>
+                <g:else>
+                	<form action="../../imod/update" method="post" class="courseoverview">
+	            </g:else>
                     <g:hiddenField name="id" value="${currentImod?.id}"/>
                     <g:hiddenField name="version" value="${currentImod?.version}"/>
                     <fieldset id="courseoverview-form" class="form">
@@ -52,10 +57,18 @@
 	                                        </a>
                                         </span>
                                         <span class="topicButtonGradient">
-                                        	<button type="submit" name="_action_update" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
-                                        		<i class="fa fa-save green"></i>
-                                        		Save
-                                        	</button>
+                                        	<g:if test="${id == "new"}">
+	                                        	<button type="submit" name="_action_create" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
+	                                        		<i class="fa fa-save green"></i>
+	                                        		Save
+	                                        	</button>
+							                </g:if>
+							                <g:else>
+	                                        	<button type="submit" name="_action_update" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
+	                                        		<i class="fa fa-save green"></i>
+	                                        		Save
+	                                        	</button>
+								            </g:else>
                                         </span>
                                         <span class="topicButtonGradient">
                                         	<button type="submit" name="_action_delete" value="Delete" class="delete show-hover-new" title="Click on Delete button to delete the current course" formnovalidate="" onclick="return confirm(&#39;Are you sure?&#39;);">
@@ -347,7 +360,7 @@
                             </tr>
                         </table>
                     </fieldset>
-                </g:form>
+                </form>
 
                 <g:form controller="imod" method="post" class="instructor-form">
                     <g:hiddenField name="id" value="${currentImod?.id}"/>
