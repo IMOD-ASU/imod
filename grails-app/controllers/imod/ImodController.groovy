@@ -86,13 +86,13 @@ class ImodController {
 		DateTime startDate = new DateTime(params.schedule.startDate)
 		DateTime endDate = new DateTime(params.schedule.endDate)
 
-		DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
+		DateTimeFormatter fmt = DateTimeFormat.forPattern('HH:mm')
 
         def schedule = new Schedule(
         	startDate: startDate,
         	endDate:  endDate,
-        	startTime: fmt.parseLocalTime(params.schedule.startTime_hour + ":" + params.schedule.startTime_minute),
-        	endTime: fmt.parseLocalTime(params.schedule.endTime_hour + ":" + params.schedule.endTime_minute),
+        	startTime: fmt.parseLocalTime(params.schedule.startTime_hour + ':' + params.schedule.startTime_minute),
+        	endTime: fmt.parseLocalTime(params.schedule.endTime_hour + ':' + params.schedule.endTime_minute),
         	repeats: params.schedule.repeats,
         	repeatsEvery: params.schedule.repeatsEvery,
         	imod: newImod

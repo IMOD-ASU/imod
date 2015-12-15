@@ -14,7 +14,7 @@ class CourseOverviewController {
 
 	def index(String id) {
 
-		if ( id != null && id == "new") {
+		if ( id != null && id == 'new') {
 			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 			def dummyImod = new Imod(
@@ -35,7 +35,7 @@ class CourseOverviewController {
 			[
 				currentImod: dummyImod,
 				currentPage: 'course overview',
-				id: "new"
+				id: 'new'
 	        ]
 		} else {
 
