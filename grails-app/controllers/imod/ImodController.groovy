@@ -93,11 +93,27 @@ class ImodController {
         	endDate:  endDate,
         	startTime: fmt.parseLocalTime(params.schedule.startTime_hour + ":" + params.schedule.startTime_minute),
         	endTime: fmt.parseLocalTime(params.schedule.endTime_hour + ":" + params.schedule.endTime_minute),
+        	repeats: params.schedule.repeats,
+        	repeatsEvery: params.schedule.repeatsEvery,
         	imod: newImod
         )
 
-        // save schedule
-        schedule.save()
+        schedule.scheduleWeekDays = null
+
+		params.each {
+			if (it.key.contains('scheduleWeekDays_')) {
+				if (it.value.contains('on')) {
+					if (schedule.scheduleWeekDays == null) {
+						newImod.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer))
+					} else {
+						newImod.schedule.scheduleWeekDays << ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer)
+
+					}
+					newImod.schedule.save()
+					newImod.save()
+				}
+			}
+		}
 
 		// redirect to editing new Imod
 		redirect(
