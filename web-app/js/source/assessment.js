@@ -30,12 +30,11 @@ function closeDimModal () {
 
 	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
 		if ($(this).is(':checked')) {
-			if (checked === "") {
-				checked = checked + ($(this).val());
+			if (checked === '') {
+				checked +=  ($(this).val());
 			} else {
-				checked = checked + ', '+ ($(this).val()) ;
+				checked += ', ' + ($(this).val());
 			}
-
 		}
 	});
 	document.getElementById('knowledgeDimension').value = checked;

@@ -286,7 +286,6 @@ $(document).ready(
 		var liArray;
 		var height;
 		var dirtyContentTree = false;
-		var cleanForm;
 
 		$('#custom-action-words').css('visibility', 'hidden');
 
@@ -342,6 +341,7 @@ $(document).ready(
 
 			$('.sub-content-tree').click(function () {
 				var item = $(this);
+
 				if (dirtyContentTree === false) {
 					dirtyContentTree = true;
 				}
@@ -356,7 +356,6 @@ $(document).ready(
 			});
 
 			window.onbeforeunload = function () {
-				'use strict';
 				if (dirtyContentTree === true) {
 					return 'You have unsaved changes. Please save them before proceeding.';
 				}
