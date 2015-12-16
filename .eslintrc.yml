@@ -24,7 +24,7 @@ rules:
         - property
     eqeqeq: 2
     guard-for-in: 2
-    no-alert: 2
+    no-alert: 1
     no-caller: 2
     no-case-declarations: 2
     no-else-return: 2

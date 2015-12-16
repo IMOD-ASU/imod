@@ -31,7 +31,7 @@ function closeDimModal () {
 	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
 		if ($(this).is(':checked')) {
 			if (checked === '') {
-				checked +=  ($(this).val());
+				checked += ($(this).val());
 			} else {
 				checked += ', ' + ($(this).val());
 			}
