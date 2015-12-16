@@ -7,7 +7,7 @@ var unsavedResource = false;
 
 function showTopicDialog () {
 	'use strict';
-	$('#topicDialogBackground').css('display', 'block');
+	$('#topicDialogBackground').css('display', 'none');
 	$('#topicDialog').css('display', 'block');
 }
 
@@ -115,6 +115,7 @@ function saveDimModal () {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
+
 function closeDimModal () {
 	'use strict';
 	var contentID = $('#topicID').val();
@@ -215,6 +216,7 @@ function getTempResource () {
 				value.id = value.id.toString();
 				value.content.id = value.content.id.toString();
 			});
+			// resourceData1 = refineUnsavedResources(resources);
 			resourcesNew = removeDuplicateResource(resources);
 
 
@@ -251,7 +253,6 @@ function getResource () {
 
 	resourceDiv.html('');
 
-
 	$.ajax({
 		url: '../../content/getResource',
 		type: 'GET',
@@ -262,10 +263,8 @@ function getResource () {
 		success: function (data) {
 			var resources = data.resources;
 
-
 			$.each(resources, function (key, value) {
 				var id = value.id;
-
 
 				// FIXME move html out of JS
 				$('<tr id="' + id + '" class="resourceItem">' +
@@ -294,12 +293,17 @@ function getResource () {
 function openResourceModal () {
 	'use strict';
 	content = this.id;
-	$('#selectResource').css('display', 'inherit');
-	$('#selectResourceBackground').css('display', 'block');
-	if (unsavedResource === true) {
-		getTempResource();
+	if (content.split('topicResources')[1] === 'undefined') {
+		closeResourceModal();
+		window.alert('Topic must be saved before adding resources');
 	} else {
-		getResource();
+		$('#selectResource').css('display', 'inherit');
+		$('#selectResourceBackground').css('display', 'block');
+		if (unsavedResource === true) {
+			getTempResource();
+		} else {
+			getResource();
+		}
 	}
 }
 
@@ -484,14 +488,15 @@ function addTopic () {
 				'</td><td class="topicTitle">' +
 				'<input type="text" id="topicTitle' + id + '"> ' +
 				'<input type="hidden" id="topicTitleSaved' + id + '"> ' +
-				'</td><td class="topicDimensions">' +
+				'</td><td class="topicDimensions show-hover-new">' +
 				'<span>' +
-				'<img src="' + $('#imgNone').attr('href') + '"/> ' +
+				'<img id="dimImageModal' + id + '" src="' + $('#imgNone').attr('href') + '" /> ' +
 				'<button ' +
-				'class="knowledgeDimensionButton" ' +
+				'class="knowledgeDimensionButton " ' +
 				'value="" ' +
 				'type="button" ' +
 				'id="knowDimensionList' + id + '" ' +
+				'title="Click on Knowledge Dimensions button to select one or more knowledge dimensions"' +
 				'> ' +
 				' Knowledge Dimensions ' +
 				'</button> ' +
@@ -543,17 +548,19 @@ function addResource () {
 
 function saveResource () {
 	'use strict';
-	// var imodID = $('#imodID').val();
 	var contentID = content.split('topicResources')[1];
 	// var resourceData = [];
 	var hasError = false;
 	var contentResource = $('#resourceDataStore');
 	var resourceDataNew;
 	var resource;
+	var refinedData;
 
 	$('#resourceList tbody tr').each(
 		function () {
 			var resourceID = this.id;
+
+
 			var resourceName = $('#resourceName' + resourceID).val();
 			var resourceDescription = $('#resourceDescription' + resourceID).val();
 			var resourceType = $('#resourceType' + resourceID).val();
@@ -571,14 +578,16 @@ function saveResource () {
 				resourceName: resourceName,
 				resourceDescription: resourceDescription,
 				resourceType: resourceType,
-				contentID: contentID
+				contentID: contentID,
+				uniqueParam: Math.random()
 			});
 		}
 	);
 	if (hasError) {
 		return false;
 	}
-	resourceDataNew = removeDuplicateResource(resourceData);
+	refinedData = refineUnsavedResources(resourceData);
+	resourceDataNew = removeDuplicateResource(refinedData);
 	resource = JSON.stringify(resourceDataNew);
 
 	if (contentResource.val !== resource) {
@@ -589,6 +598,27 @@ function saveResource () {
 		unsavedResource = true;
 	}
 	return closeResourceModal();
+}
+
+function refineUnsavedResources (arr) {
+	'use strict';
+	var finalArr = [];
+	var	collection = [];
+	var originalArr = arr;
+	var returnedArray;
+
+	$.each(arr, function (index, value) {
+		if ($.inArray(value.resourceID, finalArr) === -1) {
+			finalArr.push(value.resourceID);
+			collection.push(value);
+		}
+	});
+	if (collection.length > 0) {
+		returnedArray = collection;
+	} else {
+		returnedArray = originalArr;
+	}
+	return returnedArray;
 }
 
 function removeDuplicateResource (arr) {
@@ -714,6 +744,7 @@ $(
 			function () {
 				revertChanges();
 				hideTopicDialog();
+				location.reload();
 			}
 		);
 		$('#cancelTopic').click(

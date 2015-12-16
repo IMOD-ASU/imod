@@ -358,7 +358,7 @@
 												height="71"
 												title=""
 											/>
-											<button id="k1" class="knowledgeDimensionButton"> Knowledge Dimensions</button>
+											<button id="k1" class="knowledgeDimensionButton" title="${message(code: 'imod.content.knowledgeDimension')}"> Knowledge Dimensions</button>
 										</span>
 									</td>
 									<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">

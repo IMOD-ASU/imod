@@ -30,10 +30,15 @@ function closeDimModal () {
 
 	$('#selectKnowledgeDimensions input[type=checkbox]').each(function () {
 		if ($(this).is(':checked')) {
-			checked = checked + ($(this).val()) + ',';
+			if (checked === '') {
+				checked += ($(this).val());
+			} else {
+				checked += ', ' + ($(this).val());
+			}
 		}
 	});
 	document.getElementById('knowledgeDimension').value = checked;
+	document.getElementById('dimImageModal').title = checked;
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
