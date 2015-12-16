@@ -215,7 +215,7 @@
 							id="topicTitleSaved${contentItem.id}"
 							value="${contentItem.topicTitle}"/>
 					</td>
-					<td class="topicDimensions">
+					<td class="topicDimensions show-new-hover">
 						<span>
 							<g:img
 								dir="images/content"

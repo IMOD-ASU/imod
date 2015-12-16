@@ -44,6 +44,15 @@ $(document).ready(function () {
 			$('#qtip-place').html('');
 		}
 	);
+	$('.knowledgeDimensionButton').hover(
+		function () {
+			$('#qtip-place').html($(this).attr('oldtitle'));
+		},
+		function () {
+			$('#qtip-place').html('');
+		}
+	);
+
 	$('input[type="checkbox"], input[type="radio"], .knowledgeDimensionButton,.ResourceButton,.priority').hover(
 		function () {
 			$('#qtip-place').html($(this).attr('title'));

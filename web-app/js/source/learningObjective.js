@@ -285,6 +285,8 @@ $(document).ready(
 		var category;
 		var liArray;
 		var height;
+		var dirtyContentTree = false;
+		var cleanForm;
 
 		$('#custom-action-words').css('visibility', 'hidden');
 
@@ -340,6 +342,9 @@ $(document).ready(
 
 			$('.sub-content-tree').click(function () {
 				var item = $(this);
+				if (dirtyContentTree === false) {
+					dirtyContentTree = true;
+				}
 
 				if (item.find('.checkbox').hasClass('fa-check')) {
 					item.parent().find('.checkbox').removeClass('fa-check');
@@ -349,6 +354,14 @@ $(document).ready(
 
 				return false;
 			});
+
+			window.onbeforeunload = function () {
+				'use strict';
+				if (dirtyContentTree === true) {
+					return 'You have unsaved changes. Please save them before proceeding.';
+				}
+				return null;
+			};
 
 			$('#save-content').click(function () {
 				var parents = [];
