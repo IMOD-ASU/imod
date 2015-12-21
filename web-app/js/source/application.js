@@ -132,25 +132,16 @@ $(document).ready(function () {
 
 window.onload = function () {
 	'use strict';
-	if ($('#contentTable').length) {
-		cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
-	} else {
-		cleanForm = $('form:not(.no-warn-form)').find('select, textarea, input').serialize();
-	}
+	cleanForm = $('form').find('select, textarea, input').serialize();
 };
 
 window.onbeforeunload = function () {
 	'use strict';
-	var dirtyForm;
-
-	if ($('#contentTable').length) {
-		dirtyForm = $('form, #contentTable').find('select, textarea, input').serialize();
-	} else {
-		dirtyForm = $('form:not(.no-warn-form)').find('select, textarea, input').serialize();
-	}
+	var dirtyForm = $('form').find('select, textarea, input').serialize();
 
 	if (!formSubmitted && cleanForm !== dirtyForm) {
 		return 'You have unsaved changes. Please save them before proceeding.';
 	}
 	return null;
 };
+
