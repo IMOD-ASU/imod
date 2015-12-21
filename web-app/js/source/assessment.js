@@ -284,7 +284,7 @@ function displayAssessmentTechniques (data) {
 	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 		currentTechnique = data.idealAssessmentTechniqueMatch[index];
 
-		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+		if (data.favoriteTechniques.indexOf(currentTechnique.id) > -1) {
 			favoriteImgToggle = '../../images/fav.png';
 		} else {
 			favoriteImgToggle = '../../images/unfav.png';
@@ -460,10 +460,11 @@ function displayAssessmentFavoriteTechniques (data) {
 		assignedLOs = currentTechnique.assignedLearningObjective;
 		assignImgToggle = '../../images/unassign.png';
 
-		for (assignedIndex = 0; assignedIndex <= assignedLOs.length; assignedIndex++) {
+		for (assignedIndex = 0; assignedIndex < assignedLOs.length; assignedIndex++) {
 			if (typeof assignedLOs[assignedIndex] !== 'undefined') {
 				assignedId = assignedLOs[assignedIndex].id;
 			}
+
 			if (typeof assignedId !== 'undefined' && assignedId === learningObjectiveID) {
 				assignImgToggle = '../../images/assign.png';
 				break;

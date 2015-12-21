@@ -323,7 +323,7 @@ label.assessment-block {
 	position: absolute; left: 50%;
 	margin-left: -400px;
 	top: 30px; background: rgb(237, 237, 239);
-	padding: 30px; z-index: 2; display: none;
+	z-index: 2; display: none;
 }
 
 .favorites-modal .favorites-inner {

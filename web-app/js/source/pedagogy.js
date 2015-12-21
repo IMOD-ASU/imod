@@ -207,7 +207,7 @@ function displayPedagogyFavoriteTechniques (data) {
 		assignedLOs = currentTechnique.assignedLearningObjective;
 		assignImgToggle = '../../images/unassign.png';
 
-		for (assignedIndex = 0; assignedIndex <= assignedLOs.length; assignedIndex++) {
+		for (assignedIndex = 0; assignedIndex < assignedLOs.length; assignedIndex++) {
 			if (typeof assignedLOs[assignedIndex] !== 'undefined') {
 				assignedId = assignedLOs[assignedIndex].id;
 			}
