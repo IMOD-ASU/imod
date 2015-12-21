@@ -127,14 +127,7 @@
 	background: #0a1629;
 	background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
 }
-.new-technique-popup-button.clone {
-	position: absolute;
-	top: inherit;
-	right: 0;
-	bottom: 0;
 
-	width: 80px;
-}
 #ideal-matches1 {
 	height: 300px;
 }
@@ -417,7 +410,20 @@ label.assessment-block {
 #favorites-button i {
 	color: gold;
 }
+.clone {
+	position: absolute;
+	right: 0;
+	bottom: 0;
 
+	height: 28px;
+	padding: 0 10px;
+
+	color: #ffffff;
+	border: none;
+	border-radius: 3px;
+	background: #0a1629;
+	background: linear-gradient(to right bottom, #1b4176 0%, #172751 100%);
+}
 .assessment-nav-bar span {
 	margin-right: 15px;
 }
