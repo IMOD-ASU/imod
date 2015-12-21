@@ -141,6 +141,8 @@ window.onload = function () {
 
 window.onbeforeunload = function () {
 	'use strict';
+	var dirtyForm;
+
 	if ($('#contentTable').length) {
 		dirtyForm = $('form, #contentTable').find('select, textarea, input').serialize();
 	} else {
