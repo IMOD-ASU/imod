@@ -106,12 +106,12 @@ $(document).ready(function () {
 
 	// Hide modal when background is clicked
 	$(document).on('click', '.modalBackground', function () {
-		var zIndex = parseInt($(this).css('z-index'));
+		var zIndex = parseInt($(this).css('z-index'), 10);
 		var elem;
 
-		$('.draggable').each( function() {
+		$('.draggable').each(function () {
 			elem = $(this);
-			if (zIndex <= parseInt(elem.css('z-index'))) {
+			if (zIndex <= parseInt(elem.css('z-index'), 10)) {
 				elem.hide();
 			}
 		});
