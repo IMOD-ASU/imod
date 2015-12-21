@@ -69,7 +69,7 @@ rules:
     no-shadow: 1
     no-undefined: 2
     no-use-before-define:
-        - 2
+        - 1
         - nofunc
     # Stylistic Issues
     array-bracket-spacing:

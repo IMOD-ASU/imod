@@ -311,7 +311,7 @@
 							<span id="errorMessage" style="color: red"></span>
 						</fieldset>
 
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
+						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" class="no-warn-form" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
 							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
@@ -432,7 +432,7 @@
 					<%--Dialog box for Displaying in edit and View mode Technique --%>
 					<div id="display-new-technique" title="Display Technique">
 						<%--To render the add new Technique dialog box--%>
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]">
+						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" class="no-warn-form" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<span class="editviewButtons">
 								<label >
 									Assign

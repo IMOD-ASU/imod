@@ -1,4 +1,5 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+var cleanForm = cleanForm;
 
 /**
  * Opens the modal to create a new pedagogy technique
@@ -186,7 +187,10 @@ function displayPedagogyInformationInEdit () {
 		url: '../../pedagogyTechnique/get/' + res,
 		method: 'GET'
 	})
-	.done(populatePedagogyTechnique);
+	.done(function (data) {
+		populatePedagogyTechnique(data);
+		cleanForm = $('form').find('select, textarea, input').serialize();
+	});
 }
 
 function displayPedagogyFavoriteTechniques (data) {
