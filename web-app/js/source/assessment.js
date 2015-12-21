@@ -1,7 +1,6 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var isTopLeftClicked = 1;
 var isTopRightClicked = 1;
-var cleanForm = cleanForm;
 
 /**
  * Opens the modal to create a new assessment technique
@@ -186,7 +185,7 @@ function displayAssessmentInformationInEdit (isClone) {
 	})
 	.done(function (data) {
 		populateAssessmentTechnique(data, isClone);
-		cleanForm = $('form').find('select, textarea, input').serialize();
+		window.cleanForm = $('form').find('select, textarea, input').serialize();
 	});
 }
 function showAssessmentTechnique () {
