@@ -61,7 +61,7 @@
 				Are you sure you want to delete?
 			</p>
 		</div>
-		<div id="chart" align="center">
+		<div id="chart" align="center" style="display: none;">
 
 		</div>
 	</body>
