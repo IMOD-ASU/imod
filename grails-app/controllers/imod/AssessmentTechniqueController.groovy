@@ -175,7 +175,6 @@ class AssessmentTechniqueController {
 		String[] lD = params.list('learningDomain')
 		String[] dC = params.list('domainCategory')
 
-
 		if (kD != null) {
 			for (int i = 0; i < kD.length; i++) {
 				if (kD[i] != null) {
