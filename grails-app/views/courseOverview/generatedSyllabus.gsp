@@ -69,6 +69,9 @@
 		                        <g:message code="imod.courseLocation.label" default="Classroom Location" />:
 		                    </label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.courseLocation == null}">
+		                    		N/A
+		                    	</g:if>
 		                        ${currentImod?.courseLocation.encodeAsCustomEscape()}
 		                    </strong>
 		                </div>
@@ -77,6 +80,9 @@
 		                        <g:message code="imod.courseSemester.label" default="Semester" />:
 		                    </label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.courseSemester == null}">
+		                    		N/A
+		                    	</g:if>
 		                        ${currentImod?.courseSemester.encodeAsCustomEscape()}
 		                    </strong>
 		                </div>
@@ -95,24 +101,36 @@
 		                <div class="fieldcontain">
 		                    <label>Start Date:</label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.schedule?.startDate == null}">
+		                    		N/A
+		                    	</g:if>
 		                        <g:formatDate format="dd-MMM-yyyy" date="${currentImod?.schedule?.startDate}"/>
 		                    </strong>
 		                </div>
 		                <div class="fieldcontain">
 		                    <label>End Date:</label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.schedule?.endDate == null}">
+		                    		N/A
+		                    	</g:if>
 		                        <g:formatDate format="dd-MMM-yyyy" date="${currentImod?.schedule?.endDate}"/>
 		                    </strong>
 		                </div>
 		                <div class="fieldcontain">
 		                    <label>Start Time:</label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.schedule?.startTime == null}">
+		                    		N/A
+		                    	</g:if>
 		                        <joda:format pattern="HH:mm" value="${currentImod?.schedule?.startTime}"/>
 		                    </strong>
 		                </div>
 		                <div class="fieldcontain">
 		                    <label>End Time:</label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.schedule?.endTime == null}">
+		                    		N/A
+		                    	</g:if>
 		                        <joda:format pattern="HH:mm" value="${currentImod?.schedule?.endTime}"/>
 		                    </strong>
 		                </div>
@@ -121,6 +139,9 @@
 		                        Repeats
 		                    </label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.schedule?.repeats == null}">
+		                    		N/A
+		                    	</g:if>
 		                        ${currentImod?.schedule?.repeats?.description.encodeAsCustomEscape()}
 		                    </strong>
 		                </div>
@@ -131,7 +152,12 @@
 		                            Repeats Every
 		                        </label>
 		                        <strong>
-		                            ${currentImod?.schedule?.repeatsEvery?.description.encodeAsCustomEscape()} days
+		                        	<g:if test="${currentImod?.schedule?.repeatsEvery == null}">
+			                    		N/A
+			                    	</g:if>
+			                    	<g:else>
+		                          	  ${currentImod?.schedule?.repeatsEvery?.description.encodeAsCustomEscape()} days
+		                        	</g:else>
 		                        </strong>
 		                    </div>
 		                </g:if>
@@ -166,6 +192,9 @@
 		                <div class="fieldcontain">
 		                    <label>Overview:</label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.overview == null}">
+		                    		N/A
+		                    	</g:if>
 		                        ${currentImod?.overview.encodeAsCustomEscape()}
 		                    </strong>
 		                </div>
@@ -178,6 +207,9 @@
 		                <div class="fieldcontain">
 		                    <label>Audience:</label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.audience == null || currentImod?.audience.isEmpty()}">
+		                    		N/A
+		                    	</g:if>
 		                        <g:each in="${currentImod?.audience*.description}" var="it" status="i">
 		                            ${it.encodeAsHTML()}
 		                            <g:if test="${i != currentImod?.audience*.description.size() - 1}">
@@ -190,18 +222,27 @@
 		                <div class="fieldcontain">
 		                    <label>Credit Hours:</label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.creditHours == null}">
+		                    		N/A
+		                    	</g:if>
 		                        ${currentImod?.creditHours.encodeAsCustomEscape()}
 		                    </strong>
 		                </div>
 		                <div class="fieldcontain">
 		                    <label>Time Ratio:</label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.timeRatio == null}">
+		                    		N/A
+		                    	</g:if>
 		                        ${currentImod?.timeRatio.encodeAsCustomEscape()}
 		                    </strong>
 		                </div>
 		                <div class="fieldcontain">
 		                    <label>Number of Seats:</label>
 		                    <strong>
+		                    	<g:if test="${currentImod?.numberOfSeats == null}">
+		                    		N/A
+		                    	</g:if>
 		                        ${currentImod?.numberOfSeats.encodeAsCustomEscape()}
 		                    </strong>
 		                </div>
@@ -224,6 +265,10 @@
 			                    </h4>
 			                    <div id="grading-procedure">
 			                    <p>
+			                    	<g:if test="${currentImod?.gradingProcedure == null || currentImod?.gradingProcedure.isEmpty()}">
+			                    		N/A
+			                    	</g:if>
+
 			                        ${currentImod?.gradingProcedure.encodeAsCustomEscape()}
 			                    </p>
 			                    </div>
@@ -237,6 +282,9 @@
 			                    </h4>
 			                    <div id="attendance">
 			                    <p>
+			                    	<g:if test="${currentImod?.attendance == null || currentImod?.attendance.isEmpty()}">
+			                    		N/A
+			                    	</g:if>
 			                        ${currentImod?.attendance.encodeAsCustomEscape()}
 			                    </p>
 			                    </div>
@@ -250,6 +298,9 @@
 			                    </h4>
 			                    <div  id ="participation">
 			                    <p>
+			                    	<g:if test="${currentImod?.classParticipation == null || currentImod?.classParticipation.isEmpty()}">
+			                    		N/A
+			                    	</g:if>
 			                        ${currentImod?.classParticipation.encodeAsCustomEscape()}
 			                    </p>
 			                    </div>
@@ -263,6 +314,9 @@
 			                    </h4>
 			                    <div id="conduct">
 			                    <p>
+			                    	<g:if test="${currentImod?.professionalConduct == null || currentImod?.professionalConduct.isEmpty()}">
+			                    		N/A
+			                    	</g:if>
 			                        ${currentImod?.professionalConduct.encodeAsCustomEscape()}
 			                    </p>
 			                    </div>
@@ -276,6 +330,9 @@
 			                    </h4>
 			                    <div id="exams">
 			                    <p>
+			                    	<g:if test="${currentImod?.missedExams == null || currentImod?.missedExams.isEmpty()}">
+			                    		N/A
+			                    	</g:if>
 			                        ${currentImod?.missedExams.encodeAsCustomEscape()}
 			                    </p>
 			                    </div>
@@ -289,6 +346,9 @@
 			                    </h4>
 			                    <div id="missed-exams">
 			                    <p>
+			                    	<g:if test="${currentImod?.missedAssignments == null || currentImod?.missedAssignments.isEmpty()}">
+			                    		N/A
+			                    	</g:if>
 			                        ${currentImod?.missedAssignments.encodeAsCustomEscape()}
 			                    </p>
 			                    </div>
@@ -300,7 +360,7 @@
 		        </g:if>
 
 		        <g:if test="${!hideSectionsList.contains('-instructor-')}">
-			        <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
+
 		            <div class="instructors">
 
 		                <div class="form-title">
@@ -309,47 +369,51 @@
 		                    </h3>
 		                </div>
 		                <div id="instructor">
-		                <ul>
-		                <g:each in="${currentImod?.instructors}" var="instructor">
+		                	<g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
+				                <ul>
+				                <g:each in="${currentImod?.instructors}" var="instructor">
 
-		                    <li>
-		                        <strong>
-		                            ${instructor.firstName.encodeAsCustomEscape()} ${instructor.lastName.encodeAsCustomEscape()}
-		                        </strong>
-		                        <br>
-		                        ${instructor.role.encodeAsCustomEscape()}
-		                        <br>
-		                        ${instructor.email.encodeAsCustomEscape()}
-		                        <br>
-		                        <g:if test="${instructor.officeHours != null && !instructor.officeHours.isEmpty()}">
-		                            Office Hours: ${instructor.officeHours.encodeAsCustomEscape()}
-		                            <br>
-		                        </g:if>
-		                        <g:if test="${instructor.webPage != null && !instructor.webPage.isEmpty()}">
-		                            Website: ${instructor.webPage.encodeAsCustomEscape()}
-		                            <br>
-		                        </g:if>
-		                        <g:if test="${instructor.location != null && !instructor.location.isEmpty()}">
-		                            Location: ${instructor.location.encodeAsCustomEscape()}
-		                            <br>
-		                        </g:if>
-		                    </li>
+				                    <li>
+				                        <strong>
+				                            ${instructor.firstName.encodeAsCustomEscape()} ${instructor.lastName.encodeAsCustomEscape()}
+				                        </strong>
+				                        <br>
+				                        ${instructor.role.encodeAsCustomEscape()}
+				                        <br>
+				                        ${instructor.email.encodeAsCustomEscape()}
+				                        <br>
+				                        <g:if test="${instructor.officeHours != null && !instructor.officeHours.isEmpty()}">
+				                            Office Hours: ${instructor.officeHours.encodeAsCustomEscape()}
+				                            <br>
+				                        </g:if>
+				                        <g:if test="${instructor.webPage != null && !instructor.webPage.isEmpty()}">
+				                            Website: ${instructor.webPage.encodeAsCustomEscape()}
+				                            <br>
+				                        </g:if>
+				                        <g:if test="${instructor.location != null && !instructor.location.isEmpty()}">
+				                            Location: ${instructor.location.encodeAsCustomEscape()}
+				                            <br>
+				                        </g:if>
+				                    </li>
 
-		                </g:each>
-		                </ul>
-		            </div>
+				                </g:each>
+				                </ul>
+				            </g:if>
+		                	<g:else>
+			                	N/A
+			                </g:else>
+			            </div>
 		            </div>%{-- instructors --}%
-		            </g:if>
 	            </g:if>
 
 	            <g:if test="${!hideSectionsList.contains('-learning-objectives-list-')}">
-		            <g:if test="${learningObjectives != null && !learningObjectives.isEmpty()}">
 		            <div class="learning-objectives">
 		                <div class="form-title">
 		                    <h3>
 		                    Learning Objectives
 		                    </h3>
 		                </div>
+		                <g:if test="${learningObjectives != null && !learningObjectives.isEmpty()}">
 		                <ul id="learning-objectives-list" class="learning-objective list-wrapper">
 		                    <g:each var="learningObjective" in="${learningObjectives}">
 		                        <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
@@ -359,24 +423,28 @@
 		                        </g:if>
 		                    </g:each>
 		                </ul>
+			            </g:if>
+                        <g:else>
+			            	N/A
+				        </g:else>
 		            </div>
-		            </g:if>
 		        </g:if>
 
 		        <g:if test="${!hideSectionsList.contains('-content-list-')}">
-		            <g:if test="${contentList != null && !contentList.isEmpty()}">
-			            <div class="Content">
-			                <div class="form-title">
-			                    <h3>
-			                    Content
-			                    </h3>
-			                </div>
-			                <div id="content-list">
-			                    %{-- comes straight from the controller as text --}%
-			                    ${contentList.encodeAsCustomEscape()}
-			                </div>
-			            </div>
-		            </g:if>
+		            <div class="Content">
+		                <div class="form-title">
+		                    <h3>
+		                    Content
+		                    </h3>
+		                </div>
+		                <div id="content-list">
+		                	<g:if test="${contentList == null || contentList.isEmpty()}">
+		                		N/A
+			                </g:if>
+		                    %{-- comes straight from the controller as text --}%
+		                    ${contentList.encodeAsCustomEscape()}
+		                </div>
+		            </div>
 	            </g:if>
 	        </div>
 

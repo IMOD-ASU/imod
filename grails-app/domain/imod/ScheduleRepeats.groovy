@@ -13,7 +13,7 @@ class ScheduleRepeats {
 		version false
 	}
 
-	def String toString(){
-		return description
+	String toString() {
+		description
 	}
 }

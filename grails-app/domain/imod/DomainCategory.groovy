@@ -31,7 +31,7 @@ class DomainCategory {
 	 * Categories are not versioned
 	 */
 	static mapping = {
-		sort priority:"asc"
+		sort priority: 'asc'
 		version false
 	}
 
@@ -39,7 +39,7 @@ class DomainCategory {
 	 * printing the Domain Category will give the display name for the category
 	 * @return display name
 	 */
-	def String toString(){
-		return name
+	String toString() {
+		name
 	}
 }

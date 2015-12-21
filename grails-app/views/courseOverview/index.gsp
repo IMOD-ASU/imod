@@ -35,7 +35,12 @@
                         </g:eachError>
                     </ul>
                 </g:hasErrors>
-                <g:form url="[action:'update',controller:'imod']" method="post" class="courseoverview">
+                <g:if test="${id == "new"}">
+                	<form action="../../imod/create" method="post" class="courseoverview">
+                </g:if>
+                <g:else>
+                	<form action="../../imod/update" method="post" class="courseoverview">
+	            </g:else>
                     <g:hiddenField name="id" value="${currentImod?.id}"/>
                     <g:hiddenField name="version" value="${currentImod?.version}"/>
                     <fieldset id="courseoverview-form" class="form">
@@ -46,23 +51,35 @@
                                 <td>
 
                                     <fieldset class="buttons">
+                                    	<g:if test="${id != "new"}">
                                         <span class="topicButtonGradient">
 	                                    	<a href="../syllabus/${currentImod?.id}" target="_blank">
 	                                            <i class="fa fa-file blue"></i> Show Syllabus
 	                                        </a>
                                         </span>
+	                                    </g:if>
                                         <span class="topicButtonGradient">
-                                        	<button type="submit" name="_action_update" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
-                                        		<i class="fa fa-save green"></i>
-                                        		Save
-                                        	</button>
+                                        	<g:if test="${id == "new"}">
+	                                        	<button type="submit" name="_action_create" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
+	                                        		<i class="fa fa-save green"></i>
+	                                        		Save
+	                                        	</button>
+							                </g:if>
+							                <g:else>
+	                                        	<button type="submit" name="_action_update" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
+	                                        		<i class="fa fa-save green"></i>
+	                                        		Save
+	                                        	</button>
+								            </g:else>
                                         </span>
+                                        <g:if test="${id != "new"}">
                                         <span class="topicButtonGradient">
                                         	<button type="submit" name="_action_delete" value="Delete" class="delete show-hover-new" title="Click on Delete button to delete the current course" formnovalidate="" onclick="return confirm(&#39;Are you sure?&#39;);">
                                         		<i class="fa fa-minus-circle red"></i>
                                         		Delete
                                         	</button>
                                         </span>
+                                    	</g:if>
                                     </fieldset>
                                 </td>
                             </tr>
@@ -347,8 +364,9 @@
                             </tr>
                         </table>
                     </fieldset>
-                </g:form>
+                </form>
 
+                <g:if test="${id != "new"}">
                 <g:form controller="imod" method="post" class="instructor-form">
                     <g:hiddenField name="id" value="${currentImod?.id}"/>
                     <g:hiddenField name="version" value="${currentImod?.version}"/>
@@ -478,6 +496,7 @@
                         </table>
                     </fieldset>
                 </g:form>
+                </g:if>
             </div>
         </div>
 

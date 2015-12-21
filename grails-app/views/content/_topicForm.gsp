@@ -59,8 +59,8 @@
 						<td class="topicDimensions">
 							<span>
 								<!-- FIXME move complex logic to controller -->
-								<g:img dir="images/content" file="knowDim${contentItem.dimensions.sort(){it.value}.collect(){it.toString().charAt(0)}.join()?:'None'}.png" />
-								<button class="knowledgeDimensionButton" value="${contentItem.dimensions.join(',')}" type="button" id="knowDimensionList${contentItem.id}">
+								<g:img dir="images/content" file="knowDim${contentItem.dimensions.sort(){it.value}.collect(){it.toString().charAt(0)}.join()?:'None'}.png" title="${contentItem.dimensions.join(',  ')}"/>
+								<button class="knowledgeDimensionButtons" value="${contentItem.dimensions.join(',')}" type="button" id="knowDimensionList${contentItem.id}" title="${message(code: 'imod.content.knowledgeDimension')}>
 									Knowledge Dimensions
 								</button>
 								<!-- FIXME replace with g:hiddenField -->

@@ -36,6 +36,22 @@ $(document).ready(function () {
 			$('#qtip-place').html('');
 		}
 	);
+	$('.topicButton').hover(
+		function () {
+			$('#qtip-place').html($(this).attr('oldtitle'));
+		},
+		function () {
+			$('#qtip-place').html('');
+		}
+	);
+	$('.knowledgeDimensionButton').hover(
+		function () {
+			$('#qtip-place').html($(this).attr('oldtitle'));
+		},
+		function () {
+			$('#qtip-place').html('');
+		}
+	);
 
 	$('input[type="checkbox"], input[type="radio"], .knowledgeDimensionButton,.ResourceButton,.priority').hover(
 		function () {
@@ -90,8 +106,17 @@ $(document).ready(function () {
 
 	// Hide modal when background is clicked
 	$(document).on('click', '.modalBackground', function () {
-		$('.draggable').hide();
-		$('.modalBackground').hide();
+		var zIndex = parseInt($(this).css('z-index'), 10);
+		var elem;
+
+		$('.draggable').each(function () {
+			elem = $(this);
+			if (zIndex <= parseInt(elem.css('z-index'), 10)) {
+				elem.hide();
+			}
+		});
+
+		$(this).hide();
 	});
 
 	$(document).on('click', '.modalBackground2', function () {
@@ -109,14 +134,13 @@ window.onload = function () {
 	'use strict';
 	cleanForm = $('form').find('select, textarea, input').serialize();
 };
+
 window.onbeforeunload = function () {
 	'use strict';
-	var dirtyForm;
+	var dirtyForm = $('form').find('select, textarea, input').serialize();
 
-	dirtyForm = $('form').find('select, textarea, input').serialize();
-	if (!formSubmitted) {
-		if (cleanForm !== dirtyForm) {
-			return 'You have unsaved changes. Please save them before proceeding.';
-		}
+	if (!formSubmitted && cleanForm !== dirtyForm) {
+		return 'You have unsaved changes. Please save them before proceeding.';
 	}
+	return null;
 };

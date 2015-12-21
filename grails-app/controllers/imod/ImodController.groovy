@@ -3,6 +3,8 @@ package imod
 import org.springframework.dao.DataIntegrityViolationException
 import org.joda.time.LocalTime
 import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 import org.jadira.usertype.dateandtime.joda.PersistentLocalTime
 
 class ImodController {
@@ -23,7 +25,6 @@ class ImodController {
 		)
 	}
 
-
 	def list() {
 		// get current user object
         def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
@@ -40,25 +41,40 @@ class ImodController {
         ]
     }
 
+    def newimod() {
+
+		redirect(
+			controller: 'CourseOverview',
+			action: 'index',
+			id: 'new'
+		)
+
+	}
 
 	def create() {
+
 		// get the current user
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 		// create a new imod
 		def newImod = new Imod(
 			owner: currentUser,
-			name: 'New Imod',
-			url: 'example.com',
-			subjectArea: 'sample',
-			imodNumber: '1',
-			//	gradingProcedure: '',
-			attendance: 'Regular on-time attendance in this course is expected',
-			classParticipation: 'Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.',
-			professionalConduct: 'All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/',
-			missedExams: 'The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate attangements',
-			missedAssignments: 'Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.',
-			saved: false
+			name: params.name,
+	        url: params.url,
+	        subjectArea: params.subjectArea,
+	        imodNumber: params.imodNumber,
+	        courseLocation: params.courseLocation,
+	        overview: params.overview,
+	        courseSemester: params.courseSemester,
+	        gradingProcedure: params.gradingProcedure,
+	        attendance: params.attendance,
+	        classParticipation: params.classParticipation,
+	        professionalConduct: params.professionalConduct,
+	        missedExams: params.missedExams,
+	        missedAssignments: params.missedAssignments,
+	        creditHours: params.creditHours,
+	        timeRatio: params.timeRatio,
+	        numberOfSeats: params.numberOfSeats,
 		)
 
 		// update current user
@@ -66,6 +82,38 @@ class ImodController {
 
 		// save new imod and the updated user to database
 		currentUser.save()
+
+		DateTime startDate = new DateTime(params.schedule.startDate)
+		DateTime endDate = new DateTime(params.schedule.endDate)
+
+		DateTimeFormatter fmt = DateTimeFormat.forPattern('HH:mm')
+
+        def schedule = new Schedule(
+        	startDate: startDate,
+        	endDate:  endDate,
+        	startTime: fmt.parseLocalTime(params.schedule.startTime_hour + ':' + params.schedule.startTime_minute),
+        	endTime: fmt.parseLocalTime(params.schedule.endTime_hour + ':' + params.schedule.endTime_minute),
+        	repeats: params.schedule.repeats,
+        	repeatsEvery: params.schedule.repeatsEvery,
+        	imod: newImod
+        )
+
+        schedule.scheduleWeekDays = null
+
+		params.each {
+			if (it.key.contains('scheduleWeekDays_')) {
+				if (it.value.contains('on')) {
+					if (schedule.scheduleWeekDays == null) {
+						newImod.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer))
+					} else {
+						newImod.schedule.scheduleWeekDays << ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer)
+
+					}
+					newImod.schedule.save()
+					newImod.save()
+				}
+			}
+		}
 
 		// redirect to editing new Imod
 		redirect(
@@ -188,15 +236,12 @@ class ImodController {
 
 		schedule.scheduleWeekDays = null
 
-		print params
-
 		params.each {
 			if (it.key.contains('scheduleWeekDays_')) {
 				if (it.value.contains('on')) {
-					if(schedule.scheduleWeekDays == null) {
+					if (schedule.scheduleWeekDays == null) {
 						currentImod.schedule.addToScheduleWeekDays(ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer))
-					}
-					else {
+					} else {
 						currentImod.schedule.scheduleWeekDays << ScheduleWeekDays.get((it.key - 'scheduleWeekDays_') as Integer)
 
 					}
@@ -269,7 +314,9 @@ class ImodController {
 
 	private generateSample (currentUser) {
 		// create sample imod if it doesn't exist
-        final sample = currentUser.imods.find {it.name == 'Object-Oriented Software Development - sample'}
+        final sample = currentUser.imods.find {
+			it.name == 'Object-Oriented Software Development - sample'
+		}
 
         if (sample == null) {
 			// get two action word categories
@@ -330,20 +377,18 @@ class ImodController {
                 createdBy: newImod.id
             )
 
-
             // save new instructor and the updated user to database
             newInstructor.save()
 
             def currentImod = newImod
-
-            DateTime startDate = new DateTime(new Date());
-			DateTime endDate = startDate.plusYears(1);
+            DateTime startDate = new DateTime(new Date())
+			DateTime endDate = startDate.plusYears(1)
 
             def schedule = new Schedule(
             	startDate: startDate,
             	endDate: endDate,
-            	startTime: new LocalTime(18,0),
-            	endTime: new LocalTime(19,15),
+            	startTime: new LocalTime(18, 0),
+            	endTime: new LocalTime(19, 15),
             	imod: currentImod
             )
 
@@ -499,7 +544,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Programming Fundamentals'
 			dimensions = 'Metacognitive, Procedural, Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -513,7 +558,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Problem Solving'
 			dimensions = 'Metacognitive, Procedural'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -529,7 +574,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Constructing Algorithms'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -547,7 +592,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Constructing Formal Code'
 			dimensions = 'Procedural, Factual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -566,7 +611,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Variables'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -575,15 +620,13 @@ class ImodController {
 			contentInstance.save()
 			lo2.addToContents(contentInstance)
 
-
-
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = 'FALSE'
 			contentInstance.priority = 'Critical'
 			contentInstance.topicTitle = 'Software Development Environment'
 			dimensions = 'Procedural, Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -597,7 +640,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Setup and Configuration'
 			dimensions = 'Procedural'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -612,7 +655,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Writing Code'
 			dimensions = 'Procedural, Factual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -627,7 +670,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Executing Code'
 			dimensions = 'Procedural'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -642,7 +685,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Errors (syntax, semantic, runtime)'
 			dimensions = 'Procedural, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -651,15 +694,13 @@ class ImodController {
 			contentInstance.save()
 			lo6.addToContents(contentInstance)
 
-
-
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = 'FALSE'
 			contentInstance.priority = 'Critical'
 			contentInstance.topicTitle = 'Program Structure and Flow'
 			dimensions = 'Procedural, Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -673,7 +714,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Sequence'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -688,7 +729,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Selection'
 			dimensions = 'Procedural, Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -703,7 +744,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Iteration'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -718,7 +759,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Functions'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -733,7 +774,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Modular Programming Techniques'
 			dimensions = 'Procedural, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -748,7 +789,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Composite Data Structures'
 			dimensions = 'Procedural, Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -762,7 +803,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Store and Manipulate Data'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -778,7 +819,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Lists'
 			dimensions = 'Procedural, Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -793,7 +834,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Strings'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -808,7 +849,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Tuples'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -823,7 +864,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Searching and Sorting'
 			dimensions = 'Procedural, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -837,7 +878,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Classes and Objects'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -851,7 +892,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Object'
 			dimensions = 'Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -867,7 +908,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Types'
 			dimensions = 'Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -876,16 +917,13 @@ class ImodController {
 			contentInstance.save()
 			lo4.addToContents(contentInstance)
 
-
-
-
 			contentInstance = new Content(imod: currentImod)
 			contentInstance.preReq = 'FALSE'
 			contentInstance.priority = 'Very Important'
 			contentInstance.topicTitle = 'Application Domain - Problem Specification'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -899,7 +937,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Introduction to Graphics and Drawing'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}
@@ -913,7 +951,7 @@ class ImodController {
 			contentInstance.topicTitle = 'Introduction to Animation'
 			dimensions = 'Factual, Conceptual'
 			if (dimensions != '') {
-				dimensions2 = dimensions.split(',').collect() {
+				dimensions2 = dimensions.split(',').collect {
 					it.toUpperCase().trim() as KnowledgeDimensionEnum
 				}
 			}

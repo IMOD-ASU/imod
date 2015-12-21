@@ -87,7 +87,7 @@ class LearningObjective {
 		indicator			nullable: true
 		performance			nullable: true
 		actionWord			nullable: true
-		hideFromLearningObjectiveCondition	nullable:true
+		hideFromLearningObjectiveCondition	nullable: true
 	}
 
 	static mapping = {
@@ -108,7 +108,7 @@ class LearningObjective {
 		autoTimestamp true
 	}
 
-	public isEmpty() {
+	def isEmpty() {
 		// check each of the criteria attributes
 		boolean criteriaAccuracyEmpty = criteriaAccuracyEnabled == false || criteriaAccuracy == null || criteriaAccuracyHidden == true
 		boolean criteriaQualityEmpty = criteriaQualityEnabled == false || criteriaQuality == null || criteriaQualityHidden == true
@@ -118,18 +118,17 @@ class LearningObjective {
 		boolean criteriaPageEmpty =  criteriaAccuracyEmpty && criteriaQualityEmpty && criteriaQuantityEmpty && criteriaSpeedEmpty
 		// check all the other attributes
 		boolean otherPagesEmpty = condition == null && indicator == null && performance == null
-		// put it all together
-		return otherPagesEmpty && criteriaPageEmpty
+		// return result
+		otherPagesEmpty && criteriaPageEmpty
 	}
 
 	String toString() {
-		return definition
+		definition
 	}
 
-	public buildDefinition() {
-
+	def buildDefinition() {
 		definition = ''
-		if(actionWord == 'Enter the details here'){
+		if (actionWord == 'Enter the details here') {
 			actionWord = ''
 		}
 		if (isEmpty()) {
@@ -143,7 +142,9 @@ class LearningObjective {
 			definition += ' ' + actionWord
 		}
 
-		definition += listToSentence(contents.sort{it.topicTitle})
+		definition += listToSentence(contents.sort {
+			it.topicTitle
+		})
 
 		List<String> criteria = [] as String[]
 		if (criteriaAccuracy != null && criteriaAccuracyHidden == false) {
@@ -168,7 +169,7 @@ class LearningObjective {
 
 	private String listToSentence(list, openingSpace = ' ') {
 		String returnString = ''
-		if(list != null) {
+		if (list != null) {
 			// there is only one item in the list
 			if (list.size() == 1) {
 				if (list[0].toString() != null) {

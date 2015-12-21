@@ -41,7 +41,12 @@
 				</a>
 			</div>
 			<div class="message banner">
-				Please enter course overview data followed by learning objectives and content.
+				<g:if test="${id != "new"}">
+					Please enter course overview data followed by learning objectives and content.
+				</g:if>
+				<g:else>
+					Please enter course overview data and save the IMOD to get access to other learning objectives and content.
+				</g:else>
 			</div>
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 				<ul class="ui-tabs-nav ui-widget-header ui-corner-all">
@@ -53,6 +58,7 @@
 							</span>
 						</g:link>
 					</li>
+					<g:if test="${id != "new"}">
 					<li id="b" class="ui-state-default ui-corner-top ${ currentPage.find(/learning objective/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link controller="learningObjective" action="performance" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'LO_icon.png')}" alt=""/>
@@ -85,6 +91,7 @@
 							</span>
 						</g:link>
 					</li>
+					</g:if>
 				</ul>
 
 				<g:layoutBody/>

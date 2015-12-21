@@ -1,4 +1,5 @@
 package imod
+
 import grails.converters.JSON
 import grails.plugins.rest.client.RestBuilder
 
@@ -6,16 +7,16 @@ class LearningObjectiveController {
 	def learningObjectiveService
 
 	static allowedMethods = [
-		condition: 					'GET',
-		content: 					'GET',
-		create: 					'GET',
-		criteria: 					'GET',
-		getActionWordCategories:	'GET',
-		getDomainCategories: 		'GET',
-		performance: 				'GET',
-		save: 						'POST',
-		saveDefinition:				'POST',
-		remove:						'GET',
+		condition: 'GET',
+		content: 'GET',
+		create: 'GET',
+		criteria: 'GET',
+		getActionWordCategories: 'GET',
+		getDomainCategories: 'GET',
+		performance: 'GET',
+		save: 'POST',
+		saveDefinition: 'POST',
+		remove: 'GET',
 	]
 
 	// same as having index action redirect to performance tab
@@ -45,9 +46,9 @@ class LearningObjectiveController {
 	 * @param  id of the IMOD that learning objective will be linked to
 	 * @return    redirects to the performance tab to allow editing
 	 */
-	def remove(Long id,Long learningObjectiveID) {
+	def remove(Long id, Long learningObjectiveID) {
 		final currentImod = Imod.get(id)
-		def learningObjectiveId = learningObjectiveService.remove(currentImod,learningObjectiveID)
+		def learningObjectiveId = learningObjectiveService.remove(currentImod, learningObjectiveID)
 
 		// redirects to the performance page to allow for newly created learning objective to be edited
 		redirect(
@@ -58,7 +59,6 @@ class LearningObjectiveController {
 			]
 		)
 	}
-
 
 	def saveDefinition(Long id, Long learningObjectiveID, String pageType) {
 		final currentImod = Imod.get(id)
@@ -99,7 +99,7 @@ class LearningObjectiveController {
 				selectedLearningObjective.performance = params.DCL
 				if (params.actionWord == 'other') {
 					selectedLearningObjective.actionWord = params.customActionWord
-				} else if(params.actionWord == 'select'){
+				} else if (params.actionWord == 'select') {
 					selectedLearningObjective.actionWord = 'Enter the details here'
 				} else {
 					selectedLearningObjective.actionWord = params.actionWord
@@ -114,11 +114,10 @@ class LearningObjectiveController {
 				if (params.conditionType == 'Custom') {
 					selectedLearningObjective.condition = params.customCondition
 				}
-				selectedLearningObjective.hideFromLearningObjectiveCondition = (params.hideCondition == 'on' ? true : false)
+				selectedLearningObjective.hideFromLearningObjectiveCondition = params.hideCondition == 'on'
 				if (LearningObjective.genericConditions.contains(selectedLearningObjective.condition)) {
 					selectedLearningObjective.customCondition = ''
-				}
-				else {
+				} else {
 					selectedLearningObjective.customCondition = selectedLearningObjective.condition
 				}
 				break
@@ -127,10 +126,10 @@ class LearningObjectiveController {
 			case 'criteria':
 				// check if the field is enabled
 				// NOTE: when a check box is unchecked it returns null, hence the conditional
-				selectedLearningObjective.criteriaAccuracyEnabled	= (params.enableAccuracy	== null ? false : true)
-				selectedLearningObjective.criteriaQualityEnabled	= (params.enableQuality		== null ? false : true)
-				selectedLearningObjective.criteriaQuantityEnabled	= (params.enableQuantity	== null ? false : true)
-				selectedLearningObjective.criteriaSpeedEnabled		= (params.enableSpeed		== null ? false : true)
+				selectedLearningObjective.criteriaAccuracyEnabled	= params.enableAccuracy	!= null
+				selectedLearningObjective.criteriaQualityEnabled	= params.enableQuality	!= null
+				selectedLearningObjective.criteriaQuantityEnabled	= params.enableQuantity != null
+				selectedLearningObjective.criteriaSpeedEnabled		= params.enableSpeed != null
 
 				// store the text content of each of the learning objective criteriae
 				selectedLearningObjective.criteriaAccuracy	= params.accuracy
@@ -140,10 +139,10 @@ class LearningObjectiveController {
 
 				// check if the field is enabled
 				// NOTE: when a check box is unchecked it returns null, hence the conditional
-				selectedLearningObjective.criteriaAccuracyHidden	= (params.hideAccuracy	== null ? false : true)
-				selectedLearningObjective.criteriaQualityHidden		= (params.hideQuality	== null ? false : true)
-				selectedLearningObjective.criteriaQuantityHidden	= (params.hideQuantity	== null ? false : true)
-				selectedLearningObjective.criteriaSpeedHidden		= (params.hideSpeed		== null ? false : true)
+				selectedLearningObjective.criteriaAccuracyHidden	= params.hideAccuracy != null
+				selectedLearningObjective.criteriaQualityHidden		= params.hideQuality != null
+				selectedLearningObjective.criteriaQuantityHidden	= params.hideQuantity != null
+				selectedLearningObjective.criteriaSpeedHidden		= params.hideSpeed	!= null
 				break
 
 			// if page type is not recognized
@@ -180,7 +179,6 @@ class LearningObjectiveController {
 
 		// get a list of all of the learning objectives for this imod
 		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
-
 
 		// get all performance data to set in the Performance page
 		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
@@ -225,7 +223,7 @@ class LearningObjectiveController {
 
 		if (contentList != null) {
 			text = '<ul id="contentTree">'
-	        contentList2.each() {
+	        contentList2.each {
 	            text += getSubContentHTML(it, currentLearningObjective)
 	        }
 
@@ -243,13 +241,15 @@ class LearningObjectiveController {
 	}
 
 	def condition(Long id, Long learningObjectiveID) {
-		def currentImod					=  Imod.get(id)
-		def learningObjectives			=  learningObjectiveService.getAllByImod(currentImod)
-		def currentLearningObjective	=  learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-		def currentCondition			=  currentLearningObjective?.condition?:''
-		def currentCustomCondition		=  currentLearningObjective?.customCondition
-		def isCustom					= ((boolean) (LearningObjective.genericConditions.find {it == currentCondition}))
-		def hideCondition				=  currentLearningObjective?.hideFromLearningObjectiveCondition
+		def currentImod	= Imod.get(id)
+		def learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+		def currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+		def currentCondition = currentLearningObjective?.condition ?: ''
+		def currentCustomCondition = currentLearningObjective?.customCondition
+		def isCustom = ((boolean) (LearningObjective.genericConditions.find {
+			it == currentCondition
+		}))
+		def hideCondition = currentLearningObjective?.hideFromLearningObjectiveCondition
 
 		[
 			currentCondition:			currentCondition,
@@ -278,11 +278,11 @@ class LearningObjectiveController {
 		]
 	}
 
-	private def getSubContent(Content current, LearningObjective objective) {
+	private getSubContent(Content current, LearningObjective objective) {
 		// FIXME remove html from controller
 		def listChildren = []
 		def topicSelected = 'topicNotSelected'
-		if(objective != null){
+		if (objective != null) {
 			if (objective.contents.contains(current) as Boolean) {
 				topicSelected = 'topicSelected'
 			}
@@ -290,13 +290,13 @@ class LearningObjectiveController {
 		def currentID = current.id
 		def idValue = 'content' + currentID
 		def topicTitle = '<span class="fa-stack">' +
-			'<i class="checkboxBackground"></i>'+
+			'<i class="checkboxBackground"></i>' +
 			'<i class="fa fa-stack-1x checkbox" id="select' + currentID + '"></i> ' +
 			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
-		def returnValue = {}
-		def rootNode = ""
+		def returnValue = { }
+		def rootNode = ''
 		if (current.parentContent == null) {
-			rootNode = "rootNode"
+			rootNode = 'rootNode'
 		}
 		if (current.subContents != null) {
 			current.subContents.collect(listChildren) {
@@ -315,30 +315,31 @@ class LearningObjectiveController {
 			],
 			children: listChildren
 		]
-		return returnValue
+
+		// return return value
+		returnValue
 	}
 
-
-	private def getSubContentHTML(Content current, LearningObjective objective) {
+	private getSubContentHTML(Content current, LearningObjective objective) {
         def text = ''
 
         def topicSelected = ''
-		if(objective != null){
+		if (objective != null) {
 			if (objective.contents.contains(current) as Boolean) {
 				topicSelected = 'fa-check'
 			}
 		}
 		def currentID = current.id
 		def topicTitle = '<span class="sub-content-tree fa-stack">' +
-			'<i class="checkboxBackground"></i>'+
-			'<i class="fa fa-stack-1x checkbox '+ topicSelected + '" id="select' + currentID + '"></i> ' +
+			'<i class="checkboxBackground"></i>' +
+			'<i class="fa fa-stack-1x checkbox ' + topicSelected + '" id="select' + currentID + '"></i> ' +
 			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
 
         text += '<li data-itemid="' + currentID + '">' + topicTitle
 
         if (current.subContents != null) {
             text += '<ul>'
-            current.subContents.each() {
+            current.subContents.each {
                 text += getSubContentHTML(it, objective)
             }
             text += '</ul>'
@@ -346,9 +347,9 @@ class LearningObjectiveController {
 
         text +=  '</li>'
 
-        return text
+		// return text
+        text
     }
-
 
 	/**
 	 * gather the Domain Categories for selected Learning Domain

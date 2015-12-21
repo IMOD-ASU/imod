@@ -15,7 +15,6 @@ class Resource {
 	 */
 	String name
 
-
 	/*
 	 ***********************
 	 * Optional Attributes *
@@ -50,7 +49,6 @@ class Resource {
 	static belongsTo = [
 		content: Content
 	]
-
 
 	/*
 	 *****************
@@ -90,14 +88,14 @@ class Resource {
 			'Document',
 			'URL'
 		]
-		return resourceList
+		resourceList
 	}
 
 	/**
 	 * printing the Resource will give the resource's display name
 	 * @return display name for resource
 	 */
-	def String toString() {
-		return name
+	String toString() {
+		name
 	}
 }

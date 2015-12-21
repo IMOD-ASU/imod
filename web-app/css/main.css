@@ -492,7 +492,7 @@ fieldset.embedded legend {
 }
 
 .message {
-    text-indent: 2.2em;
+    padding-left: 2.2em;
 
     background: transparent url(../images/skin/information.png) 0.5em 50% no-repeat;
 }
@@ -723,7 +723,22 @@ th.desc a {
 
 
 
+.knowledgeDimensionButton, .ResourceButton {
+    display: inline-block;
 
+    height: auto;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 2px 5px;
+
+    vertical-align: middle;
+
+    color: #ffffff;
+    border-radius: 3px;
+    background: linear-gradient(#113b70, #0b2f5e);
+    box-shadow: 0 1px 2px #888888;
+    border: none;
+}
 
 .topicButtonGradient {
     display: inline-block;

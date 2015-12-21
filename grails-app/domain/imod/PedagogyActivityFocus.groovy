@@ -7,7 +7,7 @@ class PedagogyActivityFocus {
 	String focus
 
 	String toString() {
-	    return focus
+	    focus
 	}
 
 	static mapping = {

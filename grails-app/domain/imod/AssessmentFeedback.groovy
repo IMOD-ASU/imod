@@ -14,7 +14,7 @@ class AssessmentFeedback {
 		version false
 	}
 
-	String toString(){
-		return name
+	String toString() {
+		name
 	}
 }
