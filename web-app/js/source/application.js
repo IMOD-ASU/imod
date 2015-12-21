@@ -137,7 +137,6 @@ window.onload = function () {
 	} else {
 		cleanForm = $('form:not(.no-warn-form)').find('select, textarea, input').serialize();
 	}
-
 };
 
 window.onbeforeunload = function () {
