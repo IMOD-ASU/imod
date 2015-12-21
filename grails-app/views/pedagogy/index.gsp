@@ -296,7 +296,7 @@
 					<div class="draggable" id="add-new-technique">
 						<%--To render the add new Technique dialog box--%>
 						<fieldset class="titleField draggable-handle">
-							<div id="editTitle">
+							<div id="editTitle" class="pedagogy-title">
 							<b> Add Pedagogy Technique</b>
 							</div>
 							<span id="errorMessage" class="red"></span>
