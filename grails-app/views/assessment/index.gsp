@@ -305,7 +305,7 @@
 					<div id="add-new-technique" class="draggable" title="Add New Technique">
 						<%--To render the add new Technique dialog box--%>
 						<fieldset class="titleField draggable-handle">
-							<div id="editTitle">
+							<div id="editTitle" class="assessment-title">
 							<b> Add Assessment Technique</b>
 							</div>
 							<span id="errorMessage" style="color: red"></span>
