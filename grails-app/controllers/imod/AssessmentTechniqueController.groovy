@@ -171,15 +171,9 @@ class AssessmentTechniqueController {
 			LearningObjective.get(learningObjectiveID)
 		)
 
-		params.domainCategory.each {
-			newTechnique.addToDomainCategory(
-				DomainCategory.findByName(it)
-			)
-		}
-
 		String[] kD = params.knowledgeDimension.split(',')
-		String[] lD = params.learningDomain
-		String[] dC = params.domainCategory
+		String[] lD = params.list('learningDomain')
+		String[] dC = params.list('domainCategory')
 
 		if (kD != null) {
 			for (int i = 0; i < kD.length; i++) {

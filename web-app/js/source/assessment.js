@@ -191,7 +191,7 @@ function showAssessmentTechnique () {
 	'use strict';
 	$('#ideal-matches .text-block.title')
 		.click(function () {
-			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			return false;
@@ -199,7 +199,7 @@ function showAssessmentTechnique () {
 
 	$('#ideal-matches1 .text-block.title')
 		.click(function () {
-			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			return false;
@@ -207,7 +207,7 @@ function showAssessmentTechnique () {
 
 	$('#extended-matches .text-block.title')
 		.click(function () {
-			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			return false;
@@ -284,7 +284,7 @@ function displayAssessmentTechniques (data) {
 	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 		currentTechnique = data.idealAssessmentTechniqueMatch[index];
 
-		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+		if (data.favoriteTechniques.indexOf(currentTechnique.id) > -1) {
 			favoriteImgToggle = '../../images/fav.png';
 		} else {
 			favoriteImgToggle = '../../images/unfav.png';
@@ -460,10 +460,11 @@ function displayAssessmentFavoriteTechniques (data) {
 		assignedLOs = currentTechnique.assignedLearningObjective;
 		assignImgToggle = '../../images/unassign.png';
 
-		for (assignedIndex = 0; assignedIndex <= assignedLOs.length; assignedIndex++) {
+		for (assignedIndex = 0; assignedIndex < assignedLOs.length; assignedIndex++) {
 			if (typeof assignedLOs[assignedIndex] !== 'undefined') {
 				assignedId = assignedLOs[assignedIndex].id;
 			}
+
 			if (typeof assignedId !== 'undefined' && assignedId === learningObjectiveID) {
 				assignImgToggle = '../../images/assign.png';
 				break;
@@ -603,7 +604,7 @@ $('input[name=domainCategory]').on('change', filterAssessmentTechniques);
 // When add new technique button is clicked open modal
 $('#new-technique-button').on('click', function () {
 	'use strict';
-	$('#editTitle').html('<strong>Add New Assessment Technique</strong>');
+	$('.assessment-title').html('<strong>Add New Assessment Technique</strong>');
 	openNewAssessmentTechniqueModal();
 });
 
@@ -741,12 +742,12 @@ $(document).ready(
 		$('#assessment-plan-accordion').accordion({collapsible: true, heightStyle: 'content', active: false});
 		// clone
 		$(document).on('click', '.new-technique-popup-button.clone', function () {
-			$('#editTitle').html('<strong>Clone Assessment Technique</strong>');
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(true);
 			document.getElementById('cloneDetect').value = 'clone';
 			$('#title').val('');
 			$('#techniqueId').val('');
+			$('.assessment-title').html('<strong>Enter Alternate Name For Clone</strong>');
 			return false;
 		});
 		$('#ideal-matches-toggle').accordion({collapsible: true,
@@ -833,8 +834,8 @@ $(document).ready(
 
 		// When add new technique button is clicked open modal
 		$('#add-new-technique-button').on('click', function () {
-			$('#editTitle').html('<strong>Add New Assessment Technique</strong>');
 			openNewAssessmentTechniqueModal();
+			$('.assessment-title').html('<strong>Add New Assessment Technique</strong>');
 		});
 
 		// When hovered over LO side-tab list, it displays full text as tool-tip
@@ -884,9 +885,9 @@ $(document).ready(
 
 		$(document)
 		.on('click', '.favorites-modal .text-block.title', function () {
-			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
+			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
 			return false;
 		});
 	}
