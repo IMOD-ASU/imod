@@ -128,7 +128,7 @@
 		</thead>
 		<tbody>
 		<!-- ${currentImod.contents} -->
-		<g:each var="contentItem" in="${currentImod.contents.sort { a, b -> a.topicTitle.compareTo(b.topicTitle) }}">
+		<g:each var="contentItem" in="${currentImod.contents.sort { a, b -> a.id.compareTo(b.id) }}">
 			<input type="hidden" id="contentID" value="${contentItem.id}"/>
 			<tr id="${contentItem.id}" class="topicItem">
 				<td class="saveIcon">
