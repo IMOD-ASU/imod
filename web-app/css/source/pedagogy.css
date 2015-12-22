@@ -156,7 +156,8 @@
 #closeInstructionalPlan {
     cursor: pointer;
     vertical-align: middle;
-
+	width: 18px;
+	margin-right:-5px;
     font-size: 1em;
 
     size: 1em;
@@ -164,6 +165,10 @@
 
 #closeInstructionalPlanButton {
     cursor: pointer;
+	width: 2px;
+	font-size: 15px;
+	padding-left: 2px;
+
 }
 
 #add-new-technique .td-label {
