@@ -4,13 +4,13 @@ import grails.converters.JSON
 import groovy.json.JsonSlurper
 
 class CourseOverviewController {
-    def springSecurityService
+	def springSecurityService
 
-    static allowedMethods = [
-        delete: 'POST',
-        create: 'POST',
-        updateSyllabusPrefs: 'POST',
-    ]
+	static allowedMethods = [
+		delete: 'POST',
+		create: 'POST',
+		updateSyllabusPrefs: 'POST',
+	]
 
 	def index(String id) {
 
@@ -36,258 +36,258 @@ class CourseOverviewController {
 				currentImod: dummyImod,
 				currentPage: 'course overview',
 				id: 'new'
-	        ]
+			]
 		} else {
 
 			[
 				currentImod: Imod.get(Long.parseLong(id)),
 				currentPage: 'course overview',
 				id: id
-	        ]
+			]
 		}
 
 	}
 
-    def create() {
-        final jsonParser = new JsonSlurper()
-        final parameters = jsonParser.parseText(params.parameters)
+	def create() {
+		final jsonParser = new JsonSlurper()
+		final parameters = jsonParser.parseText(params.parameters)
 
-        parameters.each {
-            final firstName = it.firstName
-            final lastName = it.lastName
-            final email = it.email
-            final role = it.role
-            final officeHours = it.officeHours
-            final webPage = it.webPage
-            final location = it.location
+		parameters.each {
+			final firstName = it.firstName
+			final lastName = it.lastName
+			final email = it.email
+			final role = it.role
+			final officeHours = it.officeHours
+			final webPage = it.webPage
+			final location = it.location
 
-            if (it.id == null) {
-                def newInstructor = new Instructor(
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    role: role,
-                    officeHours: officeHours,
-                    webPage: webPage,
-                    location: location,
-                    createdBy: params.imodId
-                )
+			if (it.id == null) {
+				def newInstructor = new Instructor(
+					firstName: firstName,
+					lastName: lastName,
+					email: email,
+					role: role,
+					officeHours: officeHours,
+					webPage: webPage,
+					location: location,
+					createdBy: params.imodId
+				)
 
-                // save new instructor and the updated user to database
-                newInstructor.save()
-            }
-            else {
-                def newInstructor = Instructor.get(it.id)
-                newInstructor.firstName = firstName
-                newInstructor.lastName = lastName
-                newInstructor.email = email
-                newInstructor.role = role
-                newInstructor.officeHours = officeHours
-                newInstructor.webPage = webPage
-                newInstructor.location = location
+				// save new instructor and the updated user to database
+				newInstructor.save()
+			}
+			else {
+				def newInstructor = Instructor.get(it.id)
+				newInstructor.firstName = firstName
+				newInstructor.lastName = lastName
+				newInstructor.email = email
+				newInstructor.role = role
+				newInstructor.officeHours = officeHours
+				newInstructor.webPage = webPage
+				newInstructor.location = location
 
-                // save new instructor and the updated user to database
-                newInstructor.save()
-            }
-        }
+				// save new instructor and the updated user to database
+				newInstructor.save()
+			}
+		}
 
-        render (
-            [
-                value: 'success'
-            ] as JSON
-        )
-    }
+		render (
+			[
+				value: 'success'
+			] as JSON
+		)
+	}
 
 	// FIXME rename the action to addInstructor
-    def add() {
-    	render(
+	def add() {
+		render(
 			view: 'addinstructor',
-            model: [imodid: params.imodid]
+			model: [imodid: params.imodid]
 		)
-    }
-
-    def delete() {
-        def instructorList = params.list('selected[]')
-
-        instructorList.each { item ->
-            def instructorInstance = Instructor.get(item)
-            instructorInstance.delete()
-        }
-
-        render (
-            [
-                value: 'success'
-            ] as JSON
-        )
 	}
 
-    // syllabus html page
-    def syllabus(Long id) {
-        final currentImod = Imod.get(id)
-        final learningObjectives = LearningObjective.findAllByImod(currentImod)
-        final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
-        def count = 0
+	def delete() {
+		def instructorList = params.list('selected[]')
 
-        def text = '<ul>'
-
-        contentList.each {
-        	count++
-            text += getSubContent(it)
-        }
-
-        text += '</ul>'
-
-        if (!count) {
-        	text = ''
-        }
-
-        def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
-
-        if (syllabusPrefs != null) {
-        	[
-	            currentImod: currentImod,
-	            currentPage: 'syllabus',
-	            learningObjectives: learningObjectives,
-	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' : syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList == null ? '' : syllabusPrefs.sortIdList
-	        ]
-    	} else {
-    		[
-	            currentImod: currentImod,
-	            currentPage: 'syllabus',
-	            learningObjectives: learningObjectives,
-	            contentList: text,
-	            hideSectionsList: '',
-	            sortIdList: ''
-	        ]
-    	}
-    }
-
-    // Method to update syllabus contentlist
-    // to toggle hide show
-    def updateSyllabusPrefs() {
-    	def imod = Imod.get(params.imodId)
-    	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
-
-    	if ( syllabusPrefs != null ) {
-    		syllabusPrefs.hideSectionsList = params.hideSectionsList
-    	} else {
-    		syllabusPrefs = new SyllabusPrefs(
-	    		hideSectionsList: params.hideSectionsList,
-	            imod: params.imodId
-	        )
+		instructorList.each { item ->
+			def instructorInstance = Instructor.get(item)
+			instructorInstance.delete()
 		}
 
-        // save syllabus preferences to DB
-        syllabusPrefs.save()
+		render (
+			[
+				value: 'success'
+			] as JSON
+		)
+	}
 
-        render (
-            [
-                value: 'success'
-            ] as JSON
-        )
-    }
+	// syllabus html page
+	def syllabus(Long id) {
+		final currentImod = Imod.get(id)
+		final learningObjectives = LearningObjective.findAllByImod(currentImod)
+		final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+		def count = 0
 
-    // Stores the syllabus sections order
-    // in the DB
-    def updateSyllabusOrder() {
-    	def imod = Imod.get(params.imodId)
-    	def syllabusPrefs = SyllabusPrefs.findByImod(imod)
+		def text = '<ul>'
 
-    	syllabusPrefs.sortIdList = params.sortIdList
+		contentList.each {
+			count++
+			text += getSubContent(it)
+		}
 
-    	// save syllabus preferences to DB
-        syllabusPrefs.save()
+		text += '</ul>'
 
-        render (
-            [
-                value: 'success'
-            ] as JSON
-        )
-    }
+		if (!count) {
+			text = ''
+		}
 
-    def generatedSyllabus(Long id) {
-        final currentImod = Imod.get(id)
-        final learningObjectives = LearningObjective.findAllByImod(currentImod)
-        final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
-        def count = 0
+		def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
 
-        def text = '<ul>'
+		if (syllabusPrefs != null) {
+			[
+				currentImod: currentImod,
+				currentPage: 'syllabus',
+				learningObjectives: learningObjectives,
+				contentList: text,
+				hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' : syllabusPrefs.hideSectionsList,
+				sortIdList: syllabusPrefs.sortIdList == null ? '' : syllabusPrefs.sortIdList
+			]
+		} else {
+			[
+				currentImod: currentImod,
+				currentPage: 'syllabus',
+				learningObjectives: learningObjectives,
+				contentList: text,
+				hideSectionsList: '',
+				sortIdList: ''
+			]
+		}
+	}
 
-        contentList.each {
-        	count++
-            text += getSubContent(it)
-        }
+	// Method to update syllabus contentlist
+	// to toggle hide show
+	def updateSyllabusPrefs() {
+		def imod = Imod.get(params.imodId)
+		def syllabusPrefs = SyllabusPrefs.findByImod(imod)
 
-        text += '</ul>'
+		if ( syllabusPrefs != null ) {
+			syllabusPrefs.hideSectionsList = params.hideSectionsList
+		} else {
+			syllabusPrefs = new SyllabusPrefs(
+				hideSectionsList: params.hideSectionsList,
+				imod: params.imodId
+			)
+		}
 
-        if (!count) {
-        	text = ''
-        }
+		// save syllabus preferences to DB
+		syllabusPrefs.save()
 
-    	def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
+		render (
+			[
+				value: 'success'
+			] as JSON
+		)
+	}
 
-        if (syllabusPrefs != null) {
-        	[
-	            currentImod: currentImod,
-	            currentPage: 'syllabus',
-	            learningObjectives: learningObjectives,
-	            contentList: text,
-	            hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' : syllabusPrefs.hideSectionsList,
-	            sortIdList: syllabusPrefs.sortIdList == null ? '' : syllabusPrefs.sortIdList
-	        ]
-    	} else {
-    		[
-	            currentImod: currentImod,
-	            currentPage: 'syllabus',
-	            learningObjectives: learningObjectives,
-	            contentList: text,
-	            hideSectionsList: '',
-	            sortIdList: ''
-	        ]
-    	}
-    }
+	// Stores the syllabus sections order
+	// in the DB
+	def updateSyllabusOrder() {
+		def imod = Imod.get(params.imodId)
+		def syllabusPrefs = SyllabusPrefs.findByImod(imod)
 
-     def syllabuspdf(Long id) {
-        final currentImod = Imod.get(id)
-        final learningObjectives = LearningObjective.findAllByImod(currentImod)
-        final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+		syllabusPrefs.sortIdList = params.sortIdList
 
-        def text = '<ul>'
+		// save syllabus preferences to DB
+		syllabusPrefs.save()
 
-        contentList.each {
-            text += getSubContent(it)
-        }
+		render (
+			[
+				value: 'success'
+			] as JSON
+		)
+	}
 
-        text += '</ul>'
+	def generatedSyllabus(Long id) {
+		final currentImod = Imod.get(id)
+		final learningObjectives = LearningObjective.findAllByImod(currentImod)
+		final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+		def count = 0
 
-        renderPdf(
-            template: '/courseOverview/syllabus',
-            model: [
-                currentImod: currentImod,
-                currentPage: 'syllabus',
-                learningObjectives: learningObjectives,
-                contentList: text
-            ],
-            filename: currentImod?.name.replaceAll(' ', '_') + '.pdf'
-        )
-    }
+		def text = '<ul>'
 
-    private getSubContent(Content current) {
-        def text = '<li>' + current.topicTitle
+		contentList.each {
+			count++
+			text += getSubContent(it)
+		}
 
-        if (current.subContents != null) {
-            text += '<ul>'
-            current.subContents.each {
-                text += getSubContent(it)
-            }
-            text += '</ul>'
-        }
+		text += '</ul>'
 
-        text +=  '</li>'
+		if (!count) {
+			text = ''
+		}
 
-        // returns text
-        text
-    }
+		def syllabusPrefs = SyllabusPrefs.findByImod(currentImod)
+
+		if (syllabusPrefs != null) {
+			[
+				currentImod: currentImod,
+				currentPage: 'syllabus',
+				learningObjectives: learningObjectives,
+				contentList: text,
+				hideSectionsList: syllabusPrefs.hideSectionsList == null ? '' : syllabusPrefs.hideSectionsList,
+				sortIdList: syllabusPrefs.sortIdList == null ? '' : syllabusPrefs.sortIdList
+			]
+		} else {
+			[
+				currentImod: currentImod,
+				currentPage: 'syllabus',
+				learningObjectives: learningObjectives,
+				contentList: text,
+				hideSectionsList: '',
+				sortIdList: ''
+			]
+		}
+	}
+
+	 def syllabuspdf(Long id) {
+		final currentImod = Imod.get(id)
+		final learningObjectives = LearningObjective.findAllByImod(currentImod)
+		final contentList = Content.findAllWhere(imod: currentImod, parentContent: null)
+
+		def text = '<ul>'
+
+		contentList.each {
+			text += getSubContent(it)
+		}
+
+		text += '</ul>'
+
+		renderPdf(
+			template: '/courseOverview/syllabus',
+			model: [
+				currentImod: currentImod,
+				currentPage: 'syllabus',
+				learningObjectives: learningObjectives,
+				contentList: text
+			],
+			filename: currentImod?.name.replaceAll(' ', '_') + '.pdf'
+		)
+	}
+
+	private getSubContent(Content current) {
+		def text = '<li>' + current.topicTitle
+
+		if (current.subContents != null) {
+			text += '<ul>'
+			current.subContents.each {
+				text += getSubContent(it)
+			}
+			text += '</ul>'
+		}
+
+		text +=  '</li>'
+
+		// returns text
+		text
+	}
 }

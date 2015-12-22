@@ -22,6 +22,6 @@ class ActionWordCategory {
 	}
 
 	String toString() {
-	    actionWordCategory
+		actionWordCategory
 	}
 }

@@ -85,6 +85,28 @@ ruleset {
 	SpaceBeforeOpeningBrace(priority: 2)
 	TrailingWhitespace(priority: 2)
 
+	// Grails Rules
+	GrailsDomainHasEquals(enabled: false)
+	GrailsDomainHasToString(priority: 2)
+	GrailsDomainReservedSqlKeywordName(priority: 3)
+	GrailsDomainWithServiceReference(enabled: false)
+	GrailsDuplicateConstraint(priority: 2)
+	GrailsDuplicateMapping(priority: 2)
+	GrailsMassAssignment(priority: 3)
+	GrailsServletContextReference(priority: 2)
+	GrailsStatelessService(priority: 2)
+
+	// Security Rules
+	FileCreateTempFile(priority: 1)
+	InsecureRandom(priority: 1)
+	JavaIoPackageAccess(priority: 1)
+	NonFinalPublicField(priority: 1)
+	NonFinalSubclassOfSensitiveInterface(priority: 1)
+	PublicFinalizeMethod(priority: 1)
+	ObjectFinalize(priority: 1)
+	SystemExit(priority: 1)
+	UnsafeArrayDeclaration(priority: 1)
+
 	// Unnecessary Rules
 	AddEmptyString(priority: 2)
 	ConsecutiveLiteralAppends(priority: 2)

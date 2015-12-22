@@ -11,8 +11,12 @@ class SyllabusPrefs {
 		Imod
 	]
 
-    static constraints = {
-    	hideSectionsList	nullable:	true
-    	sortIdList			nullable:	true
-    }
+	static constraints = {
+		hideSectionsList	nullable:	true
+		sortIdList			nullable:	true
+	}
+
+	String toString() {
+		sortIdList
+	}
 }

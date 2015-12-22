@@ -11,7 +11,7 @@ class PedagogyMode {
 	]
 
 	String toString() {
-	    name
+		name
 	}
 
 	static mapping = {

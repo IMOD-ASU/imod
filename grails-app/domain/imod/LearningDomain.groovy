@@ -11,8 +11,8 @@ class LearningDomain {
 		domainCategories: DomainCategory
 	]
 
-    static constraints = {
-    }
+	static constraints = {
+	}
 
 	static mapping = {
 		version false

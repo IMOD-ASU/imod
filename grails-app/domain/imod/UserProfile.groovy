@@ -21,7 +21,7 @@ class UserProfile {
 
 	ImodUser user
 
-    static constraints = {
+	static constraints = {
 		// remove these constraints selectively in the future if profile is not nullable in ImodUser class
 		firstName nullable: true
 		lastName nullable: true
@@ -38,5 +38,9 @@ class UserProfile {
 
 	static mapping = {
 		version false
+	}
+
+	String toString() {
+		firstName
 	}
 }

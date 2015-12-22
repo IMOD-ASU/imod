@@ -61,4 +61,8 @@ class ImodUserRole implements Serializable {
 		id composite: ['role', 'imodUser']
 		version false
 	}
+
+	String toString() {
+		"${imodUser.username}: ${role.authority}"
+	}
 }
