@@ -398,10 +398,10 @@
 
 	</fieldset>
 </div>
-
+<g:if test="${!currentImod.contents.isEmpty()}">
 <div id="chart" align="center">
-
 </div>
+</g:if>
 <input type="hidden" id="treeData" value="${contentList}">
 <input type="hidden" id="resourceDataStore" >
 </body>
