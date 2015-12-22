@@ -158,12 +158,17 @@
 	vertical-align: middle;
 
 	font-size: 1em;
+	width: 18px;
 
 	size: 1em;
+	margin-right:-5px;
 }
 
 #closeInstructionalPlanButton {
 	cursor: pointer;
+	width: 2px;
+	font-size: 15px;
+	padding-left: 2px;
 }
 
 #add-new-technique .td-label {
