@@ -424,6 +424,7 @@ label.assessment-block {
     position: absolute;
     right: 0;
     bottom: 0;
+    top: inherit;
 
     height: 28px;
     padding: 0 10px;

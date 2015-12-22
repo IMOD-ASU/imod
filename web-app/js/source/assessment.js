@@ -285,7 +285,7 @@ function displayAssessmentTechniques (data) {
 	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
 		currentTechnique = data.idealAssessmentTechniqueMatch[index];
 
-		if (data.favoriteTechniques.indexOf(currentTechnique.id) > -1) {
+		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
 			favoriteImgToggle = '../../images/fav.png';
 		} else {
 			favoriteImgToggle = '../../images/unfav.png';
@@ -296,6 +296,8 @@ function displayAssessmentTechniques (data) {
 		} else {
 			assignImgToggle = '../../images/unassign.png';
 		}
+
+		console.log(favoriteImgToggle)
 
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
 		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
