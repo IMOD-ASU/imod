@@ -111,15 +111,15 @@ class AssessmentController {
 					}
 				}
 			}
-            resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
 
 		// find all technique that are not ideal, but have the learning domain
 		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
-    			learningDomain {
-    				'in' ('id', selectedLearningDomains)
-    			}
+				learningDomain {
+					'in' ('id', selectedLearningDomains)
+				}
 				not {
 					and {
 						knowledgeDimension {
@@ -168,7 +168,7 @@ class AssessmentController {
 	/*print assessment plan*/
 	def assessmentPlan(Long id) {
 		final currentImod = Imod.get(id)
-        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+		final learningObjectives = LearningObjective.findAllByImod(currentImod)
 		[
 			learningObjectives: learningObjectives
 		]

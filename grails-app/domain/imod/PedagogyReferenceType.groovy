@@ -4,7 +4,7 @@ class PedagogyReferenceType {
 	String description
 
 	String toString() {
-	    description
+		description
 	}
 
 	static mapping = {

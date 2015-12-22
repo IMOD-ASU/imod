@@ -106,15 +106,15 @@ class Content {
 	}
 
 	String toString() {
-	    topicTitle
+		topicTitle
 	}
 
 	/**
 	 * [checkRecursion description]
 	 * @param  currentContent [description]
 	 * @param  contentToAdd   [description]
-	 * @param  errors         [description]
-	 * @return                [description]
+	 * @param  errors		 [description]
+	 * @return				[description]
 	 */
 	def checkRecursion(currentContent, contentToAdd, errors) {
 		if (currentContent == null) {

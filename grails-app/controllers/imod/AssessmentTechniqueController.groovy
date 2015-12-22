@@ -249,10 +249,10 @@ class AssessmentTechniqueController {
 		// store relationship
 		currentUser.save()
 		render (
-            [
-                value: 'success'
-            ] as JSON
-        )
+			[
+				value: 'success'
+			] as JSON
+		)
 	}
 
 	def unassignFavorite(Long id) {
@@ -264,10 +264,10 @@ class AssessmentTechniqueController {
 		// store relationship
 		currentUser.save()
 		render (
-            [
-                value: 'success'
-            ] as JSON
-        )
+			[
+				value: 'success'
+			] as JSON
+		)
 	}
 
 	def assignToLearningObjective() {
@@ -280,10 +280,10 @@ class AssessmentTechniqueController {
 		// store relationship
 		currentLearningObjective.save()
 		render (
-            [
-                value: 'success'
-            ] as JSON
-        )
+			[
+				value: 'success'
+			] as JSON
+		)
 	}
 
 	def unassignToLearningObjective() {
@@ -297,9 +297,9 @@ class AssessmentTechniqueController {
 		// store relationship
 		currentLearningObjective.save()
 		render (
-            [
-                value: 'success'
-            ] as JSON
-        )
+			[
+				value: 'success'
+			] as JSON
+		)
 	}
 }

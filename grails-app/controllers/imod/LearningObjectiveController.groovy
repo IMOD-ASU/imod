@@ -25,7 +25,7 @@ class LearningObjectiveController {
 	/**
 	 * Creates a Learning Objective
 	 * @param  id of the IMOD that learning objective will be linked to
-	 * @return    redirects to the performance tab to allow editing
+	 * @return	redirects to the performance tab to allow editing
 	 */
 	def create(Long id) {
 		final currentImod = Imod.get(id)
@@ -44,7 +44,7 @@ class LearningObjectiveController {
 	/**
 	 * Removes a Learning Objective
 	 * @param  id of the IMOD that learning objective will be linked to
-	 * @return    redirects to the performance tab to allow editing
+	 * @return	redirects to the performance tab to allow editing
 	 */
 	def remove(Long id, Long learningObjectiveID) {
 		final currentImod = Imod.get(id)
@@ -80,10 +80,10 @@ class LearningObjectiveController {
 
 	/**
 	 * Updates an existing learning objective
-	 * @param  id                  IMOD that the learning objective is linked to
+	 * @param  id				  IMOD that the learning objective is linked to
 	 * @param  learningObjectiveID ID of the learning objective being updated
-	 * @param  pageType            Describes the type (from what tab) of content is being updated at this time
-	 * @return                     redirects back to the page that user was just on
+	 * @param  pageType			Describes the type (from what tab) of content is being updated at this time
+	 * @return					 redirects back to the page that user was just on
 	 */
 	//TODO: add confirmation that the content was successfully saved
 	// FIXME each page should have its own save
@@ -170,7 +170,7 @@ class LearningObjectiveController {
 	 * This allows the user to set Performance measures for their learning objectives
 	 * Peformance measures are created through action words
 	 * Action Words are found by starting with a Learning Domain, choosing a domain category, the selecting an action word from a list
-	 * @param  id                  IMOD that learning objective is associated with
+	 * @param  id				  IMOD that learning objective is associated with
 	 * @param  learningObjectiveID ID of the specific learning objective being edited
 	 */
 	def performance(Long id, Long learningObjectiveID) {
@@ -223,12 +223,12 @@ class LearningObjectiveController {
 
 		if (contentList != null) {
 			text = '<ul id="contentTree">'
-	        contentList2.each {
-	            text += getSubContentHTML(it, currentLearningObjective)
-	        }
+			contentList2.each {
+				text += getSubContentHTML(it, currentLearningObjective)
+			}
 
-	        text += '</ul>'
-        }
+			text += '</ul>'
+		}
 
 		[
 			contentList:				contents,
@@ -321,9 +321,9 @@ class LearningObjectiveController {
 	}
 
 	private getSubContentHTML(Content current, LearningObjective objective) {
-        def text = ''
+		def text = ''
 
-        def topicSelected = ''
+		def topicSelected = ''
 		if (objective != null) {
 			if (objective.contents.contains(current) as Boolean) {
 				topicSelected = 'fa-check'
@@ -335,26 +335,26 @@ class LearningObjectiveController {
 			'<i class="fa fa-stack-1x checkbox ' + topicSelected + '" id="select' + currentID + '"></i> ' +
 			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
 
-        text += '<li data-itemid="' + currentID + '">' + topicTitle
+		text += '<li data-itemid="' + currentID + '">' + topicTitle
 
-        if (current.subContents != null) {
-            text += '<ul>'
-            current.subContents.each {
-                text += getSubContentHTML(it, objective)
-            }
-            text += '</ul>'
-        }
+		if (current.subContents != null) {
+			text += '<ul>'
+			current.subContents.each {
+				text += getSubContentHTML(it, objective)
+			}
+			text += '</ul>'
+		}
 
-        text +=  '</li>'
+		text +=  '</li>'
 
 		// return text
-        text
-    }
+		text
+	}
 
 	/**
 	 * gather the Domain Categories for selected Learning Domain
 	 * @param  domainName String that is the contents (or name) of a Learning Domain
-	 * @return            sorted list of Domain Categories
+	 * @return			sorted list of Domain Categories
 	 */
 	def getDomainCategories(String domainName) {
 		// Find the selected learning domain
@@ -372,7 +372,7 @@ class LearningObjectiveController {
 	/**
 	 * gather the Action Words for selected Domain Category
 	 * @param  domainName String that is the contents (or name) of a Action Word Category
-	 * @return            sorted list of Action Words
+	 * @return			sorted list of Action Words
 	 */
 	def getActionWordCategories(String domainName) {
 		// Find the selected learning domain
@@ -390,7 +390,7 @@ class LearningObjectiveController {
 	/**
 	 * gather the Action Words for selected Domain Category
 	 * @param  actionWordCategory String that is the contents (or name) of a Domain Category
-	 * @return            sorted list of Action Words
+	 * @return			sorted list of Action Words
 	 */
 	def getActionWords(String actionWordCategory) {
 		// temporarily replace the WordNet API with BigHugeLabsAPI

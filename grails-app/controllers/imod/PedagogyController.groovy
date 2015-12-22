@@ -206,7 +206,7 @@ class PedagogyController {
 	 */
 	def instructionalPlan(Long id) {
 		final currentImod = Imod.get(id)
-        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+		final learningObjectives = LearningObjective.findAllByImod(currentImod)
 		def arrayOfLOPedagogyTechniques = []
 		for (def learningObjective in learningObjectives) {
 			def currentLearningObjective = LearningObjective.findById(learningObjective.id)

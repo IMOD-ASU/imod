@@ -19,14 +19,14 @@ codenarc.ruleSetFiles='file:CodeNarc.groovy'
 codenarc.maxPriority1Violations = 0
 codenarc.maxPriority2Violations = 0
 codenarc.reports = {
-    TextReport('text') {
-        outputFile = 'static-analysis.txt'
-        title = 'Code Report'
-    }
-    HtmlReport('html') {
-        outputFile = 'static-analysis.html'
-        title = 'Code Report'
-    }
+	TextReport('text') {
+		outputFile = 'static-analysis.txt'
+		title = 'Code Report'
+	}
+	HtmlReport('html') {
+		outputFile = 'static-analysis.html'
+		title = 'Code Report'
+	}
 }
 
 

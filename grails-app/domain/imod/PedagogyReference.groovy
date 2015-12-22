@@ -16,15 +16,15 @@ class PedagogyReference {
 	]
 
 	String toString() {
-	    title
+		title
 	}
 
 	static mapping = {
 		version false
 		description type: 'text'
 	}
-    static constraints = {
+	static constraints = {
 		description nullable: true
 		author nullable: true
-    }
+	}
 }

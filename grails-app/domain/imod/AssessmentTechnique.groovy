@@ -38,7 +38,7 @@ class AssessmentTechnique {
 		version false
 	}
 
-    static constraints = {
+	static constraints = {
 		//activityFocus nullable: true
 		assignedLearningObjective nullable: true
 		description nullable: true, blank: true
@@ -51,5 +51,9 @@ class AssessmentTechnique {
 		whenToCarryOut nullable: true, blank: true
 		reference nullable: true, blank: true
 		assesmentype nullable: true, blank: true
-    }
+	}
+
+	String toString() {
+		title
+	}
 }

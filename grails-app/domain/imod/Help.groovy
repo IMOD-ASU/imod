@@ -36,9 +36,9 @@ class Help {
 
 	/**
 	 * This takes in information about a tool tip and give the help text
-	 * @param  tabId        Which tab is requesting tool tip
+	 * @param  tabId		Which tab is requesting tool tip
 	 * @param  tabFieldUiId Which field is being hovered over
-	 * @return              Tool Tip Text
+	 * @return			  Tool Tip Text
 	 */
 	static String toolTip(String tabId, String tabFieldUiId) {
 		Help.findByTabIdAndTabFieldUiId(tabId, tabFieldUiId)?.text
