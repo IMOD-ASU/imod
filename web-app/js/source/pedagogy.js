@@ -124,10 +124,10 @@ function populatePedagogyTechnique (data) {
 	$('#titlecheck').val(currentTechnique.title);
 	$('#dimImageModal').attr('title', data.knowledgeDimension.substring(0, data.knowledgeDimension.length - 1));
 	if (cloneDetect === 'clone') {
-		$('#editTitle').html('<b>Enter Alternate Name for Clone</b>');
+		$('.pedagogy-title').html('<b>Enter Alternate Name for Clone</b>');
 		$('#title').val('');
 	} else {
-		$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
+		$('.pedagogy-title').html('<b>Edit Pedagogy Technique</b>');
 		$('#title').val(currentTechnique.title);
 	}
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
@@ -186,7 +186,10 @@ function displayPedagogyInformationInEdit () {
 		url: '../../pedagogyTechnique/get/' + res,
 		method: 'GET'
 	})
-	.done(populatePedagogyTechnique);
+	.done(function (data) {
+		populatePedagogyTechnique(data);
+		window.cleanForm = $('form').find('select, textarea, input').serialize();
+	});
 }
 
 function displayPedagogyFavoriteTechniques (data) {
@@ -207,7 +210,7 @@ function displayPedagogyFavoriteTechniques (data) {
 		assignedLOs = currentTechnique.assignedLearningObjective;
 		assignImgToggle = '../../images/unassign.png';
 
-		for (assignedIndex = 0; assignedIndex <= assignedLOs.length; assignedIndex++) {
+		for (assignedIndex = 0; assignedIndex < assignedLOs.length; assignedIndex++) {
 			if (typeof assignedLOs[assignedIndex] !== 'undefined') {
 				assignedId = assignedLOs[assignedIndex].id;
 			}
@@ -751,7 +754,7 @@ $(document).ready(
 
 		$(document)
 		.on('click', '.favorites-modal .text-block.title', function () {
-			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			$('.pedagogy-title').html('<strong>Edit Assessment Technique</strong>');
 			openNewPedagogyTechniqueModal();
 			displayPedagogyInformationInEdit(false);
 			return false;

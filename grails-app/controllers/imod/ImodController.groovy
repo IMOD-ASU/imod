@@ -349,6 +349,11 @@ class ImodController {
 			// update current user
             currentUser.addToImods(newImod)
 
+            // assign favorite pedagogy and assessment techniques to the
+            // user
+            currentUser.addToFavoriteTechnique(PedagogyTechnique.findByTitle('Fishbowl'))
+            currentUser.addToFavoriteAssessmentTechnique(AssessmentTechnique.findByTitle('Final Project'))
+
             // save new imod and the updated user to database
             currentUser.save()
 
@@ -417,6 +422,13 @@ class ImodController {
             lo1.criteriaSpeedHidden = 'FALSE'
             lo1.hideFromLearningObjectiveCondition = 'FALSE'
             lo1.performance = 'Apply'
+
+			// Assign assessment and pedagogy techniques to this LO
+			lo1.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Project'))
+
+			lo1.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Fishbowl'))
+
+			// store relationship
 			lo1.save()
 
 			// LO(2)
