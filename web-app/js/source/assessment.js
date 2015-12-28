@@ -742,7 +742,7 @@ $(document).ready(
 		$('#filter-assessment-techniques').accordion({collapsible: true, heightStyle: 'content'});
 		$('#assessment-plan-accordion').accordion({collapsible: true, heightStyle: 'content', active: false});
 		// clone
-		$(document).on('click', '.new-technique-popup-button.clone', function () {
+		$(document).on('click', '.clone', function () {
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(true);
 			document.getElementById('cloneDetect').value = 'clone';
