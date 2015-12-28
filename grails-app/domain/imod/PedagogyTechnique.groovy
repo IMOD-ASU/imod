@@ -38,6 +38,7 @@ class PedagogyTechnique {
 
 	static mapping = {
 		description type: 'text'
+		reference type: 'text'
 		version false
 	}
 
