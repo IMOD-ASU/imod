@@ -2435,7 +2435,144 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
 			newTechnique.save()
 
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Digital 3D Scanning'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Nitish Vasudevan and Conrad S. Tucker, "Digital representation of physical artifacts: The effect of low cost, high accuracy 3D scanning technologies on engineering education, student learning and design evaluation," in ASME 2013 International Design Engineering Technical Conferences and Computers and Information in Engineering Conference. Volume 1: 15th International Conference on Advanced Vehicle Technologies; 10th International Conference on Design Education; 7th International Conference on Micro- and Nanosystems, Portland, Oregon, USA, 2013, pp. V001T04A013. DOI: 10.1115/DETC2013-12651'
+			newTechnique.activityDescription = 'Is a technique in which students study the output of 3D scanners to bridge their gap in understanding the trannsformation of real world models to digital models.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
 
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Designettes Technique'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Cassandra Telenko, Bradley Camburn, Katja Hölttä-Otto, Kristin Wood and Kevin Otto, "Designettes: New approaches to multidisciplinary engineering design education," in ASME 2014 International Design Engineering Technical Conferences and Computers and Information in Engineering Conference. Volume 3: 16th International Conference on Advanced Vehicle Technologies; 11th International Conference on Design Education; 7th Frontiers in Biomedical Devices, Buffalo, New York, USA, 2014, pp. V003T04A003. DOI: 10.1115/DETC2014-35137'
+			newTechnique.activityDescription = 'Is a technique in which instructors use brief evocative descriptions, accounts or episodes to teach engineering design thinking based on short term experiene.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
+
+			newTechnique.title = 'Game Learning Techniques'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'O. Cicekci, M. Turkeri and O. Pekcan, "Development of soil profile visualization software using game engines," in Geo-Congress 2014 Technical Papers: Geo-Characterization and Modeling for Sustainability February 23-26, 2014, Atlanta, Georgia, 2003, pp. 3364-3372. DOI: 10.1061/9780784413272.327'
+			newTechnique.activityDescription = 'Is a technique in which students are asked to play a game.Playing the game helps them learn some of the concepts illustrated for a particular topic.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Psychomotor'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
+
+			newTechnique.title = 'Hybrid Learning Technique'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'R. Grace, "Hybrid Course Linking Natural Hazards with Probability and Statistics," J. Prof. Issues Eng. Educ. Pract., vol. 132, pp. 217-223, 07/01; 2015/08, 2006. DOI: 10.1061/(ASCE)1052-3928(2006)132:3(217)'
+			newTechnique.activityDescription = 'Two different topics can be combined and taught as one so as to understand the relationship between the topics and the concepts associated with them'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
+
+			newTechnique.title = 'Classroom Demo Technique'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'R. Vander Schaaf and J. Klosky, "Classroom Demonstrations in Introductory Mechanics," J. Prof. Issues Eng. Educ. Pract., vol. 131, pp. 83-89, 04/01; 2015/08, 2005. DOI: 10.1061/(ASCE)1052-3928(2005)131:2(83)'
+			newTechnique.activityDescription = 'Is a technique in which a classroom demo using equipment or objects related to the topic helps students understand the concept '
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
+
+			newTechnique.title = 'Lecture'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'reference'
+			newTechnique.activityDescription = 'Is a technique in which the instructor explains, illustrates and gives examples so that students better understand a concept or topic'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
+
+			newTechnique.title = 'Flipped Charts'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
+			newTechnique.activityDescription = 'Flip charts can highlight key points, equations, or concepts more effectively than computer-generated text slides, chalkboards,white boards, and view graphs. Once a chalkboard is erased or slides are changed the concept persists in the chart'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.save()
+
+			newTechnique.title = 'After Action Reviews'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
+			newTechnique.activityDescription = 'Is a technique in which after the topic is taught students can give feedback to the instructor so as to improve the entire process'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.save()
+			
+			newTechnique.title = 'Seating Arrangements'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
+			newTechnique.activityDescription = 'Is a technique which seating arrangement improves the learnability of a particular topic'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Case Study'
 			newTechnique.materials = 'materials'
