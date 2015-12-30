@@ -198,33 +198,19 @@ function displayPedagogyFavoriteTechniques (data) {
 	var index;
 	var currentTechnique;
 	var favoriteImgToggle = '';
-	var assignImgToggle = '';
-	var assignedIndex;
-	var assignedLOs;
-	var assignedId;
-	var learningObjectiveID = parseInt($('#learningObjectiveID').val(), 10);
+
+	if (data.pedagogyTechniques.length < 1) {
+		text = '<br><strong>You do not have any favorite techniques</strong><br><br>';
+	}
 
 	for (index = 0; index < data.pedagogyTechniques.length; index++) {
 		currentTechnique = data.pedagogyTechniques[index];
-
-		assignedLOs = currentTechnique.assignedLearningObjective;
-		assignImgToggle = '../../images/unassign.png';
-
-		for (assignedIndex = 0; assignedIndex < assignedLOs.length; assignedIndex++) {
-			if (typeof assignedLOs[assignedIndex] !== 'undefined') {
-				assignedId = assignedLOs[assignedIndex].id;
-			}
-			if (typeof assignedId !== 'undefined' && assignedId === learningObjectiveID) {
-				assignImgToggle = '../../images/assign.png';
-				break;
-			}
-		}
 
 		favoriteImgToggle = '../../images/fav.png';
 
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
 		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+					'</div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
 	$('.favorites-inner').html(text);
