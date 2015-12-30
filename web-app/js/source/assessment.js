@@ -850,8 +850,8 @@ $(document).ready(
 
 		// Open favorite techniques
 		$('#favorites-button').click(function () {
-			$('.modalBackgroundFavorites').show();
-			$('.favorites-modal').show();
+			$('.modalBackgroundFavorites').css('display', 'block');
+			$('.favorites-modal').css('display', 'block');
 
 			$.ajax({
 				url: '../../assessmentTechnique/favorites/',
@@ -865,8 +865,8 @@ $(document).ready(
 		});
 
 		$('.modalBackgroundFavorites').click(function () {
-			$('.modalBackgroundFavorites').hide();
-			$('.favorites-modal').hide();
+			$('.modalBackgroundFavorites').css('display', 'none');
+			$('.favorites-modal').css('display', 'none');
 		});
 
 		$(document)
