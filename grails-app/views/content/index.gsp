@@ -142,6 +142,10 @@
 						type="hidden"
 						id="topicTitleSaved${contentItem.id}"
 						value="${contentItem.topicTitle}"/>
+					<input
+						type="hidden"
+						id="topicTempID${contentItem.id}"
+						value="${contentItem.id}"/>
 				</td>
 				<td class="show-hover-new topicDimensions">
 					<span>
@@ -182,6 +186,7 @@
 					<button class="ResourceButton"
 							title="${message(code: 'imod.content.Resources')}"
 							id="topicResources${contentItem.id}"
+							name="${contentItem.topicTitle}"
 							type="button">
 						Resources
 					</button>
@@ -248,7 +253,7 @@
 							value="${contentItem.priority}"/>
 					</td>
 					<td class="topicResources">
-						<button class="ResourceButton" id="topicResources${contentItem.id}"
+						<button class="ResourceButton" id="topicResources${contentItem.id}" name="${contentItem.topicTitle}"
 								type="button">Resources</button>
 
 					</td>
