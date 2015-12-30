@@ -179,7 +179,7 @@ class AssessmentTechniqueController {
 			for (int i = 0; i < kD.length; i++) {
 				if (kD[i] != null) {
 					newTechnique.addToKnowledgeDimension(
-					KnowledgeDimension.findByDescription(kD[i]))
+					KnowledgeDimension.findByDescription(kD[i].trim()))
 				}
 			}
 		}
