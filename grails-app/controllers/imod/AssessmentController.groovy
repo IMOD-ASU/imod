@@ -45,11 +45,21 @@ class AssessmentController {
 		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
-		final content = currentLearningObjective?.contents
+		final content = currentImod?.contents
+		def knowDimensionList = []
 		def dimension = []
 		if (content != null) {
-			dimension = content[0]?.dimensions
+			content.each {
+				knowDimensionList.push(it.dimensions)
+			}
+			// merge multiple lists into one
+			dimension = knowDimensionList.flatten()
+			// remove duplicates
+			dimension = dimension.unique { a, b ->
+				a <=> b
+			}
 		}
+
 		def dimensionSize = 0
 		if (dimension != null) {
 			dimensionSize  = dimension.size() - 1
