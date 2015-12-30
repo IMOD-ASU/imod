@@ -685,6 +685,7 @@ $(document).ready(
 			autoOpen: false
 		});
 		// When learning domain isn't selected, do not save learning objective
+		/*
 		$('.learning-objective-button button').click(
 			function () {
 				if ($('#learning-objective-id').val() === '') {
@@ -698,6 +699,7 @@ $(document).ready(
 				return true;
 			}
 		);
+		*/
 
 		// When hovered over LO side-tab list, it displays full text as tool-tip
 		liArray = $('ul.learning-objective.list-wrapper').children('li');
