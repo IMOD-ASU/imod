@@ -447,16 +447,11 @@ function displayAssessmentFavoriteTechniques (data) {
 	'use strict';
 	var text = '';
 	var index;
-	var assignedIndex;
 	var currentTechnique;
 	var favoriteImgToggle = '';
-	var assignImgToggle = '';
-	var assignedLOs;
-	var assignedId;
-	var learningObjectiveID = parseInt($('#learningObjectiveID').val(), 10);
 
 	if (data.assessmentTechniques.length < 1) {
-		text = "<br><strong>You do not have any favorite techniques</strong><br><br>";
+		text = '<br><strong>You do not have any favorite techniques</strong><br><br>';
 	}
 
 	for (index = 0; index < data.assessmentTechniques.length; index++) {
