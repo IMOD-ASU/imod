@@ -455,6 +455,10 @@ function displayAssessmentFavoriteTechniques (data) {
 	var assignedId;
 	var learningObjectiveID = parseInt($('#learningObjectiveID').val(), 10);
 
+	if (data.assessmentTechniques.length < 1) {
+		text = "<br><strong>You do not have any favorite techniques</strong><br><br>";
+	}
+
 	for (index = 0; index < data.assessmentTechniques.length; index++) {
 		currentTechnique = data.assessmentTechniques[index];
 

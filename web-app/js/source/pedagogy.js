@@ -204,6 +204,10 @@ function displayPedagogyFavoriteTechniques (data) {
 	var assignedId;
 	var learningObjectiveID = parseInt($('#learningObjectiveID').val(), 10);
 
+	if (data.pedagogyTechniques.length < 1) {
+		text = "<br><strong>You do not have any favorite technique</strong><br><br>";
+	}
+
 	for (index = 0; index < data.pedagogyTechniques.length; index++) {
 		currentTechnique = data.pedagogyTechniques[index];
 
