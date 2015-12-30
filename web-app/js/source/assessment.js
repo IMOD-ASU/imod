@@ -7,8 +7,8 @@ var isTopRightClicked = 1;
  */
 function openAssessmentPlanModal () {
 	'use strict';
-	$('#topicDialogBackground').show();
-	$('#assessment-plan').show();
+	$('#topicDialogBackground').css('display', 'block');
+	$('#assessment-plan').css('display', 'block');
 }
 
 /**
