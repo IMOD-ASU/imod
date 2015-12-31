@@ -90,13 +90,13 @@
 	</table>
 	<fieldset id="topicModalClose" class="buttons topicButtonField">
 		<span class="topicButtonGradient saveBG">
-			<button class="save show-hover-new topicButton" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}">
+			<button class="save show-hover-new topicButton saveTopic" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}">
 				<i class="fa fa-save green"></i>
 				${message(code: 'Save Topic', default: ' Save')}
 			</button>
 		</span>
 		<span class="topicButtonGradient cancelBG">
-			<button class="show-hover-new topicButton" action="cancel" id="cancelTopic" title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}">
+			<button class="show-hover-new topicButton cancelTopic" action="cancel" id="cancelTopic" title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}">
 				<i class="fa fa-times red"></i>
 				${message(code: 'Cancel Topics', default: ' Cancel')}
 			</button>
@@ -104,35 +104,86 @@
 	</fieldset>
 </div>
 
-<div id="selectKnowledgeDimensionBackground" class="modalBackground"></div>
+%{--<div id="selectKnowledgeDimensionBackground" class="modalBackground"></div>--}%
+
+%{--<div id="selectKnowledgeDimensions" class="draggable">--}%
+	%{--<div class="draggable-handle">--}%
+		%{--<!-- FIXME replace with g:hiddenField, this also may not be necessary -->--}%
+		%{--<input type="hidden" id="topicID" />--}%
+		%{--<span>--}%
+			%{--<ul>--}%
+				%{--<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">--}%
+					%{--<li>--}%
+						%{--<!-- FIXME replace with g:checkbox tag -->--}%
+						%{--<input type="checkbox" id="${dimension}" value="${dimension}" />--}%
+						%{--<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">--}%
+							%{--${dimension}--}%
+						%{--</label>--}%
+						%{--<input--}%
+							%{--type="checkbox"--}%
+							%{--id="${dimension}"--}%
+							%{--value="${dimension}"/>--}%
+						%{--<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">--}%
+							%{--${dimension}--}%
+						%{--</label>--}%
+					%{--</li>--}%
+				%{--</g:each>--}%
+			%{--</ul>--}%
+			%{--<g:img dir="images/content" file="knowDimNone.png" id="dimImage" width="71" height="71" />--}%
+		%{--</span>--}%
+	%{--</div>--}%
+	%{--<button id="knowDimFinished" class="topicButtonGradient knowledgedimBtn" type="button">--}%
+		%{--<i class="fa fa-save green"></i>--}%
+		%{--Continue--}%
+	%{--</button>--}%
+	%{--<button id="closeKnowDim" class="topicButtonGradient knowledgedimBtn" type="button">--}%
+		%{--<i class="fa fa-times red"></i>--}%
+		%{--Cancel--}%
+	%{--</button>--}%
+%{--</div>--}%
+
+<div id="selectKnowledgeDimensionBackground" class="modalBackground">
+</div>
 
 <div id="selectKnowledgeDimensions" class="draggable">
 	<div class="draggable-handle">
-		<!-- FIXME replace with g:hiddenField, this also may not be necessary -->
-		<input type="hidden" id="topicID" />
+		<input type="hidden" id="topicID"/>
 		<span>
 			<ul>
 				<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
 					<li>
-						<!-- FIXME replace with g:checkbox tag -->
-						<input type="checkbox" id="${dimension}" value="${dimension}" />
+						<input
+							type="checkbox"
+							id="${dimension}"
+							value="${dimension}"/>
 						<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
 							${dimension}
 						</label>
 					</li>
 				</g:each>
 			</ul>
-			<g:img dir="images/content" file="knowDimNone.png" id="dimImage" width="71" height="71" />
+			<g:img
+				dir="images/content"
+				file="knowDimNone.png"
+				id="dimImage"
+				width="71"
+				height="71"/>
 		</span>
+		<button
+			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			id="knowDimFinished"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
+			<i class="fa fa-save green"></i>
+			${message(code: 'Save Topic', default: ' Continue')}
+		</button>
+		<button
+			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			id="closeKnowDim"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
+			<i class="fa fa-times red"></i>
+			${message(code: 'Cancel Topic', default: ' Cancel')}
+		</button>
 	</div>
-	<button id="knowDimFinished" class="topicButtonGradient knowledgedimBtn" type="button">
-		<i class="fa fa-save green"></i>
-		Save
-	</button>
-	<button id="closeKnowDim" class="topicButtonGradient knowledgedimBtn" type="button">
-		<i class="fa fa-times red"></i>
-		Cancel
-	</button>
 </div>
 <div id="selectResourceBackground" class="modalBackground">
 </div>
