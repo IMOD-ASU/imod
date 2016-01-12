@@ -155,7 +155,7 @@ function populateAssessmentTechnique (data, isClone) {
 		}
 	}
 	for (count = 0; count < arrayOfDomainCategories.length; count++) {
-		if (arrayOfDomainCategories [count] !== '') {
+		if (arrayOfDomainCategories[count] !== '') {
 			$('#domainCategory option[value = "' + arrayOfDomainCategories[count] + '"]').attr('selected', 'selected');
 		}
 	}
