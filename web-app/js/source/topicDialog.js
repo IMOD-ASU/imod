@@ -4,6 +4,7 @@ var content = '';
 var resourceOptions = '';
 var resourceData = [];
 var unsavedResource = false;
+var unsavedResourceData = [];
 
 function showTopicDialog () {
 	'use strict';
@@ -86,7 +87,8 @@ function saveDimModal () {
 	var dimensions = [];
 	var dialog = $('#selectKnowledgeDimensions');
 	var background = $('#selectKnowledgeDimensionBackground');
-	var contentDimensions = $('#knowDimensionList' + contentID);
+	var contentDimensions = document.getElementById('knowDimensionList' + contentID);
+	// var contentDimensions = $(this).closest('.knowledgeDimensionButton');
 
 	$(this).siblings('span').find('input').each(
 		function () {
@@ -107,11 +109,11 @@ function saveDimModal () {
 		}
 	);
 
-	if (contentDimensions.val() !== dimensions) {
-		contentDimensions.val(dimensions);
+	if (contentDimensions.value !== dimensions) {
+		contentDimensions.value = dimensions;
 		$('#' + contentID).addClass('unsaved');
 	}
-	$('#' + contentID).find('img').attr('src', $('#dimImage').attr('src'));
+	document.getElementById(contentID).getElementsByTagName('img')[0].setAttribute('src', document.getElementById('dimImage').getAttribute('src'));
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
@@ -156,7 +158,7 @@ function closeDimModal () {
 function openDimModal () {
 	'use strict';
 	var contentID = $(this).parents('.topicItem').attr('id');
-	var dimString = $('#knowDimensionList' + contentID).val();
+	var dimString = document.getElementById('knowDimensionList' + contentID).value;
 	var dimensionList = [];
 	var dialog = $('#selectKnowledgeDimensions');
 	var background = $('#selectKnowledgeDimensionBackground');
@@ -184,126 +186,179 @@ function getTempResource () {
 	var resourceDiv = $('#resourceList tbody');
 	var inc;
 	var resourcesNew;
+	var checkTempId = document.getElementById('topicTempID' + contentID).value;
+	var resourceItem = [];
 
 	resourceDiv.html('');
+	if (checkTempId === 'undefined') {
+		resourceItem = [];
 
-	$.ajax({
-		url: '../../content/getResource',
-		type: 'GET',
-		dataType: 'json',
-		data: {
-			contentID: contentID
-		},
-		success: function (data) {
-			var resources = data.resources;
-
-			for (inc = 0; inc < resourceData.length; inc++) {
-				if (resourceData[inc].contentID === contentID) {
-					resources.push({
-						class: 'imod.Resource',
-						content: {
-							class: 'imod.Content',
-							id: contentID
-						},
-						description: resourceData[inc].resourceDescription,
-						id: resourceData[inc].resourceID,
-						name: resourceData[inc].resourceName,
-						resourceType: resourceData[inc].resourceType
-					});
-				}
+		for (inc = 0; inc < resourceData.length; inc++) {
+			if (resourceData[inc].contentID === contentID) {
+				resourceItem.push({
+					class: 'imod.Resource',
+					content: {
+						class: 'imod.Content',
+						id: contentID
+					},
+					description: resourceData[inc].resourceDescription,
+					id: resourceData[inc].resourceID,
+					name: resourceData[inc].resourceName,
+					resourceType: resourceData[inc].resourceType
+				});
 			}
-			$.each(resources, function (key, value) {
-				value.id = value.id.toString();
-				value.content.id = value.content.id.toString();
-			});
-			// resourceData1 = refineUnsavedResources(resources);
-			resourcesNew = removeDuplicateResource(resources);
-
-
-			$.each(resourcesNew, function (key, value) {
-				var id = value.id;
-
-				// FIXME move html out of JS
-				$('<tr id="' + id + '" class="resourceItem">' +
-					'<td class="saveIcon">' +
-					'<i class="fa fa-square-o"></i>' +
-					'</td><td class="resourceName">' +
-					'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
-					'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
-					'</td><td class="resourceDescription">' +
-					'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
-					'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
-					'</td><td class="resourceType">' +
-					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
-					resourceOptions +
-					'</select> ' +
-
-					'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
-					'</td></tr>'
-				).appendTo(resourceDiv);
-				$('#resourceType' + id).val(value.resourceType);
-			});
 		}
-	});
+		$.each(resourceItem, function (key, value) {
+			value.id = value.id.toString();
+			value.content.id = value.content.id.toString();
+		});
+		// resourceData1 = refineUnsavedResources(resources);
+		resourcesNew = removeDuplicateResource(resourceItem);
+
+
+		$.each(resourcesNew, function (key, value) {
+			var id = value.id;
+
+			// FIXME move html out of JS
+			$('<tr id="' + id + '" class="resourceItem">' +
+				'<td class="saveIcon">' +
+				'<i class="fa fa-square-o"></i>' +
+				'</td><td class="resourceName">' +
+				'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
+				'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
+				'<input type="hidden" value="' + id + '" id="tempResId' + id + '"> ' +
+				'</td><td class="resourceDescription">' +
+				'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
+				'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
+				'</td><td class="resourceType">' +
+				'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
+				resourceOptions +
+				'</select> ' +
+
+				'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
+				'</td></tr>'
+			).appendTo(resourceDiv);
+			$('#resourceType' + id).val(value.resourceType);
+		});
+	} else {
+		$.ajax({
+			url: '../../content/getResource',
+			type: 'GET',
+			dataType: 'json',
+			data: {
+				contentID: contentID
+			},
+			success: function (data) {
+				var resources = data.resources;
+
+				for (inc = 0; inc < resourceData.length; inc++) {
+					if (resourceData[inc].contentID === contentID) {
+						resources.push({
+							class: 'imod.Resource',
+							content: {
+								class: 'imod.Content',
+								id: contentID
+							},
+							description: resourceData[inc].resourceDescription,
+							id: resourceData[inc].resourceID,
+							name: resourceData[inc].resourceName,
+							resourceType: resourceData[inc].resourceType
+						});
+					}
+				}
+				$.each(resources, function (key, value) {
+					value.id = value.id.toString();
+					value.content.id = value.content.id.toString();
+				});
+				// resourceData1 = refineUnsavedResources(resources);
+				resourcesNew = removeDuplicateResource(resources);
+
+
+				$.each(resourcesNew, function (key, value) {
+					var id = value.id;
+
+					// FIXME move html out of JS
+					$('<tr id="' + id + '" class="resourceItem">' +
+						'<td class="saveIcon">' +
+						'<i class="fa fa-square-o"></i>' +
+						'</td><td class="resourceName">' +
+						'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
+						'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
+						'<input type="hidden" value="' + id + '" id="tempResId' + id + '"> ' +
+						'</td><td class="resourceDescription">' +
+						'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
+						'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
+						'</td><td class="resourceType">' +
+						'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
+						resourceOptions +
+						'</select> ' +
+
+						'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
+						'</td></tr>'
+					).appendTo(resourceDiv);
+					$('#resourceType' + id).val(value.resourceType);
+				});
+			}
+		});
+	}
 }
 function getResource () {
 	'use strict';
 	var contentID = content.split('topicResources')[1];
+	// var topic_title = document.getElementById(content).name;
+	var checkTempId = document.getElementById('topicTempID' + contentID).value;
 	var resourceDiv = $('#resourceList tbody');
 
 	resourceDiv.html('');
+	if (checkTempId !== 'undefined') {
+		$.ajax({
+			url: '../../content/getResource',
+			type: 'GET',
+			dataType: 'json',
+			data: {
+				contentID: contentID
+			},
+			success: function (data) {
+				var resources = data.resources;
 
-	$.ajax({
-		url: '../../content/getResource',
-		type: 'GET',
-		dataType: 'json',
-		data: {
-			contentID: contentID
-		},
-		success: function (data) {
-			var resources = data.resources;
+				$.each(resources, function (key, value) {
+					var id = value.id;
 
-			$.each(resources, function (key, value) {
-				var id = value.id;
+					// FIXME move html out of JS
+					$('<tr id="' + id + '" class="resourceItem">' +
+						'<td class="saveIcon">' +
+						'<i class="fa fa-square-o"></i>' +
+						'</td><td class="resourceName">' +
+						'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
+						'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
+						'<input type="hidden" value="' + id + '" id="tempResId' + id + '"> ' +
+						'</td><td class="resourceDescription">' +
+						'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
+						'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
+						'</td><td class="resourceType">' +
+						'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
+						resourceOptions +
+						'</select> ' +
 
-				// FIXME move html out of JS
-				$('<tr id="' + id + '" class="resourceItem">' +
-					'<td class="saveIcon">' +
-					'<i class="fa fa-square-o"></i>' +
-					'</td><td class="resourceName">' +
-					'<input type="text" id="resourceName' + id + '" value="' + value.name + '"> ' +
-					'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
-					'</td><td class="resourceDescription">' +
-					'<input type="text" id="resourceDescription' + id + '" value="' + value.description + '"> ' +
-					'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
-					'</td><td class="resourceType">' +
-					'<select size="1" name="resourceType' + id + '" id="resourceType' + id + '" class="custom-dropdown"> ' +
-					resourceOptions +
-					'</select> ' +
-
-					'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
-					'</td></tr>'
-				).appendTo(resourceDiv);
-				$('#resourceType' + id).val(value.resourceType);
-			});
-		}
-	});
+						'<input type="hidden" name="resourceTypeSaved' + id + '"> ' +
+						'</td></tr>'
+					).appendTo(resourceDiv);
+					$('#resourceType' + id).val(value.resourceType);
+				});
+			}
+		});
+	}
 }
 
 function openResourceModal () {
 	'use strict';
 	content = this.id;
-	if (content.split('topicResources')[1] === 'undefined') {
-		closeResourceModal();
-		window.alert('Topic must be saved before adding resources');
+	$('#selectResource').css('display', 'inherit');
+	$('#selectResourceBackground').css('display', 'block');
+	if (unsavedResource === true) {
+		getTempResource();
 	} else {
-		$('#selectResource').css('display', 'inherit');
-		$('#selectResourceBackground').css('display', 'block');
-		if (unsavedResource === true) {
-			getTempResource();
-		} else {
-			getResource();
-		}
+		getResource();
 	}
 }
 
@@ -347,9 +402,11 @@ function saveTopic () {
 	$('#topicList tbody tr').each(
 		function () {
 			var contentID = this.id;
-			var topicTitle = $('#topicTitle' + contentID).val();
-			var dimensions = $('#knowDimensionList' + contentID).val();
-			var priority = $('#topicPriority' + contentID).val();
+			// var param = Math.random();
+			var topicTitle = document.getElementById('topicTitle' + contentID).value;
+			var tempID = document.getElementById('topicTempID' + contentID).value;
+			var dimensions = document.getElementById('knowDimensionList' + contentID).value;
+			var priority = document.getElementById('topicPriority' + contentID).value;
 			var preReq = $('#topicPreReq' + contentID).is(':checked');
 
 			if (dimensions === '') {
@@ -360,18 +417,38 @@ function saveTopic () {
 				errorMessage('Topic title is required', 'errorMessage');
 				hasError = true;
 			}
-			topicList.push({
-				contentID: contentID,
-				dimensions: dimensions,
-				topicTitle: topicTitle
-			});
-			contentData.push({
-				contentID: contentID,
-				dimensions: dimensions,
-				priority: priority,
-				preReq: preReq,
-				topicTitle: topicTitle
-			});
+
+			if (tempID === 'undefined') {
+				topicList.push({
+					contentID: contentID,
+					dimensions: dimensions,
+					topicTitle: topicTitle,
+					tempID: tempID
+				});
+				contentData.push({
+					contentID: contentID,
+					dimensions: dimensions,
+					priority: priority,
+					preReq: preReq,
+					topicTitle: topicTitle,
+					tempID: tempID
+				});
+			} else {
+				topicList.push({
+					contentID: contentID,
+					dimensions: dimensions,
+					topicTitle: topicTitle,
+					tempID: contentID
+				});
+				contentData.push({
+					contentID: contentID,
+					dimensions: dimensions,
+					priority: priority,
+					preReq: preReq,
+					topicTitle: topicTitle,
+					tempID: contentID
+				});
+			}
 		}
 	);
 	if (hasError) {
@@ -386,9 +463,14 @@ function saveTopic () {
 			id: imodID,
 			JSONData: contentData
 		},
-		success: function () {
+		success: function (data) {
+			var index;
+
+			for (index = 0; index < data.success.length; index++) {
+				data.contentData[index].contentID = data.success[index];
+			}
 			if (resourceData.length > 0) {
-				outerSaveResource();
+				outerSaveResource(data.contentData);
 			} else {
 				location.reload();
 			}
@@ -469,7 +551,8 @@ function addTopic () {
 		success: function (data) {
 			var dimensions = data.dimensions;
 			var priorities = data.priorities;
-			var id = data.id;
+			var tempID = data.id;
+			var id = Math.random();
 			var dimensionOptions = '';
 			var prioritiesOptions = '';
 			var topicDiv = $('#topicList tbody');
@@ -488,6 +571,7 @@ function addTopic () {
 				'</td><td class="topicTitle">' +
 				'<input type="text" id="topicTitle' + id + '"> ' +
 				'<input type="hidden" id="topicTitleSaved' + id + '"> ' +
+				'<input type="hidden" value="' + tempID + '" id="topicTempID' + id + '"> ' +
 				'</td><td class="topicDimensions show-hover-new">' +
 				'<span>' +
 				'<img id="dimImageModal' + id + '" src="' + $('#imgNone').attr('href') + '" /> ' +
@@ -508,7 +592,7 @@ function addTopic () {
 				'</select> ' +
 				'<input type="hidden" name="topicPrioritySaved' + id + '"> ' +
 				'</td><td class="topicResources">' +
-				'<button type="button" class="ResourceButton" id="topicResources' + id + '">Resources</button> ' +
+				'<button type="button" class="ResourceButton" id="topicResources' + id + '" >Resources</button> ' +
 				'</td><td class="topicPreReq">' +
 				'<input type="checkbox" name="topicPreReq' + id + '"> ' +
 				'<input type="hidden" name="topicPreReqSaved' + id + '"> ' +
@@ -524,7 +608,8 @@ function addTopic () {
 
 function addResource () {
 	'use strict';
-	var id = null;
+	var id = Math.random();
+	var tempResId = null;
 	var resourceDiv = $('#resourceList tbody');
 
 	// FIXME move html out of JS
@@ -534,6 +619,7 @@ function addResource () {
 		'</td><td class="resourceName">' +
 		'<input type="text" id="resourceName' + id + '" autofocus> ' +
 		'<input type="hidden" id="resourceNameSaved' + id + '"> ' +
+		'<input type="hidden" value="' + tempResId + '" id="tempResId' + id + '"> ' +
 		'</td><td class="resourceDescription">' +
 		'<input type="text" id="resourceDescription' + id + '" autofocus> ' +
 		'<input type="hidden" id="resourceDescriptionSaved' + id + '"> ' +
@@ -549,21 +635,26 @@ function addResource () {
 function saveResource () {
 	'use strict';
 	var contentID = content.split('topicResources')[1];
-	// var resourceData = [];
+	var topicTitle = document.getElementById(content).name;
 	var hasError = false;
 	var contentResource = $('#resourceDataStore');
 	var resourceDataNew;
 	var resource;
 	var refinedData;
 
+	if (topicTitle === '') {
+		topicTitle = document.getElementById('topicTitle' + contentID).value;
+	}
+
 	$('#resourceList tbody tr').each(
 		function () {
 			var resourceID = this.id;
 
 
-			var resourceName = $('#resourceName' + resourceID).val();
-			var resourceDescription = $('#resourceDescription' + resourceID).val();
-			var resourceType = $('#resourceType' + resourceID).val();
+			var resourceName = document.getElementById('resourceName' + resourceID).value;
+			var resourceDescription = document.getElementById('resourceDescription' + resourceID).value;
+			var resourceType = document.getElementById('resourceType' + resourceID).value;
+			var tempID = document.getElementById('tempResId' + resourceID).value;
 
 			if (resourceDescription === '') {
 				errorMessage('Resource: ' + resourceName + ' must have a Description!', 'errorMessageResources');
@@ -579,7 +670,9 @@ function saveResource () {
 				resourceDescription: resourceDescription,
 				resourceType: resourceType,
 				contentID: contentID,
-				uniqueParam: Math.random()
+				uniqueParam: Math.random(),
+				topicTitle: topicTitle,
+				tempID: tempID
 			});
 		}
 	);
@@ -588,6 +681,7 @@ function saveResource () {
 	}
 	refinedData = refineUnsavedResources(resourceData);
 	resourceDataNew = removeDuplicateResource(refinedData);
+	unsavedResourceData = resourceDataNew;
 	resource = JSON.stringify(resourceDataNew);
 
 	if (contentResource.val !== resource) {
@@ -603,7 +697,7 @@ function saveResource () {
 function refineUnsavedResources (arr) {
 	'use strict';
 	var finalArr = [];
-	var	collection = [];
+	var collection = [];
 	var originalArr = arr;
 	var returnedArray;
 
@@ -640,10 +734,19 @@ function removeDuplicateResource (arr) {
 	return cleaned;
 }
 
-function outerSaveResource () {
+function outerSaveResource (contentData) {
 	'use strict';
 	var imodID = $('#imodID').val();
-	var resource = $('#resourceDataStore').val();
+	var index;
+	var outerIndex;
+
+	for (index = 0; index < contentData.length; index++) {
+		for (outerIndex = 0; outerIndex < unsavedResourceData.length; outerIndex++) {
+			if (contentData[index].topicTitle.toLowerCase() === unsavedResourceData[outerIndex].topicTitle.toLowerCase()) {
+				unsavedResourceData[outerIndex].contentID = contentData[index].contentID;
+			}
+		}
+	}
 
 	$.ajax({
 		url: '../../content/saveResource/',
@@ -651,7 +754,7 @@ function outerSaveResource () {
 		dataType: 'json',
 		data: {
 			id: imodID,
-			JSONData: resource
+			JSONData: JSON.stringify(unsavedResourceData)
 		},
 		success: function () {
 			unsavedResource = false;

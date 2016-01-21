@@ -41,9 +41,9 @@ class ContentController {
 
 		contentData.each {
 			// If a new topic is added, create an ID. Otherwise, the topic already exists, so use its ID
-			if (it.contentID == 'undefined') {
+			if (it.tempID == 'undefined') {
 				def contentInstance = new Content(imod: currentImod, failOnError: true)
-
+				contentID = contentInstance.id
 				contentInstance.save()
 				if (!contentInstance) {
 					contentInstance.errors.allErrors.each {
@@ -87,7 +87,8 @@ class ContentController {
 		render(
 			[
 				success: success,
-				fail: fail
+				fail: fail,
+				contentData: contentData
 			] as JSON
 		)
 	}
@@ -229,7 +230,7 @@ class ContentController {
 			def resourceInstance = null
 			def resourceID = null
 
-			if (it.resourceID == 'null') {
+			if (it.tempID == 'null') {
 				def contentInstance = Content.get(it.contentID)
 				resourceInstance = new Resource(
 					content: contentInstance,

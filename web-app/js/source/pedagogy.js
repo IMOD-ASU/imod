@@ -124,10 +124,10 @@ function populatePedagogyTechnique (data) {
 	$('#titlecheck').val(currentTechnique.title);
 	$('#dimImageModal').attr('title', data.knowledgeDimension.substring(0, data.knowledgeDimension.length - 1));
 	if (cloneDetect === 'clone') {
-		$('#editTitle').html('<b>Enter Alternate Name for Clone</b>');
+		$('.pedagogy-title').html('<b>Enter Alternate Name for Clone</b>');
 		$('#title').val('');
 	} else {
-		$('#editTitle').html('<b>Edit Pedagogy Technique</b>');
+		$('.pedagogy-title').html('<b>Edit Pedagogy Technique</b>');
 		$('#title').val(currentTechnique.title);
 	}
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
@@ -144,12 +144,12 @@ function populatePedagogyTechnique (data) {
 		}
 	}
 	for (count = 0; count < arrayOfLearningDomains.length; count++) {
-		if (arrayOfLearningDomains [count] !== '') {
+		if (arrayOfLearningDomains[count] !== '') {
 			$('#learningDomain option[value=' + arrayOfLearningDomains[count] + ']').attr('selected', 'selected');
 		}
 	}
 	for (count = 0; count < arrayOfDomainCategories.length; count++) {
-		if (arrayOfDomainCategories [count] !== '') {
+		if (arrayOfDomainCategories[count] !== '') {
 			$('#domainCategory option[value = ' + arrayOfDomainCategories[count] + ']').attr('selected', 'selected');
 		}
 	}
@@ -186,7 +186,10 @@ function displayPedagogyInformationInEdit () {
 		url: '../../pedagogyTechnique/get/' + res,
 		method: 'GET'
 	})
-	.done(populatePedagogyTechnique);
+	.done(function (data) {
+		populatePedagogyTechnique(data);
+		window.cleanForm = $('form').find('select, textarea, input').serialize();
+	});
 }
 
 function displayPedagogyFavoriteTechniques (data) {
@@ -195,33 +198,19 @@ function displayPedagogyFavoriteTechniques (data) {
 	var index;
 	var currentTechnique;
 	var favoriteImgToggle = '';
-	var assignImgToggle = '';
-	var assignedIndex;
-	var assignedLOs;
-	var assignedId;
-	var learningObjectiveID = parseInt($('#learningObjectiveID').val(), 10);
+
+	if (data.pedagogyTechniques.length < 1) {
+		text = '<br><strong>You do not have any favorite techniques</strong><br><br>';
+	}
 
 	for (index = 0; index < data.pedagogyTechniques.length; index++) {
 		currentTechnique = data.pedagogyTechniques[index];
-
-		assignedLOs = currentTechnique.assignedLearningObjective;
-		assignImgToggle = '../../images/unassign.png';
-
-		for (assignedIndex = 0; assignedIndex < assignedLOs.length; assignedIndex++) {
-			if (typeof assignedLOs[assignedIndex] !== 'undefined') {
-				assignedId = assignedLOs[assignedIndex].id;
-			}
-			if (typeof assignedId !== 'undefined' && assignedId === learningObjectiveID) {
-				assignImgToggle = '../../images/assign.png';
-				break;
-			}
-		}
 
 		favoriteImgToggle = '../../images/fav.png';
 
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
 		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+					'</div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
 	$('.favorites-inner').html(text);
@@ -730,8 +719,8 @@ $(document).ready(
 
 		// Open favorite techniques
 		$('#favorites-button').click(function () {
-			$('.modalBackgroundFavorites').show();
-			$('.favorites-modal').show();
+			$('.modalBackgroundFavorites').css('display', 'block');
+			$('.favorites-modal').css('display', 'block');
 
 			$.ajax({
 				url: '../../pedagogyTechnique/favorites/',
@@ -745,13 +734,13 @@ $(document).ready(
 		});
 
 		$('.modalBackgroundFavorites').click(function () {
-			$('.modalBackgroundFavorites').hide();
-			$('.favorites-modal').hide();
+			$('.modalBackgroundFavorites').css('display', 'none');
+			$('.favorites-modal').css('display', 'none');
 		});
 
 		$(document)
 		.on('click', '.favorites-modal .text-block.title', function () {
-			$('#editTitle').html('<strong>Edit Assessment Technique</strong>');
+			$('.pedagogy-title').html('<strong>Edit Assessment Technique</strong>');
 			openNewPedagogyTechniqueModal();
 			displayPedagogyInformationInEdit(false);
 			return false;

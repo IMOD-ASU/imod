@@ -25,18 +25,16 @@ class LearningObjectiveController {
 	/**
 	 * Creates a Learning Objective
 	 * @param  id of the IMOD that learning objective will be linked to
-	 * @return    redirects to the performance tab to allow editing
+	 * @return	redirects to the performance tab to allow editing
 	 */
 	def create(Long id) {
-		final currentImod = Imod.get(id)
-		def learningObjectiveId = learningObjectiveService.create(currentImod)
 
 		// redirects to the performance page to allow for newly created learning objective to be edited
 		redirect(
 			action: 'performance',
 			id: id,
 			params: [
-				learningObjectiveID: learningObjectiveId
+				learningObjectiveID: 'new'
 			]
 		)
 	}
@@ -44,7 +42,7 @@ class LearningObjectiveController {
 	/**
 	 * Removes a Learning Objective
 	 * @param  id of the IMOD that learning objective will be linked to
-	 * @return    redirects to the performance tab to allow editing
+	 * @return	redirects to the performance tab to allow editing
 	 */
 	def remove(Long id, Long learningObjectiveID) {
 		final currentImod = Imod.get(id)
@@ -80,130 +78,241 @@ class LearningObjectiveController {
 
 	/**
 	 * Updates an existing learning objective
-	 * @param  id                  IMOD that the learning objective is linked to
+	 * @param  id				  IMOD that the learning objective is linked to
 	 * @param  learningObjectiveID ID of the learning objective being updated
-	 * @param  pageType            Describes the type (from what tab) of content is being updated at this time
-	 * @return                     redirects back to the page that user was just on
+	 * @param  pageType			Describes the type (from what tab) of content is being updated at this time
+	 * @return					 redirects back to the page that user was just on
 	 */
 	//TODO: add confirmation that the content was successfully saved
 	// FIXME each page should have its own save
-	def save (Long id, Long learningObjectiveID, String pageType) {
+	def save (Long id, String learningObjectiveID, String pageType) {
 		//gets the learning objective to be updated
 		final currentImod = Imod.get(id)
-		def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
-		switch (pageType) {
-			// if the user is saving performance page
-			case 'performance':
-				selectedLearningObjective.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
-				selectedLearningObjective.performance = params.DCL
-				if (params.actionWord == 'other') {
-					selectedLearningObjective.actionWord = params.customActionWord
-				} else if (params.actionWord == 'select') {
-					selectedLearningObjective.actionWord = 'Enter the details here'
-				} else {
-					selectedLearningObjective.actionWord = params.actionWord
-				}
-				break
+		if ( learningObjectiveID != null && (learningObjectiveID == 'new' || learningObjectiveID == '')) {
 
-			// if the user is saving the condition page
-			case 'condition':
-				if (params.conditionType == 'Generic') {
-					selectedLearningObjective.condition = params.genericCondition
-				}
-				if (params.conditionType == 'Custom') {
-					selectedLearningObjective.condition = params.customCondition
-				}
-				selectedLearningObjective.hideFromLearningObjectiveCondition = params.hideCondition == 'on'
-				if (LearningObjective.genericConditions.contains(selectedLearningObjective.condition)) {
-					selectedLearningObjective.customCondition = ''
-				} else {
-					selectedLearningObjective.customCondition = selectedLearningObjective.condition
-				}
-				break
+			def actionWord = ''
+			if (params.actionWord == 'other') {
+				actionWord = params.customActionWord
+			} else if (params.actionWord == 'select') {
+				actionWord = 'Enter the details here'
+			} else {
+				actionWord = params.actionWord
+			}
 
-			// if the user is saving the criteria page
-			case 'criteria':
-				// check if the field is enabled
-				// NOTE: when a check box is unchecked it returns null, hence the conditional
-				selectedLearningObjective.criteriaAccuracyEnabled	= params.enableAccuracy	!= null
-				selectedLearningObjective.criteriaQualityEnabled	= params.enableQuality	!= null
-				selectedLearningObjective.criteriaQuantityEnabled	= params.enableQuantity != null
-				selectedLearningObjective.criteriaSpeedEnabled		= params.enableSpeed != null
+			def selectedLearningObjective = new LearningObjective(
+				imod: currentImod,
+				criteriaAccuracyEnabled:	false,
+				criteriaQualityEnabled:		false,
+				criteriaQuantityEnabled:	false,
+				criteriaSpeedEnabled:		false,
+				criteriaAccuracyHidden:		false,
+				criteriaQualityHidden:		false,
+				criteriaQuantityHidden:		false,
+				criteriaSpeedHidden:		false,
+				actionWordCategory:  ActionWordCategory.findByActionWordCategory(params.actionWordCategory),
+				actionWord: actionWord,
+				performance: params.DCL,
+				definition: actionWord
 
-				// store the text content of each of the learning objective criteriae
-				selectedLearningObjective.criteriaAccuracy	= params.accuracy
-				selectedLearningObjective.criteriaQuality	= params.quality
-				selectedLearningObjective.criteriaQuantity	= params.quantity
-				selectedLearningObjective.criteriaSpeed		= params.speed
+			)
+			// add the learning objective to the collection of learning objectives in the imod
+			currentImod.addToLearningObjectives(selectedLearningObjective)
+			// saves the imod and the learning objective
+			currentImod.save()
 
-				// check if the field is enabled
-				// NOTE: when a check box is unchecked it returns null, hence the conditional
-				selectedLearningObjective.criteriaAccuracyHidden	= params.hideAccuracy != null
-				selectedLearningObjective.criteriaQualityHidden		= params.hideQuality != null
-				selectedLearningObjective.criteriaQuantityHidden	= params.hideQuantity != null
-				selectedLearningObjective.criteriaSpeedHidden		= params.hideSpeed	!= null
-				break
+			// redirect to performance
+			redirect(
+				action: 'performance',
+				id: id,
+				params: [
+					learningObjectiveID: selectedLearningObjective.id
+				]
+			)
 
-			// if page type is not recognized
-			// TODO: add an error message
-			default:
-				pageType = 'performance'
+		} else {
+
+			def selectedLearningObjective = learningObjectiveService.safeGet(currentImod, Long.parseLong(learningObjectiveID))
+
+			switch (pageType) {
+				// if the user is saving performance page
+				case 'performance':
+					selectedLearningObjective.actionWordCategory = ActionWordCategory.findByActionWordCategory(params.actionWordCategory)
+					selectedLearningObjective.performance = params.DCL
+					if (params.actionWord == 'other') {
+						selectedLearningObjective.actionWord = params.customActionWord
+					} else if (params.actionWord == 'select') {
+						selectedLearningObjective.actionWord = 'Enter the details here'
+					} else {
+						selectedLearningObjective.actionWord = params.actionWord
+					}
+					break
+
+				// if the user is saving the condition page
+				case 'condition':
+					if (params.conditionType == 'Generic') {
+						selectedLearningObjective.condition = params.genericCondition
+					}
+					if (params.conditionType == 'Custom') {
+						selectedLearningObjective.condition = params.customCondition
+					}
+					selectedLearningObjective.hideFromLearningObjectiveCondition = params.hideCondition == 'on'
+					if (LearningObjective.genericConditions.contains(selectedLearningObjective.condition)) {
+						selectedLearningObjective.customCondition = ''
+					} else {
+						selectedLearningObjective.customCondition = selectedLearningObjective.condition
+					}
+					break
+
+				// if the user is saving the criteria page
+				case 'criteria':
+					// check if the field is enabled
+					// NOTE: when a check box is unchecked it returns null, hence the conditional
+					selectedLearningObjective.criteriaAccuracyEnabled	= params.enableAccuracy	!= null
+					selectedLearningObjective.criteriaQualityEnabled	= params.enableQuality	!= null
+					selectedLearningObjective.criteriaQuantityEnabled	= params.enableQuantity != null
+					selectedLearningObjective.criteriaSpeedEnabled		= params.enableSpeed != null
+
+					// store the text content of each of the learning objective criteriae
+					selectedLearningObjective.criteriaAccuracy	= params.accuracy
+					selectedLearningObjective.criteriaQuality	= params.quality
+					selectedLearningObjective.criteriaQuantity	= params.quantity
+					selectedLearningObjective.criteriaSpeed		= params.speed
+
+					// check if the field is enabled
+					// NOTE: when a check box is unchecked it returns null, hence the conditional
+					selectedLearningObjective.criteriaAccuracyHidden	= params.hideAccuracy != null
+					selectedLearningObjective.criteriaQualityHidden		= params.hideQuality != null
+					selectedLearningObjective.criteriaQuantityHidden	= params.hideQuantity != null
+					selectedLearningObjective.criteriaSpeedHidden		= params.hideSpeed	!= null
+					break
+
+				// if page type is not recognized
+				// TODO: add an error message
+				default:
+					pageType = 'performance'
+			}
+			// rebuild learning Objective definition
+			selectedLearningObjective.buildDefinition()
+
+			// save all of the changes
+			selectedLearningObjective.save()
+
+			// redirect to the correct page
+			redirect(
+				action: pageType,
+				id: id,
+				params: [
+					learningObjectiveID: selectedLearningObjective.id
+				]
+			)
+
 		}
-		// rebuild learning Objective definition
-		selectedLearningObjective.buildDefinition()
 
-		// save all of the changes
-		selectedLearningObjective.save()
-
-		// redirect to the correct page
-		redirect(
-			action: pageType,
-			id: id,
-			params: [
-				learningObjectiveID: selectedLearningObjective.id
-			]
-		)
 	}
 
 	/**
 	 * This allows the user to set Performance measures for their learning objectives
 	 * Peformance measures are created through action words
 	 * Action Words are found by starting with a Learning Domain, choosing a domain category, the selecting an action word from a list
-	 * @param  id                  IMOD that learning objective is associated with
+	 * @param  id				  IMOD that learning objective is associated with
 	 * @param  learningObjectiveID ID of the specific learning objective being edited
 	 */
-	def performance(Long id, Long learningObjectiveID) {
+	def performance(Long id, String learningObjectiveID) {
 		// get relevant imod
 		final currentImod = Imod.get(id)
 
 		// get a list of all of the learning objectives for this imod
 		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 
-		// get all performance data to set in the Performance page
-		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
-		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
-		final selectedDomain = selectedDomainCategory?.learningDomain
+		if (learningObjectiveID == '') {
 
-		// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
-		final domainList = LearningDomain.list()
-		final domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
-		final actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
+			def LoID = 'new'
 
-		[
-			actionWord: 				currentLearningObjective?.actionWord,
-			actionWordCategoryList:		actionWordCategoryList,
-			categoriesList:				domainCategoriesList,
-			currentImod:				currentImod,
-			currentLearningObjective:	currentLearningObjective,
-			currentPage:				'learning objective performance',
-			domainList:					domainList,
-			learningObjectives:			learningObjectives,
-			selectedActionWordCategory:	selectedActionWordCategory,
-			selectedDomain:				selectedDomain,
-			selectedDomainCategory:		selectedDomainCategory,
-		]
+			if (learningObjectives.size > 0) {
+				LoID = learningObjectives[0].id
+			}
+
+			redirect(
+  				controller: 'learningObjective',
+  				action: 'performance',
+  				id:  id,
+  				params: [learningObjectiveID: LoID]
+  			)
+
+		} else if (learningObjectiveID != null && learningObjectiveID == 'new') {
+
+			// get all performance data to set in the Performance page
+			final currentLearningObjective = null
+			final selectedActionWordCategory = null
+			final selectedDomainCategory = null
+			final selectedDomain = null
+
+			// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
+			final domainList = LearningDomain.list()
+			final domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
+			final actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
+
+			[
+				actionWord: 				null,
+				actionWordCategoryList:		actionWordCategoryList,
+				categoriesList:				domainCategoriesList,
+				currentImod:				currentImod,
+				currentLearningObjective:	currentLearningObjective,
+				currentPage:				'learning objective performance',
+				domainList:					domainList,
+				learningObjectives:			learningObjectives,
+				selectedActionWordCategory:	selectedActionWordCategory,
+				selectedDomain:				selectedDomain,
+				selectedDomainCategory:		selectedDomainCategory,
+			]
+
+		} else {
+
+			if (params.learningObjectiveID == null) {
+				def LoID = 'new'
+
+				if (learningObjectives.size > 0) {
+					LoID = learningObjectives[0].id
+				}
+
+				redirect(
+	  				controller: 'learningObjective',
+	  				action: 'performance',
+	  				id:  id,
+	  				params: [learningObjectiveID: LoID]
+	  			)
+
+			} else {
+
+				// get all performance data to set in the Performance page
+				final currentLearningObjective = learningObjectiveService.safeGet(currentImod, Long.parseLong(learningObjectiveID))
+				final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
+				final selectedDomainCategory = selectedActionWordCategory?.domainCategory
+				final selectedDomain = selectedDomainCategory?.learningDomain
+
+				// get list of Domains, categories and Actions, defaulting to the first of each in case none has been defined for the Learning Objective
+				final domainList = LearningDomain.list()
+				final domainCategoriesList = selectedDomain ? DomainCategory.findAllByLearningDomain(selectedDomain) : DomainCategory.findAllByLearningDomain(domainList.first())
+				final actionWordCategoryList = selectedDomainCategory ? ActionWordCategory.findAllByDomainCategory(selectedDomainCategory) : ActionWordCategory.findAllByDomainCategory(domainCategoriesList.first())
+
+				[
+					actionWord: 				currentLearningObjective?.actionWord,
+					actionWordCategoryList:		actionWordCategoryList,
+					categoriesList:				domainCategoriesList,
+					currentImod:				currentImod,
+					currentLearningObjective:	currentLearningObjective,
+					currentPage:				'learning objective performance',
+					domainList:					domainList,
+					learningObjectives:			learningObjectives,
+					selectedActionWordCategory:	selectedActionWordCategory,
+					selectedDomain:				selectedDomain,
+					selectedDomainCategory:		selectedDomainCategory,
+				]
+
+			}
+		}
+
 	}
 
 	def content(Long id, Long learningObjectiveID) {
@@ -223,12 +332,12 @@ class LearningObjectiveController {
 
 		if (contentList != null) {
 			text = '<ul id="contentTree">'
-	        contentList2.each {
-	            text += getSubContentHTML(it, currentLearningObjective)
-	        }
+			contentList2.each {
+				text += getSubContentHTML(it, currentLearningObjective)
+			}
 
-	        text += '</ul>'
-        }
+			text += '</ul>'
+		}
 
 		[
 			contentList:				contents,
@@ -321,9 +430,9 @@ class LearningObjectiveController {
 	}
 
 	private getSubContentHTML(Content current, LearningObjective objective) {
-        def text = ''
+		def text = ''
 
-        def topicSelected = ''
+		def topicSelected = ''
 		if (objective != null) {
 			if (objective.contents.contains(current) as Boolean) {
 				topicSelected = 'fa-check'
@@ -335,26 +444,26 @@ class LearningObjectiveController {
 			'<i class="fa fa-stack-1x checkbox ' + topicSelected + '" id="select' + currentID + '"></i> ' +
 			'</span> ' + current.topicTitle + ' <span class="delete-topic" data-id="' + currentID + '">x</span>'
 
-        text += '<li data-itemid="' + currentID + '">' + topicTitle
+		text += '<li data-itemid="' + currentID + '">' + topicTitle
 
-        if (current.subContents != null) {
-            text += '<ul>'
-            current.subContents.each {
-                text += getSubContentHTML(it, objective)
-            }
-            text += '</ul>'
-        }
+		if (current.subContents != null) {
+			text += '<ul>'
+			current.subContents.each {
+				text += getSubContentHTML(it, objective)
+			}
+			text += '</ul>'
+		}
 
-        text +=  '</li>'
+		text +=  '</li>'
 
 		// return text
-        text
-    }
+		text
+	}
 
 	/**
 	 * gather the Domain Categories for selected Learning Domain
 	 * @param  domainName String that is the contents (or name) of a Learning Domain
-	 * @return            sorted list of Domain Categories
+	 * @return			sorted list of Domain Categories
 	 */
 	def getDomainCategories(String domainName) {
 		// Find the selected learning domain
@@ -372,7 +481,7 @@ class LearningObjectiveController {
 	/**
 	 * gather the Action Words for selected Domain Category
 	 * @param  domainName String that is the contents (or name) of a Action Word Category
-	 * @return            sorted list of Action Words
+	 * @return			sorted list of Action Words
 	 */
 	def getActionWordCategories(String domainName) {
 		// Find the selected learning domain
@@ -390,7 +499,7 @@ class LearningObjectiveController {
 	/**
 	 * gather the Action Words for selected Domain Category
 	 * @param  actionWordCategory String that is the contents (or name) of a Domain Category
-	 * @return            sorted list of Action Words
+	 * @return			sorted list of Action Words
 	 */
 	def getActionWords(String actionWordCategory) {
 		// temporarily replace the WordNet API with BigHugeLabsAPI

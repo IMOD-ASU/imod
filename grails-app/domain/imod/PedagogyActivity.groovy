@@ -15,7 +15,7 @@ class PedagogyActivity {
 	]
 
 	String toString() {
-	    title
+		title
 	}
 
 	static mapping = {

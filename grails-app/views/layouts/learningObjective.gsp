@@ -63,6 +63,14 @@
 								</span>
 								</fieldset>
 								<ul class="learning-objective list-wrapper">
+								<g:if test="${params.learningObjectiveID == "new"}">
+									<li class="learning-objective list-item active" >
+
+										Define New Learning Objective
+
+									</li>
+								</g:if>
+
 								<g:if test="${learningObjectives}">
 								    <g:each var="learningObjective" in="${learningObjectives}">
 										<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective?.id) ? 'active' : ''  }" >
@@ -83,9 +91,9 @@
 										</li>
 									</g:each>
 								</g:if>
-								<g:else>
+								%{-- <g:else>
 									<li class="learning-objective list-item active"> <i> Click on add button above to create new Learning Objective </i></li>
-								</g:else>
+								</g:else> --}%
 								</ul>
 							</div>
 						</td>
@@ -114,21 +122,23 @@
 											Performance
 										</g:link>
 									</li>
-									<li class="${ currentPage.find(/learning objective content/) == null ? '' : 'active' }">
-										<g:link action="content" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="content" title="${ message( code:'imod.learningObjective.contentSubtab' ) }">
-											Content
-										</g:link>
-									</li>
-									<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
-										<g:link action="condition" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="conditionTab">
-											Condition
-										</g:link>
-									</li>
-									<li class="${ currentPage.find(/learning objective criteria/) == null ? '' : 'active' }">
-										<g:link action="criteria" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="criteria" title="${ message( code:'imod.learningObjective.criteria' ) }">
-											Criteria
-										</g:link>
-									</li>
+									<g:if test="${params.learningObjectiveID != "new"}">
+										<li class="${ currentPage.find(/learning objective content/) == null ? '' : 'active' }">
+											<g:link action="content" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="content" title="${ message( code:'imod.learningObjective.contentSubtab' ) }">
+												Content
+											</g:link>
+										</li>
+										<li class="${ currentPage.find(/learning objective condition/) == null ? '' : 'active' }">
+											<g:link action="condition" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="conditionTab">
+												Condition
+											</g:link>
+										</li>
+										<li class="${ currentPage.find(/learning objective criteria/) == null ? '' : 'active' }">
+											<g:link action="criteria" params="[learningObjectiveID: currentLearningObjective?.id]" id="${currentImod?.id}" class="criteria" title="${ message( code:'imod.learningObjective.criteria' ) }">
+												Criteria
+											</g:link>
+										</li>
+									</g:if>
 								</ul>
 							</div>
 							<g:layoutBody />

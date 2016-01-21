@@ -1,444 +1,461 @@
 .topLeft {
-	position: absolute;
-	top: 0;
-	left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #topRight {
-	position: absolute;
-	top: 0;
-	left: 73px;
+    position: absolute;
+    top: 0;
+    left: 73px;
 }
 
 .favDiv {
-	display: none;
-	visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 
 #unfavorites {
-	display: none;
+    display: none;
 }
 
 #assessmentFavorites {
-	display: none;
-	visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 
 #assessmentFavoritesDiv {
-	display: none;
-	visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 
 
 .no-objective-defined {
-	height: 100px;
-	text-align: center;
-	vertical-align: middle;
+    height: 100px;
+
+    text-align: center;
+    vertical-align: middle;
 }
 
 .no-objective-defined a {
-	vertical-align: middle !important;
-	text-decoration: none;
+    vertical-align: middle !important;
+    text-decoration: none;
 }
 
 .assessment-page-buttons {
-	height: 50px;
+    height: 50px;
 
-	text-align: center;
+    text-align: center;
 }
 .knowledgeDimensionButton {
-	width: 88%;
+    width: 88%;
 }
 
 .assessment-page-buttons-disabled {
-	height: 50px;
+    height: 50px;
 
-	text-align: center;
-	vertical-align: middle;
-	pointer-events: none;
+    text-align: center;
+    vertical-align: middle;
+    pointer-events: none;
 
-	opacity: 0.5;
-	background: #cccccc;
+    opacity: 0.5;
+    background: #cccccc;
 }
 
 .video-control {
-	text-align: center;
+    text-align: center;
 }
 
 .video-center {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 .learning-objective.definition-cell {
-	height: 5em;
-	min-height: 2em;
-	padding-right: 0;
+    height: 5em;
+    min-height: 2em;
+    padding-right: 0;
 
-	text-align: center;
+    text-align: center;
 
-	border: 1px solid #c4c2c2;
-	border-radius: 5px;
+    border: 1px solid #c4c2c2;
+    border-radius: 5px;
 }
 
 .learning-objective.list-wrapper {
-	overflow-x: hidden;
-	overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 
-	max-height: 300px !important;
+    max-height: 300px !important;
 }
 
 .assessment-nav-bar span {
-	margin-right: 15px;
+    margin-right: 15px;
 }
 
 .pedagogy-nav-bar span {
-	margin-right: 15px;
+    margin-right: 15px;
 }
 
 #add-new-technique-button i,
 #favorites-button i {
-	padding: 2px;
+    padding: 2px;
 
-	vertical-align: middle;
+    vertical-align: middle;
 
-	color: #ffffff;
+    color: #ffffff;
 
-	font-size: 1em;
+    font-size: 1em;
 
-	size: 1em;
+    size: 1em;
 }
 #favorites-button i {
-	color: gold;
+    color: gold;
 }
 
 .ui-button-text .ui-button-text {
-	padding: 0;
+    padding: 0;
 }
 
 .new-technique-popup-button {
-	top: 0;
+    top: 0;
 
-	height: 28px;
-	padding: 0 10px;
+    height: 28px;
+    padding: 0 10px;
 
-	color: #ffffff;
-	border: none;
-	border-radius: 3px;
-	background: #0a1629;
-	background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    background: #0a1629;
+    background: linear-gradient(to left bottom, #1b4176 0%, #172751 100%);
 }
-.new-technique-popup-button.clone {
-	position: absolute;
-	top: inherit;
-	right: 0;
-	bottom: 0;
 
-	width: 80px;
-}
 #ideal-matches1 {
-	height: 300px;
+    height: 300px;
 }
 
 .modalBackground {
-	position: fixed;
-	top: 0;
-	left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-	display: none;
+    display: none;
 
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 
-	background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.5);
 }
 #topicDialogBackground {
-	z-index: 2;
+    z-index: 2;
 }
 #add-new-technique {
-	position: absolute !important;
-	z-index: 2;
-	top: -124px;
-	left: 50%;
+    position: absolute !important;
+    z-index: 2;
+    top: -124px;
+    left: 50%;
 
-	display: none;
+    display: none;
 
-	width: 460px;
-	margin-left: -230px;
+    width: 460px;
+    margin-left: -230px;
 
-	border: 1px solid #c4c2c2;
-	background: #ededef;
+    border: 1px solid #c4c2c2;
+    background: #ededef;
 }
 #assessment-plan {
-	position: absolute !important;
-	z-index: 2;
-	top: -124px;
-	left: 50%;
+    position: absolute !important;
+    z-index: 2;
+    top: -124px;
+    left: 50%;
 
-	display: none;
+    display: none;
 
-	width: 460px;
-	margin-left: -230px;
+    width: 460px;
+    margin-left: -230px;
 
-	border: 1px solid #c4c2c2;
-	background: #ededef;
+    border: 1px solid #c4c2c2;
+    background: #ededef;
 }
 
 #closeInstructionalPlan {
-	cursor: pointer;
-	vertical-align: middle;
+    cursor: pointer;
+    vertical-align: middle;
 
-	font-size: 1em;
+    font-size: 1em;
 
-	size: 1em;
+    size: 1em;
 }
 
 #closeInstructionalPlanButton {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 #add-new-technique .td-label {
-	padding-top: 10px;
+    padding-top: 10px;
 
-	vertical-align: top;
+    vertical-align: top;
 
-	font-weight: bold;
+    font-weight: bold;
 }
 
 #techniqueList {
-	margin: 10px;
-	margin-bottom: 1px;
+    margin: 10px;
+    margin-bottom: 1px;
 }
 #techniqueList thead tr:last-child {
-	width: 4em;
-	padding-right: 10px;
+    width: 4em;
+    padding-right: 10px;
 }
 #techniqueList tbody * {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 #techniqueList tbody img {
-	width: 20px;
-	height: 20px;
-	padding-right: 5px;
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
 }
 
 #techniqueList td {
-	padding: 5px;
+    padding: 5px;
 }
 
 #techniqueList input,
 #techniqueList select,
 #techniqueList textarea {
-	box-sizing: border-box;
-	width: 100%;
-	height: inherit;
-	min-height: inherit;
+    box-sizing: border-box;
+    width: 100%;
+    height: inherit;
+    min-height: inherit;
 
-			border-radius: 5px;
-			box-shadow: inset 0 2px 10px 0 rgba(0,0,0,0.1);
+            border-radius: 5px;
+            box-shadow: inset 0 2px 10px 0 rgba(0,0,0,0.1);
 
-	-webkit-border-radius: 5px;
-	-webkit-box-shadow: inset 0 2px 10px 0 rgba(0,0,0,0.1);
-	   -moz-box-shadow: inset 0 2px 10px 0 rgba(0,0,0,0.1);
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: inset 0 2px 10px 0 rgba(0,0,0,0.1);
+       -moz-box-shadow: inset 0 2px 10px 0 rgba(0,0,0,0.1);
 }
 
 #k1 {
-	width: 82%;
+    width: 82%;
 }
 
 .titleField {
-	position: relative;
-	top: initial;
-	right: initial;
+    position: relative;
+    top: initial;
+    right: initial;
 
-	width: auto;
-	height: 2.5em;
-	margin: 0;
+    width: auto;
+    height: 2.5em;
+    margin: 0;
 
-	text-align: left;
-	vertical-align: middle;
-	/*background: rgba(0,0,0,0.05);
+    text-align: left;
+    vertical-align: middle;
+    /*background: rgba(0,0,0,0.05);
 	box-shadow: none;*/
 
-	border-top: 1px solid rgba(0,0,0,0.05) ;
-	border-bottom: 1px solid rgba(0,0,0,0.05);
-	background-color: rgba(0,0,0,0.05);
-	box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(0,0,0,0.05) ;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0.05);
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
 }
 
 #ideal-matches-toggle h3 {
-	display: block;
+    display: block;
 
-	text-align: left;
+    text-align: left;
 }
 
 .ui-accordion .ui-accordion-content {
-	margin: 10px;
+    margin: 10px;
 
-	border-top: 1px solid #aaaaaa;
+    border-top: 1px solid #aaaaaa;
 }
 
 #ideal-matches1 {
-	position: relative;
+    position: relative;
 }
 
 .icons > .ui-state-hover:hover {
-	color: inherit;
+    color: inherit;
 }
 
 label.assessment-block:hover {
-	cursor: default;
+    cursor: default;
 }
 
 label.assessment-block .ui-button-text:hover {
-	cursor: pointer;
+    cursor: pointer;
 
-	color: #1c94c4;
+    color: #1c94c4;
 }
 
 label.assessment-block .text-block.title {
-	word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 label.assessment-block {
-	width: 120px; background: #ffffcc !important;
+    width: 120px;
+
+    background: #ffffcc !important;
 }
 
 .modalBackgroundFavorites {
-	z-index: 1;
-	position: fixed;
-	top: 0;
-	left: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
 
-	display: none;
+    display: none;
 
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 
-	background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.5);
 }
 
 .favorites-modal {
-	width: 800px;
-	position: absolute; left: 50%;
-	margin-left: -400px;
-	top: 30px; background: rgb(237, 237, 239);
-	z-index: 2; display: none;
+    position: absolute;
+    z-index: 2;
+    top: 30px;
+    left: 50%;
+
+    display: none;
+
+    width: 800px;
+    margin-left: -400px;
+
+    background: rgb(237, 237, 239);
 }
 
 .favorites-modal .favorites-inner {
-	max-height: 300px;
-	overflow-y: auto;
+    overflow-y: auto;
+
+    max-height: 300px;
 }
 .favorites-modal .ui-button-text {
-	padding: 60px 0;
+    padding: 60px 0;
 }
 
 .favorites-modal .ui-button-text .ui-button-text {
-	padding: 0;
+    padding: 0;
 }
 
 
 .favorites-inner {
-	text-align: center;
+    text-align: center;
 }
 
 .clone:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .favDiv {
-	display: none;
-	visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 
 #unfavorites {
-	display: none;
+    display: none;
 }
 
 #assessmentFavorites {
-	display: none;
-	visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 
 #assessmentFavoritesDiv {
-	display: none;
-	visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 
 .assessment-page-buttons {
-	height: 50px;
+    height: 50px;
 
-	text-align: center;
+    text-align: center;
 }
 
 .assessment-page-buttons-disabled {
-	height: 50px;
+    height: 50px;
 
-	text-align: center;
-	vertical-align: middle;
-	pointer-events: none;
+    text-align: center;
+    vertical-align: middle;
+    pointer-events: none;
 
-	opacity: 0.5;
-	background: #cccccc;
+    opacity: 0.5;
+    background: #cccccc;
 }
 
 .video-control {
-	text-align: center;
+    text-align: center;
 }
 
 .video-center {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 .learning-objective.definition-cell {
-	height: 5em;
-	min-height: 2em;
-	padding-right: 0;
+    height: 5em;
+    min-height: 2em;
+    padding-right: 0;
 
-	text-align: center;
+    text-align: center;
 
-	border: 1px solid #c4c2c2;
-	border-radius: 5px;
+    border: 1px solid #c4c2c2;
+    border-radius: 5px;
 }
 
 #add-new-technique-button i,
 #favorites-button i {
-	padding: 2px;
+    padding: 2px;
 
-	vertical-align: middle;
+    vertical-align: middle;
 
-	color: #ffffff;
+    color: #ffffff;
 
-	font-size: 1em;
+    font-size: 1em;
 
-	size: 1em;
+    size: 1em;
 }
 #favorites-button i {
-	color: gold;
+    color: gold;
 }
+.clone {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: inherit;
 
+    height: 28px;
+    padding: 0 10px;
+
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    background: #0a1629;
+    background: linear-gradient(to right bottom, #1b4176 0%, #172751 100%);
+}
 .assessment-nav-bar span {
-	margin-right: 15px;
+    margin-right: 15px;
 }
 
 
 #ideal-matches-toggle h3 {
-	display: block;
+    display: block;
 
-	text-align: left;
+    text-align: left;
 }
 
 .assessment-plan-LO,
 .assignedTechniques {
-	text-align: left;
+    text-align: left;
 }
 #printAssessmentPlan {
-	height: 2em !important;
+    height: 2em !important;
 
-	font-size: 1em;
+    font-size: 1em;
 }
 #printAssessmentPlan a {
-	vertical-align: middle !important;
-	text-decoration: none;
+    vertical-align: middle !important;
+    text-decoration: none;
 }

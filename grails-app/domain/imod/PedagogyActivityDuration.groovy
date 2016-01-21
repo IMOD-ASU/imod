@@ -7,7 +7,7 @@ class PedagogyActivityDuration {
 	String duration
 
 	String toString() {
-	    duration
+		duration
 	}
 
 	static mapping = {

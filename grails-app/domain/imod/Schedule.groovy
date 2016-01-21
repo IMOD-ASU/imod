@@ -40,4 +40,8 @@ class Schedule {
 		startTime type: PersistentLocalTime
 		endTime   type: PersistentLocalTime
 	}
+
+	String toString() {
+		"${startDate} to ${endDate}"
+	}
 }

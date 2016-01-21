@@ -128,7 +128,7 @@
 		</thead>
 		<tbody>
 		<!-- ${currentImod.contents} -->
-		<g:each var="contentItem" in="${currentImod.contents.sort { a, b -> a.topicTitle.compareTo(b.topicTitle) }}">
+		<g:each var="contentItem" in="${currentImod.contents.sort { a, b -> a.id.compareTo(b.id) }}">
 			<input type="hidden" id="contentID" value="${contentItem.id}"/>
 			<tr id="${contentItem.id}" class="topicItem">
 				<td class="saveIcon">
@@ -142,6 +142,10 @@
 						type="hidden"
 						id="topicTitleSaved${contentItem.id}"
 						value="${contentItem.topicTitle}"/>
+					<input
+						type="hidden"
+						id="topicTempID${contentItem.id}"
+						value="${contentItem.id}"/>
 				</td>
 				<td class="show-hover-new topicDimensions">
 					<span>
@@ -182,6 +186,7 @@
 					<button class="ResourceButton"
 							title="${message(code: 'imod.content.Resources')}"
 							id="topicResources${contentItem.id}"
+							name="${contentItem.topicTitle}"
 							type="button">
 						Resources
 					</button>
@@ -248,7 +253,7 @@
 							value="${contentItem.priority}"/>
 					</td>
 					<td class="topicResources">
-						<button class="ResourceButton" id="topicResources${contentItem.id}"
+						<button class="ResourceButton" id="topicResources${contentItem.id}" name="${contentItem.topicTitle}"
 								type="button">Resources</button>
 
 					</td>
@@ -398,10 +403,10 @@
 
 	</fieldset>
 </div>
-
+<g:if test="${!currentImod.contents.isEmpty()}">
 <div id="chart" align="center">
-
 </div>
+</g:if>
 <input type="hidden" id="treeData" value="${contentList}">
 <input type="hidden" id="resourceDataStore" >
 </body>

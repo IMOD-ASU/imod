@@ -1,4 +1,3 @@
-var cleanForm;
 var formSubmitted = false;
 
 $(document).ready(function () {
@@ -132,14 +131,24 @@ $(document).ready(function () {
 
 window.onload = function () {
 	'use strict';
-	cleanForm = $('form').find('select, textarea, input').serialize();
+	if ($('#contentTable').length) {
+		window.cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
+	} else {
+		window.cleanForm = $('form').find('select, textarea, input').serialize();
+	}
 };
 
 window.onbeforeunload = function () {
 	'use strict';
-	var dirtyForm = $('form').find('select, textarea, input').serialize();
+	var dirtyForm;
 
-	if (!formSubmitted && cleanForm !== dirtyForm) {
+	if ($('#contentTable').length) {
+		dirtyForm = $('form, #contentTable').find('select, textarea, input').serialize();
+	} else {
+		dirtyForm = $('form').find('select, textarea, input').serialize();
+	}
+
+	if (!formSubmitted && window.cleanForm !== dirtyForm) {
 		return 'You have unsaved changes. Please save them before proceeding.';
 	}
 	return null;

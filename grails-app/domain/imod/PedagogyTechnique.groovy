@@ -33,15 +33,16 @@ class PedagogyTechnique {
 	]
 
 	String toString() {
-	    title
+		title
 	}
 
 	static mapping = {
 		description type: 'text'
+		reference type: 'text'
 		version false
 	}
 
-    static constraints = {
+	static constraints = {
 		activityDescription nullable: true
 		activityFocus nullable: true
 		assignedLearningObjective nullable: true
@@ -53,5 +54,5 @@ class PedagogyTechnique {
 		strategyDescription nullable: true
 		userFavorite nullable: true
 		pedagogyDuration nullable: true
-    }
+	}
 }

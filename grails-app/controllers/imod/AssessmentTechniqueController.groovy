@@ -171,21 +171,15 @@ class AssessmentTechniqueController {
 			LearningObjective.get(learningObjectiveID)
 		)
 
-		params.domainCategory.each {
-			newTechnique.addToDomainCategory(
-				DomainCategory.findByName(it)
-			)
-		}
-
 		String[] kD = params.knowledgeDimension.split(',')
-		String[] lD = params.learningDomain
-		String[] dC = params.domainCategory
+		String[] lD = params.list('learningDomain')
+		String[] dC = params.list('domainCategory')
 
 		if (kD != null) {
 			for (int i = 0; i < kD.length; i++) {
 				if (kD[i] != null) {
 					newTechnique.addToKnowledgeDimension(
-					KnowledgeDimension.findByDescription(kD[i]))
+					KnowledgeDimension.findByDescription(kD[i].trim()))
 				}
 			}
 		}
@@ -255,10 +249,10 @@ class AssessmentTechniqueController {
 		// store relationship
 		currentUser.save()
 		render (
-            [
-                value: 'success'
-            ] as JSON
-        )
+			[
+				value: 'success'
+			] as JSON
+		)
 	}
 
 	def unassignFavorite(Long id) {
@@ -270,10 +264,10 @@ class AssessmentTechniqueController {
 		// store relationship
 		currentUser.save()
 		render (
-            [
-                value: 'success'
-            ] as JSON
-        )
+			[
+				value: 'success'
+			] as JSON
+		)
 	}
 
 	def assignToLearningObjective() {
@@ -286,10 +280,10 @@ class AssessmentTechniqueController {
 		// store relationship
 		currentLearningObjective.save()
 		render (
-            [
-                value: 'success'
-            ] as JSON
-        )
+			[
+				value: 'success'
+			] as JSON
+		)
 	}
 
 	def unassignToLearningObjective() {
@@ -303,9 +297,9 @@ class AssessmentTechniqueController {
 		// store relationship
 		currentLearningObjective.save()
 		render (
-            [
-                value: 'success'
-            ] as JSON
-        )
+			[
+				value: 'success'
+			] as JSON
+		)
 	}
 }

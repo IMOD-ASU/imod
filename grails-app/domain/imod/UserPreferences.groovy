@@ -10,7 +10,7 @@ class UserPreferences {
 
 	static belongsTo = ImodUser
 
-    static constraints = {
+	static constraints = {
 		dateRepresentation nullable: true
 		showHelp nullable: true
 	}
@@ -19,5 +19,9 @@ class UserPreferences {
 		showHelp defaultValue: 'true'
 		dateRepresentation defaultValue: "'mm/dd/yy'"
 		version false
+	}
+
+	String toString() {
+		"Help ${showHelp}, Date Format ${dateRepresentation}"
 	}
 }

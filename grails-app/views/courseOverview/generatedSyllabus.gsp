@@ -425,7 +425,9 @@
 		                </ul>
 			            </g:if>
                         <g:else>
-			            	N/A
+			            	<div id="learning-objectives-list" class="learning-objective list-wrapper">
+				            	N/A
+				            </div>
 				        </g:else>
 		            </div>
 		        </g:if>

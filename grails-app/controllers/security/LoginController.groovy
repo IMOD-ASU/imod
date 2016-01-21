@@ -51,7 +51,7 @@ class LoginController {
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
 		render view: view, model: [
 			postUrl: postUrl,
-		    rememberMeParameter: config.rememberMe.parameter
+			rememberMeParameter: config.rememberMe.parameter
 		]
 	}
 
@@ -81,7 +81,7 @@ class LoginController {
 		def config = SpringSecurityUtils.securityConfig
 		render view: 'login', params: params,
 			model: [hasCookie: authenticationTrustResolver.isRememberMe(SCH.context?.authentication),
-			        postUrl: "${request.contextPath}${config.apf.filterProcessesUrl}"]
+					postUrl: "${request.contextPath}${config.apf.filterProcessesUrl}"]
 	}
 
 	/**

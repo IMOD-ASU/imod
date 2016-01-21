@@ -723,7 +723,8 @@ th.desc a {
 
 
 
-.knowledgeDimensionButton, .ResourceButton {
+.knowledgeDimensionButton,
+.ResourceButton {
     display: inline-block;
 
     height: auto;
@@ -734,10 +735,10 @@ th.desc a {
     vertical-align: middle;
 
     color: #ffffff;
+    border: none;
     border-radius: 3px;
     background: linear-gradient(#113b70, #0b2f5e);
     box-shadow: 0 1px 2px #888888;
-    border: none;
 }
 
 .topicButtonGradient {

@@ -6,8 +6,8 @@ package imod
 class ScheduleRepeatsEvery {
 	String description
 
-    static constraints = {
-    }
+	static constraints = {
+	}
 
 	static mapping = {
 		version false

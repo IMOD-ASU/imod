@@ -45,11 +45,21 @@ class AssessmentController {
 		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
-		final content = currentLearningObjective?.contents
+		final content = currentImod?.contents
+		def knowDimensionList = []
 		def dimension = []
 		if (content != null) {
-			dimension = content[0]?.dimensions
+			content.each {
+				knowDimensionList.push(it.dimensions)
+			}
+			// merge multiple lists into one
+			dimension = knowDimensionList.flatten()
+			// remove duplicates
+			dimension = dimension.unique { a, b ->
+				a <=> b
+			}
 		}
+
 		def dimensionSize = 0
 		if (dimension != null) {
 			dimensionSize  = dimension.size() - 1
@@ -111,15 +121,15 @@ class AssessmentController {
 					}
 				}
 			}
-            resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
 
 		// find all technique that are not ideal, but have the learning domain
 		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
-    			learningDomain {
-    				'in' ('id', selectedLearningDomains)
-    			}
+				learningDomain {
+					'in' ('id', selectedLearningDomains)
+				}
 				not {
 					and {
 						knowledgeDimension {
@@ -168,7 +178,7 @@ class AssessmentController {
 	/*print assessment plan*/
 	def assessmentPlan(Long id) {
 		final currentImod = Imod.get(id)
-        final learningObjectives = LearningObjective.findAllByImod(currentImod)
+		final learningObjectives = LearningObjective.findAllByImod(currentImod)
 		[
 			learningObjectives: learningObjectives
 		]
