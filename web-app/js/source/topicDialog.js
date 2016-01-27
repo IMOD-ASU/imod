@@ -8,7 +8,7 @@ var unsavedResourceData = [];
 
 function showTopicDialog () {
 	'use strict';
-	$('#topicDialogBackground').css('display', 'none');
+	$('#topicDialogBackground').css('display', 'block');
 	$('#topicDialog').css('display', 'block');
 }
 
