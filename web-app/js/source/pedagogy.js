@@ -296,6 +296,9 @@ function displayPedagogyTechniques (data) {
 		var str = '';
 		var indexNo = '';
 		var res = '';
+		var currentImg = $(this);
+		var assessmentBlock = null;
+		var unfavId = null;
 
 		if ($(this).attr('src') === '../../images/fav.png') {
 			$(this).attr('src', '../../images/unfav.png');
@@ -309,8 +312,25 @@ function displayPedagogyTechniques (data) {
 			$.ajax({
 				url: '../../pedagogyTechnique/unassignFavorite/' + res,
 				method: 'GET',
-				success: function () {}
+				success: function () {
+					if (currentImg.parents('.favorites-inner').length) {
+						assessmentBlock = currentImg.parents('.assessment-block');
+						unfavId = assessmentBlock.prop('for');
+						assessmentBlock.remove();
 
+						// remove fav icon from the technique in ideal
+						// and extended matches
+						$('label[for=' + unfavId + ']')
+							.find('#topLeft img')
+							.prop('src', '../../images/unfav.png');
+
+						// if no techniques exist
+						// show empty fav techniques message
+						if (!$('.favorites-inner').find('.assessment-block').length) {
+							$('.favorites-inner').append('<br><strong>You do not have any favorite techniques</strong><br><br>');
+						}
+					}
+				}
 			});
 		} else {
 			$(this).attr('src', '../../images/fav.png');
