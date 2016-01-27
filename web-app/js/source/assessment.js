@@ -370,7 +370,6 @@ function displayAssessmentTechniques (data) {
 						assessmentBlock = currentImg.parents('.assessment-block');
 						unfavId = assessmentBlock.prop('for');
 						assessmentBlock.remove();
-						console.log(unfavId);
 
 						// remove fav icon from the technique in ideal
 						// and extended matches

@@ -35,7 +35,7 @@
 
 	<body>
 		<div class="modalBackgroundFavorites"></div>
-		<div class="favorites-modal">
+		<div class="favorites-modal draggable">
 			<fieldset class="titleField draggable-handle">
 				<div id="editTitle">
 					<b> Favorite Pedagogy Techniques</b>
