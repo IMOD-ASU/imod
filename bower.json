@@ -5,17 +5,16 @@
   "description": "front end libraries for imods",
   "private": true,
   "dependencies": {
-    "canvas.js": "https://canvasjs.com/assets/script/jquery.canvasjs.min.js",
+    "chart.js": "https://github.com/nnnick/Chart.js.git#2.0.0-beta2",
     "fontawesome": "4.5.0",
     "jquery-sortable": "0.9.13",
     "jquery.cookie": "jquery-cookie#~1.4.1",
     "jquery.maskedinput": "1.4.1",
-    "jquery.piegraph": "edgardleal/jquery.piegraph",
     "jquery.ui": "1.11.4",
     "jquery.validate": "1.13.0",
-    "jquery": "3.0.0-alpha1+compat",
+    "jquery": "3.0.0-beta1+compat",
     "jstree": "3.2.1",
-    "lodash":"3.10.1",
+    "lodash":"4.0.1",
     "qtip2": "2.2.1",
     "ubuntu-fontface": "0.1.10"
   }
