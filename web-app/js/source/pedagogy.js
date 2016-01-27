@@ -6,6 +6,12 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 function openNewPedagogyTechniqueModal () {
 	'use strict';
 
+	// reset form on new modal open
+	$('#add-new-technique').find('input, select, textarea').val('');
+	$('#dimImageModal')
+		.prop('src', '/imod/images/content/knowDimNone.png')
+		.prop('title', '');
+
 	$('#techniqueId').val('');
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
