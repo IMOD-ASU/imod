@@ -716,5 +716,17 @@ $(document).ready(
 				}
 			}
 		);
+
+		// Checks if the LO is new and doesn't contain an id
+		// if that's the case the page is just refreshed
+		// instead of trying to remove the learning objective
+		// from the db
+		$('.remove-lo').click(function () {
+			if (!$('.learning-objective.list-wrapper').find('.active').find('a').length) {
+				window.location = window.location.pathname;
+				return false;
+			}
+			return true;
+		});
 	}
 );
