@@ -342,6 +342,9 @@ function displayAssessmentTechniques (data) {
 		var str = '';
 		var indexNo = '';
 		var res = '';
+		var currentImg = $(this);
+		var assessmentBlock = null;
+		var unfavId = null;
 
 		if (isTopLeftClicked) {
 			isTopLeftClicked = 0;
@@ -363,6 +366,24 @@ function displayAssessmentTechniques (data) {
 				method: 'GET',
 				success: function () {
 					isTopLeftClicked = 1;
+					if (currentImg.parents('.favorites-inner').length) {
+						assessmentBlock = currentImg.parents('.assessment-block');
+						unfavId = assessmentBlock.prop('for');
+						assessmentBlock.remove();
+						console.log(unfavId);
+
+						// remove fav icon from the technique in ideal
+						// and extended matches
+						$('label[for=' + unfavId + ']')
+							.find('.topLeft img')
+							.prop('src', '../../images/unfav.png');
+
+						// if no techniques exist
+						// show empty fav techniques message
+						if (!$('.favorites-inner').find('.assessment-block').length) {
+							$('.favorites-inner').append('<br><strong>You do not have any favorite techniques</strong><br><br>');
+						}
+					}
 				}
 
 			});
