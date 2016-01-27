@@ -892,9 +892,11 @@ $(document).ready(
 			return false;
 		});
 
-		$('.modalBackgroundFavorites').click(function () {
+		$('.modalBackgroundFavorites, #closeFavoritesModalButton').click(function () {
 			$('.modalBackgroundFavorites').css('display', 'none');
 			$('.favorites-modal').css('display', 'none');
+
+			return false;
 		});
 
 		$(document)

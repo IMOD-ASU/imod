@@ -39,6 +39,9 @@
 				<div id="editTitle">
 					<b> Favorite Assessment Techniques</b>
 				</div>
+				<span id="closeFavoritesModal" class="topicButtonGradient">
+					<button id="closeFavoritesModalButton"><i class="fa fa-times white"></i></button>
+				</span>
 			</fieldset>
 			<div class="favorites-inner">
 			</div>

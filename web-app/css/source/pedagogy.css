@@ -203,6 +203,10 @@ label.assessment-block {
     background-color: rgba(0,0,0,0.5);
 }
 
+#closeFavoritesModal {
+	position: absolute; right: 10px; top: 10px;
+}
+
 .favorites-modal {
     position: absolute;
     z-index: 2;
