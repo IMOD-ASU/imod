@@ -131,16 +131,29 @@ $(document).ready(function () {
 
 window.onload = function () {
 	'use strict';
+
+	// dont apply to pedagogy and assessment tabs
+	if ($('.pedagogy-nav-bar').length) {
+		return null;
+	}
+
 	if ($('#contentTable').length) {
 		window.cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
 	} else {
 		window.cleanForm = $('form').find('select, textarea, input').serialize();
 	}
+
+	return true;
 };
 
 window.onbeforeunload = function () {
 	'use strict';
 	var dirtyForm;
+
+	// dont apply to pedagogy and assessment tabs
+	if ($('.pedagogy-nav-bar').length) {
+		return null;
+	}
 
 	if ($('#contentTable').length) {
 		dirtyForm = $('form, #contentTable').find('select, textarea, input').serialize();

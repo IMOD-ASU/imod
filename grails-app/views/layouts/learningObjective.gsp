@@ -101,7 +101,9 @@
 							<div class="learning-objective definition" class="learning-objective-current">
 								<div class="learning-objective definition-display active">
 									${ currentLearningObjective?.definition }
-									<i class="fa fa-pencil" title="${(learningObjectives) ? 'Click to edit' : 'Click on add button to create new Learning Objective'}"></i>
+									<g:if test="${params.learningObjectiveID != "new"}">
+										<i class="fa fa-pencil" title="${(learningObjectives) ? 'Click to edit' : 'Click on add button to create new Learning Objective'}"></i>
+									</g:if>
 								</div>
 								<g:form class="learning-objective definition-edit" action="saveDefinition" id="${currentImod.id}" method="post">
 									<g:textArea name="customDefinition" value="${ currentLearningObjective?.definition }" rows="5" cols="40" title="${ message( code:'imod.learningObjective.editDetails' ) }" disabled="${(learningObjectives) ? 'false' : 'true'}"/>

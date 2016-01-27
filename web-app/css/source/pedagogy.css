@@ -359,4 +359,5 @@ label.assessment-block {
 #printInstructionalPlan a {
     vertical-align: middle !important;
     text-decoration: none;
+    line-height: 28px;
 }
