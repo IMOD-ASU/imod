@@ -403,7 +403,7 @@
 	</fieldset>
 </div>
 <g:if test="${!currentImod.contents.isEmpty()}">
-	<canvas id="chart"></canvas>
+	<canvas height="500" width="400" id="chart"></canvas>
 </g:if>
 <input type="hidden" id="treeData" value="${contentList}">
 <input type="hidden" id="resourceDataStore" >
