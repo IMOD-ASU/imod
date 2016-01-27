@@ -221,6 +221,7 @@ function displayPedagogyFavoriteTechniques (data) {
 
 	$('.favorites-inner').html(text);
 	$('.favorites-inner').buttonset();
+	$('.pedagogy-block').addClass('ui-button ui-widget ui-state-default ui-button-text-only');
 	pedagogyEqualHeights('.favorites-inner');
 }
 

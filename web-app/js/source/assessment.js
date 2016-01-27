@@ -493,6 +493,7 @@ function displayAssessmentFavoriteTechniques (data) {
 
 	$('.favorites-inner').html(text);
 	$('.favorites-inner').buttonset();
+	$('.assessment-block').addClass('ui-button ui-widget ui-state-default ui-button-text-only');
 	assessmentEqualHeights('.favorites-inner');
 }
 
