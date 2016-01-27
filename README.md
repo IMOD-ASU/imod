@@ -15,7 +15,7 @@ An IMODS is a course that uses Pedagogy, Content, and Assessment to generate Lea
 * Install the Java Development Kit version 8
 [(windows)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 [(linux)](http://openjdk.java.net/install/)
-* Install Grails version 2.5
+* Install Grails version 2.5.3
 [(windows)](http://grails.org/doc/latest/guide/gettingStarted.html#requirements)
 [(linux)](http://gvmtool.net/)
 * Install Postgres SQL 9.4 [(windows)](http://www.postgresql.org/download/windows/)
