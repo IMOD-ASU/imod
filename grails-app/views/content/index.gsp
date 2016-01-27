@@ -31,8 +31,7 @@
 
 	<g:javascript src="source/topicDialog.js" defer="defer"/>
 
-	<g:external dir="bower_components/jquery.piegraph" file="jquery.piegraph.js"/>
-	<g:external dir="bower_components/canvas.js" file="index.js"/>
+	<g:external dir="bower_components/chart.js" file="Chart.min.js"/>
 	<g:external dir="bower_components/lodash" file="lodash.js"/>
 
 	<meta name="layout" content="imod">
@@ -404,8 +403,7 @@
 	</fieldset>
 </div>
 <g:if test="${!currentImod.contents.isEmpty()}">
-<div id="chart" align="center">
-</div>
+	<canvas id="chart"></canvas>
 </g:if>
 <input type="hidden" id="treeData" value="${contentList}">
 <input type="hidden" id="resourceDataStore" >

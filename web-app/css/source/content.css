@@ -16,9 +16,11 @@
     background: none !important;
 }
 #chart {
-    width: 500px ;
-    margin-right: auto ;
-    margin-left: auto ;
+    height: 500px;
+    width: 400px;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .message.banner {

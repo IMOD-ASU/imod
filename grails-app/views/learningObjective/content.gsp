@@ -25,8 +25,7 @@
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
 		<g:external dir="bower_components/jquery-sortable/source/js" file="jquery-sortable-min.js" defer="defer" />
-		<g:external dir="bower_components/jquery.piegraph" file="jquery.piegraph.js"/>
-		<g:external dir="bower_components/canvas.js" file="index.js"/>
+		<g:external dir="bower_components/chart.js" file="Chart.min.js"/>
 		<g:external dir="bower_components/lodash" file="lodash.js"/>
 		<meta name="layout" content="learningObjective">
 	</head>
@@ -62,8 +61,6 @@
 				Are you sure you want to delete?
 			</p>
 		</div>
-		<div id="chart" align="center" style="display: none;">
-
-		</div>
+		<canvas id="chart" style="display: none;"></canvas>
 	</body>
 </html>
