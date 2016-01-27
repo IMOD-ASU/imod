@@ -807,32 +807,35 @@ $(
 			width: 500,
 			height: 400
 		});
-		$('#chart').CanvasJSChart({
-			title: {
-				text: 'Topic Priorities'
-			},
-			subtitle: {
-				fontSize: '16'
-			},
-			legend: {
-				maxWidth: 350,
-				itemWidth: 120,
-				fontSize: 12
-			},
-			data: [
-				{
-					type: 'pie',
-					indexLabelFontSize: 16,
-					showInLegend: true,
-					legendText: '{indexLabel}',
-					dataPoints: [
-						{y: numberOfCriticalTopics, indexLabel: 'Critical'},
-						{y: numberOfVeryImportantTopics, indexLabel: 'Very Important'},
-						{y: numberOfGoodToKnowTopics, indexLabel: 'Good to Know'}
-					]
-				}
-			]
-		});
+
+		if ($('#topicList tbody tr').length) {
+			$('#chart').CanvasJSChart({
+				title: {
+					text: 'Topic Priorities'
+				},
+				subtitle: {
+					fontSize: '16'
+				},
+				legend: {
+					maxWidth: 350,
+					itemWidth: 120,
+					fontSize: 12
+				},
+				data: [
+					{
+						type: 'pie',
+						indexLabelFontSize: 16,
+						showInLegend: true,
+						legendText: '{indexLabel}',
+						dataPoints: [
+							{y: numberOfCriticalTopics, indexLabel: 'Critical'},
+							{y: numberOfVeryImportantTopics, indexLabel: 'Very Important'},
+							{y: numberOfGoodToKnowTopics, indexLabel: 'Good to Know'}
+						]
+					}
+				]
+			});
+		}
 		// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(
