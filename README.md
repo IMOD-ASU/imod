@@ -33,7 +33,7 @@ This creates a clearly focused course.
 
 6. Create a database named "sample"
 
-7. Run `npm install bower -g`
+7. Run `npm install --global bower`
 
 ## Key Concepts
 
