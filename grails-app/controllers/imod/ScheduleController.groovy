@@ -5,7 +5,10 @@ import groovy.json.JsonSlurper
 
 class ScheduleController {
 
-
+	static allowedMethods = [
+		index: 'GET',
+		findMatchingTechniques: 'POST'
+	]
 
 	def index(Long id) {
 		[
