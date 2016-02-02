@@ -137,6 +137,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/learningObjective/**':		['ROLE_USER'],
 	'/pedagogy/**':					['ROLE_USER'],
 	'/pedagogyTechnique/**':		['ROLE_USER'],
+	'/schedule/**':					['ROLE_USER'],
 	'/console':						['ROLE_ADMIN']
 ]
 //to allow user to login, avoid double encryption
