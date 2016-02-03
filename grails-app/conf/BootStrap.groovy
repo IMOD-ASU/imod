@@ -28,6 +28,7 @@ class BootStrap {
 
 	def init = { servletContext ->
 		def tempRole
+		def adminRole
 
 		/**
 		 * Generates the user security roles
@@ -37,7 +38,7 @@ class BootStrap {
 				authority: 'ROLE_ANONYMOUS'
 			).save()
 
-			new Role(
+			adminRole = new Role(
 				authority: 'ROLE_ADMIN'
 			).save()
 
@@ -58,6 +59,23 @@ class BootStrap {
 			new ImodUserRole(
 				imodUser: developer,
 				role: tempRole
+			).save()
+
+			// Create Admin user
+			def admin = new ImodUser(
+				username: 'imodadmin',
+				password: 'imodadmin',
+				enabled: true,
+				accountExpired: false,
+				accountLocked: false,
+				passwordExpired: false,
+				email: 'contact@rahulparekh.in'
+			).save()
+
+			// Attach role to the user
+			new ImodUserRole(
+				imodUser: admin,
+				role: adminRole
 			).save()
 
 			/**
@@ -2560,7 +2578,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 			newTechnique.save()
-			
+
 			newTechnique.title = 'Seating Arrangements'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
