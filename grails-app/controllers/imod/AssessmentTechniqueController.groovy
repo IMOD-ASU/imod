@@ -72,6 +72,8 @@ class AssessmentTechniqueController {
 	}
 
 	def save1(Long id, Long learningObjectiveID) {
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
 		def newTechnique = new AssessmentTechnique()
 
 		if (params.techniqueId1) {
@@ -119,15 +121,15 @@ class AssessmentTechniqueController {
 
 		// This checks when a technique is favoritized  to by a user
 		if (params.favcheck == true) {
-			// get current user object
-			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 			// add the technique to the user's favorite list
 			currentUser.addToFavoriteAssessmentTechnique(newTechnique)
 
-			// store relationship
-			currentUser.save()
 		}
+
+		// store relationships
+		currentUser.addToAssessmentTechnique(newTechnique)
+		currentUser.save()
 
 		redirect(
 			controller: 'assessment',
@@ -143,6 +145,7 @@ class AssessmentTechniqueController {
 	 * creates a new Assessment Technique
 	 */
 	def save(Long id, Long learningObjectiveID) {
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 		def newTechnique = new AssessmentTechnique()
 
@@ -220,15 +223,15 @@ class AssessmentTechniqueController {
 
 		// This checks when a technique is favoritized  to by a user
 		if (params.favcheck == true) {
-			// get current user object
-			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 			// add the technique to the user's favorite list
 			currentUser.addToFavoriteAssessmentTechnique(newTechnique)
 
-			// store relationship
-			currentUser.save()
 		}
+
+		// store relationship
+		currentUser.addToAssessmentTechnique(newTechnique)
+		currentUser.save()
 
 		redirect(
 			controller: 'assessment',
