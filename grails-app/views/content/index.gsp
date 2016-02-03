@@ -274,7 +274,7 @@
 </div>
 
 
-<fieldset class="buttons content-buttons topicButtonField">
+<fieldset class="buttons content-buttons topicButtonField paddingFix">
 	<span class="topicButtonGradient saveBG">
 		<button
 			class="save show-hover-new topicButton saveTopic"
