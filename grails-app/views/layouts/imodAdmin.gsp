@@ -22,32 +22,6 @@
 		</head>
 
 		<body>
-			<div id="help-placeholder">
-				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
-				<span id="qtip-heading">
-					Quick tip
-				</Span>
-				<a id="open-button">
-					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_active.png')}" alt=""/>
-				</a>
-				<div id="qtip-place" style="">
-				</div>
-
-			</div>
-			<div id="help-placeholder-2">
-				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
-				<a id="open-button">
-					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_inactive.png')}" alt=""/>
-				</a>
-			</div>
-			<div class="message banner">
-				<g:if test="${id != "new"}">
-					Please enter course overview data followed by learning objectives and content.
-				</g:if>
-				<g:else>
-					Please enter course overview data and save the IMOD to get access to other learning objectives and content.
-				</g:else>
-			</div>
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 				<ul class="ui-tabs-nav ui-widget-header ui-corner-all">
 					<li id="d" class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
