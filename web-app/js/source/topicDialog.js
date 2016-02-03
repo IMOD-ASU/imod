@@ -24,8 +24,6 @@ function flashError (resourceId) {
 
 	if (typeof a === 'undefined') {
 		resourceId = 'errorMessage';
-	} else {
-		resourceId = resourceId;
 	}
 
 	$('#' + resourceId).text(message);
@@ -50,8 +48,6 @@ function errorMessage (message, resourceId) {
 
 	if (typeof a === 'undefined') {
 		resourceId = 'errorMessage';
-	} else {
-		resourceId = resourceId;
 	}
 
 	if (isFlashing === null) {
@@ -214,7 +210,9 @@ function getTempResource () {
 		});
 		// resourceData1 = refineUnsavedResources(resources);
 		resourcesNew = removeDuplicateResource(resourceItem);
-
+		resourcesNew.sort(function (itemOne, itemTwo) {
+			return (itemOne.id > itemTwo.id);
+		});
 
 		$.each(resourcesNew, function (key, value) {
 			var id = value.id;
@@ -272,7 +270,9 @@ function getTempResource () {
 				});
 				// resourceData1 = refineUnsavedResources(resources);
 				resourcesNew = removeDuplicateResource(resources);
-
+				resourcesNew.sort(function (itemOne, itemTwo) {
+					return (itemOne.id > itemTwo.id);
+				});
 
 				$.each(resourcesNew, function (key, value) {
 					var id = value.id;
@@ -320,6 +320,10 @@ function getResource () {
 			},
 			success: function (data) {
 				var resources = data.resources;
+
+				resources.sort(function (itemOne, itemTwo) {
+					return (itemOne.id > itemTwo.id);
+				});
 
 				$.each(resources, function (key, value) {
 					var id = value.id;
@@ -390,6 +394,7 @@ function deleteTopic (contentIDs) {
 			);
 		}
 	});
+	location.reload();
 }
 
 function saveTopic () {
