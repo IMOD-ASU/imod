@@ -213,8 +213,10 @@ function getTempResource () {
 			value.content.id = value.content.id.toString();
 		});
 		// resourceData1 = refineUnsavedResources(resources);
-		resourcesNew = removeDuplicateResource(resourceItem);
-
+		resourcesNew = removeDuplicateResource (resourceItem);
+		resourcesNew.sort(function (a,b) {
+			return (a.id > b.id);
+		});
 
 		$.each(resourcesNew, function (key, value) {
 			var id = value.id;
@@ -271,8 +273,10 @@ function getTempResource () {
 					value.content.id = value.content.id.toString();
 				});
 				// resourceData1 = refineUnsavedResources(resources);
-				resourcesNew = removeDuplicateResource(resources);
-
+				resourcesNew = removeDuplicateResource (resources);
+				resourcesNew.sort(function (a,b) {
+					return (a.id > b.id);
+				});
 
 				$.each(resourcesNew, function (key, value) {
 					var id = value.id;
@@ -320,6 +324,9 @@ function getResource () {
 			},
 			success: function (data) {
 				var resources = data.resources;
+				resources.sort(function (a,b) {
+					return (a.id > b.id);
+				});
 
 				$.each(resources, function (key, value) {
 					var id = value.id;
@@ -390,6 +397,7 @@ function deleteTopic (contentIDs) {
 			);
 		}
 	});
+	location.reload();
 }
 
 function saveTopic () {
