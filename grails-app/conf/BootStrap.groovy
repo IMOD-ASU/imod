@@ -1312,6 +1312,8 @@ class BootStrap {
 				]),
 				assessmentFeedback: AssessmentFeedback.findByName('Online')
 			).save()
+			developer.addToAssessmentTechnique(assessmentTech)
+			developer.save()
 
 			/*Pedagogy Technique*/
 			def pedagogyTech = new PedagogyTechnique(
@@ -1621,6 +1623,9 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Understand')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
+
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Student-generated Test questions'
@@ -1650,6 +1655,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Minute paper'
@@ -1679,6 +1686,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Muddiest point'
@@ -1708,6 +1717,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Capstone project'
@@ -1737,6 +1748,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Practicuum or internship'
@@ -1766,6 +1779,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Midterm test'
@@ -1798,6 +1813,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Remember')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Final Exam'
@@ -1830,6 +1847,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Remember')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Final Project'
@@ -1859,6 +1878,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Focused Listing'
@@ -1888,6 +1909,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Memory Matrix'
@@ -1918,6 +1941,8 @@ class BootStrap {
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Content,Form,and Function Outlines'
@@ -1951,6 +1976,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 
 			newTechnique = new AssessmentTechnique()
@@ -1978,6 +2005,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Perception')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Empty Outlines'
@@ -2007,6 +2036,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Categorizing Grid'
@@ -2040,6 +2071,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Defining Features Matrix'
@@ -2066,6 +2099,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Analytic Memos'
@@ -2093,6 +2128,9 @@ class BootStrap {
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
+
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Word Journal'
 			newTechnique.description = 'The word journal prompts a two part response .First the student summarises a short text in a single word. Second, the student writes a paragraph explaining why he or she chose that particular word to summarize the text.It assesses the students ability to read carefully and creaticely summarize it in a single word'
@@ -2122,6 +2160,9 @@ class BootStrap {
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
+
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Concept Maps'
 			newTechnique.description = 'Concept maps are drawings or diagrams showing the mental connections that students make between a major concept the instructor focuses on and other concepts they have learned.This technique assesses the patterns of associations they make in relation to a focal concept'
@@ -2150,6 +2191,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Problem Recognition Tasks'
@@ -2180,6 +2223,10 @@ class BootStrap {
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
+
+
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Human Tableau or Class Modeling'
 			newTechnique.description = 'Group of students create "living" scenes or model processes to show what they know. Just as some students learen more effectively by listening,others learn more effectively by movement.This technique works well for kinesthetic learners. '
@@ -2214,6 +2261,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Classroom opinion polls'
@@ -2243,6 +2292,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Interest/Knowledge/Skills Checklist'
@@ -2272,6 +2323,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Goal Ranking and Matching'
@@ -2301,6 +2354,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Punctuated Lectures'
@@ -2315,6 +2370,8 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 				LearningDomain.findByName('Cognitive')
 			)
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique.addToKnowledgeDimension(
 				KnowledgeDimension.findByDescription('Conceptual')
@@ -2330,6 +2387,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Process Analysis'
@@ -2359,6 +2418,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Diagnostic Learning Logs'
@@ -2388,6 +2449,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			).save()
+			developer.addToAssessmentTechnique(newTechnique)
+			developer.save()
 
 
 			/*Pedagogy Reference*/
