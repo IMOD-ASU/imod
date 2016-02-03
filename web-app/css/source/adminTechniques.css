@@ -1,0 +1,86 @@
+#tabs-container {
+	margin-right: 2.5%;
+}
+
+.technique-table {
+	width: 98%;
+	margin: 20px auto;
+}
+
+.technique-table td, .technique-table th {
+	border: 1px solid #ccc;
+	padding: 5px;
+	max-width: 200px;
+	word-wrap: break-word;
+}
+
+.technique-table td.title,
+.technique-table th.title {
+	max-width: 80px;
+}
+.technique-table td.description,
+.technique-table th.description {
+	max-width: ;
+}
+.technique-table td.procedure,
+.technique-table th.procedure {
+	max-width: 30px;
+}
+.technique-table td.duration,
+.technique-table th.duration {
+	max-width: 30px;
+}
+.technique-table td.difficulty,
+.technique-table th.difficulty {
+	max-width: 30px;
+}
+.technique-table td.type,
+.technique-table th.type {
+	max-width: 40px;
+}
+.technique-table td.whenToCarryOut,
+.technique-table th.whenToCarryOut {
+	max-width: 20px;
+}
+.technique-table td.reference,
+.technique-table th.reference {
+	max-width: ;
+}
+.technique-table td.isAdmin,
+.technique-table th.isAdmin {
+	max-width: 30px;
+}
+.technique-table td.addedBy,
+.technique-table th.addedBy {
+	max-width: 80px;
+}
+.addedBy ul {
+	list-style-position: inside;
+}
+
+.technique-pagination {
+	overflow: hidden;
+	list-style-type: none;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.technique-pagination li {
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+}
+
+.technique-pagination a {
+	display: block;
+	text-decoration: none;
+	width: 30px; line-height: 30px;
+	border: 1px solid #0c1625;
+	color: #0c1625;
+}
+
+.technique-pagination a:hover,
+.technique-pagination .active a {
+	background: #0c1625;
+	color: #fff;
+}

@@ -288,6 +288,10 @@
     color: inherit;
 }
 
+label.assessment-block.isAdmin {
+	background: url('../../images/admin-text.png') bottom left #ffffcc no-repeat !important;
+}
+
 label.assessment-block:hover {
     cursor: default;
 }

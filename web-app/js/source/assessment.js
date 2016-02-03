@@ -200,6 +200,14 @@ function showAssessmentTechnique () {
 	$('#ideal-matches .text-block.title')
 		.click(function () {
 			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
+			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
+				$('.admin-edit-msg').remove();
+				$('#saveButton').hide();
+				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+			} else {
+				$('#saveButton').show();
+				$('.admin-edit-msg').remove();
+			}
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			return false;
@@ -208,6 +216,14 @@ function showAssessmentTechnique () {
 	$('#ideal-matches1 .text-block.title')
 		.click(function () {
 			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
+			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
+				$('.admin-edit-msg').remove();
+				$('#saveButton').hide();
+				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+			} else {
+				$('#saveButton').show();
+				$('.admin-edit-msg').remove();
+			}
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			return false;
@@ -216,6 +232,14 @@ function showAssessmentTechnique () {
 	$('#extended-matches .text-block.title')
 		.click(function () {
 			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
+			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
+				$('.admin-edit-msg').remove();
+				$('#saveButton').hide();
+				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+			} else {
+				$('#saveButton').show();
+				$('.admin-edit-msg').remove();
+			}
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			return false;
@@ -287,6 +311,7 @@ function displayAssessmentTechniques (data) {
 	var currentTechnique;
 	var favoriteImgToggle = '';
 	var assignImgToggle = '';
+	var isAdmin = '';
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
@@ -304,8 +329,14 @@ function displayAssessmentTechniques (data) {
 			assignImgToggle = '../../images/unassign.png';
 		}
 
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
 	}
 
@@ -329,9 +360,15 @@ function displayAssessmentTechniques (data) {
 			assignImgToggle = '../../images/unassign.png';
 		}
 
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
 
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
@@ -476,6 +513,7 @@ function displayAssessmentFavoriteTechniques (data) {
 	var index;
 	var currentTechnique;
 	var favoriteImgToggle = '';
+	var isAdmin = '';
 
 	if (data.assessmentTechniques.length < 1) {
 		text = '<br><strong>You do not have any favorite techniques</strong><br><br>';
@@ -486,8 +524,14 @@ function displayAssessmentFavoriteTechniques (data) {
 
 		favoriteImgToggle = '../../images/fav.png';
 
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
@@ -901,6 +945,14 @@ $(document).ready(
 
 		$(document)
 		.on('click', '.favorites-modal .text-block.title', function () {
+			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
+				$('.admin-edit-msg').remove();
+				$('#saveButton').hide();
+				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+			} else {
+				$('#saveButton').show();
+				$('.admin-edit-msg').remove();
+			}
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
