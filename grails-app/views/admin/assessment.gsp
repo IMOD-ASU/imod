@@ -12,12 +12,13 @@
 		</title>
 		<meta name="layout" content="imodAdmin" />
 		<g:external dir="css/source" file="adminTechniques.css" />
+		<g:javascript src="source/adminTechniques.js" defer="defer" />
 	</head>
 	<body>
 
-		<table class="technique-table">
+		<table class="technique-table assessment">
 			<thead>
-				<th>Order</th>
+				<th>ID</th>
 				<th class="title">Title</th>
 			    <th class="description">Description</th>
 			    <th class="procedure">Procedure</th>
@@ -26,13 +27,13 @@
 			    <th class="type">Type</th>
 			    <th class="whenToCarryOut">When</th>
 			    <th class="reference">Reference</th>
-			    <th class="isAdmin">isAdmin</th>
+			    <th class="isAdmin">Admin <br>Technique</th>
 			    <th class="addedBy">Owned By</th>
 			</thead>
 			<tbody>
 			<g:each var="technique" in="${techniques}">
 				<tr>
-					<td>${technique.id}</td>
+					<td class="technique-id">${technique.id}</td>
 					<td class="title">${technique.title}</td>
 					<td class="description">${technique.description}</td>
 					<td class="procedure">${technique.procedure}</td>
@@ -43,9 +44,9 @@
 					<td class="reference">${technique.reference}</td>
 					<td class="isAdmin">
 						<form>
-							<select>
-								<option value="true" ${technique.isAdmin ? 'selected' : ''}>True</option>
-								<option value="false" ${technique.isAdmin ? '' : 'selected'}>False</option>
+							<select data-id="${technique.id}" class="isAdminSelect">
+								<option value="true" ${technique.isAdmin ? 'selected' : ''}>Yes</option>
+								<option value="false" ${technique.isAdmin ? '' : 'selected'}>No</option>
 							</select>
 						</form>
 					</td>

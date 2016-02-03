@@ -1,6 +1,12 @@
 package imod
 
+import grails.converters.JSON
+
 class AdminController {
+
+	static allowedMethods = [
+		changeStatus: 'POST'
+	]
 
     def assessment() {
 
@@ -24,9 +30,38 @@ class AdminController {
 		]
     }
 
-     def pedagogy() {
+    def pedagogy() {
     	[
 			currentPage: 'pedagogy'
 		]
+    }
+
+    def changeStatus() {
+
+    	def success = false
+    	def technique = null
+
+    	if (params.type == 'assessment') {
+    		technique = AssessmentTechnique.findById(params.id)
+    		technique.isAdmin = params.isAdmin.toBoolean()
+    		technique.save()
+    		success = true
+
+		} else if (params.type == 'pedagogy') {
+
+			technique = PedagogyTechnique.findById(params.id)
+			technique.isAdmin = params.isAdmin.toBoolean()
+			technique.save()
+			success = true
+
+		} else {
+			success = false
+		}
+
+    	render(
+			[
+				success: true
+			] as JSON
+		)
     }
 }
