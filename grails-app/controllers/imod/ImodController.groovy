@@ -19,10 +19,29 @@ class ImodController {
 	def springSecurityService
 
 	def index() {
-		redirect(
-			action: 'list',
-			params: params
-		)
+
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		def isAdmin = false;
+
+		currentUser.getAuthorities().each{
+			if (it.authority.equals('ROLE_ADMIN')) {
+				isAdmin = true
+			}
+		}
+
+		if (isAdmin) {
+			redirect(
+				controller: 'admin',
+				action:'assessment'
+			)
+		} else {
+
+			redirect(
+				action: 'list',
+				params: params
+			)
+
+		}
 	}
 
 	def list() {
