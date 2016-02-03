@@ -106,8 +106,6 @@ class AssessmentController {
 			selectedLearningDomains.add(learningDomain.toLong())
 		}
 
-
-
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 		// find all technique where both the knowledge dimension and the domain category match
@@ -133,7 +131,6 @@ class AssessmentController {
 			}
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
-
 
 		// find all technique that are not ideal, but have the learning domain
 		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {

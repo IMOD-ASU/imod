@@ -200,7 +200,14 @@ function showAssessmentTechnique () {
 	$('#ideal-matches .text-block.title')
 		.click(function () {
 			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
-			console.log($(this).parent());
+			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
+				$('.admin-edit-msg').remove();
+				$('#saveButton').hide();
+				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+			} else {
+				$('#saveButton').show();
+				$('.admin-edit-msg').remove();
+			}
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			return false;
@@ -210,6 +217,7 @@ function showAssessmentTechnique () {
 		.click(function () {
 			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
 			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
+				$('.admin-edit-msg').remove();
 				$('#saveButton').hide();
 				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
 			} else {
@@ -224,6 +232,14 @@ function showAssessmentTechnique () {
 	$('#extended-matches .text-block.title')
 		.click(function () {
 			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
+			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
+				$('.admin-edit-msg').remove();
+				$('#saveButton').hide();
+				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+			} else {
+				$('#saveButton').show();
+				$('.admin-edit-msg').remove();
+			}
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			return false;
@@ -508,7 +524,7 @@ function displayAssessmentFavoriteTechniques (data) {
 
 		favoriteImgToggle = '../../images/fav.png';
 
-		if (isAdmin) {
+		if (currentTechnique.isAdmin) {
 			isAdmin = 'isAdmin';
 		} else {
 			isAdmin = '';
@@ -929,6 +945,14 @@ $(document).ready(
 
 		$(document)
 		.on('click', '.favorites-modal .text-block.title', function () {
+			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
+				$('.admin-edit-msg').remove();
+				$('#saveButton').hide();
+				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+			} else {
+				$('#saveButton').show();
+				$('.admin-edit-msg').remove();
+			}
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(false);
 			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
