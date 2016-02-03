@@ -49,7 +49,7 @@ function errorMessage (message, resourceId) {
 	if (typeof a === 'undefined') {
 		resourceId = 'errorMessage';
 	}
-	
+
 	if (isFlashing === null) {
 		flashError(resourceId);
 		isFlashing = setInterval(function () {
@@ -210,8 +210,8 @@ function getTempResource () {
 		});
 		// resourceData1 = refineUnsavedResources(resources);
 		resourcesNew = removeDuplicateResource(resourceItem);
-		resourcesNew.sort(function (item1, item2) {
-			return (item1.id > item2.id);
+		resourcesNew.sort(function (itemOne, itemTwo) {
+			return (itemOne.id > itemTwo.id);
 		});
 
 		$.each(resourcesNew, function (key, value) {
@@ -270,8 +270,8 @@ function getTempResource () {
 				});
 				// resourceData1 = refineUnsavedResources(resources);
 				resourcesNew = removeDuplicateResource(resources);
-				resourcesNew.sort(function (item1, item2) {
-					return (item1.id > item2.id);
+				resourcesNew.sort(function (itemOne, itemTwo) {
+					return (itemOne.id > itemTwo.id);
 				});
 
 				$.each(resourcesNew, function (key, value) {
@@ -321,8 +321,8 @@ function getResource () {
 			success: function (data) {
 				var resources = data.resources;
 
-				resources.sort(function (item1, item2) {
-					return (item1.id > item2.id);
+				resources.sort(function (itemOne, itemTwo) {
+					return (itemOne.id > itemTwo.id);
 				});
 
 				$.each(resources, function (key, value) {
