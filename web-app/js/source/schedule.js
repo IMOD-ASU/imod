@@ -1,4 +1,19 @@
 
+$(document).ready(function() {
+
+ // page is now ready, initialize the calendar...
+
+ $('#calendar').fullCalendar({
+dayClick: function() {
+	alert('a day has been clicked!');
+}
+});
+
+
+
+});
+
+
 
 	//3.	Do not hardcode a set number of suspects, rooms, or weapons. This data will be initialized as global variable arrays named, aptly enough, suspects, weapons, and rooms.
 	var suspects = ["Mrs. Peacock", "Mrs. Green", "Miss Scarlet", "Colonel Mustard", "Professor Plum"];

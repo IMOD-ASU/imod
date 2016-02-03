@@ -93,7 +93,7 @@
 					</li>
 					<li  id="f" class="ui-state-default ui-corner-top ${ currentPage.find(/schedule/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link controller="schedule" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
-							<img class="tab-icon" src="${resource(dir: 'images', file: 'pedagogy_icon.png')}" alt=""/>
+							<img class="tab-icon" src="${resource(dir: 'images', file: 'schedule_icon.png')}" alt=""/>
 							<span id="schedule-tab-title">
 								Schedule
 							</span>
