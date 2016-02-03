@@ -25,7 +25,8 @@ class AssessmentTechnique {
 		domainCategory: DomainCategory,
 		knowledgeDimension: KnowledgeDimension,
 		learningDomain: LearningDomain,
-		userFavorite: ImodUser
+		userFavorite: ImodUser,
+		users: ImodUser
 	]
 
 	static belongsTo = [
