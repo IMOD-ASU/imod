@@ -643,18 +643,21 @@ $(document).ready(
 			checkBoxName = 'knowledgeDimension';
 			updateTextArea(checkBoxName);
 			filterPedagogyTechniques();
+			$('.select-all').prop('checked', false);
 		});
 		$('input[name=learningDomain]').on('change',
 		function () {
 			checkBoxName = 'learningDomain';
 			updateTextArea(checkBoxName);
 			filterPedagogyTechniques();
+			$('.select-all').prop('checked', false);
 		});
 		$('input[name=domainCategory]').on('change',
 		function () {
 			checkBoxName = 'domainCategory';
 			updateTextArea(checkBoxName);
 			filterPedagogyTechniques();
+			$('.select-all').prop('checked', false);
 		});
 
 		// fetching checkboxes and making a cookie
@@ -759,7 +762,14 @@ $(document).ready(
 
 			return false;
 		});
-
+		$('.select-all').on('click', function () {
+			if ($(this).is(':checked')) {
+				$(this).closest('div').find(':checkbox').prop('checked', true);
+			} else {
+				$(this).closest('div').find(':checkbox').prop('checked', false);
+			}
+			filterPedagogyTechniques();
+		});
 		$('.modalBackgroundFavorites, #closeFavoritesModalButton').click(function () {
 			$('.modalBackgroundFavorites').css('display', 'none');
 			$('.favorites-modal').css('display', 'none');

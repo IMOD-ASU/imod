@@ -110,6 +110,8 @@
 							Knowledge Dimensions
 						</h3>
 						<div >
+						<label>Select All</label>
+						<g:checkBox name="myCheckbox" class="select-all" />
 							<ul>
 								<g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
 									<li>
@@ -125,6 +127,8 @@
 							Learning Domains
 						</h3>
 						<div>
+						<label>Select All</label>
+						<g:checkBox name="myCheckbox" class="select-all" />
 							<ul>
 								<g:each var="learningDomain" in="${learningDomains}" status="index">
 									<li>
@@ -140,6 +144,8 @@
 							Domain Categories
 						</h3>
 						<div>
+						<label>Select All</label>
+						<g:checkBox name="myCheckbox" class="select-all" />
 							<ul>
 								<g:each var="domainCategory" in="${domainCategories}" status="index">
 									<li>

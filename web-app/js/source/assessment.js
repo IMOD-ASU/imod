@@ -653,7 +653,15 @@ $('#title').change(function () {
 	}
 	return true;
 });
-
+$('.select-all').on('click', function () {
+	'use strict';
+	if ($(this).is(':checked')) {
+		$(this).closest('div').find(':checkbox').prop('checked', true);
+	} else {
+		$(this).closest('div').find(':checkbox').prop('checked', false);
+	}
+	filterAssessmentTechniques();
+});
 function getMinHeight (liArray) {
 	'use strict';
 	var minHeight = Math.floor(liArray.eq(0).height());
@@ -803,18 +811,21 @@ $(document).ready(
 			checkBoxName = 'knowledgeDimension';
 			updateTextArea(checkBoxName);
 			filterAssessmentTechniques();
+			$('.select-all').prop('checked', false);
 		});
 		$('input[name=learningDomain]').on('change',
 		function () {
 			checkBoxName = 'learningDomain';
 			updateTextArea(checkBoxName);
 			filterAssessmentTechniques();
+			$('.select-all').prop('checked', false);
 		});
 		$('input[name=domainCategory]').on('change',
 		function () {
 			checkBoxName = 'domainCategory';
 			updateTextArea(checkBoxName);
 			filterAssessmentTechniques();
+			$('.select-all').prop('checked', false);
 		});
 		$('#saveButton').on('click', function () {
 			cloneDetect = document.getElementById('cloneDetect').value;

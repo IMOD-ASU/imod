@@ -2467,6 +2467,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.save()
 
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Game Learning Techniques'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'O. Cicekci, M. Turkeri and O. Pekcan, "Development of soil profile visualization software using game engines," in Geo-Congress 2014 Technical Papers: Geo-Characterization and Modeling for Sustainability February 23-26, 2014, Atlanta, Georgia, 2003, pp. 3364-3372. DOI: 10.1061/9780784413272.327'
@@ -2485,6 +2486,116 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.save()
 
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Mobile based Game LEarning Technique'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'O. Cicekci, M. Turkeri and O. Pekcan, "Development of soil profile visualization software using game engines," in Geo-Congress 2014 Technical Papers: Geo-Characterization and Modeling for Sustainability February 23-26, 2014, Atlanta, Georgia, 2003, pp. 3364-3372. DOI: 10.1061/9780784413272.327'
+			newTechnique.activityDescription = 'Is a technique in which students are asked to play a game on their mobile phones.Playing the game helps them learn some of the concepts illustrated for a particular topic.The portability of the mobile makes the learning software available all throughout'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Psychomotor'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Asynchronous Online Discussion forums'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Project-based learning and student knowledge construction during asynchronous Joyce Hwee Ling Koh a, Susan C. Herring b, Khe Foon Hew a'
+			newTechnique.activityDescription = 'Is a technique in which students are asked to be a part of online discussion forum to enhance each others understanding of the concepts through one another'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()	
+			newTechnique.title = 'Text Mining on Student Diaries'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Qualitative Text Mining in Student’s Service Learning Diary Hsu Chia-Ling,Chang ya-Fung'
+			newTechnique.activityDescription = 'Is a technique in which students are asked to be a part of online discussion forum to enhance each others understanding of the concepts through one another'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Project Based Mobile Learning'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'CONCEPTIONS OF PROJECT-BASED MOBILE LEARNING AMONG COLLEGE STUDENTS Chiung-Sui Chang and Ya-Ping Huang'
+			newTechnique.activityDescription = 'Is a technique in which students complete a part or the entire project using handheld portable mobile devices.Mobile devices could also be used to keep track of progress in the project'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Flow chart based Concept learning'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = ''
+			newTechnique.activityDescription = 'Is a technique in which flow charts can be used by an instructor to elaborate and teach a particular concept in which the flow/logic is central to the concept'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()	
+			newTechnique.title = 'Step Based Learning Software'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'CONCEPTIONS OF PROJECT-BASED MOBILE LEARNING AMONG COLLEGE STUDENTS Chiung-Sui Chang and Ya-Ping Huang'
+			newTechnique.activityDescription = 'Is a technique in which a step based process can be taught to students by making them solve problems step by step using software.The regular use of software helps them understand and be confident of the process of problem solving'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Hybrid Learning Technique'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'R. Grace, "Hybrid Course Linking Natural Hazards with Probability and Statistics," J. Prof. Issues Eng. Educ. Pract., vol. 132, pp. 217-223, 07/01; 2015/08, 2006. DOI: 10.1061/(ASCE)1052-3928(2006)132:3(217)'
@@ -2499,6 +2610,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.save()
 
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Classroom Demo Technique'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'R. Vander Schaaf and J. Klosky, "Classroom Demonstrations in Introductory Mechanics," J. Prof. Issues Eng. Educ. Pract., vol. 131, pp. 83-89, 04/01; 2015/08, 2005. DOI: 10.1061/(ASCE)1052-3928(2005)131:2(83)'
@@ -2515,6 +2627,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.save()
 
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Lecture'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'reference'
@@ -2532,6 +2645,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.save()
 
+			newTechnique = new PedagogyTechnique()	
 			newTechnique.title = 'Flipped Charts'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
@@ -2547,6 +2661,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 			newTechnique.save()
 
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'After Action Reviews'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
@@ -2561,6 +2676,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 			newTechnique.save()
 			
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Seating Arrangements'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
@@ -2573,6 +2689,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.save()
+			
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Case Study'
 			newTechnique.materials = 'materials'
