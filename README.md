@@ -11,8 +11,8 @@ This creates a clearly focused course.
 
 ## Additional Guides
 
-* [Contributing Guide](https://github.com/IMOD-ASU/imod/blob/master/CONTRIBUTING.md)
-* [Maintenance Guide](https://github.com/IMOD-ASU/imod/blob/master/MAINTENANCE.md)
+* [Contributing Guide](CONTRIBUTING.md)
+* [Maintenance Guide](MAINTENANCE.md)
 
 ## Installation Instructions
 
