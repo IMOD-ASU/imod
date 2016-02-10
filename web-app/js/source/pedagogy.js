@@ -9,7 +9,7 @@ function openNewPedagogyTechniqueModal () {
 	// reset form on new modal open
 	$('#add-new-technique').find('input, select, textarea').val('');
 	$('#dimImageModal')
-		.prop('src', '/imod/images/content/knowDimNone.png')
+		.prop('src', '../../images/content/knowDimNone.png')
 		.prop('title', '');
 
 	$('#techniqueId').val('');

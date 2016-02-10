@@ -30,18 +30,13 @@ class ImodController {
 		}
 
 		if (isAdmin) {
-			redirect(
-				controller: 'admin',
-				action: 'assessment'
-			)
-		} else {
-
-			redirect(
-				action: 'list',
-				params: params
-			)
-
+			session['isAdmin'] = true
 		}
+
+		redirect(
+			action: 'list',
+			params: params
+		)
 	}
 
 	def list() {
