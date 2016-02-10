@@ -794,7 +794,10 @@ $(
 		var numberOfCriticalTopics = 0;
 		var numberOfVeryImportantTopics = 0;
 		var numberOfGoodToKnowTopics = 0;
-		var ctx = document.getElementById('chart').getContext('2d');
+
+		if ($('#topicList tbody tr').length) {
+			var ctx = document.getElementById('chart').getContext('2d');
+		}
 
 		$('input[id^="topicPrioritySaved"]').each(function () {
 			if ($(this).val() === 'Critical') {
