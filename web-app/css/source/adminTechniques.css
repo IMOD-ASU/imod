@@ -2,12 +2,12 @@
 	margin-right: 2.5%;
 }
 
-.technique-table {
+.admin-table {
 	width: 98%;
 	margin: 20px auto;
 }
 
-.technique-table td, .technique-table th {
+.admin-table td, .admin-table th {
 	border: 1px solid #ccc;
 	padding: 5px;
 	max-width: 200px;
@@ -58,20 +58,20 @@
 	list-style-position: inside;
 }
 
-.technique-pagination {
+.admin-pagination {
 	overflow: hidden;
 	list-style-type: none;
 	text-align: center;
 	margin-bottom: 30px;
 }
 
-.technique-pagination li {
+.admin-pagination li {
 	display: inline-block;
 	*display: inline;
 	zoom: 1;
 }
 
-.technique-pagination a {
+.admin-pagination a {
 	display: block;
 	text-decoration: none;
 	width: 30px; line-height: 30px;
@@ -79,8 +79,8 @@
 	color: #0c1625;
 }
 
-.technique-pagination a:hover,
-.technique-pagination .active a {
+.admin-pagination a:hover,
+.admin-pagination .active a {
 	background: #0c1625;
 	color: #fff;
 }

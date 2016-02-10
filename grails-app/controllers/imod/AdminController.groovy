@@ -36,6 +36,28 @@ class AdminController {
 		]
     }
 
+    def users() {
+
+    	def max = 10
+    	def currentPageNumber = params.page ? params.page.toInteger() : 1
+
+    	params.max = max
+		params.offset = params.page ? (params.page.toInteger() - 1) * max : 0
+		params.sort = 'id'
+		params.order = 'asc'
+
+    	def users = ImodUser.list(params)
+
+    	def pages = Math.ceil(users.totalCount / max).toInteger()
+
+    	[
+			currentPage: 'users',
+			users: users,
+			pages: pages,
+			currentPageNumber: currentPageNumber,
+		]
+    }
+
     def changeStatus() {
 
     	def success = false
