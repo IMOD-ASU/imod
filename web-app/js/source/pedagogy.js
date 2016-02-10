@@ -6,6 +6,12 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 function openNewPedagogyTechniqueModal () {
 	'use strict';
 
+	// reset form on new modal open
+	$('#add-new-technique').find('input, select, textarea').val('');
+	$('#dimImageModal')
+		.prop('src', '/imod/images/content/knowDimNone.png')
+		.prop('title', '');
+
 	$('#techniqueId').val('');
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
@@ -215,6 +221,7 @@ function displayPedagogyFavoriteTechniques (data) {
 
 	$('.favorites-inner').html(text);
 	$('.favorites-inner').buttonset();
+	$('.pedagogy-block').addClass('ui-button ui-widget ui-state-default ui-button-text-only');
 	pedagogyEqualHeights('.favorites-inner');
 }
 
@@ -290,6 +297,9 @@ function displayPedagogyTechniques (data) {
 		var str = '';
 		var indexNo = '';
 		var res = '';
+		var currentImg = $(this);
+		var assessmentBlock = null;
+		var unfavId = null;
 
 		if ($(this).attr('src') === '../../images/fav.png') {
 			$(this).attr('src', '../../images/unfav.png');
@@ -303,8 +313,25 @@ function displayPedagogyTechniques (data) {
 			$.ajax({
 				url: '../../pedagogyTechnique/unassignFavorite/' + res,
 				method: 'GET',
-				success: function () {}
+				success: function () {
+					if (currentImg.parents('.favorites-inner').length) {
+						assessmentBlock = currentImg.parents('.assessment-block');
+						unfavId = assessmentBlock.prop('for');
+						assessmentBlock.remove();
 
+						// remove fav icon from the technique in ideal
+						// and extended matches
+						$('label[for=' + unfavId + ']')
+							.find('#topLeft img')
+							.prop('src', '../../images/unfav.png');
+
+						// if no techniques exist
+						// show empty fav techniques message
+						if (!$('.favorites-inner').find('.assessment-block').length) {
+							$('.favorites-inner').append('<br><strong>You do not have any favorite techniques</strong><br><br>');
+						}
+					}
+				}
 			});
 		} else {
 			$(this).attr('src', '../../images/fav.png');
@@ -733,9 +760,10 @@ $(document).ready(
 			return false;
 		});
 
-		$('.modalBackgroundFavorites').click(function () {
+		$('.modalBackgroundFavorites, #closeFavoritesModalButton').click(function () {
 			$('.modalBackgroundFavorites').css('display', 'none');
 			$('.favorites-modal').css('display', 'none');
+			return false;
 		});
 
 		$(document)

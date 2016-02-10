@@ -128,15 +128,16 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/plugins/**':					['permitAll'],
 	'/register/**':					['permitAll'],
 	'/security/**':					['permitAll'],
-	'/assessment/**':				['ROLE_USER'],
-	'/assessmentTechnique/**':		['ROLE_USER'],
-	'/content/**':					['ROLE_USER'],
-	'/courseOverview/**':			['ROLE_USER'],
-	'/imod/**':						['ROLE_USER'],
-	'/learningObjective/**':		['ROLE_USER'],
-	'/pedagogy/**':					['ROLE_USER'],
-	'/pedagogyTechnique/**':		['ROLE_USER'],
-	'/console':						['ROLE_ADMIN']
+	'/assessment/**':				['ROLE_USER', 'ROLE_ADMIN'],
+	'/assessmentTechnique/**':		['ROLE_USER', 'ROLE_ADMIN'],
+	'/content/**':					['ROLE_USER', 'ROLE_ADMIN'],
+	'/courseOverview/**':			['ROLE_USER', 'ROLE_ADMIN'],
+	'/imod/**':						['ROLE_USER', 'ROLE_ADMIN'],
+	'/learningObjective/**':		['ROLE_USER', 'ROLE_ADMIN'],
+	'/pedagogy/**':					['ROLE_USER', 'ROLE_ADMIN'],
+	'/pedagogyTechnique/**':		['ROLE_USER', 'ROLE_ADMIN'],
+	'/console':						['ROLE_ADMIN'],
+	'/admin/**': 					['ROLE_ADMIN']
 ]
 //to allow user to login, avoid double encryption
 grails.plugin.springsecurity.ui.encodePassword = false

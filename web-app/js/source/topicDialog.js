@@ -8,7 +8,7 @@ var unsavedResourceData = [];
 
 function showTopicDialog () {
 	'use strict';
-	$('#topicDialogBackground').css('display', 'none');
+	$('#topicDialogBackground').css('display', 'block');
 	$('#topicDialog').css('display', 'block');
 }
 
@@ -24,8 +24,6 @@ function flashError (resourceId) {
 
 	if (typeof a === 'undefined') {
 		resourceId = 'errorMessage';
-	} else {
-		resourceId = resourceId;
 	}
 
 	$('#' + resourceId).text(message);
@@ -50,8 +48,6 @@ function errorMessage (message, resourceId) {
 
 	if (typeof a === 'undefined') {
 		resourceId = 'errorMessage';
-	} else {
-		resourceId = resourceId;
 	}
 
 	if (isFlashing === null) {
@@ -214,7 +210,9 @@ function getTempResource () {
 		});
 		// resourceData1 = refineUnsavedResources(resources);
 		resourcesNew = removeDuplicateResource(resourceItem);
-
+		resourcesNew.sort(function (itemOne, itemTwo) {
+			return (itemOne.id > itemTwo.id);
+		});
 
 		$.each(resourcesNew, function (key, value) {
 			var id = value.id;
@@ -272,7 +270,9 @@ function getTempResource () {
 				});
 				// resourceData1 = refineUnsavedResources(resources);
 				resourcesNew = removeDuplicateResource(resources);
-
+				resourcesNew.sort(function (itemOne, itemTwo) {
+					return (itemOne.id > itemTwo.id);
+				});
 
 				$.each(resourcesNew, function (key, value) {
 					var id = value.id;
@@ -320,6 +320,10 @@ function getResource () {
 			},
 			success: function (data) {
 				var resources = data.resources;
+
+				resources.sort(function (itemOne, itemTwo) {
+					return (itemOne.id > itemTwo.id);
+				});
 
 				$.each(resources, function (key, value) {
 					var id = value.id;
@@ -390,6 +394,7 @@ function deleteTopic (contentIDs) {
 			);
 		}
 	});
+	location.reload();
 }
 
 function saveTopic () {
@@ -789,6 +794,7 @@ $(
 		var numberOfCriticalTopics = 0;
 		var numberOfVeryImportantTopics = 0;
 		var numberOfGoodToKnowTopics = 0;
+		var ctx = document.getElementById('chart').getContext('2d');
 
 		$('input[id^="topicPrioritySaved"]').each(function () {
 			if ($(this).val() === 'Critical') {
@@ -801,38 +807,46 @@ $(
 				numberOfGoodToKnowTopics += 1;
 			}
 		});
-		$('#chart').chart({
-			data: [numberOfCriticalTopics, numberOfGoodToKnowTopics, numberOfVeryImportantTopics],
-			labels: ['Critical', 'Good To Know', 'Very Important'],
-			width: 500,
-			height: 400
-		});
-		$('#chart').CanvasJSChart({
-			title: {
-				text: 'Topic Priorities'
-			},
-			subtitle: {
-				fontSize: '16'
-			},
-			legend: {
-				maxWidth: 350,
-				itemWidth: 120,
-				fontSize: 12
-			},
-			data: [
-				{
-					type: 'pie',
-					indexLabelFontSize: 16,
-					showInLegend: true,
-					legendText: '{indexLabel}',
-					dataPoints: [
-						{y: numberOfCriticalTopics, indexLabel: 'Critical'},
-						{y: numberOfVeryImportantTopics, indexLabel: 'Very Important'},
-						{y: numberOfGoodToKnowTopics, indexLabel: 'Good to Know'}
+
+		if ($('#topicList tbody tr').length) {
+			new Chart(ctx, {
+				type: 'pie',
+				options: {
+					responsive: false,
+					title: {
+						display: true,
+						text: 'Topic Priorities'
+					},
+					legend: {
+						fontSize: 16
+					},
+					tooltips: {
+						fontSize: 16
+					}
+				},
+				data: {
+					datasets: [
+						{
+							data: [
+								numberOfCriticalTopics,
+								numberOfVeryImportantTopics,
+								numberOfGoodToKnowTopics
+							],
+							backgroundColor: [
+								'#3fa196',
+								'#6167b3',
+								'#8348ad'
+							]
+						}
+					],
+					labels: [
+						'Critical',
+						'Very Important',
+						'Good to Know'
 					]
 				}
-			]
-		});
+			});
+		}
 		// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(

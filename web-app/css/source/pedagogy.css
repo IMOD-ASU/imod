@@ -154,21 +154,24 @@
 }
 
 #closeInstructionalPlan {
+    width: 18px;
+    margin-right: -5px;
+
     cursor: pointer;
     vertical-align: middle;
-	width: 18px;
-	margin-right:-5px;
+
     font-size: 1em;
 
     size: 1em;
 }
 
 #closeInstructionalPlanButton {
-    cursor: pointer;
-	width: 2px;
-	font-size: 15px;
-	padding-left: 2px;
+    width: 2px;
+    padding-left: 2px;
 
+    cursor: pointer;
+
+    font-size: 15px;
 }
 
 #add-new-technique .td-label {
@@ -201,6 +204,12 @@ label.assessment-block {
     height: 100%;
 
     background-color: rgba(0,0,0,0.5);
+}
+
+#closeFavoritesModal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .favorites-modal {
@@ -359,4 +368,6 @@ label.assessment-block {
 #printInstructionalPlan a {
     vertical-align: middle !important;
     text-decoration: none;
+
+    line-height: 28px;
 }

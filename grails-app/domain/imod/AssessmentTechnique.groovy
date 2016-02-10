@@ -16,6 +16,7 @@ class AssessmentTechnique {
 	String reference
 	Boolean assigncheck = Boolean.TRUE
 	Boolean favcheck = Boolean.TRUE
+	Boolean isAdmin = Boolean.FALSE
 	AssessmentFeedback assessmentFeedback
 
 	static hasMany = [
@@ -24,13 +25,13 @@ class AssessmentTechnique {
 		domainCategory: DomainCategory,
 		knowledgeDimension: KnowledgeDimension,
 		learningDomain: LearningDomain,
-		userFavorite: ImodUser
+		userFavorite: ImodUser,
+		users: ImodUser
 	]
 
 	static belongsTo = [
 		ImodUser,
 		LearningObjective
-
 	]
 
 	static mapping = {

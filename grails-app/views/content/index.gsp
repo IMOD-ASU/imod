@@ -31,8 +31,7 @@
 
 	<g:javascript src="source/topicDialog.js" defer="defer"/>
 
-	<g:external dir="bower_components/jquery.piegraph" file="jquery.piegraph.js"/>
-	<g:external dir="bower_components/canvas.js" file="index.js"/>
+	<g:external dir="bower_components/chart.js" file="Chart.min.js"/>
 	<g:external dir="bower_components/lodash" file="lodash.js"/>
 
 	<meta name="layout" content="imod">
@@ -275,7 +274,7 @@
 </div>
 
 
-<fieldset class="buttons content-buttons topicButtonField">
+<fieldset class="buttons content-buttons topicButtonField paddingFix">
 	<span class="topicButtonGradient saveBG">
 		<button
 			class="save show-hover-new topicButton saveTopic"
@@ -404,8 +403,7 @@
 	</fieldset>
 </div>
 <g:if test="${!currentImod.contents.isEmpty()}">
-<div id="chart" align="center">
-</div>
+	<canvas height="500" width="400" id="chart"></canvas>
 </g:if>
 <input type="hidden" id="treeData" value="${contentList}">
 <input type="hidden" id="resourceDataStore" >

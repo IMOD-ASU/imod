@@ -177,7 +177,10 @@
     background: #ededef;
 }
 
-#closeInstructionalPlan {
+#closeAssessmentPlan {
+    width: 18px;
+    margin-right: -5px;
+
     cursor: pointer;
     vertical-align: middle;
 
@@ -186,8 +189,13 @@
     size: 1em;
 }
 
-#closeInstructionalPlanButton {
+#closeAssessmentPlanButton {
+    width: 2px;
+    padding-left: 2px;
+
     cursor: pointer;
+
+    font-size: 15px;
 }
 
 #add-new-technique .td-label {
@@ -280,6 +288,10 @@
     color: inherit;
 }
 
+label.assessment-block.isAdmin {
+	background: url('../../images/admin-text.png') bottom left #ffffcc no-repeat !important;
+}
+
 label.assessment-block:hover {
     cursor: default;
 }
@@ -312,6 +324,12 @@ label.assessment-block {
     height: 100%;
 
     background-color: rgba(0,0,0,0.5);
+}
+
+#closeFavoritesModal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .favorites-modal {
@@ -422,9 +440,9 @@ label.assessment-block {
 }
 .clone {
     position: absolute;
+    top: inherit;
     right: 0;
     bottom: 0;
-    top: inherit;
 
     height: 28px;
     padding: 0 10px;
@@ -458,4 +476,6 @@ label.assessment-block {
 #printAssessmentPlan a {
     vertical-align: middle !important;
     text-decoration: none;
+
+    line-height: 28px;
 }

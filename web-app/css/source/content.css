@@ -16,9 +16,13 @@
     background: none !important;
 }
 #chart {
-    width: 500px ;
-    margin-right: auto ;
-    margin-left: auto ;
+    display: block;
+
+    width: 400px;
+    height: 500px;
+    margin: 0 auto;
+
+    text-align: center;
 }
 
 .message.banner {
@@ -87,4 +91,8 @@
 }
 #legendP {
     color: #2879be;
+}
+
+.paddingFix{
+	height: 70px;
 }

@@ -9,10 +9,11 @@ cache:
     - ~/.grails
 
 before_script:
-  - npm install -g bower eslint@next
+  - npm install
+  - npm install --global bower
 
 script:
   - ./grailsw war
   - ./grailsw codenarc
   - cat static-analysis.txt
-  - eslint web-app/js/source --inline-config=false
+  - npm test
