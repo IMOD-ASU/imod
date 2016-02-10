@@ -40,6 +40,14 @@
 							</span>
 						</g:link>
 					</li>
+					<li id="d" class="ui-state-default ui-corner-top ${ currentPage.find(/users/) == null ? '' : 'ui-tabs-active ui-state-active'}">
+						<g:link controller="admin" action="users" id="${currentImod?.id}" class="ui-tabs-anchor">
+							<img class="tab-icon" src="${resource(dir: 'images', file: 'user_sm.png')}" alt=""/>
+							<span id="user-tab-title">
+								Users
+							</span>
+						</g:link>
+					</li>
 				</ul>
 
 				<g:layoutBody/>
