@@ -106,6 +106,7 @@ log4j = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'imod.ImodUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'imod.ImodUserRole'
 grails.plugin.springsecurity.authority.className = 'imod.Role'
+grails.plugin.springsecurity.useSecurityEventListener = true
 
 
 //InterceptUrlMap to make all links secure
