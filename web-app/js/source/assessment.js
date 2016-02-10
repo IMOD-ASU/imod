@@ -135,7 +135,9 @@ function populateAssessmentTechnique (data, isClone) {
 
 	$('#activityDescription').val(currentTechnique.description);
 
-	$('#feedback-' + currentTechnique.assessmentFeedback.id).prop('selected', true);
+	if (currentTechnique.assessmentFeedback !== null) {
+		$('#feedback-' + currentTechnique.assessmentFeedback.id).prop('selected', true);
+	}
 
 	$('#assessmentDifficulty option[value=' + currentTechnique.difficulty + ']').prop('selected', true);
 	$('#assessmentTime option[value=' + currentTechnique.whenToCarryOut + ']').prop('selected', true);
@@ -170,12 +172,30 @@ function populateAssessmentTechnique (data, isClone) {
 	$('#View').hide();
 }
 
-function displayAssessmentInformationInEdit (isClone) {
+function displayAssessmentInformationInEdit (isClone, block) {
 	'use strict';
 	var res = '';
 
 	var str = $('label.ui-state-hover').attr('for');
 	var indexNo = str.indexOf('Extended');
+
+	if (isClone) {
+		$('.assessment-title').html('<strong>Edit Alternate Name For Clone</strong>');
+	} else {
+		$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
+	}
+
+	if (block.parents('.assessment-block').hasClass('isAdmin')) {
+		$('.admin-edit-msg').remove();
+		if (!isClone) {
+			$('.assessment-title').html('<strong>View Assessment Technique</strong>');
+			$('#saveButton').hide();
+			$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+		}
+	} else {
+		$('#saveButton').show();
+		$('.admin-edit-msg').remove();
+	}
 
 	if (indexNo > -1) {
 		res = str.substring(0, indexNo);
@@ -199,49 +219,22 @@ function showAssessmentTechnique () {
 	'use strict';
 	$('#ideal-matches .text-block.title')
 		.click(function () {
-			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
-			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
-				$('.admin-edit-msg').remove();
-				$('#saveButton').hide();
-				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
-			} else {
-				$('#saveButton').show();
-				$('.admin-edit-msg').remove();
-			}
 			openNewAssessmentTechniqueModal();
-			displayAssessmentInformationInEdit(false);
+			displayAssessmentInformationInEdit(false, $(this));
 			return false;
 		});
 
 	$('#ideal-matches1 .text-block.title')
 		.click(function () {
-			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
-			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
-				$('.admin-edit-msg').remove();
-				$('#saveButton').hide();
-				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
-			} else {
-				$('#saveButton').show();
-				$('.admin-edit-msg').remove();
-			}
 			openNewAssessmentTechniqueModal();
-			displayAssessmentInformationInEdit(false);
+			displayAssessmentInformationInEdit(false, $(this));
 			return false;
 		});
 
 	$('#extended-matches .text-block.title')
 		.click(function () {
-			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
-			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
-				$('.admin-edit-msg').remove();
-				$('#saveButton').hide();
-				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
-			} else {
-				$('#saveButton').show();
-				$('.admin-edit-msg').remove();
-			}
 			openNewAssessmentTechniqueModal();
-			displayAssessmentInformationInEdit(false);
+			displayAssessmentInformationInEdit(false, $(this));
 			return false;
 		});
 }
@@ -801,7 +794,7 @@ $(document).ready(
 		// clone
 		$(document).on('click', '.clone', function () {
 			openNewAssessmentTechniqueModal();
-			displayAssessmentInformationInEdit(true);
+			displayAssessmentInformationInEdit(true, $(this));
 			document.getElementById('cloneDetect').value = 'clone';
 			$('#title').val('');
 			$('#techniqueId').val('');
@@ -945,17 +938,8 @@ $(document).ready(
 
 		$(document)
 		.on('click', '.favorites-modal .text-block.title', function () {
-			if ($(this).parents('.assessment-block').hasClass('isAdmin')) {
-				$('.admin-edit-msg').remove();
-				$('#saveButton').hide();
-				$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
-			} else {
-				$('#saveButton').show();
-				$('.admin-edit-msg').remove();
-			}
 			openNewAssessmentTechniqueModal();
-			displayAssessmentInformationInEdit(false);
-			$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
+			displayAssessmentInformationInEdit(false, $(this));
 			return false;
 		});
 	}
