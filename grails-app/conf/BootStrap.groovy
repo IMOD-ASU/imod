@@ -1629,7 +1629,7 @@ class BootStrap {
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 
 			newTechnique = new AssessmentTechnique()
@@ -1663,7 +1663,7 @@ class BootStrap {
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Minute paper'
@@ -1696,7 +1696,7 @@ class BootStrap {
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Muddiest point'
@@ -1729,7 +1729,7 @@ class BootStrap {
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Capstone project'
@@ -1760,9 +1760,9 @@ class BootStrap {
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Practicuum or internship'
@@ -1793,9 +1793,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Midterm test'
@@ -1829,9 +1829,9 @@ newTechnique.save()
 				DomainCategory.findByName('Remember')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Final Exam'
@@ -1865,9 +1865,9 @@ newTechnique.save()
 				DomainCategory.findByName('Remember')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Final Project'
@@ -1898,9 +1898,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Focused Listing'
@@ -1931,9 +1931,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Memory Matrix'
@@ -1966,7 +1966,7 @@ newTechnique.save()
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Content,Form,and Function Outlines'
@@ -2003,7 +2003,7 @@ newTechnique.save()
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 
 			newTechnique = new AssessmentTechnique()
@@ -2032,9 +2032,9 @@ newTechnique.save()
 				DomainCategory.findByName('Perception')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Empty Outlines'
@@ -2065,9 +2065,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Categorizing Grid'
@@ -2102,9 +2102,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Defining Features Matrix'
@@ -2132,9 +2132,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Analytic Memos'
@@ -2164,7 +2164,7 @@ newTechnique.save()
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Word Journal'
@@ -2197,7 +2197,7 @@ newTechnique.save()
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Concept Maps'
@@ -2230,7 +2230,7 @@ newTechnique.save()
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Problem Recognition Tasks'
@@ -2263,7 +2263,7 @@ newTechnique.save()
 			newTechnique.isAdmin = true
 			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 
 			newTechnique = new AssessmentTechnique()
@@ -2301,9 +2301,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Classroom opinion polls'
@@ -2334,9 +2334,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Interest/Knowledge/Skills Checklist'
@@ -2367,9 +2367,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Goal Ranking and Matching'
@@ -2400,9 +2400,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Punctuated Lectures'
@@ -2418,9 +2418,9 @@ newTechnique.save()
 				LearningDomain.findByName('Cognitive')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique.addToKnowledgeDimension(
 				KnowledgeDimension.findByDescription('Conceptual')
@@ -2437,9 +2437,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Process Analysis'
@@ -2470,9 +2470,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Diagnostic Learning Logs'
@@ -2503,9 +2503,9 @@ newTechnique.save()
 				DomainCategory.findByName('Apply')
 			)
 			newTechnique.isAdmin = true
-newTechnique.save()
+			newTechnique.save()
 			admin.addToAssessmentTechnique(newTechnique)
-            admin.save()
+			admin.save()
 
 
 			/*Pedagogy Reference*/
@@ -2794,7 +2794,7 @@ newTechnique.save()
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Analytic Teams'
@@ -2830,7 +2830,7 @@ newTechnique.save()
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Collaborative Writing'
@@ -2940,7 +2940,7 @@ newTechnique.save()
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2983,7 +2983,7 @@ newTechnique.save()
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3023,7 +3023,7 @@ newTechnique.save()
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3042,7 +3042,7 @@ newTechnique.save()
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3078,7 +3078,7 @@ newTechnique.save()
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 
-			newTechnique.save()
+newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3098,7 +3098,7 @@ newTechnique.save()
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 
-			newTechnique.save()
+newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Peer Editing'
@@ -3121,7 +3121,7 @@ newTechnique.save()
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
 
-			newTechnique.save()
+newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3144,7 +3144,7 @@ newTechnique.save()
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 
-			newTechnique.save()
+newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3167,7 +3167,7 @@ newTechnique.save()
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
 
-			newTechnique.save()
+newTechnique.save()
 
 
 			/*Pedagogy Technique*/
