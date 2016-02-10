@@ -1310,10 +1310,11 @@ class BootStrap {
 					'Procedural',
 					'Metacognitive'
 				]),
-				assessmentFeedback: AssessmentFeedback.findByName('Online')
+				assessmentFeedback: AssessmentFeedback.findByName('Online'),
+				isAdmin: true
 			).save()
-			developer.addToAssessmentTechnique(assessmentTech)
-			developer.save()
+			admin.addToAssessmentTechnique(assessmentTech)
+			admin.save()
 
 			/*Pedagogy Technique*/
 			def pedagogyTech = new PedagogyTechnique(
@@ -1598,6 +1599,8 @@ class BootStrap {
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration('Single Session'),
 				pedagogyTechnique: pedagogyTech
 			).save()
+
+
 			def newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Background Knowledge Probe'
 			newTechnique.description = 'This activity goes beyond the common practice of asking students what courses they have already taken in the field. Using a survey, the instructor elicits information that can be used to focus instruction on appropriate content and level of difficulty.'
@@ -1622,9 +1625,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Understand')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 
 			newTechnique = new AssessmentTechnique()
@@ -1654,9 +1659,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Minute paper'
@@ -1685,9 +1692,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Muddiest point'
@@ -1716,9 +1725,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Capstone project'
@@ -1747,9 +1758,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Practicuum or internship'
@@ -1778,9 +1791,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Midterm test'
@@ -1812,9 +1827,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Remember')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Final Exam'
@@ -1846,9 +1863,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Remember')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Final Project'
@@ -1877,9 +1896,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Focused Listing'
@@ -1908,9 +1929,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Memory Matrix'
@@ -1940,9 +1963,11 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			)
+						newTechnique.save()
+						newTechnique.isAdmin = true
 			newTechnique.save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Content,Form,and Function Outlines'
@@ -1975,9 +2000,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 
 			newTechnique = new AssessmentTechnique()
@@ -2004,9 +2031,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Perception')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Empty Outlines'
@@ -2035,9 +2064,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Categorizing Grid'
@@ -2070,9 +2101,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Defining Features Matrix'
@@ -2098,9 +2131,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Analytic Memos'
@@ -2127,9 +2162,11 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			)
+						newTechnique.save()
+						newTechnique.isAdmin = true
 			newTechnique.save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Word Journal'
@@ -2159,9 +2196,11 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			)
+						newTechnique.save()
+						newTechnique.isAdmin = true
 			newTechnique.save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Concept Maps'
@@ -2190,9 +2229,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Problem Recognition Tasks'
@@ -2222,9 +2263,11 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			)
+						newTechnique.save()
+						newTechnique.isAdmin = true
 			newTechnique.save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 
 			newTechnique = new AssessmentTechnique()
@@ -2260,9 +2303,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Classroom opinion polls'
@@ -2291,9 +2336,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Interest/Knowledge/Skills Checklist'
@@ -2322,9 +2369,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Goal Ranking and Matching'
@@ -2353,9 +2402,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Punctuated Lectures'
@@ -2370,8 +2421,10 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 				LearningDomain.findByName('Cognitive')
 			)
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique.addToKnowledgeDimension(
 				KnowledgeDimension.findByDescription('Conceptual')
@@ -2386,9 +2439,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Process Analysis'
@@ -2417,9 +2472,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Diagnostic Learning Logs'
@@ -2448,9 +2505,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
-			developer.addToAssessmentTechnique(newTechnique)
-			developer.save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+            admin.save()
 
 
 			/*Pedagogy Reference*/
@@ -2480,7 +2539,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Critical Debate'
@@ -2499,7 +2558,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Round table'
@@ -2514,7 +2573,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Digital 3D Scanning'
@@ -2530,7 +2589,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Designettes Technique'
@@ -2546,7 +2605,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique.title = 'Game Learning Techniques'
 			newTechnique.materials = 'materials'
@@ -2564,7 +2623,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Psychomotor'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique.title = 'Hybrid Learning Technique'
 			newTechnique.materials = 'materials'
@@ -2578,7 +2637,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique.title = 'Classroom Demo Technique'
 			newTechnique.materials = 'materials'
@@ -2594,7 +2653,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique.title = 'Lecture'
 			newTechnique.materials = 'materials'
@@ -2611,7 +2670,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique.title = 'Flipped Charts'
 			newTechnique.materials = 'materials'
@@ -2626,7 +2685,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique.title = 'After Action Reviews'
 			newTechnique.materials = 'materials'
@@ -2640,7 +2699,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique.title = 'Seating Arrangements'
 			newTechnique.materials = 'materials'
@@ -2653,8 +2712,8 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
-			newTechnique.save()
-			newTechnique = new PedagogyTechnique()
+						newTechnique.save()
+						newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Case Study'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 182-188.'
@@ -2669,7 +2728,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Partially guided programming exercise'
@@ -2684,7 +2743,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Think aloud pair problem solving'
@@ -2702,7 +2761,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Structured Problem Solving'
@@ -2718,7 +2777,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2739,7 +2798,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Analytic Teams'
@@ -2756,7 +2815,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 
 
@@ -2775,7 +2834,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Collaborative Writing'
@@ -2791,7 +2850,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-			newTechnique.save()
+						newTechnique.save()
 
 
 
@@ -2811,7 +2870,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2829,7 +2888,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2852,7 +2911,7 @@ class BootStrap {
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Test Taking Teams'
@@ -2867,7 +2926,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2885,7 +2944,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2907,7 +2966,7 @@ class BootStrap {
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2928,7 +2987,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2948,7 +3007,7 @@ class BootStrap {
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2968,7 +3027,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2987,7 +3046,7 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3006,7 +3065,7 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3023,7 +3082,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3043,7 +3102,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Peer Editing'
@@ -3066,7 +3125,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3089,7 +3148,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3112,7 +3171,7 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
 
-			newTechnique.save()
+						newTechnique.save()
 
 
 			/*Pedagogy Technique*/
