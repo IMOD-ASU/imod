@@ -477,6 +477,9 @@ function saveTopic () {
 			if (resourceData.length > 0) {
 				outerSaveResource(data.contentData);
 			} else {
+				if ($('#contentTable').length) {
+					window.cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
+				}
 				location.reload();
 			}
 		}
