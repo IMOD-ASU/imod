@@ -344,8 +344,7 @@ function displayPedagogyTechniques (data) {
 			}
 			$.ajax({
 				url: '../../pedagogyTechnique/assignFavorite/' + res,
-				method: 'GET',
-				success: function () {}
+				method: 'GET'
 			});
 		}
 	});
@@ -373,8 +372,7 @@ function displayPedagogyTechniques (data) {
 				url: '../../pedagogyTechnique/unassignToLearningObjective',
 				type: 'POST',
 				data: JSON.stringify(data),
-				contentType: 'application/json',
-				success: function () {}
+				contentType: 'application/json'
 			});
 		} else {
 			$(this).attr('src', '../../images/assign.png');
@@ -394,8 +392,7 @@ function displayPedagogyTechniques (data) {
 				url: '../../pedagogyTechnique/assignToLearningObjective',
 				type: 'POST',
 				data: JSON.stringify(data),
-				contentType: 'application/json',
-				success: function () {}
+				contentType: 'application/json'
 			});
 		}
 	});
@@ -570,7 +567,9 @@ function populateDomainCategories (callback) {
 			}
 			// Store this to the page
 			$('#domain-category').empty().append(options);
-			callback();
+			if (callback) {
+				callback();
+			}
 		}
 	});
 }
@@ -741,7 +740,7 @@ $(document).ready(
 		$('#learning-domain').on(
 			'change',
 			function () {
-				populateDomainCategories(function () {});
+				populateDomainCategories();
 			});
 
 		// Open favorite techniques
