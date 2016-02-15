@@ -857,36 +857,41 @@ a.square {
 
 
 #navbar {
-	overflow: hidden;
-	padding: 10px 2.5%;
+    overflow: hidden;
+
+    padding: 10px 2.5%;
+
     background: #0c1625;
 }
 
 #imodlogo {
- 	float: left;
+    float: left;
 }
 
 #nav-links {
-	float: right;
+    float: right;
 }
 
 #nav-links li {
-	float: left; list-style-type: none;
-	margin-left: 15px; padding-top: 15px;
-	color: #fff;
+    float: left;
+
+    margin-left: 15px;
+    padding-top: 15px;
+
+    list-style-type: none;
+
+    color: #ffffff;
 }
 
 #nav-links li a {
-	color: #fff;
+    color: #ffffff;
 }
 
 a.banner-home {
     /*position: absolute;
     top: 25px;
     right: 350px;
-
     text-align: right;*/
-
     color: #ffffff;
     background-color: #0c1625;
 }
@@ -904,7 +909,6 @@ a.banner-imod {
     /*position: absolute;
     top: 25px;
     right: 220px;*/
-
     text-align: right;
 
     color: #ffffff;
@@ -918,6 +922,7 @@ a.banner-link {
 
 #imod-logo {
     position: relative;
+
     width: 116px;
     height: 41px;
 }

@@ -768,7 +768,9 @@ function populateDomainCategories (callback) {
 			}
 			// Store this to the page
 			$('#domain-category').empty().append(options);
-			callback();
+			if (callback) {
+				callback();
+			}
 		}
 	});
 }
@@ -909,8 +911,9 @@ $(document).ready(
 		$('#learning-domain').on(
 			'change',
 			function () {
-				populateDomainCategories(function () {});
-			});
+				populateDomainCategories();
+			}
+		);
 
 
 		// Open favorite techniques
