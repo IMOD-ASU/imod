@@ -68,7 +68,10 @@ http://fullcalendar.io/docs/usage/
 <p>Credit Hours/Time Ratio Here:${timeRatio1}</p>
 
 
-
+<div googCal>
+	<br>
+<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=imodssched%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FPhoenix" style="border-width:2" width="1280" height="720" frameborder="2" scrolling="no"></iframe>	<br>
+</div>
 
 
 <!--
