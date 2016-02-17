@@ -174,12 +174,33 @@ function populatePedagogyTechnique (data) {
 	$('#pedagogyDuration option[value = "' + data.pedagogyDuration + '"]').prop('selected', true);
 	$('#domainCategory option[value= "' + data.domainCategory + '"]').attr('selected', 'selected');
 }
-function displayPedagogyInformationInEdit () {
+function displayPedagogyInformationInEdit (isClone, block) {
 	'use strict';
 	var res = '';
 
 	var str = $('label.ui-state-hover').attr('for');
 	var indexNo = str.indexOf('Extended');
+
+	if (isClone) {
+		$('.pedagogy-title').html('<strong>Edit Alternate Name For Clone</strong>');
+	} else {
+		$('.pedagogy-title').html('<strong>Edit Pedagogy Technique</strong>');
+	}
+
+	if (block.parents('.pedagogy-block').hasClass('isAdmin') && $('a.admin-link').length < 1) {
+		$('.admin-edit-msg').remove();
+		if (isClone) {
+			$('#saveButton').show();
+			$('.admin-edit-msg').remove();
+		} else {
+			$('.pedagogy-title').html('<strong>View Pedagogy Technique</strong>');
+			$('#saveButton').hide();
+			$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+		}
+	} else {
+		$('#saveButton').show();
+		$('.admin-edit-msg').remove();
+	}
 
 	if (indexNo > -1) {
 		res = str.substring(0, indexNo);
@@ -421,7 +442,7 @@ function displayPedagogyTechniques (data) {
 	$('.title span').click(function () {
 		$('#add-new-technique').css('display', 'block');
 		$('#topicDialogBackground').css('display', 'block');
-		displayPedagogyInformationInEdit();
+		displayPedagogyInformationInEdit(false, $(this));
 	});
 
 	$('#extended-matches').buttonset();
@@ -653,7 +674,7 @@ $(document).ready(
 			$('#add-new-technique').css('display', 'block');
 			$('#topicDialogBackground').css('display', 'block');
 			document.getElementById('cloneDetect').value = 'clone';
-			displayPedagogyInformationInEdit();
+			displayPedagogyInformationInEdit(true, $(this));
 		});
 
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
@@ -730,7 +751,10 @@ $(document).ready(
 		});
 
 		// When add new technique button is clicked open modal
-		$('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
+		$('#add-new-technique-button').on('click', function () {
+			openNewPedagogyTechniqueModal();
+			$('.pedagogy-title').html('<strong>Add New Pedagogy Technique</strong>');
+		});
 
 		// When instructional plan button is clicked open modal
 		$('#instruction-plan-button').on('click', openInstructionalPlanModal);
@@ -801,7 +825,7 @@ $(document).ready(
 		.on('click', '.favorites-modal .text-block.title', function () {
 			$('.pedagogy-title').html('<strong>Edit Assessment Technique</strong>');
 			openNewPedagogyTechniqueModal();
-			displayPedagogyInformationInEdit(false);
+			displayPedagogyInformationInEdit(false, $(this));
 			return false;
 		});
 	}
