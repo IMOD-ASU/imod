@@ -16,7 +16,7 @@
 	</head>
 	<body>
 
-		<table class="technique-table assessment">
+		<table class="admin-table technique-table assessment">
 			<thead>
 				<th>ID</th>
 				<th class="title">Title</th>
@@ -61,7 +61,7 @@
 			</tbody>
 		</table>
 
-		<ul class="technique-pagination">
+		<ul class="admin-pagination">
 			<g:each in="${1..pages}" var="page" >
 				<li class="${currentPageNumber == page ? 'active' : ''}"><a href="?page=${page}">${page}</a></li>
 			</g:each>

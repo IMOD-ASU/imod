@@ -151,6 +151,22 @@ class AssessmentTechniqueController {
 
 		if (params.techniqueId) {
 			newTechnique = AssessmentTechnique.get(params.techniqueId)
+
+			def isAdminUser = false
+			newTechnique.users.each {
+				if (it.username == 'imodadmin' && currentUser.username == 'imodadmin') {
+					isAdminUser = true
+					return true
+				}
+			}
+
+			// check if technique is admin
+			// if it is, it can only be edited
+			// by an admin
+			if (newTechnique.isAdmin && !isAdminUser) {
+				render(status: 401, text: 'Unauthorized')
+				return
+			}
 			newTechnique.knowledgeDimension.clear()
 			newTechnique.learningDomain.clear()
 			newTechnique.domainCategory.clear()
@@ -199,7 +215,6 @@ class AssessmentTechniqueController {
 			for (int i = 0; i < dC.length; i++) {
 				if (dC[i] != null) {
 					if (DomainCategory.findByName(dC[i]) != null) {
-						println (dC[i])
 						newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
 					}
 				}

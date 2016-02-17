@@ -22,7 +22,9 @@ class ImodUser {
 		imods: Imod,
 		favoriteTechnique: PedagogyTechnique,
 		favoriteAssessmentTechnique: AssessmentTechnique,
-		assessmentTechnique: AssessmentTechnique
+		assessmentTechnique: AssessmentTechnique,
+		pedagogyTechnique: PedagogyTechnique
+
 	]
 
 	static hasOne = [
@@ -39,11 +41,17 @@ class ImodUser {
 		favoriteTechnique nullable: true
 		favoriteAssessmentTechnique nullable: true
 		assessmentTechnique nullable: true
+		pedagogyTechnique nullable: true
 	}
 
 	static mapping = {
 		password column: '`password`'
 	}
+
+	static mappedBy = [
+		favoriteTechnique: 'userFavorite',
+		pedagogyTechnique: 'users'
+	]
 
 	Set<Role> getAuthorities() {
 		ImodUserRole.findAllByImodUser(this)*.role as Set

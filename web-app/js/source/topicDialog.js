@@ -477,6 +477,9 @@ function saveTopic () {
 			if (resourceData.length > 0) {
 				outerSaveResource(data.contentData);
 			} else {
+				if ($('#contentTable').length) {
+					window.cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
+				}
 				location.reload();
 			}
 		}
@@ -794,7 +797,11 @@ $(
 		var numberOfCriticalTopics = 0;
 		var numberOfVeryImportantTopics = 0;
 		var numberOfGoodToKnowTopics = 0;
-		var ctx = document.getElementById('chart').getContext('2d');
+		var ctx;
+
+		if ($('#topicList tbody tr').length) {
+			ctx = document.getElementById('chart').getContext('2d');
+		}
 
 		$('input[id^="topicPrioritySaved"]').each(function () {
 			if ($(this).val() === 'Critical') {

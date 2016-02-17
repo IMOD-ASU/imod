@@ -59,42 +59,45 @@ this is the basic layout with only the IMOD header and footer
 	</head>
 
 	<body>
-		<div id="imodlogo" role="banner">
-			<a href="${createLink(uri: '/')}">
-				<g:img dir="images" file="imods_white_condensed.png" id="imod-logo" alt="imod"/>
-			</a>
-			<span>
-				<a class="banner-imod" href="${createLink(uri: '/imod')}">
-					<g:message code="My i-mods"/>
+		<div id="navbar">
+			<div id="imodlogo" role="banner">
+				<a href="${createLink(uri: '/')}">
+					<g:img dir="images" file="imods_white_condensed.png" id="imod-logo" alt="imod"/>
 				</a>
-				<a class="banner-home" href="${createLink(uri: '/')}">
-					<g:img dir="images" file="home_sm.png" class="resize-home"/><g:message code="default.home.label"/>
-				</a>
-				<nobr>
-					<div id="login-link-container" class="banner-link">
-						<sec:ifLoggedIn>
-							<g:img dir="images" file="user_sm.png" class="resize-home"/>
-							<sec:username/>
-							<a href='${createLink(uri: '/logout')}' id='logout-link' class='banner-link'>
-								Logout
-							</a>
-						</sec:ifLoggedIn>
+			</div>
+			<div id="nav-links">
+				<ul>
+					<g:if test="${session.isAdmin}">
+					<li><a class="admin-link" href="${createLink(uri: '/admin/assessment')}">Admin Area</a></li>
+					</g:if>
+					<li><a class="banner-imod" href="${createLink(uri: '/imod')}">
+						<g:message code="My i-mods"/>
+					</a></li>
+					<li><a class="banner-home" href="${createLink(uri: '/')}">
+						<g:img dir="images" file="home_sm.png" class="resize-home"/><g:message code="default.home.label"/>
+					</a></li>
+					<sec:ifLoggedIn>
+						<li><g:img dir="images" file="user_sm.png" class="resize-home"/>
+						<sec:username/>
+						<a href='${createLink(uri: '/logout')}' id='logout-link' class='banner-link'>
+							Logout
+						</a></li>
+					</sec:ifLoggedIn>
 
-						<sec:ifNotLoggedIn>
-							<a href="${createLink(uri: '/login')}" id="loginLink" class="banner-link">
-								Login
-							</a>
-						</sec:ifNotLoggedIn>
+					<sec:ifNotLoggedIn>
+						<li><a href="${createLink(uri: '/login')}" id="loginLink" class="banner-link">
+							Login
+						</a></li>
+					</sec:ifNotLoggedIn>
 
-						<sec:ifSwitched>
-							<a href="${request.contextPath}/j_spring_security_exit_user">
-						  		Resume as
-						  	</a>
-							<sec:switchedUserOriginalUsername/>
-					  	</sec:ifSwitched>
-					</div>
-				</nobr>
-			</span>
+					<sec:ifSwitched>
+						<li><a href="${request.contextPath}/j_spring_security_exit_user">
+					  		Resume as
+					  	</a></li>
+						<sec:switchedUserOriginalUsername/>
+				  	</sec:ifSwitched>
+				</ul>
+			</div>
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
