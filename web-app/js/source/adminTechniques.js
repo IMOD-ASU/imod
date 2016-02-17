@@ -6,7 +6,7 @@ $(function () {
 
 		if (adminSelect.parents('.technique-table').hasClass('assessment')) {
 			techniqueClass = 'assessment';
-		} else if (adminSelect.parents('.technique-table').hasClass('assessment')) {
+		} else if (adminSelect.parents('.technique-table').hasClass('pedagogy')) {
 			techniqueClass = 'pedagogy';
 		}
 

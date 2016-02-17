@@ -174,12 +174,33 @@ function populatePedagogyTechnique (data) {
 	$('#pedagogyDuration option[value = "' + data.pedagogyDuration + '"]').prop('selected', true);
 	$('#domainCategory option[value= "' + data.domainCategory + '"]').attr('selected', 'selected');
 }
-function displayPedagogyInformationInEdit () {
+function displayPedagogyInformationInEdit (isClone, block) {
 	'use strict';
 	var res = '';
 
 	var str = $('label.ui-state-hover').attr('for');
 	var indexNo = str.indexOf('Extended');
+
+	if (isClone) {
+		$('.pedagogy-title').html('<strong>Edit Alternate Name For Clone</strong>');
+	} else {
+		$('.pedagogy-title').html('<strong>Edit Pedagogy Technique</strong>');
+	}
+
+	if (block.parents('.pedagogy-block').hasClass('isAdmin') && $('a.admin-link').length < 1) {
+		$('.admin-edit-msg').remove();
+		if (isClone) {
+			$('#saveButton').show();
+			$('.admin-edit-msg').remove();
+		} else {
+			$('.pedagogy-title').html('<strong>View Pedagogy Technique</strong>');
+			$('#saveButton').hide();
+			$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
+		}
+	} else {
+		$('#saveButton').show();
+		$('.admin-edit-msg').remove();
+	}
 
 	if (indexNo > -1) {
 		res = str.substring(0, indexNo);
@@ -204,6 +225,7 @@ function displayPedagogyFavoriteTechniques (data) {
 	var index;
 	var currentTechnique;
 	var favoriteImgToggle = '';
+	var isAdmin = '';
 
 	if (data.pedagogyTechniques.length < 1) {
 		text = '<br><strong>You do not have any favorite techniques</strong><br><br>';
@@ -214,8 +236,14 @@ function displayPedagogyFavoriteTechniques (data) {
 
 		favoriteImgToggle = '../../images/fav.png';
 
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		text += '<label class="assessment-block pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
@@ -246,6 +274,7 @@ function displayPedagogyTechniques (data) {
 	var extendedText = '';
 	var favoriteImgToggle = '';
 	var assignImgToggle = '';
+	var isAdmin = '';
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
@@ -262,8 +291,14 @@ function displayPedagogyTechniques (data) {
 			assignImgToggle = '../../images/unassign.png';
 		}
 
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
 		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
-		idealText += '<label class="pedagogy-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		idealText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
@@ -281,8 +316,15 @@ function displayPedagogyTechniques (data) {
 		} else {
 			assignImgToggle = '../../images/unassign.png';
 		}
+
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
 		extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
-		extendedText += '<label class="pedagogy-block" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		extendedText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
 					truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
@@ -400,7 +442,7 @@ function displayPedagogyTechniques (data) {
 	$('.title span').click(function () {
 		$('#add-new-technique').css('display', 'block');
 		$('#topicDialogBackground').css('display', 'block');
-		displayPedagogyInformationInEdit();
+		displayPedagogyInformationInEdit(false, $(this));
 	});
 
 	$('#extended-matches').buttonset();
@@ -632,7 +674,7 @@ $(document).ready(
 			$('#add-new-technique').css('display', 'block');
 			$('#topicDialogBackground').css('display', 'block');
 			document.getElementById('cloneDetect').value = 'clone';
-			displayPedagogyInformationInEdit();
+			displayPedagogyInformationInEdit(true, $(this));
 		});
 
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
@@ -709,7 +751,10 @@ $(document).ready(
 		});
 
 		// When add new technique button is clicked open modal
-		$('#add-new-technique-button').on('click', openNewPedagogyTechniqueModal);
+		$('#add-new-technique-button').on('click', function () {
+			openNewPedagogyTechniqueModal();
+			$('.pedagogy-title').html('<strong>Add New Pedagogy Technique</strong>');
+		});
 
 		// When instructional plan button is clicked open modal
 		$('#instruction-plan-button').on('click', openInstructionalPlanModal);
@@ -780,7 +825,7 @@ $(document).ready(
 		.on('click', '.favorites-modal .text-block.title', function () {
 			$('.pedagogy-title').html('<strong>Edit Assessment Technique</strong>');
 			openNewPedagogyTechniqueModal();
-			displayPedagogyInformationInEdit(false);
+			displayPedagogyInformationInEdit(false, $(this));
 			return false;
 		});
 	}

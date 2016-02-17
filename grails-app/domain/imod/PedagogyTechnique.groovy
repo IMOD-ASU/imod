@@ -15,6 +15,7 @@ class PedagogyTechnique {
 	String activityDescription
 	PedagogyMode pedagogyMode
 	PedagogyActivityDuration pedagogyDuration
+	Boolean isAdmin = Boolean.FALSE
 
 	static hasMany = [
 		activityFocus: PedagogyActivityFocus,
@@ -22,7 +23,8 @@ class PedagogyTechnique {
 		domainCategory: DomainCategory,
 		knowledgeDimension: KnowledgeDimension,
 		learningDomain: LearningDomain,
-		userFavorite: ImodUser
+		userFavorite: ImodUser,
+		users: ImodUser
 	]
 
 	static belongsTo = [
@@ -41,7 +43,6 @@ class PedagogyTechnique {
 		reference type: 'text'
 		version false
 	}
-
 	static constraints = {
 		activityDescription nullable: true
 		activityFocus nullable: true
@@ -53,6 +54,7 @@ class PedagogyTechnique {
 		reference nullable: true
 		strategyDescription nullable: true
 		userFavorite nullable: true
+		users nullable: true
 		pedagogyDuration nullable: true
 	}
 }

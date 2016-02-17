@@ -182,6 +182,10 @@
     font-weight: bold;
 }
 
+label.pedagogy-block.isAdmin {
+	background: url('../../images/admin-text.png') bottom left #ffffcc no-repeat !important;
+}
+
 label.pedagogy-block .text-block.title {
     word-wrap: break-word;
 }
