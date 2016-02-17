@@ -204,6 +204,7 @@ function displayPedagogyFavoriteTechniques (data) {
 	var index;
 	var currentTechnique;
 	var favoriteImgToggle = '';
+	var isAdmin = '';
 
 	if (data.pedagogyTechniques.length < 1) {
 		text = '<br><strong>You do not have any favorite techniques</strong><br><br>';
@@ -214,8 +215,14 @@ function displayPedagogyFavoriteTechniques (data) {
 
 		favoriteImgToggle = '../../images/fav.png';
 
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		text += '<label class="assessment-block pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
