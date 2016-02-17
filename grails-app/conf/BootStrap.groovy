@@ -2876,6 +2876,40 @@ class BootStrap {
 			newTechnique.save()
 
 			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Classify'
+			newTechnique.materials = 'materials'
+			newTechnique.activityDescription = 'Is a technique in which students are given artifacts of sub categories in a classification system and they have to sort the items or group similar artifacts'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Jigsaw'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
+			newTechnique.activityDescription = 'Is a technique in which students develop knowledge about a given topic and then teach it to others.It  useful for motivating students to process information and  teach it to their peers.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
+
+
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Structured Problem Solving'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. "Collaborative Learning Techniques", 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 188-193.'
@@ -2890,6 +2924,26 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Frames'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. "Collaborative Learning Techniques", 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 188-193.'
+			newTechnique.activityDescription = 'Is a technique in which students are given a template using which they complete the sentences using their own ideas'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('online')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.save()
+
+
+
+
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2986,21 +3040,66 @@ newTechnique.save()
 
 
 			newTechnique = new PedagogyTechnique()
-			newTechnique.title = 'Jigsaw'
+			newTechnique.title = 'Artifacts'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
-			newTechnique.activityDescription = 'Is a technique in which students develop knowledge about a given topic and then teach it to others.It  useful for motivating students to process information and  teach it to their peers.'
+			newTechnique.activityDescription = 'Is a technique in which instructors provide groups of students with photos,charts,drawings or objects which represent key ideas about a topic'
 			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
 			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
 			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
 			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
-
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
-			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Stations'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
+			newTechnique.activityDescription = 'Is a technique in which students move around the classroom and interact with learning material and examine,question and exchange ideas with peers to learn more.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Insights-Resources-Application'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
+			newTechnique.activityDescription = 'Is a technique in which students in conjunction with a reading ,complete a written assignment which includes insights, resources and applications related to the Reading Assignment'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'WebQuests'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
+			newTechnique.activityDescription = 'Is a technique in which students investigate an open ended question using specific websites provided by the instructor over the internet'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.save()
+
 
 
 			newTechnique = new PedagogyTechnique()
