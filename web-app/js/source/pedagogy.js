@@ -642,18 +642,21 @@ $(document).ready(
 			checkBoxName = 'knowledgeDimension';
 			updateTextArea(checkBoxName);
 			filterPedagogyTechniques();
+			$('#selectAllkD').prop('checked', false);
 		});
 		$('input[name=learningDomain]').on('change',
 		function () {
 			checkBoxName = 'learningDomain';
 			updateTextArea(checkBoxName);
 			filterPedagogyTechniques();
+			$('#selectAlllD').prop('checked', false);
 		});
 		$('input[name=domainCategory]').on('change',
 		function () {
 			checkBoxName = 'domainCategory';
 			updateTextArea(checkBoxName);
 			filterPedagogyTechniques();
+			$('#selectAlldC').prop('checked', false);
 		});
 
 		// fetching checkboxes and making a cookie
@@ -719,6 +722,14 @@ $(document).ready(
 				$('#topicDialogBackground').css('display', 'none');
 			}
 		);
+		$('.select-all').on('click', function () {
+			if ($(this).is(':checked')) {
+				$(this).closest('div').find(':checkbox').prop('checked', true);
+			} else {
+				$(this).closest('div').find(':checkbox').prop('checked', false);
+			}
+			filterPedagogyTechniques();
+		});
 
 		// When hovered over LO side-tab list, it displays full text as tool-tip
 		liArray = $('ul.learning-objective.list-wrapper').children('li');

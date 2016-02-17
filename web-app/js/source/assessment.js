@@ -682,6 +682,16 @@ $('#View').click(function () {
 	$('.allspans1').show();
 });
 
+$('.select-all').on('click', function () {
+	'use strict';
+	if ($(this).is(':checked')) {
+		$(this).closest('div').find(':checkbox').prop('checked', true);
+	} else {
+		$(this).closest('div').find(':checkbox').prop('checked', false);
+	}
+	filterAssessmentTechniques();
+});
+
 $('#title').change(function () {
 	'use strict';
 	if ($('#title').val() === $('#titlecheck').val()) {
@@ -842,18 +852,21 @@ $(document).ready(
 			checkBoxName = 'knowledgeDimension';
 			updateTextArea(checkBoxName);
 			filterAssessmentTechniques();
+			$('#selectAllkD').prop('checked', false);
 		});
 		$('input[name=learningDomain]').on('change',
 		function () {
 			checkBoxName = 'learningDomain';
 			updateTextArea(checkBoxName);
 			filterAssessmentTechniques();
+			$('#selectAlllD').prop('checked', false);
 		});
 		$('input[name=domainCategory]').on('change',
 		function () {
 			checkBoxName = 'domainCategory';
 			updateTextArea(checkBoxName);
 			filterAssessmentTechniques();
+			$('#selectAlldC').prop('checked', false);
 		});
 		$('#saveButton').on('click', function () {
 			cloneDetect = document.getElementById('cloneDetect').value;

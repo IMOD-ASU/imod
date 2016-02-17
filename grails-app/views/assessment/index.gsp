@@ -110,13 +110,18 @@
 							Knowledge Dimensions
 						</h3>
 						<div >
+						<g:checkBox name="myCheckbox" class="select-all" id="selectAllkd" />
+						<label>Select All</label>
+						
+						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
 							<ul>
 								<g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
 									<li>
+										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}" />
 										<label for="knowledge-dimension-${index}">
 											${knowledgeDimension.description}
 										</label>
-										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}" />
+										
 									</li>
 								</g:each>
 							</ul>
@@ -125,13 +130,17 @@
 							Learning Domains
 						</h3>
 						<div>
+						<g:checkBox name="myCheckbox" class="select-all" id="selectAlllD" />
+						<label>Select All</label>
+						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
 							<ul>
 								<g:each var="learningDomain" in="${learningDomains}" status="index">
 									<li>
+										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" checked="${learningDomain.name == selectedDomain.toString()}" />
 										<label for="learning-domain-${index}">
 											${learningDomain.name}
 										</label>
-										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" checked="${learningDomain.name == selectedDomain.toString()}" />
+										
 									</li>
 								</g:each>
 							</ul>
@@ -140,13 +149,18 @@
 							Domain Categories
 						</h3>
 						<div>
+						<g:checkBox name="myCheckbox" class="select-all" id="selectAlldC" />
+						<label>Select All</label>
+						
+						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
 							<ul>
 								<g:each var="domainCategory" in="${domainCategories}" status="index">
 									<li>
+										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" checked="${domainCategory.name == selectedDomainCategory.toString()}"/>
 										<label for="domain-category-${index}">
 											${domainCategory.name}
 										</label>
-										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" checked="${domainCategory.name == selectedDomainCategory.toString()}"/>
+										
 									</li>
 								</g:each>
 							</ul>
