@@ -88,3 +88,9 @@
     color: #ffffff;
     background: #0c1625;
 }
+
+a.topicButtonGradient {
+	text-decoration: none; color: #fff;
+	display: inline-block; *display: inline;
+	zoom: 1; padding: 3px 10px;
+}

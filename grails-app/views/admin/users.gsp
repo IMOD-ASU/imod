@@ -12,6 +12,7 @@
 		</title>
 		<meta name="layout" content="imodAdmin" />
 		<g:external dir="css/source" file="adminTechniques.css" />
+		<g:javascript src="source/adminTechniques.js" defer="defer" />
 	</head>
 	<body>
 
@@ -20,21 +21,47 @@
 				<th>ID</th>
 				<th class="email">Email</th>
 			    <th class="username">Username</th>
-			    <th class="enabled">enabled</th>
-			    <th class="expired">accountExpired</th>
-			    <th class="locked">accountLocked</th>
-			    <th class="expired">passwordExpired</th>
+			    <th class="enabled">Enabled</th>
+			    <th class="accountExpired">Account Expired</th>
+			    <th class="accountLocked">Account Locked</th>
+			    <th class="passwordExpired">Password Expired</th>
+			    <th>Save Changes</th>
 			</thead>
 			<tbody>
 			<g:each var="user" in="${users}">
-				<tr>
-					<td class="user-id">${user.id}</td>
+				<tr class="user-row">
+					<td class="user-id">${user.id}
+						<input type="hidden" name="id" value="${user.id}"></input>
+					</td>
 					<td class="email">${user.email}</td>
 				    <td class="username">${user.username}</td>
-				    <td class="enabled">${user.enabled}</td>
-				    <td class="expired">${user.accountExpired}</td>
-				    <td class="locked">${user.accountLocked}</td>
-				    <td class="expired">${user.passwordExpired}</td>
+				    <td class="enabled">
+				    	<select name="enabled" class="enabled">
+				    		<option ${user.enabled ? 'selected class="last_selected"' : ''}>true</option>
+				    		<option ${user.enabled ? '' : 'selected class="last_selected"' }>false</option>
+				    	</select>
+				    </td>
+				    <td class="accountExpired">
+				    	<select name="accountExpired" class="accountExpired">
+				    		<option ${user.accountExpired ? 'selected class="last_selected"' : ''}>true</option>
+				    		<option ${user.accountExpired ? '' : 'selected class="last_selected"' }>false</option>
+				    	</select>
+				    </td>
+				    <td class="accountLocked">
+				    	<select name="accountLocked" class="accountLocked">
+				    		<option ${user.accountLocked ? 'selected class="last_selected"' : ''}>true</option>
+				    		<option ${user.accountLocked ? '' : 'selected class="last_selected"' }>false</option>
+				    	</select>
+				    </td>
+				    <td class="passwordExpired">
+				    	<select name="passwordExpired" class="passwordExpired">
+				    		<option ${user.passwordExpired ? 'selected class="last_selected"' : ''}>true</option>
+				    		<option ${user.passwordExpired ? '' : 'selected class="last_selected"' }>false</option>
+				    	</select>
+				    </td>
+				    <td class="save">
+				    	<a href="#" class="save-btn topicButtonGradient"><i class="fa fa-save green"></i> Save Changes</a>
+				    </td>
 				</tr>
 			</g:each>
 			</tbody>
