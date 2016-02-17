@@ -16,8 +16,6 @@ class PedagogyTechnique {
 	PedagogyMode pedagogyMode
 	PedagogyActivityDuration pedagogyDuration
 	Boolean isAdmin = Boolean.FALSE
-	// ImodUser userFavorite
-	// ImodUser users
 
 	static hasMany = [
 		activityFocus: PedagogyActivityFocus,
@@ -56,7 +54,7 @@ class PedagogyTechnique {
 		reference nullable: true
 		strategyDescription nullable: true
 		userFavorite nullable: true
-		users nullable:true
+		users nullable: true
 		pedagogyDuration nullable: true
 	}
 }

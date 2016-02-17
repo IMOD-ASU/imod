@@ -116,12 +116,12 @@ class PedagogyController {
 		// find all technique where both the knowledge dimension and the domain category match
 		final idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
-				// or {
-				// 	eq('isAdmin', true)
-				// 	users {
-				// 		eq('id', currentUser.id)
-				// 	}
-				// }
+				or {
+					eq('isAdmin', true)
+					users {
+						eq('id', currentUser.id)
+					}
+				}
 				knowledgeDimension {
 					'in' ('id', selectedKnowledgeDimensions)
 				}
@@ -140,12 +140,12 @@ class PedagogyController {
 		// find all technique that are not ideal, but have the learning domain
 		final extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
-				// or {
-				// 	eq('isAdmin', true)
-				// 	users {
-				// 		eq('id', currentUser.id)
-				// 	}
-				// }
+				or {
+					eq('isAdmin', true)
+					users {
+						eq('id', currentUser.id)
+					}
+				}
 				learningDomain {
 					'in' ('id', selectedLearningDomains)
 				}

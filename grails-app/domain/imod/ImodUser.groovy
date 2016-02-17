@@ -49,10 +49,9 @@ class ImodUser {
 	}
 
 	static mappedBy = [
-		favoriteTechnique: "userFavorite",
-		pedagogyTechnique: "users"
+		favoriteTechnique: 'userFavorite',
+		pedagogyTechnique: 'users'
 	]
-
 
 	Set<Role> getAuthorities() {
 		ImodUserRole.findAllByImodUser(this)*.role as Set
