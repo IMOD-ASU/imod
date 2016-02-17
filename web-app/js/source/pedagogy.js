@@ -246,6 +246,7 @@ function displayPedagogyTechniques (data) {
 	var extendedText = '';
 	var favoriteImgToggle = '';
 	var assignImgToggle = '';
+	var isAdmin = '';
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
@@ -262,8 +263,14 @@ function displayPedagogyTechniques (data) {
 			assignImgToggle = '../../images/unassign.png';
 		}
 
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
 		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
-		idealText += '<label class="pedagogy-block" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		idealText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
@@ -281,8 +288,15 @@ function displayPedagogyTechniques (data) {
 		} else {
 			assignImgToggle = '../../images/unassign.png';
 		}
+
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
 		extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
-		extendedText += '<label class="pedagogy-block" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+		extendedText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
 					truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
