@@ -32,21 +32,14 @@ class ScheduleController {
 		def endDate1=[]
 		def creditHours1 = -1
 		def timeRatio1 = "no time"
+		def currName1 = "noName"
 
-		[
-		currentImod: Imod.get(id),
-		currentPage: 'schedule',
-		startDate1: startDate1,
-		endDate1: endDate1,
-		creditHours1: creditHours1,
-		timeRatio1: timeRatio1
-
-		]
 
 		startDate1 = Imod.get(id).schedule.startDate
 		endDate1 = Imod.get(id).schedule.endDate
 		creditHours1 = Imod.get(id).creditHours
 		timeRatio1 = Imod.get(id).timeRatio
+		currName1 = Imod.get(id).name
 
 		[
 		currentImod: Imod.get(id),
@@ -54,7 +47,8 @@ class ScheduleController {
 		startDate1: startDate1,
 		endDate1: endDate1,
 		creditHours1: creditHours1,
-		timeRatio1: timeRatio1
+		timeRatio1: timeRatio1,
+		currName1: currName1
 
 		]
 

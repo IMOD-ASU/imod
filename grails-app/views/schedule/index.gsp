@@ -27,15 +27,17 @@
 <g:external dir="css/source" file="fullcalendar.css" />
 
 
+<script src="https://apis.google.com/js/client:plusone.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 
 <g:javascript src="source/fullCal/moment.js" defer="defer" />
 
+<!--
 <g:javascript src="source/schedule.js" defer="defer" />
-
+-->
 <g:javascript src="source/fullCal/fullcalendar.js" defer="defer" />
-
 
 
 
@@ -46,11 +48,13 @@
 
 http://fullcalendar.io/docs/usage/
 -->
+
 </head>
 <body>
 
 
-	<div id='calendar'></div>
+	<div id='calendar'>
+	</div>
 	<!--
 
 
@@ -62,21 +66,112 @@ http://fullcalendar.io/docs/usage/
 
 <!--
 -->
-<p>Start Date Here:${startDate1}</p>
-<p>End Date Here:${endDate1}</p>
-<p>Credit Hours Here:${creditHours1}</p>
-<p>Credit Hours/Time Ratio Here:${timeRatio1}</p>
+<p id="startDate">Start Date Here:${startDate1}</p>
+<p id="endDate">End Date Here:${endDate1}</p>
+<p id="creditHours">Credit Hours Here:${creditHours1}</p>
+<p id="timeRatio">Credit Hours/Time Ratio Here:${timeRatio1}</p>
+<br>
+
+<p >
+	<form id="startDate" >
+		Task Start Date -->
+		<label>Choose Year:</label>
+		<select id='chooseYear' name="years1">
+		</select>
+
+		<label>Choose Month:</label>
+		<select id='chooseMonth' name="months1">
+		</select>
+
+		<label>Choose Day:</label>
+		<select id='chooseDay' name="days1">
+		</select>
+
+		<label>Choose Hour:</label>
+		<select id='chooseHour' name="hours1">
+		</select>
+
+		<br/>
+	</form>
+</p>
 
 
-<div googCal>
-	<br>
-<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=imodssched%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FPhoenix" style="border-width:2" width="1280" height="720" frameborder="2" scrolling="no"></iframe>	<br>
-</div>
+<p >
+	<form id="endDate" >
+		Task End Date -->
+		<label>Choose Year:</label>
+		<select id='chooseYear2' name="years1">
+		</select>
 
+		<label>Choose Month:</label>
+		<select id='chooseMonth2' name="months1">
+		</select>
+
+		<label>Choose Day:</label>
+		<select id='chooseDay2' name="days1">
+		</select>
+
+		<label>Choose Hour:</label>
+		<select id='chooseHour2' name="hours1">
+		</select>
+
+		<br/>
+	</form>
+</p>
+
+<form id="addTaskBut" >
+<input  type="button" value="Add Task" id = "addT" onclick="addTask()"/>
+</form>
+
+
+<!--
+<p >
+	<form id="guessMonth" >
+		<label>Choose Month:</label>
+		<select id='chooseMonth' name="months1">
+		</select>
+
+		<br/>
+	</form>
+</p>
+
+<p >
+	<form id="guessDay" >
+		<label>Choose Day:</label>
+		<select id='chooseDay' name="days1">
+		</select>
+
+		<br/>
+	</form>
+</p>
+
+<p >
+	<form id="guessHour" >
+		<label>Choose Hour:</label>
+		<select id='chooseHour' name="hours1">
+		</select>
+
+		<br/>
+	</form>
+</p>
+-->
 
 <!--
 -->
 <div hidden>
+
+	<div googCal>
+		<br>
+	<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=imodssched%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FPhoenix" style="border-width:2" width="1280" height="720" frameborder="2" scrolling="no"></iframe>	<br>
+	</div>
+
+
+	<p id="startDate1">${startDate1}</p>
+	<p id="endDate1">${endDate1}</p>
+	<p id="creditHours1">${creditHours1}</p>
+	<p id="timeRatio1">${timeRatio1}</p>
+	<p id="currName1">${currName1}</p>
+
 
 	<p id="roomInfo">
 		<br/></p>
