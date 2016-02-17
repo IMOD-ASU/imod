@@ -69,6 +69,7 @@ environments {
 	development {
 		grails.logging.jul.usebridge = true
 		grails.gorm.failOnError = true
+		logSql = true
 	}
 	test {
 		grails.logging.jul.usebridge = true
@@ -88,6 +89,8 @@ log4j = {
 	//appenders {
 	//	console name: 'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
 	//}
+	debug 'org.hibernate.SQL'
+   	trace 'org.hibernate.type'
 
 	error	'org.codehaus.groovy.grails.web.servlet',		// controllers
 			'org.codehaus.groovy.grails.web.pages',			// GSP

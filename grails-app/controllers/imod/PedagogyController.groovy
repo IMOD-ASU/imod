@@ -100,6 +100,7 @@ class PedagogyController {
 		def selectedKnowledgeDimensions = []
 		def selectedDomainCategories = []
 		def selectedLearningDomains = []
+
 		for (def knowledgeDimension in data.selectedKnowledgeDimensions) {
 			selectedKnowledgeDimensions.add(knowledgeDimension.toLong())
 		}
@@ -110,9 +111,17 @@ class PedagogyController {
 			selectedLearningDomains.add(learningDomain.toLong())
 		}
 
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
 		// find all technique where both the knowledge dimension and the domain category match
 		final idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
+				// or {
+				// 	eq('isAdmin', true)
+				// 	users {
+				// 		eq('id', currentUser.id)
+				// 	}
+				// }
 				knowledgeDimension {
 					'in' ('id', selectedKnowledgeDimensions)
 				}
@@ -131,6 +140,12 @@ class PedagogyController {
 		// find all technique that are not ideal, but have the learning domain
 		final extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
+				// or {
+				// 	eq('isAdmin', true)
+				// 	users {
+				// 		eq('id', currentUser.id)
+				// 	}
+				// }
 				learningDomain {
 					'in' ('id', selectedLearningDomains)
 				}
@@ -153,7 +168,6 @@ class PedagogyController {
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
 
-		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 		final favoriteTechniques = currentUser.favoriteTechnique.id
 		def stringfavoriteTechniques = []
 		// Convert int to string

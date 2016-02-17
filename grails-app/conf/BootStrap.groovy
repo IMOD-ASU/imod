@@ -1338,9 +1338,11 @@ class BootStrap {
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('in-person')
+				pedagogyMode: PedagogyMode.findByName('in-person'),
+				isAdmin: true
 			).save()
-
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 
 			new PedagogyActivity(
@@ -1351,6 +1353,8 @@ class BootStrap {
 				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration('Single Session'),
 				pedagogyTechnique:pedagogyTech
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			new PedagogyReference(
 				title: 'Student_Engagement_Techniques',
@@ -1380,8 +1384,11 @@ class BootStrap {
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -1438,8 +1445,11 @@ class BootStrap {
 				focus: PedagogyActivityFocus.findAllByFocusInList([
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -1464,8 +1474,11 @@ class BootStrap {
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('in-person')
+				pedagogyMode: PedagogyMode.findByName('in-person'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -1490,8 +1503,11 @@ class BootStrap {
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -1560,8 +1576,11 @@ class BootStrap {
 					'Reading',
 					'Writing'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -2535,7 +2554,10 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Critical Debate'
@@ -2554,7 +2576,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Round table'
@@ -2569,7 +2594,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Digital 3D Scanning'
@@ -2585,7 +2613,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Designettes Technique'
@@ -2601,7 +2632,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Game Learning Techniques'
@@ -2620,7 +2654,10 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Psychomotor'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Mobile based Game LEarning Technique'
@@ -2639,7 +2676,10 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Psychomotor'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Asynchronous Online Discussion forums'
@@ -2657,9 +2697,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
-			newTechnique = new PedagogyTechnique()	
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Text Mining on Student Diaries'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Qualitative Text Mining in Student’s Service Learning Diary Hsu Chia-Ling,Chang ya-Fung'
@@ -2675,7 +2718,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Project Based Mobile Learning'
@@ -2693,7 +2739,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Flow chart based Concept learning'
@@ -2711,9 +2760,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
-			newTechnique = new PedagogyTechnique()	
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Step Based Learning Software'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'CONCEPTIONS OF PROJECT-BASED MOBILE LEARNING AMONG COLLEGE STUDENTS Chiung-Sui Chang and Ya-Ping Huang'
@@ -2729,7 +2781,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Hybrid Learning Technique'
@@ -2744,7 +2799,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Classroom Demo Technique'
@@ -2761,7 +2819,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Lecture'
@@ -2779,9 +2840,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
-			newTechnique = new PedagogyTechnique()	
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Flipped Charts'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
@@ -2795,7 +2859,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'After Action Reviews'
@@ -2810,8 +2877,11 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
-			
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Seating Arrangements'
 			newTechnique.materials = 'materials'
@@ -2824,8 +2894,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
-						newTechnique = new PedagogyTechnique()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Case Study'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. “Collaborative Learning Techniques“, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 182-188.'
@@ -2840,7 +2914,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Partially guided programming exercise'
@@ -2855,7 +2932,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Think aloud pair problem solving'
@@ -2873,7 +2953,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Classify'
@@ -2889,7 +2972,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Jigsaw'
@@ -2906,7 +2992,10 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2923,7 +3012,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Frames'
@@ -2939,7 +3031,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 
@@ -2963,8 +3058,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
-newTechnique.save()
+
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Analytic Teams'
@@ -2981,7 +3080,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 
@@ -2999,8 +3101,12 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
-newTechnique.save()
+
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Collaborative Writing'
@@ -3016,7 +3122,10 @@ newTechnique.save()
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 
@@ -3036,7 +3145,10 @@ newTechnique.save()
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3052,7 +3164,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Stations'
@@ -3067,7 +3182,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Insights-Resources-Application'
@@ -3083,7 +3201,10 @@ newTechnique.save()
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'WebQuests'
@@ -3098,7 +3219,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 
@@ -3122,7 +3246,10 @@ newTechnique.save()
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Test Taking Teams'
@@ -3137,7 +3264,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3154,8 +3284,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
-newTechnique.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3177,7 +3309,10 @@ newTechnique.save()
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3197,8 +3332,10 @@ newTechnique.save()
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
-newTechnique.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3218,7 +3355,10 @@ newTechnique.save()
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3237,8 +3377,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
-newTechnique.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3256,8 +3398,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
-newTechnique.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3276,7 +3420,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3292,8 +3439,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-
-newTechnique.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3312,8 +3461,10 @@ newTechnique.save()
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-
-newTechnique.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Peer Editing'
@@ -3335,8 +3486,10 @@ newTechnique.save()
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
-
-newTechnique.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3358,8 +3511,10 @@ newTechnique.save()
 
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-
-newTechnique.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3381,8 +3536,10 @@ newTechnique.save()
 
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
-
-newTechnique.save()
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			/*Pedagogy Technique*/
@@ -3393,8 +3550,11 @@ newTechnique.save()
 				category: DomainCategory.findAllByNameInList(['Applying','Analyzing']),
 				knowledge: KnowledgeDimension.findAllByDescriptionInList(['Factual', 'Conceptual', 'Procedural', 'Metacognitive']),
 				focus: PedagogyActivityFocus.findAllByFocusInList(['Writing', 'Discussing']),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -3463,8 +3623,11 @@ newTechnique.save()
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
