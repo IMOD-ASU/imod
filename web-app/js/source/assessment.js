@@ -185,9 +185,12 @@ function displayAssessmentInformationInEdit (isClone, block) {
 		$('.assessment-title').html('<strong>Edit Assessment Technique</strong>');
 	}
 
-	if (block.parents('.assessment-block').hasClass('isAdmin')) {
+	if (block.parents('.assessment-block').hasClass('isAdmin') && $('a.admin-link').length < 1) {
 		$('.admin-edit-msg').remove();
-		if (!isClone) {
+		if (isClone) {
+			$('#saveButton').show();
+			$('.admin-edit-msg').remove();
+		} else {
 			$('.assessment-title').html('<strong>View Assessment Technique</strong>');
 			$('#saveButton').hide();
 			$('#saveButton').after('<div class="admin-edit-msg">This technique is provided by the administrator and cannot be edited</div>');
@@ -657,6 +660,8 @@ $('#new-technique-button').on('click', function () {
 	'use strict';
 	$('.assessment-title').html('<strong>Add New Assessment Technique</strong>');
 	openNewAssessmentTechniqueModal();
+	$('#saveButton').show();
+	$('.admin-edit-msg').remove();
 });
 
 // When add assessment  plan button is clicked open modal
