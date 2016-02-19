@@ -23,8 +23,12 @@ import imod.ScheduleWeekDays
 import imod.Audience
 import imod.AssessmentFeedback
 
+import groovy.sql.Sql
+
 
 class BootStrap {
+
+	def dataSource
 
 	def init = { servletContext ->
 		def tempRole
@@ -78,358 +82,283 @@ class BootStrap {
 				role: adminRole
 			).save()
 
-			/**
-			 *
-			 * These are the help information for the Course Overview tab
-			 * Course Overview is the 1st tab
-			 *
-			 */
-			new Help(
-				tabFieldUiId: 'Save Course Overview',
-				tabId: 'OVERVIEW',
-				tabFieldId: 1,
-				tabFieldName: 'Save Course Overview',
-				text: 'Click on this button to save a Course overview'
-			).save()
+			/*
+				Help Data
+			*/
+			def help = [
 
-			new Help(
-				tabFieldUiId: 'Delete Course Overview',
-				tabId: 'OVERVIEW',
-				tabFieldId: 2,
-				tabFieldName: 'Delete Course Overview',
-				text: 'Click on this button to remove a Course overview'
-			).save()
+				// These are the help information for the Course Overview tab
+				// Course Overview is the 1st tab
 
-			new Help(
-				tabFieldUiId: 'Schedule start Date',
-				tabId: 'OVERVIEW',
-				tabFieldId: 3,
-				tabFieldName: 'Schedule start Date',
-				text: 'Click on this button to select a Schedule start date'
-			).save()
+				[
+					tabFieldUiId: 'Save Course Overview',
+					tabId: 'OVERVIEW',
+					tabFieldId: 1,
+					tabFieldName: 'Save Course Overview',
+					text: 'Click on this button to save a Course overview'
+				], [
+					tabFieldUiId: 'Delete Course Overview',
+					tabId: 'OVERVIEW',
+					tabFieldId: 2,
+					tabFieldName: 'Delete Course Overview',
+					text: 'Click on this button to remove a Course overview'
+				],[
+	                tabFieldUiId: 'Schedule start Date',
+	                tabId: 'OVERVIEW',
+	                tabFieldId: 3,
+	                tabFieldName: 'Schedule start Date',
+	                text: 'Click on this button to select a Schedule start date'
+	            ], [
+	                tabFieldUiId: 'Schedule end Date',
+	                tabId: 'OVERVIEW',
+	                tabFieldId: 4,
+	                tabFieldName: 'Schedule end Date',
+	                text: 'Click on this button to select a Schedule end date'
+	            ], [
+	                tabFieldUiId: 'Add instructor',
+	                tabId: 'OVERVIEW',
+	                tabFieldId: 5,
+	                tabFieldName: 'Add instructor',
+	                text: 'Click on this button to add a Instructor'
+	            ], [
+	                tabFieldUiId: 'Last Name Label',
+	                tabId: 'OVERVIEW',
+	                tabFieldId: 6,
+	                tabFieldName: 'Last Name',
+	                text: 'Last Name'
+	            ], [
+	                tabFieldUiId: 'First Name Label',
+	                tabId: 'OVERVIEW',
+	                tabFieldId: 7,
+	                tabFieldName: 'First Name',
+	                text: 'First Name'
+	            ], [
+	                tabFieldUiId: 'Email Label',
+	                tabId: 'OVERVIEW',
+	                tabFieldId: 8,
+	                tabFieldName: 'Email',
+	                text: 'Email'
+	            ], [
+	                tabFieldUiId: 'Office Hours Label',
+	                tabId: 'OVERVIEW',
+	                tabFieldId: 9,
+	                tabFieldName: 'Office Hours',
+	                text: 'Office Hours'
+	            ], [
+	                tabFieldUiId: 'Web Page Label',
+	                tabId: 'OVERVIEW',
+	                tabFieldId: 10,
+	                tabFieldName: 'Web Page',
+	                text: 'Web Page'
+	            ],
 
-			new Help(
-				tabFieldUiId: 'Schedule end Date',
-				tabId: 'OVERVIEW',
-				tabFieldId: 4,
-				tabFieldName: 'Schedule end Date',
-				text: 'Click on this button to select a Schedule end date'
-			).save()
+	            // These are the help information for the Learning Objective tab
+				// Learning Objective is the 2st tab
+				[
+	                tabFieldUiId: 'Add Learning Objective',
+	                tabId: 'LEARNINGOBJECTIVE',
+	                tabFieldId: 2,
+	                tabFieldName: 'Add Learning Objective',
+	                text: 'Click on this button to add a Learning Objective'
+	            ], [
+	                tabFieldUiId: 'Learning Domain',
+	                tabId: 'LEARNINGOBJECTIVE',
+	                tabFieldId: 2,
+	                tabFieldName: 'Learning Domain',
+	                text: 'Select a Domain for student to Learn'
+	            ], [
+	                tabFieldUiId: 'Learning Category',
+	                tabId: 'LEARNINGOBJECTIVE',
+	                tabFieldId: 2,
+	                tabFieldName: 'Learning Category',
+	                text: 'Select a Category for student to Learn'
+	            ], [
+	                tabFieldUiId: 'Hide from Objective',
+	                tabId: 'LEARNINGOBJECTIVE',
+	                tabFieldId: 2,
+	                tabFieldName: 'Hide from Objective',
+	                text: 'Hides this custom condition from the Learning Objective'
+	            ],
 
-			new Help(
-				tabFieldUiId: 'Add instructor',
-				tabId: 'OVERVIEW',
-				tabFieldId: 5,
-				tabFieldName: 'Add instructor',
-				text: 'Click on this button to add a Instructor'
-			).save()
+	        	// These are the help tips for the Content Tab
+	            // Content is the 3rd Tab
 
-			new Help(
-				tabFieldUiId: 'Last Name Label',
-				tabId: 'OVERVIEW',
-				tabFieldId: 6,
-				tabFieldName: 'Last Name',
-				text: 'Last Name'
-			).save()
+	            [
+	                tabFieldUiId: 'Add Learning Objective',
+	                tabId: 'CONTENT',
+	                tabFieldId: 1,
+	                tabFieldName: 'Add Learning Objective',
+	                text: 'Click on this button to add a Learning Objective'
+	            ], [
+	                tabFieldUiId: 'Remove Learning Objective',
+	                tabId: 'CONTENT',
+	                tabFieldId: 2,
+	                tabFieldName: 'Remove Learning Objective',
+	                text: 'Click on this button to remove a Learning Objective'
+	            ], [
+	                tabFieldUiId: 'Add Objective',
+	                tabId: 'CONTENT',
+	                tabFieldId: 3,
+	                tabFieldName: 'Add Objective',
+	                text: 'Add Objective'
+	            ], [
+	                tabFieldUiId: 'Topic Schedule',
+	                tabId: 'CONTENT',
+	                tabFieldId: 4,
+	                tabFieldName: 'Topic Schedule',
+	                text: 'Click on this button to add a Topic Schedule'
+	            ], [
+	                tabFieldUiId: 'Topic Map',
+	                tabId: 'CONTENT',
+	                tabFieldId: 5,
+	                tabFieldName: 'Topic Map',
+	                text: 'Topic Map'
+	            ], [
+	                tabFieldUiId: 'Add topic schedule',
+	                tabId: 'CONTENT',
+	                tabFieldId: 6,
+	                tabFieldName: 'Add topic schedule',
+	                text: 'Add topic schedule'
+	            ], [
+	                tabFieldUiId: 'Add Topic Form',
+	                tabId: 'CONTENT',
+	                tabFieldId: 7,
+	                tabFieldName: 'Add Topic',
+	                text: 'Add Topic'
+	            ], [
+	                tabFieldUiId: 'Remove Topic Widget',
+	                tabId: 'CONTENT',
+	                tabFieldId: 8,
+	                tabFieldName: 'Remove Topic Widget',
+	                text: 'Remove Topic'
+	            ], [
+	                tabFieldUiId: 'Add Topic',
+	                tabId: 'CONTENT',
+	                tabFieldId: 9,
+	                tabFieldName: 'Add Topic',
+	                text: 'Click on this button to add a Topic'
+	            ], [
+	                tabFieldUiId: 'Remove Topic',
+	                tabId: 'CONTENT',
+	                tabFieldId: 10,
+	                tabFieldName: 'Remove Topic',
+	                text: 'Click on this button to remove a Topic'
+	            ], [
+	                tabFieldUiId: 'Add Resource',
+	                tabId: 'CONTENT',
+	                tabFieldId: 11,
+	                tabFieldName: 'Add Resource',
+	                text: 'Add Resource'
+	            ], [
+	                tabFieldUiId: 'Topic Distributions',
+	                tabId: 'CONTENT',
+	                tabFieldId: 12,
+	                tabFieldName: 'Topic Distributions',
+	                text: 'Click on this button to display topic distributions'
+	            ], [
+	                tabFieldUiId: 'Topic Label',
+	                tabId: 'CONTENT',
+	                tabFieldId: 13,
+	                tabFieldName: 'Topic',
+	                text: 'Topic'
+	            ], [
+	                tabFieldUiId: 'Knowledge Dimension Label',
+	                tabId: 'CONTENT',
+	                tabFieldId: 14,
+	                tabFieldName: 'Knowledge Dimension',
+	                text: 'Knowledge Dimension'
+	            ], [
+	                tabFieldUiId: 'Priority Label',
+	                tabId: 'CONTENT',
+	                tabFieldId: 15,
+	                tabFieldName: 'Priority Label',
+	                text: 'Priority'
+	            ], [
+	                tabFieldUiId: 'Rereference Label',
+	                tabId: 'CONTENT',
+	                tabFieldId: 16,
+	                tabFieldName: 'Rereference Label',
+	                text: 'Rereference'
+	            ], [
+	                tabFieldUiId: 'Pre-Req Label',
+	                tabId: 'CONTENT',
+	                tabFieldId: 17,
+	                tabFieldName: 'Pre-Req Label',
+	                text: 'Pre-Req'
+	            ],
 
-			new Help(
-				tabFieldUiId: 'First Name Label',
-				tabId: 'OVERVIEW',
-				tabFieldId: 7,
-				tabFieldName: 'First Name',
-				text: 'First Name'
-			).save()
 
-			new Help(
-				tabFieldUiId: 'Email Label',
-				tabId: 'OVERVIEW',
-				tabFieldId: 8,
-				tabFieldName: 'Email',
-				text: 'Email'
-			).save()
+	            // Help tool tips for the Pedagogy Tab
+	            // Padagogy is the 5th tab
+	            [
+	                tabFieldUiId: 'Add New Technique',
+	                tabId: 'PEDAGOGY',
+	                tabFieldId: 1,
+	                tabFieldName: 'Add New Technique',
+	                text: 'Click on this button to add a new technique'
+	            ], [
+	                tabFieldUiId: 'Clone technique',
+	                tabId: 'PEDAGOGY',
+	                tabFieldId: 2,
+	                tabFieldName: 'Clone technique',
+	                text: 'Click on this button to clone a technique'
+	            ], [
+	                tabFieldUiId: 'Favorites',
+	                tabId: 'PEDAGOGY',
+	                tabFieldId: 3,
+	                tabFieldName: 'Favorites',
+	                text: 'Favorites displays the techniques that have be made the user\'s favorites'
+	            ], [
+	                tabFieldUiId: 'Instructional Plan',
+	                tabId: 'PEDAGOGY',
+	                tabFieldId: 4,
+	                tabFieldName: 'Instructional Plan',
+	                text: 'Yet to be implemented'
+	            ], [
+	                tabFieldUiId: 'Ideal Match',
+	                tabId: 'PEDAGOGY',
+	                tabFieldId: 5,
+	                tabFieldName: 'Ideal Match',
+	                text: 'Ideal Match displays the techniques that exactly match the Domain, Domain Category and Knowledge Dimension of the objective selected.'
+	            ], [
+	                tabFieldUiId: 'Extended Match',
+	                tabId: 'PEDAGOGY',
+	                tabFieldId: 6,
+	                tabFieldName: 'Extended Match',
+	                text: 'Extended Match displays the techniques that match the Domain, Domain Category and Knowledge Dimension of the selections made in the Filter Options'
+	            ], [
+	                tabFieldUiId: 'Domain',
+	                tabId: 'PEDAGOGY',
+	                tabFieldId: 7,
+	                tabFieldName: 'Domain',
+	                text: 'Bloom\'s Taxonomy definition the domains of educational activities or learning (Cognitive, Affective and Psychomotive)'
+	            ], [
+	                tabFieldUiId: 'Domain Category',
+	                tabId: 'PEDAGOGY',
+	                tabFieldId: 8,
+	                tabFieldName: 'Domain Category',
+	                text: 'The categories were expressed as verbs rather than nouns as Remembering, Understanding, Applying, Analyzing, Evaluating, and Creating'
+	            ], [
+	                tabFieldUiId: 'Knowledge Dimension',
+	                tabId: 'PEDAGOGY',
+	                tabFieldId: 9,
+	                tabFieldName: 'Knowledge Dimension',
+	                text: 'The Knowledge Dimension embodied both noun and verb aspects and categorized as Factual, Conceptual, Procedural and Metacognitive Knowledge '
+	            ], [
+	                tabFieldUiId: 'Refresh',
+	                tabId: 'Refresh',
+	                tabFieldId: 10,
+	                tabFieldName: 'Web Page',
+	                text: 'Clicking on Refresh displays the techniques that belongs the selections on the Domain, Domain Category and Knowledge Dimension in the Extended match.'
+	            ]
 
-			new Help(
-				tabFieldUiId: 'Office Hours Label',
-				tabId: 'OVERVIEW',
-				tabFieldId: 9,
-				tabFieldName: 'Office Hours',
-				text: 'Office Hours'
-			).save()
+			]
 
-			new Help(
-				tabFieldUiId: 'Web Page Label',
-				tabId: 'OVERVIEW',
-				tabFieldId: 10,
-				tabFieldName: 'Web Page',
-				text: 'Web Page'
-			).save()
-
-
-			/**
-			 *
-			 * These are the help information for the Learning Objective tab
-			 * Learning Objective is the 2st tab
-			 *
-			 */
-			new Help(
-				tabFieldUiId: 'Add Learning Objective',
-				tabId: 'LEARNINGOBJECTIVE',
-				tabFieldId: 2,
-				tabFieldName: 'Add Learning Objective',
-				text: 'Click on this button to add a Learning Objective'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Learning Domain',
-				tabId: 'LEARNINGOBJECTIVE',
-				tabFieldId: 2,
-				tabFieldName: 'Learning Domain',
-				text: 'Select a Domain for student to Learn'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Learning Category',
-				tabId: 'LEARNINGOBJECTIVE',
-				tabFieldId: 2,
-				tabFieldName: 'Learning Category',
-				text: 'Select a Category for student to Learn'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Hide from Objective',
-				tabId: 'LEARNINGOBJECTIVE',
-				tabFieldId: 2,
-				tabFieldName: 'Hide from Objective',
-				text: 'Hides this custom condition from the Learning Objective'
-			).save()
-
-			/**
-			 *
-			 * These are the help tips for the Content Tab
-			 * Content is the 3rd Tab
-			 *
-			 */
-			new Help(
-				tabFieldUiId: 'Add Learning Objective',
-				tabId: 'CONTENT',
-				tabFieldId: 1,
-				tabFieldName: 'Add Learning Objective',
-				text: 'Click on this button to add a Learning Objective'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Remove Learning Objective',
-				tabId: 'CONTENT',
-				tabFieldId: 2,
-				tabFieldName: 'Remove Learning Objective',
-				text: 'Click on this button to remove a Learning Objective'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Add Objective',
-				tabId: 'CONTENT',
-				tabFieldId: 3,
-				tabFieldName: 'Add Objective',
-				text: 'Add Objective'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Topic Schedule',
-				tabId: 'CONTENT',
-				tabFieldId: 4,
-				tabFieldName: 'Topic Schedule',
-				text: 'Click on this button to add a Topic Schedule'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Topic Map',
-				tabId: 'CONTENT',
-				tabFieldId: 5,
-				tabFieldName: 'Topic Map',
-				text: 'Topic Map'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Add topic schedule',
-				tabId: 'CONTENT',
-				tabFieldId: 6,
-				tabFieldName: 'Add topic schedule',
-				text: 'Add topic schedule'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Add Topic Form',
-				tabId: 'CONTENT',
-				tabFieldId: 7,
-				tabFieldName: 'Add Topic',
-				text: 'Add Topic'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Remove Topic Widget',
-				tabId: 'CONTENT',
-				tabFieldId: 8,
-				tabFieldName: 'Remove Topic Widget',
-				text: 'Remove Topic'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Add Topic',
-				tabId: 'CONTENT',
-				tabFieldId: 9,
-				tabFieldName: 'Add Topic',
-				text: 'Click on this button to add a Topic'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Remove Topic',
-				tabId: 'CONTENT',
-				tabFieldId: 10,
-				tabFieldName: 'Remove Topic',
-				text: 'Click on this button to remove a Topic'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Add Resource',
-				tabId: 'CONTENT',
-				tabFieldId: 11,
-				tabFieldName: 'Add Resource',
-				text: 'Add Resource'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Topic Distributions',
-				tabId: 'CONTENT',
-				tabFieldId: 12,
-				tabFieldName: 'Topic Distributions',
-				text: 'Click on this button to display topic distributions'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Topic Label',
-				tabId: 'CONTENT',
-				tabFieldId: 13,
-				tabFieldName: 'Topic',
-				text: 'Topic'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Knowledge Dimension Label',
-				tabId: 'CONTENT',
-				tabFieldId: 14,
-				tabFieldName: 'Knowledge Dimension',
-				text: 'Knowledge Dimension'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Priority Label',
-				tabId: 'CONTENT',
-				tabFieldId: 15,
-				tabFieldName: 'Priority Label',
-				text: 'Priority'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Rereference Label',
-				tabId: 'CONTENT',
-				tabFieldId: 16,
-				tabFieldName: 'Rereference Label',
-				text: 'Rereference'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Pre-Req Label',
-				tabId: 'CONTENT',
-				tabFieldId: 17,
-				tabFieldName: 'Pre-Req Label',
-				text: 'Pre-Req'
-			).save()
-
-			/**
-			 *
-			 * Help tool tips for the Pedagogy Tab
-			 * Padagogy is the 5th tab
-			 *
-			 */
-			new Help(
-				tabFieldUiId: 'Add New Technique',
-				tabId: 'PEDAGOGY',
-				tabFieldId: 1,
-				tabFieldName: 'Add New Technique',
-				text: 'Click on this button to add a new technique'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Clone technique',
-				tabId: 'PEDAGOGY',
-				tabFieldId: 2,
-				tabFieldName: 'Clone technique',
-				text: 'Click on this button to clone a technique'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Favorites',
-				tabId: 'PEDAGOGY',
-				tabFieldId: 3,
-				tabFieldName: 'Favorites',
-				text: 'Favorites displays the techniques that have be made the user\'s favorites'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Instructional Plan',
-				tabId: 'PEDAGOGY',
-				tabFieldId: 4,
-				tabFieldName: 'Instructional Plan',
-				text: 'Yet to be implemented'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Ideal Match',
-				tabId: 'PEDAGOGY',
-				tabFieldId: 5,
-				tabFieldName: 'Ideal Match',
-				text: 'Ideal Match displays the techniques that exactly match the Domain, Domain Category and Knowledge Dimension of the objective selected.'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Extended Match',
-				tabId: 'PEDAGOGY',
-				tabFieldId: 6,
-				tabFieldName: 'Extended Match',
-				text: 'Extended Match displays the techniques that match the Domain, Domain Category and Knowledge Dimension of the selections made in the Filter Options'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Domain',
-				tabId: 'PEDAGOGY',
-				tabFieldId: 7,
-				tabFieldName: 'Domain',
-				text: 'Bloom\'s Taxonomy definition the domains of educational activities or learning (Cognitive, Affective and Psychomotive)'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Domain Category',
-				tabId: 'PEDAGOGY',
-				tabFieldId: 8,
-				tabFieldName: 'Domain Category',
-				text: 'The categories were expressed as verbs rather than nouns as Remembering, Understanding, Applying, Analyzing, Evaluating, and Creating'
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Knowledge Dimension',
-				tabId: 'PEDAGOGY',
-				tabFieldId: 9,
-				tabFieldName: 'Knowledge Dimension',
-				text: 'The Knowledge Dimension embodied both noun and verb aspects and categorized as Factual, Conceptual, Procedural and Metacognitive Knowledge '
-			).save()
-
-			new Help(
-				tabFieldUiId: 'Refresh',
-				tabId: 'Refresh',
-				tabFieldId: 10,
-				tabFieldName: 'Web Page',
-				text: 'Clicking on Refresh displays the techniques that belongs the selections on the Domain, Domain Category and Knowledge Dimension in the Extended match.'
-			).save()
+			// iterate the help list
+			// and save to DB
+			help.each {
+				new Help(it).save()
+			}
 
 			def audience = new Audience(
 				description: 'Lower Division'
@@ -447,29 +376,20 @@ class BootStrap {
 				description: 'Graduate'
 			).save()
 
-			def ScheduleRepeatsDaily = new ScheduleRepeats(
-				description: 'Daily'
-			).save()
+			def scheduleRepeats = [
+				'Daily',
+				'Every Weekday (Monday to Friday)',
+				'Every Monday and Wednesday',
+				'Every Monday, Wednesday and Friday',
+				'Every Tuesday and Thursday',
+				'Weekly'
+			]
 
-			def ScheduleRepeatsWeekDay = new ScheduleRepeats(
-				description: 'Every Weekday (Monday to Friday)'
-			).save()
-
-			def ScheduleRepeatsMW = new ScheduleRepeats(
-				description: 'Every Monday and Wednesday'
-			).save()
-
-			def ScheduleRepeatsMWF = new ScheduleRepeats(
-				description: 'Every Monday, Wednesday and Friday'
-			).save()
-
-			def ScheduleRepeatsTTh = new ScheduleRepeats(
-				description: 'Every Tuesday and Thursday'
-			).save()
-
-			def ScheduleRepeatsWeekly = new ScheduleRepeats(
-				description: 'Weekly'
-			).save()
+			scheduleRepeats.each {
+				new ScheduleRepeats(
+					description: it
+				).save()
+			}
 
 			for (int i =1; i <= 30; i++) {
 				def ScheduleRepeatsE = new ScheduleRepeatsEvery(
@@ -478,33 +398,13 @@ class BootStrap {
 				ScheduleRepeatsE.save()
 			}
 
-			def ScheduleSunday = new ScheduleWeekDays(
-				description: 'S'
-			).save()
+			def scheduleDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 
-			def ScheduleMonday = new ScheduleWeekDays(
-				description: 'M'
-			).save()
-
-			def ScheduleTuesday = new ScheduleWeekDays(
-				description: 'T'
-			).save()
-
-			def ScheduleWednesday = new ScheduleWeekDays(
-				description: 'W'
-			).save()
-
-			def ScheduleThursday = new ScheduleWeekDays(
-				description: 'T'
-			).save()
-
-			def ScheduleFriday = new ScheduleWeekDays(
-				description: 'F'
-			).save()
-
-			def ScheduleSaturday = new ScheduleWeekDays(
-				description: 'S'
-			).save()
+			scheduleDays.each {
+				new ScheduleWeekDays(
+					description: it
+				).save()
+			}
 
 			/**
 			 * Generate Learning Domains, Domain Categories and Action Words
@@ -1199,25 +1099,25 @@ class BootStrap {
 
 			domainCategoryOrigination.save()
 
-			new KnowledgeDimension(
-				description: 'Factual',
-				info: 'The knowledge of terminology, details, or elements.'
-			).save()
+			def knowledgeDimensions = [
+				[
+	                description: 'Factual',
+	                info: 'The knowledge of terminology, details, or elements.'
+	            ], [
+	                description: 'Conceptual',
+	                info: 'The knowledge classifications, generalizations, and theories.'
+	            ], [
+	                description: 'Procedural',
+	                info: 'The knowledge of subject specific skills and techniques;the knowledge of criteria for when to use appropriate procedures'
+	            ], [
+	                description: 'Metacognitive',
+	                info: 'The knowledge about cognitive tasks; strategic knowledge and self-knowledge.'
+	            ]
+			]
 
-			new KnowledgeDimension(
-				description: 'Conceptual',
-				info: 'The knowledge classifications, generalizations, and theories.'
-			).save()
-
-			new KnowledgeDimension(
-				description: 'Procedural',
-				info: 'The knowledge of subject specific skills and techniques;the knowledge of criteria for when to use appropriate procedures'
-			).save()
-
-			new KnowledgeDimension(
-				description: 'Metacognitive',
-				info: 'The knowledge about cognitive tasks; strategic knowledge and self-knowledge.'
-			).save()
+			knowledgeDimensions.each {
+				new KnowledgeDimension(it).save()
+			}
 
 			new ResourceType(
 				description: 'Document'
@@ -1353,8 +1253,6 @@ class BootStrap {
 				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration('Single Session'),
 				pedagogyTechnique:pedagogyTech
 			).save()
-			admin.addToPedagogyTechnique(pedagogyTech)
-			admin.save()
 
 			new PedagogyReference(
 				title: 'Student_Engagement_Techniques',
