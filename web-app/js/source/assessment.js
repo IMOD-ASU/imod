@@ -338,6 +338,8 @@ function displayAssessmentTechniques (data) {
 
 	$('#ideal-matches1').html(text);
 	$('#ideal-matches1').buttonset();
+	$('#ideal-matches1').height(300);
+
 	text = '';
 
 	// Take the titles and make html code to display
