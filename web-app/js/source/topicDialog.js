@@ -392,9 +392,9 @@ function deleteTopic (contentIDs) {
 					$('#' + element).remove();
 				}
 			);
+			location.reload();
 		}
 	});
-	location.reload();
 }
 
 function saveTopic () {

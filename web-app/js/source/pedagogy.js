@@ -334,6 +334,7 @@ function displayPedagogyTechniques (data) {
 	$('#extended-matches').html(extendedText);
 
 	$('#ideal-matches').buttonset();
+	$('#ideal-matches1').height(300);
 
 	$(document).on('click', '#topLeft img', function () {
 		var str = '';
