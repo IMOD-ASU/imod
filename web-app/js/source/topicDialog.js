@@ -392,9 +392,9 @@ function deleteTopic (contentIDs) {
 					$('#' + element).remove();
 				}
 			);
+			location.reload();
 		}
 	});
-	location.reload();
 }
 
 function saveTopic () {
@@ -506,7 +506,7 @@ function revertChanges () {
 	'use strict';
 	$('.topicItem').each(
 		function () {
-			if (this.id === 'undefined') {
+			if ($('#topicTempID'+this.id).val() === undefined) {
 				$(this).remove();
 			}
 		}
