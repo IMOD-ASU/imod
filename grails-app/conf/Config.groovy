@@ -69,15 +69,19 @@ environments {
 	development {
 		grails.logging.jul.usebridge = true
 		grails.gorm.failOnError = true
+		grails.plugin.console.baseUrl="/imod/console"
+		grails.plugin.console.enabled = true
 	}
 	test {
 		grails.logging.jul.usebridge = true
 		grails.gorm.failOnError = true
 		grails.serverURL = 'http://imod.poly.asu.edu:8080/imod-test'
+		grails.plugin.console.enabled = false
 	}
 	production {
 		grails.logging.jul.usebridge = false
 		grails.serverURL = 'http://imod.poly.asu.edu:8080/imod-demo'
+		grails.plugin.console.enabled = false
 	}
 }
 
@@ -129,19 +133,6 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/plugins/**':					['permitAll'],
 	'/register/**':					['permitAll'],
 	'/security/**':					['permitAll'],
-<<<<<<< HEAD
-	'/assessment/**':				['ROLE_USER'],
-	'/assessmentTechnique/**':		['ROLE_USER'],
-	'/content/**':					['ROLE_USER'],
-	'/schedule/**':					['ROLE_USER'],
-	'/courseOverview/**':			['ROLE_USER'],
-	'/imod/**':						['ROLE_USER'],
-	'/learningObjective/**':		['ROLE_USER'],
-	'/pedagogy/**':					['ROLE_USER'],
-	'/pedagogyTechnique/**':		['ROLE_USER'],
-	'/schedule/**':					['ROLE_USER'],
-	'/console':						['ROLE_ADMIN']
-=======
 	'/assessment/**':				['ROLE_USER', 'ROLE_ADMIN'],
 	'/assessmentTechnique/**':		['ROLE_USER', 'ROLE_ADMIN'],
 	'/content/**':					['ROLE_USER', 'ROLE_ADMIN'],
@@ -150,9 +141,8 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/learningObjective/**':		['ROLE_USER', 'ROLE_ADMIN'],
 	'/pedagogy/**':					['ROLE_USER', 'ROLE_ADMIN'],
 	'/pedagogyTechnique/**':		['ROLE_USER', 'ROLE_ADMIN'],
-	'/console':						['ROLE_ADMIN'],
+	'/console/*':					['ROLE_ADMIN'],
 	'/admin/**': 					['ROLE_ADMIN']
->>>>>>> d7bd0f19ba74f208ad86a924c18237fdb35162fb
 ]
 //to allow user to login, avoid double encryption
 grails.plugin.springsecurity.ui.encodePassword = false
