@@ -395,7 +395,6 @@ function deleteTopic (contentIDs) {
 			location.reload();
 		}
 	});
-
 }
 
 function saveTopic () {
