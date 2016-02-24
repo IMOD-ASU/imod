@@ -506,7 +506,7 @@ function revertChanges () {
 	'use strict';
 	$('.topicItem').each(
 		function () {
-			if (this.id === 'undefined') {
+			if (document.getElementById("topicTempID" + this.id).value === 'undefined') {
 				$(this).remove();
 			}
 		}
