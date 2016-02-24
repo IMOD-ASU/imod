@@ -19,6 +19,7 @@ class ImodController {
 	def springSecurityService
 
 	def index() {
+
 		redirect(
 			action: 'list',
 			params: params
@@ -351,7 +352,7 @@ class ImodController {
 
 			// assign favorite pedagogy and assessment techniques to the
 			// user
-			currentUser.addToFavoriteTechnique(PedagogyTechnique.findByTitle('Fishbowl'))
+			currentUser.addToFavoriteTechnique(PedagogyTechnique.findByTitle('Lecture'))
 			currentUser.addToFavoriteAssessmentTechnique(AssessmentTechnique.findByTitle('Final Project'))
 
 			// save new imod and the updated user to database
@@ -423,10 +424,13 @@ class ImodController {
 			lo1.hideFromLearningObjectiveCondition = 'FALSE'
 			lo1.performance = 'Apply'
 
-			// Assign assessment and pedagogy techniques to this LO
+			// assign techniques
 			lo1.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Project'))
+			lo1.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Exam'))
+			lo1.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Midterm test'))
 
-			lo1.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Fishbowl'))
+			lo1.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Structured Problem Solving'))
+			lo1.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Lecture'))
 
 			// store relationship
 			lo1.save()
@@ -452,6 +456,14 @@ class ImodController {
 			lo2.criteriaSpeedHidden = 'FALSE'
 			lo2.hideFromLearningObjectiveCondition = 'FALSE'
 			lo2.performance = 'Apply'
+
+			// assign techniques
+			lo2.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Project'))
+			lo2.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Exam'))
+			lo2.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Midterm test'))
+
+			lo2.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Lecture'))
+
 			lo2.save()
 
 			// LO(3)
@@ -475,6 +487,14 @@ class ImodController {
 			lo3.criteriaSpeedHidden = 'FALSE'
 			lo3.hideFromLearningObjectiveCondition = 'FALSE'
 			lo3.performance = 'Apply'
+
+			// assign techniques
+			lo3.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Project'))
+			lo3.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Exam'))
+			lo3.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Midterm test'))
+
+			lo3.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Lecture'))
+
 			lo3.save()
 
 			// LO(4)
@@ -497,6 +517,14 @@ class ImodController {
 			lo4.criteriaSpeedEnabled = 'FALSE'
 			lo4.criteriaSpeedHidden = 'FALSE'
 			lo4.performance = 'Understand'
+
+			// assign techniques
+			lo4.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Project'))
+			lo4.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Exam'))
+			lo4.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Midterm test'))
+
+			lo4.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Lecture'))
+
 			lo4.save()
 
 			// LO(5)
@@ -520,6 +548,14 @@ class ImodController {
 			lo5.criteriaSpeedHidden = 'FALSE'
 			lo5.hideFromLearningObjectiveCondition = 'FALSE'
 			lo5.performance = 'Apply'
+
+			// assign techniques
+			lo5.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Project'))
+			lo5.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Exam'))
+			lo5.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Midterm test'))
+
+			lo5.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Lecture'))
+
 			lo5.save()
 
 			// LO(6)
@@ -543,6 +579,14 @@ class ImodController {
 			lo6.criteriaSpeedHidden = 'FALSE'
 			lo6.hideFromLearningObjectiveCondition = 'FALSE'
 			lo6.performance = 'Apply'
+
+			// assign techniques
+			lo6.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Project'))
+			lo6.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Exam'))
+			lo6.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Midterm test'))
+
+			lo6.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Lecture'))
+
 			lo6.save()
 
 			// content

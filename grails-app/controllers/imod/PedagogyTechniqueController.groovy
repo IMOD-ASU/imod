@@ -77,11 +77,30 @@ class PedagogyTechniqueController {
 	 * creates a new Pedagogy Technique
 	 */
 	def save(Long id, Long learningObjectiveID) {
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
 		def newTechnique = new PedagogyTechnique()
 
-		print params
-
 		if (params.techniqueId && params.cloneDetect != 'clone') {
+
+			newTechnique = PedagogyTechnique.get(params.techniqueId)
+
+			def isAdminUser = false
+			newTechnique.users.each {
+				if (it.username == 'imodadmin' && currentUser.username == 'imodadmin') {
+					isAdminUser = true
+					return true
+				}
+			}
+
+			// check if technique is admin
+			// if it is, it can only be edited
+			// by an admin
+			if (newTechnique.isAdmin && !isAdminUser) {
+				render(status: 401, text: 'Unauthorized')
+				return
+			}
+
 			PedagogyTechnique.get(params.techniqueId)
 			PedagogyTechnique.get(params.techniqueId).knowledgeDimension.clear()
 			PedagogyTechnique.get(params.techniqueId).learningDomain.clear()
@@ -142,6 +161,9 @@ class PedagogyTechniqueController {
 
 		// persist new technique to database
 		newTechnique.save()
+		// store relationship
+		currentUser.addToPedagogyTechnique(newTechnique)
+		currentUser.save()
 
 		redirect(
 			controller: 'pedagogy',

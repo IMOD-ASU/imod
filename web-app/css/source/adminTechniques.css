@@ -1,0 +1,96 @@
+#tabs-container {
+    margin-right: 2.5%;
+}
+
+.admin-table {
+    width: 98%;
+    margin: 20px auto;
+}
+
+.admin-table td,
+.admin-table th {
+    max-width: 200px;
+    padding: 5px;
+
+    word-wrap: break-word;
+
+    border: 1px solid #cccccc;
+}
+
+.technique-table td.title,
+.technique-table th.title {
+    max-width: 80px;
+}
+.technique-table td.procedure,
+.technique-table th.procedure {
+    max-width: 30px;
+}
+.technique-table td.duration,
+.technique-table th.duration {
+    max-width: 30px;
+}
+.technique-table td.difficulty,
+.technique-table th.difficulty {
+    max-width: 30px;
+}
+.technique-table td.type,
+.technique-table th.type {
+    max-width: 40px;
+}
+.technique-table td.whenToCarryOut,
+.technique-table th.whenToCarryOut {
+    max-width: 20px;
+}
+.technique-table td.isAdmin,
+.technique-table th.isAdmin {
+    max-width: 30px;
+}
+.technique-table td.addedBy,
+.technique-table th.addedBy {
+    max-width: 80px;
+}
+.addedBy ul {
+    list-style-position: inside;
+}
+
+.admin-pagination {
+    overflow: hidden;
+
+    margin-bottom: 30px;
+
+    list-style-type: none;
+
+    text-align: center;
+}
+
+.admin-pagination li {
+    display: inline-block;
+    zoom: 1;
+
+    *display: inline;
+}
+
+.admin-pagination a {
+    display: block;
+
+    width: 30px;
+
+    text-decoration: none;
+
+    color: #0c1625;
+    border: 1px solid #0c1625;
+
+    line-height: 30px;
+}
+
+.admin-pagination a:hover,
+.admin-pagination .active a {
+    color: #ffffff;
+    background: #0c1625;
+}
+
+a.topicButtonGradient {
+	text-decoration: none; color: #fff;
+	display: inline-block; *display: inline;
+	zoom: 1; padding: 3px 10px;
+}

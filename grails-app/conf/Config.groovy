@@ -106,6 +106,7 @@ log4j = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'imod.ImodUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'imod.ImodUserRole'
 grails.plugin.springsecurity.authority.className = 'imod.Role'
+grails.plugin.springsecurity.useSecurityEventListener = true
 
 
 //InterceptUrlMap to make all links secure
@@ -128,6 +129,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/plugins/**':					['permitAll'],
 	'/register/**':					['permitAll'],
 	'/security/**':					['permitAll'],
+<<<<<<< HEAD
 	'/assessment/**':				['ROLE_USER'],
 	'/assessmentTechnique/**':		['ROLE_USER'],
 	'/content/**':					['ROLE_USER'],
@@ -139,6 +141,18 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/pedagogyTechnique/**':		['ROLE_USER'],
 	'/schedule/**':					['ROLE_USER'],
 	'/console':						['ROLE_ADMIN']
+=======
+	'/assessment/**':				['ROLE_USER', 'ROLE_ADMIN'],
+	'/assessmentTechnique/**':		['ROLE_USER', 'ROLE_ADMIN'],
+	'/content/**':					['ROLE_USER', 'ROLE_ADMIN'],
+	'/courseOverview/**':			['ROLE_USER', 'ROLE_ADMIN'],
+	'/imod/**':						['ROLE_USER', 'ROLE_ADMIN'],
+	'/learningObjective/**':		['ROLE_USER', 'ROLE_ADMIN'],
+	'/pedagogy/**':					['ROLE_USER', 'ROLE_ADMIN'],
+	'/pedagogyTechnique/**':		['ROLE_USER', 'ROLE_ADMIN'],
+	'/console':						['ROLE_ADMIN'],
+	'/admin/**': 					['ROLE_ADMIN']
+>>>>>>> d7bd0f19ba74f208ad86a924c18237fdb35162fb
 ]
 //to allow user to login, avoid double encryption
 grails.plugin.springsecurity.ui.encodePassword = false

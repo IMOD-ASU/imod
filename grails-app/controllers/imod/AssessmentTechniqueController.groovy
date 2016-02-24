@@ -72,6 +72,8 @@ class AssessmentTechniqueController {
 	}
 
 	def save1(Long id, Long learningObjectiveID) {
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
 		def newTechnique = new AssessmentTechnique()
 
 		if (params.techniqueId1) {
@@ -119,15 +121,15 @@ class AssessmentTechniqueController {
 
 		// This checks when a technique is favoritized  to by a user
 		if (params.favcheck == true) {
-			// get current user object
-			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 			// add the technique to the user's favorite list
 			currentUser.addToFavoriteAssessmentTechnique(newTechnique)
 
-			// store relationship
-			currentUser.save()
 		}
+
+		// store relationships
+		currentUser.addToAssessmentTechnique(newTechnique)
+		currentUser.save()
 
 		redirect(
 			controller: 'assessment',
@@ -143,11 +145,28 @@ class AssessmentTechniqueController {
 	 * creates a new Assessment Technique
 	 */
 	def save(Long id, Long learningObjectiveID) {
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 		def newTechnique = new AssessmentTechnique()
 
 		if (params.techniqueId) {
 			newTechnique = AssessmentTechnique.get(params.techniqueId)
+
+			def isAdminUser = false
+			newTechnique.users.each {
+				if (it.username == 'imodadmin' && currentUser.username == 'imodadmin') {
+					isAdminUser = true
+					return true
+				}
+			}
+
+			// check if technique is admin
+			// if it is, it can only be edited
+			// by an admin
+			if (newTechnique.isAdmin && !isAdminUser) {
+				render(status: 401, text: 'Unauthorized')
+				return
+			}
 			newTechnique.knowledgeDimension.clear()
 			newTechnique.learningDomain.clear()
 			newTechnique.domainCategory.clear()
@@ -196,7 +215,6 @@ class AssessmentTechniqueController {
 			for (int i = 0; i < dC.length; i++) {
 				if (dC[i] != null) {
 					if (DomainCategory.findByName(dC[i]) != null) {
-						println (dC[i])
 						newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
 					}
 				}
@@ -220,15 +238,15 @@ class AssessmentTechniqueController {
 
 		// This checks when a technique is favoritized  to by a user
 		if (params.favcheck == true) {
-			// get current user object
-			def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 			// add the technique to the user's favorite list
 			currentUser.addToFavoriteAssessmentTechnique(newTechnique)
 
-			// store relationship
-			currentUser.save()
 		}
+
+		// store relationship
+		currentUser.addToAssessmentTechnique(newTechnique)
+		currentUser.save()
 
 		redirect(
 			controller: 'assessment',

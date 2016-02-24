@@ -28,6 +28,7 @@ class BootStrap {
 
 	def init = { servletContext ->
 		def tempRole
+		def adminRole
 
 		/**
 		 * Generates the user security roles
@@ -37,7 +38,7 @@ class BootStrap {
 				authority: 'ROLE_ANONYMOUS'
 			).save()
 
-			new Role(
+			adminRole = new Role(
 				authority: 'ROLE_ADMIN'
 			).save()
 
@@ -58,6 +59,23 @@ class BootStrap {
 			new ImodUserRole(
 				imodUser: developer,
 				role: tempRole
+			).save()
+
+			// Create Admin user
+			def admin = new ImodUser(
+				username: 'imodadmin',
+				password: 'imodadmin',
+				enabled: true,
+				accountExpired: false,
+				accountLocked: false,
+				passwordExpired: false,
+				email: 'contact@rahulparekh.in'
+			).save()
+
+			// Attach role to the user
+			new ImodUserRole(
+				imodUser: admin,
+				role: adminRole
 			).save()
 
 			/**
@@ -1292,8 +1310,11 @@ class BootStrap {
 					'Procedural',
 					'Metacognitive'
 				]),
-				assessmentFeedback: AssessmentFeedback.findByName('Online')
+				assessmentFeedback: AssessmentFeedback.findByName('Online'),
+				isAdmin: true
 			).save()
+			admin.addToAssessmentTechnique(assessmentTech)
+			admin.save()
 
 			/*Pedagogy Technique*/
 			def pedagogyTech = new PedagogyTechnique(
@@ -1317,9 +1338,11 @@ class BootStrap {
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('in-person')
+				pedagogyMode: PedagogyMode.findByName('in-person'),
+				isAdmin: true
 			).save()
-
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 
 			new PedagogyActivity(
@@ -1330,6 +1353,8 @@ class BootStrap {
 				pedagogyActivityDuration:PedagogyActivityDuration.findByDuration('Single Session'),
 				pedagogyTechnique:pedagogyTech
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			new PedagogyReference(
 				title: 'Student_Engagement_Techniques',
@@ -1359,8 +1384,11 @@ class BootStrap {
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -1417,8 +1445,11 @@ class BootStrap {
 				focus: PedagogyActivityFocus.findAllByFocusInList([
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -1443,8 +1474,11 @@ class BootStrap {
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('in-person')
+				pedagogyMode: PedagogyMode.findByName('in-person'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Technique*/
 			pedagogyTech = new PedagogyTechnique(
@@ -1469,8 +1503,11 @@ class BootStrap {
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -1539,8 +1576,11 @@ class BootStrap {
 					'Reading',
 					'Writing'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -1578,6 +1618,8 @@ class BootStrap {
 				pedagogyActivityDuration: PedagogyActivityDuration.findByDuration('Single Session'),
 				pedagogyTechnique: pedagogyTech
 			).save()
+
+
 			def newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Background Knowledge Probe'
 			newTechnique.description = 'This activity goes beyond the common practice of asking students what courses they have already taken in the field. Using a survey, the instructor elicits information that can be used to focus instruction on appropriate content and level of difficulty.'
@@ -1602,7 +1644,12 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Understand')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
+
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Student-generated Test questions'
@@ -1631,7 +1678,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Minute paper'
@@ -1660,7 +1711,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Muddiest point'
@@ -1689,7 +1744,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Capstone project'
@@ -1718,7 +1777,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Practicuum or internship'
@@ -1747,7 +1810,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Midterm test'
@@ -1779,7 +1846,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Remember')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Final Exam'
@@ -1811,7 +1882,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Remember')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Final Project'
@@ -1840,7 +1915,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Focused Listing'
@@ -1869,7 +1948,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Memory Matrix'
@@ -1899,7 +1982,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			)
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Content,Form,and Function Outlines'
@@ -1932,7 +2018,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new AssessmentTechnique()
@@ -1959,7 +2049,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Perception')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Empty Outlines'
@@ -1988,7 +2082,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Categorizing Grid'
@@ -2021,7 +2119,11 @@ class BootStrap {
 			)
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Defining Features Matrix'
@@ -2047,7 +2149,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Analytic Memos'
@@ -2074,7 +2180,11 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			)
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
+
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Word Journal'
 			newTechnique.description = 'The word journal prompts a two part response .First the student summarises a short text in a single word. Second, the student writes a paragraph explaining why he or she chose that particular word to summarize the text.It assesses the students ability to read carefully and creaticely summarize it in a single word'
@@ -2103,7 +2213,11 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			)
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
+
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Concept Maps'
 			newTechnique.description = 'Concept maps are drawings or diagrams showing the mental connections that students make between a major concept the instructor focuses on and other concepts they have learned.This technique assesses the patterns of associations they make in relation to a focal concept'
@@ -2131,7 +2245,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Problem Recognition Tasks'
@@ -2161,7 +2279,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
 			)
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
+
+
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Human Tableau or Class Modeling'
 			newTechnique.description = 'Group of students create "living" scenes or model processes to show what they know. Just as some students learen more effectively by listening,others learn more effectively by movement.This technique works well for kinesthetic learners. '
@@ -2195,7 +2318,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Classroom opinion polls'
@@ -2224,7 +2351,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Interest/Knowledge/Skills Checklist'
@@ -2253,7 +2384,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Goal Ranking and Matching'
@@ -2282,7 +2417,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Punctuated Lectures'
@@ -2297,6 +2436,10 @@ class BootStrap {
 			newTechnique.addToLearningDomain(
 				LearningDomain.findByName('Cognitive')
 			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique.addToKnowledgeDimension(
 				KnowledgeDimension.findByDescription('Conceptual')
@@ -2311,7 +2454,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Process Analysis'
@@ -2340,7 +2487,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new AssessmentTechnique()
 			newTechnique.title = 'Diagnostic Learning Logs'
@@ -2369,7 +2520,11 @@ class BootStrap {
 
 			newTechnique.addToDomainCategory(
 				DomainCategory.findByName('Apply')
-			).save()
+			)
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToAssessmentTechnique(newTechnique)
+			admin.save()
 
 
 			/*Pedagogy Reference*/
@@ -2399,7 +2554,10 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Critical Debate'
@@ -2418,7 +2576,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Round table'
@@ -2433,7 +2594,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Digital 3D Scanning'
@@ -2449,7 +2613,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Designettes Technique'
@@ -2465,8 +2632,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Game Learning Techniques'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'O. Cicekci, M. Turkeri and O. Pekcan, "Development of soil profile visualization software using game engines," in Geo-Congress 2014 Technical Papers: Geo-Characterization and Modeling for Sustainability February 23-26, 2014, Atlanta, Georgia, 2003, pp. 3364-3372. DOI: 10.1061/9780784413272.327'
@@ -2483,8 +2654,139 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Psychomotor'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Mobile based Game LEarning Technique'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'O. Cicekci, M. Turkeri and O. Pekcan, "Development of soil profile visualization software using game engines," in Geo-Congress 2014 Technical Papers: Geo-Characterization and Modeling for Sustainability February 23-26, 2014, Atlanta, Georgia, 2003, pp. 3364-3372. DOI: 10.1061/9780784413272.327'
+			newTechnique.activityDescription = 'Is a technique in which students are asked to play a game on their mobile phones.Playing the game helps them learn some of the concepts illustrated for a particular topic.The portability of the mobile makes the learning software available all throughout'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Psychomotor'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Asynchronous Online Discussion forums'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Project-based learning and student knowledge construction during asynchronous Joyce Hwee Ling Koh a, Susan C. Herring b, Khe Foon Hew a'
+			newTechnique.activityDescription = 'Is a technique in which students are asked to be a part of online discussion forum to enhance each others understanding of the concepts through one another'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Text Mining on Student Diaries'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Qualitative Text Mining in Student’s Service Learning Diary Hsu Chia-Ling,Chang ya-Fung'
+			newTechnique.activityDescription = 'Is a technique in which students are asked to be a part of online discussion forum to enhance each others understanding of the concepts through one another'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Project Based Mobile Learning'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'CONCEPTIONS OF PROJECT-BASED MOBILE LEARNING AMONG COLLEGE STUDENTS Chiung-Sui Chang and Ya-Ping Huang'
+			newTechnique.activityDescription = 'Is a technique in which students complete a part or the entire project using handheld portable mobile devices.Mobile devices could also be used to keep track of progress in the project'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Flow chart based Concept learning'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = ''
+			newTechnique.activityDescription = 'Is a technique in which flow charts can be used by an instructor to elaborate and teach a particular concept in which the flow/logic is central to the concept'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Step Based Learning Software'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'CONCEPTIONS OF PROJECT-BASED MOBILE LEARNING AMONG COLLEGE STUDENTS Chiung-Sui Chang and Ya-Ping Huang'
+			newTechnique.activityDescription = 'Is a technique in which a step based process can be taught to students by making them solve problems step by step using software.The regular use of software helps them understand and be confident of the process of problem solving'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Procedural'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Hybrid Learning Technique'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'R. Grace, "Hybrid Course Linking Natural Hazards with Probability and Statistics," J. Prof. Issues Eng. Educ. Pract., vol. 132, pp. 217-223, 07/01; 2015/08, 2006. DOI: 10.1061/(ASCE)1052-3928(2006)132:3(217)'
@@ -2497,8 +2799,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Classroom Demo Technique'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'R. Vander Schaaf and J. Klosky, "Classroom Demonstrations in Introductory Mechanics," J. Prof. Issues Eng. Educ. Pract., vol. 131, pp. 83-89, 04/01; 2015/08, 2005. DOI: 10.1061/(ASCE)1052-3928(2005)131:2(83)'
@@ -2513,8 +2819,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Lecture'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'reference'
@@ -2530,8 +2840,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Flipped Charts'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
@@ -2545,8 +2859,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'After Action Reviews'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
@@ -2559,8 +2877,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
-			
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Seating Arrangements'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Neal H. Kasamoto, "Using Workshop-Training Techniques in the Engineering Classroom," J. Prof. Issues Eng. Educ. Pract., vol. 127, pp. 41-44, 04/01; 2015/08, 2001. DOI: 10.1061/(ASCE)1052-3928(2001)127:2(41)'
@@ -2572,7 +2894,11 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Case Study'
 			newTechnique.materials = 'materials'
@@ -2588,7 +2914,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Partially guided programming exercise'
@@ -2603,7 +2932,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Think aloud pair problem solving'
@@ -2621,7 +2953,50 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Classify'
+			newTechnique.materials = 'materials'
+			newTechnique.activityDescription = 'Is a technique in which students are given artifacts of sub categories in a classification system and they have to sort the items or group similar artifacts'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('in-person')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Jigsaw'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
+			newTechnique.activityDescription = 'Is a technique in which students develop knowledge about a given topic and then teach it to others.It  useful for motivating students to process information and  teach it to their peers.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Structured Problem Solving'
@@ -2637,7 +3012,33 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Frames'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. "Collaborative Learning Techniques", 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 188-193.'
+			newTechnique.activityDescription = 'Is a technique in which students are given a template using which they complete the sentences using their own ideas'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('online')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Single Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Metacognitive'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+
+
+
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2657,8 +3058,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Analytic Teams'
@@ -2675,7 +3080,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 
@@ -2693,8 +3101,12 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Collaborative Writing'
@@ -2710,7 +3122,10 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 
@@ -2730,25 +3145,85 @@ class BootStrap {
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
-			newTechnique.title = 'Jigsaw'
+			newTechnique.title = 'Artifacts'
 			newTechnique.materials = 'materials'
 			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
-			newTechnique.activityDescription = 'Is a technique in which students develop knowledge about a given topic and then teach it to others.It  useful for motivating students to process information and  teach it to their peers.'
+			newTechnique.activityDescription = 'Is a technique in which instructors provide groups of students with photos,charts,drawings or objects which represent key ideas about a topic'
 			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
 			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
 			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
 			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Stations'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
+			newTechnique.activityDescription = 'Is a technique in which students move around the classroom and interact with learning material and examine,question and exchange ideas with peers to learn more.'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'Insights-Resources-Application'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
+			newTechnique.activityDescription = 'Is a technique in which students in conjunction with a reading ,complete a written assignment which includes insights, resources and applications related to the Reading Assignment'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
-			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
+			newTechnique = new PedagogyTechnique()
+			newTechnique.title = 'WebQuests'
+			newTechnique.materials = 'materials'
+			newTechnique.reference = 'Elizabeth F. Barkley, K.Patricia Cross and Claire Howell Major. Collaborative Learning Techniques, 1st ed. James Rhem. California: Jossey-Bass, 2005, pp 156-163.'
+			newTechnique.activityDescription = 'Is a technique in which students investigate an open ended question using specific websites provided by the instructor over the internet'
+			newTechnique.pedagogyMode = PedagogyMode.findByName('hybrid')
+			newTechnique.pedagogyDuration= PedagogyActivityDuration.findByDuration('Both Session')
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Conceptual'))
+			newTechnique.addToKnowledgeDimension(KnowledgeDimension.findByDescription('Factual'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Understand'))
+			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
+			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
+			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
+			newTechnique.isAdmin = true
+			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
+
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2771,7 +3246,10 @@ class BootStrap {
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Affective'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Test Taking Teams'
@@ -2786,7 +3264,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2803,8 +3284,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2826,7 +3309,10 @@ class BootStrap {
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2846,8 +3332,10 @@ class BootStrap {
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2867,7 +3355,10 @@ class BootStrap {
 
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2886,8 +3377,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2905,8 +3398,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Evaluate'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2925,7 +3420,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Analyze'))
 			newTechnique.addToLearningDomain(LearningDomain.findByName('Cognitive'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2941,8 +3439,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -2961,8 +3461,10 @@ class BootStrap {
 			newTechnique.addToDomainCategory(DomainCategory.findByName('Apply'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 			newTechnique = new PedagogyTechnique()
 			newTechnique.title = 'Peer Editing'
@@ -2984,8 +3486,10 @@ class BootStrap {
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3007,8 +3511,10 @@ class BootStrap {
 
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Reading'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Writing'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			newTechnique = new PedagogyTechnique()
@@ -3030,8 +3536,10 @@ class BootStrap {
 
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Presenting'))
 			newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus('Discussing'))
-
+			newTechnique.isAdmin = true
 			newTechnique.save()
+			admin.addToPedagogyTechnique(newTechnique)
+			admin.save()
 
 
 			/*Pedagogy Technique*/
@@ -3042,8 +3550,11 @@ class BootStrap {
 				category: DomainCategory.findAllByNameInList(['Applying','Analyzing']),
 				knowledge: KnowledgeDimension.findAllByDescriptionInList(['Factual', 'Conceptual', 'Procedural', 'Metacognitive']),
 				focus: PedagogyActivityFocus.findAllByFocusInList(['Writing', 'Discussing']),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
@@ -3112,8 +3623,11 @@ class BootStrap {
 					'Discussing',
 					'Presenting'
 				]),
-				pedagogyMode: PedagogyMode.findByName('hybrid')
+				pedagogyMode: PedagogyMode.findByName('hybrid'),
+				isAdmin: true
 			).save()
+			admin.addToPedagogyTechnique(pedagogyTech)
+			admin.save()
 
 			/*Pedagogy Activity*/
 			new PedagogyActivity(
