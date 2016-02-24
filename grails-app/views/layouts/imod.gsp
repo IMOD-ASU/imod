@@ -49,7 +49,7 @@
 				</g:else>
 			</div>
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-				<ul class="ui-tabs-nav ui-widget-header ui-corner-all">
+				<ul id="main-menu" class="ui-tabs-nav ui-widget-header ui-corner-all">
 					<li id="a" class="ui-state-default ui-corner-top ${ currentPage.find(/course overview/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link controller="courseOverview" action="index" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'learning_context_icon.png')}" alt=""/>
