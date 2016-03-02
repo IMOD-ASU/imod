@@ -23,7 +23,7 @@
 
 		<body>
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-				<ul class="ui-tabs-nav ui-widget-header ui-corner-all">
+				<ul id="main-menu" class="ui-tabs-nav ui-widget-header ui-corner-all">
 					<li id="d" class="ui-state-default ui-corner-top ${ currentPage.find(/assessment/) == null ? '' : 'ui-tabs-active ui-state-active'}">
 						<g:link controller="admin" action="assessment" id="${currentImod?.id}" class="ui-tabs-anchor">
 							<img class="tab-icon" src="${resource(dir: 'images', file: 'assess_icon.png')}" alt=""/>

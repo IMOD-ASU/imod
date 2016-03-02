@@ -20,6 +20,12 @@
 			<thead>
 				<th>ID</th>
 				<th class="title">Title</th>
+				<th class="learningdomain">Learning <br>Domain</th>
+				<th class="domaincategories">Domain <br>Categories</th>
+				<th class="kd">Knowledge <br>Dimensions</th>
+				<th class="mode">Delivery <br>Mode</th>
+				<th class="focus">Focus</th>
+				<th class="duration">Duration</th>
 			    <th class="description">Description</th>
 			    <th class="materials">Materials</th>
 			    <th class="reference">Reference</th>
@@ -31,7 +37,13 @@
 				<tr>
 					<td class="technique-id">${technique.id}</td>
 					<td class="title">${technique.title}</td>
-					<td class="description">${technique.description}</td>
+					<td class="learningdomain">${technique.learningDomain.join(', ')}</td>
+					<td class="domaincategories">${technique.domainCategory.join(', ')}</td>
+					<td class="kd">${technique.knowledgeDimension.join(', ')}</td>
+					<td class="mode">${technique.pedagogyMode}</td>
+					<td class="focus">${technique.activityFocus.join(', ')}</td>
+					<td class="duration">${technique.pedagogyDuration}</td>
+					<td class="description">${technique.activityDescription}</td>
 					<td class="materials">${technique.materials}</td>
 					<td class="reference">${technique.reference}</td>
 					<td class="isAdmin">
