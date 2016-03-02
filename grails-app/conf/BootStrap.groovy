@@ -1632,6 +1632,7 @@ class BootStrap {
 						kd
 					)
 				}
+				techAssess.isAdmin = it.isAdmin
 				techAssess.save()
 				admin.addToAssessmentTechnique(techAssess).save()
 			}
@@ -2430,7 +2431,7 @@ class BootStrap {
 					pedaTech.addToActivityFocus(fc)
 				}
 
-				pedaTech.isAdmin = true
+				pedaTech.isAdmin = it.isAdmin
 				pedaTech.save()
 				admin.addToPedagogyTechnique(pedaTech)
 				admin.save()
