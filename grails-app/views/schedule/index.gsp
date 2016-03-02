@@ -25,7 +25,9 @@
 -->
 
 <g:external dir="css/source" file="fullcalendar.css" />
-
+<g:external dir="css/source" file="schedule.css" />
+<g:external dir="css/source" file="learningObjective.css" />
+<g:external dir="css/source" file="iconModule.css" />
 
 <script src="https://apis.google.com/js/client:plusone.js"></script>
 
@@ -52,9 +54,9 @@ http://fullcalendar.io/docs/usage/
 </head>
 <body>
 
-
 	<div id='calendar'>
 	</div>
+
 	<!--
 
 
@@ -62,6 +64,47 @@ http://fullcalendar.io/docs/usage/
 
 </g:form>
 -->
+
+<table class="learning-objective inner-table">
+	<tr>
+		<td>
+			<!-- left panel for the page -->
+			<div class="learning-objective list">
+				<div class="form-title" style="border-top-left-radius:3px 3px; border-top-right-radius:3px 3px">
+					<span class="title-text">
+						Learning Objectives
+					</span>
+				</div>
+				<ul class="learning-objective list-wrapper">
+					<g:if test="${learningObjectives}">
+						<g:each var="learningObjective" in="${learningObjectives}">
+							<li class="learning-objective list-item ${(learningObjective.id == currentLearningObjective?.id) ? 'active' : ''  }">
+								<g:link action="index" id="${currentImod.id}" params="[learningObjectiveID: learningObjective.id]" class="learning-objective list-link">
+									${ learningObjective.definition }
+								</g:link>
+							</li>
+						</g:each>
+					</g:if>
+					<g:else>
+						<div class="no-objective-defined">
+							<div style="opacity: 0.5;height: 50px;font-size: 20px">There are no objectives defined.</div>
+							<div>
+							<span class="topicButtonGradient" >
+								<a href="../../learningObjective/performance/${currentImod?.id}">
+									Define Objectives
+								</a>
+							</span>
+							</div>
+						</div>
+					</g:else>
+				</ul>
+			</div>
+					</td>
+				</tr>
+				<tr>
+					hi
+				</tr>
+			</table>
 
 
 <!--

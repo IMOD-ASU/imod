@@ -4,26 +4,36 @@ import grails.converters.JSON
 import groovy.json.JsonSlurper
 
 class ScheduleController {
+	def learningObjectiveService
+	def springSecurityService
+
 
 	static allowedMethods = [
 	index: 'GET',
 	findMatchingTechniques: 'POST'
 	]
 
-	def index(Long id) {
+	def index(Long id, Long learningObjectiveID) {
+		// get the selected imod
+		final currentImod = Imod.get(id)
 
+		// finds all the learning objective linked to this imod
+			final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 
-		/*
-		//final startDate1 = currentImod.schedule.date;
-		final startDate1 = "currentImod";
+			// If no learning objective is selected
+			// select the first one if it exists
+			if (params.learningObjectiveID == null && learningObjectives.size > 0) {
+				redirect(
+					controller: 'schedule',
+					action: 'index',
+					id:  id,
+					params: [learningObjectiveID: learningObjectives[0].id]
+				)
+			}
 
-		render(view: index, model:[p:startDate1]);
+			// select current learning objective
+			final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
-		def responseData = [
-		'results': results,
-		'status': results ? "OK" : "Nothing present"
-		]
-		*/
 
 		//render responseData as JSON
 
@@ -43,11 +53,13 @@ class ScheduleController {
 
 		[
 		currentImod: Imod.get(id),
+		currentLearningObjective: currentLearningObjective,
 		currentPage: 'schedule',
 		startDate1: startDate1,
 		endDate1: endDate1,
 		creditHours1: creditHours1,
 		timeRatio1: timeRatio1,
+		learningObjectives: learningObjectives,
 		currName1: currName1
 
 		]
