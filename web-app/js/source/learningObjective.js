@@ -241,6 +241,7 @@ function deleteTopicSubTab (contentIDs) {
 			contentIDs: JSON.stringify(contentIDs)
 		},
 		success: function () {
+			dirtyContentTree = false;
 			window.location.reload();
 		}
 	});
@@ -379,6 +380,7 @@ $(document).ready(
 					contentType: 'application/json; charset=utf-8',
 					data: JSON.stringify(obj),
 					success: function () {
+						dirtyContentTree = false;
 						window.location.reload();
 					}
 				});
