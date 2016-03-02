@@ -39,9 +39,11 @@
 		<!--
 		<script src="https://apis.google.com/js/client:plusone.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+				<g:javascript src="source/fullCal/jquery.js" defer="defer" />
 		-->
 
-		<g:javascript src="source/fullCal/jquery.js" defer="defer" />
+
 		<g:javascript src="source/fullCal/moment.js" defer="defer" />
 		<g:javascript src="source/fullCal/fullcalendar.js" defer="defer" />
 
