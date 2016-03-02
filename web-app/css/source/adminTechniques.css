@@ -12,6 +12,7 @@
     max-width: 200px;
     padding: 5px;
 
+    white-space: normal;
     word-wrap: break-word;
 
     border: 1px solid #cccccc;
@@ -21,13 +22,29 @@
 .technique-table th.title {
     max-width: 80px;
 }
+
+.technique-table td.learningdomain,
+.technique-table th.learningdomain {
+    max-width: 100px;
+}
+
+.technique-table td.domaincategories,
+.technique-table th.domaincategories {
+    max-width: 100px;
+}
+
+.technique-table td.kd,
+.technique-table th.kd {
+    max-width: 100px;
+}
+
 .technique-table td.procedure,
 .technique-table th.procedure {
     max-width: 30px;
 }
 .technique-table td.duration,
 .technique-table th.duration {
-    max-width: 30px;
+    max-width: 50px;
 }
 .technique-table td.difficulty,
 .technique-table th.difficulty {
@@ -41,6 +58,12 @@
 .technique-table th.whenToCarryOut {
     max-width: 20px;
 }
+
+.technique-table td.feedback,
+.technique-table th.feedback {
+    max-width: 44px;
+}
+
 .technique-table td.isAdmin,
 .technique-table th.isAdmin {
     max-width: 30px;
