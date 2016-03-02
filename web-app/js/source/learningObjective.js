@@ -1,6 +1,7 @@
 // Start at the beggining of the path, get the first '/' then and all the characters between that and the second '/'
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var prevKeyword = '';
+var dirtyContentTree = false;
 
 /**
  * Ajax to pull Action Words based on which Action Word Category was selected,
@@ -241,6 +242,7 @@ function deleteTopicSubTab (contentIDs) {
 			contentIDs: JSON.stringify(contentIDs)
 		},
 		success: function () {
+			dirtyContentTree = false;
 			window.location.reload();
 		}
 	});
@@ -285,7 +287,6 @@ $(document).ready(
 		var category;
 		var liArray;
 		var height;
-		var dirtyContentTree = false;
 
 		$('#custom-action-words').css('visibility', 'hidden');
 
@@ -379,6 +380,7 @@ $(document).ready(
 					contentType: 'application/json; charset=utf-8',
 					data: JSON.stringify(obj),
 					success: function () {
+						dirtyContentTree = false;
 						window.location.reload();
 					}
 				});
