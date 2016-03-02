@@ -1,6 +1,7 @@
 // Start at the beggining of the path, get the first '/' then and all the characters between that and the second '/'
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var prevKeyword = '';
+var dirtyContentTree = false;
 
 /**
  * Ajax to pull Action Words based on which Action Word Category was selected,
@@ -286,7 +287,6 @@ $(document).ready(
 		var category;
 		var liArray;
 		var height;
-		var dirtyContentTree = false;
 
 		$('#custom-action-words').css('visibility', 'hidden');
 

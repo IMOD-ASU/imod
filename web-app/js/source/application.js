@@ -110,6 +110,14 @@ $(document).ready(function () {
 
 		$('.draggable').each(function () {
 			elem = $(this);
+
+			if (elem.prop('id') === 'add-new-technique') {
+				$('.add-new-technique-form')
+					.validate()
+					.resetForm();
+				$('#errorMessage').text('');
+			}
+
 			if (zIndex <= parseInt(elem.css('z-index'), 10)) {
 				elem.hide();
 			}

@@ -112,7 +112,7 @@
 						<div >
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAllkd" />
 						<label>Select All</label>
-						
+
 						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
 							<ul>
 								<g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
@@ -121,7 +121,7 @@
 										<label for="knowledge-dimension-${index}">
 											${knowledgeDimension.description}
 										</label>
-										
+
 									</li>
 								</g:each>
 							</ul>
@@ -140,7 +140,7 @@
 										<label for="learning-domain-${index}">
 											${learningDomain.name}
 										</label>
-										
+
 									</li>
 								</g:each>
 							</ul>
@@ -151,7 +151,7 @@
 						<div>
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAlldC" />
 						<label>Select All</label>
-						
+
 						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
 							<ul>
 								<g:each var="domainCategory" in="${domainCategories}" status="index">
@@ -160,7 +160,7 @@
 										<label for="domain-category-${index}">
 											${domainCategory.name}
 										</label>
-										
+
 									</li>
 								</g:each>
 							</ul>
@@ -328,7 +328,7 @@
 							<span id="errorMessage" style="color: red"></span>
 						</fieldset>
 
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" class="no-warn-form" params="[learningObjectiveID: currentLearningObjective?.id]">
+						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" class="add-new-technique-form no-warn-form" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
 							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
@@ -377,9 +377,9 @@
 											/>
 											<button id="k1" class="knowledgeDimensionButton" title="${message(code: 'imod.content.knowledgeDimension')}"> Knowledge Dimensions</button>
 										</span>
+										<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
+										<input type="hidden" name="cloneDetect" id="cloneDetect" >
 									</td>
-									<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
-									<input type="hidden" name="cloneDetect" id="cloneDetect" >
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Duration</td>
