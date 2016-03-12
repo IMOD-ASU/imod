@@ -31,6 +31,8 @@ this is the basic layout with only the IMOD header and footer
 		<g:external dir="bower_components/jstree/dist/themes/default" file="style.min.css" />
 		<g:external dir="bower_components/fontawesome/css" file="font-awesome.min.css" />
 		<g:external dir="bower_components/ubuntu-fontface" file="ubuntu.css" />
+		<g:external dir="bower_components/tooltipster/css" file="tooltipster.css" />
+		<g:external dir="bower_components/tooltipster/css/themes" file="tooltipster-noir.css" />
 
 		<!-- internal styling -->
 		<g:external dir="css" file="main.css" />
@@ -51,6 +53,7 @@ this is the basic layout with only the IMOD header and footer
 		<g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" />
 		<g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" />
 		<g:external dir="js/plugins" file="jquery.custom.draggable.js"/>
+		<g:external dir="bower_components/tooltipster/js" file="jquery.tooltipster.min.js" />
 
 		<!-- internal javascript -->
 		<g:javascript src="source/application.js"/>

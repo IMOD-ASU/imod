@@ -182,7 +182,7 @@
 								<div>
 									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 									<span id="add-new-technique-button" class="topicButtonGradient">
-										<button>
+										<button class="tooltipster" title="${message(code: 'imod.pedagogy.add')}">
 											<i class="fa fa-plus green"></i>
 											Add New Technique
 										</button>
@@ -263,7 +263,7 @@
 							<span>
 								<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 								<span id="add-new-technique-button" class="topicButtonGradient">
-									<button>
+									<button >
 										<i class="fa fa-plus green"></i>
 										Add New Technique
 									</button>
@@ -313,7 +313,7 @@
 						<%--To render the add new Technique dialog box--%>
 						<fieldset class="titleField draggable-handle">
 							<div id="editTitle" class="pedagogy-title">
-							<b> Add Pedagogy Technique</b>
+							<b> Add Pedagogy Techniques</b>
 							</div>
 							<span id="errorMessage" class="red"></span>
 						</fieldset>
