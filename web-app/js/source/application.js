@@ -2,6 +2,12 @@ var formSubmitted = false;
 
 $(document).ready(function () {
 	'use strict';
+
+	$('.tooltipster').tooltipster({
+		theme: 'tooltipster-noir',
+		position: 'bottom'
+	});
+
 	$('#accordion').accordion({
 		heightStyle: 'content',
 		collapsible: true
