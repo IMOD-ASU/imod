@@ -1,0 +1,44 @@
+.update-settings {
+	padding: 0 30px 30px;
+}
+
+.update-settings hr {
+	margin-top: 30px;
+	margin-bottom: 10px;
+	height: 0px;
+	border: none;
+	border-top: 1px solid #ccc;
+}
+
+.update-settings h3 {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.topicButtonGradient {
+	margin-left: 0;
+}
+
+.update-settings label,
+.update-settings input,
+.update-settings select {
+	display: inline-block;
+	*display: inline;
+	zoom:1;
+}
+
+
+.update-settings input,
+.update-settings select {
+	padding: 0.2em 0.4em;
+    border: 1px solid #cccccc;
+    background-color: #fcfcfc;
+}
+
+.update-settings div {
+	margin-bottom: 10px;
+}
+
+.update-settings label {
+	width: 150px;
+}
