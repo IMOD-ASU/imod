@@ -1,6 +1,7 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var isTopLeftClicked = 1;
 var isTopRightClicked = 1;
+var isTechClone = false;
 
 /**
  * Opens the modal to create a new assessment technique
@@ -113,6 +114,8 @@ function populateAssessmentTechnique (data, isClone) {
 	var arrayOfLearningDomains = data.learningDomains.split(',');
 	var arrayOfDomainCategories = data.domainCategories.split(',');
 
+	isTechClone = isClone;
+
 	$('#titlecheck').val(currentTechnique.title);
 	$('#dimImageModal').attr('title', data.knowledgeDimension.substring(0, data.knowledgeDimension.length));
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
@@ -178,6 +181,8 @@ function displayAssessmentInformationInEdit (isClone, block) {
 
 	var str = $('label.ui-state-hover').attr('for');
 	var indexNo = str.indexOf('Extended');
+
+	isTechClone = isClone;
 
 	if (isClone) {
 		$('.assessment-title').html('<strong>Edit Alternate Name For Clone</strong>');
@@ -338,6 +343,8 @@ function displayAssessmentTechniques (data) {
 
 	$('#ideal-matches1').html(text);
 	$('#ideal-matches1').buttonset();
+	$('#ideal-matches1').height(300);
+
 	text = '';
 
 	// Take the titles and make html code to display
@@ -606,7 +613,6 @@ function truncateString (string, count) {
 filterAssessmentTechniques();
 
 // Filters for the assessment technique are wrapped in a accordian
-$('#filter-assessment-techniques').accordion();
 
 $('#favorites').click(function () {
 	'use strict';
@@ -695,15 +701,6 @@ $('.select-all').on('click', function () {
 		$(this).closest('div').find(':checkbox').prop('checked', false);
 	}
 	filterAssessmentTechniques();
-});
-
-$('#title').change(function () {
-	'use strict';
-	if ($('#title').val() === $('#titlecheck').val()) {
-		$('#errorMessage').text('Enter title which is different from the original technique');
-		return false;
-	}
-	return true;
 });
 
 function getMinHeight (liArray) {
@@ -800,7 +797,6 @@ $(document).ready(
 		var currContent;
 		var isPanelSelected;
 		var checkBoxName;
-		var cloneDetect = '';
 
 		// Load techniques on page load
 		filterAssessmentTechniques();
@@ -812,7 +808,6 @@ $(document).ready(
 		$(document).on('click', '.clone', function () {
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(true, $(this));
-			document.getElementById('cloneDetect').value = 'clone';
 			$('#title').val('');
 			$('#techniqueId').val('');
 			$('.assessment-title').html('<strong>Enter Alternate Name For Clone</strong>');
@@ -873,34 +868,34 @@ $(document).ready(
 			filterAssessmentTechniques();
 			$('#selectAlldC').prop('checked', false);
 		});
-		$('#saveButton').on('click', function () {
-			cloneDetect = document.getElementById('cloneDetect').value;
 
-			if ($('#title').val() === '') {
-				$('#errorMessage').text('Technique must have a title!');
+		$.validator.addMethod('isNotSameTitle', function (value) {
+			if (isTechClone && $('#titlecheck').val() === value) {
 				return false;
 			}
-
-			if ($('#knowledgeDimension').val() === '') {
-				$('#errorMessage').text('Knowledge Dimensions are required!');
-				return false;
-			}
-
-			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
-				$('#errorMessage').text('Learning Domains are required');
-				return false;
-			}
-
-			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
-				$('#errorMessage').text('Domain Categories are required');
-				return false;
-			}
-			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
-				$('#errorMessage').text('Enter title which is different from the original technique');
-				return false;
-			}
-
 			return true;
+		}, 'Title cannot be the same');
+
+		$('.add-new-technique-form').validate({
+			ignore: ':hidden:not(#knowledgeDimension)',
+			rules: {
+				imodNumber: 'required',
+				title: {
+					required: true,
+					isNotSameTitle: true
+				},
+				learningDomain: {
+					required: true
+				},
+				domainCategory: {
+					required: true
+				},
+				knowledgeDimension: {
+					required: true
+				}
+			},
+			messages: {
+			}
 		});
 
 		// When add new technique button is clicked open modal

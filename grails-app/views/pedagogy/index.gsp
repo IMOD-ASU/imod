@@ -113,9 +113,9 @@
 						<div >
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAllkD" />
 						<label>Select All</label>
-						
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+
+						<hr style=" margin-top: 6px; margin-bottom: 6px;width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
 									<li>
 									<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}"
@@ -124,7 +124,7 @@
 										<label for="knowledge-dimension-${index}">
 											${knowledgeDimension.description}
 										</label>
-										
+
 									</li>
 								</g:each>
 							</ul>
@@ -133,11 +133,11 @@
 							Learning Domains
 						</h3>
 						<div>
-						<g:checkBox name="myCheckbox" class="select-all" 
+						<g:checkBox name="myCheckbox" class="select-all"
 						id="selectAlllD" />
 						<label>Select All</label>
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+						<hr style=" margin-top: 6px; margin-bottom: 6px; width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="learningDomain" in="${learningDomains}" status="index">
 									<li>
 									<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}"
@@ -156,8 +156,8 @@
 						<div>
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAlldC" />
 						<label>Select All</label>
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+						<hr style=" margin-top: 6px; margin-bottom: 6px; width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="domainCategory" in="${domainCategories}" status="index">
 									<li>
 										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}"
@@ -166,7 +166,7 @@
 										<label for="domain-category-${index}">
 											${domainCategory.name}
 										</label>
-							
+
 									</li>
 								</g:each>
 							</ul>
@@ -182,7 +182,7 @@
 								<div>
 									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 									<span id="add-new-technique-button" class="topicButtonGradient">
-										<button>
+										<button class="tooltipster" title="${message(code: 'imod.pedagogy.add')}">
 											<i class="fa fa-plus green"></i>
 											Add New Technique
 										</button>
@@ -263,7 +263,7 @@
 							<span>
 								<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 								<span id="add-new-technique-button" class="topicButtonGradient">
-									<button>
+									<button >
 										<i class="fa fa-plus green"></i>
 										Add New Technique
 									</button>
@@ -313,11 +313,11 @@
 						<%--To render the add new Technique dialog box--%>
 						<fieldset class="titleField draggable-handle">
 							<div id="editTitle" class="pedagogy-title">
-							<b> Add Pedagogy Technique</b>
+							<b> Add Pedagogy Techniques</b>
 							</div>
 							<span id="errorMessage" class="red"></span>
 						</fieldset>
-						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]" class="no-warn-form">
+						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]" class="no-warn-form add-new-technique-form">
 							<g:hiddenField name="techniqueId" />
 							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
@@ -357,9 +357,9 @@
 
 											<button id="k1" class="knowledgeDimensionButton" title="${message(code: 'imod.content.knowledgeDimension')}"> Knowledge Dimensions</button>
 										</span>
+										<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
+										<input type="hidden" name="cloneDetect" id="cloneDetect" >
 									</td>
-									<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
-									<input type="hidden" name="cloneDetect" id="cloneDetect" >
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Delivery Mode</td>

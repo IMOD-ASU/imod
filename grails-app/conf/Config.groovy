@@ -69,15 +69,19 @@ environments {
 	development {
 		grails.logging.jul.usebridge = true
 		grails.gorm.failOnError = true
+		grails.plugin.console.baseUrl="/imod/console"
+		grails.plugin.console.enabled = true
 	}
 	test {
 		grails.logging.jul.usebridge = true
 		grails.gorm.failOnError = true
 		grails.serverURL = 'http://imod.poly.asu.edu:8080/imod-test'
+		grails.plugin.console.enabled = false
 	}
 	production {
 		grails.logging.jul.usebridge = false
 		grails.serverURL = 'http://imod.poly.asu.edu:8080/imod-demo'
+		grails.plugin.console.enabled = false
 	}
 }
 
@@ -137,7 +141,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/learningObjective/**':		['ROLE_USER', 'ROLE_ADMIN'],
 	'/pedagogy/**':					['ROLE_USER', 'ROLE_ADMIN'],
 	'/pedagogyTechnique/**':		['ROLE_USER', 'ROLE_ADMIN'],
-	'/console':						['ROLE_ADMIN'],
+	'/console/*':					['ROLE_ADMIN'],
 	'/admin/**': 					['ROLE_ADMIN']
 ]
 //to allow user to login, avoid double encryption

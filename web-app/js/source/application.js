@@ -2,6 +2,12 @@ var formSubmitted = false;
 
 $(document).ready(function () {
 	'use strict';
+
+	$('.tooltipster').tooltipster({
+		theme: 'tooltipster-noir',
+		position: 'bottom'
+	});
+
 	$('#accordion').accordion({
 		heightStyle: 'content',
 		collapsible: true
@@ -110,6 +116,14 @@ $(document).ready(function () {
 
 		$('.draggable').each(function () {
 			elem = $(this);
+
+			if (elem.prop('id') === 'add-new-technique') {
+				$('.add-new-technique-form')
+					.validate()
+					.resetForm();
+				$('#errorMessage').text('');
+			}
+
 			if (zIndex <= parseInt(elem.css('z-index'), 10)) {
 				elem.hide();
 			}

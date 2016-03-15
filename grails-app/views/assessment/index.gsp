@@ -112,16 +112,16 @@
 						<div >
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAllkd" />
 						<label>Select All</label>
-						
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+
+						<hr style="margin-top: 6px; margin-bottom: 6px; width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
 									<li>
 										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}" />
 										<label for="knowledge-dimension-${index}">
 											${knowledgeDimension.description}
 										</label>
-										
+
 									</li>
 								</g:each>
 							</ul>
@@ -132,15 +132,15 @@
 						<div>
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAlllD" />
 						<label>Select All</label>
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+						<hr style="margin-top: 6px; margin-bottom: 6px;  width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="learningDomain" in="${learningDomains}" status="index">
 									<li>
 										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" checked="${learningDomain.name == selectedDomain.toString()}" />
 										<label for="learning-domain-${index}">
 											${learningDomain.name}
 										</label>
-										
+
 									</li>
 								</g:each>
 							</ul>
@@ -151,16 +151,16 @@
 						<div>
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAlldC" />
 						<label>Select All</label>
-						
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+
+						<hr style="margin-top: 6px; margin-bottom: 6px; width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="domainCategory" in="${domainCategories}" status="index">
 									<li>
 										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" checked="${domainCategory.name == selectedDomainCategory.toString()}"/>
 										<label for="domain-category-${index}">
 											${domainCategory.name}
 										</label>
-										
+
 									</li>
 								</g:each>
 							</ul>
@@ -328,7 +328,7 @@
 							<span id="errorMessage" style="color: red"></span>
 						</fieldset>
 
-						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" class="no-warn-form" params="[learningObjectiveID: currentLearningObjective?.id]">
+						<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" class="add-new-technique-form no-warn-form" params="[learningObjectiveID: currentLearningObjective?.id]">
 							<g:hiddenField name="techniqueId" />
 							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
@@ -377,9 +377,9 @@
 											/>
 											<button id="k1" class="knowledgeDimensionButton" title="${message(code: 'imod.content.knowledgeDimension')}"> Knowledge Dimensions</button>
 										</span>
+										<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
+										<input type="hidden" name="cloneDetect" id="cloneDetect" >
 									</td>
-									<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
-									<input type="hidden" name="cloneDetect" id="cloneDetect" >
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Duration</td>

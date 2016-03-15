@@ -16,6 +16,7 @@
     "jstree": "3.2.1",
     "lodash":"4.0.1",
     "qtip2": "2.2.1",
-    "ubuntu-fontface": "0.1.10"
+    "ubuntu-fontface": "0.1.10",
+	  "tooltipster":"3.3.0"
   }
 }

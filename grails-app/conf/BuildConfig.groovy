@@ -75,9 +75,10 @@ grails.project.dependency.resolution = {
 		compile ':rest-client-builder:2.1.1'
 		compile ':rendering:1.0.0'
 
-		provided ':codenarc:0.24.1'
+		provided ':codenarc:0.25.1'
 
 		runtime ':hibernate4:4.3.10'
 		runtime ':jquery:1.11.1'
+		runtime ':console:1.5.7'
 	}
 }

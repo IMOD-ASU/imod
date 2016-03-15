@@ -20,6 +20,9 @@
 			<thead>
 				<th>ID</th>
 				<th class="title">Title</th>
+				<th class="learningdomain">Learning <br>Domain</th>
+				<th class="domaincategories">Domain <br>Categories</th>
+				<th class="kd">Knowledge <br>Dimensions</th>
 			    <th class="description">Description</th>
 			    <th class="procedure">Procedure</th>
 			    <th class="duration">Duration</th>
@@ -27,6 +30,7 @@
 			    <th class="type">Type</th>
 			    <th class="whenToCarryOut">When</th>
 			    <th class="reference">Reference</th>
+			    <th class="feedback">Feedback</th>
 			    <th class="isAdmin">Admin <br>Technique</th>
 			    <th class="addedBy">Owned By</th>
 			</thead>
@@ -35,6 +39,9 @@
 				<tr>
 					<td class="technique-id">${technique.id}</td>
 					<td class="title">${technique.title}</td>
+					<td class="learningdomain">${technique.learningDomain.join(', ')}</td>
+					<td class="domaincategories">${technique.domainCategory.join(', ')}</td>
+					<td class="kd">${technique.knowledgeDimension.join(', ')}</td>
 					<td class="description">${technique.description}</td>
 					<td class="procedure">${technique.procedure}</td>
 					<td class="duration">${technique.duration}</td>
@@ -42,6 +49,7 @@
 					<td class="type">${technique.type}</td>
 					<td class="whenToCarryOut">${technique.whenToCarryOut}</td>
 					<td class="reference">${technique.reference}</td>
+					<td class="feedback">${technique.assessmentFeedback}</td>
 					<td class="isAdmin">
 						<form>
 							<select data-id="${technique.id}" class="isAdminSelect">

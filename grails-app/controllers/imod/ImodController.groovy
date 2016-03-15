@@ -429,7 +429,12 @@ class ImodController {
 			lo1.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Final Exam'))
 			lo1.addToAssessmentTechniques(AssessmentTechnique.findByTitle('Midterm test'))
 
-			lo1.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Structured Problem Solving'))
+			def problemSolving = PedagogyTechnique.findAllByTitle('Structured Problem Solving')
+
+			problemSolving.each {
+				lo1.addToPedagogyTechniques(it)
+			}
+
 			lo1.addToPedagogyTechniques(PedagogyTechnique.findByTitle('Lecture'))
 
 			// store relationship
