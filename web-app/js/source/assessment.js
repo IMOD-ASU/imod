@@ -613,7 +613,6 @@ function truncateString (string, count) {
 filterAssessmentTechniques();
 
 // Filters for the assessment technique are wrapped in a accordian
-$('#filter-assessment-techniques').accordion();
 
 $('#favorites').click(function () {
 	'use strict';
