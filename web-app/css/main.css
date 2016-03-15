@@ -859,13 +859,14 @@ a.square {
 #navbar {
     overflow: hidden;
 
-    padding: 10px 2.5%;
+    padding: 0 2.5%;
 
     background: #0c1625;
 }
 
 #imodlogo {
     float: left;
+    padding: 10px 0;
 }
 
 #nav-links {
@@ -875,9 +876,6 @@ a.square {
 #nav-links li {
     float: left;
 
-    margin-left: 15px;
-    padding-top: 15px;
-
     list-style-type: none;
 
     color: #ffffff;
@@ -885,6 +883,25 @@ a.square {
 
 #nav-links li a {
     color: #ffffff;
+    display: block;
+    padding: 10px 15px;
+    height: 44px;
+    line-height: 44px;
+    text-decoration: none;
+    border-left: 1px solid #1d3559;
+    font-size: 15px;
+}
+
+#nav-links li a:hover {
+    background: #142640;
+}
+
+#nav-links li:last-child a {
+	border-right: 1px solid #1d3559;
+}
+
+#nav-links li a i {
+	margin-right: 4px;
 }
 
 a.banner-home {
@@ -1432,7 +1449,7 @@ a.ui-tabs-anchor {
 
 
 .list-imod-body {
-    overflow-y: scroll;
+    overflow-y: auto;
 
     height: 400px;
     margin-top: 5%;
