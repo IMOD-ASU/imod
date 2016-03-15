@@ -113,8 +113,8 @@
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAllkd" />
 						<label>Select All</label>
 
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+						<hr style="margin-top: 6px; margin-bottom: 6px; width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
 									<li>
 										<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}" />
@@ -132,8 +132,8 @@
 						<div>
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAlllD" />
 						<label>Select All</label>
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+						<hr style="margin-top: 6px; margin-bottom: 6px;  width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="learningDomain" in="${learningDomains}" status="index">
 									<li>
 										<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" checked="${learningDomain.name == selectedDomain.toString()}" />
@@ -152,8 +152,8 @@
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAlldC" />
 						<label>Select All</label>
 
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+						<hr style="margin-top: 6px; margin-bottom: 6px; width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="domainCategory" in="${domainCategories}" status="index">
 									<li>
 										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" checked="${domainCategory.name == selectedDomainCategory.toString()}"/>

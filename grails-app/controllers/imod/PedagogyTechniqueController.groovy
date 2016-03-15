@@ -167,7 +167,7 @@ class PedagogyTechniqueController {
 
 		redirect(
 			controller: 'pedagogy',
-			action: 'index',
+			action: 'findMatchingTechniques',
 			id: id,
 			params: [
 				learningObjectiveID: learningObjectiveID
