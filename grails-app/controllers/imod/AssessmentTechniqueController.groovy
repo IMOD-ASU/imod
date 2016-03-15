@@ -183,11 +183,7 @@ class AssessmentTechniqueController {
 		newTechnique.assigncheck = params.assignedToLearningObjective as boolean
 		newTechnique.favcheck = params.favoriteTechnique as boolean
 		newTechnique.type = params.assessmentType
-
 		newTechnique.assessmentFeedback = AssessmentFeedback.findByName(params.assessmentFeedback)
-
-		
-
 		String[] kD = params.knowledgeDimension.split(',')
 		String[] lD = params.list('learningDomain')
 		String[] dC = params.list('domainCategory')

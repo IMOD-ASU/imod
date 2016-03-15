@@ -184,7 +184,6 @@ class PedagogyController {
 		}
 		idealPedagogyTechniqueMatch.sort {
 			it.title.toUpperCase()
-			
 		}
 		extendedPedagogyTechniqueMatch.sort {
 			it.title.toUpperCase()

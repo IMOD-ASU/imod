@@ -178,8 +178,7 @@ class AssessmentController {
 			stringLOAssessmentTechniques.add(LOAssessmentTechnique.toString())
 		}
 		idealAssessmentTechniqueMatch.sort {
-			it.title.toUpperCase() 
-			
+			it.title.toUpperCase()
 		}
 		extendedAssessmentTechniqueMatch.sort {
 			it.title.toUpperCase()
