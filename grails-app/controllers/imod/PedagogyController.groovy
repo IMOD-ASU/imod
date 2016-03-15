@@ -182,6 +182,13 @@ class PedagogyController {
 		for (def LOPedagogyTechnique in LOPedagogyTechniques) {
 			stringLOPedagogyTechniques.add(LOPedagogyTechnique.toString())
 		}
+		idealPedagogyTechniqueMatch.sort {
+			it.title.toUpperCase()
+			
+		}
+		extendedPedagogyTechniqueMatch.sort {
+			it.title.toUpperCase()
+		}
 
 		render(
 			[

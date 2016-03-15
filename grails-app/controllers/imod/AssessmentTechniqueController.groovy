@@ -186,9 +186,7 @@ class AssessmentTechniqueController {
 
 		newTechnique.assessmentFeedback = AssessmentFeedback.findByName(params.assessmentFeedback)
 
-		newTechnique.addToAssignedLearningObjective(
-			LearningObjective.get(learningObjectiveID)
-		)
+		
 
 		String[] kD = params.knowledgeDimension.split(',')
 		String[] lD = params.list('learningDomain')

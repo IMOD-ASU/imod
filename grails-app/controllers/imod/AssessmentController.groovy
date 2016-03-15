@@ -177,6 +177,13 @@ class AssessmentController {
 		for (def LOAssessmentTechnique in LOAssessmentTechniques) {
 			stringLOAssessmentTechniques.add(LOAssessmentTechnique.toString())
 		}
+		idealAssessmentTechniqueMatch.sort {
+			it.title.toUpperCase() 
+			
+		}
+		extendedAssessmentTechniqueMatch.sort {
+			it.title.toUpperCase()
+		}
 
 		render(
 			[
