@@ -47,7 +47,7 @@ class PedagogyController {
 		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
-		final content = currentImod?.contents
+		final content = currentLearningObjective.contents
 		def knowDimensionList = []
 		def dimension=[]
 
