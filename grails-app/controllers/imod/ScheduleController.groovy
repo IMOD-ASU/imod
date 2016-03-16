@@ -35,6 +35,8 @@ class ScheduleController {
 			final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 
+		final pedagogyFocuses = PedagogyActivityFocus.list()
+
 			// get all of the filters used to find Assessment techniques
 			final domainCategories = DomainCategory.list()
 			final knowledgeDimensions = KnowledgeDimension.list()
@@ -82,6 +84,8 @@ class ScheduleController {
 		currName1 = Imod.get(id).name
 
 		[
+	pedagogyFocuses: pedagogyFocuses,
+
 		currentImod: Imod.get(id),
 		currentLearningObjective: currentLearningObjective,
 		currentPage: 'schedule',

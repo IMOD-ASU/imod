@@ -112,6 +112,7 @@
     color: gold;
 }
 
+
 .ui-button-text .ui-button-text {
     padding: 0;
 }
@@ -131,6 +132,10 @@
 
 #ideal-matches1 {
     height: 300px;
+}
+
+#notes2{
+    width: 815px;
 }
 
 .modalBackground {
@@ -156,7 +161,7 @@
 
     display: none;
 
-    width: 460px;
+    width: 815px;
     margin-left: -230px;
 
     border: 1px solid #c4c2c2;
@@ -215,7 +220,7 @@
     padding-right: 10px;
 }
 #techniqueList tbody * {
-    vertical-align: middle;
+    vertical-align: left;
 }
 
 #techniqueList tbody img {

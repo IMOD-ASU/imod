@@ -26,7 +26,7 @@
 		<link id="imgFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFMP.png')}">
 		<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
-		<g:external dir="css/source" file="assessment.css" />
+		<g:external dir="css/source" file="schedule.css" />
 		<g:external dir="css/source" file="learningObjective.css" />
 		<g:external dir="css/source" file="iconModule.css" />
 		<g:javascript src="source/assessment.js" defer="defer" />
@@ -58,14 +58,11 @@
 		<div class="favorites-modal draggable">
 			<fieldset class="titleField draggable-handle">
 				<div id="editTitle">
-					<b> Favorite Assessment Techniques</b>
+					<b> Delete Events</b>
 				</div>
-				<span id="closeFavoritesModal" class="topicButtonGradient">
-					<button id="closeFavoritesModalButton"><i class="fa fa-times white"></i></button>
-				</span>
+				TO BE DONE.
 			</fieldset>
-			<div class="favorites-inner">
-			</div>
+
 		</div>
 		<div id="edit-imod" class="content scaffold-edit" role="main">
 			<g:if test="${flash.message}">
@@ -191,6 +188,301 @@
 
 				<td class="learning-objective definition-cell">
 
+					<g:if test="${learningObjectives}">
+						<div class="topic_addition_widget">
+							<div class="pedagogy-page-buttons">
+								<br>
+								<div>
+									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
+									<span id="add-new-technique-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-plus green"></i>
+
+											Add New Event
+										</button>
+									</span>
+
+									<span id="favorites-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-times"></i>
+											Delete Event
+										</button>
+									</span>
+
+									<span id="favorites-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-pencil-square-o"></i>
+											Edit Event
+										</button>
+									</span>
+
+
+<!--
+									<span id="favorites-button" class="topicButtonGradient">
+										<button>
+											<i class="fa fa-star yellow"></i>
+											Favorites
+										</button>
+									</span>
+								-->
+								</span>
+							</div>
+						</div>
+					</div>
+
+
+							<%--Dialog box for Add New Technique --%>
+							<div class="draggable" id="add-new-technique">
+								<%--To render the add new Technique dialog box--%>
+								<fieldset class="titleField draggable-handle">
+									<div id="editTitle" class="pedagogy-title">
+									<b> Add New Event</b>
+									</div>
+									<span id="errorMessage" class="red"></span>
+								</fieldset>
+								<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]" class="no-warn-form">
+									<g:hiddenField name="techniqueId" />
+									<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
+									<table id="techniqueList">
+										<tr>
+											<td class="td-label" width="40%">Event Title</td>
+											<td class="td-label" width="40%">Assigned</td>
+										</tr>
+
+
+										<tr>
+											<td style="width:70%">
+												<g:textField name="title" />
+											</td>
+
+											<td style="width:100%">
+												<form action="action_page.php">
+												  <select name="cars">
+												    <option value="volvo" selected>17</option>
+												    <option value="saab">2</option>
+												    <option value="fiat">3</option>
+												    <option value="audi">4</option>
+													<option value="audi">5</option>
+												  </select>
+												  <br><br>
+												 <!-- <input type="submit"> -->
+												</form>
+												</td>
+
+												<td style="width:100%">
+												<form action="action_page2.php">
+												  <select name="cars2">
+												    <option value="volvo">February</option>
+												    <option value="saab" selected>2</option>
+												    <option value="fiat">3</option>
+												    <option value="audi">4</option>
+													<option value="audi">5</option>
+												  </select>
+												  <br><br>
+												 <!-- <input type="submit"> -->
+												</form>
+												</td>
+
+<td style="width:100%">
+												<form action="action_page3.php">
+												  <select name="cars3">
+												    <option value="volvo">2016</option>
+												    <option value="saab">2</option>
+												    <option value="fiat">3</option>
+												    <option value="audi">4</option>
+													<option value="audi">5</option>
+												  </select>
+												  <br><br>
+												 <!-- <input type="submit"> -->
+												</form>
+											</td>
+											<input type="hidden" name="titlecheck" id="titlecheck" >
+										</tr>
+
+										<tr>
+											<td class="td-label" width="40%">Learning Objective</td>
+											<td class="td-label" width="40%">Due Date</td>
+										</tr>
+
+
+										<tr>
+											<td width="60%">
+												<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+											</td>
+
+											<td style="width:100%">
+												<form action="action_page.php">
+												  <select name="cars">
+													<option value="volvo" selected>17</option>
+													<option value="saab">2</option>
+													<option value="fiat">3</option>
+													<option value="audi">4</option>
+													<option value="audi">5</option>
+												  </select>
+												  <br><br>
+												 <!-- <input type="submit"> -->
+												</form>
+												</td>
+
+												<td style="width:100%">
+												<form action="action_page2.php">
+												  <select name="cars2">
+													<option value="volvo">February</option>
+													<option value="saab" selected>2</option>
+													<option value="fiat">3</option>
+													<option value="audi">4</option>
+													<option value="audi">5</option>
+												  </select>
+												  <br><br>
+												 <!-- <input type="submit"> -->
+												</form>
+												</td>
+
+<td style="width:100%">
+												<form action="action_page3.php">
+												  <select name="cars3">
+													<option value="volvo">2016</option>
+													<option value="saab">2</option>
+													<option value="fiat">3</option>
+													<option value="audi">4</option>
+													<option value="audi">5</option>
+												  </select>
+												  <br><br>
+												 <!-- <input type="submit"> -->
+												</form>
+											</td>
+											<input type="hidden" name="titlecheck" id="titlecheck" >
+										</tr>
+
+
+										<tr>
+											<td class="td-label" width="40%">Knowledge Dimension</td>
+											<td class="td-label" width="40%">Task Environment</td>
+										</tr>
+
+
+
+										<tr>
+											<td width="60%">
+												<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+											</td>
+
+											<td width="60%">
+												<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+											</td>
+										</tr>
+
+										<tr>
+											<td class="td-label" width="40%">Type of Activity Dimension</td>
+											<td class="td-label" width="40%">Expected Working Time</td>
+										</tr>
+
+
+										<tr>
+											<td width="60%">
+												<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+											</td>
+
+											<td width="60%">
+												<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+											</td>
+										</tr>
+
+<!--
+
+										<tr>
+											<td class="td-label" width="40%">Learning Domain	</td>
+											<td width="60%">
+												<g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" />
+											<td>
+											<input type="hidden" name="domainSelected" id="domainSelected" >
+											<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
+										</tr>
+										<tr>
+											<td class="td-label" width="40%">Domain Category</td>
+											<td width="60%">
+												<g:select id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" />
+											</td>
+										</tr>
+										<tr>
+											<td class="td-label" width="40%">Knowledge Dimension</td>
+											<td width="60%" class="show-hover-new">
+												<span>
+													<g:img
+														dir="images/content"
+														file="knowDimNone.png"
+														id="dimImageModal"
+														width="71"
+														height="71"
+														title=""
+													/>
+
+													<button id="k1" class="knowledgeDimensionButton" title="${message(code: 'imod.content.knowledgeDimension')}"> Knowledge Dimensions</button>
+												</span>
+											</td>
+											<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
+											<input type="hidden" name="cloneDetect" id="cloneDetect" >
+										</tr>
+										<tr>
+											<td class="td-label" width="40%">Delivery Mode</td>
+											<td width="60%">
+												<g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
+											</td>
+										</tr>
+										<tr>
+											<td class="td-label" width="40%">Focus</td>
+											<td width="60%">
+												<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+											</td>
+										</tr>
+										<tr>
+											<td class="td-label" width="40%">Duration</td>
+											<td width="60%">
+												<g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" />
+											</td>
+										</tr>
+										<tr>
+											<td class="td-label" width="40%">Materials Required</td>
+											<td width="60%">
+												<g:textArea name="materials" rows="5" cols="30"/>
+											</td>
+										</tr>
+										<tr>
+											<td class="td-label" width="40%">References</td>
+											<td width="60%">
+												<g:textArea name="reference" rows="5" cols="30"/>
+											</td>
+										</tr>
+-->
+
+										<tr>
+											<td class="td-label" width="40%">Notes
+												<br>
+											<g:textArea name="activityDescription" rows="7" cols="100" id = "notes2"/></td>
+
+										</tr>
+									</table>
+									<br>
+
+									<div id="modalButtons" style="align:left">
+										<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button">
+											<i class="fa fa-save green"></i>
+											Save
+										</button>
+										<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">
+											<i class="fa fa-times red"></i>
+											Cancel
+										</button>
+
+									</div>
+									<br>
+								</g:form>
+							</div>
+							</g:if>
+
+
+					<!--- Calendar starts after here --->
+
 					<div id='calendar'>
 					</div>
 
@@ -254,6 +546,12 @@
 					<form id="addTaskBut" >
 					<input  type="button" value="Add Task" id = "addT" onclick="addTask()"/>
 					</form>
+
+
+
+
+
+
 
 					<!--
 
