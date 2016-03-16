@@ -144,6 +144,7 @@ function populateAssessmentTechnique (data, isClone) {
 
 	$('#assessmentDifficulty option[value=' + currentTechnique.difficulty + ']').prop('selected', true);
 	$('#assessmentTime option[value=' + currentTechnique.whenToCarryOut + ']').prop('selected', true);
+	$('#assessmentPlace option[value=' + currentTechnique.whereToCarryOut + ']').prop('selected', true);
 	$('#assessmentType option[value=' + currentTechnique.type + ']').prop('selected', true);
 
 	$('#references').val(currentTechnique.reference);

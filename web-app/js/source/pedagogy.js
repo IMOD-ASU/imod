@@ -15,6 +15,7 @@ function openNewPedagogyTechniqueModal () {
 	$('#techniqueId').val('');
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
+	$('#pedagogyFocus option[value="null"]').attr('disabled', 'disabled');
 	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
@@ -113,6 +114,7 @@ function openDimModal () {
 	changePic();
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
+	$('#pedagogyFocus option[value="null"]').attr('disabled', 'disabled');
 	dialog.css('display', 'inherit');
 	background.css('display', 'block');
 	return false;
@@ -124,6 +126,7 @@ function populatePedagogyTechnique (data) {
 	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
 	var arrayOfLearningDomains = data.learningDomains.split(',');
 	var arrayOfDomainCategories = data.domainCategories.split(',');
+	var arrayOfPedagogyFocuses = data.activityFocus.split(',');
 	var checked = '';
 	var cloneDetect = document.getElementById('cloneDetect').value;
 
@@ -138,6 +141,7 @@ function populatePedagogyTechnique (data) {
 	}
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
+	$('#pedagogyFocus option[value="null"]').attr('disabled', 'disabled');
 	// $('#location').val(currentTechnique.location);
 	$('#duration').val(currentTechnique.direction);
 	$('#materials').val(currentTechnique.materials);
@@ -157,6 +161,11 @@ function populatePedagogyTechnique (data) {
 	for (count = 0; count < arrayOfDomainCategories.length; count++) {
 		if (arrayOfDomainCategories[count] !== '') {
 			$('#domainCategory option[value = ' + arrayOfDomainCategories[count] + ']').attr('selected', 'selected');
+		}
+	}
+	for (count = 0; count < arrayOfPedagogyFocuses.length; count++) {
+		if (arrayOfPedagogyFocuses[count] !== '') {
+			$('#pedagogyFocus option[value = ' + arrayOfPedagogyFocuses[count] + ']').attr('selected', 'selected');
 		}
 	}
 

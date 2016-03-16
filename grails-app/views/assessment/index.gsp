@@ -416,6 +416,16 @@
 									</td>
 								</tr>
 								<tr>
+									<td class="td-label" width="40%">Where To Carry Out</td>
+									<td width="60%">
+										<select class="custom-dropdown" id="assessmentPlace"  name="assessmentPlace" from="${assessmentPlace}" optionKey="assessmentPlace" >
+											<option value="In-Class">In-Class</option>
+											<option value="Out-of-Class">Out-of- Class</option>
+											<option value="Hybrid">Hybrid</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
 								<td class="td-label" width="40%">Feedback Mechanism</td>
 									<td width="60%">
 										<select class="custom-dropdown" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name">
