@@ -156,8 +156,7 @@
 							}.join() ?: 'None'}.png"
 							title="${contentItem.dimensions.join(',  ')}"/>
 						<button
-							class="knowledgeDimensionButton "
-
+							class="knowledgeDimensionButton"
 							value="${contentItem.dimensions.join(',')}"
 							type="button"
 							id="knowDimensionList${contentItem.id}"
@@ -165,6 +164,7 @@
 							Knowledge Dimensions
 						</button>
 						<input type="hidden"
+							   name="knowDimensions"
 							   id="knowDimensionListSaved${contentItem.id}"
 							   value="${contentItem.dimensions.join(',')}"/>
 					</span>
