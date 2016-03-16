@@ -18,12 +18,24 @@
 
 		<div class="settings-form">
 
-			<form class="update-settings" action="update-settings" method="post">
+			<g:form class="update-settings" name="updateSettings" url="[action:'updateSettings',controller:'settings']">
+
+				<g:if test="${flash.error}">
+				  <div class="alert alert-error">${flash.error}</div>
+				</g:if>
+				<g:if test="${flash.success}">
+				  <div class="alert alert-success">${flash.success}</div>
+				</g:if>
 
 				<h3>Personal Information:</h3>
 				<div>
 					<label>Email:</label>
 					<span>${currentUser.email}</span>
+				</div>
+
+				<div>
+					<label>Username:</label>
+					<span>${currentUser.username}</span>
 				</div>
 
 				<hr>
@@ -50,7 +62,7 @@
 					</button>
 				</span>
 
-			</form>
+			</g:form>
 
 		</div>
 

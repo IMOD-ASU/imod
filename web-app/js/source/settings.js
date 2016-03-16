@@ -8,7 +8,7 @@ $(document).ready(
 				},
 				newPassword: {
 					required: true,
-					minlength: 7,
+					minlength: 6,
 					maxlength: 16
 				},
 				reenterPassword: {
@@ -17,3 +17,4 @@ $(document).ready(
 			}
 		});
 	});
+
