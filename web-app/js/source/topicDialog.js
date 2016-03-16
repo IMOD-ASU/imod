@@ -3,8 +3,9 @@ var isFlashing = null;
 var content = '';
 var resourceOptions = '';
 var resourceData = [];
-var unsavedResource = false;
 var unsavedResourceData = [];
+
+window.unsavedResource = false;
 
 function showTopicDialog () {
 	'use strict';
@@ -83,7 +84,7 @@ function saveDimModal () {
 	var dimensions = [];
 	var dialog = $('#selectKnowledgeDimensions');
 	var background = $('#selectKnowledgeDimensionBackground');
-	var contentDimensions = document.getElementById('knowDimensionList' + contentID);
+	var contentDimensions = $('#knowDimensionList' + contentID);
 	// var contentDimensions = $(this).closest('.knowledgeDimensionButton');
 
 	$(this).siblings('span').find('input').each(
@@ -105,8 +106,9 @@ function saveDimModal () {
 		}
 	);
 
-	if (contentDimensions.value !== dimensions) {
-		contentDimensions.value = dimensions;
+	if (contentDimensions.val() !== dimensions) {
+		contentDimensions.val(dimensions);
+		$('#knowDimensionListSaved' + contentID).val(dimensions);
 		$('#' + contentID).addClass('unsaved');
 	}
 	document.getElementById(contentID).getElementsByTagName('img')[0].setAttribute('src', document.getElementById('dimImage').getAttribute('src'));
@@ -359,7 +361,7 @@ function openResourceModal () {
 	content = this.id;
 	$('#selectResource').css('display', 'inherit');
 	$('#selectResourceBackground').css('display', 'block');
-	if (unsavedResource === true) {
+	if (window.unsavedResource === true) {
 		getTempResource();
 	} else {
 		getResource();
@@ -696,8 +698,8 @@ function saveResource () {
 		contentResource.val(resource);
 	}
 
-	if (unsavedResource === false) {
-		unsavedResource = true;
+	if (window.unsavedResource === false) {
+		window.unsavedResource = true;
 	}
 	return closeResourceModal();
 }
@@ -765,7 +767,7 @@ function outerSaveResource (contentData) {
 			JSONData: JSON.stringify(unsavedResourceData)
 		},
 		success: function () {
-			unsavedResource = false;
+			window.unsavedResource = false;
 			location.reload();
 			// closeResourceModal();
 		}
