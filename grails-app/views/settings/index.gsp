@@ -18,7 +18,7 @@
 
 		<div class="settings-form">
 
-			<form class="update-settings" action="update-settings">
+			<form class="update-settings" action="update-settings" method="post">
 
 				<h3>Personal Information:</h3>
 				<div>
@@ -31,17 +31,17 @@
 				<h3>Change Password:</h3>
 				<div>
 					<label>Current Password:</label>
-					<g:textField name="currentPassword" id="currentPassword"/>
+					<g:passwordField name="currentPassword" id="currentPassword"/>
 				</div>
 
 				<div>
 					<label>New Password:</label>
-					<g:textField name="newPassword" id="newPassword"/>
+					<g:passwordField name="newPassword" id="newPassword"/>
 				</div>
 
 				<div>
 					<label>Re-enter Password:</label>
-					<g:textField name="reenterPassword" id="reenterPassword"/>
+					<g:passwordField name="reenterPassword" id="reenterPassword"/>
 				</div>
 
 				<span class="topicButtonGradient">
