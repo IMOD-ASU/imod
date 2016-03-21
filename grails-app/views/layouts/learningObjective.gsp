@@ -47,15 +47,15 @@
 								<fieldset class="buttons topicButtonField">
 								<span class="topicButtonGradient">
 								<g:link action="create" id="${currentImod.id}">
-									<button class="add show-hover-new topicButton" title="${ message( code:'imod.learningObjective.add' ) }" >
+									<button class="add show-hover-new topicButton tooltipster" title="${ message( code:'imod.learningObjective.add' ) }" >
 										<i class="fa fa-plus green"></i>
 										Add
 									</button>
 								</g:link>
 								</span>
 								<span class="topicButtonGradient">
-								<g:link action="remove" class="remove-lo" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
-									<button class="remove show-hover-new topicButton" title="${ message( code:'imod.learningObjective.remove' ) }" >
+								<g:link action="remove" class="remove-lo " id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
+									<button class="remove show-hover-new topicButton tooltipster" title="${ message( code:'imod.learningObjective.remove' ) }" >
 										<i class="fa fa-minus-circle red"></i>
 										Remove
 									</button>
