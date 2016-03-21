@@ -332,7 +332,7 @@ class LearningObjectiveController {
 
 		if (contentList != null) {
 			text = '<ul id="contentTree">'
-			contentList2.sort { a, b -> return a.id - b.id }each {
+			contentList2.sort { a, b -> a.id - b.id }.each {
 				text += getSubContentHTML(it, currentLearningObjective)
 			}
 
@@ -448,7 +448,7 @@ class LearningObjectiveController {
 
 		if (current.subContents != null) {
 			text += '<ul>'
-			current.subContents.sort { a, b -> return a.id - b.id }.each {
+			current.subContents.sort { a, b -> a.id - b.id }.each {
 				text += getSubContentHTML(it, objective)
 			}
 			text += '</ul>'
