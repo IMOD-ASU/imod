@@ -20,7 +20,7 @@
 
 			<g:hiddenField name="pageType" value="performance" id="page-type" />
 			<fieldset class="learning-objective-button topicButtonGradient">
-				<button type="submit" class="save show-hover-new" id="performance-save" name="update" value="Save" title="Click on save button to save data entered on the current sub-tab">
+				<button type="submit" class="save show-hover-new tooltipster" id="performance-save" name="update" value="Save" title="Click on save button to save data entered on the current sub-tab">
 					<i class="fa fa-save green"></i>
 					Save
 				</button>
@@ -30,15 +30,15 @@
 				Learning Domain
 			</label>
 			&nbsp;
-			<g:select name="LDL" id="learning-domain-list" class="custom-dropdown" from="${domainList?.name}"
+			<g:select name="LDL" id="learning-domain-list" class="custom-dropdown tooltipsterForm" from="${domainList?.name}"
 			noSelection="${['null':'-- Select --']}" value="${selectedDomain?.name?:""}"
 			title="${selectedDomain?.name? message( code:'imod.learningObjective.learningDomain.'+selectedDomain.name) :message( code:'imod.learningObjective.learningDomain' )}"/>
 			<br/>
 			<div style="height:5px"></div>
-			<label for="domain-category-list" class="domain-category-list" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
+			<label for="domain-category-list" class="domain-category-list tooltipsterForm" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
 				Domain Category
 			</label>
-			<g:select name="DCL" id="domain-category-list" class="custom-dropdown" from="${categoriesList?.name}"
+			<g:select name="DCL" id="domain-category-list" class="custom-dropdown tooltipsterForm" from="${categoriesList?.name}"
 			noSelection="${['null':'Nothing Selected']}" value="${selectedDomainCategory?.name?:"" }"
 			title="${selectedDomainCategory?.name? message( code:'imod.learningObjective.domainCategory.'+selectedDomainCategory.name) :message( code:'imod.learningObjective.domainCategory' )}"/>
 			<br/>
@@ -61,7 +61,7 @@
 			<label for="action-words" class="action-words">
 			Action Word
 			</label>
-			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" class="custom-dropdown" style="margin-bottom:5px;width:180px">
+			<select name="actionWord" id="action-words" title="${ message( code:'imod.learningObjective.actionWord' ) }" class="custom-dropdown tooltipsterForm" style="margin-bottom:5px;width:180px">
 				<option>
 					${actionWord}
 				</option>
@@ -70,7 +70,7 @@
 			<input name="customActionWord" type="text" id="custom-action-words" value="Enter the details here" style="margin-bottom:5px;width:180px">
 		</g:form>
 
-		<div id="please-select-action-word" title="Please Select Action Word">
+		<div class ="tooltipsterForm" id="please-select-action-word" title="Please Select Action Word">
             <p>
                 Please select an action word or select --Other-- field at the end of list
             </p>

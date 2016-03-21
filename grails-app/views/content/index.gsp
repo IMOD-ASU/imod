@@ -42,7 +42,7 @@
 <fieldset class="buttons content-buttons topicButtonField">
 	<span class="topicButtonGradient saveBG">
 		<button
-			class="save show-hover-new topicButton saveTopic"
+			class="save show-hover-new topicButton saveTopic tooltipster"
 			action="save"
 			title="${message(code: 'imod.content.save')}">
 			<i class="fa fa-save green"></i>
@@ -51,7 +51,7 @@
 	</span>
 	<span class="topicButtonGradient cancelBG">
 		<button
-			class="show-hover-new topicButton cancelTopic"
+			class="show-hover-new topicButton cancelTopic tooltipster"
 			action="cancel"
 			title="${message(code: 'imod.content.cancel')}">
 			<i class="fa fa-times red"></i>
@@ -91,7 +91,7 @@
 	<fieldset class="buttons topicButtonField">
 		<span class="topicButtonGradient">
 			<button
-				class="add  topicButton show-hover-new" action="add" id="addTopic"
+				class="add  topicButton show-hover-new tooltipster" action="add" id="addTopic"
 				title="${message(code: 'imod.content.add')}"
 				value="${message(code: 'Add Topic', default: 'Add Topic')}">
 				<i class="fa fa-plus green"></i>
@@ -100,7 +100,7 @@
 		</span>
 		<span class="topicButtonGradient">
 			<button
-				class="remove  topicButton show-hover-new" action="remove"
+				class="remove  topicButton show-hover-new tooltipster" action="remove"
 				id="removeTopic"
 				title="${message(code: 'imod.content.remove')}"
 				value="${message(code: 'Remove Topic', default: 'Remove Topic')}"
@@ -149,14 +149,14 @@
 				<td class="show-hover-new topicDimensions">
 					<span>
 
-						<g:img
+						<g:img class="tooltipster"
 							dir="images/content"
 							file="knowDim${contentItem.dimensions.sort() { it.value }.collect() {
 								it.toString().charAt(0)
 							}.join() ?: 'None'}.png"
 							title="${contentItem.dimensions.join(',  ')}"/>
 						<button
-							class="knowledgeDimensionButton"
+							class="knowledgeDimensionButton tooltipster"
 							value="${contentItem.dimensions.join(',')}"
 							type="button"
 							id="knowDimensionList${contentItem.id}"
@@ -174,7 +174,7 @@
 							  name="topicPriority${contentItem.id}"
 							  from="${Content.priorities()}"
 							  value="${contentItem.priority}"
-							  class="custom-dropdown  priority custom-dropdown"
+							  class="custom-dropdown  priority custom-dropdown tooltipster"
 							  title="${message(code: 'imod.content.priority')}"/>
 					<input
 						type="hidden"
@@ -182,7 +182,7 @@
 						value="${contentItem.priority}"/>
 				</td>
 				<td class="topicResources">
-					<button class="ResourceButton"
+					<button class="ResourceButton tooltipster"
 							title="${message(code: 'imod.content.Resources')}"
 							id="topicResources${contentItem.id}"
 							name="${contentItem.topicTitle}"
@@ -194,7 +194,7 @@
 					<g:checkBox
 						name="topicPreReq${contentItem.id}"
 						value="${contentItem.preReq}"
-						class="show-hover-new"
+						class="show-hover-new tooltipster"
 						title="${message(code: 'imod.content.PreReq')}"/>
 					<input
 						type="hidden"
@@ -222,13 +222,14 @@
 					<td class="topicDimensions show-new-hover">
 						<span>
 							<g:img
+								class="tooltipster"
 								dir="images/content"
 								file="knowDim${contentItem.dimensions.sort() { it.value }.collect() {
 									it.toString().charAt(0)
 								}.join() ?: 'None'}.png"
 								title="${contentItem.dimensions.join(',')}"/>
 							<button
-								class="knowledgeDimensionButton"
+								class="knowledgeDimensionButton tooltipster"
 								value="${contentItem.dimensions.join(',')}"
 								type="button"
 								id="knowDimensionList${contentItem.id}"
@@ -245,7 +246,7 @@
 								  name="topicPriority${contentItem.id}"
 								  from="${Content.priorities()}"
 								  value="${contentItem.priority}"
-								  class="custom-dropdown"/>
+								  class="custom-dropdown tooltipster"/>
 						<input
 							type="hidden"
 							id="topicPrioritySaved${contentItem.id}"
@@ -277,7 +278,7 @@
 <fieldset class="buttons content-buttons topicButtonField paddingFix">
 	<span class="topicButtonGradient saveBG">
 		<button
-			class="save show-hover-new topicButton saveTopic"
+			class="save show-hover-new topicButton saveTopic tooltipster"
 			action="save"
 			title="${message(code: 'imod.content.save')}">
 			<i class="fa fa-save green"></i>
@@ -286,7 +287,7 @@
 	</span>
 	<span class="topicButtonGradient cancelBG">
 		<button
-			class="show-hover-new topicButton cancelTopic"
+			class="show-hover-new topicButton cancelTopic tooltipster"
 			action="cancel"
 			title="${message(code: 'imod.content.cancel')}">
 			<i class="fa fa-times red"></i>
@@ -323,14 +324,14 @@
 				height="71"/>
 		</span>
 		<button
-			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn tooltipster"
 			id="knowDimFinished"
 			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
 			<i class="fa fa-save green"></i>
 			${message(code: 'Save Resource', default: ' Continue')}
 		</button>
 		<button
-			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn tooltipster"
 			id="closeKnowDim"
 			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
 			<i class="fa fa-times red"></i>
@@ -346,7 +347,7 @@
 	<fieldset class="buttons resourceButtonField draggable-handle">
 		<span class="topicButtonGradient">
 			<button
-				class="add showHoverNew resourceButton" action="add" id="addResource"
+				class="add showHoverNew resourceButton tooltipster" action="add" id="addResource"
 				title="${Help.toolTip("OVERVIEW", "Add New Resource")}"
 				value="${message(code: 'Add Resource', default: 'Add Resource')}">
 				<i class="fa fa-plus green"></i>
@@ -355,7 +356,7 @@
 		</span>
 		<span class="topicButtonGradient">
 			<button
-				class="remove showHoverNew resourceButton" action="remove"
+				class="remove showHoverNew resourceButton tooltipster" action="remove"
 				id="removeResource"
 				title="${Help.toolTip("OVERVIEW", "Delete Selected Resource")}"
 				value="${message(code: 'Remove Resource', default: 'Remove Resource')}">
@@ -381,7 +382,7 @@
 	<fieldset class="buttons resourceButtonField">
 		<span class="topicButtonGradient saveBG">
 			<button
-				class="save showHoverNew resourceButton"
+				class="save showHoverNew resourceButton tooltipster"
 				action="save"
 				id="saveResource"
 				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
@@ -391,7 +392,7 @@
 		</span>
 		<span class="topicButtonGradient cancelBG">
 			<button
-				class="showHoverNew resourceButton"
+				class="showHoverNew resourceButton tooltipster"
 				action="cancel"
 				id="cancelResource"
 				title="${Help.toolTip("OVERVIEW", "Leave Add Resources without saving")}">

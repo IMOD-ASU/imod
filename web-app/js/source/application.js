@@ -8,6 +8,11 @@ $(document).ready(function () {
 		position: 'bottom'
 	});
 
+	$('.tooltipsterForm').tooltipster({
+		theme: 'tooltipster-noir',
+		position: 'right'
+	});
+
 	$('#accordion').accordion({
 		heightStyle: 'content',
 		collapsible: true
