@@ -20,7 +20,7 @@ This creates a clearly focused course.
 [(windows)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 [(linux)](http://openjdk.java.net/install/)
 
-2. Install Grails version 2.5.3
+2. Install Grails version 2.5.4
 [(windows)](http://grails.org/doc/latest/guide/gettingStarted.html#requirements)
 [(linux)](http://gvmtool.net/)
 
