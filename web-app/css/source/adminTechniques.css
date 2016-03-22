@@ -113,7 +113,14 @@
 }
 
 a.topicButtonGradient {
-	text-decoration: none; color: #fff;
-	display: inline-block; *display: inline;
-	zoom: 1; padding: 3px 10px;
+    display: inline-block;
+    zoom: 1;
+
+    padding: 3px 10px;
+
+    text-decoration: none;
+
+    color: #ffffff;
+
+    *display: inline;
 }

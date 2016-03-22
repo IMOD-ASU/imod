@@ -866,6 +866,7 @@ a.square {
 
 #imodlogo {
     float: left;
+
     padding: 10px 0;
 }
 
@@ -882,14 +883,18 @@ a.square {
 }
 
 #nav-links li a {
-    color: #ffffff;
     display: block;
-    padding: 10px 15px;
+
     height: 44px;
-    line-height: 44px;
+    padding: 10px 15px;
+
     text-decoration: none;
+
+    color: #ffffff;
     border-left: 1px solid #1d3559;
+
     font-size: 15px;
+    line-height: 44px;
 }
 
 #nav-links li a:hover {
@@ -897,11 +902,11 @@ a.square {
 }
 
 #nav-links li:last-child a {
-	border-right: 1px solid #1d3559;
+    border-right: 1px solid #1d3559;
 }
 
 #nav-links li a i {
-	margin-right: 4px;
+    margin-right: 4px;
 }
 
 a.banner-home {
@@ -1247,45 +1252,56 @@ table.inner-table {
     font-size: 150%;
 }*/
 #main-menu {
-	border-bottom: 1px solid #ccc;
-    border-radius: 0;
     display: table;
-    table-layout: fixed;
+
     width: 100%;
+
+    table-layout: fixed;
+
+    border-bottom: 1px solid #cccccc;
+    border-radius: 0;
 }
 #main-menu li {
-	font-size: 100%; height: auto;
-	float: none;
-	display: table-cell;
+    display: table-cell;
+    float: none;
+
+    height: auto;
+
+    font-size: 100%;
 }
 
 #main-menu li a {
-	font-size: 150%;
-	padding: 0.5em 5px;
-    text-align: center;
     display: block;
     float: none;
+
+    padding: 0.5em 5px;
+
+    text-align: center;
+
+    font-size: 150%;
 }
 
-@media (max-width: 1440px)  {
-	#main-menu li a {
-		font-size: 120%;
-	}
+@media (max-width: 1440px) {
+    #main-menu li a {
+    	font-size: 120%;
+    }
 }
 
-@media (max-width: 1200px)  {
-	#main-menu li img {
-		width: 30px; height: auto;
-	}
-	#main-menu li a {
-		font-size: 100%;
-	}
+@media (max-width: 1200px) {
+    #main-menu li img {
+    	width: 30px;
+    	height: auto;
+    }
+    #main-menu li a {
+    	font-size: 100%;
+    }
 }
 
 
 img.tab-icon {
     /*width: 17%;*/
     height: 30px;
+
     vertical-align: middle;
 }
 
