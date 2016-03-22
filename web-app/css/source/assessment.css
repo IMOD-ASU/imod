@@ -245,12 +245,14 @@
 }
 
 .add-new-technique-form label.error {
-	color: red; padding-top: 5px;
+    padding-top: 5px;
+
+    color: red;
 }
 
 .add-new-technique-form input.error,
 .add-new-technique-form select.error {
-	border: 1px solid #FFBABA;
+    border: 1px solid #ffbaba;
 }
 
 #k1 {
@@ -263,8 +265,8 @@
     right: initial;
 
     width: auto;
-    padding: 10px 15px;
     margin: 0;
+    padding: 10px 15px;
 
     text-align: left;
     vertical-align: middle;

@@ -183,7 +183,7 @@
 }
 
 label.pedagogy-block.isAdmin {
-	background: url('../../images/admin-text.png') bottom left #ffffcc no-repeat !important;
+    background: url('../../images/admin-text.png') bottom left #ffffcc no-repeat !important;
 }
 
 label.pedagogy-block .text-block.title {
@@ -289,12 +289,14 @@ label.assessment-block {
 }
 
 .add-new-technique-form label.error {
-	color: red; padding-top: 5px;
+    padding-top: 5px;
+
+    color: red;
 }
 
 .add-new-technique-form input.error,
 .add-new-technique-form select.error {
-	border: 1px solid #FFBABA;
+    border: 1px solid #ffbaba;
 }
 
 
@@ -304,8 +306,8 @@ label.assessment-block {
     right: initial;
 
     width: auto;
-    padding: 10px 15px;
     margin: 0;
+    padding: 10px 15px;
 
     text-align: left;
     vertical-align: middle;
