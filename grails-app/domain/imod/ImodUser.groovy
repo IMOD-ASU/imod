@@ -49,13 +49,13 @@ class ImodUser {
 		favoriteAssessmentTechnique nullable: true
 		assessmentTechnique nullable: true
 		pedagogyTechnique nullable: true
-		firstName nullable: true
-		lastName nullable: true
 		location nullable: true
 		officeHours nullable: true
 		webPage nullable: true
-		role nullable: true
 		phoneNumber nullable: true
+		firstName nullable: false, blank: false, minSize: 3, maxSize: 20
+		lastName nullable: false, blank: false, minSize: 3, maxSize: 20
+		role nullable: false, blank: false, minSize: 3
 	}
 
 	static mapping = {

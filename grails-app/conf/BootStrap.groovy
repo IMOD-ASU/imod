@@ -53,6 +53,9 @@ class BootStrap {
 				accountExpired: false,
 				accountLocked: false,
 				passwordExpired: false,
+				firstName: 'Jane',
+				lastName: 'Doe ',
+				role: 'Associate Professor',
 				email: 'imod.grails@gmail.com'
 			).save()
 
@@ -69,6 +72,9 @@ class BootStrap {
 				accountExpired: false,
 				accountLocked: false,
 				passwordExpired: false,
+				firstName: 'John',
+				lastName: 'Doe ',
+				role: 'Associate Professor',
 				email: 'contact@rahulparekh.in'
 			).save()
 
