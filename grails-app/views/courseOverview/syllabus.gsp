@@ -403,6 +403,38 @@
 	                        <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
 	                            <li class="learning-objective list-item">
 	                                ${ learningObjective.definition.encodeAsCustomEscape() }
+	                                <g:if test="${learningObjective.assessmentTechniques.size()}">
+	                                	<ul>
+	                                		<li>
+						                    	<strong>Assessment Plan</strong>
+						                    	<ul>
+												<g:each var="technique" in="${learningObjective.assessmentTechniques}">
+
+													<g:if test="${technique != null && !technique.title.isEmpty()}">
+														<li>${technique.title}</li>
+													</g:if>
+
+												</g:each>
+												</ul>
+											</li>
+										</ul>
+									</g:if>
+	                                <g:if test="${learningObjective.pedagogyTechniques.size()}">
+					                    <ul>
+					                    <li>
+					                    	<strong>Instruction Plan</strong>
+					                    	<ul>
+					                    		<g:each var="technique" in="${learningObjective.pedagogyTechniques}">
+
+							                        <g:if test="${technique != null && !technique.title.isEmpty()}">
+							                            <li>${technique.title}</li>
+							                        </g:if>
+
+							                    </g:each>
+					                    	</ul>
+				                    	</li>
+					                    </ul>
+					                </g:if>
 	                            </li>
 	                        </g:if>
 	                    </g:each>
@@ -429,6 +461,47 @@
 	            		</g:if>
 	                    %{-- comes straight from the controller as text --}%
 	                    ${contentList.encodeAsCustomEscape()}
+	                </div>
+	            </div>
+
+	            <div class="AssessmentPlan">
+	                <div class="form-title">
+	                    <h3>
+	                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-assessment-plan-') ? '' : 'checked'} data-id="assessment-plan"/>
+	                    Assessment Plan
+	                    </h3>
+	                </div>
+	                <div id="assessment-plan">
+	                    <g:if test="${learningObjectives != null }">
+							<g:each var="learningObjective" in="${learningObjectives}">
+								<g:if test="${learningObjective.definition != null && !learningObjective.definition.trim().isEmpty()}">
+									<h4 class="assessment-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h4>
+									<div class="assignedTechniques" id="assignedTechniques-${ learningObjective.id }">
+
+										<g:if test="${learningObjective.assessmentTechniques.size()}">
+											<ul>
+											<g:each var="technique" in="${learningObjective.assessmentTechniques}">
+
+												<g:if test="${technique != null && !technique.title.isEmpty()}">
+													<li>${technique.title}</li>
+												</g:if>
+
+											</g:each>
+											</ul>
+										</g:if>
+										<g:else>
+											No techniques are assigned to this Learning Objective
+										</g:else>
+
+									</div>
+								</g:if>
+							</g:each>
+						</g:if>
+						<g:else>
+							<div class="no-objective-defined">
+								N/A
+							</div>
+						</g:else>
 	                </div>
 	            </div>
 

@@ -419,6 +419,38 @@
 		                        <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
 		                            <li class="learning-objective list-item">
 		                                ${ learningObjective.definition.encodeAsCustomEscape() }
+		                                <g:if test="${learningObjective.assessmentTechniques.size()}">
+		                                	<ul>
+		                                		<li>
+							                    	<strong>Assessment Plan</strong>
+							                    	<ul>
+													<g:each var="technique" in="${learningObjective.assessmentTechniques}">
+
+														<g:if test="${technique != null && !technique.title.isEmpty()}">
+															<li>${technique.title}</li>
+														</g:if>
+
+													</g:each>
+													</ul>
+												</li>
+											</ul>
+										</g:if>
+		                                <g:if test="${learningObjective.pedagogyTechniques.size()}">
+						                    <ul>
+						                    <li>
+						                    	<strong>Instruction Plan</strong>
+						                    	<ul>
+						                    		<g:each var="technique" in="${learningObjective.pedagogyTechniques}">
+
+								                        <g:if test="${technique != null && !technique.title.isEmpty()}">
+								                            <li>${technique.title}</li>
+								                        </g:if>
+
+								                    </g:each>
+						                    	</ul>
+					                    	</li>
+						                    </ul>
+						                </g:if>
 		                            </li>
 		                        </g:if>
 		                    </g:each>
