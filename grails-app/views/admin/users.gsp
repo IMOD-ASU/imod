@@ -21,6 +21,13 @@
 				<th>ID</th>
 				<th class="email">Email</th>
 			    <th class="username">Username</th>
+			    <th class="firstName">First Name</th>
+                <th class="lastName">Last Name</th>
+                <th class="location">Location</th>
+                <th class="officeHours">Office Hours</th>
+                <th class="webPage">Web Page</th>
+                <th class="phoneNumber">Phone Number</th>
+                <th class="role">Role</th>
 			    <th class="enabled">Enabled</th>
 			    <th class="accountExpired">Account Expired</th>
 			    <th class="accountLocked">Account Locked</th>
@@ -35,6 +42,13 @@
 					</td>
 					<td class="email">${user.email}</td>
 				    <td class="username">${user.username}</td>
+				    <td class="firstName">${user.firstName}</td>
+                    <td class="lastName">${user.lastName}</td>
+                    <td class="location">${user.location}</td>
+                    <td class="officeHours">${user.officeHours}</td>
+                    <td class="webPage">${user.webPage}</td>
+                    <td class="phoneNumber">${user.phoneNumber}</td>
+                    <td class="role">${user.role}</td>
 				    <td class="enabled">
 				    	<select name="enabled" class="enabled">
 				    		<option ${user.enabled ? 'selected class="last_selected"' : ''}>true</option>

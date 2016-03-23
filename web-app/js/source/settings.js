@@ -16,5 +16,23 @@ $(document).ready(
 				}
 			}
 		});
+
+		$('.details-settings').validate({
+			rules: {
+				firstName: {
+					required: true,
+					minlength: 3,
+					maxlength: 20
+				},
+				lastName: {
+					required: true,
+					minlength: 3,
+					maxlength: 20
+				},
+				role: {
+					required: true
+				}
+			}
+		});
 	});
 

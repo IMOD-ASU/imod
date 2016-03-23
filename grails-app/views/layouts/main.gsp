@@ -90,7 +90,7 @@ this is the basic layout with only the IMOD header and footer
 						<li>
 							<a href='${createLink(uri: '/settings')}' id='logout-link' class='banner-link'>
 								<i class="fa fa-user"></i>
-								<sec:username/>
+								Profile
 							</a>
 						</li>
 						<li>

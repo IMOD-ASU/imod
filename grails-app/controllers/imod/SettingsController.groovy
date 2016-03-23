@@ -8,10 +8,12 @@ class SettingsController {
 
     def index() {
     	def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+    	def roles = ['Assistant Professor', 'Associate Professor', 'Professor', 'Teaching Assistant', 'Course Assistant', 'Grader']
 
     	[
 			currentPage: 'index',
-			currentUser: currentUser
+			currentUser: currentUser,
+			roles: roles
 		]
 
     }
@@ -44,9 +46,29 @@ class SettingsController {
 			currentUser.password = params.newPassword
 	    	flash.success = 'Password updated successfully'
 		} catch (DataIntegrityViolationException e) {
-			flash.error = 'could not delete object'
+			flash.error = 'Could not update password!'
 		}
 
     	redirect(action: 'index', controller: 'settings')
+    }
+
+    def updateDetails() {
+
+    	def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+    	try {
+			currentUser.firstName = params.firstName
+			currentUser.lastName = params.lastName
+			currentUser.location = params.location
+			currentUser.officeHours = params.officeHours
+			currentUser.webPage = params.webPage
+			currentUser.phoneNumber = params.phoneNumber
+			currentUser.role = params.role
+	    	flash.detailsSuccess = 'Personal Information updated successfully'
+		} catch (DataIntegrityViolationException e) {
+			flash.detailsError = 'Could not update details!'
+		}
+
+    	redirect(action: 'index', controller: 'settings')
+
     }
 }
