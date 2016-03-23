@@ -13,6 +13,13 @@ class ImodUser {
 	String email
 	String username
 	String password
+	String firstName
+	String lastName
+	String location
+	String officeHours
+	String webPage
+	String phoneNumber
+	String role
 	boolean enabled
 	boolean accountExpired
 	boolean accountLocked
@@ -42,6 +49,13 @@ class ImodUser {
 		favoriteAssessmentTechnique nullable: true
 		assessmentTechnique nullable: true
 		pedagogyTechnique nullable: true
+		firstName nullable: true
+		lastName nullable: true
+		location nullable: true
+		officeHours nullable: true
+		webPage nullable: true
+		role nullable: true
+		phoneNumber nullable: true
 	}
 
 	static mapping = {

@@ -1,8 +1,8 @@
-.update-settings {
+.form-settings {
     padding: 0 30px 30px;
 }
 
-.update-settings hr {
+.form-settings hr {
     height: 0;
     margin-top: 30px;
     margin-bottom: 10px;
@@ -11,7 +11,7 @@
     border-top: 1px solid #cccccc;
 }
 
-.update-settings h3 {
+.form-settings h3 {
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -20,40 +20,44 @@
     margin-left: 0;
 }
 
-.update-settings label,
-.update-settings input,
-.update-settings select {
+.form-settings label,
+.form-settings input,
+.form-settings select {
     display: inline-block;
     zoom: 1;
 
     *display: inline;
 }
 
-.update-settings label.error {
+.form-settings label.error {
     width: auto;
     padding-left: 10px;
 
     color: red;
 }
 
-.update-settings input,
-.update-settings select {
+.form-settings input,
+.form-settings select {
     padding: 0.2em 0.4em;
 
     border: 1px solid #cccccc;
     background-color: #fcfcfc;
 }
 
-.update-settings div {
+.form-settings div {
     margin-bottom: 10px;
 }
 
-.update-settings label {
+.form-settings label {
     width: 150px;
 }
 
-.update-settings .topicButtonGradient {
+.form-settings .topicButtonGradient {
     margin-top: 10px;
+}
+
+.custom-dropdown {
+	min-width: 195px;
 }
 
 
