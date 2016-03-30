@@ -14,7 +14,7 @@
 
 <p/>
 
-<div class="login s2ui_center ui-corner-all" style='text-align:center;'>
+<div class="login s2ui_center ui-corner-all" style='text-align:center;width:320px;'>
 	<div class="login-inner">
 	<form action='${postUrl}' method='POST' id="loginForm" name="loginForm" autocomplete='off'>
 	<div class="sign-in">

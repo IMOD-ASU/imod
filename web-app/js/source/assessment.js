@@ -246,6 +246,12 @@ function showAssessmentTechnique () {
 			displayAssessmentInformationInEdit(false, $(this));
 			return false;
 		});
+	$('#user-techniques .text-block.title')
+		.click(function () {
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false, $(this));
+			return false;
+		});
 }
 
 function checkForAssign (data) {
@@ -309,6 +315,7 @@ function assessmentEqualHeights (parent) {
 function displayAssessmentTechniques (data) {
 	'use strict';
 	var text = '';
+	var usertext = '';
 	var index;
 	var currentTechnique;
 	var favoriteImgToggle = '';
@@ -333,13 +340,15 @@ function displayAssessmentTechniques (data) {
 
 		if (currentTechnique.isAdmin) {
 			isAdmin = 'isAdmin';
+			text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+			text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
 		} else {
 			isAdmin = '';
-		}
-
-		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+			usertext += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+			usertext += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
+		}
 	}
 
 	$('#ideal-matches1').html(text);
@@ -366,18 +375,21 @@ function displayAssessmentTechniques (data) {
 
 		if (currentTechnique.isAdmin) {
 			isAdmin = 'isAdmin';
+			text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+			text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 		} else {
 			isAdmin = '';
-		}
-
-
-		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+			usertext += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+			usertext += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+		}
 	}
 
 	$('#extended-matches').html(text);
 	$('#extended-matches').buttonset();
+	$('#user-techniques').html(usertext);
+	$('#user-techniques').buttonset();
 
 	$(document).on('click', '.topLeft img', function () {
 		var str = '';
@@ -598,6 +610,7 @@ function filterAssessmentTechniques () {
 		checkForAssign(data);
 		assessmentEqualHeights('#ideal-matches1');
 		assessmentEqualHeights('#extended-matches');
+		assessmentEqualHeights('#user-techniques');
 	});
 }
 
