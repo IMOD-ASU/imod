@@ -15,6 +15,7 @@ function openNewPedagogyTechniqueModal () {
 	$('#techniqueId').val('');
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
+	$('#pedagogyFocus option[value="null"]').attr('disabled', 'disabled');
 	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
@@ -113,6 +114,7 @@ function openDimModal () {
 	changePic();
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
+	$('#pedagogyFocus option[value="null"]').attr('disabled', 'disabled');
 	dialog.css('display', 'inherit');
 	background.css('display', 'block');
 	return false;
@@ -124,6 +126,7 @@ function populatePedagogyTechnique (data) {
 	var arrayOfKnowledgeDimensions = data.knowledgeDimension.split(',');
 	var arrayOfLearningDomains = data.learningDomains.split(',');
 	var arrayOfDomainCategories = data.domainCategories.split(',');
+	var arrayOfPedagogyFocuses = data.activityFocus.split(',');
 	var checked = '';
 	var cloneDetect = document.getElementById('cloneDetect').value;
 
@@ -138,6 +141,7 @@ function populatePedagogyTechnique (data) {
 	}
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
+	$('#pedagogyFocus option[value="null"]').attr('disabled', 'disabled');
 	// $('#location').val(currentTechnique.location);
 	$('#duration').val(currentTechnique.direction);
 	$('#materials').val(currentTechnique.materials);
@@ -157,6 +161,11 @@ function populatePedagogyTechnique (data) {
 	for (count = 0; count < arrayOfDomainCategories.length; count++) {
 		if (arrayOfDomainCategories[count] !== '') {
 			$('#domainCategory option[value = ' + arrayOfDomainCategories[count] + ']').attr('selected', 'selected');
+		}
+	}
+	for (count = 0; count < arrayOfPedagogyFocuses.length; count++) {
+		if (arrayOfPedagogyFocuses[count] !== '') {
+			$('#pedagogyFocus option[value = ' + arrayOfPedagogyFocuses[count] + ']').attr('selected', 'selected');
 		}
 	}
 
@@ -266,6 +275,7 @@ function displayPedagogyTechniques (data) {
 	var favoriteImgToggle = '';
 	var assignImgToggle = '';
 	var isAdmin = '';
+	var text = '';
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
@@ -284,13 +294,15 @@ function displayPedagogyTechniques (data) {
 
 		if (currentTechnique.isAdmin) {
 			isAdmin = 'isAdmin';
+			idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
+			idealText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 		} else {
 			isAdmin = '';
-		}
-
-		idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
-		idealText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+			text += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
+			text += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+		}
 	}
 
 	// Take the titles and make html code to display
@@ -310,19 +322,23 @@ function displayPedagogyTechniques (data) {
 
 		if (currentTechnique.isAdmin) {
 			isAdmin = 'isAdmin';
-		} else {
-			isAdmin = '';
-		}
-
-		extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
-		extendedText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+			extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
+			extendedText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
 					truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+		} else {
+			isAdmin = '';
+			text += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
+			text += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
+					truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+		}
 	}
 
 	// Add html code to the page
 	$('#ideal-matches').html(idealText);
 	$('#extended-matches').html(extendedText);
+	$('#user-techniques').html(text);
 
 	$('#ideal-matches').buttonset();
 	$('#ideal-matches1').height(300);
@@ -439,6 +455,7 @@ function displayPedagogyTechniques (data) {
 	});
 
 	$('#extended-matches').buttonset();
+	$('#user-techniques').buttonset();
 }
 
 /**
@@ -488,6 +505,7 @@ function filterPedagogyTechniques () {
 		displayPedagogyTechniques(data);
 		pedagogyEqualHeights('#ideal-matches');
 		pedagogyEqualHeights('#extended-matches');
+		pedagogyEqualHeights('#user-techniques');
 	});
 }
 
@@ -826,4 +844,5 @@ $(window).ready(function () {
 	'use strict';
 	pedagogyEqualHeights('#ideal-matches');
 	pedagogyEqualHeights('#extended-matches');
+	pedagogyEqualHeights('#user-techniques');
 });

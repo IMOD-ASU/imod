@@ -8,6 +8,11 @@ $(document).ready(function () {
 		position: 'bottom'
 	});
 
+	$('.tooltipsterForm').tooltipster({
+		theme: 'tooltipster-noir',
+		position: 'right'
+	});
+
 	$('#accordion').accordion({
 		heightStyle: 'content',
 		collapsible: true
@@ -175,7 +180,7 @@ window.onbeforeunload = function () {
 		dirtyForm = $('form').find('select, textarea, input').serialize();
 	}
 
-	if (!formSubmitted && window.cleanForm !== dirtyForm) {
+	if ((!formSubmitted && window.cleanForm !== dirtyForm) || window.unsavedResource) {
 		return 'You have unsaved changes. Please save them before proceeding.';
 	}
 	return null;

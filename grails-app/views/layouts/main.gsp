@@ -71,24 +71,38 @@ this is the basic layout with only the IMOD header and footer
 			<div id="nav-links">
 				<ul>
 					<g:if test="${session.isAdmin}">
-					<li><a class="admin-link" href="${createLink(uri: '/admin/assessment')}">Admin Area</a></li>
+					<li>
+						<a class="admin-link" href="${createLink(uri: '/admin/assessment')}">
+							<i class="fa fa-lock"></i>
+							Admin Area
+						</a>
+					</li>
 					</g:if>
 					<li><a class="banner-imod" href="${createLink(uri: '/imod')}">
+						<i class="fa fa-list-alt"></i>
 						<g:message code="My i-mods"/>
 					</a></li>
 					<li><a class="banner-home" href="${createLink(uri: '/')}">
-						<g:img dir="images" file="home_sm.png" class="resize-home"/><g:message code="default.home.label"/>
+						<i class="fa fa-home"></i>
+						<g:message code="default.home.label"/>
 					</a></li>
 					<sec:ifLoggedIn>
-						<li><g:img dir="images" file="user_sm.png" class="resize-home"/>
-						<sec:username/>
+						<li>
+							<a href='${createLink(uri: '/settings')}' id='logout-link' class='banner-link'>
+								<i class="fa fa-user"></i>
+								Profile
+							</a>
+						</li>
+						<li>
 						<a href='${createLink(uri: '/logout')}' id='logout-link' class='banner-link'>
+							<i class="fa fa-sign-out"></i>
 							Logout
 						</a></li>
 					</sec:ifLoggedIn>
 
 					<sec:ifNotLoggedIn>
 						<li><a href="${createLink(uri: '/login')}" id="loginLink" class="banner-link">
+							<i class="fa fa-sign-in"></i>
 							Login
 						</a></li>
 					</sec:ifNotLoggedIn>

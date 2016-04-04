@@ -3,8 +3,9 @@ var isFlashing = null;
 var content = '';
 var resourceOptions = '';
 var resourceData = [];
-var unsavedResource = false;
 var unsavedResourceData = [];
+
+window.unsavedResource = false;
 
 function showTopicDialog () {
 	'use strict';
@@ -359,7 +360,7 @@ function openResourceModal () {
 	content = this.id;
 	$('#selectResource').css('display', 'inherit');
 	$('#selectResourceBackground').css('display', 'block');
-	if (unsavedResource === true) {
+	if (window.unsavedResource === true) {
 		getTempResource();
 	} else {
 		getResource();
@@ -577,14 +578,14 @@ function addTopic () {
 				'<td class="saveIcon">' +
 				'<i class="fa fa-square-o"></i>' +
 				'</td><td class="topicTitle">' +
-				'<input type="text" id="topicTitle' + id + '"> ' +
+				'<input type="text" id="topicTitle' + id + '" autofocus> ' +
 				'<input type="hidden" id="topicTitleSaved' + id + '"> ' +
 				'<input type="hidden" value="' + tempID + '" id="topicTempID' + id + '"> ' +
 				'</td><td class="topicDimensions show-hover-new">' +
 				'<span>' +
-				'<img id="dimImageModal' + id + '" src="' + $('#imgNone').attr('href') + '" /> ' +
+				'<img id="dimImageModal' + id + '"  class="tooltipsternew" src="' + $('#imgNone').attr('href') + '" /> ' +
 				'<button ' +
-				'class="knowledgeDimensionButton " ' +
+				'class="knowledgeDimensionButton tooltipsternew" ' +
 				'value="" ' +
 				'type="button" ' +
 				'id="knowDimensionList' + id + '" ' +
@@ -595,12 +596,12 @@ function addTopic () {
 				'<input type="hidden" id="knowDimensionListSaved' + id + '" value=""> ' +
 				'</span> ' +
 				'</td><td class="topicPriority">' +
-				'<select size="1" name="topicPriority' + id + '" id="topicPriority' + id + '" class="custom-dropdown"> ' +
+				'<select size="1" name="topicPriority' + id + '" id="topicPriority' + id + '" class="custom-dropdown tooltipsternew" title="Select an appropriate priority for the topic"> ' +
 				prioritiesOptions +
 				'</select> ' +
 				'<input type="hidden" name="topicPrioritySaved' + id + '"> ' +
 				'</td><td class="topicResources">' +
-				'<button type="button" class="ResourceButton" id="topicResources' + id + '" >Resources</button> ' +
+				'<button type="button" class="ResourceButton tooltipsternew" id="topicResources' + id + '"  title="Click on the Resource Button to add new resource to the topic">Resources</button> ' +
 				'</td><td class="topicPreReq">' +
 				'<input type="checkbox" name="topicPreReq' + id + '"> ' +
 				'<input type="hidden" name="topicPreReqSaved' + id + '"> ' +
@@ -608,6 +609,10 @@ function addTopic () {
 				'</tr>'
 			).appendTo(topicDiv);
 			$('#topicTitle' + id).focus();
+			$('.tooltipsternew').tooltipster({
+				theme: 'tooltipster-noir',
+				position: 'bottom'
+			});
 			$('.knowledgeDimensionButton').click(openDimModal);
 			$('.ResourceButton').click(openResourceModal);
 		}
@@ -696,8 +701,8 @@ function saveResource () {
 		contentResource.val(resource);
 	}
 
-	if (unsavedResource === false) {
-		unsavedResource = true;
+	if (window.unsavedResource === false) {
+		window.unsavedResource = true;
 	}
 	return closeResourceModal();
 }
@@ -765,7 +770,7 @@ function outerSaveResource (contentData) {
 			JSONData: JSON.stringify(unsavedResourceData)
 		},
 		success: function () {
-			unsavedResource = false;
+			window.unsavedResource = false;
 			location.reload();
 			// closeResourceModal();
 		}

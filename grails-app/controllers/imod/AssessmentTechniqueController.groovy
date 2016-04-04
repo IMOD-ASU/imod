@@ -179,6 +179,7 @@ class AssessmentTechniqueController {
 		newTechnique.duration = params.duration
 		newTechnique.difficulty = params.assessmentDifficulty
 		newTechnique.whenToCarryOut = params.assessmentTime
+		newTechnique.whereToCarryOut = params.assessmentPlace
 		newTechnique.reference = params.references
 		newTechnique.assigncheck = params.assignedToLearningObjective as boolean
 		newTechnique.favcheck = params.favoriteTechnique as boolean

@@ -52,7 +52,7 @@
 
                                     <fieldset class="buttons">
                                     	<g:if test="${id != "new"}">
-                                        <span class="topicButtonGradient">
+                                        <span class="topicButtonGradient tooltipster" title="Show syllabus of the course">
 	                                    	<a href="../syllabus/${currentImod?.id}" target="_blank">
 	                                            <i class="fa fa-file blue"></i> Show Syllabus
 	                                        </a>
@@ -60,13 +60,13 @@
 	                                    </g:if>
                                         <span class="topicButtonGradient">
                                         	<g:if test="${id == "new"}">
-	                                        	<button type="submit" name="_action_create" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
+	                                        	<button type="submit" name="_action_create" value="Save" class="save overview-save show-hover-new tooltipster" title="Click on Save button to save all data entered on this tab">
 	                                        		<i class="fa fa-save green"></i>
 	                                        		Save
 	                                        	</button>
 							                </g:if>
 							                <g:else>
-	                                        	<button type="submit" name="_action_update" value="Save" class="save overview-save show-hover-new" title="Click on Save button to save all data entered on this tab">
+	                                        	<button type="submit" name="_action_update" value="Save" class="save overview-save show-hover-new tooltipster" title="Click on Save button to save all data entered on this tab">
 	                                        		<i class="fa fa-save green"></i>
 	                                        		Save
 	                                        	</button>
@@ -74,7 +74,7 @@
                                         </span>
                                         <g:if test="${id != "new"}">
                                         <span class="topicButtonGradient">
-                                        	<button type="submit" name="_action_delete" value="Delete" class="delete show-hover-new" title="Click on Delete button to delete the current course" formnovalidate="" onclick="return confirm(&#39;Are you sure?&#39;);">
+                                        	<button type="submit" name="_action_delete" value="Delete" class="delete show-hover-new tooltipster" title="Click on Delete button to delete the current course" formnovalidate="" onclick="return confirm(&#39;Are you sure?&#39;);">
                                         		<i class="fa fa-minus-circle red"></i>
                                         		Delete
                                         	</button>
@@ -385,13 +385,13 @@
                                                 <input type="hidden" name="imodID" value="221" id="imodID">
                                                 <fieldset class="buttons topicButtonField">
                                                     <span class="topicButtonGradient">
-                                                        <button type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton" title="${ message( code:'imod.courseOverview.addInstructors')}">
+                                                        <button type="submit" name="_action_add" value="Add Instructor" class="add show-hover-new topicButton tooltipster" title="${ message( code:'imod.courseOverview.addInstructors')}">
                                                         	<i class="fa fa-user-plus green"></i> Add Instructor
                                                         </button>
                                                     </span>
                                                     <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
                                                         <span class="remove-instructor topicButtonGradient">
-                                                            <button type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
+                                                            <button type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor tooltipster" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
                                                             	<i class="fa fa-user-times red"></i> Remove Instructor
                                                             </button>
                                                         </span>
@@ -500,19 +500,19 @@
             </div>
         </div>
 
-        <div id="please-select-instructor" title="Please Select Instructor">
+        <div  class="tooltipster" id="please-select-instructor" title="Please Select Instructor">
             <p>
                 Please select an instructor to delete.
             </p>
         </div>
 
-        <div id="confirm-instructor-remove" title="Confirm">
+        <div class="tooltipster" id="confirm-instructor-remove" title="Confirm">
             <p>
                 Are you sure you want to delete instructors?
             </p>
         </div>
 
-        <div id="instructor-removed-success" title="Success">
+        <div class="tooltipster" id="instructor-removed-success" title="Success">
             <p>
                 Instructors removed successfully.
             </p>

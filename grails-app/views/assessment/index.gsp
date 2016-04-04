@@ -176,27 +176,27 @@
 								<div>
 									<%-- Buttons for Add New Technique, Favorites and Assessment Plan--%>
 									<span id="new-technique-button" class="topicButtonGradient">
-										<button>
+									<button class="tooltipster" title="${message(code: 'imod.assessment.add')}">
 											<i class="fa fa-plus green"></i>
 											Add New Technique
 										</button>
 									</span>
 
 									<span id="favorites-button" class="topicButtonGradient">
-										<button>
+										<button class="tooltipster" title="${message(code: 'imod.assessment.favorite')}">
 											<i class="fa fa-star yellow"></i>
 											Favorites
 										</button>
 									</span>
 
 									<span  id="unfavorites" class="topicButtonGradient">
-										<button>
+										<button class="tooltipster" title="${message(code: 'imod.assessment.unfavorite')}">
 											UnFavorites
 										</button>
 									</span>
 
 									<span id="assessment-plan-button" class="topicButtonGradient">
-										<button>
+										<button class="tooltipster" title="${message(code: 'imod.assessment.assessplan')}">
 											<i class="fa fa-graduation-cap"></i>
 											Assessment Plan
 										</button>
@@ -249,7 +249,14 @@
 							</h3>
 
 							<div id="extended-matches" class="icons favorite AllMatches"></div>
+				
+							<h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
+								<b>My Techniques</b>
+							</h3>
+
+							<div id="user-techniques" class="icons favorite AllMatches"></div>
 							</div>
+
 
 
 							</div>
@@ -273,27 +280,27 @@
 						<div>
 							<%-- Buttons for Add New Technique, Favorites and Assessment Plan--%>
 							<span id="new-technique-button" class="topicButtonGradient">
-								<button>
+							<button class="tooltipster" title="${message(code: 'imod.assessment.add')}">
 									<i class="fa fa-plus green"></i>
 									Add New Technique
 								</button>
 							</span>
 
 							<span id="favorites-button" class="topicButtonGradient">
-								<button>
+								<button class="tooltipster" title="${message(code: 'imod.assessment.favorite')}">
 									<i class="fa fa-star yellow"></i>
 									Favorites
 								</button>
 							</span>
 
 							<span  id="unfavorites" class="topicButtonGradient">
-								<button>
+								<button class="tooltipster" title="${message(code: 'imod.assessment.unfavorite')}">
 									UnFavorites
 								</button>
 							</span>
 
 							<span id="assessment-plan-button" class="topicButtonGradient">
-								<button>
+								<button class="tooltipster" title="${message(code: 'imod.assessment.assessplan')}">
 									<i class="fa fa-graduation-cap"></i>
 									Assessment Plan
 								</button>
@@ -319,7 +326,7 @@
 					</g:else>
 
 					<%--Dialog box for Add New Technique --%>
-					<div id="add-new-technique" class="draggable" title="Add New Technique">
+					<div id="add-new-technique" class="draggable" >
 						<%--To render the add new Technique dialog box--%>
 						<fieldset class="titleField draggable-handle">
 							<div id="editTitle" class="assessment-title">
@@ -334,13 +341,13 @@
 							<table id="techniqueList">
 								<tr>
 									<td class="td-label" width="40%">Title</td>
-									<td width="60%"> <g:textField name="title" /></td>
+									<td width="60%"> <g:textField class="tooltipsterForm" title="${message(code: 'imod.assessment.technique.title')}" name="title" /></td>
 									<input type="hidden" name="titlecheck" id="titlecheck" >
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Learning Domain	</td>
 									<td width="60%">
-										<g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" />
+										<g:select  class="tooltipsterForm" title="${message(code: 'imod.assessment.technique.learningDomain')}" id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" />
 									<td>
 									<input type="hidden" name="domainSelected" id="domainSelected" >
 									<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
@@ -348,19 +355,19 @@
 								<tr>
 									<td class="td-label" width="40%">Domain Category</td>
 									<td width="60%">
-										<g:select  id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" />
+										<g:select   class="tooltipsterForm" title="${message(code: 'imod.assessment.technique.domainCat')}" id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" />
 									</td>
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Description of Activity</td>
 									<td width="60%">
-										<g:textArea name="activityDescription" rows="5" cols="30" />
+										<g:textArea class="tooltipsterForm" title="${message(code: 'imod.assessment.technique.activity')}" name="activityDescription" rows="5" cols="30" />
 									</td>
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Procedure</td>
 									<td width="60%">
-										<g:textArea id="procedure" name="assessmentProcedure" rows="5" cols="30" />
+										<g:textArea class="tooltipsterForm" title="${message(code: 'imod.assessment.technique.procedure')}" id="procedure" name="assessmentProcedure" rows="5" cols="30" />
 									</td>
 								</tr>
 								<tr>
@@ -368,14 +375,15 @@
 									<td width="60%" class="show-hover-new">
 										<span>
 											<g:img
+												class="tooltipster"
 												dir="images/content"
 												file="knowDimNone.png"
 												id="dimImageModal"
 												width="71"
 												height="71"
-												title=""
+
 											/>
-											<button id="k1" class="knowledgeDimensionButton" title="${message(code: 'imod.content.knowledgeDimension')}"> Knowledge Dimensions</button>
+											<button id="k1" class="knowledgeDimensionButton tooltipsterForm" title="${message(code: 'imod.content.knowledgeDimension')}"> Knowledge Dimensions</button>
 										</span>
 										<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" value="">
 										<input type="hidden" name="cloneDetect" id="cloneDetect" >
@@ -383,12 +391,12 @@
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Duration</td>
-									<td width="60%"><g:textField name="duration" /></td>
+									<td width="60%"><g:textField class="tooltipsterForm" title="${message(code: 'imod.assessment.technique.duration')}" name="duration" /></td>
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Difficulty</td>
 									<td width="60%">
-										<select class="custom-dropdown" id="assessmentDifficulty" name="assessmentDifficulty" from="${assessmentDifficulty}" optionKey="difficulty">
+										<select class="custom-dropdown tooltipsterForm"  title="${message(code: 'imod.assessment.technique.difficulty')}" id="assessmentDifficulty" name="assessmentDifficulty" from="${assessmentDifficulty}" optionKey="difficulty">
 											<option value="Low">Low</option>
 											<option value="Medium">Medium</option>
 											<option value="High">High</option>
@@ -399,7 +407,7 @@
 
 									<td class="td-label" width="40%">Type</td>
 									<td width="60%">
-										<select class="custom-dropdown" id="assessmentType" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
+										<select class="custom-dropdown tooltipsterForm" title="${message(code: 'imod.assessment.technique.type')}" id="assessmentType" name="assessmentType" from="${assessmentType}" optionKey="difficulty">
 											<option value="Summative">Summative</option>
 											<option value="Formative">Formative</option>
 										</select>
@@ -408,7 +416,7 @@
 								<tr>
 									<td class="td-label" width="40%">When To Carry Out</td>
 									<td width="60%">
-										<select class="custom-dropdown" id="assessmentTime"  name="assessmentTime" from="${assessmentTime}" optionKey="assessmentTime" >
+										<select class="custom-dropdown tooltipsterForm"  title="${message(code: 'imod.assessment.technique.carry')}" id="assessmentTime"  name="assessmentTime" from="${assessmentTime}" optionKey="assessmentTime" >
 											<option value="Pre">Pre</option>
 											<option value="Mid">Mid</option>
 											<option value="Post">Post</option>
@@ -418,7 +426,7 @@
 								<tr>
 								<td class="td-label" width="40%">Feedback Mechanism</td>
 									<td width="60%">
-										<select class="custom-dropdown" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name">
+										<select class="custom-dropdown tooltipsterForm" class="tooltipsterForm" title="${message(code: 'imod.assessment.technique.feedback')}" name="assessmentFeedback" from="${assessmentFeedback}" optionKey="name">
 											<g:each var="feedback" in="${assessmentFeedback}">
 												<option id="feedback-${feedback.id}" value="${feedback.name}">${feedback.name}</option>
 											</g:each>
@@ -427,18 +435,18 @@
 								</tr>
 								<tr>
 								<td class="td-label" width="40%">References</td>
-									<td width="60%"><g:textArea name="references" rows="5" cols="30"/> </td>
+									<td width="60%"><g:textArea class="tooltipsterForm" title="${message(code: 'imod.assessment.technique.reference')}" name="references" rows="5" cols="30"/> </td>
 								</tr>
 							</table>
 							<br>
 
 
 							<div id="modalButtons">
-								<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button">
+								<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button tooltipster" title="${message(code: 'imod.assessment.technique.save')}">
 									<i class="fa fa-save green"></i>
 									Save
 								</button>
-								<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">
+								<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button tooltipster" title="${message(code: 'imod.assessment.technique.cancel')}">
 									<i class="fa fa-times red"></i>
 									Cancel
 								</button>
@@ -627,17 +635,20 @@
 					/>
 				</span>
 				<button
-				  class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+				  class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn tooltipster"
 							id="knowDimFinished"
-							title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+							%{--title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"--}%
+				  title="${message(code: 'imod.assessment.technique.KD.continue')}"
 				>
 							<i class="fa fa-save green"></i>
 							${message(code: 'Save Resource', default: 'Continue')}
+
 				</button>
 				<button
-				  class="cancel showHoverNew resourceButton topicButtonGradient"
+				  class="cancel showHoverNew resourceButton topicButtonGradient tooltipster"
 							id="closeKnowDim"
-							title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+							%{--title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"--}%
+				  title="${message(code: 'imod.assessment.technique.cancel')}"
 				>
 							<i class="fa fa-times red"></i>
 							${message(code: 'Cancel Resource', default: ' Cancel')}

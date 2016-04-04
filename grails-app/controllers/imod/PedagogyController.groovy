@@ -47,7 +47,7 @@ class PedagogyController {
 		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
-		final content = currentImod?.contents
+		final content = currentLearningObjective.contents
 		def knowDimensionList = []
 		def dimension=[]
 
@@ -114,7 +114,7 @@ class PedagogyController {
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 		// find all technique where both the knowledge dimension and the domain category match
-		final idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
+		def idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
 				or {
 					eq('isAdmin', true)
@@ -138,7 +138,7 @@ class PedagogyController {
 		}
 
 		// find all technique that are not ideal, but have the learning domain
-		final extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
+		def extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
 			and {
 				or {
 					eq('isAdmin', true)
@@ -149,24 +149,10 @@ class PedagogyController {
 				learningDomain {
 					'in' ('id', selectedLearningDomains)
 				}
-				not {
-					and {
-						knowledgeDimension {
-							'in' ('id', selectedKnowledgeDimensions)
-						}
-						or {
-							domainCategory {
-								'in' ('id', selectedDomainCategories)
-							}
-							learningDomain {
-								'in' ('id', selectedLearningDomains)
-							}
-						}
-					}
-				}
 			}
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
+		extendedPedagogyTechniqueMatch = (idealPedagogyTechniqueMatch + extendedPedagogyTechniqueMatch) - extendedPedagogyTechniqueMatch.intersect(idealPedagogyTechniqueMatch)
 
 		final favoriteTechniques = currentUser.favoriteTechnique.id
 		def stringfavoriteTechniques = []

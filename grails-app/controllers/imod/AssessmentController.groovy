@@ -45,7 +45,7 @@ class AssessmentController {
 		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
-		final content = currentImod?.contents
+		final content = currentLearningObjective.contents
 		def knowDimensionList = []
 		def dimension = []
 		if (content != null) {
@@ -109,7 +109,7 @@ class AssessmentController {
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 		// find all technique where both the knowledge dimension and the domain category match
-		final idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
+		def idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
 				or {
 					eq('isAdmin', true)
@@ -133,7 +133,7 @@ class AssessmentController {
 		}
 
 		// find all technique that are not ideal, but have the learning domain
-		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
+		def extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
 				or {
 					eq('isAdmin', true)
@@ -144,24 +144,11 @@ class AssessmentController {
 				learningDomain {
 					'in' ('id', selectedLearningDomains)
 				}
-				not {
-					and {
-						knowledgeDimension {
-							'in' ('id', selectedKnowledgeDimensions)
-						}
-						or {
-							domainCategory {
-								'in' ('id', selectedDomainCategories)
-							}
-							learningDomain {
-								'in' ('id', selectedLearningDomains)
-							}
-						}
-					}
-				}
+
 			}
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
+		extendedAssessmentTechniqueMatch = (idealAssessmentTechniqueMatch + extendedAssessmentTechniqueMatch) - extendedAssessmentTechniqueMatch.intersect(idealAssessmentTechniqueMatch)
 
 		final favoriteTechniques = currentUser.favoriteAssessmentTechnique.id
 		def stringfavoriteTechniques = []
