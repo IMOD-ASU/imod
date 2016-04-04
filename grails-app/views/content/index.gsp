@@ -326,14 +326,14 @@
 		<button
 			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn tooltipster"
 			id="knowDimFinished"
-			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
+			title="${message(code: 'imod.pedagogy.technique.KD.continue')}">
 			<i class="fa fa-save green"></i>
 			${message(code: 'Save Resource', default: ' Continue')}
 		</button>
 		<button
 			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn tooltipster"
 			id="closeKnowDim"
-			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
+			title="${message(code: 'imod.pedagogy.technique.KD.cancel')}">
 			<i class="fa fa-times red"></i>
 			${message(code: 'Cancel Resource', default: ' Cancel')}
 		</button>

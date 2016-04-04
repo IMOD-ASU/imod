@@ -7,13 +7,13 @@
 	<g:hiddenField name="imodID" value="${currentImod.id}" />
 	<fieldset class="buttons topicButtonField draggable-handle">
 		<span class="topicButtonGradient">
-			<button type="submit" name="_action_add" value="Add Topic" class="add show-hover-new topicButton" id="addTopic">
+			<button type="submit" name="_action_add" value="Add Topic" class="add show-hover-new topicButton tooltipster" id="addTopic" title="${message(code: 'imod.content.add')}">
 				<i class="fa fa-plus green"></i>
 				Add Topic
 			</button>
 		</span>
 		<span class="topicButtonGradient">
-			<button type="submit" name="_action_remove" value="Remove Topic" class="remove show-hover-new topicButton" id="removeTopic">
+			<button type="submit" name="_action_remove" value="Remove Topic" class="remove show-hover-new topicButton tooltipster" id="removeTopic" title="${message(code: 'imod.content.remove')}">
 				<i class="fa fa-minus-circle red"></i>
 				Remove Topic
 			</button>
@@ -90,13 +90,13 @@
 	</table>
 	<fieldset id="topicModalClose" class="buttons topicButtonField">
 		<span class="topicButtonGradient saveBG">
-			<button class="save show-hover-new topicButton saveTopic tooltipster" action="save" id="saveTopic" title="${Help.toolTip("OVERVIEW", "Save Selected Topics and Save")}">
+			<button class="save show-hover-new topicButton saveTopic tooltipster" action="save" id="saveTopic" title="${message(code: 'imod.content.save')}">
 				<i class="fa fa-save green"></i>
 				${message(code: 'Save Topic', default: ' Save')}
 			</button>
 		</span>
 		<span class="topicButtonGradient cancelBG">
-			<button class="show-hover-new topicButton cancelTopic tooltipster" action="cancel" id="cancelTopic" title="${Help.toolTip("OVERVIEW", "Leave Add Topics without saving")}">
+			<button class="show-hover-new topicButton cancelTopic tooltipster" action="cancel" id="cancelTopic" title="${message(code: 'imod.content.cancel')}">
 				<i class="fa fa-times red"></i>
 				${message(code: 'Cancel Topics', default: ' Cancel')}
 			</button>
@@ -172,14 +172,14 @@
 		<button
 			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn tooltipster"
 			id="knowDimFinished"
-			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
+			title="${message(code: 'imod.pedagogy.technique.KD.continue')}">
 			<i class="fa fa-save green"></i>
 			${message(code: 'Save Topic', default: ' Continue')}
 		</button>
 		<button
 			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn tooltipster"
 			id="closeKnowDim"
-			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
+			title="${message(code: 'imod.pedagogy.technique.KD.cancel')}">
 			<i class="fa fa-times red"></i>
 			${message(code: 'Cancel Topic', default: ' Cancel')}
 		</button>
@@ -230,7 +230,7 @@
 				class="save showHoverNew resourceButton tooltipster"
 				action="save"
 				id="saveResource"
-				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+				title="${message(code: 'imod.content.save')}"
 			>
 				<i class="fa fa-save green"></i>
 				${message(code: 'Save Resource', default: ' Save')}
@@ -241,7 +241,7 @@
 				class="showHoverNew resourceButton tooltipster"
 				action="cancel"
 				id="cancelResource"
-				title="${Help.toolTip("OVERVIEW", "Leave Add Resources without saving")}"
+				title="${message(code: 'imod.content.cancel')}"
 			>
 				<i class="fa fa-times red"></i>
 				${message(code: 'Cancel Resources', default: ' Cancel')}
