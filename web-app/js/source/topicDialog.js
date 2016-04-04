@@ -84,7 +84,7 @@ function saveDimModal () {
 	var dimensions = [];
 	var dialog = $('#selectKnowledgeDimensions');
 	var background = $('#selectKnowledgeDimensionBackground');
-	var contentDimensions = $('#knowDimensionList' + contentID);
+	var contentDimensions = document.getElementById('knowDimensionList' + contentID);
 	// var contentDimensions = $(this).closest('.knowledgeDimensionButton');
 
 	$(this).siblings('span').find('input').each(
@@ -106,9 +106,8 @@ function saveDimModal () {
 		}
 	);
 
-	if (contentDimensions.val() !== dimensions) {
-		contentDimensions.val(dimensions);
-		$('#knowDimensionListSaved' + contentID).val(dimensions);
+	if (contentDimensions.value !== dimensions) {
+		contentDimensions.value = dimensions;
 		$('#' + contentID).addClass('unsaved');
 	}
 	document.getElementById(contentID).getElementsByTagName('img')[0].setAttribute('src', document.getElementById('dimImage').getAttribute('src'));
@@ -579,14 +578,14 @@ function addTopic () {
 				'<td class="saveIcon">' +
 				'<i class="fa fa-square-o"></i>' +
 				'</td><td class="topicTitle">' +
-				'<input type="text" id="topicTitle' + id + '"> ' +
+				'<input type="text" id="topicTitle' + id + '" autofocus> ' +
 				'<input type="hidden" id="topicTitleSaved' + id + '"> ' +
 				'<input type="hidden" value="' + tempID + '" id="topicTempID' + id + '"> ' +
 				'</td><td class="topicDimensions show-hover-new">' +
 				'<span>' +
-				'<img id="dimImageModal' + id + '" src="' + $('#imgNone').attr('href') + '" /> ' +
+				'<img id="dimImageModal' + id + '"  class="tooltipsternew" src="' + $('#imgNone').attr('href') + '" /> ' +
 				'<button ' +
-				'class="knowledgeDimensionButton " ' +
+				'class="knowledgeDimensionButton tooltipsternew" ' +
 				'value="" ' +
 				'type="button" ' +
 				'id="knowDimensionList' + id + '" ' +
@@ -597,12 +596,12 @@ function addTopic () {
 				'<input type="hidden" id="knowDimensionListSaved' + id + '" value=""> ' +
 				'</span> ' +
 				'</td><td class="topicPriority">' +
-				'<select size="1" name="topicPriority' + id + '" id="topicPriority' + id + '" class="custom-dropdown"> ' +
+				'<select size="1" name="topicPriority' + id + '" id="topicPriority' + id + '" class="custom-dropdown tooltipsternew" title="Select an appropriate priority for the topic"> ' +
 				prioritiesOptions +
 				'</select> ' +
 				'<input type="hidden" name="topicPrioritySaved' + id + '"> ' +
 				'</td><td class="topicResources">' +
-				'<button type="button" class="ResourceButton" id="topicResources' + id + '" >Resources</button> ' +
+				'<button type="button" class="ResourceButton tooltipsternew" id="topicResources' + id + '"  title="Click on the Resource Button to add new resource to the topic">Resources</button> ' +
 				'</td><td class="topicPreReq">' +
 				'<input type="checkbox" name="topicPreReq' + id + '"> ' +
 				'<input type="hidden" name="topicPreReqSaved' + id + '"> ' +
@@ -610,6 +609,10 @@ function addTopic () {
 				'</tr>'
 			).appendTo(topicDiv);
 			$('#topicTitle' + id).focus();
+			$('.tooltipsternew').tooltipster({
+				theme: 'tooltipster-noir',
+				position: 'bottom'
+			});
 			$('.knowledgeDimensionButton').click(openDimModal);
 			$('.ResourceButton').click(openResourceModal);
 		}
