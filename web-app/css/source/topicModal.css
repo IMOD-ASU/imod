@@ -156,6 +156,14 @@
 	padding-top: 10px;
 }
 
+.schedule-tab .fieldcontain label.error {
+	padding-top: 0;
+}
+
+.schedule-tab .errorcontain {
+	margin-top: 0.5em;
+}
+
 .course-overview-form #topicList tbody td label.error {
     width: auto;
     margin-top: 5px;
