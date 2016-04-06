@@ -48,6 +48,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
@@ -359,7 +360,8 @@
 	<br>
 
 	<div id="modalButtons" style="align:left">
-		<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button"onclick="addTask()">
+		<button type="submit"  id="saveButton" class="new-technique-popup-button">
+		<!--<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button"onclick="addTask()">-->
 			<i class="fa fa-save green"></i>
 			Save
 		</button>
@@ -371,6 +373,101 @@
 	</div>
 	<br>
 	</g:form>
+	</div>
+	<%--Dialog box for Displaying in edit and View mode Technique --%>
+	<div id="display-new-technique" title="Display Technique">
+		<%--To render the add new Technique dialog box--%>
+		<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" class="no-warn-form" params="[learningObjectiveID: currentLearningObjective?.id]">
+			<span class="editviewButtons">
+				<label >
+					Assign
+				</label>
+				<g:checkBox class="assignBtn" name="assignedToLearningObjective" />
+
+				<label >
+					Favorite
+				</label>
+				<g:checkBox class="favBtn" name="favoriteTechnique" />
+
+				<input type="button" value="Edit" id="editModal" />
+				<input type="button" value="View" id="viewModal" />
+
+			</span>
+			<br/>
+
+			<g:hiddenField name="techniqueId1" />
+			<p class="form-align">
+				<label class="form-labels">
+					Title
+				</label>
+				<g:textField name="title1"  class="allInputs"/>
+				<g:textField name="title2"  class="allInputs1"/>
+			</p>
+			<br/>
+			<p class="form-align">
+				<label class="form-labels">
+					Description
+				</label>
+				<g:textField name="description1"  class="allInputs"/>
+				<g:textField name="description2"  class="allInputs1"/>
+			</p>
+			<br/>
+
+			<p class="form-align">
+				<label class="form-labels">
+					Procedure
+				</label>
+				<g:textArea name="procedure1"  class="allInputs"/>
+				<g:textArea name="procedure2"  class="allInputs1"/>
+			</p>
+			<br/>
+
+			<p class="form-align">
+				<label class="form-labels">
+					Duration
+				</label>
+				<g:field type="number" name="duration1" min="01" max="60" class="allInputs"/>
+				<g:field type="number" name="duration2" min="01" max="60" class="allInputs1"/>
+			</p>
+			<br/>
+
+			<p class="form-align">
+				<label class="form-labels">
+					Feedback Mechanism
+				</label>
+				<g:select class="custom-dropdown" name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
+			</p>
+			<br/>
+
+			<p class="form-align">
+				<label class="form-labels">
+					Learning Domain
+				</label>
+				<g:select class="custom-dropdown" name="learningDomain" from="${learningDomains}" optionKey="name" />
+			</p>
+			<br/>
+
+			<p class="form-align">
+				<label class="form-labels">
+					Domain Category
+				</label>
+				<g:select class="custom-dropdown" name="domainCategory" from="${domainCategories}" optionKey="name" />
+			</p>
+			<br/>
+
+			<p class="form-align">
+				<label class="form-labels">
+					Knowledge Dimension
+				</label>
+				<g:select class="custom-dropdown" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
+			</p>
+			<br/>
+
+			<div id="modalButtons">
+				<g:actionSubmit value="Save" action="save1" />
+				<g:actionSubmit value="Cancel" action="cancel" />
+			</div>
+		</g:form>
 	</div>
 	</g:if>
 
@@ -527,6 +624,106 @@ $(document).ready(function() {
 });
 </script>
 
+
+<!--
+green red horizontal bar
+-->
+
+<script type="text/javascript">
+
+var hourRatio = 3;
+var inClassHours = 3;
+var outClassHours = (inClassHours*hourRatio);
+
+var assign1 = {
+    name : "Contructing Algorithims Lab",
+    hours       : 4.5,
+    location  : "In-class"
+};
+
+var assign2 = {
+	name : "Intro to Algorithims Reading",
+	hours       : 1,
+    location  : "Out-Of-Class"
+};
+
+var assign3 = {
+	name : "Data Structure Worksheet",
+	hours       : 3,
+    location  : "Out-Of-Class"
+};
+
+
+console.log(outClassHours);
+window.onload = function () {
+
+	CanvasJS.addColorSet("greenShades",
+	                [//colorSet Array
+
+	                "#7CFC00",
+	                "#00FF00",
+	                "#76EE00",
+	                "#83F52C",
+									"#5DFC0A",
+									"#4DBD33",
+	                "#49E20E"
+	                ]);
+
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+		colorSet: "greenShades",
+		title:{
+			text: "Division of out-of-class hours in Course"
+		},
+		axisY:{
+			title: "Percent of total credit hours (" + (assign1.hours+assign2.hours+assign3.hours)+  " out of " + outClassHours + ") per week"
+		},
+                animationEnabled: true,
+		toolTip:{
+			shared: true,
+			//content: "{name}: {y} Hours - <strong>#percent%</strong>" + "(#percent)"
+			content: "{name}: {y} Hours. {extra}",
+		},
+		data:[
+		{
+			type: "stackedBar100",
+			showInLegend: true,
+			name: ""+assign1.name,
+			toolTipContent: "{name}: {y} Hours. "+ assign1.location,
+			dataPoints: [
+				{y: assign1.hours, label: "iMods Week Visualizer" }
+			]
+		},
+		{
+			type: "stackedBar100",
+			showInLegend: true,
+			name: ""+assign2.name,
+			toolTipContent: "{name}: {y} Hours. "+ assign2.location,
+			dataPoints: [
+        {y: assign2.hours, label: "iMods Week Visualizer" }
+			]
+		},
+		{
+			type: "stackedBar100",
+			showInLegend: true,
+			name: ""+assign3.name,
+			toolTipContent: "{name}: {y} Hours. "+ assign3.location,
+			dataPoints: [
+        {y: assign3.hours, label: "iMods Week Visualizer" }
+			]
+		}
+		]
+	});
+	chart.render();
+
+
+}
+</script>
+
+<!-- -->
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+
 <!--
 List out the imods course info dates (demo getting data from the controller file)
 -->
@@ -537,7 +734,8 @@ List out the imods course info dates (demo getting data from the controller file
 <p id="timeRatio">Credit Hours/Time Ratio Here:${timeRatio1}</p>
 <br>
 
-<p >
+<div style="display: none;">
+<p  >
 	<form id="startDate" >
 		Task Start Date -->
 		<label>Choose Year:</label>
@@ -587,7 +785,7 @@ List out the imods course info dates (demo getting data from the controller file
 <form id="addTaskBut" >
 	<input  type="button" value="Add Task" id = "addT" />
 </form>
-
+</div>
 
 
 <g:javascript src="source/schedule.js" defer="defer" />
