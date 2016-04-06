@@ -150,8 +150,15 @@
     vertical-align: top;
 }
 
+.fieldcontain label.error {
+	display: block;
+	width: auto;
+	padding-top: 10px;
+}
+
 .course-overview-form #topicList tbody td label.error {
     width: auto;
     margin-top: 5px;
     margin-left: 0;
+    padding-top: 0;
 }
