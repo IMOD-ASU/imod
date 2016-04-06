@@ -31,7 +31,7 @@
 
 	<g:javascript src="source/topicDialog.js" defer="defer"/>
 
-	<g:external dir="bower_components/chart.js" file="Chart.min.js"/>
+	<g:external dir="bower_components/Chart.js" file="Chart.js"/>
 	<g:external dir="bower_components/lodash" file="lodash.js"/>
 
 	<meta name="layout" content="imod">
@@ -404,7 +404,11 @@
 	</fieldset>
 </div>
 <g:if test="${!currentImod.contents.isEmpty()}">
-	<canvas height="500" width="400" id="chart"></canvas>
+	<div class="topic-chart">
+		<h4>Topic Priorities</h4>
+		<div id="js-legend" class="chart-legend"></div>
+		<canvas height="500" width="400" id="chart"></canvas>
+	</div>
 </g:if>
 <input type="hidden" id="treeData" value="${contentList}">
 <input type="hidden" id="resourceDataStore" >

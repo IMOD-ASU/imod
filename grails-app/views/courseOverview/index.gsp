@@ -134,7 +134,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="course-overview-form-td">
+                                <td class="schedule-tab course-overview-form-td">
                                     <div class="course-overview-form">
                                         <div class="form-title">
                                             <span class="title-text">

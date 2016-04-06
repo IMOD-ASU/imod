@@ -8,6 +8,31 @@ var isTechClone = false;
  */
 function openAssessmentPlanModal () {
 	'use strict';
+
+	$.ajax({
+		url: '../getAssessmentPlan/' + $('#currentImod').val(),
+		method: 'GET'
+	})
+	.done(function (data) {
+		var techniques = '';
+
+		$.each(data.techniques, function (rowIndex, row) {
+			techniques += '<h3 class=\'instructional-plan-LO\' id=\'' + row.id + '\'> ' + truncateString(row.text, 80) + '<\/h3>';
+			techniques += '<div class=\'assignedTechniques\' id=\'assignedTechniques-' + row.id + '\'>';
+			techniques += '    <ul>';
+
+			$.each(row.techs, function (techniqueIndex, technique) {
+				techniques += '<li>' + technique + '<\/li>';
+			});
+			techniques += '    <\/ul>';
+			techniques += '<\/div>';
+		});
+
+		$('#assessment-plan-accordion').html(techniques);
+		$('#assessment-plan-accordion').accordion('option', 'active', false);
+		$('#assessment-plan-accordion').accordion('refresh');
+	});
+
 	$('#topicDialogBackground').css('display', 'block');
 	$('#assessment-plan').css('display', 'block');
 }
@@ -744,7 +769,7 @@ function updateTextArea (checkBoxName) {
 	var right = '';
 
 	$('input[name=' + checkBoxName + ']:checked').each(function () {
-		allVals.push($(this).prev().prev().text().trim());
+		allVals.push($(this).parent().text().trim());
 	});
 	valsLength = allVals.length;
 
@@ -763,10 +788,13 @@ function updateTextArea (checkBoxName) {
 			break;
 	}
 
-	if (allVals.length > 2) {
+
+	if (valsLength > 1) {
 		$('#' + checkBoxName + 'span').html('<b>' + text + ' (' + valsLength + ' Selections)</b>' + right + '</span>&nbsp;&nbsp;');
+	} else if (valsLength === 1) {
+		$('#' + checkBoxName + 'span').html('<b>' + allVals[0] + '</b>' + right + '</span>&nbsp;&nbsp;');
 	} else {
-		$('#' + checkBoxName + 'span').html('<b>' + allVals + '</b>' + right + '</span>&nbsp;&nbsp;');
+		$('#' + checkBoxName + 'span').html('<b>' + text + ' (No Selections)</b>' + right + '</span>&nbsp;&nbsp;');
 	}
 }
 
@@ -861,6 +889,7 @@ $(document).ready(
 		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
+		updateTextArea('knowledgeDimension');
 		$('input[name=knowledgeDimension]').on('change',
 		function () {
 			checkBoxName = 'knowledgeDimension';
@@ -868,6 +897,7 @@ $(document).ready(
 			filterAssessmentTechniques();
 			$('#selectAllkD').prop('checked', false);
 		});
+		updateTextArea('learningDomain');
 		$('input[name=learningDomain]').on('change',
 		function () {
 			checkBoxName = 'learningDomain';
@@ -875,6 +905,7 @@ $(document).ready(
 			filterAssessmentTechniques();
 			$('#selectAlllD').prop('checked', false);
 		});
+		updateTextArea('domainCategory');
 		$('input[name=domainCategory]').on('change',
 		function () {
 			checkBoxName = 'domainCategory';
