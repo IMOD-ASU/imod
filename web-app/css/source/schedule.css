@@ -98,7 +98,7 @@
 
 #add-new-technique-button i,
 #favorites-button i {
-    padding: 2px;
+    padding: 0px;
 
     vertical-align: middle;
 
@@ -161,7 +161,7 @@
 
     display: none;
 
-    width: 815px;
+    width: 915px;
     margin-left: -230px;
 
     border: 1px solid #c4c2c2;
@@ -204,7 +204,7 @@
 }
 
 #add-new-technique .td-label {
-    padding-top: 10px;
+    padding-top: 1px;
 
     vertical-align: top;
 

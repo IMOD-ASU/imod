@@ -45,16 +45,29 @@
 
 
 
-<!--
-<g:javascript src="source/fullCal/moment.js" defer="defer" />
-<g:javascript src="source/fullCal/fullcalendar.js" defer="defer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-<g:external dir="css/source" file="fullcalendar.css" />
--->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.js" />
+<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.css" />
+
+    <script>
+    $(function() {
+        $( "#datetimepicker" ).datetimepicker();
+    });
+    </script>
+    <script>
+    $(function() {
+        $( "#datetimepicker2" ).datetimepicker();
+    });
+    </script>
 
 
 
-<g:javascript src="source/schedule.js" defer="defer" />
+
 
 
 </head>
@@ -62,7 +75,7 @@
 <body>
 
 
-	<body>
+
 		<div class="modalBackgroundFavorites"></div>
 		<div class="favorites-modal draggable">
 			<fieldset class="titleField draggable-handle">
@@ -264,47 +277,12 @@
 					<g:textField name="title" />
 				</td>
 
-				<td style="width:100%">
-					<form action="action_page.php">
-						<select name="cars">
-							<option value="volvo" selected>17</option>
-							<option value="saab">2</option>
-							<option value="fiat">3</option>
-							<option value="audi">4</option>
-							<option value="audi">5</option>
-						</select>
-						<br><br>
-						<!-- <input type="submit"> -->
-					</form>
+				<td >
+					    <p>Start Date:<input type="txt" id="datetimepicker"></p>
+
 				</td>
 
-				<td style="width:100%">
-					<form action="action_page2.php">
-						<select name="cars2">
-							<option value="volvo">February</option>
-							<option value="saab" selected>2</option>
-							<option value="fiat">3</option>
-							<option value="audi">4</option>
-							<option value="audi">5</option>
-						</select>
-						<br><br>
-						<!-- <input type="submit"> -->
-					</form>
-				</td>
 
-				<td style="width:100%">
-					<form action="action_page3.php">
-						<select name="cars3">
-							<option value="volvo">2016</option>
-							<option value="saab">2</option>
-							<option value="fiat">3</option>
-							<option value="audi">4</option>
-							<option value="audi">5</option>
-						</select>
-						<br><br>
-						<!-- <input type="submit"> -->
-					</form>
-				</td>
 				<input type="hidden" name="titlecheck" id="titlecheck" >
 			</tr>
 
@@ -320,46 +298,9 @@
 				</td>
 
 				<td style="width:100%">
-					<form action="action_page.php">
-						<select name="cars">
-							<option value="volvo" selected>17</option>
-							<option value="saab">2</option>
-							<option value="fiat">3</option>
-							<option value="audi">4</option>
-							<option value="audi">5</option>
-						</select>
-						<br><br>
-						<!-- <input type="submit"> -->
-					</form>
+					<p>End Date:<input type="txt" id="datetimepicker2"></p>
 				</td>
 
-				<td style="width:100%">
-					<form action="action_page2.php">
-						<select name="cars2">
-							<option value="volvo">February</option>
-							<option value="saab" selected>2</option>
-							<option value="fiat">3</option>
-							<option value="audi">4</option>
-							<option value="audi">5</option>
-						</select>
-						<br><br>
-						<!-- <input type="submit"> -->
-					</form>
-				</td>
-
-				<td style="width:100%">
-					<form action="action_page3.php">
-						<select name="cars3">
-							<option value="volvo">2016</option>
-							<option value="saab">2</option>
-							<option value="fiat">3</option>
-							<option value="audi">4</option>
-							<option value="audi">5</option>
-						</select>
-						<br><br>
-						<!-- <input type="submit"> -->
-					</form>
-				</td>
 				<input type="hidden" name="titlecheck" id="titlecheck" >
 			</tr>
 
@@ -459,6 +400,26 @@
 
 
 
+	<script>
+	$("#datetimepicker").datetimepicker({
+		onSelect: function(dateText, inst) {
+			var dateAsString = dateText; //the first parameter of this function
+			var dateAsObject = $(this).datetimepicker( 'getDate' ); //the getDate method
+			console.log(dateAsString);
+			console.log(dateAsObject);
+		}
+	});
+
+	$("#datetimepicker2").datetimepicker({
+		onSelect: function(dateText, inst) {
+			var dateAsString = dateText; //the first parameter of this function
+			var dateAsObject = $(this).datetimepicker( 'getDate' ); //the getDate method
+			console.log(dateAsString);
+			console.log(dateAsObject);
+		}
+	})
+	</script>
+
 
 <!--- Calendar starts after here
 <div id='calendar'>
@@ -486,9 +447,6 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 
 <script>
@@ -514,136 +472,58 @@ $(document).ready(function() {
 		},
 		events:
 		[
-			{
-				"title":"Free Pizza",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Free Pizza.</p><p>Nothing to see!</p>",
-				"start":moment().subtract('days',14),
-				"end":moment().subtract('days',14),
-				"url":"http://www.mikesmithdev.com/blog/coding-without-music-vs-coding-with-music/"
-			},
-			{
-				"title":"DNUG Meeting",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the DNUG Meeting.</p><p>Nothing to see!</p>",
-				"start":moment().subtract('days',10),
-				"end":moment().subtract('days',10),
-				"url":"http://www.mikesmithdev.com/blog/youtube-video-event-tracking-with-google-analytics/"
-			},
-			{
-				"title":"Staff Meeting",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Staff Meeting.</p><p>Nothing to see!</p>",
-				"start":moment().subtract('days',6),
-				"end":moment().subtract('days',6),
-				"url":"http://www.mikesmithdev.com/blog/what-if-your-website-were-an-animal/"
-			},
-			{
-				"title":"Poker Night",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Poker Night.</p><p>Nothing to see!</p>",
-				"start":moment().subtract('days',2),
-				"end":moment().subtract('days',2),
-				"url":"http://www.mikesmithdev.com/blog/how-to-make-a-qr-code-in-asp-net/"
-			},
-			{
-				"title":"NES Gamers",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the NES Gamers.</p><p>Nothing to see!</p>",
-				"start":moment(),
-				"end":moment().add(1,'days'),
-				"url":"http://www.mikesmithdev.com/blog/name-that-nes-soundtrack/"
-			},
-			{
-				"title":"XBox Tourney",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the XBox Tourney.</p><p>Nothing to see!</p>",
-				"start":moment().add('days',3),
-				"end":moment().add('days',3),
-				"url":"http://www.mikesmithdev.com/blog/worst-job-titles-in-internet-and-info-tech/"
-			},
-			{
-				"title":"Pool Party",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Pool Party.</p><p>Nothing to see!</p>",
-				"start":moment().add('days',5),
-				"end":moment().add('days',5),
-				"url":"http://www.mikesmithdev.com/blog/jquery-full-calendar/"
-			},
-			{
-				"title":"Staff Meeting",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Staff Meeting.</p><p>Nothing to see!</p>",
-				"start":moment().add('days',9),
-				"end":moment().add('days',9),
-				"url":"http://www.mikesmithdev.com/blog/keep-important-licensing-comments-dotnet-bundling-minification/"
-			},
-			{
-				"title":"Poker Night",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Poker Night.</p><p>Nothing to see!</p>",
-				"start":moment().add('days',11),
-				"end":moment().add('days',11),
-				"url":"http://www.mikesmithdev.com/blog/aspnet-bundling-changes-output-with-user-agent-eureka-1/"
-			},
-			{
-				"title":"Hackathon",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Hackathon.</p><p>Nothing to see!</p>",
-				"start":moment().add('days',15),
-				"end":moment().add('days',15),
-				"url":"http://www.mikesmithdev.com/blog/worst-job-titles-in-internet-and-info-tech/"
-			},
-			{
-				"title":"Beta Testing",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Beta Testing.</p><p>Nothing to see!</p>",
-				"start":moment().add('days',22),
-				"end":moment().add('days',22),
-				"url":"http://www.mikesmithdev.com/blog/worst-job-titles-in-internet-and-info-tech/"
-			},
-			{
-				"title":"Perl Meetup",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Perl Meetup.</p><p>Nothing to see... though no one would show up any way.</p>",
-				"start":moment().subtract('days',20),
-				"end":moment().subtract('days',20),
-				"url":"http://www.mikesmithdev.com/blog/migrating-from-asp-net-to-ghost-node-js/"
-			},
-			{
-				"title":"Node.js Meetup",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Node.js Meetup.</p><p>Nothing to see!</p>",
-				"start":moment().add('days',25),
-				"end":moment().add('days',25),
-				"url":"http://www.mikesmithdev.com/blog/pdf-secure-access-and-log-downloads/"
-			},
-			{
-				"title":"Javascript Meetup",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the Javascript Meetup.</p><p>Nothing to see!</p>",
-				"start":moment().subtract('days',27),
-				"end":moment().subtract('days',27),
-				"url":"http://www.mikesmithdev.com/blog/migrating-from-asp-net-to-ghost-node-js/"
-			},
-			{
-				"title":"HTML Meetup",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the HTML Meetup.</p><p>Nothing to see!</p>",
-				"start":moment().subtract('days',22),
-				"end":moment().subtract('days',22),
-				"url":"http://www.mikesmithdev.com/blog/migrating-from-asp-net-to-ghost-node-js/"
-			},
-			{
-				"title":"CSS Meetup",
-				"allday":"false",
-				"description":"<p>This is just a fake description for the CSS Meetup.</p><p>Nothing to see!</p>",
-				"start":moment().add('days',27),
-				"end":moment().add('days',27),
-				"url":"http://www.mikesmithdev.com/blog/migrating-from-asp-net-to-ghost-node-js/"
-			}
-		]
+	{
+	"title":"JQuery Quiz",
+	"allday":"false",
+	"description":"<p>Sample description for a JQuery Quiz Assignment</p>",
+	"start":moment().subtract('days',2),
+	"end":moment().subtract('days',1),
+	"url":"http://www.w3schools.com/jquery/"
+	},
+	{
+	"title":"Python Worksheet",
+	"allday":"false",
+	"description":"<p>Sample description for a Python WS Assignment</p>",
+	"start":moment().add('days',7),
+	"end":moment().add('days',7),
+	"url":"https://en.wikipedia.org/wiki/Python_%28programming_language%29"
+	}
+	]
 	});
+
+
+
+
+	function AddEvent(StartDate, EndDate, title1){
+	            $('#scheduleCalendar').fullCalendar('renderEvent', {
+	                        id: StartDate,
+	                        title: title1,
+	                        start: StartDate,
+	                        end: EndDate,
+	                        allDay: false
+	                    }, true );
+	        }
+
+			$( "#addT" ).click(function addTask3() {
+				var sYear = $( "#chooseYear option:selected" ).text();
+		        var sMonth = $( "#chooseMonth option:selected" ).index();
+		        var sDay = $( "#chooseDay option:selected" ).text();
+		        var sHour = $( "#chooseHour option:selected" ).text();
+
+		        var eYear = $( "#chooseYear2 option:selected" ).text();
+		        var eMonth = $( "#chooseMonth2 option:selected" ).index();
+		        var eDay = $( "#chooseDay2 option:selected" ).text();
+		        var eHour = $( "#chooseHour2 option:selected" ).text();
+		        console.log(sYear + sMonth + sDay + sHour);
+
+		        var d1 = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
+		        var d2 = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
+		        console.log(d1);
+
+		        AddEvent((d1), (d2), "testTask");
+		            //    AddEvent(d1), (d2), "new Task1");
+		    });
+
 });
 </script>
 
@@ -705,12 +585,12 @@ List out the imods course info dates (demo getting data from the controller file
 </p>
 
 <form id="addTaskBut" >
-	<input  type="button" value="Add Task" id = "addT" onclick="addTask()"/>
+	<input  type="button" value="Add Task" id = "addT" />
 </form>
 
 
 
-
+<g:javascript src="source/schedule.js" defer="defer" />
 
 
 

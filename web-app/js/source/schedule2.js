@@ -21,15 +21,7 @@ dayClick: function() {
 moment().format();
 
 
-function AddEvent(StartDate, EndDate, title1){
-            $('#calendar').fullCalendar('renderEvent', {
-                        id: StartDate,
-                        title: title1,
-                        start: StartDate,
-                        end: EndDate,
-                        allDay: false
-                    }, true );
-        }
+
 
     var years = [];
 

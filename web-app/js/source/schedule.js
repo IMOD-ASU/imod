@@ -1,4 +1,4 @@
-
+/*
 $(document).ready(function() {
 
  // page is now ready, initialize the calendar...
@@ -31,8 +31,10 @@ function AddEvent(StartDate, EndDate, title1){
                     }, true );
         }
 
-    var years = [];
 
+*/
+
+    var years = [];
 for (var i = 2010; i <= 2035; i++) {
    years.push(i);
 }
@@ -1061,7 +1063,7 @@ $(document).ready(
 			$('#selectAlldC').prop('checked', false);
 		});
 		$('#saveButton').on('click', function () {
-            
+
 			cloneDetect = document.getElementById('cloneDetect').value;
 
 			if ($('#title').val() === '') {
