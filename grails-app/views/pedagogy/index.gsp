@@ -34,6 +34,9 @@
 	</head>
 
 	<body>
+
+		<input name="id" id="currentImod" value="${currentImod.id}">
+
 		<div class="modalBackgroundFavorites"></div>
 		<div class="favorites-modal draggable">
 			<fieldset class="titleField draggable-handle">
@@ -444,7 +447,7 @@
 							<g:if test="${learningObjectives}">
 								<g:each var="learningObjective" in="${learningObjectives}">
 										<g:if test="${learningObjective.definition != null && !learningObjective.definition.trim().isEmpty()}">
-											<h3 class="istructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
+											<h3 class="instructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
 											<div class="assignedTechniques" id="assignedTechniques-${learningObjective.id}">
 												<g:if test="${learningObjective.pedagogyTechniques.size()}">
 								                    <ul>

@@ -34,13 +34,31 @@ function repopulateCheckboxes () {
 }
 function openInstructionalPlanModal () {
 	'use strict';
-	var instructionPlanBlock = $('#instruction-plan-accordion').find('.istructional-plan-LO');
 
-	instructionPlanBlock.each(function () {
-		var spanHTML = $(this).find('span').clone().wrap('<p>').parent().html();
+	$.ajax({
+		url: '../getInstructionalPlan/' + $('#currentImod').val(),
+		method: 'GET'
+	})
+	.done(function (data) {
+		var techniques = '';
 
-		$(this).html(spanHTML + truncateString($(this).text(), 80));
+		$.each(data.techniques, function (rowIndex, row) {
+			techniques += '<h3 class=\'instructional-plan-LO\' id=\'' + row.id + '\'> ' + truncateString(row.text, 80) + '<\/h3>';
+			techniques += '<div class=\'assignedTechniques\' id=\'assignedTechniques-' + row.id + '\'>';
+			techniques += '    <ul>';
+
+			$.each(row.techs, function (techniqueIndex, technique) {
+				techniques += '<li>' + technique + '<\/li>';
+			});
+			techniques += '    <\/ul>';
+			techniques += '<\/div>';
+		});
+
+		$('#instruction-plan-accordion').html(techniques);
+		$('#instruction-plan-accordion').accordion('option', 'active', false);
+		$('#instruction-plan-accordion').accordion('refresh');
 	});
+
 	$('#instruction-plan').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
