@@ -570,7 +570,7 @@ function updateTextArea (checkBoxName) {
 	var right = '';
 
 	$('input[name=' + checkBoxName + ']:checked').each(function () {
-		allVals.push($(this).prev().prev().text().trim());
+		allVals.push($(this).parent().text().trim());
 	});
 	valsLength = allVals.length;
 
@@ -589,10 +589,13 @@ function updateTextArea (checkBoxName) {
 			break;
 	}
 
-	if (allVals.length > 2) {
+
+	if (valsLength > 1) {
 		$('#' + checkBoxName + 'span').html('<b>' + text + ' (' + valsLength + ' Selections)</b>' + right + '</span>&nbsp;&nbsp;');
+	} else if (valsLength === 1) {
+		$('#' + checkBoxName + 'span').html('<b>' + allVals[0] + '</b>' + right + '</span>&nbsp;&nbsp;');
 	} else {
-		$('#' + checkBoxName + 'span').html('<b>' + allVals + '</b>' + right + '</span>&nbsp;&nbsp;');
+		$('#' + checkBoxName + 'span').html('<b>' + text + ' (No Selections)</b>' + right + '</span>&nbsp;&nbsp;');
 	}
 }
 
@@ -690,6 +693,7 @@ $(document).ready(
 
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
+		updateTextArea('knowledgeDimension');
 		$('input[name=knowledgeDimension]').on('change',
 		function () {
 			checkBoxName = 'knowledgeDimension';
@@ -697,6 +701,7 @@ $(document).ready(
 			filterPedagogyTechniques();
 			$('#selectAllkD').prop('checked', false);
 		});
+		updateTextArea('learningDomain');
 		$('input[name=learningDomain]').on('change',
 		function () {
 			checkBoxName = 'learningDomain';
@@ -704,6 +709,7 @@ $(document).ready(
 			filterPedagogyTechniques();
 			$('#selectAlllD').prop('checked', false);
 		});
+		updateTextArea('domainCategory');
 		$('input[name=domainCategory]').on('change',
 		function () {
 			checkBoxName = 'domainCategory';
