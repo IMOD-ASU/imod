@@ -81,6 +81,34 @@ class AssessmentController {
 		]
 	}
 
+	def getAssessmentPlan(long id) {
+		// get the selected imod
+		final currentImod = Imod.get(id)
+
+		// finds all the learning objective linked to this imod
+		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+
+		def list = []
+
+		learningObjectives.each { it ->
+			def obj = [:]
+			obj['text'] = it.definition
+			obj['id'] = it.id
+			obj['techs'] = []
+
+			it.assessmentTechniques.each { p ->
+				obj['techs'].add(p.title)
+			}
+			list.add(obj)
+		}
+
+		render (
+			[
+				techniques: list
+			] as JSON
+		)
+	}
+
 	/**
 	 * Finds ideal and extended matches based on learning domains and knowledge dimensions
 	 * expects params

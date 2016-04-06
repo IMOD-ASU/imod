@@ -35,7 +35,7 @@
 
 	<body>
 
-		<input name="id" id="currentImod" value="${currentImod.id}">
+		<input name="id" id="currentImod" value="${currentImod.id}" type="hidden">
 
 		<div class="modalBackgroundFavorites"></div>
 		<div class="favorites-modal draggable">

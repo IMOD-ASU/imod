@@ -33,6 +33,9 @@
 	</head>
 
 	<body>
+
+		<input name="id" id="currentImod" value="${currentImod.id}" type="hidden">
+
 		<div class="modalBackgroundFavorites"></div>
 		<div class="favorites-modal draggable">
 			<fieldset class="titleField draggable-handle">

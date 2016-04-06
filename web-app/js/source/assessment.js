@@ -8,6 +8,31 @@ var isTechClone = false;
  */
 function openAssessmentPlanModal () {
 	'use strict';
+
+	$.ajax({
+		url: '../getAssessmentPlan/' + $('#currentImod').val(),
+		method: 'GET'
+	})
+	.done(function (data) {
+		var techniques = '';
+
+		$.each(data.techniques, function (rowIndex, row) {
+			techniques += '<h3 class=\'instructional-plan-LO\' id=\'' + row.id + '\'> ' + truncateString(row.text, 80) + '<\/h3>';
+			techniques += '<div class=\'assignedTechniques\' id=\'assignedTechniques-' + row.id + '\'>';
+			techniques += '    <ul>';
+
+			$.each(row.techs, function (techniqueIndex, technique) {
+				techniques += '<li>' + technique + '<\/li>';
+			});
+			techniques += '    <\/ul>';
+			techniques += '<\/div>';
+		});
+
+		$('#assessment-plan-accordion').html(techniques);
+		$('#assessment-plan-accordion').accordion('option', 'active', false);
+		$('#assessment-plan-accordion').accordion('refresh');
+	});
+
 	$('#topicDialogBackground').css('display', 'block');
 	$('#assessment-plan').css('display', 'block');
 }
