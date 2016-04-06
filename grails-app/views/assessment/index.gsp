@@ -249,7 +249,7 @@
 							</h3>
 
 							<div id="extended-matches" class="icons favorite AllMatches"></div>
-				
+
 							<h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
 								<b>My Techniques</b>
 							</h3>
