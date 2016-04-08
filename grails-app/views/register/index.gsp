@@ -23,6 +23,10 @@
 					<br/>
 					<table>
 						<tbody>
+							%{-- <input name="firstName">
+							<input name="firstName"> --}%
+							<s2ui:textFieldRow name='firstName' labelCode='user.firstName.label' bean="${command}" size='40' labelCodeDefault='First Name' value="${command.firstName}"/>
+							<s2ui:textFieldRow name='lastName' labelCode='user.lastName.label' bean="${command}" size='40' labelCodeDefault='Last Name' value="${command.lastName}"/>
 							<s2ui:textFieldRow name='username' labelCode='user.username.label' bean="${command}" size='40' labelCodeDefault='Username' value="${command.username}"/>
 							<s2ui:textFieldRow name='email' bean="${command}" value="${command.email}" size='40' labelCode='user.email.label' labelCodeDefault='E-mail'/>
 							<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${command}" size='40' labelCodeDefault='Password' value="${command.password}"/>
@@ -43,7 +47,7 @@
 		</s2ui:form>
 		<script>
 			$(document).ready(function() {
-				$('#username').focus();
+				$('#firstName').focus();
 				$('.login-back').prop('href',window.location.pathname.match(/\/[^\/]+\//)[0]+'login/auth');
 			});
 		</script>

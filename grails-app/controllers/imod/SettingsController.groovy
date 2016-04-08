@@ -8,7 +8,7 @@ class SettingsController {
 
     def index() {
     	def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
-    	def roles = ['Assistant Professor', 'Associate Professor', 'Professor', 'Teaching Assistant', 'Course Assistant', 'Grader']
+    	def roles = ['Assistant Professor', 'Associate Professor', 'Professor', 'Teaching Assistant', 'Course Assistant', 'Grader', 'Course Designer', 'Lecturer', 'Sr. Lecturer', 'Other']
 
     	[
 			currentPage: 'index',

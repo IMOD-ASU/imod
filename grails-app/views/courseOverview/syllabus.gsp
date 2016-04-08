@@ -393,7 +393,7 @@
 	                <div class="form-title">
 	                    <h3>
 	                    <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-learning-objectives-list-') ? '' : 'checked'} data-id="learning-objectives-list"/>
-	                    Learning Objectives
+	                    Learning Objectives <span class="small-toggles"><input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-assessments-') ? '' : 'checked'} data-class="assessments"  /> Assessments <input type="checkbox" class="display-toggle" ${hideSectionsList.contains('-instructions-') ? '' : 'checked'} data-class="instructions"  /> Instructional Techniques</span>
 	                    </h3>
 	                </div>
 
@@ -404,9 +404,9 @@
 	                            <li class="learning-objective list-item">
 	                                ${ learningObjective.definition.encodeAsCustomEscape() }
 	                                <g:if test="${learningObjective.assessmentTechniques.size()}">
-	                                	<ul>
+	                                	<ul class="assessments">
 	                                		<li>
-						                    	<strong>Assessment Plan</strong>
+						                    	<strong>Assessments</strong>
 						                    	<ul>
 												<g:each var="technique" in="${learningObjective.assessmentTechniques}">
 
@@ -421,8 +421,8 @@
 									</g:if>
 	                                <g:if test="${learningObjective.pedagogyTechniques.size()}">
 					                    <ul>
-					                    <li>
-					                    	<strong>Instruction Plan</strong>
+					                    <li class="instructions">
+					                    	<strong>Instructional Techniques</strong>
 					                    	<ul>
 					                    		<g:each var="technique" in="${learningObjective.pedagogyTechniques}">
 

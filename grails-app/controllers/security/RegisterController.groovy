@@ -41,8 +41,16 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 		}
 
 		String salt = saltSource instanceof NullSaltSource ? null : command.username
-		def user = lookupUserClass().newInstance(email: command.email, username: command.username,
-				accountLocked: true, enabled: true)
+		def user = lookupUserClass()
+					.newInstance(
+						email: command.email,
+						username: command.username,
+						accountLocked: true,
+						enabled: true,
+						firstName: command.firstName,
+						lastName: command.lastName,
+						role: 'ROLE_USER'
+					)
 
 		RegistrationCode registrationCode = springSecurityUiService.register(user, command.password, salt)
 		if (registrationCode == null || registrationCode.hasErrors()) {
@@ -114,6 +122,8 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
 }
 
 class RegisterCommand {
+	String firstName
+	String lastName
 	String username
 	String email
 	String password
@@ -134,6 +144,8 @@ class RegisterCommand {
 		email blank: false, email: true
 		password blank: false, validator: RegisterController.passwordValidator
 		password2 validator: RegisterController.password2Validator
+		firstName nullable: false, blank: false, minSize: 3, maxSize: 20
+		lastName nullable: false, blank: false, minSize: 3, maxSize: 20
 	}
 }
 
