@@ -7,10 +7,12 @@
   "dependencies": {
     "chart.js": "https://github.com/nnnick/Chart.js.git",
     "fontawesome": "4.5.0",
+    "fullcalendar": "2.6.1",
     "jquery-sortable": "0.9.13",
     "jquery.cookie": "jquery-cookie#~1.4.1",
     "jquery.maskedinput": "1.4.1",
     "jquery.ui": "1.11.4",
+    "jqueryui-timepicker-addon": "1.6.1",
     "jquery.validate": "1.13.0",
     "jquery": "3.0.0-beta1+compat",
     "jstree": "3.2.1",
