@@ -657,6 +657,7 @@ var assign3 = {
 console.log(outClassHours);
 window.onload = function () {
 
+
 	CanvasJS.addColorSet("greenShades",
 	                [//colorSet Array
 
@@ -721,7 +722,7 @@ window.onload = function () {
 </script>
 
 <!-- -->
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<div id="chartContainer" style="height: 300px; width: 97.5%;"></div>
 
 
 <!--
