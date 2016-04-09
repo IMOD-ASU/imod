@@ -5,7 +5,6 @@
   "description": "front end libraries for imods",
   "private": true,
   "dependencies": {
-    "chart.js": "https://github.com/nnnick/Chart.js.git",
     "fontawesome": "4.5.0",
     "fullcalendar": "2.6.1",
     "jquery-sortable": "0.9.13",
@@ -20,6 +19,6 @@
     "qtip2": "2.2.1",
     "ubuntu-fontface": "0.1.10",
     "tooltipster": "3.3.0",
-    "Chart.js": "^1.1.1"
+    "Chart.js": "1.0.2"
   }
 }
