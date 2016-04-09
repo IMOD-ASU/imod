@@ -12,8 +12,8 @@
   },
   "devDependencies": {
     "csscomb": "^3.1.8",
-    "eslint": "^2.0.0",
-    "remark": "^4.0.0",
+    "eslint": "^2.4.0",
+    "remark": "^4.1.2",
     "remark-lint": "^3.0.0",
     "remark-validate-links": "^3.0.0"
   }

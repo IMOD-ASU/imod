@@ -393,7 +393,8 @@ textarea:focus {
     overflow: hidden;
 
     height: 26px !important;
-    padding-right: 35px;
+    padding-right: 40px;
+    padding-left: 5px;
 
     border: 1px solid #cccccc;
     background: url(../images/dropdown_arrow.png) no-repeat center right #ffffff;
@@ -859,13 +860,15 @@ a.square {
 #navbar {
     overflow: hidden;
 
-    padding: 10px 2.5%;
+    padding: 0 2.5%;
 
     background: #0c1625;
 }
 
 #imodlogo {
     float: left;
+
+    padding: 10px 0;
 }
 
 #nav-links {
@@ -875,16 +878,36 @@ a.square {
 #nav-links li {
     float: left;
 
-    margin-left: 15px;
-    padding-top: 15px;
-
     list-style-type: none;
 
     color: #ffffff;
 }
 
 #nav-links li a {
+    display: block;
+
+    height: 44px;
+    padding: 10px 15px;
+
+    text-decoration: none;
+
     color: #ffffff;
+    border-left: 1px solid #1d3559;
+
+    font-size: 15px;
+    line-height: 44px;
+}
+
+#nav-links li a:hover {
+    background: #142640;
+}
+
+#nav-links li:last-child a {
+    border-right: 1px solid #1d3559;
+}
+
+#nav-links li a i {
+    margin-right: 4px;
 }
 
 a.banner-home {
@@ -1230,45 +1253,56 @@ table.inner-table {
     font-size: 150%;
 }*/
 #main-menu {
-	border-bottom: 1px solid #ccc;
-    border-radius: 0;
     display: table;
-    table-layout: fixed;
+
     width: 100%;
+
+    table-layout: fixed;
+
+    border-bottom: 1px solid #cccccc;
+    border-radius: 0;
 }
 #main-menu li {
-	font-size: 100%; height: auto;
-	float: none;
-	display: table-cell;
+    display: table-cell;
+    float: none;
+
+    height: auto;
+
+    font-size: 100%;
 }
 
 #main-menu li a {
-	font-size: 150%;
-	padding: 0.5em 5px;
-    text-align: center;
     display: block;
     float: none;
+
+    padding: 0.5em 5px;
+
+    text-align: center;
+
+    font-size: 150%;
 }
 
-@media (max-width: 1440px)  {
-	#main-menu li a {
-		font-size: 120%;
-	}
+@media (max-width: 1440px) {
+    #main-menu li a {
+    	font-size: 120%;
+    }
 }
 
-@media (max-width: 1200px)  {
-	#main-menu li img {
-		width: 30px; height: auto;
-	}
-	#main-menu li a {
-		font-size: 100%;
-	}
+@media (max-width: 1200px) {
+    #main-menu li img {
+    	width: 30px;
+    	height: auto;
+    }
+    #main-menu li a {
+    	font-size: 100%;
+    }
 }
 
 
 img.tab-icon {
     /*width: 17%;*/
     height: 30px;
+
     vertical-align: middle;
 }
 
@@ -1432,7 +1466,7 @@ a.ui-tabs-anchor {
 
 
 .list-imod-body {
-    overflow-y: scroll;
+    overflow-y: auto;
 
     height: 400px;
     margin-top: 5%;

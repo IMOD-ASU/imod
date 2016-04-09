@@ -13,6 +13,7 @@ class AssessmentTechnique {
 	String difficulty
 	String type
 	String whenToCarryOut
+	String whereToCarryOut
 	String reference
 	Boolean assigncheck = Boolean.TRUE
 	Boolean favcheck = Boolean.TRUE
@@ -50,6 +51,7 @@ class AssessmentTechnique {
 		difficulty nullable: true, blank: true
 		type nullable: true, blank: true
 		whenToCarryOut nullable: true, blank: true
+		whereToCarryOut nullable: true, blank: true
 		reference nullable: true, blank: true
 		assesmentype nullable: true, blank: true
 	}

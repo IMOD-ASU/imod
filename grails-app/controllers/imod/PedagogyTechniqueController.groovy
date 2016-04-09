@@ -31,10 +31,12 @@ class PedagogyTechniqueController {
 		String [] knowledgedimensions = PedagogyTechnique.get(id).knowledgeDimension
 		String [] learningdomains = PedagogyTechnique.get(id).learningDomain
 		String [] domaincategories = PedagogyTechnique.get(id).domainCategory
+		String [] pedagogyfocuses = PedagogyTechnique.get(id).activityFocus
 
 		String  knowledgeDimensions=''
 		String  learningDomains=''
 		String  domainCategories=''
+		String  pedagogyFocuses=''
 
 		for (int i = 0; i < knowledgedimensions.size(); i++) {
 			knowledgeDimensions = knowledgeDimensions + knowledgedimensions[i] + ','
@@ -45,7 +47,10 @@ class PedagogyTechniqueController {
 		for (int i = 0; i < domaincategories.size(); i++) {
 			domainCategories = domainCategories + domaincategories[i] + ','
 		}
-
+		for (int i = 0; i < pedagogyfocuses.size() - 1; i++) {
+			pedagogyFocuses = pedagogyFocuses + pedagogyfocuses[i] + ','
+		}
+		pedagogyFocuses = pedagogyFocuses + pedagogyfocuses.lost()
 		// add some stuff if (KnowledgeDimension.findById(PedagogyTechnique.get(id).knowledgeDimension[i].id).toString()!=null)
 		render (
 			[
@@ -55,7 +60,7 @@ class PedagogyTechniqueController {
 				knowledgeDimension: knowledgeDimensions,
 				learningDomains: learningDomains,
 				domainCategories: domainCategories,
-				activityFocus: PedagogyActivityFocus.findById(PedagogyTechnique.get(id).activityFocus[0].id).toString(),
+				activityFocus: pedagogyFocuses,
 				pedagogyMode: (PedagogyTechnique.get(id).pedagogyMode).toString(),
 				pedagogyDuration: (PedagogyTechnique.get(id).pedagogyDuration).toString(),
 			] as JSON
@@ -116,8 +121,9 @@ class PedagogyTechniqueController {
 		newTechnique.reference = params.reference
 		newTechnique.activityDescription = params.activityDescription
 		String[] kD = params.knowledgeDimension.split(',')
-		String[] lD = params.domainSelected.split(',')
-		String[] dC = params.domainCategorySelected.split(',')
+		String[] lD = params.list('learningDomain')
+		String[] dC = params.list('domainCategory')
+		String[] pF = params.list('pedagogyFocus')
 
 		if (kD != null) {
 			for (int i = 0; i < kD.length; i++) {
@@ -145,6 +151,17 @@ class PedagogyTechniqueController {
 					println (dC[i])
 					if (DomainCategory.findByName(dC[i]) != null) {
 						newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
+					}
+				}
+			}
+		}
+
+		if (pF != null) {
+			for (int i = 0; i < pF.length; i++) {
+				if (pF[i] != null) {
+					println (pF[i])
+					if (PedagogyActivityFocus.findByFocus(pF[i]) != null) {
+						newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus(pF[i]))
 					}
 				}
 			}

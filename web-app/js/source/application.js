@@ -2,6 +2,17 @@ var formSubmitted = false;
 
 $(document).ready(function () {
 	'use strict';
+
+	$('.tooltipster').tooltipster({
+		theme: 'tooltipster-noir',
+		position: 'bottom'
+	});
+
+	$('.tooltipsterForm').tooltipster({
+		theme: 'tooltipster-noir',
+		position: 'right'
+	});
+
 	$('#accordion').accordion({
 		heightStyle: 'content',
 		collapsible: true
@@ -110,6 +121,14 @@ $(document).ready(function () {
 
 		$('.draggable').each(function () {
 			elem = $(this);
+
+			if (elem.prop('id') === 'add-new-technique') {
+				$('.add-new-technique-form')
+					.validate()
+					.resetForm();
+				$('#errorMessage').text('');
+			}
+
 			if (zIndex <= parseInt(elem.css('z-index'), 10)) {
 				elem.hide();
 			}
@@ -161,7 +180,7 @@ window.onbeforeunload = function () {
 		dirtyForm = $('form').find('select, textarea, input').serialize();
 	}
 
-	if (!formSubmitted && window.cleanForm !== dirtyForm) {
+	if ((!formSubmitted && window.cleanForm !== dirtyForm) || window.unsavedResource) {
 		return 'You have unsaved changes. Please save them before proceeding.';
 	}
 	return null;

@@ -45,7 +45,7 @@ class AssessmentController {
 		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
-		final content = currentImod?.contents
+		final content = currentLearningObjective.contents
 		def knowDimensionList = []
 		def dimension = []
 		if (content != null) {
@@ -81,6 +81,34 @@ class AssessmentController {
 		]
 	}
 
+	def getAssessmentPlan(long id) {
+		// get the selected imod
+		final currentImod = Imod.get(id)
+
+		// finds all the learning objective linked to this imod
+		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+
+		def list = []
+
+		learningObjectives.each { it ->
+			def obj = [:]
+			obj['text'] = it.definition
+			obj['id'] = it.id
+			obj['techs'] = []
+
+			it.assessmentTechniques.each { p ->
+				obj['techs'].add(p.title)
+			}
+			list.add(obj)
+		}
+
+		render (
+			[
+				techniques: list
+			] as JSON
+		)
+	}
+
 	/**
 	 * Finds ideal and extended matches based on learning domains and knowledge dimensions
 	 * expects params
@@ -109,7 +137,7 @@ class AssessmentController {
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 		// find all technique where both the knowledge dimension and the domain category match
-		final idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
+		def idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
 				or {
 					eq('isAdmin', true)
@@ -133,7 +161,7 @@ class AssessmentController {
 		}
 
 		// find all technique that are not ideal, but have the learning domain
-		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
+		def extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
 				or {
 					eq('isAdmin', true)
@@ -144,24 +172,11 @@ class AssessmentController {
 				learningDomain {
 					'in' ('id', selectedLearningDomains)
 				}
-				not {
-					and {
-						knowledgeDimension {
-							'in' ('id', selectedKnowledgeDimensions)
-						}
-						or {
-							domainCategory {
-								'in' ('id', selectedDomainCategories)
-							}
-							learningDomain {
-								'in' ('id', selectedLearningDomains)
-							}
-						}
-					}
-				}
+
 			}
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
+		extendedAssessmentTechniqueMatch = (idealAssessmentTechniqueMatch + extendedAssessmentTechniqueMatch) - extendedAssessmentTechniqueMatch.intersect(idealAssessmentTechniqueMatch)
 
 		final favoriteTechniques = currentUser.favoriteAssessmentTechnique.id
 		def stringfavoriteTechniques = []
@@ -176,6 +191,12 @@ class AssessmentController {
 		//Convert int to string
 		for (def LOAssessmentTechnique in LOAssessmentTechniques) {
 			stringLOAssessmentTechniques.add(LOAssessmentTechnique.toString())
+		}
+		idealAssessmentTechniqueMatch.sort {
+			it.title.toUpperCase()
+		}
+		extendedAssessmentTechniqueMatch.sort {
+			it.title.toUpperCase()
 		}
 
 		render(

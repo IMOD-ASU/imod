@@ -12,11 +12,19 @@ $(function () {
 
 	// hide unchecked areas on page load
 	$('.display-toggle').each(function () {
-		toggleVisibility($(this), $('#' + $(this).data('id')));
+		if ($(this).data().hasOwnProperty('id')) {
+			toggleVisibility($(this), $('#' + $(this).data('id')));
+		} else {
+			toggleVisibility($(this), $('.' + $(this).data('class')));
+		}
 	});
 
 	$(document).on('click', '.display-toggle', function () {
-		toggleVisibility($(this), $('#' + $(this).data('id')));
+		if ($(this).data().hasOwnProperty('id')) {
+			toggleVisibility($(this), $('#' + $(this).data('id')));
+		} else {
+			toggleVisibility($(this), $('.' + $(this).data('class')));
+		}
 	});
 
 	$('.printpdf').click(function () {
@@ -34,9 +42,14 @@ $(function () {
 
 		$('.display-toggle').each(function () {
 			if (!$(this).is(':checked')) {
-				hideSectionsList.push('-' + $(this).data('id') + '-');
+				if ($(this).data().hasOwnProperty('id')) {
+					hideSectionsList.push('-' + $(this).data('id') + '-');
+				} else {
+					hideSectionsList.push('-' + $(this).data('class') + '-');
+				}
 			}
 		});
+
 
 		$.ajax({
 			url: baseUrl + 'courseOverview/updateSyllabusPrefs',

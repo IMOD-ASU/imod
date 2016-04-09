@@ -34,6 +34,9 @@
 	</head>
 
 	<body>
+
+		<input name="id" id="currentImod" value="${currentImod.id}" type="hidden">
+
 		<div class="modalBackgroundFavorites"></div>
 		<div class="favorites-modal draggable">
 			<fieldset class="titleField draggable-handle">
@@ -113,9 +116,9 @@
 						<div >
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAllkD" />
 						<label>Select All</label>
-						
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+
+						<hr style=" margin-top: 6px; margin-bottom: 6px;width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
 									<li>
 									<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}"
@@ -124,7 +127,7 @@
 										<label for="knowledge-dimension-${index}">
 											${knowledgeDimension.description}
 										</label>
-										
+
 									</li>
 								</g:each>
 							</ul>
@@ -133,11 +136,11 @@
 							Learning Domains
 						</h3>
 						<div>
-						<g:checkBox name="myCheckbox" class="select-all" 
+						<g:checkBox name="myCheckbox" class="select-all"
 						id="selectAlllD" />
 						<label>Select All</label>
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+						<hr style=" margin-top: 6px; margin-bottom: 6px; width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="learningDomain" in="${learningDomains}" status="index">
 									<li>
 									<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}"
@@ -156,8 +159,8 @@
 						<div>
 						<g:checkBox name="myCheckbox" class="select-all" id="selectAlldC" />
 						<label>Select All</label>
-						<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
-							<ul>
+						<hr style=" margin-top: 6px; margin-bottom: 6px; width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
+							<ul style="list-style-type:none">
 								<g:each var="domainCategory" in="${domainCategories}" status="index">
 									<li>
 										<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}"
@@ -166,7 +169,7 @@
 										<label for="domain-category-${index}">
 											${domainCategory.name}
 										</label>
-							
+
 									</li>
 								</g:each>
 							</ul>
@@ -182,27 +185,27 @@
 								<div>
 									<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 									<span id="add-new-technique-button" class="topicButtonGradient">
-										<button>
+										<button class="tooltipster" title="${message(code: 'imod.pedagogy.add')}">
 											<i class="fa fa-plus green"></i>
 											Add New Technique
 										</button>
 									</span>
 
 									<span id="favorites-button" class="topicButtonGradient">
-										<button>
+										<button class="tooltipster" title="${message(code: 'imod.pedagogy.favorite')}">
 											<i class="fa fa-star yellow"></i>
 											Favorites
 										</button>
 									</span>
 
 									<span  id="unfavorites" class="topicButtonGradient">
-										<button>
+										<button class="tooltipster" title="${message(code: 'imod.pedagogy.unfavorite')}">
 											UnFavorites
 										</button>
 									</span>
 
 									<span id="instruction-plan-button" class="topicButtonGradient">
-										<button>
+										<button class="tooltipster" title="${message(code: 'imod.pedagogy.instrplan')}">
 											<i class="fa fa-graduation-cap"></i>
 											Instructional Plan
 										</button>
@@ -255,6 +258,11 @@
 							</h3>
 
 							<div id="extended-matches" class="icons favorite"></div>
+							<h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
+								<b>My Techniques</b>
+							</h3>
+
+							<div id="user-techniques" class="icons favorite"></div>
 							</div>
 						</div>
 					</g:if>
@@ -263,27 +271,27 @@
 							<span>
 								<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 								<span id="add-new-technique-button" class="topicButtonGradient">
-									<button>
+								<button class="tooltipster" title="${message(code: 'imod.pedagogy.add')}">
 										<i class="fa fa-plus green"></i>
 										Add New Technique
 									</button>
 								</span>
 
 								<span id="favorites-button" class="topicButtonGradient">
-									<button>
+									<button class="tooltipster" title="${message(code: 'imod.pedagogy.favorite')}">
 										<i class="fa fa-star yellow"></i>
 										Favorites
 									</button>
 								</span>
 
 								<span  id="unfavorites" class="topicButtonGradient">
-									<button>
+									<button class="tooltipster" title="${message(code: 'imod.pedagogy.unfavorite')}">
 										UnFavorites
 									</button>
 								</span>
 
 								<span id="instruction-plan-button" class="topicButtonGradient">
-									<button>
+									<button class="tooltipster" title="${message(code: 'imod.pedagogy.instrplan')}">
 										<i class="fa fa-graduation-cap"></i>
 										Instructional Plan
 									</button>
@@ -313,25 +321,25 @@
 						<%--To render the add new Technique dialog box--%>
 						<fieldset class="titleField draggable-handle">
 							<div id="editTitle" class="pedagogy-title">
-							<b> Add Pedagogy Technique</b>
+							<b> Add Pedagogy Techniques</b>
 							</div>
 							<span id="errorMessage" class="red"></span>
 						</fieldset>
-						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]" class="no-warn-form">
+						<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]" class="no-warn-form add-new-technique-form">
 							<g:hiddenField name="techniqueId" />
 							<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
 							<table id="techniqueList">
 								<tr>
 									<td class="td-label" width="40%">Title</td>
 									<td width="60%">
-										<g:textField name="title" />
+										<g:textField class="tooltipsterForm" title="${message(code: 'imod.pedagogy.technique.title')}" name="title" />
 									</td>
 									<input type="hidden" name="titlecheck" id="titlecheck" >
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Learning Domain	</td>
 									<td width="60%">
-										<g:select id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" />
+										<g:select class="tooltipsterForm" title="${message(code: 'imod.pedagogy.technique.learningDomain')}" id="learningDomain" name="learningDomain" multiple="multiple"from="${learningDomains}" noSelection="${['null':'-- Select one or more --']}"  optionKey="name" />
 									<td>
 									<input type="hidden" name="domainSelected" id="domainSelected" >
 									<input type="hidden" name="domainCategorySelected" id="domainCategorySelected" >
@@ -339,7 +347,7 @@
 								<tr>
 									<td class="td-label" width="40%">Domain Category</td>
 									<td width="60%">
-										<g:select id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" />
+										<g:select  class="tooltipsterForm" title="${message(code: 'imod.pedagogy.technique.domainCat')}" id="domainCategory" name="domainCategory" multiple="multiple" from="${domainCategories}" noSelection="${['null':'-- Select one or more --']}" optionKey="name" />
 									</td>
 								</tr>
 								<tr>
@@ -347,65 +355,66 @@
 									<td width="60%" class="show-hover-new">
 										<span>
 											<g:img
+												class="tooltipster"
 												dir="images/content"
 												file="knowDimNone.png"
 												id="dimImageModal"
 												width="71"
 												height="71"
-												title=""
+
 											/>
 
-											<button id="k1" class="knowledgeDimensionButton" title="${message(code: 'imod.content.knowledgeDimension')}"> Knowledge Dimensions</button>
+											<button  title="${message(code: 'imod.pedagogy.technique.KD')}" id="k1" class="knowledgeDimensionButton tooltipsterForm" title="${message(code: 'imod.content.knowledgeDimension')}"> Knowledge Dimensions</button>
 										</span>
+										<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
+										<input type="hidden" name="cloneDetect" id="cloneDetect" >
 									</td>
-									<input type="hidden" name="knowledgeDimension" id="knowledgeDimension" >
-									<input type="hidden" name="cloneDetect" id="cloneDetect" >
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Delivery Mode</td>
 									<td width="60%">
-										<g:select class="custom-dropdown" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
+										<g:select class="custom-dropdown tooltipsterForm"  title="${message(code: 'imod.pedagogy.technique.DM')}" name="pedagogyMode" from="${pedagogyModes}" optionKey="name" />
 									</td>
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Focus</td>
 									<td width="60%">
-										<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+										<g:select class="custom-dropdown tooltipsterForm" title="${message(code: 'imod.pedagogy.technique.Focus')}"  name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
 									</td>
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Duration</td>
 									<td width="60%">
-										<g:select class="custom-dropdown" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" />
+										<g:select class="custom-dropdown tooltipsterForm"  title="${message(code: 'imod.pedagogy.technique.duration')}" name="pedagogyDuration" from="${pedagogyDuration}" optionKey="duration" />
 									</td>
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Materials Required</td>
 									<td width="60%">
-										<g:textArea name="materials" rows="5" cols="30"/>
+										<g:textArea class="tooltipsterForm" title="${message(code: 'imod.pedagogy.technique.material')}" name="materials" rows="5" cols="30"/>
 									</td>
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">References</td>
 									<td width="60%">
-										<g:textArea name="reference" rows="5" cols="30"/>
+										<g:textArea class="tooltipsterForm" title="${message(code: 'imod.pedagogy.technique.reference')}" name="reference" rows="5" cols="30"/>
 									</td>
 								</tr>
 								<tr>
 									<td class="td-label" width="40%">Description of Activity</td>
 									<td width="60%">
-										<g:textArea name="activityDescription" rows="5" cols="30" />
+										<g:textArea class="tooltipsterForm" title="${message(code: 'imod.pedagogy.technique.activity')}" name="activityDescription" rows="5" cols="30" />
 									</td>
 								</tr>
 							</table>
 							<br>
 
 							<div id="modalButtons" style="align:left">
-								<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button">
+								<button type="submit"  title="${message(code: 'imod.pedagogy.technique.save')}" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button tooltipster">
 									<i class="fa fa-save green"></i>
 									Save
 								</button>
-								<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">
+								<button type="submit"  title="${message(code: 'imod.pedagogy.technique.cancel')}" name="_action_cancel" value="Cancel" class="new-technique-popup-button tooltipster">
 									<i class="fa fa-times red"></i>
 									Cancel
 								</button>
@@ -438,7 +447,7 @@
 							<g:if test="${learningObjectives}">
 								<g:each var="learningObjective" in="${learningObjectives}">
 										<g:if test="${learningObjective.definition != null && !learningObjective.definition.trim().isEmpty()}">
-											<h3 class="istructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
+											<h3 class="instructional-plan-LO" id="${learningObjective.id}">${ learningObjective.definition }</h3>
 											<div class="assignedTechniques" id="assignedTechniques-${learningObjective.id}">
 												<g:if test="${learningObjective.pedagogyTechniques.size()}">
 								                    <ul>
@@ -498,17 +507,19 @@
 			/>
 		</span>
 		<button
-			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn tooltipster"
 			id="knowDimFinished"
-			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+			%{--title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"--}%
+			title="${message(code: 'imod.pedagogy.technique.KD.continue')}"
 		>
 			<i class="fa fa-save green"></i>
 			${message(code: 'Save Resource', default: ' Continue')}
 		</button>
 		<button
-			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			class="cancel showHoverNew resourceButton topicButtonGradient knowledgedimBtn tooltipster"
 			id="closeKnowDim"
-			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+			%{--title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"--}%
+			title="${message(code: 'imod.pedagogy.technique.KD.cancel')}"
 		>
 			<i class="fa fa-times red"></i>
 			${message(code: 'Cancel Resource', default: ' Cancel')}
