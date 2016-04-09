@@ -7,10 +7,9 @@ class ScheduleController {
 	def learningObjectiveService
 	def springSecurityService
 
-
 	static allowedMethods = [
-	index: 'GET',
-	findMatchingTechniques: 'POST'
+		index: 'GET',
+		findMatchingTechniques: 'POST'
 	]
 
 	def index(Long id, Long learningObjectiveID) {
@@ -18,64 +17,58 @@ class ScheduleController {
 		final currentImod = Imod.get(id)
 
 		// finds all the learning objective linked to this imod
-			final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
 
-			// If no learning objective is selected
-			// select the first one if it exists
-			if (params.learningObjectiveID == null && learningObjectives.size > 0) {
-				redirect(
-					controller: 'schedule',
-					action: 'index',
-					id:  id,
-					params: [learningObjectiveID: learningObjectives[0].id]
-				)
-			}
+		// If no learning objective is selected
+		// select the first one if it exists
+		if (params.learningObjectiveID == null && learningObjectives.size > 0) {
+			redirect(
+				controller: 'schedule',
+				action: 'index',
+				id:  id,
+				params: [learningObjectiveID: learningObjectives[0].id]
+			)
+		}
 
-			// select current learning objective
-			final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
-
+		// select current learning objective
+		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
 		final pedagogyFocuses = PedagogyActivityFocus.list()
 
-			// get all of the filters used to find Assessment techniques
-			final domainCategories = DomainCategory.list()
-			final knowledgeDimensions = KnowledgeDimension.list()
-			final learningDomains = LearningDomain.list()
-			final assessmentFeedback = AssessmentFeedback.list()
-			final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
-			final selectedDomainCategory = selectedActionWordCategory?.domainCategory
-			final selectedDomain = selectedDomainCategory?.learningDomain
-			final content = currentImod?.contents
-			def knowDimensionList = []
-			def dimension = []
-			if (content != null) {
-				content.each {
-					knowDimensionList.push(it.dimensions)
-				}
-				// merge multiple lists into one
-				dimension = knowDimensionList.flatten()
-				// remove duplicates
-				dimension = dimension.unique { a, b ->
-					a <=> b
-				}
+		// get all of the filters used to find Assessment techniques
+		final domainCategories = DomainCategory.list()
+		final knowledgeDimensions = KnowledgeDimension.list()
+		final learningDomains = LearningDomain.list()
+		final assessmentFeedback = AssessmentFeedback.list()
+		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
+		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
+		final selectedDomain = selectedDomainCategory?.learningDomain
+		final content = currentImod?.contents
+		def knowDimensionList = []
+		def dimension = []
+		if (content != null) {
+			content.each {
+				knowDimensionList.push(it.dimensions)
 			}
-
-			def dimensionSize = 0
-			if (dimension != null) {
-				dimensionSize  = dimension.size() - 1
+			// merge multiple lists into one
+			dimension = knowDimensionList.flatten()
+			// remove duplicates
+			dimension = dimension.unique { a, b ->
+				a <=> b
 			}
+		}
 
-
+		def dimensionSize = 0
+		if (dimension != null) {
+			dimensionSize  = dimension.size() - 1
+		}
 
 		//render responseData as JSON
-
-		def x = "currentImod";
-		def startDate1=[]
-		def endDate1=[]
+		def startDate1 = []
+		def endDate1 = []
 		def creditHours1 = -1
-		def timeRatio1 = "no time"
-		def currName1 = "noName"
-
+		def timeRatio1 = 'no time'
+		def currName1 = 'noName'
 
 		startDate1 = Imod.get(id).schedule.startDate
 		endDate1 = Imod.get(id).schedule.endDate
@@ -84,46 +77,40 @@ class ScheduleController {
 		currName1 = Imod.get(id).name
 
 		[
-	pedagogyFocuses: pedagogyFocuses,
+			pedagogyFocuses: pedagogyFocuses,
 
-		currentImod: Imod.get(id),
-		currentLearningObjective: currentLearningObjective,
-		currentPage: 'schedule',
-		startDate1: startDate1,
-		endDate1: endDate1,
-		creditHours1: creditHours1,
-		timeRatio1: timeRatio1,
-		learningObjectives: learningObjectives,
-		currName1: currName1,
+			currentImod: Imod.get(id),
+			currentLearningObjective: currentLearningObjective,
+			currentPage: 'schedule',
+			startDate1: startDate1,
+			endDate1: endDate1,
+			creditHours1: creditHours1,
+			timeRatio1: timeRatio1,
+			learningObjectives: learningObjectives,
+			currName1: currName1,
 
-		domainCategories: domainCategories,
-		knowledgeDimensions: knowledgeDimensions,
-		learningDomains: learningDomains,
-		learningObjectives: learningObjectives,
-		assessmentFeedback: assessmentFeedback,
-		selectedDomain: selectedDomain,
-		selectedDomainCategory: selectedDomainCategory,
-		dimension: dimension,
-		dimensionSize: dimensionSize
+			domainCategories: domainCategories,
+			knowledgeDimensions: knowledgeDimensions,
+			learningDomains: learningDomains,
+			assessmentFeedback: assessmentFeedback,
+			selectedDomain: selectedDomain,
+			selectedDomainCategory: selectedDomainCategory,
+			dimension: dimension,
+			dimensionSize: dimensionSize
 
 		]
 
-
-
-
-
-/*
-		render (
-		[
-		startDate: startDate1,
-		startDate1: startDate1,
-		endDate1: endDate1,
-		creditHours1: creditHours1,
-		timeRatio1: timeRatio1
-		]
-		)
-
-*/
+		/*
+			render (
+				[
+					startDate: startDate1,
+					startDate1: startDate1,
+					endDate1: endDate1,
+					creditHours1: creditHours1,
+					timeRatio1: timeRatio1
+				]
+			)
+		*/
 
 	}
 
@@ -234,28 +221,27 @@ class ScheduleController {
 		)
 	}
 
-
-	def findImodScheduleInfo(){
+	def findImodScheduleInfo() {
 		render (
-		[
-		startDate: startDate1,
-		startDate1: startDate1,
-		endDate1: endDate1,
-		creditHours1: creditHours1,
-		timeRatio1: timeRatio1
-		]
+			[
+			startDate: startDate1,
+			startDate1: startDate1,
+			endDate1: endDate1,
+			creditHours1: creditHours1,
+			timeRatio1: timeRatio1
+			]
 		) as JSON
-		}
+	}
 
-		def schedule2() {
-			render(view: "schedule2",  model: [name:"John Doe"])
-		}
+	def schedule2() {
+		render(view: 'schedule2',  model: [name: 'John Doe'])
+	}
 
-		def testData() {
+	def testData() {
 			def result = [:]
-			result['name'] = "Sales"
-			result['type'] = "bar"
+			result['name'] = 'Sales'
+			result['type'] = 'bar'
 			result['data'] = [5, 20, 45, 10, 10, 20]
 			[jsonTest: result as JSON]
-		}
 	}
+}
