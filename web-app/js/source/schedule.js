@@ -1,193 +1,338 @@
-/*
-$(document).ready(function() {
-
- // page is now ready, initialize the calendar...
-
- $('#calendar').fullCalendar({
-dayClick: function() {
-	alert('a day has been clicked!');
-}
-
-});
-
-
-
-        console.log($("#startDate1").text())
-            console.log($("#endDate1").text())
-        AddEvent(($("#startDate1").text()), ($("#endDate1").text()), $("#currName1").text());
-
-
-});
-moment().format();
-
-
-function AddEvent(StartDate, EndDate, title1){
-            $('#calendar').fullCalendar('renderEvent', {
-                        id: StartDate,
-                        title: title1,
-                        start: StartDate,
-                        end: EndDate,
-                        allDay: false
-                    }, true );
-        }
-
-
-*/
-
-    var years = [];
-for (var i = 2010; i <= 2035; i++) {
-   years.push(i);
-}
-
-//Populate the choice box with choices from the years [2010 to 2035] array
-var choiceYear = document.getElementById("chooseYear");
-for(var i = 0; i < years.length; i++){
-//    console.log(i);
-    var tempMonth = years[i];
-    var tempEle = document.createElement("option");
-    tempEle.textContent = tempMonth;
-    tempEle.value = tempMonth;
-    choiceYear.appendChild(tempEle);
-}
-choiceYear = document.getElementById("chooseYear2");
-for(var i = 0; i < years.length; i++){
-//    console.log(i);
-    var tempMonth = years[i];
-    var tempEle = document.createElement("option");
-    tempEle.textContent = tempMonth;
-    tempEle.value = tempMonth;
-    choiceYear.appendChild(tempEle);
-}
-
-
-
-	var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-    //Populate the choice box with choices from the months array
-    var choiceMonth = document.getElementById("chooseMonth");
-    for(var i = 0; i < months.length; i++){
-    //    console.log(i);
-        var tempMonth = months[i];
-        var tempEle = document.createElement("option");
-        tempEle.textContent = tempMonth;
-        tempEle.value = tempMonth;
-        choiceMonth.appendChild(tempEle);
-    }
-
-     choiceMonth = document.getElementById("chooseMonth2");
-    for(var i = 0; i < months.length; i++){
-    //    console.log(i);
-        var tempMonth = months[i];
-        var tempEle = document.createElement("option");
-        tempEle.textContent = tempMonth;
-        tempEle.value = tempMonth;
-        choiceMonth.appendChild(tempEle);
-    }
-
-
-    var days = [];
-
-    for (var i = 1; i <= 31; i++) {
-       days.push(i);
-    }
-    console.log(days);
-
-    //Populate the choice box with choices from the days [1 to 31] array
-    var choiceDay = document.getElementById("chooseDay");
-    for(var i = 0; i < days.length; i++){
-        //console.log(i);
-        var tempMonth = days[i];
-        var tempEle = document.createElement("option");
-        tempEle.textContent = tempMonth;
-        tempEle.value = tempMonth;
-        choiceDay.appendChild(tempEle);
-    }
-
-     choiceDay = document.getElementById("chooseDay2");
-    for(var i = 0; i < days.length; i++){
-        //console.log(i);
-        var tempMonth = days[i];
-        var tempEle = document.createElement("option");
-        tempEle.textContent = tempMonth;
-        tempEle.value = tempMonth;
-        choiceDay.appendChild(tempEle);
-    }
-
-    var hours = [];
-
-    for (var i = 1; i <= 23; i++) {
-       hours.push(i);
-    }
-    //Populate the choice box with choices from the hours [1 to 23] array
-    var choiceHour = document.getElementById("chooseHour");
-    for(var i = 0; i < hours.length; i++){
-        //console.log(i);
-        var tempMonth = days[i];
-        var tempEle = document.createElement("option");
-        tempEle.textContent = tempMonth;
-        tempEle.value = tempMonth;
-        choiceHour.appendChild(tempEle);
-    }
-
-     choiceHour = document.getElementById("chooseHour2");
-    for(var i = 0; i < hours.length; i++){
-        //console.log(i);
-        var tempMonth = days[i];
-        var tempEle = document.createElement("option");
-        tempEle.textContent = tempMonth;
-        tempEle.value = tempMonth;
-        choiceHour.appendChild(tempEle);
-    }
-
-    function addTask() {
-		var sYear = $( "#chooseYear option:selected" ).text();
-        var sMonth = $( "#chooseMonth option:selected" ).index();
-        var sDay = $( "#chooseDay option:selected" ).text();
-        var sHour = $( "#chooseHour option:selected" ).text();
-
-        var eYear = $( "#chooseYear2 option:selected" ).text();
-        var eMonth = $( "#chooseMonth2 option:selected" ).index();
-        var eDay = $( "#chooseDay2 option:selected" ).text();
-        var eHour = $( "#chooseHour2 option:selected" ).text();
-        console.log(sYear + sMonth + sDay + sHour);
-
-        var d1 = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
-        var d2 = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
-        console.log(d1);
-
-        AddEvent((d1), (d2), "testTask");
-            //    AddEvent(d1), (d2), "new Task1");
-    }
-
-    function addTask2() {
-        var sYear = $( "#chooseYear option:selected" ).text();
-        var sMonth = $( "#chooseMonth option:selected" ).index();
-        var sDay = $( "#chooseDay option:selected" ).text();
-        var sHour = $( "#chooseHour option:selected" ).text();
-
-        var eYear = $( "#chooseYear2 option:selected" ).text();
-        var eMonth = $( "#chooseMonth2 option:selected" ).index();
-        var eDay = $( "#chooseDay2 option:selected" ).text();
-        var eHour = $( "#chooseHour2 option:selected" ).text();
-        console.log(sYear + sMonth + sDay + sHour);
-
-        var d1 = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
-        var d2 = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
-        console.log(d1);
-
-        AddEvent((d1), (d2), "testTask");
-            //    AddEvent(d1), (d2), "new Task1");
-    }
-
-/*
-
-ASSESSMENT.JS STARTS HERE
-
-*/
-
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var isTopLeftClicked = 1;
 var isTopRightClicked = 1;
+var hourRatio = 3;
+var inClassHours = 3;
+var outClassHours = inClassHours * hourRatio;
+var assignAlgo = {
+	name: 'Contructing Algorithims Lab',
+	hours: 4.5,
+	location: 'In-class'
+};
+var assignIntroToAlgo = {
+	name: 'Intro to Algorithims Reading',
+	hours: 1,
+	location: 'Out-Of-Class'
+};
+var assignDataStructures = {
+	name: 'Data Structure Worksheet',
+	hours: 3,
+	location: 'Out-Of-Class'
+};
+
+/*
+	Chart.js code over here
+*/
+// console.log(outClassHours);
+window.onload = function () {
+	'use strict';
+	var chart;
+
+	window.CanvasJS
+		.addColorSet('greenShades',
+		// colorSet Array
+		[
+			'#7CFC00',
+			'#00FF00',
+			'#76EE00',
+			'#83F52C',
+			'#5DFC0A',
+			'#4DBD33',
+			'#49E20E'
+		]
+	);
+
+	chart = new window.CanvasJS.Chart('chartContainer',
+		{
+			colorSet: 'greenShades',
+			title: {
+				text: 'Division of out-of-class hours in Course'
+			},
+			axisY: {
+				title: 'Percent of total credit hours (' + assignAlgo.hours + assignIntroToAlgo.hours + assignDataStructures.hours + ' out of ' + outClassHours + ') per week'
+			},
+			animationEnabled: true,
+			toolTip: {
+				shared: true,
+				// content: '{name}: {y} Hours - <strong>#percent%</strong>' + '(#percent)'
+				content: '{name}: {y} Hours. {extra}'
+			},
+			data: [
+				{
+					type: 'stackedBar100',
+					showInLegend: true,
+					name: '' + assignAlgo.name,
+					toolTipContent: '{name}: {y} Hours. ' + assignAlgo.location,
+					dataPoints: [
+						{
+							y: assignAlgo.hours,
+							label: 'iMods Week Visualizer'
+						}
+					]
+				},
+				{
+					type: 'stackedBar100',
+					showInLegend: true,
+					name: '' + assignIntroToAlgo.name,
+					toolTipContent: '{name}: {y} Hours. ' + assignIntroToAlgo.location,
+					dataPoints: [
+						{
+							y: assignIntroToAlgo.hours,
+							label: 'iMods Week Visualizer'
+						}
+					]
+				},
+				{
+					type: 'stackedBar100',
+					showInLegend: true,
+					name: '' + assignDataStructures.name,
+					toolTipContent: '{name}: {y} Hours. ' + assignDataStructures.location,
+					dataPoints: [
+						{
+							y: assignDataStructures.hours,
+							label: 'iMods Week Visualizer'
+						}
+					]
+				}
+			]
+		});
+	chart.render();
+};
+
+
+$(document).ready(function () {
+	'use strict';
+
+	var years = [];
+	var tempMonth;
+	var tempEle;
+	var inc = 0;
+	var choiceHour;
+	var choiceYear;
+	var months;
+	var choiceMonth;
+	var days = [];
+	var choiceDay;
+	var hours = [];
+
+	for (inc = 2010; inc <= 2035; inc++) {
+		years.push(inc);
+	}
+
+	// Populate the choice box with choices from the years [2010 to 2035] array
+	choiceYear = document.getElementById('chooseYear');
+	for (inc = 0; inc < years.length; inc++) {
+		// console.log(inc);
+		tempMonth = years[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceYear.appendChild(tempEle);
+	}
+
+	choiceYear = document.getElementById('chooseYear2');
+	for (inc = 0; inc < years.length; inc++) {
+		// console.log(inc);
+		tempMonth = years[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceYear.appendChild(tempEle);
+	}
+
+	months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+	// Populate the choice box with choices from the months array
+	choiceMonth = document.getElementById('chooseMonth');
+	for (inc = 0; inc < months.length; inc++) {
+		// console.log(inc);
+		tempMonth = months[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceMonth.appendChild(tempEle);
+	}
+
+	choiceMonth = document.getElementById('chooseMonth2');
+	for (inc = 0; inc < months.length; inc++) {
+		// console.log(inc);
+		tempMonth = months[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceMonth.appendChild(tempEle);
+	}
+
+	for (inc = 1; inc <= 31; inc++) {
+		days.push(inc);
+	}
+
+	// Populate the choice box with choices from the days [1 to 31] array
+	choiceDay = document.getElementById('chooseDay');
+	for (inc = 0; inc < days.length; inc++) {
+		// console.log(inc);
+		tempMonth = days[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceDay.appendChild(tempEle);
+	}
+
+	choiceDay = document.getElementById('chooseDay2');
+	for (inc = 0; inc < days.length; inc++) {
+		// console.log(inc);
+		tempMonth = days[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceDay.appendChild(tempEle);
+	}
+
+	for (inc = 1; inc <= 23; inc++) {
+		hours.push(inc);
+	}
+
+	// Populate the choice box with choices from the hours [1 to 23] array
+	choiceHour = document.getElementById('chooseHour');
+	for (inc = 0; inc < hours.length; inc++) {
+		// console.log(inc);
+		tempMonth = days[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceHour.appendChild(tempEle);
+	}
+
+	choiceHour = document.getElementById('chooseHour2');
+	for (inc = 0; inc < hours.length; inc++) {
+		// console.log(inc);
+		tempMonth = days[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceHour.appendChild(tempEle);
+	}
+});
+
+// function addTask () {
+// 	'use strict';
+// 	var sYear = $('#chooseYear option:selected').text();
+// 	var sMonth = $('#chooseMonth option:selected').index();
+// 	var sDay = $('#chooseDay option:selected').text();
+// 	var sHour = $('#chooseHour option:selected').text();
+
+// 	var eYear = $('#chooseYear2 option:selected').text();
+// 	var eMonth = $('#chooseMonth2 option:selected').index();
+// 	var eDay = $('#chooseDay2 option:selected').text();
+// 	var eHour = $('#chooseHour2 option:selected').text();
+// 	// console.log(sYear + sMonth + sDay + sHour);
+
+// 	var startDate = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
+// 	var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
+// 	// console.log(d1);
+
+// 	addEvent(startDate, endDate, 'testTask');
+// }
+
+// function addTask2 () {
+// 	'use strict';
+// 	var sYear = $('#chooseYear option:selected').text();
+// 	var sMonth = $('#chooseMonth option:selected').index();
+// 	var sDay = $('#chooseDay option:selected').text();
+// 	var sHour = $('#chooseHour option:selected').text();
+
+// 	var eYear = $('#chooseYear2 option:selected').text();
+// 	var eMonth = $('#chooseMonth2 option:selected').index();
+// 	var eDay = $('#chooseDay2 option:selected').text();
+// 	var eHour = $('#chooseHour2 option:selected').text();
+// 	// console.log(sYear + sMonth + sDay + sHour);
+
+// 	var startDate = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
+// 	var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
+// 	// console.log(d1);
+
+// 	addEvent(startDate, endDate, 'testTask');
+// }
+
+$(document).ready(function () {
+	'use strict';
+	$('#scheduleCalendar').fullCalendar({
+		header: {
+			left: 'prev title next',
+			center: '',
+			right: ''
+		},
+		eventClick: function (event) {
+			// all arguments: (event, jsEvent, view)
+
+			// set the values and open the modal
+			$('#taskInfo').html(event.description);
+			$('#taskLink').attr('href', event.url);
+			$('#taskTime').text(event.end);
+			$('#taskContent').dialog({
+				modal: true,
+				title: event.title
+			});
+			return false;
+		},
+		events:
+		[
+			{
+				title: 'JQuery Quiz',
+				allday: 'false',
+				description: '<p>Sample description for a JQuery Quiz Assignment</p>',
+				start: window.moment().subtract(2, 'days'),
+				end: window.moment().subtract(1, 'days'),
+				url: 'http://www.w3schools.com/jquery/'
+			},
+			{
+				title: 'Python Worksheet',
+				allday: 'false',
+				description: '<p>Sample description for a Python WS Assignment</p>',
+				start: window.moment().add(7, 'days'),
+				end: window.moment().add(7, 'days'),
+				url: 'https://en.wikipedia.org/wiki/Python_%28programming_language%29'
+			}
+		]
+	});
+
+	$('#addT').click(function () {
+		var sYear = $('#chooseYear option:selected').text();
+		var sMonth = $('#chooseMonth option:selected').index();
+		var sDay = $('#chooseDay option:selected').text();
+		var sHour = $('#chooseHour option:selected').text();
+
+		var eYear = $('#chooseYear2 option:selected').text();
+		var eMonth = $('#chooseMonth2 option:selected').index();
+		var eDay = $('#chooseDay2 option:selected').text();
+		var eHour = $('#chooseHour2 option:selected').text();
+		// console.log(sYear + sMonth + sDay + sHour);
+
+		var startDate = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
+		var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
+		// console.log(d1);
+
+		addEvent(startDate, endDate, 'testTask');
+	});
+});
+
+function addEvent (startDate, endDate, title) {
+	'use strict';
+	$('#scheduleCalendar')
+		.fullCalendar('renderEvent', {
+			id: startDate,
+			title: title,
+			start: startDate,
+			end: endDate,
+			allDay: false
+		}, true);
+}
+
+
+/*
+ASSESSMENT.JS STARTS HERE
+*/
 
 /**
  * Opens the modal to create a new assessment technique
@@ -825,7 +970,7 @@ $('#unfavorites').click(function () {
 
 // Auto hide the assessment plan modal
 // $('#assessment-plan').dialog({
-// 	autoOpen: false
+//  autoOpen: false
 // });
 
 // Auto hide the add new technique modal
@@ -1042,28 +1187,30 @@ $(document).ready(
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
 		$('input[name=knowledgeDimension]').on('change',
-		function () {
-			checkBoxName = 'knowledgeDimension';
-			updateTextArea(checkBoxName);
-			filterAssessmentTechniques();
-			$('#selectAllkD').prop('checked', false);
-		});
-		$('input[name=learningDomain]').on('change',
-		function () {
-			checkBoxName = 'learningDomain';
-			updateTextArea(checkBoxName);
-			filterAssessmentTechniques();
-			$('#selectAlllD').prop('checked', false);
-		});
-		$('input[name=domainCategory]').on('change',
-		function () {
-			checkBoxName = 'domainCategory';
-			updateTextArea(checkBoxName);
-			filterAssessmentTechniques();
-			$('#selectAlldC').prop('checked', false);
-		});
-		$('#saveButton').on('click', function () {
+			function () {
+				checkBoxName = 'knowledgeDimension';
+				updateTextArea(checkBoxName);
+				filterAssessmentTechniques();
+				$('#selectAllkD').prop('checked', false);
+			});
 
+		$('input[name=learningDomain]').on('change',
+			function () {
+				checkBoxName = 'learningDomain';
+				updateTextArea(checkBoxName);
+				filterAssessmentTechniques();
+				$('#selectAlllD').prop('checked', false);
+			});
+
+		$('input[name=domainCategory]').on('change',
+			function () {
+				checkBoxName = 'domainCategory';
+				updateTextArea(checkBoxName);
+				filterAssessmentTechniques();
+				$('#selectAlldC').prop('checked', false);
+			});
+
+		$('#saveButton').on('click', function () {
 			cloneDetect = document.getElementById('cloneDetect').value;
 
 			if ($('#title').val() === '') {

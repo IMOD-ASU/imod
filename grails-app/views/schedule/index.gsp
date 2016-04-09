@@ -30,77 +30,67 @@
 	<g:external dir="css/source" file="schedule.css" />
 	<g:external dir="css/source" file="learningObjective.css" />
 	<g:external dir="css/source" file="iconModule.css" />
-	<!--<g:javascript src="source/assessment.js" defer="defer" />-->
-
-
 
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+
 	<g:external dir="bower_components/fullcalendar/dist" file="fullcalendar.min.css" />
+
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css" type="text/css" rel="stylesheet" />
 
 	<!--
-	Scheduler css and js imports here
-	<g:javascript src="source/fullCal/jquery.js" defer="defer" />
--->
+		Scheduler css and js imports here
+	-->
 
+	<g:external dir="bower_components/moment/min" file="moment.min.js" />
+	<g:external dir="bower_components/fullcalendar/dist" file="fullcalendar.min.js" />
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+	<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    %{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> --}%
 
-<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.js" />
-<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.css" />
+	<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.js" />
+	<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.css" />
 
     <script>
-    $(function() {
-        $( "#datetimepicker" ).datetimepicker();
-    });
+	    $(function() {
+	        $( "#datetimepicker" ).datetimepicker();
+	    });
+
+	    $(function() {
+	        $( "#datetimepicker2" ).datetimepicker();
+	    });
     </script>
-    <script>
-    $(function() {
-        $( "#datetimepicker2" ).datetimepicker();
-    });
-    </script>
-
-
-
-
-
 
 </head>
 
 <body>
 
-
-
-		<div class="modalBackgroundFavorites"></div>
-		<div class="favorites-modal draggable">
-			<fieldset class="titleField draggable-handle">
-				<div id="editTitle">
-					<b> Delete Events</b>
-				</div>
-				TO BE DONE.
-			</fieldset>
-
-		</div>
-		<div id="edit-imod" class="content scaffold-edit" role="main">
-			<g:if test="${flash.message}">
-			<div class="message" role="status">
-				${flash.message}
+	<div class="modalBackgroundFavorites"></div>
+	<div class="favorites-modal draggable">
+		<fieldset class="titleField draggable-handle">
+			<div id="editTitle">
+				<b> Delete Events</b>
 			</div>
-		</g:if>
+			TO BE DONE.
+		</fieldset>
 
-		<g:hasErrors bean="${currentImod}">
-		<ul class="errors" role="alert">
-			<g:eachError bean="${currentImod}" var="error">
-			<li>
-				<g:message error="${error}"/>
-			</li>
-		</g:eachError>
+	</div>
+	<div id="edit-imod" class="content scaffold-edit" role="main">
+		<g:if test="${flash.message}">
+		<div class="message" role="status">
+			${flash.message}
+		</div>
+	</g:if>
+
+	<g:hasErrors bean="${currentImod}">
+	<ul class="errors" role="alert">
+		<g:eachError bean="${currentImod}" var="error">
+		<li>
+			<g:message error="${error}"/>
+		</li>
+	</g:eachError>
 	</ul>
 	</g:hasErrors>
 	</div>
@@ -475,7 +465,7 @@
 	<!--- Calendar starts after here
 	<div id='calendar'>
 	</div>
-	--->
+	-->
 
 
 	<div class="container">
@@ -518,340 +508,147 @@
 	</script>
 
 
-<!--- Calendar starts after here
-<div id='calendar'>
-</div>
---->
+	<!--- Calendar starts after here
+	<div id='calendar'>
+	</div>
+	-->
 
 
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-			<h1></h1>
-			<br />
-			<div id="scheduleCalendar"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1></h1>
+				<br />
+				<div id="scheduleCalendar"></div>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div id="taskContent" title="Task Details" style="display: none;">
-	<div id="taskInfo"></div>
-	<p>Start:</p>
-	<div id="taskTime"></div>
-	<p><strong><a id="taskLink" target="_blank">For more info.</a></strong></p>
-</div>
+	<div id="taskContent" title="Task Details" style="display: none;">
+		<div id="taskInfo"></div>
+		<p>Start:</p>
+		<div id="taskTime"></div>
+		<p><strong><a id="taskLink" target="_blank">For more info.</a></strong></p>
+	</div>
 
+	<!-- The chart goes here -->
+	<div id="chartContainer" style="height: 300px; width: 97.5%;"></div>
 
+	<!--
+	List out the imods course info dates (demo getting data from the controller file)
+	-->
+	<br>
+	<p id="startDate">Start Date Here:${startDate1}</p>
+	<p id="endDate">End Date Here:${endDate1}</p>
+	<p id="creditHours">Credit Hours Here:${creditHours1}</p>
+	<p id="timeRatio">Credit Hours/Time Ratio Here:${timeRatio1}</p>
+	<br>
 
+	<div style="display: none;">
+		<p  >
+			<form id="startDate" >
+				Task Start Date -->
+				<label>Choose Year:</label>
+				<select id='chooseYear' name="years1">
+				</select>
 
+				<label>Choose Month:</label>
+				<select id='chooseMonth' name="months1">
+				</select>
 
+				<label>Choose Day:</label>
+				<select id='chooseDay' name="days1">
+				</select>
 
-<script>
-//TypeError: $(...).qtip is not a function error?? googled researched this error and it is usually caused by "loading an additional jquery (perhaps built with your other scripts) that's causing a conflict."
+				<label>Choose Hour:</label>
+				<select id='chooseHour' name="hours1">
+				</select>
 
-$(document).ready(function() {
-	$('#scheduleCalendar').fullCalendar({
-		header: {
-			left: 'prev title next',
-			center: '',
-			right: ''
-		},
-		eventClick: function (event, jsEvent, view) {
-			//set the values and open the modal
-			$("#taskInfo").html(event.description);
-			$("#taskLink").attr('href', event.url);
-			$("#taskTime").text(event.end);
-			$("#taskContent").dialog({
-				modal: true,
-				title: event.title
-			});
-			return false;
-		},
-		events:
-		[
-	{
-	"title":"JQuery Quiz",
-	"allday":"false",
-	"description":"<p>Sample description for a JQuery Quiz Assignment</p>",
-	"start":moment().subtract('days',2),
-	"end":moment().subtract('days',1),
-	"url":"http://www.w3schools.com/jquery/"
-	},
-	{
-	"title":"Python Worksheet",
-	"allday":"false",
-	"description":"<p>Sample description for a Python WS Assignment</p>",
-	"start":moment().add('days',7),
-	"end":moment().add('days',7),
-	"url":"https://en.wikipedia.org/wiki/Python_%28programming_language%29"
-	}
-	]
-	});
+				<br/>
+			</form>
+		</p>
 
 
+		<p >
+			<form id="endDate" >
+				Task End Date -->
+				<label>Choose Year:</label>
+				<select id='chooseYear2' name="years1">
+				</select>
+
+				<label>Choose Month:</label>
+				<select id='chooseMonth2' name="months1">
+				</select>
+
+				<label>Choose Day:</label>
+				<select id='chooseDay2' name="days1">
+				</select>
+
+				<label>Choose Hour:</label>
+				<select id='chooseHour2' name="hours1">
+				</select>
+
+				<br/>
+			</form>
+		</p>
+
+		<form id="addTaskBut" >
+			<input  type="button" value="Add Task" id = "addT" />
+		</form>
+	</div>
 
 
-	function AddEvent(StartDate, EndDate, title1){
-	            $('#scheduleCalendar').fullCalendar('renderEvent', {
-	                        id: StartDate,
-	                        title: title1,
-	                        start: StartDate,
-	                        end: EndDate,
-	                        allDay: false
-	                    }, true );
-	        }
+	</td>
+	</tr>
+	</table>
+	<div id="selectKnowledgeDimensionBackground" class="modalBackground2"></div>
+	<div id="selectKnowledgeDimensions" class="draggable modelBackground2Target">
+		<div class="draggable-handle">
+			<input type="hidden" id="topicID" />
+			<span>
+				<ul>
+					<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
+					<li>
+						<input
+						type="checkbox"
+						id="${dimension}"
+						value="${dimension}"
+						/>
+						<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
+							${dimension}
+						</label>
+					</li>
+				</g:each>
+			</ul>
+			<g:img
+			dir="images/content"
+			file="knowDimNone.png"
+			id="dimImage"
+			width="71"
+			height="71"
+			/>
+		</span>
+		<button
+			class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
+			id="knowDimFinished"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+			>
+			<i class="fa fa-save green"></i>
+			${message(code: 'Save Resource', default: 'Continue')}
+		</button>
+		<button
+			class="cancel showHoverNew resourceButton topicButtonGradient"
+			id="closeKnowDim"
+			title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
+			>
+			<i class="fa fa-times red"></i>
+			${message(code: 'Cancel Resource', default: ' Cancel')}
+		</button>
 
-			$( "#addT" ).click(function addTask3() {
-				var sYear = $( "#chooseYear option:selected" ).text();
-		        var sMonth = $( "#chooseMonth option:selected" ).index();
-		        var sDay = $( "#chooseDay option:selected" ).text();
-		        var sHour = $( "#chooseHour option:selected" ).text();
+		</div>
 
-		        var eYear = $( "#chooseYear2 option:selected" ).text();
-		        var eMonth = $( "#chooseMonth2 option:selected" ).index();
-		        var eDay = $( "#chooseDay2 option:selected" ).text();
-		        var eHour = $( "#chooseHour2 option:selected" ).text();
-		        console.log(sYear + sMonth + sDay + sHour);
+	</div>
 
-		        var d1 = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
-		        var d2 = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
-		        console.log(d1);
-
-		        AddEvent((d1), (d2), "testTask");
-		            //    AddEvent(d1), (d2), "new Task1");
-		    });
-
-});
-</script>
-
-
-<!--
-green red horizontal bar
--->
-
-<script type="text/javascript">
-
-var hourRatio = 3;
-var inClassHours = 3;
-var outClassHours = (inClassHours*hourRatio);
-
-var assign1 = {
-    name : "Contructing Algorithims Lab",
-    hours       : 4.5,
-    location  : "In-class"
-};
-
-var assign2 = {
-	name : "Intro to Algorithims Reading",
-	hours       : 1,
-    location  : "Out-Of-Class"
-};
-
-var assign3 = {
-	name : "Data Structure Worksheet",
-	hours       : 3,
-    location  : "Out-Of-Class"
-};
-
-
-console.log(outClassHours);
-window.onload = function () {
-
-
-	CanvasJS.addColorSet("greenShades",
-	                [//colorSet Array
-
-	                "#7CFC00",
-	                "#00FF00",
-	                "#76EE00",
-	                "#83F52C",
-									"#5DFC0A",
-									"#4DBD33",
-	                "#49E20E"
-	                ]);
-
-	var chart = new CanvasJS.Chart("chartContainer",
-	{
-		colorSet: "greenShades",
-		title:{
-			text: "Division of out-of-class hours in Course"
-		},
-		axisY:{
-			title: "Percent of total credit hours (" + (assign1.hours+assign2.hours+assign3.hours)+  " out of " + outClassHours + ") per week"
-		},
-                animationEnabled: true,
-		toolTip:{
-			shared: true,
-			//content: "{name}: {y} Hours - <strong>#percent%</strong>" + "(#percent)"
-			content: "{name}: {y} Hours. {extra}",
-		},
-		data:[
-		{
-			type: "stackedBar100",
-			showInLegend: true,
-			name: ""+assign1.name,
-			toolTipContent: "{name}: {y} Hours. "+ assign1.location,
-			dataPoints: [
-				{y: assign1.hours, label: "iMods Week Visualizer" }
-			]
-		},
-		{
-			type: "stackedBar100",
-			showInLegend: true,
-			name: ""+assign2.name,
-			toolTipContent: "{name}: {y} Hours. "+ assign2.location,
-			dataPoints: [
-        {y: assign2.hours, label: "iMods Week Visualizer" }
-			]
-		},
-		{
-			type: "stackedBar100",
-			showInLegend: true,
-			name: ""+assign3.name,
-			toolTipContent: "{name}: {y} Hours. "+ assign3.location,
-			dataPoints: [
-        {y: assign3.hours, label: "iMods Week Visualizer" }
-			]
-		}
-		]
-	});
-	chart.render();
-
-
-}
-</script>
-
-<!-- -->
-<div id="chartContainer" style="height: 300px; width: 97.5%;"></div>
-
-
-<!--
-List out the imods course info dates (demo getting data from the controller file)
--->
-<br>
-<p id="startDate">Start Date Here:${startDate1}</p>
-<p id="endDate">End Date Here:${endDate1}</p>
-<p id="creditHours">Credit Hours Here:${creditHours1}</p>
-<p id="timeRatio">Credit Hours/Time Ratio Here:${timeRatio1}</p>
-<br>
-
-<div style="display: none;">
-<p  >
-	<form id="startDate" >
-		Task Start Date -->
-		<label>Choose Year:</label>
-		<select id='chooseYear' name="years1">
-		</select>
-
-		<label>Choose Month:</label>
-		<select id='chooseMonth' name="months1">
-		</select>
-
-		<label>Choose Day:</label>
-		<select id='chooseDay' name="days1">
-		</select>
-
-		<label>Choose Hour:</label>
-		<select id='chooseHour' name="hours1">
-		</select>
-
-		<br/>
-	</form>
-</p>
-
-
-<p >
-	<form id="endDate" >
-		Task End Date -->
-		<label>Choose Year:</label>
-		<select id='chooseYear2' name="years1">
-		</select>
-
-		<label>Choose Month:</label>
-		<select id='chooseMonth2' name="months1">
-		</select>
-
-		<label>Choose Day:</label>
-		<select id='chooseDay2' name="days1">
-		</select>
-
-		<label>Choose Hour:</label>
-		<select id='chooseHour2' name="hours1">
-		</select>
-
-		<br/>
-	</form>
-</p>
-
-<form id="addTaskBut" >
-	<input  type="button" value="Add Task" id = "addT" />
-</form>
-</div>
-
-
-<g:javascript src="source/schedule.js" defer="defer" />
-
-
-
-<!--
-
-
-
--->
-
-
-
-</td>
-</tr>
-</table>
-<div id="selectKnowledgeDimensionBackground" class="modalBackground2"></div>
-<div id="selectKnowledgeDimensions" class="draggable modelBackground2Target">
-	<div class="draggable-handle">
-		<input type="hidden" id="topicID" />
-		<span>
-			<ul>
-				<g:each var="dimension" in="${KnowledgeDimensionEnum.values()}">
-				<li>
-					<input
-					type="checkbox"
-					id="${dimension}"
-					value="${dimension}"
-					/>
-					<label class="knowledge-dim-label" title="${dimension.getInfo()}" for="${dimension}">
-						${dimension}
-					</label>
-				</li>
-			</g:each>
-		</ul>
-		<g:img
-		dir="images/content"
-		file="knowDimNone.png"
-		id="dimImage"
-		width="71"
-		height="71"
-		/>
-	</span>
-	<button
-	class="save showHoverNew resourceButton topicButtonGradient knowledgedimBtn"
-	id="knowDimFinished"
-	title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
-	>
-	<i class="fa fa-save green"></i>
-	${message(code: 'Save Resource', default: 'Continue')}
-</button>
-<button
-class="cancel showHoverNew resourceButton topicButtonGradient"
-id="closeKnowDim"
-title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}"
->
-<i class="fa fa-times red"></i>
-${message(code: 'Cancel Resource', default: ' Cancel')}
-</button>
-
-</div>
-</div>
-
-
-
+	<g:javascript src="source/schedule.js" defer="defer" />
 </body>
 </html>
