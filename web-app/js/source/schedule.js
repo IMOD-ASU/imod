@@ -257,6 +257,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 	'use strict';
+
 	$('#scheduleCalendar').fullCalendar({
 		header: {
 			left: 'prev title next',
@@ -276,25 +277,33 @@ $(document).ready(function () {
 			});
 			return false;
 		},
-		events:
-		[
-			{
-				title: 'JQuery Quiz',
-				allday: 'false',
-				description: '<p>Sample description for a JQuery Quiz Assignment</p>',
-				start: window.moment().subtract(2, 'days'),
-				end: window.moment().subtract(1, 'days'),
-				url: 'http://www.w3schools.com/jquery/'
-			},
-			{
-				title: 'Python Worksheet',
-				allday: 'false',
-				description: '<p>Sample description for a Python WS Assignment</p>',
-				start: window.moment().add(7, 'days'),
-				end: window.moment().add(7, 'days'),
-				url: 'https://en.wikipedia.org/wiki/Python_%28programming_language%29'
-			}
-		]
+		events: function (start, end, timezone, callback) {
+			$.ajax({
+				url: '../../schedule/getEvents/',
+				data: {
+					learningObjectiveID: $('#lo').val(),
+					startDate: start.toISOString(),
+					endDate: end.toISOString()
+				},
+				method: 'GET'
+			})
+			.done(function (data) {
+				var events = [];
+
+				$.each(data.events, function (index, obj) {
+					events.push(
+						{
+							title: obj.title,
+							allday: 'false',
+							start: window.moment(obj.startDate, window.moment.ISO_8601),
+							end: window.moment(obj.endDate, window.moment.ISO_8601),
+							url: 'http://www.w3schools.com/jquery/'
+						}
+					);
+				});
+				callback(events);
+			});
+		}
 	});
 
 	$('#addT').click(function () {
@@ -350,7 +359,7 @@ function openNewAssessmentTechniqueModal () {
 	'use strict';
 
 	// reset form on new modal open
-	$('#add-new-technique').find('input, select, textarea').val('');
+	$('#add-new-technique').find('input:not(#lo, #imodId), select, textarea').val('');
 	$('#dimImageModal')
 		.prop('src', '../../images/content/knowDimNone.png')
 		.prop('title', '');

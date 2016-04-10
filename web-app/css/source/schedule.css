@@ -480,3 +480,17 @@ label.assessment-block {
 
     line-height: 28px;
 }
+
+.ui-datepicker-calendar td a {
+	margin: 0 !important;
+}
+
+.ui-datepicker-calendar tr > td:last-child,
+.ui-datepicker-calendar th > td:last-child {
+	padding-right: 1px;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+	top: -.9em;
+    margin-left: -.6em;
+}

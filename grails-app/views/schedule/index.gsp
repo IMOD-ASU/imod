@@ -27,7 +27,6 @@
 	<link id="imgFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimFMP.png')}">
 	<link id="imgCFMP" rel="prefetch" href="${resource(dir: 'images/content', file: 'knowDimCFMP.png')}">
 
-	<g:external dir="css/source" file="schedule.css" />
 	<g:external dir="css/source" file="learningObjective.css" />
 	<g:external dir="css/source" file="iconModule.css" />
 
@@ -52,6 +51,8 @@
 
 	<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.js" />
 	<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.css" />
+
+	<g:external dir="css/source" file="schedule.css" />
 
     <script>
 	    $(function() {
@@ -253,9 +254,9 @@
 			</div>
 			<span id="errorMessage" class="red"></span>
 		</fieldset>
-		<g:form controller="pedagogyTechnique" method="post" id="${currentImod.id}" params="[learningObjectiveID: currentLearningObjective?.id]" class="no-warn-form">
-		<g:hiddenField name="techniqueId" />
-		<g:hiddenField name="learningObjective" id="learningObjectiveID" value="${currentLearningObjective?.id}"/>
+		<g:form controller="schedule" method="post" action="addEvent" class="no-warn-form">
+		<g:hiddenField name="imodId" value="${currentImod.id}" />
+		<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
 		<table id="techniqueList">
 			<tr>
 				<td class="td-label" width="40%">Event Title</td>
@@ -269,7 +270,7 @@
 				</td>
 
 				<td >
-					    <p>Start Date:<input type="txt" id="datetimepicker"></p>
+					    <p>Start Date:<input type="txt" name="startDate" id="datetimepicker"></p>
 
 				</td>
 
@@ -289,7 +290,7 @@
 				</td>
 
 				<td style="width:100%">
-					<p>End Date:<input type="txt" id="datetimepicker2"></p>
+					<p>End Date:<input type="txt" name="endDate" id="datetimepicker2"></p>
 				</td>
 
 				<input type="hidden" name="titlecheck" id="titlecheck" >

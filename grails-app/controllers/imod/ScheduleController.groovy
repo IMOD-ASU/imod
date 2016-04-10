@@ -2,6 +2,9 @@ package imod
 
 import grails.converters.JSON
 import groovy.json.JsonSlurper
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 
 class ScheduleController {
 	def learningObjectiveService
@@ -9,7 +12,8 @@ class ScheduleController {
 
 	static allowedMethods = [
 		index: 'GET',
-		findMatchingTechniques: 'POST'
+		findMatchingTechniques: 'POST',
+		addEvent: 'POST'
 	]
 
 	def index(Long id, Long learningObjectiveID) {
@@ -111,6 +115,61 @@ class ScheduleController {
 				]
 			)
 		*/
+
+	}
+
+	/**
+	 * Add an event for a particular learning objective
+	 */
+	def addEvent() {
+
+		DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy HH:mm')
+		DateTime sDate = fmt.parseDateTime(params.startDate)
+		DateTime eDate = fmt.parseDateTime(params.endDate)
+
+		def title = params.title
+		def learningObjectiveID = params.lo.toLong()
+
+		def event = new ScheduleEvent(
+			title: title,
+			startDate: sDate,
+			endDate: eDate
+		)
+		event.save()
+
+		final currentImod = Imod.get(params.imodId)
+		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+
+		currentLearningObjective.addToScheduleEvents(event)
+
+		redirect(
+			controller: 'Schedule',
+			action: 'index',
+			id: params.imodId,
+			params: [learningObjectiveID: learningObjectiveID]
+		)
+	}
+
+	def getEvents() {
+		def loId = params.learningObjectiveID
+		def currentLO = LearningObjective.get(loId)
+
+		DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
+		DateTime startDate = fmt.parseDateTime(params.startDate)
+		DateTime endDate = fmt.parseDateTime(params.endDate)
+
+		def events = currentLO.withCriteria {
+           			scheduleEvents {
+           				gte('startDate', startDate.toDate())
+					    lte('endDate', endDate.toDate())
+           			}
+           		}
+
+		render (
+			[
+				events: events.scheduleEvents[0]
+			] as JSON
+		)
 
 	}
 
