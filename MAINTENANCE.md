@@ -163,7 +163,7 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 
 ## AWS Maintenance 
 
-### Public DNS: ec2-52-26-177-245.us-west-2.compute.amazonaws.com/
+### Public DNS: ec2-52-26-177-245.us-west-2.compute.amazonaws.com
 
 ### Update the Test/Demo Server
 
