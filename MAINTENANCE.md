@@ -179,3 +179,9 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 4. SSH into the server again
 5. Run `sudo service apache2 start` to start apache. This runs the main static site.
 6. Run `sudo /opt/apache-tomcat-{version}/bin/startup.sh`
+
+### Apache2
+
+1. Apache is located in `/etc/apache2`
+2. Static website code is located in `/var/www/html`
+3. Site URL: http://ec2-52-26-177-245.us-west-2.compute.amazonaws.com/
