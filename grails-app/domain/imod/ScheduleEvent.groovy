@@ -23,10 +23,10 @@ class ScheduleEvent {
     	endDate  blank: false, validator: { endDate, schedule ->
 			endDate >= schedule.startDate
 		}
-		learnO	blank: false
-		knowD	blank: false
-		enviro	blank: false
-		workTime	blank: false
+		learnO	nullable: true
+		knowD	nullable: true
+		enviro	nullable: true
+		workTime	nullable: true
 		notes	nullable: true
     }
 

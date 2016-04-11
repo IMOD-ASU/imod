@@ -13,6 +13,7 @@ class ScheduleController {
 	static allowedMethods = [
 		index: 'GET',
 		findMatchingTechniques: 'POST',
+		deleteEvent: 'POST',
 		addEvent: 'POST'
 	]
 
@@ -130,10 +131,24 @@ class ScheduleController {
 		def title = params.title
 		def learningObjectiveID = params.lo.toLong()
 
+		def learnO = params.learnO
+		def knowD = params.knowD
+
+		def enviro = params.enviro
+		def workTime = params.workTime
+		def notes = params.notes
+
 		def event = new ScheduleEvent(
 			title: title,
 			startDate: sDate,
-			endDate: eDate
+			endDate: eDate,
+
+			learnO: learnO,
+			knowD: knowD,
+
+			enviro: enviro,
+			workTime: workTime,
+			notes: notes
 		)
 		event.save()
 

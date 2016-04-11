@@ -268,9 +268,14 @@ $(document).ready(function () {
 			// all arguments: (event, jsEvent, view)
 
 			// set the values and open the modal
-			$('#taskInfo').html(event.description);
+			$('#taskInfo').html(event.notes);
+			$('#taskLearnO').html(event.learnO);
+			$('#taskKnowD').html(event.knowD);
+			$('#taskEnviro').html(event.enviro);
+			$('#taskWorkTime').html(event.workTime);
 			$('#taskLink').attr('href', event.url);
-			$('#taskTime').text(event.end);
+			$('#taskTime1').text(event.start);
+			$('#taskTime2').text(event.end);
 			$('#taskContent').dialog({
 				modal: true,
 				title: event.title
@@ -297,7 +302,13 @@ $(document).ready(function () {
 							allday: 'false',
 							start: window.moment(obj.startDate, window.moment.ISO_8601),
 							end: window.moment(obj.endDate, window.moment.ISO_8601),
-							url: 'http://www.w3schools.com/jquery/'
+							learnO: obj.learnO,
+							knowD: obj.knowD,
+							enviro: obj.enviro,
+							workTime: obj.workTime,
+							description: obj.notes,
+							notes: obj.notes,
+							url: 'https://en.wikipedia.org/wiki/Learning_theory_%28education%29'
 						}
 					);
 				});
@@ -322,11 +333,11 @@ $(document).ready(function () {
 		var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
 		// console.log(d1);
 
-		addEvent(startDate, endDate, 'testTask');
+		addEvent(startDate, endDate, 'testTask', 'testDescript');
 	});
 });
 
-function addEvent (startDate, endDate, title) {
+function addEvent (startDate, endDate, title, desc) {
 	'use strict';
 	$('#scheduleCalendar')
 		.fullCalendar('renderEvent', {
@@ -334,6 +345,7 @@ function addEvent (startDate, endDate, title) {
 			title: title,
 			start: startDate,
 			end: endDate,
+			description: desc,
 			allDay: false
 		}, true);
 }

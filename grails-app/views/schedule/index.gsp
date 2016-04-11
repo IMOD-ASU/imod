@@ -286,7 +286,8 @@
 
 			<tr>
 				<td width="60%">
-					<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+					<!--<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />-->
+					<g:textField name="learnO" />
 				</td>
 
 				<td style="width:100%">
@@ -306,23 +307,23 @@
 
 			<tr>
 				<td width="60%">
-					<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+					<g:textField name="knowD" />
 				</td>
 
 				<td width="60%">
-					<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+					<g:textField name="enviro" />
 				</td>
 			</tr>
 
 			<tr>
-				<td class="td-label" width="40%">Type of Activity Dimension</td>
+				<td class="td-label" width="40%">Expected Working Time</td>
 				<td class="td-label" width="40%">Expected Working Time</td>
 			</tr>
 
 
 			<tr>
 				<td width="60%">
-					<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+					<g:textField name="workTime" />
 				</td>
 
 				<td width="60%">
@@ -344,7 +345,7 @@
 	<tr>
 		<td class="td-label" width="40%">Notes
 			<br>
-			<g:textArea name="activityDescription" rows="7" cols="100" id = "notes2"/></td>
+			<g:textArea name="activityDescription" rows="7" cols="100" id = "notes2" name="notes"/></td>
 
 		</tr>
 	</table>
@@ -480,10 +481,24 @@
 	</div>
 
 	<div id="taskContent" title="Task Details" style="display: none;">
-		<div id="taskInfo"></div>
+
 		<p>Start:</p>
-		<div id="taskTime"></div>
-		<p><strong><a id="taskLink" target="_blank">For more info.</a></strong></p>
+		<div id="taskTime1"></div>
+		<p>End:</p>
+		<div id="taskTime2"></div>
+				<p>Notes:</p>
+		<div id="taskInfo"></div>
+		<p>Learning Objective:</p>
+		<div id="taskLearnO"></div>
+		<p>KnowledgeDimension:</p>
+		<div id="taskKnowD"></div>
+		<p>Task Environment:</p>
+		<div id="taskEnviro"></div>
+		<p>Task Work-Time:</p>
+		<div id="taskWorkTime"></div>
+
+
+		<p><strong><a id="taskLink" target="_blank">Link to the Assignment.</a></strong></p>
 	</div>
 
 
@@ -525,6 +540,7 @@
 		</div>
 	</div>
 
+<!-- is this even used? This is doubled for some reason -Wesley-->
 	<div id="taskContent" title="Task Details" style="display: none;">
 		<div id="taskInfo"></div>
 		<p>Start:</p>
