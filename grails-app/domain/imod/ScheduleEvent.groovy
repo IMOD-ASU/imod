@@ -15,6 +15,8 @@ class ScheduleEvent {
 	// relationship with learning objective
 	static belongsTo = [
 		LearningObjective
+
+		//learningObjective: LearningObjective
 	]
 
 	// various constraints for validation

@@ -210,12 +210,13 @@
 					<%-- Buttons for Add New Technique, Favorites and Instructional Plan--%>
 					<span id="add-new-technique-button" class="topicButtonGradient">
 						<button>
-							<i class="fa fa-plus green"></i>
+							<i class="fa fa-plus yellow"></i>
 
-							Add New Event
+							Add New Task
 						</button>
 					</span>
 
+	<!--
 					<span id="favorites-button" class="topicButtonGradient">
 						<button>
 							<i class="fa fa-times"></i>
@@ -229,7 +230,7 @@
 							Edit Event
 						</button>
 					</span>
-
+-->
 
 					<!--
 					<span id="favorites-button" class="topicButtonGradient">
@@ -245,9 +246,9 @@
 	</div>
 
 
-	<%--Dialog box for Add New Technique --%>
+	<%--Dialog box for Add New Task to Calendar --%>
 	<div class="draggable" id="add-new-technique">
-		<%--To render the add new Technique dialog box--%>
+		<%--To render the add new Task dialog box--%>
 		<fieldset class="titleField draggable-handle">
 			<div id="editTitle" class="pedagogy-title">
 				<b> Add New Event</b>
@@ -316,8 +317,8 @@
 			</tr>
 
 			<tr>
-				<td class="td-label" width="40%">Expected Working Time</td>
-				<td class="td-label" width="40%">Expected Working Time</td>
+				<td class="td-label" width="40%">Expected Working Time (hours)</td>
+				<td type="hidden"class="td-label" width="40%">Expected Working Time</td>
 			</tr>
 
 
@@ -330,17 +331,6 @@
 					<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
 				</td>
 			</tr>
-
-			<!--
-
-			<tr>
-			<td class="td-label" width="40%">Learning Domain	</td>
-			<td width="60%">
-
-			<g:textArea name="reference" rows="5" cols="30"/>
-		</td>
-	</tr>
-	-->
 
 	<tr>
 		<td class="td-label" width="40%">Notes
@@ -357,109 +347,19 @@
 			<i class="fa fa-save green"></i>
 			Save
 		</button>
-		<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">
+				<button type="submit"  id="cancelButton" class="new-technique-popup-button">
+		<!--<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">-->
 			<i class="fa fa-times red"></i>
 			Cancel
 		</button>
 
 	</div>
 	<br>
-	</g:form>
+</g:form>
 	</div>
 	<%--Dialog box for Displaying in edit and View mode Technique --%>
 	<div id="display-new-technique" title="Display Technique">
 		<%--To render the add new Technique dialog box--%>
-		<g:form controller="assessmentTechnique" method="post" id="${currentImod.id}" class="no-warn-form" params="[learningObjectiveID: currentLearningObjective?.id]">
-			<span class="editviewButtons">
-				<label >
-					Assign
-				</label>
-				<g:checkBox class="assignBtn" name="assignedToLearningObjective" />
-
-				<label >
-					Favorite
-				</label>
-				<g:checkBox class="favBtn" name="favoriteTechnique" />
-
-				<input type="button" value="Edit" id="editModal" />
-				<input type="button" value="View" id="viewModal" />
-
-			</span>
-			<br/>
-
-			<g:hiddenField name="techniqueId1" />
-			<p class="form-align">
-				<label class="form-labels">
-					Title
-				</label>
-				<g:textField name="title1"  class="allInputs"/>
-				<g:textField name="title2"  class="allInputs1"/>
-			</p>
-			<br/>
-			<p class="form-align">
-				<label class="form-labels">
-					Description
-				</label>
-				<g:textField name="description1"  class="allInputs"/>
-				<g:textField name="description2"  class="allInputs1"/>
-			</p>
-			<br/>
-
-			<p class="form-align">
-				<label class="form-labels">
-					Procedure
-				</label>
-				<g:textArea name="procedure1"  class="allInputs"/>
-				<g:textArea name="procedure2"  class="allInputs1"/>
-			</p>
-			<br/>
-
-			<p class="form-align">
-				<label class="form-labels">
-					Duration
-				</label>
-				<g:field type="number" name="duration1" min="01" max="60" class="allInputs"/>
-				<g:field type="number" name="duration2" min="01" max="60" class="allInputs1"/>
-			</p>
-			<br/>
-
-			<p class="form-align">
-				<label class="form-labels">
-					Feedback Mechanism
-				</label>
-				<g:select class="custom-dropdown" name="assessmentFeedback1" from="${assessmentFeedback}" optionKey="name" />
-			</p>
-			<br/>
-
-			<p class="form-align">
-				<label class="form-labels">
-					Learning Domain
-				</label>
-				<g:select class="custom-dropdown" name="learningDomain" from="${learningDomains}" optionKey="name" />
-			</p>
-			<br/>
-
-			<p class="form-align">
-				<label class="form-labels">
-					Domain Category
-				</label>
-				<g:select class="custom-dropdown" name="domainCategory" from="${domainCategories}" optionKey="name" />
-			</p>
-			<br/>
-
-			<p class="form-align">
-				<label class="form-labels">
-					Knowledge Dimension
-				</label>
-				<g:select class="custom-dropdown" name="knowledgeDimension" from="${knowledgeDimensions}" optionKey="description" />
-			</p>
-			<br/>
-
-			<div id="modalButtons">
-				<g:actionSubmit value="Save" action="save1" />
-				<g:actionSubmit value="Cancel" action="cancel" />
-			</div>
-		</g:form>
 	</div>
 	</g:if>
 
@@ -497,8 +397,22 @@
 		<p>Task Work-Time:</p>
 		<div id="taskWorkTime"></div>
 
+			<!--	<div id="taskID" type="hidden"></div>-->
+
 
 		<p><strong><a id="taskLink" target="_blank">Link to the Assignment.</a></strong></p>
+
+<!-- TRYING TO ADD A DELETE BUTTON THAT CALLS THE deleteEvent() function in my scheduleController.groovy file. For some reason it isn't detecting the event object, so it cant properly call event.delete on it-->
+		<g:form controller="schedule" method="post" action="deleteEvent" class="no-warn-form">
+		<g:hiddenField name="id" id="taskID" value="${taskID}" />
+		<g:hiddenField name="imodId" value="${currentImod.id}" />
+		<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
+		<button type="submit">
+			Delete Task
+		</button>
+
+
+	</g:form>
 	</div>
 
 

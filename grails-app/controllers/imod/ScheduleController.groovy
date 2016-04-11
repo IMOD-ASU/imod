@@ -75,6 +75,8 @@ class ScheduleController {
 		def timeRatio1 = 'no time'
 		def currName1 = 'noName'
 
+		def taskID = -1
+
 		startDate1 = Imod.get(id).schedule.startDate
 		endDate1 = Imod.get(id).schedule.endDate
 		creditHours1 = Imod.get(id).creditHours
@@ -93,6 +95,8 @@ class ScheduleController {
 			timeRatio1: timeRatio1,
 			learningObjectives: learningObjectives,
 			currName1: currName1,
+
+			taskID: taskID,
 
 			domainCategories: domainCategories,
 			knowledgeDimensions: knowledgeDimensions,
@@ -186,6 +190,50 @@ class ScheduleController {
 			] as JSON
 		)
 
+	}
+
+	/**
+	 * Delete an event for a particular learning objective
+	 */
+	def deleteEvent() {
+/*
+		DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy HH:mm')
+		DateTime sDate = fmt.parseDateTime(params.startDate)
+		DateTime eDate = fmt.parseDateTime(params.endDate)
+
+		def title = params.title
+
+
+		def learnO = params.learnO
+		def knowD = params.knowD
+
+		def enviro = params.enviro
+		def workTime = params.workTime
+		def notes = params.notes
+		*/
+
+		def learningObjectiveID = params.lo.toLong()
+		def id = params.id
+
+		//def event1 = ScheduleEvent.findById(id)
+		def event1 = ScheduleEvent.get(id)
+
+		final currentImod = Imod.get(params.imodId)
+		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+
+		if ( event1 != null ) {
+
+			currentLearningObjective.removeFromScheduleEvents(event1)
+		    		event1.delete()
+		}
+
+
+		redirect(
+			controller: 'Schedule',
+			action: 'index',
+			id: params.imodId,
+			params: [learningObjectiveID: learningObjectiveID]
+		)
 	}
 
 	/**
