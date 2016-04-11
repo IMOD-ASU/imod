@@ -803,6 +803,9 @@ $(
 		var numberOfVeryImportantTopics = 0;
 		var numberOfGoodToKnowTopics = 0;
 		var ctx;
+		var chartData;
+		var options;
+		var myPieChart;
 
 		if ($('#topicList tbody tr').length) {
 			ctx = document.getElementById('chart').getContext('2d');
@@ -821,44 +824,32 @@ $(
 		});
 
 		if ($('#topicList tbody tr').length) {
-			new Chart(ctx, {
-				type: 'pie',
-				options: {
-					responsive: false,
-					title: {
-						display: true,
-						text: 'Topic Priorities'
-					},
-					legend: {
-						fontSize: 16
-					},
-					tooltips: {
-						fontSize: 16
-					}
+			chartData = [
+				{
+					value: numberOfCriticalTopics,
+					color: '#3fa196',
+					highlight: '#23a99a',
+					label: 'Critical'
 				},
-				data: {
-					datasets: [
-						{
-							data: [
-								numberOfCriticalTopics,
-								numberOfVeryImportantTopics,
-								numberOfGoodToKnowTopics
-							],
-							backgroundColor: [
-								'#3fa196',
-								'#6167b3',
-								'#8348ad'
-							]
-						}
-					],
-					labels: [
-						'Critical',
-						'Very Important',
-						'Good to Know'
-					]
+				{
+					value: numberOfVeryImportantTopics,
+					color: '#6167b3',
+					highlight: '#3b44bf',
+					label: 'Very Important'
+				},
+				{
+					value: numberOfGoodToKnowTopics,
+					color: '#8348ad',
+					highlight: '#792ab2',
+					label: 'Good to Know'
 				}
-			});
+			];
+
+			options = [];
+			myPieChart = new Chart(ctx).Pie(chartData, options);
+			document.getElementById('js-legend').innerHTML = myPieChart.generateLegend();
 		}
+
 		// Attach event listeners
 		$('#addTopicModal').click(showTopicDialog);
 		$('#addTopic').click(

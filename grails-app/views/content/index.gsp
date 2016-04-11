@@ -31,7 +31,7 @@
 
 	<g:javascript src="source/topicDialog.js" defer="defer"/>
 
-	<g:external dir="bower_components/chart.js" file="Chart.min.js"/>
+	<g:external dir="bower_components/Chart.js" file="Chart.js"/>
 	<g:external dir="bower_components/lodash" file="lodash.js"/>
 
 	<meta name="layout" content="imod">
@@ -348,7 +348,7 @@
 		<span class="topicButtonGradient">
 			<button
 				class="add showHoverNew resourceButton tooltipster" action="add" id="addResource"
-				title="${Help.toolTip("OVERVIEW", "Add New Resource")}"
+				title="${message(code: 'imod.pedagogy.technique.addResource')}"
 				value="${message(code: 'Add Resource', default: 'Add Resource')}">
 				<i class="fa fa-plus green"></i>
 				${message(code: 'Add Resource', default: 'Add Resource')}
@@ -358,7 +358,7 @@
 			<button
 				class="remove showHoverNew resourceButton tooltipster" action="remove"
 				id="removeResource"
-				title="${Help.toolTip("OVERVIEW", "Delete Selected Resource")}"
+				title="${message(code: 'imod.pedagogy.technique.removeResource')}"
 				value="${message(code: 'Remove Resource', default: 'Remove Resource')}">
 				<i class="fa fa-minus-circle red"></i>
 				${message(code: 'Remove Resource', default: 'Remove Resource')}
@@ -385,7 +385,7 @@
 				class="save showHoverNew resourceButton tooltipster"
 				action="save"
 				id="saveResource"
-				title="${Help.toolTip("OVERVIEW", "Save Selected Resources and Save")}">
+				title="${message(code: 'imod.pedagogy.technique.saveResource')}">
 				<i class="fa fa-save green"></i>
 				${message(code: 'Save Resource', default: ' Continue')}
 			</button>
@@ -395,7 +395,7 @@
 				class="showHoverNew resourceButton tooltipster"
 				action="cancel"
 				id="cancelResource"
-				title="${Help.toolTip("OVERVIEW", "Leave Add Resources without saving")}">
+				title="${message(code: 'imod.pedagogy.technique.KD.cancel')}">
 				<i class="fa fa-times red"></i>
 				${message(code: 'Cancel Resources', default: ' Cancel')}
 			</button>
@@ -404,7 +404,11 @@
 	</fieldset>
 </div>
 <g:if test="${!currentImod.contents.isEmpty()}">
-	<canvas height="500" width="400" id="chart"></canvas>
+	<div class="topic-chart">
+		<h4>Topic Priorities</h4>
+		<div id="js-legend" class="chart-legend"></div>
+		<canvas height="500" width="400" id="chart"></canvas>
+	</div>
 </g:if>
 <input type="hidden" id="treeData" value="${contentList}">
 <input type="hidden" id="resourceDataStore" >

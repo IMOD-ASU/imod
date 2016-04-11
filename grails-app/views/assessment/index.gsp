@@ -33,6 +33,9 @@
 	</head>
 
 	<body>
+
+		<input name="id" id="currentImod" value="${currentImod.id}" type="hidden">
+
 		<div class="modalBackgroundFavorites"></div>
 		<div class="favorites-modal draggable">
 			<fieldset class="titleField draggable-handle">
@@ -249,7 +252,7 @@
 							</h3>
 
 							<div id="extended-matches" class="icons favorite AllMatches"></div>
-				
+
 							<h3 title="${Help.toolTip('PEDAGOGY', 'Extended Match')}" class="showHover">
 								<b>My Techniques</b>
 							</h3>

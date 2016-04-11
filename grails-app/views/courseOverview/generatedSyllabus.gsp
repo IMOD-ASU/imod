@@ -419,10 +419,10 @@
 		                        <g:if test="${learningObjective.definition != null && learningObjective.definition.trim() != "" }">
 		                            <li class="learning-objective list-item">
 		                                ${ learningObjective.definition.encodeAsCustomEscape() }
-		                                <g:if test="${learningObjective.assessmentTechniques.size()}">
+		                                <g:if test="${learningObjective.assessmentTechniques.size() && !hideSectionsList.contains('-assessments-')}">
 		                                	<ul>
 		                                		<li>
-							                    	<strong>Assessment Plan</strong>
+							                    	<strong>Assessments</strong>
 							                    	<ul>
 													<g:each var="technique" in="${learningObjective.assessmentTechniques}">
 
@@ -435,10 +435,10 @@
 												</li>
 											</ul>
 										</g:if>
-		                                <g:if test="${learningObjective.pedagogyTechniques.size()}">
+		                                <g:if test="${learningObjective.pedagogyTechniques.size() && !hideSectionsList.contains('-instructions-')}">
 						                    <ul>
 						                    <li>
-						                    	<strong>Instruction Plan</strong>
+						                    	<strong>Instruction Techniques</strong>
 						                    	<ul>
 						                    		<g:each var="technique" in="${learningObjective.pedagogyTechniques}">
 

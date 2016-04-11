@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name='layout' content='schedule'/>
+		<title>
+			Index for Schedule
+		</title>
+				<g:javascript src="source/schedule.js" defer="defer" />
+	</head>
+	<body>
+
+	</body>
+</html>
