@@ -180,6 +180,8 @@ class ScheduleController {
 	 * - domain category: name of each selected category
 	 * - learning domain: name of each selected domain
 	 */
+
+	 /*
 	def findMatchingTechniques() {
 		final data = request.JSON
 
@@ -279,6 +281,7 @@ class ScheduleController {
 			] as JSON
 		)
 	}
+	*/
 
 	def findImodScheduleInfo() {
 		render (

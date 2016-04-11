@@ -921,6 +921,7 @@ function filterAssessmentTechniques () {
 
 	// Send the data to the find matching techniques action in grails
 	// and process the response with the display assessment techniques callback
+	/*
 	$.ajax({
 		url: '../findMatchingTechniques',
 		method: 'post',
@@ -934,6 +935,7 @@ function filterAssessmentTechniques () {
 		assessmentEqualHeights('#ideal-matches1');
 		assessmentEqualHeights('#extended-matches');
 	});
+	*/
 }
 
 function truncateString (string, count) {
