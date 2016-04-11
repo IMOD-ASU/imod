@@ -157,3 +157,25 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 6. cd into the new version
 7. run `sudo ./bin/npm install -g bower`
 8. update the path to Node JS in each of the Jenkins project configurations
+
+
+---
+
+## AWS Maintenance 
+
+### Public DNS: ec2-52-26-177-245.us-west-2.compute.amazonaws.com/
+
+### Update the Test/Demo Server
+
+1. SSH into the server
+2. run `sudo apt-get update`
+3. run `sudo apt-get dist-upgrade`
+
+### Recover from Test/Demo Server Crash
+
+1. SSH into the server
+2. Run `sudo reboot`
+3. Wait a few minutes
+4. SSH into the server again
+5. Run `sudo service apache2 start` to start apache. This runs the main static site.
+6. Run `sudo /opt/apache-tomcat-{version}/bin/startup.sh`
