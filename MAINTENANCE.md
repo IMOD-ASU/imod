@@ -185,3 +185,18 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 1. Apache is located in `/etc/apache2`
 2. Static website code is located in `/var/www/html`
 3. Site URL: http://ec2-52-26-177-245.us-west-2.compute.amazonaws.com/
+
+### Update Apache Tomcat on Demo
+
+1. SSH into the server
+2. Goto `/opt`
+3. Run `sudo /opt/apache-tomcat-{old version}/bin/shutdown.sh`
+4. Open the [Apache Tomcat site](https://tomcat.apache.org/download-70.cgi)
+5. Get the latest code binary version `sudo wget http://link-from-site.tar.gz`
+6. Unzip file `sudo tar -zxvf apache-tomcat-version.tar.gz`
+7. Copy the Tomcat Manager configuration from the old Tomcat config file to the new
+9. Run `sudo /opt/apache-tomcat-{new version}/bin/startup.sh` 
+10. If you get `command not found` when you execute it, make sure you make the .sh scripts executable by running `sudo chmod +x /opt/apache-tomcat-{new version}/bin/*.sh`
+
+
+
