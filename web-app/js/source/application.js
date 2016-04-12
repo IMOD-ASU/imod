@@ -254,7 +254,7 @@ function calculatePercentage (response) {
 
 	if (checkId === 'new') {
 		coPercent = 2;
-		//return profileVal;
+		// return profileVal;
 	} else {
 		coPercent = 15;
 		if (currentImod.instructors.length > 0) {
@@ -292,7 +292,7 @@ function evaluateProfile () {
 		},
 		success: function (response) {
 			profileValue = calculatePercentage(response);
-			progressbar.progressbar("value", profileValue);
+			progressbar.progressbar('value', profileValue);
 		}
 	});
 }

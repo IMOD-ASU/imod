@@ -1,4 +1,5 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+
 localStorage.setItem('checkId', $('input[name="checkId"]').val());
 
 // Source: http://stackoverflow.com/a/2855946
