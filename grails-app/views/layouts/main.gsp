@@ -38,7 +38,8 @@ this is the basic layout with only the IMOD header and footer
 		<g:external dir="css" file="main.css" />
 
 		<!-- core javascript libraries -->
-		<g:external dir="bower_components/jquery/dist" file="jquery.min.js" />
+		<!-- <g:external dir="bower_components/jquery/dist" file="jquery.min.js" /> @Wesley.Coomber@asu.edu change for temporary working on my branch. Calender plugin doesn work with jquery 3.0!-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
 		<g:external dir="bower_components/jquery.ui/ui" file="core.js" />
 		<g:external dir="bower_components/jquery.ui/ui" file="widget.js" />
 
