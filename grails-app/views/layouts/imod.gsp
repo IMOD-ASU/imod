@@ -10,6 +10,7 @@
 <%@ page import="imod.Imod" %>
 <%@ page import="imod.ImodUser" %>
 
+
 <g:applyLayout name="main">
 	<html>
 		<head>
@@ -40,13 +41,18 @@
 					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_inactive.png')}" alt=""/>
 				</a>
 			</div>
+		<sec:ifLoggedIn>
+			<div id="progressbar"><div class="progress-label">Loading...</div></div>
+		</sec:ifLoggedIn>
 			<div class="message banner">
+
 				<g:if test="${id != "new"}">
 					Please enter course overview data followed by learning objectives and content.
 				</g:if>
 				<g:else>
 					Please enter course overview data and save the IMOD to get access to other learning objectives and content.
 				</g:else>
+				<g:hiddenField name="checkId" value="${id}"></g:hiddenField>
 			</div>
 			<div id="tabs-container" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 				<ul id="main-menu" class="ui-tabs-nav ui-widget-header ui-corner-all">

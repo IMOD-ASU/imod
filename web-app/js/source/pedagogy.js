@@ -92,6 +92,18 @@ function closeDimModalCancel () {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
+
+function editPedagogyDialogCancel () {
+	'use strict';
+	$('#add-new-technique').css('display', 'none');
+	$('#topicDialogBackground').css('display', 'none');
+}
+
+$('#editTechniqueDialog').click(function () {
+	'use strict';
+	editPedagogyDialogCancel();
+});
+
 function changePic () {
 	'use strict';
 	var iconName = '';
