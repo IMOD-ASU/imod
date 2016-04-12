@@ -43,7 +43,6 @@ class ImodController {
 		]
 	}
 
-
 	def newimod() {
 
 		redirect(
@@ -176,11 +175,12 @@ class ImodController {
 					),
 					currentImod
 				]
-			)}
+			)
+		}
 
 		render(
-			[		user:currentUser,
-			        currentImod:currentImod
+			[user:currentUser,
+			 currentImod:currentImod
 			] as JSON
 		)
 	}
