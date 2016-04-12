@@ -95,12 +95,12 @@ function closeDimModalCancel () {
 
 function editPedagogyDialogCancel () {
 	'use strict';
-
 	$('#add-new-technique').css('display', 'none');
 	$('#topicDialogBackground').css('display', 'none');
 }
 
-$("#editTechniqueDialog").click(function(){
+$('#editTechniqueDialog').click(function () {
+	'use strict';
 	editPedagogyDialogCancel();
 });
 

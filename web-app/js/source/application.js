@@ -7,52 +7,43 @@ var profileBuffer = 100;
 $(document).ready(function () {
 	'use strict';
 
+	var progressbar = $('#progressbar');
+	var progressLabel = $('.progress-label');
 
-	var progressbar = $("#progressbar"),
-		progressLabel = $(".progress-label"),
-		progressbarValue = progressbar.find(".ui-progressbar-value");
+	// progressbarValue = progressbar.find(".ui-progressbar-value");
 
 	progressbar.progressbar({
 		value: false,
 		change: function () {
+			// var selector = '#' + this.id + ' > div';
+			var value = this.getAttribute('aria-valuenow');
 
-			progressLabel.text("Profile Completion ......." + progressbar.progressbar("value") + "%");
-			var selector = "#" + this.id + " > div";
-			var value = this.getAttribute("aria-valuenow");
+			progressLabel.text('Profile Completion .......' + progressbar.progressbar('value') + '%');
+
 			if (value < 15) {
-				$('.ui-widget-header').css({'background': '#B71C1C'});
+				$('.ui-widget-header').css({background: '#B71C1C'});
 			} else if (value < 25) {
-				$('.ui-widget-header').css({'background': '#FFB300'});
+				$('.ui-widget-header').css({background: '#FFB300'});
 			} else if (value < 35) {
-				$('.ui-widget-header').css({'background': '#3F51B5'});
+				$('.ui-widget-header').css({background: '#3F51B5'});
 			} else if (value < 70) {
-				$('.ui-widget-header').css({'background': '#CDDC39'});
+				$('.ui-widget-header').css({background: '#CDDC39'});
 			} else {
-				$('.ui-widget-header').css({'background': '#8BC34A'});
+				$('.ui-widget-header').css({background: '#8BC34A'});
 			}
 		},
 		complete: function () {
-			progressLabel.text("Profile Complete !!");
-			progressLabel.css({'left': '35%'});
-			$('.ui-widget-header').css({'background': '#4CAF50'});
+			progressLabel.text('Profile Complete !!');
+			progressLabel.css({left: '35%'});
+			$('.ui-widget-header').css({background: '#4CAF50'});
 		}
 	});
 
-	function progress() {
-		var val = progressbar.progressbar("value") || 0;
+	// function progress() {
+	// 	var val = progressbar.progressbar('value') || 0;
+	// }
 
-		//progressbar.progressbar( "value", val + 2 );
-
-
-		if (val < 99) {
-
-
-			//setTimeout( progress, 80 );
-		}
-	}
-
-	//setTimeout( progress, 2000 );
-
+	// setTimeout( progress, 2000 );
 
 	$('.tooltipster').tooltipster({
 		theme: 'tooltipster-noir',
@@ -199,8 +190,8 @@ $(document).ready(function () {
 	});
 });
 
-calculateLO = function (learningObjectives) {
-
+function calculateLO (learningObjectives) {
+	'use strict';
 	var count = learningObjectives.length;
 	var loPercent = 0;
 
@@ -208,14 +199,14 @@ calculateLO = function (learningObjectives) {
 		loPercent = 100;
 	}
 	return loPercent;
-};
+}
 
-calculateContent = function (contents) {
-
+function calculateContent (contents) {
+	'use strict';
 	var count = contents.length;
 	var contentPercent = 0;
 
-	if (count == 0) {
+	if (count === 0) {
 		contentPercent = 0;
 	} else if (count < 5) {
 		contentPercent = 80;
@@ -223,10 +214,10 @@ calculateContent = function (contents) {
 		contentPercent = 100;
 	}
 	return contentPercent;
-};
+}
 
-calculateAsst = function (assessmentTech) {
-
+function calculateAsst (assessmentTech) {
+	'use strict';
 	var count = assessmentTech.length;
 	var asstPercent = 0;
 
@@ -234,10 +225,10 @@ calculateAsst = function (assessmentTech) {
 		asstPercent = 100;
 	}
 	return asstPercent;
-};
+}
 
-calculatePed = function (pedagogyTech) {
-
+function calculatePed (pedagogyTech) {
+	'use strict';
 	var count = pedagogyTech.length;
 	var pedPercent = 0;
 
@@ -245,77 +236,70 @@ calculatePed = function (pedagogyTech) {
 		pedPercent = 100;
 	}
 	return pedPercent;
-};
+}
 
-calculatePercentage = function (response) {
-
+function calculatePercentage (response) {
+	'use strict';
 	var data = response;
 	var currentImod = data.currentImod;
 	var user = data.user;
 	var coPercent = 0;
 	var instrPercent = 0;
-	var loPercent;
-	var contentPercent;
-	var asstPercent;
-	var pedPercent;
+	var loPercent = 0;
+	var contentPercent = 0;
+	var asstPercent = 0;
+	var pedPercent = 0;
+	var checkId = localStorage.getItem('checkId');
 
 
-	if (checkId == "new") {
+	if (checkId === 'new') {
 		coPercent = 2;
-		return profileVal;
+		//return profileVal;
 	} else {
 		coPercent = 15;
-	}
+		if (currentImod.instructors.length > 0) {
+			instrPercent = 5;
+		}
 
-	if (currentImod.instructors.length > 0) {
-		instrPercent = 5;
+		if (currentImod.learningObjectives.length > 2) {
+			profileBuffer -= 20;
+		} else {
+			profileBuffer = currentImod.learningObjectives.length * 40;
+		}
+		loPercent = calculateLO(currentImod.learningObjectives);
+		contentPercent = calculateContent(currentImod.contents);
+		asstPercent = calculateAsst(user.assessmentTechnique);
+		pedPercent = calculatePed(user.pedagogyTechnique);
 	}
-
-	if (currentImod.learningObjectives.length > 2) {
-		profileBuffer -= 20;
-	} else {
-		profileBuffer = currentImod.learningObjectives.length * 40;
-	}
-
-	 loPercent = calculateLO(currentImod.learningObjectives);
-	 contentPercent = calculateContent(currentImod.contents);
-	 asstPercent = calculateAsst(user.assessmentTechnique);
-	 pedPercent = calculatePed(user.pedagogyTechnique);
 
 	profileVal += coPercent + instrPercent + Math.round((loPercent + contentPercent + asstPercent + pedPercent) / 400 * profileBuffer);
 
 	return profileVal;
-};
+}
 
-evaluateProfile = function () {
-	var progressbar = $("#progressbar");
-	var checkId = localStorage.getItem("checkId")
+function evaluateProfile () {
+	'use strict';
+	var progressbar = $('#progressbar');
+	var checkId = localStorage.getItem('checkId');
+	var profileValue = 0;
+
 	$.ajax({
 		url: baseUrl + 'imod/getCurrentImod',
 		type: 'GET',
 		dataType: 'json',
 		data: {
 			id: checkId
-			//imodId: $('input[name=id]').val(),
-			//parameters: JSON.stringify(parameterList)
 		},
 		success: function (response) {
-			console.log(response);
-			var profileValue = calculatePercentage(response);
+			profileValue = calculatePercentage(response);
 			progressbar.progressbar("value", profileValue);
-		},
-		error: function (error) {
-			console.log(error);
 		}
 	});
-};
+}
 
 window.onload = function () {
 	'use strict';
-
 	evaluateProfile();
-
-
 	// dont apply to pedagogy and assessment tabs
 	if ($('.pedagogy-nav-bar').length) {
 		return null;
@@ -326,7 +310,6 @@ window.onload = function () {
 	} else {
 		window.cleanForm = $('form').find('select, textarea, input').serialize();
 	}
-
 	return true;
 };
 

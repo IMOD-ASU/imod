@@ -1,5 +1,5 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
-var checkId = localStorage.setItem("checkId", $("input[name='checkId']").val());
+localStorage.setItem('checkId', $('input[name="checkId"]').val());
 
 // Source: http://stackoverflow.com/a/2855946
 function isValidEmailAddress (emailAddress) {
