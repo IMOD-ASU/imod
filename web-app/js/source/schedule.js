@@ -83,7 +83,7 @@ window.onload = function () {
 				   ]
 			   },
 			   {
-				   type: 'stackedBar100',
+				   type: 'stackedBar',
 				   showInLegend: true,
 				   name: '' + assignDataStructures.name,
 				   toolTipContent: '{name}: {y} Hours. ' + assignDataStructures.location,
@@ -255,6 +255,8 @@ $(document).ready(function () {
 // 	addEvent(startDate, endDate, 'testTask');
 // }
 
+var oldView = "month";
+
 $(document).ready(function () {
    'use strict';
 
@@ -264,6 +266,26 @@ $(document).ready(function () {
 		   center: '',
 		   right: 'month basicWeek'
 	   },
+       //runs when view changes to week and vice-versa.
+       //toggles the visibility (hide) of the
+       viewRender: function(view) {
+           console.log("old: "+ oldView);
+           console.log("new: " +view.name);
+
+          // jquery.toggle() is ideal because it makes sure the chartContainer div doesnt take up space when its hidden, but it was causing rendering errors in firefox when switching between month and week view. would fix when i open firebug? not sure why
+           if(view.name == "basicWeek" && oldView == "month"){
+              // $("#chartContainer").toggle();
+               console.log("graphRevealed!");
+               document.getElementById('chartContainer').style.visibility='visible';
+                           oldView = view.name;
+           }
+           if(view.name == "month" && oldView == "basicWeek"){
+              // $("#chartContainer").toggle();
+               document.getElementById('chartContainer').style.visibility='hidden';
+               console.log("graphHidden!");
+                           oldView = view.name;
+           }
+       },
 	   eventClick: function (event) {
 		   // all arguments: (event, jsEvent, view)
 
@@ -392,6 +414,8 @@ function addEvent (startDate, endDate, title, desc) {
 		   allDay: false
 	   }, true);
 }
+
+ //$("#chartContainer").toggle();
 
 // Cancel Button logic for +AddNewTask modal popup here.
 $('button[name=cancelButton]').click(function() {

@@ -464,8 +464,8 @@
 		<p><strong><a id="taskLink" target="_blank">For more info.</a></strong></p>
 	</div>
 
-	<!-- The chart goes here -->
-	<div id="chartContainer" style="height: 300px; width: 97.5%;"></div>
+	<!-- The chart goes here <div id="chartContainer" type="hidden" style="height: 300px; width: 100%;display: none;"></div> -->
+	<div id="chartContainer"  style="height: 300px; width: 100%; visibility:hidden;"></div>
 
 	<!--
 	List out the imods course info dates (demo getting data from the controller file)
