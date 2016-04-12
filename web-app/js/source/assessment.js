@@ -86,6 +86,18 @@ function closeDimModalCancel () {
 
 	return false;
 }
+
+function editAssessmentDialogCancel () {
+	'use strict';
+
+	$('#add-new-technique').css('display', 'none');
+	$('#topicDialogBackground').css('display', 'none');
+}
+
+$("#editTechniqueDialog").click(function(){
+	editAssessmentDialogCancel();
+});
+
 function changePic () {
 	'use strict';
 	var iconName = '';

@@ -1,5 +1,6 @@
 package imod
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 import org.joda.time.LocalTime
 import org.joda.time.DateTime
@@ -41,6 +42,7 @@ class ImodController {
 			sort: 'name'
 		]
 	}
+
 
 	def newimod() {
 
@@ -157,6 +159,29 @@ class ImodController {
 		)
 		redirect(
 			action: 'list'
+		)
+	}
+
+	def getCurrentImod(Long id) {
+		def currentImod = Imod.get(id)
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+
+		if (!currentImod) {
+			flash.message = message(
+				code: 'default.not.found.message',
+				args: [
+					message(
+						code: 'imod.label',
+						default: 'Imod'
+					),
+					currentImod
+				]
+			)}
+
+		render(
+			[		user:currentUser,
+			        currentImod:currentImod
+			] as JSON
 		)
 	}
 

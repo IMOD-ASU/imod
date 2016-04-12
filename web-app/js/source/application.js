@@ -1,7 +1,58 @@
 var formSubmitted = false;
+var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+var profileVal = 0;
+var profileBuffer = 100;
+
 
 $(document).ready(function () {
 	'use strict';
+
+
+	var progressbar = $("#progressbar"),
+		progressLabel = $(".progress-label"),
+		progressbarValue = progressbar.find(".ui-progressbar-value");
+
+	progressbar.progressbar({
+		value: false,
+		change: function () {
+
+			progressLabel.text("Profile Completion ......." + progressbar.progressbar("value") + "%");
+			var selector = "#" + this.id + " > div";
+			var value = this.getAttribute("aria-valuenow");
+			if (value < 15) {
+				$('.ui-widget-header').css({'background': '#B71C1C'});
+			} else if (value < 25) {
+				$('.ui-widget-header').css({'background': '#FFB300'});
+			} else if (value < 35) {
+				$('.ui-widget-header').css({'background': '#3F51B5'});
+			} else if (value < 70) {
+				$('.ui-widget-header').css({'background': '#CDDC39'});
+			} else {
+				$('.ui-widget-header').css({'background': '#8BC34A'});
+			}
+		},
+		complete: function () {
+			progressLabel.text("Profile Complete !!");
+			progressLabel.css({'left': '35%'});
+			$('.ui-widget-header').css({'background': '#4CAF50'});
+		}
+	});
+
+	function progress() {
+		var val = progressbar.progressbar("value") || 0;
+
+		//progressbar.progressbar( "value", val + 2 );
+
+
+		if (val < 99) {
+
+
+			//setTimeout( progress, 80 );
+		}
+	}
+
+	//setTimeout( progress, 2000 );
+
 
 	$('.tooltipster').tooltipster({
 		theme: 'tooltipster-noir',
@@ -148,8 +199,122 @@ $(document).ready(function () {
 	});
 });
 
+calculateLO = function (learningObjectives) {
+
+	var count = learningObjectives.length;
+	var loPercent = 0;
+
+	if (count > 2) {
+		loPercent = 100;
+	}
+	return loPercent;
+};
+
+calculateContent = function (contents) {
+
+	var count = contents.length;
+	var contentPercent = 0;
+
+	if (count == 0) {
+		contentPercent = 0;
+	} else if (count < 5) {
+		contentPercent = 80;
+	} else {
+		contentPercent = 100;
+	}
+	return contentPercent;
+};
+
+calculateAsst = function (assessmentTech) {
+
+	var count = assessmentTech.length;
+	var asstPercent = 0;
+
+	if (count > 0) {
+		asstPercent = 100;
+	}
+	return asstPercent;
+};
+
+calculatePed = function (pedagogyTech) {
+
+	var count = pedagogyTech.length;
+	var pedPercent = 0;
+
+	if (count > 0) {
+		pedPercent = 100;
+	}
+	return pedPercent;
+};
+
+calculatePercentage = function (response) {
+
+	var data = response;
+	var currentImod = data.currentImod;
+	var user = data.user;
+	var coPercent = 0;
+	var instrPercent = 0;
+	var loPercent;
+	var contentPercent;
+	var asstPercent;
+	var pedPercent;
+
+
+	if (checkId == "new") {
+		coPercent = 2;
+		return profileVal;
+	} else {
+		coPercent = 15;
+	}
+
+	if (currentImod.instructors.length > 0) {
+		instrPercent = 5;
+	}
+
+	if (currentImod.learningObjectives.length > 2) {
+		profileBuffer -= 20;
+	} else {
+		profileBuffer = currentImod.learningObjectives.length * 40;
+	}
+
+	 loPercent = calculateLO(currentImod.learningObjectives);
+	 contentPercent = calculateContent(currentImod.contents);
+	 asstPercent = calculateAsst(user.assessmentTechnique);
+	 pedPercent = calculatePed(user.pedagogyTechnique);
+
+	profileVal += coPercent + instrPercent + Math.round((loPercent + contentPercent + asstPercent + pedPercent) / 400 * profileBuffer);
+
+	return profileVal;
+};
+
+evaluateProfile = function () {
+	var progressbar = $("#progressbar");
+	var checkId = localStorage.getItem("checkId")
+	$.ajax({
+		url: baseUrl + 'imod/getCurrentImod',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			id: checkId
+			//imodId: $('input[name=id]').val(),
+			//parameters: JSON.stringify(parameterList)
+		},
+		success: function (response) {
+			console.log(response);
+			var profileValue = calculatePercentage(response);
+			progressbar.progressbar("value", profileValue);
+		},
+		error: function (error) {
+			console.log(error);
+		}
+	});
+};
+
 window.onload = function () {
 	'use strict';
+
+	evaluateProfile();
+
 
 	// dont apply to pedagogy and assessment tabs
 	if ($('.pedagogy-nav-bar').length) {
