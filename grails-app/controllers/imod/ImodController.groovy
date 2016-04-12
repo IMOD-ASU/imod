@@ -178,9 +178,8 @@ class ImodController {
 			)
 		}
 
-		render(
-			[user : currentUser,
-			 currentImod : currentImod
+		render([user: currentUser,
+			 currentImod: currentImod
 			] as JSON
 		)
 	}
