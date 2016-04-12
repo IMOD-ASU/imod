@@ -261,15 +261,31 @@ $(document).ready(function () {
    $('#scheduleCalendar').fullCalendar({
 	   header: {
 		   left: 'prev title next',
-		   center: 'month',
-		   right: 'basicWeek'
+		   center: '',
+		   right: 'month basicWeek'
 	   },
 	   eventClick: function (event) {
 		   // all arguments: (event, jsEvent, view)
 
+		   var view = $('#scheduleCalendar').fullCalendar('getView');
+		   var beginMonthT =(view.start).toISOString();
+		   var beginMonth1 = moment(beginMonthT);
+		   var beginMonth2 = moment(beginMonthT);
+		   var beginMonth3 = moment(beginMonthT);
+		   var beginMonth4 = moment(beginMonthT);
+		   var beginMonth5 = moment(beginMonthT);
+		   var beginMonth6 = moment(beginMonthT);
+
+		    beginMonth2 = beginMonth2.add(7, 'days');
+		    beginMonth3 = beginMonth3.add(14, 'days');
+		   beginMonth4 = beginMonth4.add(21, 'days');
+		   beginMonth5 = beginMonth5.add(28, 'days');
+		   beginMonth6 = beginMonth6.add(35, 'days');
+		  // alert("The view's title is " + beginMonth1.format('YYYY-M-D') + " " + beginMonth2.format('YYYY-M-D') + " " + beginMonth3.format('YYYY-M-D') + " " + beginMonth4.format('YYYY-M-D') + " " + beginMonth5.format('YYYY-M-D') + " " + beginMonth6.format('YYYY-M-D') + " ");
+
 		   // set the values and open the modal
 		   $('#taskInfo').html(event.notes);
-		   $('#taskLearnO').html(event.learnO);
+		   //$('#taskLearnO').html(event.learnO);
 		   $('#taskKnowD').html(event.knowD);
 		   $('#taskEnviro').html(event.enviro);
 		   $('#taskWorkTime').html(event.workTime);
@@ -288,7 +304,9 @@ $(document).ready(function () {
 			   url: '../../schedule/getEvents/',
 			   data: {
 				   learningObjectiveID: $('#lo').val(),
+				   //Start date is first day that is displayed
 				   startDate: start.toISOString(),
+				   //End  date is last day that is displayed
 				   endDate: end.toISOString()
 			   },
 			   method: 'GET'
@@ -296,8 +314,30 @@ $(document).ready(function () {
 		   .done(function (data) {
 			   var events = [];
 
+			   var eventsByWeek = [];
+
 			   $.each(data.events, function (index, obj) {
+
 				   events.push(
+					   {
+						   title: obj.title,
+						   allday: 'false',
+						   start: window.moment(obj.startDate, window.moment.ISO_8601),
+						   end: window.moment(obj.endDate, window.moment.ISO_8601),
+						   learnO: obj.learnO,
+						   knowD: obj.knowD,
+						   enviro: obj.enviro,
+						   workTime: obj.workTime,
+						   description: obj.notes,
+						   id: obj.id,
+						   notes: obj.notes,
+
+                           //this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
+						   url: obj.learnO
+					   }
+				   );
+				   /*
+				   eventsByWeek.push(
 					   {
 						   title: obj.title,
 						   allday: 'false',
@@ -313,6 +353,7 @@ $(document).ready(function () {
 						   url: 'https://en.wikipedia.org/wiki/Learning_theory_%28education%29'
 					   }
 				   );
+				   */
 			   });
 			   callback(events);
 		   });
@@ -351,6 +392,12 @@ function addEvent (startDate, endDate, title, desc) {
 		   allDay: false
 	   }, true);
 }
+
+// Cancel Button logic for +AddNewTask modal popup here.
+$('button[name=cancelButton]').click(function() {
+$('#add-new-technique, #topicDialogBackground').hide();
+return false;
+});
 
 
 /*

@@ -280,8 +280,7 @@
 			</tr>
 
 			<tr>
-                <!-- this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources-->
-				<td class="td-label" width="40%">Link to Online Resource</td>
+				<td class="td-label" width="40%">Learning Objective</td>
 				<td class="td-label" width="40%">Due Date</td>
 			</tr>
 
@@ -319,7 +318,7 @@
 
 			<tr>
 				<td class="td-label" width="40%">Expected Working Time (hours)</td>
-				<td type="hidden"class="td-label" width="40%"></td>
+				<td type="hidden"class="td-label" width="40%">Expected Working Time</td>
 			</tr>
 
 
@@ -329,7 +328,7 @@
 				</td>
 
 				<td width="60%">
-					<g:hiddenField class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+					<g:select class="custom-dropdown" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
 				</td>
 			</tr>
 
@@ -348,7 +347,7 @@
 			<i class="fa fa-save green"></i>
 			Save
 		</button>
-				<button type="submit"  id="cancelButton" class="new-technique-popup-button" name = "cancelButton">
+				<button type="submit"  id="cancelButton" class="new-technique-popup-button">
 		<!--<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">-->
 			<i class="fa fa-times red"></i>
 			Cancel
@@ -389,8 +388,7 @@
 		<div id="taskTime2"></div>
 				<p>Notes:</p>
 		<div id="taskInfo"></div>
-        <!-- //this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources-->
-		<!--<p>Learning Objective:</p>-->
+		<p>Learning Objective:</p>
 		<div id="taskLearnO"></div>
 		<p>KnowledgeDimension:</p>
 		<div id="taskKnowD"></div>
