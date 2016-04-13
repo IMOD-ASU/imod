@@ -907,8 +907,8 @@ $(document).ready(
 			$('.assessment-title').html('<strong>Enter Alternate Name For Clone</strong>');
 			return false;
 		});
-		$ ('#selectAlllD').click(function () {
-			if(!$(this).is(':checked')) {
+		$('#selectAlllD').click(function () {
+			if (!$(this).is(':checked')) {
 				$('#extended-matches').html('');
 				$('#extended-matches').buttonset();
 				$('#user-techniques').html('');
