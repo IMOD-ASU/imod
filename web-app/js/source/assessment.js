@@ -907,6 +907,13 @@ $(document).ready(
 			$('.assessment-title').html('<strong>Enter Alternate Name For Clone</strong>');
 			return false;
 		});
+		$('#selectAlllD').click(function () {
+			if(!$(this).is(':checked')) {
+				$('#extended-matches').html('');
+				$('#extended-matches').buttonset();
+				$('#user-techniques').html('');
+			}
+		});
 		$('#ideal-matches-toggle').accordion({collapsible: true,
 			beforeActivate: function (event, ui) {
 				// The accordion believes a panel is being opened
