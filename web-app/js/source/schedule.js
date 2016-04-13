@@ -1,24 +1,7 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var isTopLeftClicked = 1;
 var isTopRightClicked = 1;
-var hourRatio = 3;
-var inClassHours = 3;
-var outClassHours = inClassHours * hourRatio;
-var assignAlgo = {
-   name: 'Contructing Algorithims Lab',
-   hours: 4.5,
-   location: 'In-class'
-};
-var assignIntroToAlgo = {
-   name: 'Intro to Algorithims Reading',
-   hours: 1,
-   location: 'Out-Of-Class'
-};
-var assignDataStructures = {
-   name: 'Data Structure Worksheet',
-   hours: 3,
-   location: 'Out-Of-Class'
-};
+
 
 /*
    Chart.js code over here
@@ -26,193 +9,14 @@ var assignDataStructures = {
 // console.log(outClassHours);
 window.onload = function () {
    'use strict';
-   var chart;
 
-   window.CanvasJS
-	   .addColorSet('greenShades',
-	   // colorSet Array
-	   [
-		   '#7CFC00',
-		   '#00FF00',
-		   '#76EE00',
-		   '#83F52C',
-		   '#5DFC0A',
-		   '#4DBD33',
-		   '#49E20E'
-	   ]
-   );
-
-   chart = new window.CanvasJS.Chart('chartContainer',
-	   {
-		   colorSet: 'greenShades',
-		   title: {
-			   text: 'Division of out-of-class hours in Course'
-		   },
-		   axisY: {
-			   title: 'Percent of total credit hours (' + assignAlgo.hours + assignIntroToAlgo.hours + assignDataStructures.hours + ' out of ' + outClassHours + ') per week'
-		   },
-		   animationEnabled: true,
-		   toolTip: {
-			   shared: true,
-			   // content: '{name}: {y} Hours - <strong>#percent%</strong>' + '(#percent)'
-			   content: '{name}: {y} Hours. {extra}'
-		   },
-		   data: [
-			   {
-				   type: 'stackedBar100',
-				   showInLegend: true,
-				   name: '' + assignAlgo.name,
-				   toolTipContent: '{name}: {y} Hours. ' + assignAlgo.location,
-				   dataPoints: [
-					   {
-						   y: assignAlgo.hours,
-						   label: 'iMods Week Visualizer'
-					   }
-				   ]
-			   },
-			   {
-				   type: 'stackedBar100',
-				   showInLegend: true,
-				   name: '' + assignIntroToAlgo.name,
-				   toolTipContent: '{name}: {y} Hours. ' + assignIntroToAlgo.location,
-				   dataPoints: [
-					   {
-						   y: assignIntroToAlgo.hours,
-						   label: 'iMods Week Visualizer'
-					   }
-				   ]
-			   },
-			   {
-				   type: 'stackedBar',
-				   showInLegend: true,
-				   name: '' + assignDataStructures.name,
-				   toolTipContent: '{name}: {y} Hours. ' + assignDataStructures.location,
-				   dataPoints: [
-					   {
-						   y: assignDataStructures.hours,
-						   label: 'iMods Week Visualizer'
-					   }
-				   ]
-			   }
-		   ]
-	   });
-   chart.render();
 };
 
 
 $(document).ready(function () {
    'use strict';
 
-   var years = [];
-   var tempMonth;
-   var tempEle;
-   var inc = 0;
-   var choiceHour;
-   var choiceYear;
-   var months;
-   var choiceMonth;
-   var days = [];
-   var choiceDay;
-   var hours = [];
 
-   for (inc = 2010; inc <= 2035; inc++) {
-	   years.push(inc);
-   }
-
-   // Populate the choice box with choices from the years [2010 to 2035] array
-   choiceYear = document.getElementById('chooseYear');
-   for (inc = 0; inc < years.length; inc++) {
-	   // console.log(inc);
-	   tempMonth = years[inc];
-	   tempEle = document.createElement('option');
-	   tempEle.textContent = tempMonth;
-	   tempEle.value = tempMonth;
-	   choiceYear.appendChild(tempEle);
-   }
-
-   choiceYear = document.getElementById('chooseYear2');
-   for (inc = 0; inc < years.length; inc++) {
-	   // console.log(inc);
-	   tempMonth = years[inc];
-	   tempEle = document.createElement('option');
-	   tempEle.textContent = tempMonth;
-	   tempEle.value = tempMonth;
-	   choiceYear.appendChild(tempEle);
-   }
-
-   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-
-   // Populate the choice box with choices from the months array
-   choiceMonth = document.getElementById('chooseMonth');
-   for (inc = 0; inc < months.length; inc++) {
-	   // console.log(inc);
-	   tempMonth = months[inc];
-	   tempEle = document.createElement('option');
-	   tempEle.textContent = tempMonth;
-	   tempEle.value = tempMonth;
-	   choiceMonth.appendChild(tempEle);
-   }
-
-   choiceMonth = document.getElementById('chooseMonth2');
-   for (inc = 0; inc < months.length; inc++) {
-	   // console.log(inc);
-	   tempMonth = months[inc];
-	   tempEle = document.createElement('option');
-	   tempEle.textContent = tempMonth;
-	   tempEle.value = tempMonth;
-	   choiceMonth.appendChild(tempEle);
-   }
-
-   for (inc = 1; inc <= 31; inc++) {
-	   days.push(inc);
-   }
-
-   // Populate the choice box with choices from the days [1 to 31] array
-   choiceDay = document.getElementById('chooseDay');
-   for (inc = 0; inc < days.length; inc++) {
-	   // console.log(inc);
-	   tempMonth = days[inc];
-	   tempEle = document.createElement('option');
-	   tempEle.textContent = tempMonth;
-	   tempEle.value = tempMonth;
-	   choiceDay.appendChild(tempEle);
-   }
-
-   choiceDay = document.getElementById('chooseDay2');
-   for (inc = 0; inc < days.length; inc++) {
-	   // console.log(inc);
-	   tempMonth = days[inc];
-	   tempEle = document.createElement('option');
-	   tempEle.textContent = tempMonth;
-	   tempEle.value = tempMonth;
-	   choiceDay.appendChild(tempEle);
-   }
-
-   for (inc = 1; inc <= 23; inc++) {
-	   hours.push(inc);
-   }
-
-   // Populate the choice box with choices from the hours [1 to 23] array
-   choiceHour = document.getElementById('chooseHour');
-   for (inc = 0; inc < hours.length; inc++) {
-	   // console.log(inc);
-	   tempMonth = days[inc];
-	   tempEle = document.createElement('option');
-	   tempEle.textContent = tempMonth;
-	   tempEle.value = tempMonth;
-	   choiceHour.appendChild(tempEle);
-   }
-
-   choiceHour = document.getElementById('chooseHour2');
-   for (inc = 0; inc < hours.length; inc++) {
-	   // console.log(inc);
-	   tempMonth = days[inc];
-	   tempEle = document.createElement('option');
-	   tempEle.textContent = tempMonth;
-	   tempEle.value = tempMonth;
-	   choiceHour.appendChild(tempEle);
-   }
 });
 
 // function addTask () {
@@ -260,29 +64,229 @@ var oldView = "month";
 $(document).ready(function () {
    'use strict';
 
+   var hourRatio = 3;
+   var inClassHours = 3;
+   var outClassHours = inClassHours * hourRatio;
+   var assignAlgo = {
+      name: 'Contructing Algorithims Lab',
+      hours: 4.5,
+      location: 'In-class'
+   };
+   var assignIntroToAlgo = {
+      name: 'Intro to Algorithims Reading',
+      hours: 1,
+      location: 'Out-Of-Class'
+   };
+   var assignDataStructures = {
+      name: 'Data Structure Worksheet',
+      hours: 3,
+      location: 'Out-Of-Class'
+   };
+
+   var chart = null;
+
+   var dataForGraph = [];
+
+   var dataForGraphJson = [];
+
+var dps2 = [{label: 'iMods Week Visualizer', y: 10}, {label: 'iMods Week Visualizer', y: 5}, {label: 'iMods Week Visualizer', y: 3}];
+var dps = [{x: 1, y: 10}, {x: 2, y: 10}, {x: 3, y: 10}, {x: 4, y: 10}, {x: 5, y: 10}];
+
+   window.CanvasJS
+       .addColorSet('greenShades',
+       // colorSet Array
+       [
+           '#7CFC00',
+           '#00FF00',
+           '#76EE00',
+           '#83F52C',
+           '#5DFC0A',
+           '#4DBD33',
+           '#49E20E'
+       ]
+   );
+
+
+   chart = new window.CanvasJS.Chart('chartContainer',
+       {
+           colorSet: 'greenShades',
+           title: {
+               text: 'Task-hours Assigned in Course'
+           },
+           axisY: {
+               title: 'Percent of total credit hours (' + assignAlgo.hours + assignIntroToAlgo.hours + assignDataStructures.hours + ' out of ' + outClassHours + ') per week'
+           },
+           animationEnabled: true,
+           toolTip: {
+               shared: true,
+               // content: '{name}: {y} Hours - <strong>#percent%</strong>' + '(#percent)'
+               content: '{name}: {y} Hours. {extra}'
+               //content: 'hi'
+           },
+           data: [{
+               type:  "stackedBar",
+               dataPoints : dataForGraph
+           }]
+       });
+   chart.render();
+   /*
+
+   var chart = new CanvasJS.Chart("chartContainer",{
+	title :{
+		text: "Live Data"
+	},
+	axisX: {
+		title: "Axis X Title"
+	},
+	axisY: {
+		title: "Units"
+	},
+	data: [{
+		type: "line",
+		dataPoints : dps
+	}]
+});
+*/
+
+chart.render();
+
+   //end of chart JS
+
+   var years = [];
+   var tempMonth;
+   var tempEle;
+   var inc = 0;
+   var choiceHour;
+   var choiceYear;
+   var months;
+   var choiceMonth;
+   var days = [];
+   var choiceDay;
+   var hours = [];
+
+   for (inc = 2010; inc <= 2035; inc++) {
+    years.push(inc);
+   }
+
+   // Populate the choice box with choices from the years [2010 to 2035] array
+   choiceYear = document.getElementById('chooseYear');
+   for (inc = 0; inc < years.length; inc++) {
+    // console.log(inc);
+    tempMonth = years[inc];
+    tempEle = document.createElement('option');
+    tempEle.textContent = tempMonth;
+    tempEle.value = tempMonth;
+    choiceYear.appendChild(tempEle);
+   }
+
+   choiceYear = document.getElementById('chooseYear2');
+   for (inc = 0; inc < years.length; inc++) {
+    // console.log(inc);
+    tempMonth = years[inc];
+    tempEle = document.createElement('option');
+    tempEle.textContent = tempMonth;
+    tempEle.value = tempMonth;
+    choiceYear.appendChild(tempEle);
+   }
+
+   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+   // Populate the choice box with choices from the months array
+   choiceMonth = document.getElementById('chooseMonth');
+   for (inc = 0; inc < months.length; inc++) {
+    // console.log(inc);
+    tempMonth = months[inc];
+    tempEle = document.createElement('option');
+    tempEle.textContent = tempMonth;
+    tempEle.value = tempMonth;
+    choiceMonth.appendChild(tempEle);
+   }
+
+   choiceMonth = document.getElementById('chooseMonth2');
+   for (inc = 0; inc < months.length; inc++) {
+    // console.log(inc);
+    tempMonth = months[inc];
+    tempEle = document.createElement('option');
+    tempEle.textContent = tempMonth;
+    tempEle.value = tempMonth;
+    choiceMonth.appendChild(tempEle);
+   }
+
+   for (inc = 1; inc <= 31; inc++) {
+    days.push(inc);
+   }
+
+   // Populate the choice box with choices from the days [1 to 31] array
+   choiceDay = document.getElementById('chooseDay');
+   for (inc = 0; inc < days.length; inc++) {
+    // console.log(inc);
+    tempMonth = days[inc];
+    tempEle = document.createElement('option');
+    tempEle.textContent = tempMonth;
+    tempEle.value = tempMonth;
+    choiceDay.appendChild(tempEle);
+   }
+
+   choiceDay = document.getElementById('chooseDay2');
+   for (inc = 0; inc < days.length; inc++) {
+    // console.log(inc);
+    tempMonth = days[inc];
+    tempEle = document.createElement('option');
+    tempEle.textContent = tempMonth;
+    tempEle.value = tempMonth;
+    choiceDay.appendChild(tempEle);
+   }
+
+   for (inc = 1; inc <= 23; inc++) {
+    hours.push(inc);
+   }
+
+   // Populate the choice box with choices from the hours [1 to 23] array
+   choiceHour = document.getElementById('chooseHour');
+   for (inc = 0; inc < hours.length; inc++) {
+    // console.log(inc);
+    tempMonth = days[inc];
+    tempEle = document.createElement('option');
+    tempEle.textContent = tempMonth;
+    tempEle.value = tempMonth;
+    choiceHour.appendChild(tempEle);
+   }
+
+   choiceHour = document.getElementById('chooseHour2');
+   for (inc = 0; inc < hours.length; inc++) {
+    // console.log(inc);
+    tempMonth = days[inc];
+    tempEle = document.createElement('option');
+    tempEle.textContent = tempMonth;
+    tempEle.value = tempMonth;
+    choiceHour.appendChild(tempEle);
+   }
+
    $('#scheduleCalendar').fullCalendar({
 	   header: {
 		   left: 'prev title next',
 		   center: '',
 		   right: 'month basicWeek'
 	   },
+       lazyFetching: false,
        //runs when view changes to week and vice-versa.
        //toggles the visibility (hide) of the
        viewRender: function(view) {
-           console.log("old: "+ oldView);
-           console.log("new: " +view.name);
+           //console.log("old: "+ oldView);
+           //console.log("new: " +view.name);
 
           // jquery.toggle() is ideal because it makes sure the chartContainer div doesnt take up space when its hidden, but it was causing rendering errors in firefox when switching between month and week view. would fix when i open firebug? not sure why
            if(view.name == "basicWeek" && oldView == "month"){
               // $("#chartContainer").toggle();
-               console.log("graphRevealed!");
+               //console.log("graphRevealed!");
                document.getElementById('chartContainer').style.visibility='visible';
                            oldView = view.name;
            }
            if(view.name == "month" && oldView == "basicWeek"){
               // $("#chartContainer").toggle();
                document.getElementById('chartContainer').style.visibility='hidden';
-               console.log("graphHidden!");
+               //console.log("graphHidden!");
                            oldView = view.name;
            }
        },
@@ -322,21 +326,30 @@ $(document).ready(function () {
 		   return false;
 	   },
 	   events: function (start, end, timezone, callback) {
+
+
 		   $.ajax({
 			   url: '../../schedule/getEvents/',
 			   data: {
 				   learningObjectiveID: $('#lo').val(),
 				   //Start date is first day that is displayed
-				   startDate: start.toISOString(),
+				   //startDate: ((start.toISOString()).add(7, 'days')),
+                   startDate: ((start.subtract(1, 'days')).toISOString()),
 				   //End  date is last day that is displayed
-				   endDate: end.toISOString()
+				   endDate: ((end.add(1, 'days')).toISOString())
 			   },
 			   method: 'GET'
 		   })
 		   .done(function (data) {
 			   var events = [];
 
-			   var eventsByWeek = [];
+			   var eventsForGraph = [];
+               console.log(((start.subtract(1, 'days')).toISOString()));
+                              console.log(((end.add(1, 'days')).toISOString()));
+
+
+                        // clear the dataForGraph array
+                        dataForGraph.splice(0,dataForGraph.length)
 
 			   $.each(data.events, function (index, obj) {
 
@@ -358,6 +371,65 @@ $(document).ready(function () {
 						   url: obj.learnO
 					   }
 				   );
+
+         var tempStart = obj.startDate;
+         tempStart.toISOString;
+         tempStart = moment(tempStart);
+        var tempStart2 = tempStart.format('YYYY-MM-DD')
+
+        // console.log(tempStart);
+         console.log(tempStart2);
+
+         var tempEnd = obj.endDate;
+         tempEnd.toISOString;
+         tempEnd = moment(tempEnd);
+        var tempEnd2 = tempEnd.format('YYYY-MM-DD')
+
+         console.log(tempEnd2);
+
+
+
+         //trying to only push events to the 'eventsForGraph'array if they are within the week view date range
+         console.log("1 " + (tempStart2));
+         console.log("2 " + (((end.subtract(1, 'days')).toISOString())));
+         /*
+         if  ((tempStart2).isBefore(((end.subtract(1, 'days')).toISOString()))){
+             console.log("hi");
+             eventsForGraph.push(
+                 {
+                     type: 'stackedBar100',
+                     showInLegend: true,
+                     name: '' + obj.title,
+                     toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
+                     dataPoints: [
+                         {
+                             y: obj.workTime,
+                             label: 'iMods Week Visualizer'
+                         }
+                     ]
+                 }
+             );
+         }
+         */
+
+
+                   dataForGraph.push(
+                       {
+                                   y: obj.workTime,
+                                   label: 'iMods Week Visualizer'
+                       }
+				   );
+
+                   console.info(dataForGraph);
+
+                    dataForGraphJson = JSON.stringify(dataForGraph);
+
+
+
+
+
+
+                   //var dps = [{x: 1, y: 10}, {x: 2, y: 10}, {x: 3, y: 10}, {x: 4, y: 10}, {x: 5, y: 10}];
 				   /*
 				   eventsByWeek.push(
 					   {
@@ -377,7 +449,21 @@ $(document).ready(function () {
 				   );
 				   */
 			   });
+               console.info(events);
 			   callback(events);
+
+              events.splice(0,events.length)
+               console.info(dataForGraphJson);
+
+              // dataForGraph = dataForGraphJson.slice();
+                chart.render();
+
+
+
+
+
+               //chart.removeData();
+               //chart.update(eventsForGraph, "hi")
 		   });
 	   }
    });
