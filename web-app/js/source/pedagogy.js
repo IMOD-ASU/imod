@@ -572,7 +572,7 @@ function filterPedagogyTechniques () {
 		displayPedagogyTechniques(data);
 		pedagogyEqualHeights('#ideal-matches');
 		pedagogyEqualHeights('#extended-matches');
-		pedagogyEqualHeights('#userTechniques');
+		pedagogyEqualHeights('#user-techniques');
 	});
 }
 
@@ -757,6 +757,13 @@ $(document).ready(
 			$('#topicDialogBackground').css('display', 'block');
 			document.getElementById('cloneDetect').value = 'clone';
 			displayPedagogyInformationInEdit(true, $(this));
+		});
+		$('#selectAlllD').click(function () {
+			if(!$(this).is(':checked')) {
+				$('#extended-matches').html('');
+				$('#extended-matches').buttonset();
+				$('#user-techniques').html('');
+			}
 		});
 
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
