@@ -387,7 +387,7 @@ console.log(isBefore);
 console.log(isAfter);
 */
 
- if  (((tempStart).isAfter(start))&&((tempEnd).isBefore(end))){
+ if  ((((tempStart).isAfter(start))&&((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start))&&((tempEnd).isBefore(end)))){
      console.log("event within date range!: " +obj.title);
      eventsForGraph.push(
          {
