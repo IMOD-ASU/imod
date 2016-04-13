@@ -759,7 +759,7 @@ $(document).ready(
 			displayPedagogyInformationInEdit(true, $(this));
 		});
 		$('#selectAlllD').click(function () {
-			if(!$(this).is(':checked')) {
+			if (!$(this).is(':checked')) {
 				$('#extended-matches').html('');
 				$('#extended-matches').buttonset();
 				$('#user-techniques').html('');
