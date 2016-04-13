@@ -101,6 +101,27 @@ $(document).ready(function () {
     ]
 );
 
+CanvasJS.addColorSet("redShades",
+                [//colorSet Array
+
+                "#FF0000",
+                "#FF3030",
+                "#DB2929",
+                "#E3170D",
+                "#FC1501"
+                ]);
+
+                CanvasJS.addColorSet("orangeShades",
+                                [//colorSet Array
+
+                                "#ffb84d",
+                                "#ffad33",
+                                "#ffa31a",
+                                "#ff9900",
+                                "#cc7a00",
+                                "#e68a00"
+                                ]);
+
 
 var chart = new CanvasJS.Chart("chartContainer",
 {
@@ -274,8 +295,6 @@ $('#scheduleCalendar').fullCalendar({
     //runs when view changes to week and vice-versa.
     //toggles the visibility (hide) of the
     viewRender: function(view) {
-        //console.log("old: "+ oldView);
-        //console.log("new: " +view.name);
 
         // jquery.toggle() is ideal because it makes sure the chartContainer div doesnt take up space when its hidden, but it was causing rendering errors in firefox when switching between month and week view. would fix when i open firebug? not sure why
         if(view.name == "basicWeek" && oldView == "month"){
@@ -373,21 +392,9 @@ $('#scheduleCalendar').fullCalendar({
 
                 var tempEnd = moment(obj.endDate)
                 var tempStart = moment(obj.startDate)
-                /*
-console.log(end);
-console.log((end).toISOString());
-console.log(obj.endDate);
 
-console.log(tempEnd);
 
-var isBefore = end.isBefore(tempEnd);
-var isAfter = end.isAfter(tempEnd);
-
-console.log(isBefore);
-console.log(isAfter);
-*/
-
- if  ((((tempStart).isAfter(start))&&((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start))&&((tempEnd).isBefore(end)))){
+ if  ((((tempStart).isAfter(start))&&((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start))&&((tempEnd).isBefore(end)))|| (((tempStart).isAfter(start))&&((tempStart).isBefore(end)))){
      console.log("event within date range!: " +obj.title);
      eventsForGraph.push(
          {
@@ -407,13 +414,6 @@ console.log(isAfter);
  }
 
 
-
-                //console.log("eventsForGraph");
-                //console.info(eventsForGraph);
-
-
-
-
             });
             console.info(events);
             console.info(eventsForGraph);
@@ -421,8 +421,6 @@ console.log(isAfter);
 
             var hourSum = 0;
 
-            console.log(eventsForGraph.length);
-            console.log(chart.options.data.length);
             if(eventsForGraph.length < chart.options.data.length)
             {
                 chart.options.data = []
@@ -451,7 +449,25 @@ console.log(isAfter);
             //multiply the credit hours of the course by the time ratio to get the hours per week that students should be working. Eg. 3 credit hour course, a 1:3 time ratio, means 3x3 = 9 hours per week of expected working time.
             var outClassHours2 = timeRatI*creditHoursI
 
-            chart.options.axisY.title = "Percent of total credit hours (" + (hourSum)+  " out of " + outClassHours2 + ") per week"
+            chart.options.axisY.title = "Currently Assigned Working Hours (" + (hourSum)+  " out of " + outClassHours2 + ") per week"
+
+                chart.options.axisY.maximum = outClassHours2
+                //chart.options.axisY.minimum = outClassHours2
+
+chart.options.colorSet = "greenShades"
+
+//if less than 85% or greater than 115% of the expected hours are assigned, turn the stacked bar chart orange
+if(((hourSum/outClassHours2)<.85)||((hourSum/outClassHours2)>1.15)){
+    chart.options.colorSet = "orangeShades"
+}
+
+//if less than 65% or greater than 125% of the expected hours are assigned, turn the stacked bar chart red
+if(((hourSum/outClassHours2)<.65)||((hourSum/outClassHours2)>1.25)){
+    chart.options.colorSet = "redShades"
+}
+
+
+
 
 
             chart.render();
