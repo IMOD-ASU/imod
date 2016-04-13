@@ -217,4 +217,60 @@ class AssessmentController {
 			learningObjectives: learningObjectives
 		]
 	}
+	def handler (Exception e) {
+		print (e)
+		def idealAssessmentTechniqueMatch = []
+		final data = request.JSON
+		def selectedLearningDomains = []
+
+		for (def learningDomain in data.selectedLearningDomains) {
+			selectedLearningDomains.add(learningDomain.toLong())
+		}
+
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// find all technique that are not ideal, but have the learning domain
+		def extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
+			and {
+				or {
+					eq('isAdmin', true)
+					users {
+						eq('id', currentUser.id)
+					}
+				}
+				learningDomain {
+					'in' ('id', selectedLearningDomains)
+				}
+
+			}
+			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+		}
+		extendedAssessmentTechniqueMatch = (idealAssessmentTechniqueMatch + extendedAssessmentTechniqueMatch) - extendedAssessmentTechniqueMatch.intersect(idealAssessmentTechniqueMatch)
+
+		final favoriteTechniques = currentUser.favoriteAssessmentTechnique.id
+		def stringfavoriteTechniques = []
+		//Convert int to string
+		for (def favoriteTechnique in favoriteTechniques) {
+			stringfavoriteTechniques.add(favoriteTechnique.toString())
+		}
+
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		final LOAssessmentTechniques = currentLearningObjective.assessmentTechniques.id
+		def stringLOAssessmentTechniques = []
+		//Convert int to string
+		for (def LOAssessmentTechnique in LOAssessmentTechniques) {
+			stringLOAssessmentTechniques.add(LOAssessmentTechnique.toString())
+		}
+		extendedAssessmentTechniqueMatch.sort {
+			it.title.toUpperCase()
+		}
+
+		render(
+			[
+				idealAssessmentTechniqueMatch: idealAssessmentTechniqueMatch,
+				extendedAssessmentTechniqueMatch: extendedAssessmentTechniqueMatch,
+				favoriteTechniques: stringfavoriteTechniques,
+				LOAssessmentTechniques: stringLOAssessmentTechniques
+			] as JSON
+		)
+	}
 }
