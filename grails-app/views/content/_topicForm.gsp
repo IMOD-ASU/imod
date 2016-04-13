@@ -192,7 +192,7 @@
 		<span class="topicButtonGradient">
 			<button
 				class="add showHoverNew resourceButton tooltipster" action="add" id="addResource"
-				title="${Help.toolTip("OVERVIEW", "Add New Resource")}"
+				title="${message(code: 'imod.pedagogy.technique.addResource')}"
 				value="${message(code: 'Add Resource', default: 'Add Resource')}"
 			>
 				<i class="fa fa-plus green"></i>
@@ -203,7 +203,7 @@
 			<button
 				class="remove showHoverNew resourceButton tooltipster" action="remove"
 				id="removeResource"
-				title="${Help.toolTip("OVERVIEW", "Delete Selected Resource")}"
+				title="${message(code: 'imod.pedagogy.technique.removeResource')}"
 				value="${message(code: 'Remove Resource', default: 'Remove Resource')}"
 			>
 				<i class="fa fa-minus-circle red"></i>
@@ -230,7 +230,7 @@
 				class="save showHoverNew resourceButton tooltipster"
 				action="save"
 				id="saveResource"
-				title="${message(code: 'imod.content.save')}"
+				title="${message(code: 'imod.pedagogy.technique.saveResource')}"
 			>
 				<i class="fa fa-save green"></i>
 				${message(code: 'Save Resource', default: ' Save')}
@@ -241,7 +241,7 @@
 				class="showHoverNew resourceButton tooltipster"
 				action="cancel"
 				id="cancelResource"
-				title="${message(code: 'imod.content.cancel')}"
+				title="${message(code: 'imod.pedagogy.technique.KD.cancel')}"
 			>
 				<i class="fa fa-times red"></i>
 				${message(code: 'Cancel Resources', default: ' Cancel')}

@@ -1,22 +1,22 @@
 package imod
 
 import grails.converters.JSON
+import groovy.json.JsonSlurper
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 
-class AssessmentController {
+class ScheduleController {
 	def learningObjectiveService
 	def springSecurityService
 
 	static allowedMethods = [
 		index: 'GET',
-		findMatchingTechniques: 'POST'
+		findMatchingTechniques: 'POST',
+		addEvent: 'POST'
 	]
 
-	/**
-	 * index called when Assessment tab loads
-	 * @param id
-	 */
 	def index(Long id, Long learningObjectiveID) {
-
 		// get the selected imod
 		final currentImod = Imod.get(id)
 
@@ -27,15 +27,17 @@ class AssessmentController {
 		// select the first one if it exists
 		if (params.learningObjectiveID == null && learningObjectives.size > 0) {
 			redirect(
-  				controller: 'assessment',
-  				action: 'index',
-  				id:  id,
-  				params: [learningObjectiveID: learningObjectives[0].id]
-  			)
+				controller: 'schedule',
+				action: 'index',
+				id:  id,
+				params: [learningObjectiveID: learningObjectives[0].id]
+			)
 		}
 
 		// select current learning objective
 		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+
+		final pedagogyFocuses = PedagogyActivityFocus.list()
 
 		// get all of the filters used to find Assessment techniques
 		final domainCategories = DomainCategory.list()
@@ -45,7 +47,7 @@ class AssessmentController {
 		final selectedActionWordCategory = currentLearningObjective?.actionWordCategory
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
-		final content = currentLearningObjective.contents
+		final content = currentImod?.contents
 		def knowDimensionList = []
 		def dimension = []
 		if (content != null) {
@@ -65,48 +67,110 @@ class AssessmentController {
 			dimensionSize  = dimension.size() - 1
 		}
 
+		//render responseData as JSON
+		def startDate1 = []
+		def endDate1 = []
+		def creditHours1 = -1
+		def timeRatio1 = 'no time'
+		def currName1 = 'noName'
+
+		startDate1 = Imod.get(id).schedule.startDate
+		endDate1 = Imod.get(id).schedule.endDate
+		creditHours1 = Imod.get(id).creditHours
+		timeRatio1 = Imod.get(id).timeRatio
+		currName1 = Imod.get(id).name
+
 		[
-			currentImod: currentImod,
+			pedagogyFocuses: pedagogyFocuses,
+
+			currentImod: Imod.get(id),
 			currentLearningObjective: currentLearningObjective,
-			currentPage: 'assessment',
+			currentPage: 'schedule',
+			startDate1: startDate1,
+			endDate1: endDate1,
+			creditHours1: creditHours1,
+			timeRatio1: timeRatio1,
+			learningObjectives: learningObjectives,
+			currName1: currName1,
+
 			domainCategories: domainCategories,
 			knowledgeDimensions: knowledgeDimensions,
 			learningDomains: learningDomains,
-			learningObjectives: learningObjectives,
 			assessmentFeedback: assessmentFeedback,
 			selectedDomain: selectedDomain,
 			selectedDomainCategory: selectedDomainCategory,
 			dimension: dimension,
 			dimensionSize: dimensionSize
+
 		]
+
+		/*
+			render (
+				[
+					startDate: startDate1,
+					startDate1: startDate1,
+					endDate1: endDate1,
+					creditHours1: creditHours1,
+					timeRatio1: timeRatio1
+				]
+			)
+		*/
+
 	}
 
-	def getAssessmentPlan(long id) {
-		// get the selected imod
-		final currentImod = Imod.get(id)
+	/**
+	 * Add an event for a particular learning objective
+	 */
+	def addEvent() {
 
-		// finds all the learning objective linked to this imod
-		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
+		DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy HH:mm')
+		DateTime sDate = fmt.parseDateTime(params.startDate)
+		DateTime eDate = fmt.parseDateTime(params.endDate)
 
-		def list = []
+		def title = params.title
+		def learningObjectiveID = params.lo.toLong()
 
-		learningObjectives.each { it ->
-			def obj = [:]
-			obj['text'] = it.definition
-			obj['id'] = it.id
-			obj['techs'] = []
+		def event = new ScheduleEvent(
+			title: title,
+			startDate: sDate,
+			endDate: eDate
+		)
+		event.save()
 
-			it.assessmentTechniques.each { p ->
-				obj['techs'].add(p.title)
-			}
-			list.add(obj)
-		}
+		final currentImod = Imod.get(params.imodId)
+		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+
+		currentLearningObjective.addToScheduleEvents(event)
+
+		redirect(
+			controller: 'Schedule',
+			action: 'index',
+			id: params.imodId,
+			params: [learningObjectiveID: learningObjectiveID]
+		)
+	}
+
+	def getEvents() {
+		def loId = params.learningObjectiveID
+		def currentLO = LearningObjective.get(loId)
+
+		DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
+		DateTime startDate = fmt.parseDateTime(params.startDate)
+		DateTime endDate = fmt.parseDateTime(params.endDate)
+
+		def events = currentLO.withCriteria {
+           			scheduleEvents {
+           				gte('startDate', startDate.toDate())
+					    lte('endDate', endDate.toDate())
+           			}
+           		}
 
 		render (
 			[
-				techniques: list
+				events: events.scheduleEvents[0]
 			] as JSON
 		)
+
 	}
 
 	/**
@@ -137,7 +201,7 @@ class AssessmentController {
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
 		// find all technique where both the knowledge dimension and the domain category match
-		def idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
+		final idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
 				or {
 					eq('isAdmin', true)
@@ -161,7 +225,7 @@ class AssessmentController {
 		}
 
 		// find all technique that are not ideal, but have the learning domain
-		def extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
+		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
 			and {
 				or {
 					eq('isAdmin', true)
@@ -172,11 +236,24 @@ class AssessmentController {
 				learningDomain {
 					'in' ('id', selectedLearningDomains)
 				}
-
+				not {
+					and {
+						knowledgeDimension {
+							'in' ('id', selectedKnowledgeDimensions)
+						}
+						or {
+							domainCategory {
+								'in' ('id', selectedDomainCategories)
+							}
+							learningDomain {
+								'in' ('id', selectedLearningDomains)
+							}
+						}
+					}
+				}
 			}
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
-		extendedAssessmentTechniqueMatch = (idealAssessmentTechniqueMatch + extendedAssessmentTechniqueMatch) - extendedAssessmentTechniqueMatch.intersect(idealAssessmentTechniqueMatch)
 
 		final favoriteTechniques = currentUser.favoriteAssessmentTechnique.id
 		def stringfavoriteTechniques = []
@@ -192,12 +269,6 @@ class AssessmentController {
 		for (def LOAssessmentTechnique in LOAssessmentTechniques) {
 			stringLOAssessmentTechniques.add(LOAssessmentTechnique.toString())
 		}
-		idealAssessmentTechniqueMatch.sort {
-			it.title.toUpperCase()
-		}
-		extendedAssessmentTechniqueMatch.sort {
-			it.title.toUpperCase()
-		}
 
 		render(
 			[
@@ -209,12 +280,27 @@ class AssessmentController {
 		)
 	}
 
-	/*print assessment plan*/
-	def assessmentPlan(Long id) {
-		final currentImod = Imod.get(id)
-		final learningObjectives = LearningObjective.findAllByImod(currentImod)
-		[
-			learningObjectives: learningObjectives
-		]
+	def findImodScheduleInfo() {
+		render (
+			[
+			startDate: startDate1,
+			startDate1: startDate1,
+			endDate1: endDate1,
+			creditHours1: creditHours1,
+			timeRatio1: timeRatio1
+			]
+		) as JSON
+	}
+
+	def schedule2() {
+		render(view: 'schedule2',  model: [name: 'John Doe'])
+	}
+
+	def testData() {
+			def result = [:]
+			result['name'] = 'Sales'
+			result['type'] = 'bar'
+			result['data'] = [5, 20, 45, 10, 10, 20]
+			[jsonTest: result as JSON]
 	}
 }

@@ -1,5 +1,7 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 
+localStorage.setItem('checkId', $('input[name="checkId"]').val());
+
 // Source: http://stackoverflow.com/a/2855946
 function isValidEmailAddress (emailAddress) {
 	'use strict';
@@ -21,6 +23,19 @@ function isValidUrl (url) {
 function isRequired (fieldValue) {
 	'use strict';
 	return fieldValue && fieldValue !== '';
+}
+
+function scrollToError () {
+	'use strict';
+	if ($('.errorcontain').length) {
+		$('html, body').animate({
+			scrollTop: $('.errorcontain:first').offset().top - 40
+		}, 1000);
+	} else {
+		$('html, body').animate({
+			scrollTop: $('label.error:first').offset().top - 40
+		}, 1000);
+	}
 }
 
 // Custom validation function for instructors
@@ -381,44 +396,51 @@ $(document).ready(
 
 		$('.overview-save').click(
 			function () {
-				var isValid = compareStartEndTimes();
+				var isScheduleValid;
+				var isOverviewValid;
+				var isInstructorValid;
 				var parameterList = [];
 				var row;
 
-				if (isValid) {
-					isValid = instructorValidator();
-					if (isValid) {
-						$('.topicListRow').each(
+				$('.errorcontain').remove();
+
+				isOverviewValid = $('.courseoverview').valid();
+				isScheduleValid = compareStartEndTimes();
+				isInstructorValid = instructorValidator();
+
+				if (isScheduleValid & isOverviewValid & isInstructorValid) {
+					$('.topicListRow').each(
+						function () {
+							row = $(this);
+
+							parameterList.push({
+								id: row.data('id'),
+								lastName: row.find('input[name="lastName[]"]').val(),
+								firstName: row.find('input[name="firstName[]"]').val(),
+								email: row.find('input[name="email[]"]').val(),
+								officeHours: row.find('input[name="officeHours[]"]').val(),
+								webPage: row.find('input[name="webPage[]"]').val(),
+								role: row.find('select[name="role[]"]').val(),
+								location: row.find('input[name="location[]"]').val()
+							});
+						}
+					);
+
+					$.ajax({
+						url: baseUrl + 'courseOverview/create',
+						type: 'POST',
+						dataType: 'json',
+						data: {
+							imodId: $('input[name=id]').val(),
+							parameters: JSON.stringify(parameterList)
+						},
+						success:
 							function () {
-								row = $(this);
-
-								parameterList.push({
-									id: row.data('id'),
-									lastName: row.find('input[name="lastName[]"]').val(),
-									firstName: row.find('input[name="firstName[]"]').val(),
-									email: row.find('input[name="email[]"]').val(),
-									officeHours: row.find('input[name="officeHours[]"]').val(),
-									webPage: row.find('input[name="webPage[]"]').val(),
-									role: row.find('select[name="role[]"]').val(),
-									location: row.find('input[name="location[]"]').val()
-								});
+								$('.courseoverview').submit();
 							}
-						);
-
-						$.ajax({
-							url: baseUrl + 'courseOverview/create',
-							type: 'POST',
-							dataType: 'json',
-							data: {
-								imodId: $('input[name=id]').val(),
-								parameters: JSON.stringify(parameterList)
-							},
-							success:
-								function () {
-									$('.courseoverview').submit();
-								}
-						});
-					}
+					});
+				} else {
+					scrollToError();
 				}
 				return false;
 			}

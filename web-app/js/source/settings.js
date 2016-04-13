@@ -28,9 +28,6 @@ $(document).ready(
 					required: true,
 					minlength: 3,
 					maxlength: 20
-				},
-				role: {
-					required: true
 				}
 			}
 		});

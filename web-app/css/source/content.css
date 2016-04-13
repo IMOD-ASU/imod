@@ -15,6 +15,35 @@
 
     background: none !important;
 }
+
+.topic-chart {
+	text-align: center;
+}
+
+.topic-chart h4 {
+	font-size: 16px;
+}
+
+.topic-chart .pie-legend {
+	padding-top: 10px;
+}
+
+.topic-chart .pie-legend li {
+	display: inline-block;
+	padding-right: 10px;
+}
+
+.topic-chart .pie-legend li span {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0 5px;
+}
+
+.topic-chart .pie-legend .pie-legend-icon {
+	width: 30px;
+	height: 14px;
+}
+
 #chart {
     display: block;
 

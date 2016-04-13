@@ -393,7 +393,8 @@ textarea:focus {
     overflow: hidden;
 
     height: 26px !important;
-    padding-right: 35px;
+    padding-right: 40px;
+    padding-left: 5px;
 
     border: 1px solid #cccccc;
     background: url(../images/dropdown_arrow.png) no-repeat center right #ffffff;
@@ -1600,4 +1601,25 @@ Class for error message as label
 
 .ui-dialog {
     left: 500px !important;
+}
+
+.ui-progressbar {
+	position: relative;
+}
+.progress-label {
+	position: absolute;
+	left: 35%;
+	top: 4px;
+	font-weight: bold;
+	text-shadow: 1px 1px 0 #fff;
+}
+
+#progressbar {
+	position: relative;
+	margin:10px;
+	left:25%;
+	width:50%;
+}
+#progressbar .ui-progressbar-value {
+			background-color: cornflowerblue;
 }

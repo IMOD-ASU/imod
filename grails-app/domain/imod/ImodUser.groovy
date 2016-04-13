@@ -55,7 +55,7 @@ class ImodUser {
 		phoneNumber nullable: true
 		firstName nullable: false, blank: false, minSize: 3, maxSize: 20
 		lastName nullable: false, blank: false, minSize: 3, maxSize: 20
-		role nullable: false, blank: false, minSize: 3
+		role nullable: true, blank: true, minSize: 3
 	}
 
 	static mapping = {

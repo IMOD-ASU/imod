@@ -1,39 +1,353 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var isTopLeftClicked = 1;
 var isTopRightClicked = 1;
-var isTechClone = false;
-var userHeight = 0;
+var hourRatio = 3;
+var inClassHours = 3;
+var outClassHours = inClassHours * hourRatio;
+var assignAlgo = {
+	name: 'Contructing Algorithims Lab',
+	hours: 4.5,
+	location: 'In-class'
+};
+var assignIntroToAlgo = {
+	name: 'Intro to Algorithims Reading',
+	hours: 1,
+	location: 'Out-Of-Class'
+};
+var assignDataStructures = {
+	name: 'Data Structure Worksheet',
+	hours: 3,
+	location: 'Out-Of-Class'
+};
+
+/*
+	Chart.js code over here
+*/
+// console.log(outClassHours);
+window.onload = function () {
+	'use strict';
+	var chart;
+
+	window.CanvasJS
+		.addColorSet('greenShades',
+		// colorSet Array
+		[
+			'#7CFC00',
+			'#00FF00',
+			'#76EE00',
+			'#83F52C',
+			'#5DFC0A',
+			'#4DBD33',
+			'#49E20E'
+		]
+	);
+
+	chart = new window.CanvasJS.Chart('chartContainer',
+		{
+			colorSet: 'greenShades',
+			title: {
+				text: 'Division of out-of-class hours in Course'
+			},
+			axisY: {
+				title: 'Percent of total credit hours (' + assignAlgo.hours + assignIntroToAlgo.hours + assignDataStructures.hours + ' out of ' + outClassHours + ') per week'
+			},
+			animationEnabled: true,
+			toolTip: {
+				shared: true,
+				// content: '{name}: {y} Hours - <strong>#percent%</strong>' + '(#percent)'
+				content: '{name}: {y} Hours. {extra}'
+			},
+			data: [
+				{
+					type: 'stackedBar100',
+					showInLegend: true,
+					name: '' + assignAlgo.name,
+					toolTipContent: '{name}: {y} Hours. ' + assignAlgo.location,
+					dataPoints: [
+						{
+							y: assignAlgo.hours,
+							label: 'iMods Week Visualizer'
+						}
+					]
+				},
+				{
+					type: 'stackedBar100',
+					showInLegend: true,
+					name: '' + assignIntroToAlgo.name,
+					toolTipContent: '{name}: {y} Hours. ' + assignIntroToAlgo.location,
+					dataPoints: [
+						{
+							y: assignIntroToAlgo.hours,
+							label: 'iMods Week Visualizer'
+						}
+					]
+				},
+				{
+					type: 'stackedBar100',
+					showInLegend: true,
+					name: '' + assignDataStructures.name,
+					toolTipContent: '{name}: {y} Hours. ' + assignDataStructures.location,
+					dataPoints: [
+						{
+							y: assignDataStructures.hours,
+							label: 'iMods Week Visualizer'
+						}
+					]
+				}
+			]
+		});
+	chart.render();
+};
+
+
+$(document).ready(function () {
+	'use strict';
+
+	var years = [];
+	var tempMonth;
+	var tempEle;
+	var inc = 0;
+	var choiceHour;
+	var choiceYear;
+	var months;
+	var choiceMonth;
+	var days = [];
+	var choiceDay;
+	var hours = [];
+
+	for (inc = 2010; inc <= 2035; inc++) {
+		years.push(inc);
+	}
+
+	// Populate the choice box with choices from the years [2010 to 2035] array
+	choiceYear = document.getElementById('chooseYear');
+	for (inc = 0; inc < years.length; inc++) {
+		// console.log(inc);
+		tempMonth = years[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceYear.appendChild(tempEle);
+	}
+
+	choiceYear = document.getElementById('chooseYear2');
+	for (inc = 0; inc < years.length; inc++) {
+		// console.log(inc);
+		tempMonth = years[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceYear.appendChild(tempEle);
+	}
+
+	months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+	// Populate the choice box with choices from the months array
+	choiceMonth = document.getElementById('chooseMonth');
+	for (inc = 0; inc < months.length; inc++) {
+		// console.log(inc);
+		tempMonth = months[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceMonth.appendChild(tempEle);
+	}
+
+	choiceMonth = document.getElementById('chooseMonth2');
+	for (inc = 0; inc < months.length; inc++) {
+		// console.log(inc);
+		tempMonth = months[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceMonth.appendChild(tempEle);
+	}
+
+	for (inc = 1; inc <= 31; inc++) {
+		days.push(inc);
+	}
+
+	// Populate the choice box with choices from the days [1 to 31] array
+	choiceDay = document.getElementById('chooseDay');
+	for (inc = 0; inc < days.length; inc++) {
+		// console.log(inc);
+		tempMonth = days[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceDay.appendChild(tempEle);
+	}
+
+	choiceDay = document.getElementById('chooseDay2');
+	for (inc = 0; inc < days.length; inc++) {
+		// console.log(inc);
+		tempMonth = days[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceDay.appendChild(tempEle);
+	}
+
+	for (inc = 1; inc <= 23; inc++) {
+		hours.push(inc);
+	}
+
+	// Populate the choice box with choices from the hours [1 to 23] array
+	choiceHour = document.getElementById('chooseHour');
+	for (inc = 0; inc < hours.length; inc++) {
+		// console.log(inc);
+		tempMonth = days[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceHour.appendChild(tempEle);
+	}
+
+	choiceHour = document.getElementById('chooseHour2');
+	for (inc = 0; inc < hours.length; inc++) {
+		// console.log(inc);
+		tempMonth = days[inc];
+		tempEle = document.createElement('option');
+		tempEle.textContent = tempMonth;
+		tempEle.value = tempMonth;
+		choiceHour.appendChild(tempEle);
+	}
+});
+
+// function addTask () {
+// 	'use strict';
+// 	var sYear = $('#chooseYear option:selected').text();
+// 	var sMonth = $('#chooseMonth option:selected').index();
+// 	var sDay = $('#chooseDay option:selected').text();
+// 	var sHour = $('#chooseHour option:selected').text();
+
+// 	var eYear = $('#chooseYear2 option:selected').text();
+// 	var eMonth = $('#chooseMonth2 option:selected').index();
+// 	var eDay = $('#chooseDay2 option:selected').text();
+// 	var eHour = $('#chooseHour2 option:selected').text();
+// 	// console.log(sYear + sMonth + sDay + sHour);
+
+// 	var startDate = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
+// 	var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
+// 	// console.log(d1);
+
+// 	addEvent(startDate, endDate, 'testTask');
+// }
+
+// function addTask2 () {
+// 	'use strict';
+// 	var sYear = $('#chooseYear option:selected').text();
+// 	var sMonth = $('#chooseMonth option:selected').index();
+// 	var sDay = $('#chooseDay option:selected').text();
+// 	var sHour = $('#chooseHour option:selected').text();
+
+// 	var eYear = $('#chooseYear2 option:selected').text();
+// 	var eMonth = $('#chooseMonth2 option:selected').index();
+// 	var eDay = $('#chooseDay2 option:selected').text();
+// 	var eHour = $('#chooseHour2 option:selected').text();
+// 	// console.log(sYear + sMonth + sDay + sHour);
+
+// 	var startDate = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
+// 	var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
+// 	// console.log(d1);
+
+// 	addEvent(startDate, endDate, 'testTask');
+// }
+
+$(document).ready(function () {
+	'use strict';
+
+	$('#scheduleCalendar').fullCalendar({
+		header: {
+			left: 'prev title next',
+			center: '',
+			right: ''
+		},
+		eventClick: function (event) {
+			// all arguments: (event, jsEvent, view)
+
+			// set the values and open the modal
+			$('#taskInfo').html(event.description);
+			$('#taskLink').attr('href', event.url);
+			$('#taskTime').text(event.end);
+			$('#taskContent').dialog({
+				modal: true,
+				title: event.title
+			});
+			return false;
+		},
+		events: function (start, end, timezone, callback) {
+			$.ajax({
+				url: '../../schedule/getEvents/',
+				data: {
+					learningObjectiveID: $('#lo').val(),
+					startDate: start.toISOString(),
+					endDate: end.toISOString()
+				},
+				method: 'GET'
+			})
+			.done(function (data) {
+				var events = [];
+
+				$.each(data.events, function (index, obj) {
+					events.push(
+						{
+							title: obj.title,
+							allday: 'false',
+							start: window.moment(obj.startDate, window.moment.ISO_8601),
+							end: window.moment(obj.endDate, window.moment.ISO_8601),
+							url: 'http://www.w3schools.com/jquery/'
+						}
+					);
+				});
+				callback(events);
+			});
+		}
+	});
+
+	$('#addT').click(function () {
+		var sYear = $('#chooseYear option:selected').text();
+		var sMonth = $('#chooseMonth option:selected').index();
+		var sDay = $('#chooseDay option:selected').text();
+		var sHour = $('#chooseHour option:selected').text();
+
+		var eYear = $('#chooseYear2 option:selected').text();
+		var eMonth = $('#chooseMonth2 option:selected').index();
+		var eDay = $('#chooseDay2 option:selected').text();
+		var eHour = $('#chooseHour2 option:selected').text();
+		// console.log(sYear + sMonth + sDay + sHour);
+
+		var startDate = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
+		var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
+		// console.log(d1);
+
+		addEvent(startDate, endDate, 'testTask');
+	});
+});
+
+function addEvent (startDate, endDate, title) {
+	'use strict';
+	$('#scheduleCalendar')
+		.fullCalendar('renderEvent', {
+			id: startDate,
+			title: title,
+			start: startDate,
+			end: endDate,
+			allDay: false
+		}, true);
+}
+
+
+/*
+ASSESSMENT.JS STARTS HERE
+*/
 
 /**
  * Opens the modal to create a new assessment technique
  */
 function openAssessmentPlanModal () {
 	'use strict';
-
-	$.ajax({
-		url: '../getAssessmentPlan/' + $('#currentImod').val(),
-		method: 'GET'
-	})
-	.done(function (data) {
-		var techniques = '';
-
-		$.each(data.techniques, function (rowIndex, row) {
-			techniques += '<h3 class=\'instructional-plan-LO\' id=\'' + row.id + '\'> ' + truncateString(row.text, 80) + '<\/h3>';
-			techniques += '<div class=\'assignedTechniques\' id=\'assignedTechniques-' + row.id + '\'>';
-			techniques += '    <ul>';
-
-			$.each(row.techs, function (techniqueIndex, technique) {
-				techniques += '<li>' + technique + '<\/li>';
-			});
-			techniques += '    <\/ul>';
-			techniques += '<\/div>';
-		});
-
-		$('#assessment-plan-accordion').html(techniques);
-		$('#assessment-plan-accordion').accordion('option', 'active', false);
-		$('#assessment-plan-accordion').accordion('refresh');
-	});
-
 	$('#topicDialogBackground').css('display', 'block');
 	$('#assessment-plan').css('display', 'block');
 }
@@ -45,7 +359,7 @@ function openNewAssessmentTechniqueModal () {
 	'use strict';
 
 	// reset form on new modal open
-	$('#add-new-technique').find('input, select, textarea').val('');
+	$('#add-new-technique').find('input:not(#lo, #imodId), select, textarea').val('');
 	$('#dimImageModal')
 		.prop('src', '../../images/content/knowDimNone.png')
 		.prop('title', '');
@@ -87,18 +401,6 @@ function closeDimModalCancel () {
 
 	return false;
 }
-
-function editAssessmentDialogCancel () {
-	'use strict';
-	$('#add-new-technique').css('display', 'none');
-	$('#topicDialogBackground').css('display', 'none');
-}
-
-$('#editTechniqueDialog').click(function () {
-	'use strict';
-	editAssessmentDialogCancel();
-});
-
 function changePic () {
 	'use strict';
 	var iconName = '';
@@ -152,8 +454,6 @@ function populateAssessmentTechnique (data, isClone) {
 	var arrayOfLearningDomains = data.learningDomains.split(',');
 	var arrayOfDomainCategories = data.domainCategories.split(',');
 
-	isTechClone = isClone;
-
 	$('#titlecheck').val(currentTechnique.title);
 	$('#dimImageModal').attr('title', data.knowledgeDimension.substring(0, data.knowledgeDimension.length));
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
@@ -182,7 +482,6 @@ function populateAssessmentTechnique (data, isClone) {
 
 	$('#assessmentDifficulty option[value=' + currentTechnique.difficulty + ']').prop('selected', true);
 	$('#assessmentTime option[value=' + currentTechnique.whenToCarryOut + ']').prop('selected', true);
-	$('#assessmentPlace option[value=' + currentTechnique.whereToCarryOut + ']').prop('selected', true);
 	$('#assessmentType option[value=' + currentTechnique.type + ']').prop('selected', true);
 
 	$('#references').val(currentTechnique.reference);
@@ -220,8 +519,6 @@ function displayAssessmentInformationInEdit (isClone, block) {
 
 	var str = $('label.ui-state-hover').attr('for');
 	var indexNo = str.indexOf('Extended');
-
-	isTechClone = isClone;
 
 	if (isClone) {
 		$('.assessment-title').html('<strong>Edit Alternate Name For Clone</strong>');
@@ -284,12 +581,6 @@ function showAssessmentTechnique () {
 			displayAssessmentInformationInEdit(false, $(this));
 			return false;
 		});
-	$('#user-techniques .text-block.title')
-		.click(function () {
-			openNewAssessmentTechniqueModal();
-			displayAssessmentInformationInEdit(false, $(this));
-			return false;
-		});
 }
 
 function checkForAssign (data) {
@@ -323,7 +614,7 @@ function checkForAssign (data) {
 
 function assessmentEqualHeights (parent) {
 	'use strict';
-	var max = userHeight;
+	var max = 0;
 	var isOpen = false;
 	var parentBlock = $(parent);
 	var assessmentBlock = parentBlock.find('.assessment-block');
@@ -340,7 +631,6 @@ function assessmentEqualHeights (parent) {
 			max = height;
 		}
 	});
-	userHeight = max;
 	assessmentBlock.height(max);
 	if (isOpen) {
 		parentBlock.hide();
@@ -354,14 +644,11 @@ function assessmentEqualHeights (parent) {
 function displayAssessmentTechniques (data) {
 	'use strict';
 	var text = '';
-	var usertext = '';
 	var index;
 	var currentTechnique;
 	var favoriteImgToggle = '';
 	var assignImgToggle = '';
 	var isAdmin = '';
-	var userTechniques = [];
-	var userIndex = 0;
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
@@ -381,17 +668,13 @@ function displayAssessmentTechniques (data) {
 
 		if (currentTechnique.isAdmin) {
 			isAdmin = 'isAdmin';
-			text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-			text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
 		} else {
 			isAdmin = '';
-			text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-			text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
-			userTechniques[userIndex] = currentTechnique;
-			userIndex++;
 		}
+
+		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
 	}
 
 	$('#ideal-matches1').html(text);
@@ -418,55 +701,18 @@ function displayAssessmentTechniques (data) {
 
 		if (currentTechnique.isAdmin) {
 			isAdmin = 'isAdmin';
-			text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-			text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 		} else {
 			isAdmin = '';
-			text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-			text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
-			userTechniques[userIndex] = currentTechnique;
-			userIndex++;
-		}
-	}
-	userTechniques.sort(function (first, second) {
-		var nameA = first.title.toLowerCase();
-		var nameB = second.title.toLowerCase();
-
-		if (nameA < nameB) {
-			return -1;
-		}
-		if (nameA > nameB) {
-			return 1;
-		}
-		return 0;
-	});
-	for (index = 0; index < userTechniques.length; index++) {
-		currentTechnique = userTechniques[index];
-
-		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
-			favoriteImgToggle = '../../images/fav.png';
-		} else {
-			favoriteImgToggle = '../../images/unfav.png';
 		}
 
-		if (data.LOAssessmentTechniques.indexOf(currentTechnique.id.toString()) > -1) {
-			assignImgToggle = '../../images/assign.png';
-		} else {
-			assignImgToggle = '../../images/unassign.png';
-		}
-		isAdmin = '';
-		usertext += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-		usertext += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+
+		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
-
 
 	$('#extended-matches').html(text);
 	$('#extended-matches').buttonset();
-	$('#user-techniques').html(usertext);
-	$('#user-techniques').buttonset();
 
 	$(document).on('click', '.topLeft img', function () {
 		var str = '';
@@ -687,7 +933,6 @@ function filterAssessmentTechniques () {
 		checkForAssign(data);
 		assessmentEqualHeights('#ideal-matches1');
 		assessmentEqualHeights('#extended-matches');
-		assessmentEqualHeights('#user-techniques');
 	});
 }
 
@@ -704,6 +949,7 @@ function truncateString (string, count) {
 filterAssessmentTechniques();
 
 // Filters for the assessment technique are wrapped in a accordian
+$('#filter-assessment-techniques').accordion();
 
 $('#favorites').click(function () {
 	'use strict';
@@ -733,7 +979,7 @@ $('#unfavorites').click(function () {
 
 // Auto hide the assessment plan modal
 // $('#assessment-plan').dialog({
-// 	autoOpen: false
+//  autoOpen: false
 // });
 
 // Auto hide the add new technique modal
@@ -794,6 +1040,15 @@ $('.select-all').on('click', function () {
 	filterAssessmentTechniques();
 });
 
+$('#title').change(function () {
+	'use strict';
+	if ($('#title').val() === $('#titlecheck').val()) {
+		$('#errorMessage').text('Enter title which is different from the original technique');
+		return false;
+	}
+	return true;
+});
+
 function getMinHeight (liArray) {
 	'use strict';
 	var minHeight = Math.floor(liArray.eq(0).height());
@@ -821,7 +1076,7 @@ function updateTextArea (checkBoxName) {
 	var right = '';
 
 	$('input[name=' + checkBoxName + ']:checked').each(function () {
-		allVals.push($(this).parent().text().trim());
+		allVals.push($(this).prev().prev().text().trim());
 	});
 	valsLength = allVals.length;
 
@@ -840,13 +1095,10 @@ function updateTextArea (checkBoxName) {
 			break;
 	}
 
-
-	if (valsLength > 1) {
+	if (allVals.length > 2) {
 		$('#' + checkBoxName + 'span').html('<b>' + text + ' (' + valsLength + ' Selections)</b>' + right + '</span>&nbsp;&nbsp;');
-	} else if (valsLength === 1) {
-		$('#' + checkBoxName + 'span').html('<b>' + allVals[0] + '</b>' + right + '</span>&nbsp;&nbsp;');
 	} else {
-		$('#' + checkBoxName + 'span').html('<b>' + text + ' (No Selections)</b>' + right + '</span>&nbsp;&nbsp;');
+		$('#' + checkBoxName + 'span').html('<b>' + allVals + '</b>' + right + '</span>&nbsp;&nbsp;');
 	}
 }
 
@@ -891,6 +1143,7 @@ $(document).ready(
 		var currContent;
 		var isPanelSelected;
 		var checkBoxName;
+		var cloneDetect = '';
 
 		// Load techniques on page load
 		filterAssessmentTechniques();
@@ -902,6 +1155,7 @@ $(document).ready(
 		$(document).on('click', '.clone', function () {
 			openNewAssessmentTechniqueModal();
 			displayAssessmentInformationInEdit(true, $(this));
+			document.getElementById('cloneDetect').value = 'clone';
 			$('#title').val('');
 			$('#techniqueId').val('');
 			$('.assessment-title').html('<strong>Enter Alternate Name For Clone</strong>');
@@ -941,58 +1195,58 @@ $(document).ready(
 		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
-		updateTextArea('knowledgeDimension');
 		$('input[name=knowledgeDimension]').on('change',
-		function () {
-			checkBoxName = 'knowledgeDimension';
-			updateTextArea(checkBoxName);
-			filterAssessmentTechniques();
-			$('#selectAllkD').prop('checked', false);
-		});
-		updateTextArea('learningDomain');
-		$('input[name=learningDomain]').on('change',
-		function () {
-			checkBoxName = 'learningDomain';
-			updateTextArea(checkBoxName);
-			filterAssessmentTechniques();
-			$('#selectAlllD').prop('checked', false);
-		});
-		updateTextArea('domainCategory');
-		$('input[name=domainCategory]').on('change',
-		function () {
-			checkBoxName = 'domainCategory';
-			updateTextArea(checkBoxName);
-			filterAssessmentTechniques();
-			$('#selectAlldC').prop('checked', false);
-		});
+			function () {
+				checkBoxName = 'knowledgeDimension';
+				updateTextArea(checkBoxName);
+				filterAssessmentTechniques();
+				$('#selectAllkD').prop('checked', false);
+			});
 
-		$.validator.addMethod('isNotSameTitle', function (value) {
-			if (isTechClone && $('#titlecheck').val() === value) {
+		$('input[name=learningDomain]').on('change',
+			function () {
+				checkBoxName = 'learningDomain';
+				updateTextArea(checkBoxName);
+				filterAssessmentTechniques();
+				$('#selectAlllD').prop('checked', false);
+			});
+
+		$('input[name=domainCategory]').on('change',
+			function () {
+				checkBoxName = 'domainCategory';
+				updateTextArea(checkBoxName);
+				filterAssessmentTechniques();
+				$('#selectAlldC').prop('checked', false);
+			});
+
+		$('#saveButton').on('click', function () {
+			cloneDetect = document.getElementById('cloneDetect').value;
+
+			if ($('#title').val() === '') {
+				$('#errorMessage').text('Technique must have a title!');
 				return false;
 			}
-			return true;
-		}, 'Title cannot be the same');
 
-		$('.add-new-technique-form').validate({
-			ignore: ':hidden:not(#knowledgeDimension)',
-			rules: {
-				imodNumber: 'required',
-				title: {
-					required: true,
-					isNotSameTitle: true
-				},
-				learningDomain: {
-					required: true
-				},
-				domainCategory: {
-					required: true
-				},
-				knowledgeDimension: {
-					required: true
-				}
-			},
-			messages: {
+			if ($('#knowledgeDimension').val() === '') {
+				$('#errorMessage').text('Knowledge Dimensions are required!');
+				return false;
 			}
+
+			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
+				$('#errorMessage').text('Learning Domains are required');
+				return false;
+			}
+
+			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
+				$('#errorMessage').text('Domain Categories are required');
+				return false;
+			}
+			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
+				$('#errorMessage').text('Enter title which is different from the original technique');
+				return false;
+			}
+
+			return true;
 		});
 
 		// When add new technique button is clicked open modal
