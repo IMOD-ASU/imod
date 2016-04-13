@@ -1230,7 +1230,7 @@ class BootStrap {
 				    assessmentFeedback: AssessmentFeedback.findByName('In Person'),
 				    learningDomain: LearningDomain.findAllByNameInList(['Cognitive', 'Conceptual', 'Factual']),
 				    domainCategory: DomainCategory.findAllByNameInList(['Remember', 'Understand', 'Apply']),
-				    knowledgeDimension: KnowledgeDimension.findAllByDescriptionInList(['Conceptual','Factual']),
+				    knowledgeDimension: KnowledgeDimension.findAllByDescriptionInList(['Conceptual','Factual','Procedural', 'Metacognitive']),
 				    isAdmin: true
 				],
 
