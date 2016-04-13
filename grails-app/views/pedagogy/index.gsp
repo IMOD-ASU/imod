@@ -379,7 +379,7 @@
 								<tr>
 									<td class="td-label" width="40%">Focus</td>
 									<td width="60%">
-										<g:select class="custom-dropdown tooltipsterForm" title="${message(code: 'imod.pedagogy.technique.Focus')}"  name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+										<g:select id="pedagogyFocus" multiple="multiple" from="${pedagogyFocuses}" noSelection="${['null':'-- Select one or more --']}"  name="pedagogyFocus" optionKey="focus" />
 									</td>
 								</tr>
 								<tr>
