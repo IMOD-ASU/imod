@@ -106,7 +106,7 @@ var chart = new CanvasJS.Chart("chartContainer",
 {
     colorSet: "greenShades",
     title:{
-        text: "Division of out-of-class hours in Course"
+        text: "Division of Task Hours in Course"
     },
     axisY:{
         title: "Percent of total credit hours (" + (assign1.hours+assign2.hours+assign3.hours)+  " out of " + outClassHours + ") per week"
@@ -268,7 +268,8 @@ $('#scheduleCalendar').fullCalendar({
     header: {
         left: 'prev title next',
         center: '',
-        right: 'month basicWeek'
+        //right: 'month basicWeek'
+        right: ''
     },
     lazyFetching: false,
     //runs when view changes to week and vice-versa.
@@ -281,13 +282,13 @@ $('#scheduleCalendar').fullCalendar({
         if(view.name == "basicWeek" && oldView == "month"){
             // $("#chartContainer").toggle();
             //console.log("graphRevealed!");
-            document.getElementById('chartContainer').style.visibility='visible';
+            //document.getElementById('chartContainer').style.visibility='visible';
             oldView = view.name;
         }
         if(view.name == "month" && oldView == "basicWeek"){
             // $("#chartContainer").toggle();
-            document.getElementById('chartContainer').style.visibility='hidden';
             //console.log("graphHidden!");
+            //document.getElementById('chartContainer').style.visibility='hidden';
             oldView = view.name;
         }
     },
@@ -381,7 +382,7 @@ $('#scheduleCalendar').fullCalendar({
                         dataPoints: [
                             {
                                 y: obj.workTime,
-                                label: 'iMods Week Visualizer',
+                                label: 'iMods 6-Week Work-load Visualizer',
                                 x: 0
                             }
                         ]
@@ -429,15 +430,19 @@ $('#scheduleCalendar').fullCalendar({
 
 
             //multiply the credit hours of the course by the time ratio to get the hours per week that students should be working. Eg. 3 credit hour course, a 1:3 time ratio, means 3x3 = 9 hours per week of expected working time.
-            var outClassHours2 = timeRatI*creditHoursI
+            var outClassHours2 = timeRatI*creditHoursI;
 
-            chart.options.axisY.title = "Percent of total credit hours (" + (hourSum)+  " out of " + outClassHours2 + ") per week"
+            //to get out of class hours per month
+            //times 6 because the calender view is currently set to always display 6 weeks for every month.
+            var outClassHoursMonth = outClassHours2 * 6;
 
+            chart.options.axisY.title = "Percent of total credit hours (" + (hourSum)+  " out of " + outClassHoursMonth + ") per 6 weeks";
+chart.options.axisY.maximum =   outClassHoursMonth;
 
             chart.render();
 
 
-            events.splice(0,events.length)
+            events.splice(0,events.length);
 
         });
     }

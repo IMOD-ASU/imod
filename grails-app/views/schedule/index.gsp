@@ -471,17 +471,17 @@
 	List out the imods course info dates (demo getting data from the controller file)
 	-->
 	<br>
+    <div style="display: none;">
 	<p id="startDate">Start Date Here:${startDate1}</p>
 	<p id="endDate">End Date Here:${endDate1}</p>
 	<p id="creditHours">Credit Hours Here:${creditHours1}</p>
 	<p id="timeRatio">Credit Hours/Time Ratio Here:${timeRatio1}</p>
 
-<!--
-    <p id="creditHoursH" style="display: none;">${creditHours1}</p>
-    <p id="timeRatioH" style="display: none;">${timeRatio1}</p>
--->
     <p id="creditHoursH" >${creditHours1}</p>
     <p id="timeRatioH" >${timeRatio1}</p>
+</div>
+
+
 	<br>
 
 	<div style="display: none;">
