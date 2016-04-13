@@ -179,8 +179,17 @@ class ScheduleController {
 
 		def events = currentLO.withCriteria {
            			scheduleEvents {
-           				gte('startDate', startDate.toDate())
-					    lte('endDate', endDate.toDate())
+           				or {
+           					and {
+           						gt('startDate', startDate.toDate())
+							    lt('startDate', endDate.toDate())
+           					}
+           					and {
+           						gt('endDate', startDate.toDate())
+							    lt('endDate', endDate.toDate())
+           					}
+           				}
+
            			}
            		}
 
