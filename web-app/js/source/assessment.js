@@ -202,12 +202,12 @@ function populateAssessmentTechnique (data, isClone) {
 
 	for (count = 0; count < arrayOfLearningDomains.length; count++) {
 		if (arrayOfLearningDomains[count] !== '') {
-			$('#learningDomain option[value="' + arrayOfLearningDomains[count] + '"]').attr('selected', 'selected');
+			$('#learningDomain option[value="' + arrayOfLearningDomains[count] + '"]').prop('selected', true);
 		}
 	}
 	for (count = 0; count < arrayOfDomainCategories.length; count++) {
 		if (arrayOfDomainCategories[count] !== '') {
-			$('#domainCategory option[value = "' + arrayOfDomainCategories[count] + '"]').attr('selected', 'selected');
+			$('#domainCategory option[value = "' + arrayOfDomainCategories[count] + '"]').prop('selected', true);
 		}
 	}
 

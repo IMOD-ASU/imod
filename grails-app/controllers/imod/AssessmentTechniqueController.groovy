@@ -46,9 +46,9 @@ class AssessmentTechniqueController {
 	 * get info on a selected technique
 	 */
 	def display(Long id) {
-		String [] knowledgedimensions = AssessmentTechnique.get(id).knowledgeDimension
-		String [] learningdomains = AssessmentTechnique.get(id).learningDomain
-		String [] domaincategories = AssessmentTechnique.get(id).domainCategory
+		def knowledgedimensions = AssessmentTechnique.get(id).knowledgeDimension
+		def learningdomains = AssessmentTechnique.get(id).learningDomain
+		def domaincategories = AssessmentTechnique.get(id).domainCategory
 
 		render (
 			[
