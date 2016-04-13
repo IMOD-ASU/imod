@@ -371,22 +371,42 @@ $('#scheduleCalendar').fullCalendar({
                     }
                 );
 
+                var tempEnd = moment(obj.endDate)
+                var tempStart = moment(obj.startDate)
+                /*
+console.log(end);
+console.log((end).toISOString());
+console.log(obj.endDate);
 
-                eventsForGraph.push(
-                    {
-                        type: 'stackedBar',
-                        showInLegend: true,
-                        name: '' + obj.title,
-                        toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
-                        dataPoints: [
-                            {
-                                y: obj.workTime,
-                                label: 'iMods Week Visualizer',
-                                x: 0
-                            }
-                        ]
-                    }
-                );
+console.log(tempEnd);
+
+var isBefore = end.isBefore(tempEnd);
+var isAfter = end.isAfter(tempEnd);
+
+console.log(isBefore);
+console.log(isAfter);
+*/
+
+ if  (((tempStart).isAfter(start))&&((tempEnd).isBefore(end))){
+     console.log("event within date range!: " +obj.title);
+     eventsForGraph.push(
+         {
+             type: 'stackedBar',
+             showInLegend: true,
+             name: '' + obj.title,
+             toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
+             dataPoints: [
+                 {
+                     y: obj.workTime,
+                     label: 'iMods Week Visualizer',
+                     x: 0
+                 }
+             ]
+         }
+     );
+ }
+
+
 
                 //console.log("eventsForGraph");
                 //console.info(eventsForGraph);
