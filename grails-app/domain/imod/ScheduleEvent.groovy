@@ -5,6 +5,7 @@ class ScheduleEvent {
 	Date startDate
 	Date endDate
 	// learnO-> LearningObjective, knowD -> knowledgeDimension; temporarily stored as string for dev prototype
+	//this 'learnO' is currently the stored value of 'Link to Online Resource' for each new event. Due to time constraints didn't have time to change this and safely test/demo and deploy.
 	String learnO
 	String knowD
 	//

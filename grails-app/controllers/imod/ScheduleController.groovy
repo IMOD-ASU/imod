@@ -135,6 +135,7 @@ class ScheduleController {
 		def title = params.title
 		def learningObjectiveID = params.lo.toLong()
 
+		//this 'learnO' is currently the stored value of 'Link to Online Resource' for each new event. Due to time constraints didn't have time to change this and safely test/demo and deploy.
 		def learnO = params.learnO
 		def knowD = params.knowD
 
@@ -205,21 +206,6 @@ class ScheduleController {
 	 * Delete an event for a particular learning objective
 	 */
 	def deleteEvent() {
-/*
-		DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy HH:mm')
-		DateTime sDate = fmt.parseDateTime(params.startDate)
-		DateTime eDate = fmt.parseDateTime(params.endDate)
-
-		def title = params.title
-
-
-		def learnO = params.learnO
-		def knowD = params.knowD
-
-		def enviro = params.enviro
-		def workTime = params.workTime
-		def notes = params.notes
-		*/
 
 		def learningObjectiveID = params.lo.toLong()
 		def id = params.id
@@ -236,7 +222,6 @@ class ScheduleController {
 		    		event1.delete()
 		}
 
-
 		redirect(
 			controller: 'Schedule',
 			action: 'index',
@@ -244,116 +229,6 @@ class ScheduleController {
 			params: [learningObjectiveID: learningObjectiveID]
 		)
 	}
-
-	/**
-	 * Finds ideal and extended matches based on learning domains and knowledge dimensions
-	 * expects params
-	 * - knowledgeDimesions: name of each selected dimension
-	 * - domain category: name of each selected category
-	 * - learning domain: name of each selected domain
-	 */
-
-	 /*
-	def findMatchingTechniques() {
-		final data = request.JSON
-
-		// process strings to longs
-		def selectedKnowledgeDimensions = []
-		def selectedDomainCategories = []
-		def selectedLearningDomains = []
-
-		for (def knowledgeDimension in data.selectedKnowledgeDimensions) {
-			selectedKnowledgeDimensions.add(knowledgeDimension.toLong())
-		}
-		for (def domainCategory in data.selectedDomainCategories) {
-			selectedDomainCategories.add(domainCategory.toLong())
-		}
-		for (def learningDomain in data.selectedLearningDomains) {
-			selectedLearningDomains.add(learningDomain.toLong())
-		}
-
-		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
-
-		// find all technique where both the knowledge dimension and the domain category match
-		final idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
-			and {
-				or {
-					eq('isAdmin', true)
-					users {
-						eq('id', currentUser.id)
-					}
-				}
-				knowledgeDimension {
-					'in' ('id', selectedKnowledgeDimensions)
-				}
-				or {
-					domainCategory {
-						'in' ('id', selectedDomainCategories)
-					}
-					learningDomain {
-						'in' ('id', selectedLearningDomains)
-					}
-				}
-			}
-			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
-		}
-
-		// find all technique that are not ideal, but have the learning domain
-		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
-			and {
-				or {
-					eq('isAdmin', true)
-					users {
-						eq('id', currentUser.id)
-					}
-				}
-				learningDomain {
-					'in' ('id', selectedLearningDomains)
-				}
-				not {
-					and {
-						knowledgeDimension {
-							'in' ('id', selectedKnowledgeDimensions)
-						}
-						or {
-							domainCategory {
-								'in' ('id', selectedDomainCategories)
-							}
-							learningDomain {
-								'in' ('id', selectedLearningDomains)
-							}
-						}
-					}
-				}
-			}
-			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
-		}
-
-		final favoriteTechniques = currentUser.favoriteAssessmentTechnique.id
-		def stringfavoriteTechniques = []
-		//Convert int to string
-		for (def favoriteTechnique in favoriteTechniques) {
-			stringfavoriteTechniques.add(favoriteTechnique.toString())
-		}
-
-		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
-		final LOAssessmentTechniques = currentLearningObjective.assessmentTechniques.id
-		def stringLOAssessmentTechniques = []
-		//Convert int to string
-		for (def LOAssessmentTechnique in LOAssessmentTechniques) {
-			stringLOAssessmentTechniques.add(LOAssessmentTechnique.toString())
-		}
-
-		render(
-			[
-				idealAssessmentTechniqueMatch: idealAssessmentTechniqueMatch,
-				extendedAssessmentTechniqueMatch: extendedAssessmentTechniqueMatch,
-				favoriteTechniques: stringfavoriteTechniques,
-				LOAssessmentTechniques: stringLOAssessmentTechniques
-			] as JSON
-		)
-	}
-	*/
 
 	def findImodScheduleInfo() {
 		render (
