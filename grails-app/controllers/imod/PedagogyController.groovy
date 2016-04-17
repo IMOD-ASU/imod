@@ -260,4 +260,59 @@ class PedagogyController {
 			arrayOfLOPedagogyTechniques: arrayOfLOPedagogyTechniques
 		]
 	}
+	def handler (Exception e) {
+		print (e)
+		def idealPedagogyTechniqueMatch = []
+		final data = request.JSON
+		def selectedLearningDomains = []
+
+		for (def learningDomain in data.selectedLearningDomains) {
+			selectedLearningDomains.add(learningDomain.toLong())
+		}
+
+		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		// find all technique that are not ideal, but have the learning domain
+		def extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
+			and {
+				or {
+					eq('isAdmin', true)
+					users {
+						eq('id', currentUser.id)
+					}
+				}
+				learningDomain {
+					'in' ('id', selectedLearningDomains)
+				}
+			}
+			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+		}
+		extendedPedagogyTechniqueMatch = (idealPedagogyTechniqueMatch + extendedPedagogyTechniqueMatch) - extendedPedagogyTechniqueMatch.intersect(idealPedagogyTechniqueMatch)
+
+		final favoriteTechniques = currentUser.favoriteTechnique.id
+		def stringfavoriteTechniques = []
+		// Convert int to string
+		for (def favoriteTechnique in favoriteTechniques) {
+			stringfavoriteTechniques.add(favoriteTechnique.toString())
+		}
+
+		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
+		final LOPedagogyTechniques = currentLearningObjective?.pedagogyTechniques.id
+		def stringLOPedagogyTechniques = []
+		// Convert int to string
+		for (def LOPedagogyTechnique in LOPedagogyTechniques) {
+			stringLOPedagogyTechniques.add(LOPedagogyTechnique.toString())
+		}
+		extendedPedagogyTechniqueMatch.sort {
+			it.title.toUpperCase()
+		}
+
+		render(
+			[
+				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch,
+				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch,
+				favoriteTechniques: stringfavoriteTechniques,
+				LOPedagogyTechniques: stringLOPedagogyTechniques
+			] as JSON
+		)
+	}
 }
