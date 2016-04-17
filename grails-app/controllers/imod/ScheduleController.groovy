@@ -13,6 +13,7 @@ class ScheduleController {
 	static allowedMethods = [
 		index: 'GET',
 		findMatchingTechniques: 'POST',
+		deleteEvent: 'POST',
 		addEvent: 'POST'
 	]
 
@@ -74,6 +75,8 @@ class ScheduleController {
 		def timeRatio1 = 'no time'
 		def currName1 = 'noName'
 
+		def taskID = -1
+
 		startDate1 = Imod.get(id).schedule.startDate
 		endDate1 = Imod.get(id).schedule.endDate
 		creditHours1 = Imod.get(id).creditHours
@@ -92,6 +95,8 @@ class ScheduleController {
 			timeRatio1: timeRatio1,
 			learningObjectives: learningObjectives,
 			currName1: currName1,
+
+			taskID: taskID,
 
 			domainCategories: domainCategories,
 			knowledgeDimensions: knowledgeDimensions,
@@ -130,10 +135,25 @@ class ScheduleController {
 		def title = params.title
 		def learningObjectiveID = params.lo.toLong()
 
+		//this 'learnO' is currently the stored value of 'Link to Online Resource' for each new event. Due to time constraints didn't have time to change this and safely test/demo and deploy.
+		def learnO = params.learnO
+		def knowD = params.knowD
+
+		def enviro = params.enviro
+		def workTime = params.workTime
+		def notes = params.notes
+
 		def event = new ScheduleEvent(
 			title: title,
 			startDate: sDate,
-			endDate: eDate
+			endDate: eDate,
+
+			learnO: learnO,
+			knowD: knowD,
+
+			enviro: enviro,
+			workTime: workTime,
+			notes: notes
 		)
 		event.save()
 
@@ -160,8 +180,17 @@ class ScheduleController {
 
 		def events = currentLO.withCriteria {
            			scheduleEvents {
-           				gte('startDate', startDate.toDate())
-					    lte('endDate', endDate.toDate())
+           				or {
+           					and {
+           						gt('startDate', startDate.toDate())
+							    lt('startDate', endDate.toDate())
+           					}
+           					and {
+           						gt('endDate', startDate.toDate())
+							    lt('endDate', endDate.toDate())
+           					}
+           				}
+
            			}
            		}
 
@@ -174,109 +203,30 @@ class ScheduleController {
 	}
 
 	/**
-	 * Finds ideal and extended matches based on learning domains and knowledge dimensions
-	 * expects params
-	 * - knowledgeDimesions: name of each selected dimension
-	 * - domain category: name of each selected category
-	 * - learning domain: name of each selected domain
+	 * Delete an event for a particular learning objective
 	 */
-	def findMatchingTechniques() {
-		final data = request.JSON
+	def deleteEvent() {
 
-		// process strings to longs
-		def selectedKnowledgeDimensions = []
-		def selectedDomainCategories = []
-		def selectedLearningDomains = []
+		def learningObjectiveID = params.lo.toLong()
+		def id = params.id
 
-		for (def knowledgeDimension in data.selectedKnowledgeDimensions) {
-			selectedKnowledgeDimensions.add(knowledgeDimension.toLong())
-		}
-		for (def domainCategory in data.selectedDomainCategories) {
-			selectedDomainCategories.add(domainCategory.toLong())
-		}
-		for (def learningDomain in data.selectedLearningDomains) {
-			selectedLearningDomains.add(learningDomain.toLong())
-		}
+		//def event1 = ScheduleEvent.findById(id)
+		def event1 = ScheduleEvent.get(id)
 
-		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
+		final currentImod = Imod.get(params.imodId)
+		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
-		// find all technique where both the knowledge dimension and the domain category match
-		final idealAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
-			and {
-				or {
-					eq('isAdmin', true)
-					users {
-						eq('id', currentUser.id)
-					}
-				}
-				knowledgeDimension {
-					'in' ('id', selectedKnowledgeDimensions)
-				}
-				or {
-					domainCategory {
-						'in' ('id', selectedDomainCategories)
-					}
-					learningDomain {
-						'in' ('id', selectedLearningDomains)
-					}
-				}
-			}
-			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+		if ( event1 != null ) {
+
+			currentLearningObjective.removeFromScheduleEvents(event1)
+		    		event1.delete()
 		}
 
-		// find all technique that are not ideal, but have the learning domain
-		final extendedAssessmentTechniqueMatch = AssessmentTechnique.withCriteria {
-			and {
-				or {
-					eq('isAdmin', true)
-					users {
-						eq('id', currentUser.id)
-					}
-				}
-				learningDomain {
-					'in' ('id', selectedLearningDomains)
-				}
-				not {
-					and {
-						knowledgeDimension {
-							'in' ('id', selectedKnowledgeDimensions)
-						}
-						or {
-							domainCategory {
-								'in' ('id', selectedDomainCategories)
-							}
-							learningDomain {
-								'in' ('id', selectedLearningDomains)
-							}
-						}
-					}
-				}
-			}
-			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
-		}
-
-		final favoriteTechniques = currentUser.favoriteAssessmentTechnique.id
-		def stringfavoriteTechniques = []
-		//Convert int to string
-		for (def favoriteTechnique in favoriteTechniques) {
-			stringfavoriteTechniques.add(favoriteTechnique.toString())
-		}
-
-		def currentLearningObjective = LearningObjective.findById(data.learningObjectiveID.toLong())
-		final LOAssessmentTechniques = currentLearningObjective.assessmentTechniques.id
-		def stringLOAssessmentTechniques = []
-		//Convert int to string
-		for (def LOAssessmentTechnique in LOAssessmentTechniques) {
-			stringLOAssessmentTechniques.add(LOAssessmentTechnique.toString())
-		}
-
-		render(
-			[
-				idealAssessmentTechniqueMatch: idealAssessmentTechniqueMatch,
-				extendedAssessmentTechniqueMatch: extendedAssessmentTechniqueMatch,
-				favoriteTechniques: stringfavoriteTechniques,
-				LOAssessmentTechniques: stringLOAssessmentTechniques
-			] as JSON
+		redirect(
+			controller: 'Schedule',
+			action: 'index',
+			id: params.imodId,
+			params: [learningObjectiveID: learningObjectiveID]
 		)
 	}
 

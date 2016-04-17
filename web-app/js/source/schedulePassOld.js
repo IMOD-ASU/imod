@@ -1,65 +1,32 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
-// var isTopLeftClicked = 1;
-// var isTopRightClicked = 1;
-var oldView = 'month';
-
-/* Purpose: Javascript Logic for the Schedule View in IMODS.
-*
-* @author Wesley Coomber Wesley.Coomber@asu.edu
-*
-* @version April 15 2016
-*/
-
-/*
-Chart.js code over here
-*/
-window.onload = function () {
-	'use strict';
+var isTopLeftClicked = 1;
+var isTopRightClicked = 1;
+var hourRatio = 3;
+var inClassHours = 3;
+var outClassHours = inClassHours * hourRatio;
+var assignAlgo = {
+	name: 'Contructing Algorithims Lab',
+	hours: 4.5,
+	location: 'In-class'
+};
+var assignIntroToAlgo = {
+	name: 'Intro to Algorithims Reading',
+	hours: 1,
+	location: 'Out-Of-Class'
+};
+var assignDataStructures = {
+	name: 'Data Structure Worksheet',
+	hours: 3,
+	location: 'Out-Of-Class'
 };
 
-$(document).ready(function () {
+/*
+	Chart.js code over here
+*/
+// console.log(outClassHours);
+window.onload = function () {
 	'use strict';
-});
-
-
-$(document).ready(function () {
-	'use strict';
-
-	var hourRatio = 3;
-	var inClassHours = 3;
-	var outClassHours = inClassHours * hourRatio;
-
-	var assignA = {
-		name: 'Contructing Algorithims Lab',
-		hours: 4.5,
-		location: 'In-class'
-	};
-	var assignB = {
-		name: 'Intro to Algorithims Reading',
-		hours: 1,
-		location: 'Out-Of-Class'
-	};
-	var assignC = {
-		name: 'Data Structure Worksheet',
-		hours: 3,
-		location: 'Out-Of-Class'
-	};
-
-	var chart = null;
-
-	var eventsForGraph = [];
-
-	var years = [];
-	var tempMonth;
-	var tempEle;
-	var inc = 0;
-	var choiceHour;
-	var choiceYear;
-	var months;
-	var choiceMonth;
-	var days = [];
-	var choiceDay;
-	var hours = [];
+	var chart;
 
 	window.CanvasJS
 		.addColorSet('greenShades',
@@ -75,73 +42,78 @@ $(document).ready(function () {
 		]
 	);
 
-	window.CanvasJS.addColorSet('redShades', [
-		// colorSet Array for Red Warnings
-
-		'#FF0000',
-		'#FF3030',
-		'#DB2929',
-		'#E3170D',
-		'#FC1501'
-	]);
-
-	window.CanvasJS.addColorSet('orangeShades', [
-		// colorSet Array for Orange-Yellow warnings
-
-		'#ffb84d',
-		'#ffad33',
-		'#ffa31a',
-		'#ff9900',
-		'#cc7a00',
-		'#e68a00'
-	]);
-
-	chart = new window.CanvasJS.Chart('chartContainer', {
-		colorSet: 'greenShades',
-		title: {
-			text: 'Division of out-of-class hours in Course'
-		},
-		axisY: {
-			title: 'Percent of total credit hours (' + (assignA.hours + assignB.hours + assignC.hours) + ' out of ' + outClassHours + ') per week'
-		},
-		animationEnabled: true,
-		toolTip: {
-			shared: true,
-			// content: "{name}: {y} Hours - <strong>#percent%</strong>" + "(#percent)"
-			content: '{name}: {y} Hours. {extra}'
-		},
-		data: [{
-			type: 'stackedBar',
-			showInLegend: true,
-			name: '' + assignA.name,
-			toolTipContent: '{name}: {y} Hours. ' + assignA.location,
-			dataPoints: [{
-				y: assignA.hours,
-				label: 'iMods Week Visualizer'
-			}]
-		}, {
-			type: 'stackedBar',
-			showInLegend: true,
-			name: '' + assignB.name,
-			toolTipContent: '{name}: {y} Hours. ' + assignB.location,
-			dataPoints: [{
-				y: assignB.hours,
-				label: 'iMods Week Visualizer'
-			}]
-		}, {
-			type: 'stackedBar',
-			showInLegend: true,
-			name: '' + assignC.name,
-			toolTipContent: '{name}: {y} Hours. ' + assignC.location,
-			dataPoints: [{
-				y: assignC.hours,
-				label: 'iMods Week Visualizer'
-			}]
-		}]
-	});
+	chart = new window.CanvasJS.Chart('chartContainer',
+		{
+			colorSet: 'greenShades',
+			title: {
+				text: 'Division of out-of-class hours in Course'
+			},
+			axisY: {
+				title: 'Percent of total credit hours (' + assignAlgo.hours + assignIntroToAlgo.hours + assignDataStructures.hours + ' out of ' + outClassHours + ') per week'
+			},
+			animationEnabled: true,
+			toolTip: {
+				shared: true,
+				// content: '{name}: {y} Hours - <strong>#percent%</strong>' + '(#percent)'
+				content: '{name}: {y} Hours. {extra}'
+			},
+			data: [
+				{
+					type: 'stackedBar100',
+					showInLegend: true,
+					name: '' + assignAlgo.name,
+					toolTipContent: '{name}: {y} Hours. ' + assignAlgo.location,
+					dataPoints: [
+						{
+							y: assignAlgo.hours,
+							label: 'iMods Week Visualizer'
+						}
+					]
+				},
+				{
+					type: 'stackedBar100',
+					showInLegend: true,
+					name: '' + assignIntroToAlgo.name,
+					toolTipContent: '{name}: {y} Hours. ' + assignIntroToAlgo.location,
+					dataPoints: [
+						{
+							y: assignIntroToAlgo.hours,
+							label: 'iMods Week Visualizer'
+						}
+					]
+				},
+				{
+					type: 'stackedBar100',
+					showInLegend: true,
+					name: '' + assignDataStructures.name,
+					toolTipContent: '{name}: {y} Hours. ' + assignDataStructures.location,
+					dataPoints: [
+						{
+							y: assignDataStructures.hours,
+							label: 'iMods Week Visualizer'
+						}
+					]
+				}
+			]
+		});
 	chart.render();
+};
 
-	// end of chart JS
+
+$(document).ready(function () {
+	'use strict';
+
+	var years = [];
+	var tempMonth;
+	var tempEle;
+	var inc = 0;
+	var choiceHour;
+	var choiceYear;
+	var months;
+	var choiceMonth;
+	var days = [];
+	var choiceDay;
+	var hours = [];
 
 	for (inc = 2010; inc <= 2035; inc++) {
 		years.push(inc);
@@ -169,6 +141,7 @@ $(document).ready(function () {
 	}
 
 	months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 
 	// Populate the choice box with choices from the months array
 	choiceMonth = document.getElementById('chooseMonth');
@@ -240,60 +213,64 @@ $(document).ready(function () {
 		tempEle.value = tempMonth;
 		choiceHour.appendChild(tempEle);
 	}
+});
+
+// function addTask () {
+// 	'use strict';
+// 	var sYear = $('#chooseYear option:selected').text();
+// 	var sMonth = $('#chooseMonth option:selected').index();
+// 	var sDay = $('#chooseDay option:selected').text();
+// 	var sHour = $('#chooseHour option:selected').text();
+
+// 	var eYear = $('#chooseYear2 option:selected').text();
+// 	var eMonth = $('#chooseMonth2 option:selected').index();
+// 	var eDay = $('#chooseDay2 option:selected').text();
+// 	var eHour = $('#chooseHour2 option:selected').text();
+// 	// console.log(sYear + sMonth + sDay + sHour);
+
+// 	var startDate = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
+// 	var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
+// 	// console.log(d1);
+
+// 	addEvent(startDate, endDate, 'testTask');
+// }
+
+// function addTask2 () {
+// 	'use strict';
+// 	var sYear = $('#chooseYear option:selected').text();
+// 	var sMonth = $('#chooseMonth option:selected').index();
+// 	var sDay = $('#chooseDay option:selected').text();
+// 	var sHour = $('#chooseHour option:selected').text();
+
+// 	var eYear = $('#chooseYear2 option:selected').text();
+// 	var eMonth = $('#chooseMonth2 option:selected').index();
+// 	var eDay = $('#chooseDay2 option:selected').text();
+// 	var eHour = $('#chooseHour2 option:selected').text();
+// 	// console.log(sYear + sMonth + sDay + sHour);
+
+// 	var startDate = new Date(sYear, sMonth, sDay, sHour, 0, 0, 0);
+// 	var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
+// 	// console.log(d1);
+
+// 	addEvent(startDate, endDate, 'testTask');
+// }
+
+$(document).ready(function () {
+	'use strict';
 
 	$('#scheduleCalendar').fullCalendar({
 		header: {
 			left: 'prev title next',
 			center: '',
-			right: 'month basicWeek'
-		},
-		lazyFetching: false,
-		// runs when view changes to week and vice-versa.
-		// toggles the visibility (hide) of the
-		viewRender: function (view) {
-			// jquery.toggle() is ideal because it makes sure the chartContainer div doesnt take up space when its hidden, but it was causing rendering errors in firefox when switching between month and week view. would fix when i open firebug? not sure why
-			if (view.name === 'basicWeek' && oldView === 'month') {
-				// $("#chartContainer").toggle();
-				// console.log("graphRevealed!");
-				document.getElementById('chartContainer').style.visibility = 'visible';
-				oldView = view.name;
-			}
-			if (view.name === 'month' && oldView === 'basicWeek') {
-				// $("#chartContainer").toggle();
-				document.getElementById('chartContainer').style.visibility = 'hidden';
-				// console.log("graphHidden!");
-				oldView = view.name;
-			}
+			right: ''
 		},
 		eventClick: function (event) {
 			// all arguments: (event, jsEvent, view)
 
-			var view = $('#scheduleCalendar').fullCalendar('getView');
-			var beginMonthT = (view.start).toISOString();
-
-			var beginMonthB = window.moment(beginMonthT);
-			var beginMonthC = window.moment(beginMonthT);
-			var beginMonthD = window.moment(beginMonthT);
-			var beginMonthE = window.moment(beginMonthT);
-			var beginMonthF = window.moment(beginMonthT);
-
-			beginMonthB = beginMonthB.add(7, 'days');
-			beginMonthC = beginMonthC.add(14, 'days');
-			beginMonthD = beginMonthD.add(21, 'days');
-			beginMonthE = beginMonthE.add(28, 'days');
-			beginMonthF = beginMonthF.add(35, 'days');
-			// alert("The view's title is " + beginMonthA.format('YYYY-M-D') + " " + beginMonthB.format('YYYY-M-D') + " " + beginMonthC.format('YYYY-M-D') + " " + beginMonthD.format('YYYY-M-D') + " " + beginMonthE.format('YYYY-M-D') + " " + beginMonthF.format('YYYY-M-D') + " ");
-
 			// set the values and open the modal
-			$('#taskInfo').html(event.notes);
-			// $('#taskLearnO').html(event.learnO);
-			$('#taskKnowD').html(event.knowD);
-			$('#taskEnviro').html(event.enviro);
-			$('#taskWorkTime').html(event.workTime);
+			$('#taskInfo').html(event.description);
 			$('#taskLink').attr('href', event.url);
-			$('#taskTime1').text(event.start);
-			$('#taskTime2').text(event.end);
-			$('#taskID').val(event.id);
+			$('#taskTime').text(event.end);
 			$('#taskContent').dialog({
 				modal: true,
 				title: event.title
@@ -305,108 +282,27 @@ $(document).ready(function () {
 				url: '../../schedule/getEvents/',
 				data: {
 					learningObjectiveID: $('#lo').val(),
-					// Start date is first day that is displayed
-					// startDate: ((start.subtract(1, 'days')).toISOString()),
-					startDate: (start).toISOString(),
-					// End  date is last day that is displayed
-					// endDate: ((end.add(1, 'days')).toISOString())
-					endDate: (end).toISOString()
+					startDate: start.toISOString(),
+					endDate: end.toISOString()
 				},
 				method: 'GET'
 			})
-				.done(function (data) {
-					var events = [];
-					// clear the eventsForGraph array
-					var hourSum = 0;
+			.done(function (data) {
+				var events = [];
 
-					// getting the timeRatio from the dom and run a regular expression that grabs characters not contain a ":" eg. most time ratio is stored as 1:3, this gets us only the 3 value
-					var str = $('#timeRatioH').html();
-
-					var cutStr = /[^:]*$/.exec(str)[0];
-
-					var strB = $('#creditHoursH').html();
-
-					var timeRatI = parseInt(cutStr, 10);
-					var creditHoursI = parseInt(strB, 10);
-					var outClassHoursB;
-
-					var iterator;
-
-					eventsForGraph = [];
-					$.each(data.events, function (index, obj) {
-						var tempEnd = window.moment(obj.endDate);
-						var tempStart = window.moment(obj.startDate);
-
-
-						events.push({
+				$.each(data.events, function (index, obj) {
+					events.push(
+						{
 							title: obj.title,
 							allday: 'false',
-							start: window.window.moment(obj.startDate, window.window.moment.ISO_8601),
-							end: window.window.moment(obj.endDate, window.window.moment.ISO_8601),
-							learnO: obj.learnO,
-							knowD: obj.knowD,
-							enviro: obj.enviro,
-							workTime: obj.workTime,
-							description: obj.notes,
-							id: obj.id,
-							notes: obj.notes,
-
-							// this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
-							url: obj.learnO
-						});
-
-						if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
-						// console.log('event within date range!: ' + obj.title);
-							eventsForGraph.push({
-								type: 'stackedBar',
-								showInLegend: true,
-								name: '' + obj.title,
-								toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
-								dataPoints: [{
-									y: obj.workTime,
-									label: 'iMods Week Visualizer',
-									x: 0
-								}]
-							});
+							start: window.moment(obj.startDate, window.moment.ISO_8601),
+							end: window.moment(obj.endDate, window.moment.ISO_8601),
+							url: 'http://www.w3schools.com/jquery/'
 						}
-					});
-					// console.info(events);
-					// console.info(eventsForGraph);
-					callback(events);
-
-					if (eventsForGraph.length < chart.options.data.length) {
-						chart.options.data = [];
-					}
-
-					for (iterator = 0; iterator < eventsForGraph.length; iterator++) {
-						chart.options.data[iterator] = eventsForGraph[iterator];
-
-						hourSum += eventsForGraph[iterator].dataPoints[0].y;
-					}
-					// multiply the credit hours of the course by the time ratio to get the hours per week that students should be working. Eg. 3 credit hour course, a 1:3 time ratio, means 3x3 = 9 hours per week of expected working time.
-					outClassHoursB = timeRatI * creditHoursI;
-
-					chart.options.axisY.title = 'Currently Assigned Working Hours (' + (hourSum) + ' out of ' + outClassHoursB + ') per week';
-
-					chart.options.axisY.maximum = outClassHoursB;
-					// chart.options.axisY.minimum = outClassHoursB
-
-					chart.options.colorSet = 'greenShades';
-
-					// if less than 85% or greater than 115% of the expected hours are assigned, turn the stacked bar chart orange
-					if (((hourSum / outClassHoursB) < 0.85) || ((hourSum / outClassHoursB) > 1.15)) {
-						chart.options.colorSet = 'orangeShades';
-					}
-
-					// if less than 65% or greater than 125% of the expected hours are assigned, turn the stacked bar chart red
-					if (((hourSum / outClassHoursB) < 0.65) || ((hourSum / outClassHoursB) > 1.25)) {
-						chart.options.colorSet = 'redShades';
-					}
-
-					chart.render();
-
-					events.splice(0, events.length);
+					);
 				});
+				callback(events);
+			});
 		}
 	});
 
@@ -426,11 +322,11 @@ $(document).ready(function () {
 		var endDate = new Date(eYear, eMonth, eDay, eHour, 0, 0, 0);
 		// console.log(d1);
 
-		addEvent(startDate, endDate, 'testTask', 'testDescript');
+		addEvent(startDate, endDate, 'testTask');
 	});
 });
 
-function addEvent (startDate, endDate, title, desc) {
+function addEvent (startDate, endDate, title) {
 	'use strict';
 	$('#scheduleCalendar')
 		.fullCalendar('renderEvent', {
@@ -438,19 +334,9 @@ function addEvent (startDate, endDate, title, desc) {
 			title: title,
 			start: startDate,
 			end: endDate,
-			description: desc,
 			allDay: false
 		}, true);
 }
-
-// $("#chartContainer").toggle();
-
-// Cancel Button logic for +AddNewTask modal popup here.
-$('button[name=cancelButton]').click(function () {
-	'use strict';
-	$('#add-new-technique, #topicDialogBackground').hide();
-	return false;
-});
 
 
 /*
@@ -484,7 +370,6 @@ function openNewAssessmentTechniqueModal () {
 	$('#add-new-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
-
 function closeDimModal () {
 	'use strict';
 	var checked = '';
@@ -505,7 +390,6 @@ function closeDimModal () {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
-
 function closeDimModalCancel () {
 	'use strict';
 
@@ -517,7 +401,6 @@ function closeDimModalCancel () {
 
 	return false;
 }
-
 function changePic () {
 	'use strict';
 	var iconName = '';
@@ -537,7 +420,6 @@ function changePic () {
 	$('#dimImageModal').attr('src', iconName);
 	$('#dimImage').attr('src', iconName);
 }
-
 function openDimModal () {
 	'use strict';
 	var dimString = $('#knowDimensionList').val();
@@ -563,7 +445,6 @@ function openDimModal () {
 	background.css('display', 'block');
 	return false;
 }
-
 function populateAssessmentTechnique (data, isClone) {
 	'use strict';
 	var currentTechnique = data.assessmentTechnique;
@@ -673,10 +554,62 @@ function displayAssessmentInformationInEdit (isClone, block) {
 		url: '../../assessmentTechnique/display/' + res,
 		method: 'GET'
 	})
-		.done(function (data) {
-			populateAssessmentTechnique(data, isClone);
-			window.cleanForm = $('form').find('select, textarea, input').serialize();
+	.done(function (data) {
+		populateAssessmentTechnique(data, isClone);
+		window.cleanForm = $('form').find('select, textarea, input').serialize();
+	});
+}
+function showAssessmentTechnique () {
+	'use strict';
+	$('#ideal-matches .text-block.title')
+		.click(function () {
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false, $(this));
+			return false;
 		});
+
+	$('#ideal-matches1 .text-block.title')
+		.click(function () {
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false, $(this));
+			return false;
+		});
+
+	$('#extended-matches .text-block.title')
+		.click(function () {
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false, $(this));
+			return false;
+		});
+}
+
+function checkForAssign (data) {
+	'use strict';
+	var currentTechnique;
+	var index;
+
+	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.idealAssessmentTechniqueMatch[index];
+
+		if (currentTechnique.favcheck === false) {
+			$('#span-' + currentTechnique.id).addClass('icons assessmentUnfavAssign');
+		} else if (currentTechnique.assigncheck === true) {
+			$('#span-' + currentTechnique.id).addClass('icons assessmentFavAssign');
+		} else if (currentTechnique.assigncheck === false) {
+			$('#span-' + currentTechnique.id).addClass('icons assessmentFavUnassign');
+		}
+	}
+
+	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+		if (currentTechnique.favcheck === false) {
+			$('#span-' + currentTechnique.id).addClass('icons assessmentUnfavAssign');
+		} else if (currentTechnique.assigncheck === true) {
+			$('#span-' + currentTechnique.id).addClass('icons assessmentFavAssign');
+		} else if (currentTechnique.assigncheck === false) {
+			$('#span-' + currentTechnique.id).addClass('icons assessmentFavUnassign');
+		}
+	}
 }
 
 function assessmentEqualHeights (parent) {
@@ -704,6 +637,215 @@ function assessmentEqualHeights (parent) {
 	}
 }
 
+/**
+ * Callback for find matching techniques grails action
+ * this takes the json data and processes it into html code
+ */
+function displayAssessmentTechniques (data) {
+	'use strict';
+	var text = '';
+	var index;
+	var currentTechnique;
+	var favoriteImgToggle = '';
+	var assignImgToggle = '';
+	var isAdmin = '';
+
+	// Take the titles and make html code to display
+	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.idealAssessmentTechniqueMatch[index];
+
+		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			favoriteImgToggle = '../../images/fav.png';
+		} else {
+			favoriteImgToggle = '../../images/unfav.png';
+		}
+
+		if (data.LOAssessmentTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			assignImgToggle = '../../images/assign.png';
+		} else {
+			assignImgToggle = '../../images/unassign.png';
+		}
+
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
+		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
+	}
+
+	$('#ideal-matches1').html(text);
+	$('#ideal-matches1').buttonset();
+	$('#ideal-matches1').height(300);
+
+	text = '';
+
+	// Take the titles and make html code to display
+	for (index = 0; index < data.extendedAssessmentTechniqueMatch.length; index++) {
+		currentTechnique = data.extendedAssessmentTechniqueMatch[index];
+
+		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			favoriteImgToggle = '../../images/fav.png';
+		} else {
+			favoriteImgToggle = '../../images/unfav.png';
+		}
+
+		if (data.LOAssessmentTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			assignImgToggle = '../../images/assign.png';
+		} else {
+			assignImgToggle = '../../images/unassign.png';
+		}
+
+		if (currentTechnique.isAdmin) {
+			isAdmin = 'isAdmin';
+		} else {
+			isAdmin = '';
+		}
+
+
+		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+	}
+
+	$('#extended-matches').html(text);
+	$('#extended-matches').buttonset();
+
+	$(document).on('click', '.topLeft img', function () {
+		var str = '';
+		var indexNo = '';
+		var res = '';
+		var currentImg = $(this);
+		var assessmentBlock = null;
+		var unfavId = null;
+
+		if (isTopLeftClicked) {
+			isTopLeftClicked = 0;
+			return false;
+		}
+
+
+		if ($(this).attr('src') === '../../images/fav.png') {
+			$(this).attr('src', '../../images/unfav.png');
+			str = $('label.ui-state-hover').attr('for');
+			indexNo = str.indexOf('Extended');
+			if (indexNo > -1) {
+				res = str.substring(0, indexNo);
+			} else {
+				res = str;
+			}
+			$.ajax({
+				url: '../../assessmentTechnique/unassignFavorite/' + res,
+				method: 'GET',
+				success: function () {
+					isTopLeftClicked = 1;
+					if (currentImg.parents('.favorites-inner').length) {
+						assessmentBlock = currentImg.parents('.assessment-block');
+						unfavId = assessmentBlock.prop('for');
+						assessmentBlock.remove();
+
+						// remove fav icon from the technique in ideal
+						// and extended matches
+						$('label[for=' + unfavId + ']')
+							.find('.topLeft img')
+							.prop('src', '../../images/unfav.png');
+
+						// if no techniques exist
+						// show empty fav techniques message
+						if (!$('.favorites-inner').find('.assessment-block').length) {
+							$('.favorites-inner').append('<br><strong>You do not have any favorite techniques</strong><br><br>');
+						}
+					}
+				}
+
+			});
+		} else {
+			$(this).attr('src', '../../images/fav.png');
+			str = $('label.ui-state-hover').attr('for');
+			indexNo = str.indexOf('Extended');
+			if (indexNo > -1) {
+				res = str.substring(0, indexNo);
+			} else {
+				res = str;
+			}
+			$.ajax({
+				url: '../../assessmentTechnique/assignFavorite/' + res,
+				method: 'GET',
+				success: function () {
+					isTopLeftClicked = 1;
+				}
+			});
+		}
+
+		return false;
+	});
+
+	$(document).on('click', '#topRight img', function () {
+		var str = '';
+		var indexNo = '';
+		var res = '';
+		var inputData = null;
+
+		if (isTopRightClicked) {
+			isTopRightClicked = 0;
+			return false;
+		}
+
+		if ($(this).attr('src') === '../../images/assign.png') {
+			$(this).attr('src', '../../images/unassign.png');
+			str = $('label.ui-state-hover').attr('for');
+			indexNo = str.indexOf('Extended');
+			if (indexNo > -1) {
+				res = str.substring(0, indexNo);
+			} else {
+				res = str;
+			}
+
+			inputData = {
+				learningObjectiveID: $('#learningObjectiveID').val(),
+				assessmentTechniqueID: res
+			};
+			$.ajax({
+				url: '../../assessmentTechnique/unassignToLearningObjective',
+				type: 'POST',
+				data: JSON.stringify(inputData),
+				contentType: 'application/json',
+				success: function () {
+					isTopRightClicked = 1;
+				}
+			});
+		} else {
+			$(this).attr('src', '../../images/assign.png');
+			str = $('label.ui-state-hover').attr('for');
+			indexNo = str.indexOf('Extended');
+			if (indexNo > -1) {
+				res = str.substring(0, indexNo);
+			} else {
+				res = str;
+			}
+
+			inputData = {
+				learningObjectiveID: $('#learningObjectiveID').val(),
+				assessmentTechniqueID: res
+			};
+			$.ajax({
+				url: '../../assessmentTechnique/assignToLearningObjective',
+				type: 'POST',
+				data: JSON.stringify(inputData),
+				contentType: 'application/json',
+				success: function () {
+					isTopRightClicked = 1;
+				}
+			});
+		}
+
+		return false;
+	});
+}
+
 function displayAssessmentFavoriteTechniques (data) {
 	'use strict';
 	var text = '';
@@ -729,7 +871,7 @@ function displayAssessmentFavoriteTechniques (data) {
 
 		text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
 		text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
-			'</div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+					'</div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="new-technique-popup-button clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
 	$('.favorites-inner').html(text);
@@ -757,8 +899,6 @@ function filterAssessmentTechniques () {
 	var index;
 	var data;
 
-	data = -1;
-	data += 1;
 	// Get the id of the grails domain from the value attribute in the html
 	for (index = 0; index < selectedKnowledgeDimensions.length; index++) {
 		selectedKnowledgeDimensionsData[index] = selectedKnowledgeDimensions[index].value;
@@ -781,21 +921,19 @@ function filterAssessmentTechniques () {
 
 	// Send the data to the find matching techniques action in grails
 	// and process the response with the display assessment techniques callback
-	/*
 	$.ajax({
-	url: '../findMatchingTechniques',
-	method: 'post',
-	data: JSON.stringify(data),
-	contentType: 'application/json'
-})
-.done(function (data) {
-displayAssessmentTechniques(data);
-showAssessmentTechnique(data);
-checkForAssign(data);
-assessmentEqualHeights('#ideal-matches1');
-assessmentEqualHeights('#extended-matches');
-});
-*/
+		url: '../findMatchingTechniques',
+		method: 'post',
+		data: JSON.stringify(data),
+		contentType: 'application/json'
+	})
+	.done(function (data) {
+		displayAssessmentTechniques(data);
+		showAssessmentTechnique(data);
+		checkForAssign(data);
+		assessmentEqualHeights('#ideal-matches1');
+		assessmentEqualHeights('#extended-matches');
+	});
 }
 
 function truncateString (string, count) {
@@ -1011,15 +1149,8 @@ $(document).ready(
 		filterAssessmentTechniques();
 		// The filters for the assessment technique are wrapped in a accordian
 		// beforeActivate is to be able to open both ideal & extended matches simultaneously
-		$('#filter-assessment-techniques').accordion({
-			collapsible: true,
-			heightStyle: 'content'
-		});
-		$('#assessment-plan-accordion').accordion({
-			collapsible: true,
-			heightStyle: 'content',
-			active: false
-		});
+		$('#filter-assessment-techniques').accordion({collapsible: true, heightStyle: 'content'});
+		$('#assessment-plan-accordion').accordion({collapsible: true, heightStyle: 'content', active: false});
 		// clone
 		$(document).on('click', '.clone', function () {
 			openNewAssessmentTechniqueModal();
@@ -1030,8 +1161,7 @@ $(document).ready(
 			$('.assessment-title').html('<strong>Enter Alternate Name For Clone</strong>');
 			return false;
 		});
-		$('#ideal-matches-toggle').accordion({
-			collapsible: true,
+		$('#ideal-matches-toggle').accordion({collapsible: true,
 			beforeActivate: function (event, ui) {
 				// The accordion believes a panel is being opened
 				if (ui.newHeader[0]) {
@@ -1174,10 +1304,10 @@ $(document).ready(
 		});
 
 		$(document)
-			.on('click', '.favorites-modal .text-block.title', function () {
-				openNewAssessmentTechniqueModal();
-				displayAssessmentInformationInEdit(false, $(this));
-				return false;
-			});
+		.on('click', '.favorites-modal .text-block.title', function () {
+			openNewAssessmentTechniqueModal();
+			displayAssessmentInformationInEdit(false, $(this));
+			return false;
+		});
 	}
 );
