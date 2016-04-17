@@ -25,7 +25,6 @@
 
 		<g:javascript src="source/topicDialog.js" defer="defer" />
 		<g:external dir="bower_components/jquery-sortable/source/js" file="jquery-sortable-min.js" defer="defer" />
-		<g:external dir="bower_components/chart.js" file="Chart.min.js"/>
 		<g:external dir="bower_components/lodash" file="lodash.js"/>
 		<meta name="layout" content="learningObjective">
 	</head>

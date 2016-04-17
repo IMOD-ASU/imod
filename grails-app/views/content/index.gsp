@@ -31,7 +31,6 @@
 
 	<g:javascript src="source/topicDialog.js" defer="defer"/>
 
-	<g:external dir="bower_components/Chart.js" file="Chart.js"/>
 	<g:external dir="bower_components/lodash" file="lodash.js"/>
 
 	<meta name="layout" content="imod">

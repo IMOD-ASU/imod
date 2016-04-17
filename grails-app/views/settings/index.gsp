@@ -87,7 +87,7 @@
 				</div>
 
 				<div>
-					<label>Location:</label>
+					<label>Address:</label>
 					<g:textField name="location" id="location" value="${currentUser.location}" />
 				</div>
 
