@@ -28,39 +28,20 @@ class PedagogyTechniqueController {
 	 * get info on a selected technique
 	 */
 	def get(Long id) {
-		String [] knowledgedimensions = PedagogyTechnique.get(id).knowledgeDimension
-		String [] learningdomains = PedagogyTechnique.get(id).learningDomain
-		String [] domaincategories = PedagogyTechnique.get(id).domainCategory
-		String [] pedagogyfocuses = PedagogyTechnique.get(id).activityFocus
+		def knowledgeDimensions = PedagogyTechnique.get(id).knowledgeDimension
+		def learningDomains = PedagogyTechnique.get(id).learningDomain
+		def domainCategories = PedagogyTechnique.get(id).domainCategory
+		def pedagogyFocuses = PedagogyTechnique.get(id).activityFocus
 
-		String  knowledgeDimensions=''
-		String  learningDomains=''
-		String  domainCategories=''
-		String  pedagogyFocuses=''
-
-		for (int i = 0; i < knowledgedimensions.size(); i++) {
-			knowledgeDimensions = knowledgeDimensions + knowledgedimensions[i] + ','
-		}
-		for (int i = 0; i < learningdomains.size(); i++) {
-			learningDomains = learningDomains + learningdomains[i] + ','
-		}
-		for (int i = 0; i < domaincategories.size(); i++) {
-			domainCategories = domainCategories + domaincategories[i] + ','
-		}
-		for (int i = 0; i < pedagogyfocuses.size() - 1; i++) {
-			pedagogyFocuses = pedagogyFocuses + pedagogyfocuses[i] + ','
-		}
-		pedagogyFocuses = pedagogyFocuses + pedagogyfocuses.lost()
-		// add some stuff if (KnowledgeDimension.findById(PedagogyTechnique.get(id).knowledgeDimension[i].id).toString()!=null)
 		render (
 			[
 				pedagogyTechnique: PedagogyTechnique.get(id),
 				learningDomain: LearningDomain.findById(PedagogyTechnique.get(id).learningDomain[0].id).toString(),
 				domainCategory: DomainCategory.findById(PedagogyTechnique.get(id).domainCategory[0].id).toString(),
-				knowledgeDimension: knowledgeDimensions,
-				learningDomains: learningDomains,
-				domainCategories: domainCategories,
-				activityFocus: pedagogyFocuses,
+				knowledgeDimension: knowledgeDimensions.join(','),
+				learningDomains: learningDomains.join(','),
+				domainCategories: domainCategories.join(','),
+				activityFocus: pedagogyFocuses.join(','),
 				pedagogyMode: (PedagogyTechnique.get(id).pedagogyMode).toString(),
 				pedagogyDuration: (PedagogyTechnique.get(id).pedagogyDuration).toString(),
 			] as JSON
@@ -128,7 +109,7 @@ class PedagogyTechniqueController {
 		if (kD != null) {
 			for (int i = 0; i < kD.length; i++) {
 				if (kD[i] != null) {
-					println (kD[i])
+					// println (kD[i])
 					String test = kD[i].trim()
 					newTechnique.addToKnowledgeDimension(
 					KnowledgeDimension.findByDescription(test))
@@ -139,7 +120,7 @@ class PedagogyTechniqueController {
 		if (lD != null) {
 			for (int i = 0; i < lD.length; i++) {
 				if (lD[i] != null) {
-					println (lD[i])
+					// println (lD[i])
 					newTechnique.addToLearningDomain(LearningDomain.findByName(lD[i]))
 				}
 			}
@@ -148,7 +129,7 @@ class PedagogyTechniqueController {
 		if (dC != null) {
 			for (int i = 0; i < dC.length; i++) {
 				if (dC[i] != null) {
-					println (dC[i])
+					// println (dC[i])
 					if (DomainCategory.findByName(dC[i]) != null) {
 						newTechnique.addToDomainCategory(DomainCategory.findByName(dC[i]))
 					}
@@ -159,7 +140,7 @@ class PedagogyTechniqueController {
 		if (pF != null) {
 			for (int i = 0; i < pF.length; i++) {
 				if (pF[i] != null) {
-					println (pF[i])
+					// println (pF[i])
 					if (PedagogyActivityFocus.findByFocus(pF[i]) != null) {
 						newTechnique.addToActivityFocus(PedagogyActivityFocus.findByFocus(pF[i]))
 					}

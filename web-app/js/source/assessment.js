@@ -202,12 +202,12 @@ function populateAssessmentTechnique (data, isClone) {
 
 	for (count = 0; count < arrayOfLearningDomains.length; count++) {
 		if (arrayOfLearningDomains[count] !== '') {
-			$('#learningDomain option[value="' + arrayOfLearningDomains[count] + '"]').attr('selected', 'selected');
+			$('#learningDomain option[value="' + arrayOfLearningDomains[count] + '"]').prop('selected', true);
 		}
 	}
 	for (count = 0; count < arrayOfDomainCategories.length; count++) {
 		if (arrayOfDomainCategories[count] !== '') {
-			$('#domainCategory option[value = "' + arrayOfDomainCategories[count] + '"]').attr('selected', 'selected');
+			$('#domainCategory option[value = "' + arrayOfDomainCategories[count] + '"]').prop('selected', true);
 		}
 	}
 
@@ -906,6 +906,13 @@ $(document).ready(
 			$('#techniqueId').val('');
 			$('.assessment-title').html('<strong>Enter Alternate Name For Clone</strong>');
 			return false;
+		});
+		$('#selectAlllD').click(function () {
+			if (!$(this).is(':checked')) {
+				$('#extended-matches').html('');
+				$('#extended-matches').buttonset();
+				$('#user-techniques').html('');
+			}
 		});
 		$('#ideal-matches-toggle').accordion({collapsible: true,
 			beforeActivate: function (event, ui) {
