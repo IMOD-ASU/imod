@@ -379,7 +379,7 @@
 								<tr>
 									<td class="td-label" width="40%">Focus</td>
 									<td width="60%">
-										<g:select class="custom-dropdown tooltipsterForm" title="${message(code: 'imod.pedagogy.technique.Focus')}"  name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" />
+										<g:select id="pedagogyFocus" multiple="multiple" from="${pedagogyFocuses}" noSelection="${['null':'-- Select one or more --']}"  name="pedagogyFocus" optionKey="focus" />
 									</td>
 								</tr>
 								<tr>
@@ -414,7 +414,7 @@
 									<i class="fa fa-save green"></i>
 									Save
 								</button>
-								<button type="submit"  title="${message(code: 'imod.pedagogy.technique.cancel')}" name="_action_cancel" value="Cancel" class="new-technique-popup-button tooltipster">
+								<button type="submit"  title="${message(code: 'imod.pedagogy.technique.cancel')}" name="cancel"id="editTechniqueDialog" value="Cancel" class="new-technique-popup-button tooltipster">
 									<i class="fa fa-times red"></i>
 									Cancel
 								</button>

@@ -1,4 +1,5 @@
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
+var userHeight = 0;
 
 /**
  * Opens the modal to create a new pedagogy technique
@@ -92,6 +93,18 @@ function closeDimModalCancel () {
 	dialog.css('display', 'none');
 	background.css('display', 'none');
 }
+
+function editPedagogyDialogCancel () {
+	'use strict';
+	$('#add-new-technique').css('display', 'none');
+	$('#topicDialogBackground').css('display', 'none');
+}
+
+$('#editTechniqueDialog').click(function () {
+	'use strict';
+	editPedagogyDialogCancel();
+});
+
 function changePic () {
 	'use strict';
 	var iconName = '';
@@ -294,6 +307,8 @@ function displayPedagogyTechniques (data) {
 	var assignImgToggle = '';
 	var isAdmin = '';
 	var text = '';
+	var userIndex = 0;
+	var userTechniques = [];
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.idealPedagogyTechniqueMatch.length; index++) {
@@ -317,9 +332,11 @@ function displayPedagogyTechniques (data) {
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 		} else {
 			isAdmin = '';
-			text += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
-			text += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+			idealText += '<input type="radio" id="' + currentTechnique.id + '" name="pedagogyTechnique" value="' + currentTechnique.id + '">';
+			idealText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite" id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+			userTechniques[userIndex] = currentTechnique;
+			userIndex++;
 		}
 	}
 
@@ -346,18 +363,50 @@ function displayPedagogyTechniques (data) {
 					truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 		} else {
 			isAdmin = '';
-			text += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
-			text += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+			extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
+			extendedText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
 					truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+			userTechniques[userIndex] = currentTechnique;
+			userIndex++;
 		}
+	}
+	userTechniques.sort(function (first, second) {
+		var nameA = first.title.toLowerCase();
+		var nameB = second.title.toLowerCase();
+
+		if (nameA < nameB) {
+			return -1;
+		}
+		if (nameA > nameB) {
+			return 1;
+		}
+		return 0;
+	});
+	for (index = 0; index < userTechniques.length; index++) {
+		currentTechnique = userTechniques[index];
+		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			favoriteImgToggle = '../../images/fav.png';
+		} else {
+			favoriteImgToggle = '../../images/unfav.png';
+		}
+
+		if (data.LOPedagogyTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			assignImgToggle = '../../images/assign.png';
+		} else {
+			assignImgToggle = '../../images/unassign.png';
+		}
+		isAdmin = '';
+		text += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
+		text += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
+				'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
+				currentTechnique.title + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
 	// Add html code to the page
 	$('#ideal-matches').html(idealText);
 	$('#extended-matches').html(extendedText);
 	$('#user-techniques').html(text);
-
 	$('#ideal-matches').buttonset();
 	$('#ideal-matches1').height(300);
 
@@ -523,7 +572,7 @@ function filterPedagogyTechniques () {
 		displayPedagogyTechniques(data);
 		pedagogyEqualHeights('#ideal-matches');
 		pedagogyEqualHeights('#extended-matches');
-		pedagogyEqualHeights('#user-techniques');
+		pedagogyEqualHeights('#userTechniques');
 	});
 }
 
@@ -538,7 +587,7 @@ function truncateString (string, count) {
 
 function pedagogyEqualHeights (parent) {
 	'use strict';
-	var max = 0;
+	var max = userHeight;
 	var isOpen = false;
 	var parentBlock = $(parent);
 	var pedagogyBlock = parentBlock.find('.pedagogy-block');
@@ -555,6 +604,7 @@ function pedagogyEqualHeights (parent) {
 			max = height;
 		}
 	});
+	userHeight = max;
 	pedagogyBlock.height(max);
 	if (isOpen) {
 		parentBlock.hide();
@@ -868,5 +918,4 @@ $(window).ready(function () {
 	'use strict';
 	pedagogyEqualHeights('#ideal-matches');
 	pedagogyEqualHeights('#extended-matches');
-	pedagogyEqualHeights('#user-techniques');
 });

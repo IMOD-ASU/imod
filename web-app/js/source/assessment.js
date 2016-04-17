@@ -2,6 +2,7 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var isTopLeftClicked = 1;
 var isTopRightClicked = 1;
 var isTechClone = false;
+var userHeight = 0;
 
 /**
  * Opens the modal to create a new assessment technique
@@ -86,6 +87,18 @@ function closeDimModalCancel () {
 
 	return false;
 }
+
+function editAssessmentDialogCancel () {
+	'use strict';
+	$('#add-new-technique').css('display', 'none');
+	$('#topicDialogBackground').css('display', 'none');
+}
+
+$('#editTechniqueDialog').click(function () {
+	'use strict';
+	editAssessmentDialogCancel();
+});
+
 function changePic () {
 	'use strict';
 	var iconName = '';
@@ -310,7 +323,7 @@ function checkForAssign (data) {
 
 function assessmentEqualHeights (parent) {
 	'use strict';
-	var max = 0;
+	var max = userHeight;
 	var isOpen = false;
 	var parentBlock = $(parent);
 	var assessmentBlock = parentBlock.find('.assessment-block');
@@ -327,6 +340,7 @@ function assessmentEqualHeights (parent) {
 			max = height;
 		}
 	});
+	userHeight = max;
 	assessmentBlock.height(max);
 	if (isOpen) {
 		parentBlock.hide();
@@ -346,6 +360,8 @@ function displayAssessmentTechniques (data) {
 	var favoriteImgToggle = '';
 	var assignImgToggle = '';
 	var isAdmin = '';
+	var userTechniques = [];
+	var userIndex = 0;
 
 	// Take the titles and make html code to display
 	for (index = 0; index < data.idealAssessmentTechniqueMatch.length; index++) {
@@ -370,9 +386,11 @@ function displayAssessmentTechniques (data) {
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
 		} else {
 			isAdmin = '';
-			usertext += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-			usertext += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+			text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+			text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><span></span></div><button class="clone"><i class="fa fa-clone blue"></i> Clone</button></label>';
+			userTechniques[userIndex] = currentTechnique;
+			userIndex++;
 		}
 	}
 
@@ -405,11 +423,45 @@ function displayAssessmentTechniques (data) {
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 		} else {
 			isAdmin = '';
-			usertext += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
-			usertext += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+			text += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+			text += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
 					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+			userTechniques[userIndex] = currentTechnique;
+			userIndex++;
 		}
 	}
+	userTechniques.sort(function (first, second) {
+		var nameA = first.title.toLowerCase();
+		var nameB = second.title.toLowerCase();
+
+		if (nameA < nameB) {
+			return -1;
+		}
+		if (nameA > nameB) {
+			return 1;
+		}
+		return 0;
+	});
+	for (index = 0; index < userTechniques.length; index++) {
+		currentTechnique = userTechniques[index];
+
+		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			favoriteImgToggle = '../../images/fav.png';
+		} else {
+			favoriteImgToggle = '../../images/unfav.png';
+		}
+
+		if (data.LOAssessmentTechniques.indexOf(currentTechnique.id.toString()) > -1) {
+			assignImgToggle = '../../images/assign.png';
+		} else {
+			assignImgToggle = '../../images/unassign.png';
+		}
+		isAdmin = '';
+		usertext += '<input type="radio" id="' + currentTechnique.id + '" name="assessmentTechnique" value="' + currentTechnique.id + '">';
+		usertext += '<label class="assessment-block ' + isAdmin + '" for="' + currentTechnique.id + '"><div class="favorite topLeft"><img src="' + favoriteImgToggle + '"/>' +
+					'</div><div class="assign" id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" class="text-block title" id="titleDiv"><span>' + truncateString(currentTechnique.title, 100) + '</span><br><br><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
+	}
+
 
 	$('#extended-matches').html(text);
 	$('#extended-matches').buttonset();
