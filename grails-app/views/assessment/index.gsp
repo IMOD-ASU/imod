@@ -449,7 +449,7 @@
 									<i class="fa fa-save green"></i>
 									Save
 								</button>
-								<button type="submit" name="cancel" id="editTechniqueDialog" value="Cancel" class="new-technique-popup-button tooltipster" title="${message(code: 'imod.assessment.technique.cancel')}">
+								<button type="button" name="cancel" id="editTechniqueDialog" value="Cancel" class="new-technique-popup-button tooltipster" title="${message(code: 'imod.assessment.technique.cancel')}">
 									<i class="fa fa-times red"></i>
 									Cancel
 								</button>
