@@ -182,8 +182,13 @@
     font-weight: bold;
 }
 
-label.pedagogy-block.isAdmin {
-    background: url('../../images/admin-text.png') bottom left #ffffcc no-repeat !important;
+label.pedagogy-block.isAdmin:before {
+    content: "\f023";
+    bottom: 0;
+    left: 3px;
+    position: absolute;
+    font: normal normal normal 16px/1 FontAwesome;
+    color: red;
 }
 
 label.pedagogy-block .text-block.title {

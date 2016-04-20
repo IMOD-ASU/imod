@@ -393,6 +393,7 @@ function deleteTopic (contentIDs) {
 					$('#' + element).remove();
 				}
 			);
+			window.cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
 			location.reload();
 		}
 	});
@@ -911,6 +912,8 @@ $(
 
 				$('#topicList .selected').each(
 					function () {
+						window.cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
+
 						if (typeof $('#topicTempID' + this.id).val() === 'undefined') {
 							$(this).remove();
 						} else {
