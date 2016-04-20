@@ -36,7 +36,8 @@
 .topic-chart .pie-legend li span {
 	display: inline-block;
 	vertical-align: middle;
-	padding: 0 5px;
+    padding: 5px 10px;
+    margin-right: 5px;
 }
 
 .topic-chart .pie-legend .pie-legend-icon {

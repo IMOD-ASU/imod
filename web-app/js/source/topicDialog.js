@@ -911,7 +911,7 @@ $(
 
 				$('#topicList .selected').each(
 					function () {
-						if (this.id === 'undefined') {
+						if (typeof $('#topicTempID' + this.id).val() === 'undefined') {
 							$(this).remove();
 						} else {
 							contentIDs.push(this.id);
