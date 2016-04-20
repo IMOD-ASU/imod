@@ -51,8 +51,8 @@ class ImodUser {
 		pedagogyTechnique nullable: true
 		location nullable: true
 		officeHours nullable: true
-		webPage nullable: true
-		phoneNumber nullable: true
+		webPage nullable: true, matches: '^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$'
+		phoneNumber nullable: true, matches: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
 		firstName nullable: false, blank: false, minSize: 3, maxSize: 20
 		lastName nullable: false, blank: false, minSize: 3, maxSize: 20
 		role nullable: true, blank: true, minSize: 3
