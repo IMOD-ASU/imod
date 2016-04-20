@@ -414,7 +414,7 @@
 									<i class="fa fa-save green"></i>
 									Save
 								</button>
-								<button type="submit"  title="${message(code: 'imod.pedagogy.technique.cancel')}" name="cancel"id="editTechniqueDialog" value="Cancel" class="new-technique-popup-button tooltipster">
+								<button type="button"  title="${message(code: 'imod.pedagogy.technique.cancel')}" name="cancel"id="editTechniqueDialog" value="Cancel" class="new-technique-popup-button tooltipster">
 									<i class="fa fa-times red"></i>
 									Cancel
 								</button>

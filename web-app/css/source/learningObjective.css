@@ -779,3 +779,21 @@ input[disabled='disabled'] {
 
     padding-top: 15px;
 }
+
+#learning-domain-list{
+	position: relative;
+	width: 167px;
+	left: -0.5%;
+}
+
+#hide-condition{
+	position: relative;
+	left: 70px;
+	margin-top: 15px;
+}
+
+#hide-text{
+	position: relative;
+	left:75px;
+
+}
