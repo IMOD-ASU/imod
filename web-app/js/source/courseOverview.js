@@ -228,7 +228,7 @@ $(document).ready(
 		$('#professional-conduct-box').css('visibility', 'visible');
 		$('#missed-exams-box').css('visibility', 'visible');
 		$('#missed-assignments-box').css('visibility', 'visible');
-		if(!$('.instructor-list').find('tbody tr').length) {
+		if (!$('.instructor-list').find('tbody tr').length) {
 			$('.remove-instructor').hide();
 		}
 
@@ -253,7 +253,7 @@ $(document).ready(
 					$('.instructor-list').find('.topicListRow.selected').each(
 						function () {
 							ids.push($(this).data('id'));
-							if(!($(this).data('id'))) {
+							if (!($(this).data('id'))) {
 								$(this).remove();
 							}
 						}
