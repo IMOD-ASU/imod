@@ -7,6 +7,10 @@ var userHeight = 0;
 function openNewPedagogyTechniqueModal () {
 	'use strict';
 
+	// reset admin message on modal
+	$('.admin-edit-msg').remove();
+	$('#saveButton').show();
+
 	// reset form on new modal open
 	$('#add-new-technique').find('input, select, textarea').val('');
 	$('#dimImageModal')
@@ -359,13 +363,13 @@ function displayPedagogyTechniques (data) {
 			isAdmin = 'isAdmin';
 			extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
 			extendedText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
+					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block title"><span>' +
 					truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 		} else {
 			isAdmin = '';
 			extendedText += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
 			extendedText += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
+					'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block title"><span>' +
 					truncateString(currentTechnique.title, 100) + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 			userTechniques[userIndex] = currentTechnique;
 			userIndex++;
@@ -399,7 +403,7 @@ function displayPedagogyTechniques (data) {
 		isAdmin = '';
 		text += '<input type="radio" id="' + currentTechnique.id + 'Extended" name="pedagogyTechniqueExtended" value="' + currentTechnique.id + '">';
 		text += '<label class="pedagogy-block ' + isAdmin + '" for="' + currentTechnique.id + 'Extended"><div id="topLeft"><img src="' + favoriteImgToggle + '"/>' +
-				'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block"><span>' +
+				'</div><div id="topRight"><img src="' + assignImgToggle + '" /></div><div title="' + currentTechnique.title + '" id="titleDiv" class="text-block title"><span>' +
 				currentTechnique.title + '</span><button class="clone"><i class="fa fa-clone blue"></i> Clone</button><span></span></div></label>';
 	}
 
@@ -514,7 +518,7 @@ function displayPedagogyTechniques (data) {
 		}
 	});
 
-	$('.title span').click(function () {
+	$(document).on('click', '.title span', function () {
 		$('#add-new-technique').css('display', 'block');
 		$('#topicDialogBackground').css('display', 'block');
 		$('#cloneDetect').val('');
