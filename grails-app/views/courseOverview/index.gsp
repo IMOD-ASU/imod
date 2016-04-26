@@ -389,13 +389,12 @@
                                                         	<i class="fa fa-user-plus green"></i> Add Instructor
                                                         </button>
                                                     </span>
-                                                    <g:if test="${currentImod?.instructors != null && !currentImod?.instructors.isEmpty()}">
-                                                        <span class="remove-instructor topicButtonGradient">
-                                                            <button type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor tooltipster" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
-                                                            	<i class="fa fa-user-times red"></i> Remove Instructor
-                                                            </button>
-                                                        </span>
-                                                    </g:if>
+                                                    <span class="remove-instructor topicButtonGradient">
+                                                        <button type="submit" name="_action_remove" value="Remove Instructor" class="remove show-hover-new topicButton delete-instructor tooltipster" id="removeTopic" title="${ message( code:'imod.courseOverview.removeInstructors')}">
+                                                        <i class="fa fa-user-times red"></i> Remove Instructor
+                                                        </button>
+                                                    </span>
+                                                    
                                                     <span id="errorMessage"></span>
                                                 </fieldset>
                                                 <table id="topicList" class="instructor-list">

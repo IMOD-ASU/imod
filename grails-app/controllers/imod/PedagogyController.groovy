@@ -128,6 +128,7 @@ class PedagogyController {
 		def selectedKnowledgeDimensions = []
 		def selectedDomainCategories = []
 		def selectedLearningDomains = []
+		def allLearningDomains =[(94).toLong(), (95).toLong(), (96).toLong()]
 
 		for (def knowledgeDimension in data.selectedKnowledgeDimensions) {
 			selectedKnowledgeDimensions.add(knowledgeDimension.toLong())
@@ -182,6 +183,18 @@ class PedagogyController {
 		}
 		extendedPedagogyTechniqueMatch = (idealPedagogyTechniqueMatch + extendedPedagogyTechniqueMatch) - extendedPedagogyTechniqueMatch.intersect(idealPedagogyTechniqueMatch)
 
+		def userPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
+			and {
+					users {
+						eq('id', currentUser.id)
+					}
+				learningDomain {
+					'in' ('id', allLearningDomains)
+				}
+
+			}
+			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+		}
 		final favoriteTechniques = currentUser.favoriteTechnique.id
 		def stringfavoriteTechniques = []
 		// Convert int to string
@@ -207,6 +220,7 @@ class PedagogyController {
 			[
 				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch,
 				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch,
+				userTechniques: userPedagogyTechniqueMatch,
 				favoriteTechniques: stringfavoriteTechniques,
 				LOPedagogyTechniques: stringLOPedagogyTechniques
 			] as JSON
@@ -265,6 +279,7 @@ class PedagogyController {
 		def idealPedagogyTechniqueMatch = []
 		final data = request.JSON
 		def selectedLearningDomains = []
+		def allLearningDomains =[(94).toLong(), (95).toLong(), (96).toLong()]
 
 		for (def learningDomain in data.selectedLearningDomains) {
 			selectedLearningDomains.add(learningDomain.toLong())
@@ -288,6 +303,18 @@ class PedagogyController {
 		}
 		extendedPedagogyTechniqueMatch = (idealPedagogyTechniqueMatch + extendedPedagogyTechniqueMatch) - extendedPedagogyTechniqueMatch.intersect(idealPedagogyTechniqueMatch)
 
+		def userPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
+			and {
+					users {
+						eq('id', currentUser.id)
+					}
+				learningDomain {
+					'in' ('id', allLearningDomains)
+				}
+
+			}
+			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+		}
 		final favoriteTechniques = currentUser.favoriteTechnique.id
 		def stringfavoriteTechniques = []
 		// Convert int to string
@@ -310,6 +337,7 @@ class PedagogyController {
 			[
 				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch,
 				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch,
+				userTechniques: userPedagogyTechniqueMatch,
 				favoriteTechniques: stringfavoriteTechniques,
 				LOPedagogyTechniques: stringLOPedagogyTechniques
 			] as JSON
