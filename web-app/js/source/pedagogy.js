@@ -375,7 +375,7 @@ function displayPedagogyTechniques (data) {
 			userIndex++;
 		}
 	}
-	userTechniques.sort(function (first, second) {
+	data.userTechniques.sort(function (first, second) {
 		var nameA = first.title.toLowerCase();
 		var nameB = second.title.toLowerCase();
 
@@ -387,8 +387,8 @@ function displayPedagogyTechniques (data) {
 		}
 		return 0;
 	});
-	for (index = 0; index < userTechniques.length; index++) {
-		currentTechnique = userTechniques[index];
+	for (index = 0; index < data.userTechniques.length; index++) {
+		currentTechnique = data.userTechniques[index];
 		if (data.favoriteTechniques.indexOf(currentTechnique.id.toString()) > -1) {
 			favoriteImgToggle = '../../images/fav.png';
 		} else {

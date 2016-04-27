@@ -228,6 +228,9 @@ $(document).ready(
 		$('#professional-conduct-box').css('visibility', 'visible');
 		$('#missed-exams-box').css('visibility', 'visible');
 		$('#missed-assignments-box').css('visibility', 'visible');
+		if (!$('.instructor-list').find('tbody tr').length) {
+			$('.remove-instructor').hide();
+		}
 
 		setDefaultHint();
 		$('#repeats').on('change', populateRepeatsEvery);
@@ -250,6 +253,9 @@ $(document).ready(
 					$('.instructor-list').find('.topicListRow.selected').each(
 						function () {
 							ids.push($(this).data('id'));
+							if (!($(this).data('id'))) {
+								$(this).remove();
+							}
 						}
 					);
 
@@ -270,7 +276,7 @@ $(document).ready(
 							}
 
 							if (!$('.instructor-list').find('tbody tr').length) {
-								$('.remove-instructor').remove();
+								$('.remove-instructor').hide();
 							}
 						}
 					});
@@ -369,7 +375,7 @@ $(document).ready(
 				row += '    <td><input type="text" name="officeHours[]" value="" id="officeHours" class="office_hours" /></td>';
 				row += '    <td><input type="text" name="webPage[]" value="" id="webPage" class="web_page" /></td>';
 				row += '<td>';
-				row += '    <select name="role[]" id="role" class="role">';
+				row += '    <select name="role[]" id="role" class="role custom-dropdown">';
 				row += '        <option value="">Select Role</option>';
 				row += '        <option>Assistant Professor</option>';
 				row += '        <option>Associate Professor</option>';
@@ -383,6 +389,7 @@ $(document).ready(
 				row += '</tr>';
 
 				$('#topicList tbody').append(row);
+				$('.remove-instructor').show();
 				return false;
 			}
 		);
