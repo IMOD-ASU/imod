@@ -28,12 +28,14 @@ function isRequired (fieldValue) {
 function scrollToError () {
 	'use strict';
 	if ($('.errorcontain').length) {
+		console.log("inside");
 		$('html, body').animate({
-			scrollTop: $('.errorcontain:first').offset().top - 40
+			scrollTop: $('.errorcontain:visible:first').offset().top - 40
 		}, 1000);
 	} else {
+		console.log("outside");
 		$('html, body').animate({
-			scrollTop: $('label.error:first').offset().top - 40
+			scrollTop: $('label.error:visible:first').offset().top - 40
 		}, 1000);
 	}
 }
