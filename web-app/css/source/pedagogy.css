@@ -188,7 +188,7 @@ label.pedagogy-block.isAdmin:before {
     left: 3px;
     position: absolute;
     font: normal normal normal 16px/1 FontAwesome;
-    color: red;
+    color: #1b4176;
 }
 
 label.pedagogy-block .text-block.title {
