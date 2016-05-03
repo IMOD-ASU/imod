@@ -47,6 +47,10 @@ $(document).ready(
 		});
 
 		$.validator.addMethod('regx', function (value, element, regexpr) {
-			return regexpr.test(value);
+			if (value.trim().length > 0) {
+				return regexpr.test(value);
+			}
+
+			return true;
 		}, 'Pattern does not match');
 	});
