@@ -5,7 +5,7 @@ localStorage.setItem('checkId', $('input[name="checkId"]').val());
 // Source: http://stackoverflow.com/a/2855946
 function isValidEmailAddress (emailAddress) {
 	'use strict';
-	var pattern = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i;
+	var pattern = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
 
 	return pattern.test(emailAddress);
 }
@@ -29,11 +29,11 @@ function scrollToError () {
 	'use strict';
 	if ($('.errorcontain').length) {
 		$('html, body').animate({
-			scrollTop: $('.errorcontain:first').offset().top - 40
+			scrollTop: $('.errorcontain:visible:first').offset().top - 40
 		}, 1000);
 	} else {
 		$('html, body').animate({
-			scrollTop: $('label.error:first').offset().top - 40
+			scrollTop: $('label.error:visible:first').offset().top - 40
 		}, 1000);
 	}
 }
@@ -228,6 +228,9 @@ $(document).ready(
 		$('#professional-conduct-box').css('visibility', 'visible');
 		$('#missed-exams-box').css('visibility', 'visible');
 		$('#missed-assignments-box').css('visibility', 'visible');
+		if (!$('.instructor-list').find('tbody tr').length) {
+			$('.remove-instructor').hide();
+		}
 
 		setDefaultHint();
 		$('#repeats').on('change', populateRepeatsEvery);
@@ -250,6 +253,9 @@ $(document).ready(
 					$('.instructor-list').find('.topicListRow.selected').each(
 						function () {
 							ids.push($(this).data('id'));
+							if (!($(this).data('id'))) {
+								$(this).remove();
+							}
 						}
 					);
 
@@ -270,7 +276,7 @@ $(document).ready(
 							}
 
 							if (!$('.instructor-list').find('tbody tr').length) {
-								$('.remove-instructor').remove();
+								$('.remove-instructor').hide();
 							}
 						}
 					});
@@ -369,7 +375,7 @@ $(document).ready(
 				row += '    <td><input type="text" name="officeHours[]" value="" id="officeHours" class="office_hours" /></td>';
 				row += '    <td><input type="text" name="webPage[]" value="" id="webPage" class="web_page" /></td>';
 				row += '<td>';
-				row += '    <select name="role[]" id="role" class="role">';
+				row += '    <select name="role[]" id="role" class="role custom-dropdown">';
 				row += '        <option value="">Select Role</option>';
 				row += '        <option>Assistant Professor</option>';
 				row += '        <option>Associate Professor</option>';
@@ -383,6 +389,7 @@ $(document).ready(
 				row += '</tr>';
 
 				$('#topicList tbody').append(row);
+				$('.remove-instructor').show();
 				return false;
 			}
 		);

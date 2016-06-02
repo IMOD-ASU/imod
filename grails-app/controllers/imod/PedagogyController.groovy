@@ -128,60 +128,90 @@ class PedagogyController {
 		def selectedKnowledgeDimensions = []
 		def selectedDomainCategories = []
 		def selectedLearningDomains = []
+		def allLearningDomains = []
 
 		for (def knowledgeDimension in data.selectedKnowledgeDimensions) {
 			selectedKnowledgeDimensions.add(knowledgeDimension.toLong())
 		}
+
 		for (def domainCategory in data.selectedDomainCategories) {
 			selectedDomainCategories.add(domainCategory.toLong())
 		}
+
 		for (def learningDomain in data.selectedLearningDomains) {
 			selectedLearningDomains.add(learningDomain.toLong())
 		}
 
+		LearningDomain.list().each {
+			allLearningDomains.add(it.id)
+		}
+
 		def currentUser = ImodUser.findById(springSecurityService.currentUser.id)
 
-		// find all technique where both the knowledge dimension and the domain category match
-		def idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
-			and {
-				or {
-					eq('isAdmin', true)
-					users {
-						eq('id', currentUser.id)
+		def idealPedagogyTechniqueMatch
+
+		if (selectedKnowledgeDimensions.size() && selectedDomainCategories.size() && selectedLearningDomains.size()) {
+			// find all technique where both the knowledge dimension and the domain category match
+			idealPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
+				and {
+					or {
+						eq('isAdmin', true)
+						users {
+							eq('id', currentUser.id)
+						}
 					}
-				}
-				knowledgeDimension {
-					'in' ('id', selectedKnowledgeDimensions)
-				}
-				domainCategory {
-					'in' ('id', selectedDomainCategories)
-				}
-				or {
+					knowledgeDimension {
+						'in' ('id', selectedKnowledgeDimensions)
+					}
+					domainCategory {
+						'in' ('id', selectedDomainCategories)
+					}
 					learningDomain {
 						'in' ('id', selectedLearningDomains)
 					}
 				}
+				resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 			}
-			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+		} else {
+			idealPedagogyTechniqueMatch = []
 		}
 
-		// find all technique that are not ideal, but have the learning domain
-		def extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
-			and {
-				or {
-					eq('isAdmin', true)
-					users {
-						eq('id', currentUser.id)
+		def extendedPedagogyTechniqueMatch
+
+		if (selectedLearningDomains.size()) {
+			// find all technique that are not ideal, but have the learning domain
+			extendedPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
+				and {
+					or {
+						eq('isAdmin', true)
+						users {
+							eq('id', currentUser.id)
+						}
+					}
+					learningDomain {
+						'in' ('id', selectedLearningDomains)
 					}
 				}
-				learningDomain {
-					'in' ('id', selectedLearningDomains)
+				resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+			}
+		} else {
+			extendedPedagogyTechniqueMatch = []
+		}
+
+		extendedPedagogyTechniqueMatch = (idealPedagogyTechniqueMatch + extendedPedagogyTechniqueMatch) - extendedPedagogyTechniqueMatch.intersect(idealPedagogyTechniqueMatch)
+
+		def userPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
+			and {
+				users {
+					eq('id', currentUser.id)
 				}
+				learningDomain {
+					'in' ('id', allLearningDomains)
+				}
+
 			}
 			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
 		}
-		extendedPedagogyTechniqueMatch = (idealPedagogyTechniqueMatch + extendedPedagogyTechniqueMatch) - extendedPedagogyTechniqueMatch.intersect(idealPedagogyTechniqueMatch)
-
 		final favoriteTechniques = currentUser.favoriteTechnique.id
 		def stringfavoriteTechniques = []
 		// Convert int to string
@@ -207,6 +237,7 @@ class PedagogyController {
 			[
 				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch,
 				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch,
+				userTechniques: userPedagogyTechniqueMatch,
 				favoriteTechniques: stringfavoriteTechniques,
 				LOPedagogyTechniques: stringLOPedagogyTechniques
 			] as JSON
@@ -265,6 +296,7 @@ class PedagogyController {
 		def idealPedagogyTechniqueMatch = []
 		final data = request.JSON
 		def selectedLearningDomains = []
+		def allLearningDomains =[(94).toLong(), (95).toLong(), (96).toLong()]
 
 		for (def learningDomain in data.selectedLearningDomains) {
 			selectedLearningDomains.add(learningDomain.toLong())
@@ -288,6 +320,18 @@ class PedagogyController {
 		}
 		extendedPedagogyTechniqueMatch = (idealPedagogyTechniqueMatch + extendedPedagogyTechniqueMatch) - extendedPedagogyTechniqueMatch.intersect(idealPedagogyTechniqueMatch)
 
+		def userPedagogyTechniqueMatch = PedagogyTechnique.withCriteria {
+			and {
+					users {
+						eq('id', currentUser.id)
+					}
+				learningDomain {
+					'in' ('id', allLearningDomains)
+				}
+
+			}
+			resultTransformer org.hibernate.Criteria.DISTINCT_ROOT_ENTITY
+		}
 		final favoriteTechniques = currentUser.favoriteTechnique.id
 		def stringfavoriteTechniques = []
 		// Convert int to string
@@ -310,6 +354,7 @@ class PedagogyController {
 			[
 				idealPedagogyTechniqueMatch: idealPedagogyTechniqueMatch,
 				extendedPedagogyTechniqueMatch: extendedPedagogyTechniqueMatch,
+				userTechniques: userPedagogyTechniqueMatch,
 				favoriteTechniques: stringfavoriteTechniques,
 				LOPedagogyTechniques: stringLOPedagogyTechniques
 			] as JSON

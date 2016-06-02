@@ -315,4 +315,14 @@ class AssessmentTechniqueController {
 			] as JSON
 		)
 	}
+
+	def getAssignedAssessmtTechCount(Long id) {
+		def currentLearningObjective = LearningObjective.findById(id.toLong())
+		def size = currentLearningObjective.getAssessmentTechniques().size()
+		render([
+		        count: size
+		] as JSON
+		)
+	}
+
 }
