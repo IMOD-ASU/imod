@@ -2,6 +2,8 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 // var isTopLeftClicked = 1;
 // var isTopRightClicked = 1;
 var oldView = 'month';
+var profileVal = 0;
+var profileBuffer = 100;
 
 /* Purpose: Javascript Logic for the Schedule View in IMODS.
 *
@@ -13,14 +15,163 @@ var oldView = 'month';
 /*
 Chart.js code over here
 */
+
+function calculateLO (learningObjectives) {
+	'use strict';
+	var count = learningObjectives.length;
+	var loPercent = 0;
+
+	if (count > 2) {
+		loPercent = 100;
+	}
+	return loPercent;
+}
+
+function calculateContent (contents) {
+	'use strict';
+	var count = contents.length;
+	var contentPercent = 0;
+
+	if (count === 0) {
+		contentPercent = 0;
+	} else if (count < 5) {
+		contentPercent = 80;
+	} else {
+		contentPercent = 100;
+	}
+	return contentPercent;
+}
+
+function getAssignedTechniqueCount (lo) {
+	'use strict';
+	return $.ajax({
+		url: baseUrl + 'assessmentTechnique/getAssignedAssessmtTechCount',
+		type: 'GET',
+		dataType: 'json',
+		async: false,
+		data: {
+			id: lo.id
+		}
+	});
+}
+
+function getAssignedPedTechniqueCount (lo) {
+	'use strict';
+	return $.ajax({
+		url: baseUrl + 'pedagogyTechnique/getAssignedPedTechCount',
+		type: 'GET',
+		dataType: 'json',
+		async: false,
+		data: {
+			id: lo.id
+		}
+	});
+}
+
+function calculateAssignedTechCount (loList) {
+	'use strict';
+	var count = 0;
+
+	$.each(loList, function (index, value) {
+		count += getAssignedTechniqueCount(value).responseJSON.count;
+	});
+	return count;
+}
+
+function calculateAssignedPedTechCount (loList) {
+	'use strict';
+	var count = 0;
+
+	$.each(loList, function (index, value) {
+		count += getAssignedPedTechniqueCount(value).responseJSON.count;
+	});
+	return count;
+}
+
+function calculateAsst (assessmentTech, lolist) {
+	'use strict';
+	var asstPercent = 0;
+	var count = calculateAssignedTechCount(lolist);
+
+	if (count > 6) {
+		asstPercent = 100;
+	}
+	return asstPercent;
+}
+
+function calculatePed (pedagogyTech, lolist) {
+	'use strict';
+	var pedPercent = 0;
+	var count = calculateAssignedPedTechCount(lolist);
+
+	if (count > 6) {
+		pedPercent = 100;
+	}
+	return pedPercent;
+}
+
+function calculatePercentage (response) {
+	'use strict';
+	var data = response;
+	var currentImod = data.currentImod;
+	var user = data.user;
+	var coPercent = 0;
+	var instrPercent = 0;
+	var loPercent = 0;
+	var contentPercent = 0;
+	var asstPercent = 0;
+	var pedPercent = 0;
+	var checkId = localStorage.getItem('checkId');
+
+	if (checkId === 'new') {
+		coPercent = 0;
+		// return profileVal;
+	} else {
+		coPercent = 15;
+		if (currentImod.instructors.length > 0) {
+			instrPercent = 5;
+		}
+
+		if (currentImod.learningObjectives.length > 2) {
+			profileBuffer -= 20;
+		} else {
+			profileBuffer = currentImod.learningObjectives.length * 40;
+		}
+		loPercent = calculateLO(currentImod.learningObjectives);
+		contentPercent = calculateContent(currentImod.contents);
+		asstPercent = calculateAsst(user.assessmentTechnique, currentImod.learningObjectives);
+		pedPercent = calculatePed(user.pedagogyTechnique, currentImod.learningObjectives);
+	}
+
+	profileVal += coPercent + instrPercent + Math.round((loPercent + contentPercent + asstPercent + pedPercent) / 400 * profileBuffer);
+
+	return profileVal;
+}
+
+function evaluateProfile () {
+	'use strict';
+	var progressbar = $('#progressbar');
+	var checkId = localStorage.getItem('checkId');
+	var profileValue = 0;
+
+	$.ajax({
+		url: baseUrl + 'imod/getCurrentImod',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			id: checkId
+		},
+		success: function (response) {
+			profileValue = calculatePercentage(response);
+			progressbar.progressbar('value', profileValue);
+		}
+	});
+}
+
 window.onload = function () {
 	'use strict';
+	evaluateProfile();
 };
-
-$(document).ready(function () {
-	'use strict';
-});
-
 
 $(document).ready(function () {
 	'use strict';

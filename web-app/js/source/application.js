@@ -18,7 +18,7 @@ $(document).ready(function () {
 			// var selector = '#' + this.id + ' > div';
 			var value = this.getAttribute('aria-valuenow');
 
-			progressLabel.text('Profile Completion .......' + progressbar.progressbar('value') + '%');
+			progressLabel.text('Course Design Completion .......' + progressbar.progressbar('value') + '%');
 
 			if (value < 15) {
 				$('.ui-widget-header').css({background: '#B71C1C'});
@@ -33,7 +33,7 @@ $(document).ready(function () {
 			}
 		},
 		complete: function () {
-			progressLabel.text('Profile Complete !!');
+			progressLabel.text('Course Design Complete !!');
 			progressLabel.css({left: '35%'});
 			$('.ui-widget-header').css({background: '#4CAF50'});
 		}
@@ -216,23 +216,69 @@ function calculateContent (contents) {
 	return contentPercent;
 }
 
-function calculateAsst (assessmentTech) {
+function getAssignedTechniqueCount (lo) {
 	'use strict';
-	var count = assessmentTech.length;
-	var asstPercent = 0;
+	return $.ajax({
+		url: baseUrl + 'assessmentTechnique/getAssignedAssessmtTechCount',
+		type: 'GET',
+		dataType: 'json',
+		async: false,
+		data: {
+			id: lo.id
+		}
+	});
+}
 
-	if (count > 0) {
+function getAssignedPedTechniqueCount (lo) {
+	'use strict';
+	return $.ajax({
+		url: baseUrl + 'pedagogyTechnique/getAssignedPedTechCount',
+		type: 'GET',
+		dataType: 'json',
+		async: false,
+		data: {
+			id: lo.id
+		}
+	});
+}
+
+function calculateAssignedTechCount (loList) {
+	'use strict';
+	var count = 0;
+
+	$.each(loList, function (index, value) {
+		count += getAssignedTechniqueCount(value).responseJSON.count;
+	});
+	return count;
+}
+
+function calculateAssignedPedTechCount (loList) {
+	'use strict';
+	var count = 0;
+
+	$.each(loList, function (index, value) {
+		count += getAssignedPedTechniqueCount(value).responseJSON.count;
+	});
+	return count;
+}
+
+function calculateAsst (assessmentTech, lolist) {
+	'use strict';
+	var asstPercent = 0;
+	var count = calculateAssignedTechCount(lolist);
+
+	if (count > 6) {
 		asstPercent = 100;
 	}
 	return asstPercent;
 }
 
-function calculatePed (pedagogyTech) {
+function calculatePed (pedagogyTech, lolist) {
 	'use strict';
-	var count = pedagogyTech.length;
 	var pedPercent = 0;
+	var count = calculateAssignedPedTechCount(lolist);
 
-	if (count > 0) {
+	if (count > 6) {
 		pedPercent = 100;
 	}
 	return pedPercent;
@@ -251,9 +297,8 @@ function calculatePercentage (response) {
 	var pedPercent = 0;
 	var checkId = localStorage.getItem('checkId');
 
-
 	if (checkId === 'new') {
-		coPercent = 2;
+		coPercent = 0;
 		// return profileVal;
 	} else {
 		coPercent = 15;
@@ -268,8 +313,8 @@ function calculatePercentage (response) {
 		}
 		loPercent = calculateLO(currentImod.learningObjectives);
 		contentPercent = calculateContent(currentImod.contents);
-		asstPercent = calculateAsst(user.assessmentTechnique);
-		pedPercent = calculatePed(user.pedagogyTechnique);
+		asstPercent = calculateAsst(user.assessmentTechnique, currentImod.learningObjectives);
+		pedPercent = calculatePed(user.pedagogyTechnique, currentImod.learningObjectives);
 	}
 
 	profileVal += coPercent + instrPercent + Math.round((loPercent + contentPercent + asstPercent + pedPercent) / 400 * profileBuffer);
