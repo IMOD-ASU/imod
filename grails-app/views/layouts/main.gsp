@@ -51,7 +51,7 @@ this is the basic layout with only the IMOD header and footer
 
 		<!-- plugins to javascript libraries -->
 		<g:external dir="bower_components/qtip2" file="jquery.qtip.min.js" />
-		<g:external dir="bower_components/Chart.js" file="Chart.js" />
+		<g:external dir="bower_components/chart.js" file="Chart.js" />
 		<g:external dir="bower_components/jstree/dist" file="jstree.min.js" />
 		<g:external dir="bower_components/jquery.validate/dist" file="jquery.validate.min.js" />
 		<g:external dir="bower_components/jquery.maskedinput/dist" file="jquery.maskedinput.min.js" />

@@ -579,7 +579,7 @@ function addTopic () {
 				'<td class="saveIcon">' +
 				'<i class="fa fa-square-o"></i>' +
 				'</td><td class="topicTitle">' +
-				'<input type="text" id="topicTitle' + id + '" autofocus> ' +
+				'<input type="text" class="newTopic" id="topicTitle' + id + '" autofocus> ' +
 				'<input type="hidden" id="topicTitleSaved' + id + '"> ' +
 				'<input type="hidden" value="' + tempID + '" id="topicTempID' + id + '"> ' +
 				'</td><td class="topicDimensions show-hover-new">' +
@@ -609,11 +609,13 @@ function addTopic () {
 				'</td>' +
 				'</tr>'
 			).appendTo(topicDiv);
-			$('#topicTitle' + id).focus();
+			// $('#topicTitle' + id).focus();
 			$('.tooltipsternew').tooltipster({
 				theme: 'tooltipster-noir',
 				position: 'bottom'
 			});
+			$('.newTopic').focus();
+			// $('#topicTitle' + id).focus();
 			$('.knowledgeDimensionButton').click(openDimModal);
 			$('.ResourceButton').click(openResourceModal);
 		}
@@ -856,6 +858,7 @@ $(
 		$('#addTopic').click(
 			function () {
 				addTopic();
+				// $('.newTopic').focus();
 			});
 		$('.saveTopic').click(
 			function () {

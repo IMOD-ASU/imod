@@ -235,4 +235,14 @@ class PedagogyTechniqueController {
 			] as JSON
 		)
 	}
+
+	def getAssignedPedTechCount(Long id) {
+		def currentLearningObjective = LearningObjective.findById(id.toLong())
+		def size = currentLearningObjective.getPedagogyTechniques().size()
+
+		render([
+			count: size
+		] as JSON
+		)
+	}
 }
