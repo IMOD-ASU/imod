@@ -244,6 +244,8 @@ $(document).ready(
 
 		$('#confirm-instructor-remove').dialog({
 			autoOpen: false,
+			modal: true,
+			dialogClass: 'flora',
 			buttons: {
 				yes: function () {
 					var ids = [];
@@ -286,6 +288,7 @@ $(document).ready(
 				}
 			}
 		});
+		$('.flora.ui-dialog').css({position: 'fixed'});
 
 		// Delete instructor logic
 		$('.delete-instructor').click(

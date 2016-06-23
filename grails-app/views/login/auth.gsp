@@ -41,7 +41,7 @@
 		</tr>
 		<tr>
 			<td colspan='2'>
-				<s2ui:linkButton elementId='register' controller='register' messageCode='spring.security.ui.login.register'/>
+				<s2ui:linkButton  elementId='register' controller='register' messageCode='spring.security.ui.login.register'/>
 				<s2ui:submitButton elementId='loginButton' form='loginForm' messageCode='spring.security.ui.login.login'/>
 			</td>
 		</tr>
@@ -67,6 +67,11 @@
 <script>
 $(document).ready(function() {
 	$('#username').focus();
+	$('#loginButton').css("background","#2b3856");
+	$('#loginButton').css("color","white");
+	$('#register').css("background","#2b3856");
+	$('#register').css("color","white");
+
 });
 
 <s2ui:initCheckboxes/>
