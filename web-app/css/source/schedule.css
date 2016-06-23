@@ -82,7 +82,7 @@
 }
 
 .learning-objective.list-wrapper {
-    overflow-x: hidden;
+    overflow-x: auto;
     overflow-y: auto;
 
     max-height: 300px !important;
@@ -155,9 +155,9 @@
 }
 #add-new-technique {
     position: absolute !important;
-    z-index: 2;
+    z-index: 10;
     top: -124px;
-    left: 50%;
+    left: 40%;
 
     display: none;
 
@@ -283,6 +283,7 @@
     margin: 10px;
 
     border-top: 1px solid #aaaaaa;
+	height:auto !important
 }
 
 #ideal-matches1 {
@@ -413,9 +414,9 @@ label.assessment-block {
     margin: 0 auto;
 }
 
-.learning-objective.definition-cell {
-    height: 5em;
-    min-height: 2em;
+.learning-objective .definition-cell {
+    height: auto !important;
+
     padding-right: 0;
 
     text-align: center;
@@ -493,4 +494,32 @@ label.assessment-block {
 .ui-slider-horizontal .ui-slider-handle {
 	top: -.9em;
     margin-left: -.6em;
+}
+
+body{
+	background: #e6e6e6;
+}
+
+.container{
+	width:800px !important;
+	height:auto !important;
+}
+
+.schedule-table{
+	height:800px !important;
+}
+
+#editTitle{
+	padding-left: 10px;
+	font-weight: bolder;
+}
+
+.ui-tabs-nav{
+	background: transparent !important;
+	border: none !important;
+}
+
+#progressbar{
+	height:35.1875px !important;
+
 }

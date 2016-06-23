@@ -66,7 +66,7 @@
 
 </head>
 
-<body>
+<body >
 
 	<div class="modalBackgroundFavorites"></div>
 	<div class="favorites-modal draggable">
@@ -100,7 +100,7 @@
 
 
 	<!-- Adding the  table layout as in Learning objective page -->
-	<table class="learning-objective inner-table">
+	<table class="learning-objective inner-table schedule-table">
 		<tr>
 			<td>
 				<!-- left panel for the page -->
@@ -250,7 +250,7 @@
 	<div class="draggable" id="add-new-technique">
 		<%--To render the add new Task dialog box--%>
 		<fieldset class="titleField draggable-handle">
-			<div id="editTitle" class="pedagogy-title">
+			<div id="editTitle" class="pedagogy-title" >
 				<b> Add New Event</b>
 			</div>
 			<span id="errorMessage" class="red"></span>
@@ -371,7 +371,7 @@
 	-->
 
 
-	<div class="container">
+	<div class="container"  >
 		<div class="row">
 			<div class="col-xs-12">
 				<h1></h1>
@@ -446,16 +446,16 @@
 	-->
 
 
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<h1></h1>
-				<br />
-				<div id="scheduleCalendar"></div>
-			</div>
-		</div>
-	</div>
-    <br>
+	%{--<div class="container">--}%
+		%{--<div class="row">--}%
+			%{--<div class="col-xs-12">--}%
+				%{--<h1></h1>--}%
+				%{--<br />--}%
+				%{--<div id="scheduleCalendar"></div>--}%
+			%{--</div>--}%
+		%{--</div>--}%
+	%{--</div>--}%
+    %{--<br>--}%
 
 <!-- is this even used? This is doubled for some reason -Wesley-->
 	<div id="taskContent" title="Task Details" style="display: none;">
@@ -466,7 +466,7 @@
 	</div>
 
 	<!-- The chart goes here <div id="chartContainer" type="hidden" style="height: 300px; width: 100%;display: none;"></div> -->
-	<div id="chartContainer"  style="height: 300px; width: 100%; visibility:hidden;"></div>
+	<div id="chartContainer"  style="height: 300px; width: 100%; display:none;"></div>
 
 	<!--
 	List out the imods course info dates (demo getting data from the controller file)
