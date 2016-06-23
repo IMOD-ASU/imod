@@ -244,14 +244,8 @@ $(document).ready(
 
 		$('#confirm-instructor-remove').dialog({
 			autoOpen: false,
-			modal:true,
-			//resizable:true,
-			//	open: function(event, ui) {
-			//		$(event.target).dialog('widget')
-			//			.css({ position: 'fixed' })
-			//			.position({ my: 'center', at: 'center', of: window });
-			//	},
-			dialogClass: "flora",
+			modal: true,
+			dialogClass: 'flora',
 			buttons: {
 				yes: function () {
 					var ids = [];
@@ -294,7 +288,7 @@ $(document).ready(
 				}
 			}
 		});
-		$('.flora.ui-dialog').css({position:"fixed"});
+		$('.flora.ui-dialog').css({position: 'fixed'});
 
 		// Delete instructor logic
 		$('.delete-instructor').click(
@@ -311,9 +305,6 @@ $(document).ready(
 					$('#please-select-instructor').dialog('open');
 					return false;
 				}
-
-				//$('#confirm-instructor-remove').css("position","relative");
-				//$('#confirm-instructor-remove').css("top","300px");
 
 				$('#confirm-instructor-remove').dialog('open');
 
