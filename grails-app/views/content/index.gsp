@@ -103,7 +103,7 @@
 				id="removeTopic"
 				title="${message(code: 'imod.content.remove')}"
 				value="${message(code: 'Remove Topic', default: 'Remove Topic')}"
-				onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
+				%{--onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">--}%
 				<i class="fa fa-minus-circle red"></i>
 				${message(code: 'Remove Topic', default: 'Remove Topic')}
 			</button>
@@ -411,5 +411,23 @@
 </g:if>
 <input type="hidden" id="treeData" value="${contentList}">
 <input type="hidden" id="resourceDataStore" >
+
+<div  class="tooltipster" id="please-select-topic" title="Please Select Topic">
+	<p>
+		Please select a topic to delete.
+	</p>
+</div>
+
+<div class="tooltipster" id="confirm-topic-remove" title="Confirm">
+	<p>
+		Are you sure you want to delete topic?
+	</p>
+</div>
+
+<div class="tooltipster" id="topic-removed-success" title="Success">
+	<p>
+		Topics removed successfully.
+	</p>
+</div>
 </body>
 </html>
