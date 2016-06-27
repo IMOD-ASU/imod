@@ -912,7 +912,6 @@ $(
 		);
 		$('#removeTopic').click(
 			function () {
-
 				var contentIDs = [];
 
 				$('#topicList .selected').each(
@@ -956,8 +955,6 @@ $(
 
 					$(this).dialog('close');
 
-					var contentIDs = [];
-
 					$('#topicList .selected').each(
 						function () {
 							window.cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
@@ -973,10 +970,8 @@ $(
 					if (contentIDs.length > 0) {
 						deleteTopic(contentIDs);
 					}
-
 				},
 				no: function () {
-
 					$(this).dialog('close');
 					location.reload();
 				}
