@@ -395,6 +395,7 @@ function deleteTopic (contentIDs) {
 			);
 			window.cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
 			location.reload();
+			$('#topic-removed-success').dialog('open');
 		}
 	});
 }
@@ -911,6 +912,7 @@ $(
 		);
 		$('#removeTopic').click(
 			function () {
+
 				var contentIDs = [];
 
 				$('#topicList .selected').each(
@@ -924,11 +926,63 @@ $(
 						}
 					}
 				);
-				if (contentIDs.length > 0) {
-					deleteTopic(contentIDs);
+
+				if (contentIDs.length < 1) {
+					$('#please-select-topic').dialog('open');
+					return false;
 				}
+
+				$('#confirm-topic-remove').dialog('open');
+
+				return false;
 			}
 		);
+
+		$('#please-select-topic').dialog({
+			autoOpen: false
+		});
+
+		$('#topic-removed-success').dialog({
+			autoOpen: false
+		});
+
+		$('#confirm-topic-remove').dialog({
+			autoOpen: false,
+			modal: true,
+			dialogClass: 'flora',
+			buttons: {
+				yes: function () {
+					var contentIDs = [];
+
+					$(this).dialog('close');
+
+					var contentIDs = [];
+
+					$('#topicList .selected').each(
+						function () {
+							window.cleanForm = $('form, #contentTable').find('select, textarea, input').serialize();
+
+							if (typeof $('#topicTempID' + this.id).val() === 'undefined') {
+								$(this).remove();
+							} else {
+								contentIDs.push(this.id);
+							}
+						}
+					);
+
+					if (contentIDs.length > 0) {
+						deleteTopic(contentIDs);
+					}
+
+				},
+				no: function () {
+
+					$(this).dialog('close');
+					location.reload();
+				}
+			}
+		});
+		$('.flora.ui-dialog').css({position: 'fixed'});
 
 		$('#topicList').on(
 			'click',

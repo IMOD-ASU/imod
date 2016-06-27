@@ -66,11 +66,20 @@
 
 <script>
 $(document).ready(function() {
+	$('body').css("font-family","Ubuntu");
+	$('body').css("font-weight","boldest");
+	$('h1').css("font-size","20px");
 	$('#username').focus();
-	$('#loginButton').css("background","#2b3856");
+	$('#loginButton').css("background","#0a1629");
 	$('#loginButton').css("color","white");
-	$('#register').css("background","#2b3856");
+	$('#loginButton').css("font-family","Ubuntu");
+	$('#loginButton').css("font-weight","bolder");
+	$('#register').css("background","#0a1629");
 	$('#register').css("color","white");
+	$('#register').css("font-family","Ubuntu");
+	$('#register').css("font-weight","bolder");
+	$('h1').css("color","#0a1629");
+	$('td').css("font-size","15px");
 
 });
 
