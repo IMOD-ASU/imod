@@ -25,7 +25,7 @@
 			<div id="help-placeholder">
 				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
 				<span id="qtip-heading">
-					Quick tip
+					Info
 				</Span>
 				<a id="open-button">
 					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_active.png')}" alt=""/>

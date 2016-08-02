@@ -5,10 +5,20 @@ input[disabled='disabled'] {
 /* Styling for the action words */
 .ui-state-default,
 .ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default {
+.ui-widget-header .ui-state-default
+{
     margin: 10px;
 }
 
+/*.ui-widget-content,*/
+/*.ui-widget-header  {*/
+	/*margin: 10px ;*/
+/*}*/
+
+#help-video{
+	top:-60px ;
+	left:103% ;
+}
 /* learning objective left panel */
 .learning-objective.list-wrapper {
     overflow-x: hidden;

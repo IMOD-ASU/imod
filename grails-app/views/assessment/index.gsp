@@ -659,7 +659,11 @@
 
 			</div>
 		</div>
-
+	<div id="help-video">
+		<g:if test="${controllerName} == 'assessment'">
+			<iframe width="210" height="150" src="https://www.youtube.com/embed/yAF-FBlj974" frameborder="0" allowfullscreen></iframe>
+		</g:if>
+	</div>
 
 	</body>
 </html>

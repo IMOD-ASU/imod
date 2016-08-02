@@ -126,3 +126,8 @@
 .paddingFix {
     height: 70px;
 }
+
+#help-video{
+	top:-5px !important;
+	left:102% !important;
+}

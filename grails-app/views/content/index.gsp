@@ -412,7 +412,7 @@
 <input type="hidden" id="treeData" value="${contentList}">
 <input type="hidden" id="resourceDataStore" >
 
-<div  class="tooltipster" id="please-select-topic" title="Please Select Topic">
+<div  class="tooltipsters" id="please-select-topic" title="Please Select Topic">
 	<p>
 		Please select a topic to delete.
 	</p>
@@ -428,6 +428,11 @@
 	<p>
 		Topics removed successfully.
 	</p>
+</div>
+<div id="help-video">
+	<g:if test="${controllerName} == 'content'">
+		<iframe width="210" height="150" src="https://www.youtube.com/embed/sMbsB4BRlqQ" frameborder="0" allowfullscreen></iframe>
+	</g:if>
 </div>
 </body>
 </html>

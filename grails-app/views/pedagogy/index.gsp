@@ -527,5 +527,10 @@
 
 	</div>
 </div>
+	<div id="help-video">
+		<g:if test="${controllerName} == 'pedagogy'">
+			<iframe width="210" height="150" src="https://youtube.com/embed/_zWsY_kzPs4" frameborder="0" allowfullscreen></iframe>
+		</g:if>
+	</div>
 	</body>
 </html>
