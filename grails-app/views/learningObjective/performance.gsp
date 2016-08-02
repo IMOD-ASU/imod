@@ -31,8 +31,8 @@
 			</label>
 			&nbsp;
 			<g:select name="LDL" id="learning-domain-list" class="custom-dropdown tooltipsterForm" from="${domainList?.name}"
-			noSelection="${['null':'-- Select --']}" value="${selectedDomain?.name?:""}"
-			title="${selectedDomain?.name? message( code:'imod.learningObjective.learningDomain.'+selectedDomain.name) :message( code:'imod.learningObjective.learningDomain' )}"/>
+			noSelection="${['null':'-- Select --']}" optionKey ="" value="${selectedDomain?.name?:""}"
+					  title="${selectedDomain?.name? message( code:'imod.learningObjective.learningDomain.'+selectedDomain.name) :message( code:'imod.learningObjective.learningDomain' )}"/>
 			<br/>
 			<div style="height:5px"></div>
 			<label for="domain-category-list" class="domain-category-list tooltipsterForm" title="${Help.toolTip('LEARNINGOBJECTIVE', 'Learning Category')}">
@@ -75,5 +75,11 @@
                 Please select an action word or select --Other-- field at the end of list
             </p>
         </div>
+	<div id="help-video">
+		<g:if test="${controllerName} == 'learningObjective'">
+			<iframe width="210" height="150" src="https://www.youtube.com/embed/n2jexD4ME-g" frameborder="0" allowfullscreen></iframe>
+		</g:if>
+	</div>
 	</body>
+
 </html>

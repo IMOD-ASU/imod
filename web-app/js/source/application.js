@@ -59,71 +59,7 @@ $(document).ready(function () {
 		heightStyle: 'content',
 		collapsible: true
 	});
-	$('#help-placeholder-2').css('display', 'none');
-	$('.show-hover-new').qtip({
-		style: {
-			background: 'transparent',
-			border: 'none',
-			color: 'black'
-		},
-		show: 'mouseover',
-		hide: 'mouseout',
-		position: {
-			type: 'static',
-			container: $('div#qtip-place')
-		}
-	});
 
-	$('*').focus(
-		function () {
-			$('#qtip-place').html(document.activeElement.title);
-		}
-	);
-
-	$('input[type="submit"]').hover(
-		function () {
-			$('#qtip-place').html($(this).attr('oldtitle'));
-		},
-		function () {
-			$('#qtip-place').html('');
-		}
-	);
-	$('.topicButton').hover(
-		function () {
-			$('#qtip-place').html($(this).attr('oldtitle'));
-		},
-		function () {
-			$('#qtip-place').html('');
-		}
-	);
-	$('.knowledgeDimensionButton').hover(
-		function () {
-			$('#qtip-place').html($(this).attr('oldtitle'));
-		},
-		function () {
-			$('#qtip-place').html('');
-		}
-	);
-
-	$('input[type="checkbox"], input[type="radio"], .knowledgeDimensionButton,.ResourceButton,.priority').hover(
-		function () {
-			$('#qtip-place').html($(this).attr('title'));
-		},
-		function () {
-			$('#qtip-place').html('');
-		}
-	);
-
-	$('.topicModalButton').hover(
-		function () {
-			$('#help-placeholder').css('height', '15em');
-			$('#qtip-place').html($(this).attr('title'));
-		},
-		function () {
-			$('#help-placeholder').css('height', '10em');
-			$('#qtip-place').html('');
-		}
-	);
 	// Make modals draggable
 	$('.draggable').draggabilly({
 		handle: '.draggable-handle'

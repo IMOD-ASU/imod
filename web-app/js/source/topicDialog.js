@@ -930,15 +930,22 @@ $(
 					$('#please-select-topic').dialog('open');
 					return false;
 				}
-
 				$('#confirm-topic-remove').dialog('open');
-
 				return false;
 			}
 		);
 
 		$('#please-select-topic').dialog({
-			autoOpen: false
+			autoOpen: false,
+			closeOnEscape: false,
+			open: function (event, ui) {
+				$('.ui-dialog-titlebar-close', ui.dialog | ui).hide();
+			},
+			buttons: {
+				OK: function () {
+					$(this).dialog('close');
+				}
+			}
 		});
 
 		$('#topic-removed-success').dialog({

@@ -216,7 +216,7 @@
 						</button>
 					</span>
 
-	<!--
+
 					<span id="favorites-button" class="topicButtonGradient">
 						<button>
 							<i class="fa fa-times"></i>
@@ -230,7 +230,7 @@
 							Edit Event
 						</button>
 					</span>
--->
+
 
 					<!--
 					<span id="favorites-button" class="topicButtonGradient">
@@ -466,7 +466,7 @@
 	</div>
 
 	<!-- The chart goes here <div id="chartContainer" type="hidden" style="height: 300px; width: 100%;display: none;"></div> -->
-	<div id="chartContainer"  style="height: 300px; width: 100%; display:none;"></div>
+	<div id="chartContainer"  style="height: 300px; width: 100%; display:block;"></div>
 
 	<!--
 	List out the imods course info dates (demo getting data from the controller file)

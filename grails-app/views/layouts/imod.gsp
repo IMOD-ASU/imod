@@ -24,23 +24,45 @@
 
 		<body>
 			<div id="help-placeholder">
-				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
-				<span id="qtip-heading">
-					Quick tip
-				</Span>
-				<a id="open-button">
-					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_active.png')}" alt=""/>
-				</a>
-				<div id="qtip-place" style="">
-				</div>
+				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'i.png')}" style="background:lightyellow" alt=""/>
+				<span id="qtip-heading" style="color:white">
+					Information
+				</span>
+				%{--<a id="open-button">--}%
+					%{--<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_active.png')}" alt=""/>--}%
+				%{--</a>--}%
+				<div id="qtip-place" style="overflow-y:auto; ">
+
+					<g:if test="${controllerName == 'courseOverview'}"><span>The user can enter information such as course title, number, URL, location, semester, schedule, prerequisites, policies, and instructors. </span></g:if>
+					<g:if test="${controllerName == 'learningObjective'}"><span>This allows users to create new learning objectives, view or edit existing objectives.<br><br> This tab has four sub-tabs:
+					<ol><li><b>Performance sub tab</b>: User enters the learning domain, domain category, action word category and action word of the learning objective</li><li><b>Condition tab</b>: provides a text area for user to enter the condition for a
+					learning objective or can choose one of the generic conditions provided</li><li><b>Content sub tab</b>: user can select an existing content topic or add new topics if it does not exist and then link to the learning objective. This tab allows arranging the content topics in a hierarchical ordering of topics and subtopics. </li><li><b>Criteria sub tab</b>: allows the user to select a criteria and criteria type (such as
+					accuracy, speed, quality or quantity). </li></ol><br>
+						Example:
+						Given a Software Requirements Specification (SRS) document of a Capstone project, students should be able to analyze the quality of the Software requirements in the
+						document with 95% accuracy.</span></g:if>
+					<g:if test="${controllerName == 'content'}">
+					<span style="">Content topics and subtopics for the course can be added through this tab. For each topic the knowledge dimension and topic priority is defined. This information is used to find assessments and instructional activities
+					that best fit for delivering a topic.<br><br>
+						The revised Bloom’s taxonomy introduced an additional dimension called the knowledge dimension that was categorized as follows:
+						<ol><li>Factual</li><li>Conceptual</li><li>Procedural</li><li>Metacognitive</li></ol><br>
+					The IMODS framework uses a prioritization framework that classifies topics and subtopics of a particular course as one of the following:
+					<ol><li>Critical</li><li>Important</li><li>Good to know</li></ol><br>
+						Achieving the right mix of the three levels of learning (priorities) is essential to planning a good course.</span>
+					</g:if>
+					<g:if test="${controllerName == 'assessment'}">Content area for information on assessment technique</g:if>
+					<g:if test="${controllerName == 'pedagogy'}">Content area for information on pedagogy technique</g:if>
+
+					</div>
 
 			</div>
-			<div id="help-placeholder-2">
-				<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>
-				<a id="open-button">
-					<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_inactive.png')}" alt=""/>
-				</a>
-			</div>
+			%{--<div id="help-placeholder-2">--}%
+				%{--<img id="resize-quicktip" src="${resource(dir: 'images', file: 'quick_tip.png')}" alt=""/>--}%
+				%{--<a id="open-button">--}%
+					%{--<img id="active-quicktip" src="${resource(dir: 'images', file: 'tip_inactive.png')}" alt=""/>--}%
+				%{--</a>--}%
+			%{--</div>--}%
+
 		<sec:ifLoggedIn>
 			<div id="progressbar"><div class="progress-label">Loading...</div></div>
 		</sec:ifLoggedIn>
