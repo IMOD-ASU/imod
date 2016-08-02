@@ -495,3 +495,8 @@ label.assessment-block {
 
     line-height: 28px;
 }
+
+#help-video{
+	top:-5px !important;
+	left:102% !important;
+}

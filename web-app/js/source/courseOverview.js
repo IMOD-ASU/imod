@@ -235,7 +235,12 @@ $(document).ready(
 		setDefaultHint();
 		$('#repeats').on('change', populateRepeatsEvery);
 		$('#please-select-instructor').dialog({
-			autoOpen: false
+			autoOpen: false,
+			buttons: {
+				OK: function () {
+					$(this).dialog('close');
+				}
+			}
 		});
 
 		$('#instructor-removed-success').dialog({

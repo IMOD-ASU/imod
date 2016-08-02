@@ -39,5 +39,10 @@
 			<g:checkBox class="tooltipsterForm" name="hideCondition" checked="${hideCondition}" id="hide-condition" title="${ message( code:'imod.learningObjective.hideFromObjective' ) }" disabled="${(learningObjectives) ? 'false' : 'true'}"/>
 			<span id="hide-text">Hide from Students</span>
 		</g:form>
+	<div id="help-video">
+		<g:if test="${controllerName} == 'learningObjective'">
+			<iframe width="210" height="150" src="https://www.youtube.com/embed/n2jexD4ME-g" frameborder="0" allowfullscreen></iframe>
+		</g:if>
+	</div>
 	</body>
 </html>

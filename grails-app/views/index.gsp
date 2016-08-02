@@ -26,6 +26,10 @@
 				framework and provides feedback to the user on their
 				course design.
 			</p>
+			<br/>
+			<br/>
+			<br/>
+			<div id="imod-video" style="left:18%;position: relative"><iframe width="560" height="315" src="https://www.youtube.com/embed/tDhuZpAyc0w" frameborder="0" allowfullscreen></iframe></div>
 		</div>
 	</body>
 </html>
