@@ -43,7 +43,7 @@ function populateActionWords (event) {
 			// Store the data from the call back
 			if (data.value !== null) {
 				if (data.value.verb && data.value.verb !== '') {
-					actionWordsVerb = data.value.verb.syn;
+					actionWordsVerb = data.value.verb.syn.sort();
 
 					// find british and english words for "ise" "ize"
 					for (index = 0; index < actionWordsVerb.length; index++) {
@@ -76,7 +76,7 @@ function populateActionWords (event) {
 				}
 
 				if (data.value.noun && data.value.noun !== '') {
-					actionWordsNoun = data.value.noun.syn;
+					actionWordsNoun = data.value.noun.syn.sort();
 					for (index = 0; index < actionWordsNoun.length; index++) {
 						// Create the html for the action word
 						if (actionWordsNoun[index] === originalActionWord) {
@@ -89,7 +89,7 @@ function populateActionWords (event) {
 				}
 
 				if (data.value.adjective && data.value.adjective !== '') {
-					actionWordsAdj = data.value.adjective.syn;
+					actionWordsAdj = data.value.adjective.syn.sort();
 					for (index = 0; index < actionWordsAdj.length; index++) {
 						// Create the html for the action word
 						if (actionWordsAdj[index] === originalActionWord) {

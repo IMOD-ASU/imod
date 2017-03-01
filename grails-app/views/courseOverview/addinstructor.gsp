@@ -53,7 +53,7 @@
 				<label for="location">
 					Location
 				</label>
-				<g:textField name="location" />
+				<g:textField name="location" style="width: 90%" />
 				<br />
 				<br />
 
