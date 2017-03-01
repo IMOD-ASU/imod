@@ -365,7 +365,7 @@ $(document).ready(
 			$('#class-participation').val('Students are expected to participate in the educational process and not be a disruptive element with regard to the learning of others.');
 			$('#professional-conduct').val('All students should be familiar with the Student Code of Conduct, which can be found at http://www.asu.edu/studentlife/judicial/.');
 			$('#missed-exams').val('The only legitimate reasons for missing an exam are business or university related travel or illness for more than half the assignment period with appropriate documentation. Contact your instructor to make appropriate arrangements.');
-			$('#missed-assignments').val('Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.');
+			$('#missed-assignments').val('Assignments should be turned in by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.');
 			return false;
 		});
 
@@ -517,7 +517,7 @@ $(document).ready(
 
 		$('#missed-assignments-box').click(
 			function () {
-				$('#missed-assignments').val('Assignments should be turned by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.');
+				$('#missed-assignments').val('Assignments should be turned in by the specified deadline. Late assignments will not be accepted unless prior arrangements have been made with the instructor.');
 				$('#missed-assignments-box').removeAttr('checked');
 				return false;
 			}

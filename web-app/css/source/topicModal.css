@@ -81,7 +81,7 @@
 #topicList input,
 #topicList select,
 #topicList button {
-    width: 95%;
+    width: 85%;
     height: inherit;
     min-height: inherit;
 }
