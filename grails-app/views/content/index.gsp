@@ -431,7 +431,7 @@
 </div>
 <div id="help-video">
 	<g:if test="${controllerName} == 'content'">
-		<iframe width="210" height="150" src="https://www.youtube.com/embed/sMbsB4BRlqQ" frameborder="0" allowfullscreen></iframe>
+		<iframe width="215" height="150" src="https://www.youtube.com/embed/sMbsB4BRlqQ" frameborder="0" allowfullscreen></iframe>
 	</g:if>
 </div>
 </body>

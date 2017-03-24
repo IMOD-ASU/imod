@@ -63,7 +63,7 @@
 		<canvas id="chart" style="display: none;"></canvas>
 	<div id="help-video">
 		<g:if test="${controllerName} == 'learningObjective'">
-			<iframe width="210" height="150" src="https://www.youtube.com/embed/n2jexD4ME-g" frameborder="0" allowfullscreen></iframe>
+			<iframe width="215" height="150" src="https://www.youtube.com/embed/n2jexD4ME-g" frameborder="0" allowfullscreen></iframe>
 		</g:if>
 	</div>
 	</body>
