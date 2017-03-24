@@ -17,7 +17,7 @@ input[disabled='disabled'] {
 
 #help-video{
 	top:-60px ;
-	left:103% ;
+	left:102.7% ;
 }
 /* learning objective left panel */
 .learning-objective.list-wrapper {
@@ -684,7 +684,7 @@ input[disabled='disabled'] {
 }
 #selectResource {
     position: fixed !important;
-    z-index: 4;
+    z-index: 18;
     top: 33%;
     left: 20%;
 

@@ -518,7 +518,7 @@
         </div>
 	<div id="help-video">
 		<g:if test="${controllerName} == 'courseOverview'">
-			<iframe width="210" height="150" src="https://www.youtube.com/embed/qmzwKDi28gE" frameborder="0" allowfullscreen></iframe>
+			<iframe width="215" height="150" src="https://www.youtube.com/embed/qmzwKDi28gE" frameborder="0" allowfullscreen></iframe>
 		</g:if>
 	</div>
     </body>
