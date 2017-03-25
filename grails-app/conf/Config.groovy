@@ -75,12 +75,12 @@ environments {
 	test {
 		grails.logging.jul.usebridge = true
 		grails.gorm.failOnError = true
-		grails.serverURL = 'https://imod.poly.asu.edu:8080/imod-test'
+		grails.serverURL = 'http://imod.poly.asu.edu:8080/imod-test'
 		grails.plugin.console.enabled = false
 	}
 	production {
 		grails.logging.jul.usebridge = false
-		grails.serverURL = 'https://imod.poly.asu.edu:8080/imod-demo'
+		grails.serverURL = 'http://imod.poly.asu.edu:8080/imod-demo'
 		grails.plugin.console.enabled = false
 	}
 }
