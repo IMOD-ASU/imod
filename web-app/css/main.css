@@ -1367,7 +1367,7 @@ a.ui-tabs-anchor {
     position: absolute;
     z-index: 10;
     top: 400px;
-    right: 22px;
+    left: 83.5%;
 	height:60%;
     width: 12em;
 	word-wrap: normal;
