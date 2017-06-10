@@ -203,7 +203,7 @@ function calculateAsst (assessmentTech, lolist) {
 	var asstPercent = 0;
 	var count = calculateAssignedTechCount(lolist);
 
-	if (count > 6) {
+	if (count > 0) {
 		asstPercent = 100;
 	}
 	return asstPercent;
@@ -214,7 +214,7 @@ function calculatePed (pedagogyTech, lolist) {
 	var pedPercent = 0;
 	var count = calculateAssignedPedTechCount(lolist);
 
-	if (count > 6) {
+	if (count > 0) {
 		pedPercent = 100;
 	}
 	return pedPercent;
