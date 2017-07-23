@@ -142,9 +142,9 @@ function calculateContent (contents) {
 	var count = contents.length;
 	var contentPercent = 0;
 
-	if (count === 0) {
+	if (count < 2) {
 		contentPercent = 0;
-	} else if (count < 5) {
+	} else if (count >= 2 && count <= 5) {
 		contentPercent = 80;
 	} else {
 		contentPercent = 100;
