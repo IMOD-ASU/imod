@@ -12,6 +12,8 @@ class ScheduleEvent {
 	String enviro
 	Double workTime
 	String notes
+	String activity
+
 
 	// relationship with learning objective
 	static belongsTo = [
@@ -31,12 +33,13 @@ class ScheduleEvent {
 		enviro	nullable: true
 		workTime	nullable: true
 		notes	nullable: true
+		activity nullable:true
     }
 
     static mapping = {
 	}
 
 	String toString() {
-		title + ' ' + startDate.toString() + ' ' + endDate.toString()  + ' ' + learnO + ' ' + knowD + ' ' + enviro + ' ' + workTime + ' ' + notes
+		title + ' ' + startDate.toString() + ' ' + endDate.toString()  + ' ' + learnO + ' ' + knowD + ' ' + enviro + ' ' + workTime + ' ' + notes + ' ' + activity
 	}
 }
