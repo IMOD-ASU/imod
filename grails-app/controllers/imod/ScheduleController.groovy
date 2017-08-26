@@ -49,6 +49,10 @@ class ScheduleController {
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
 		final content = currentImod?.contents
+		final activityTypes = ['Pedagogy', 'Assessment']
+		final taskEnvironment = ['In-class','Out-of-class']
+
+
 		def knowDimensionList = []
 		def dimension = []
 		if (content != null) {
@@ -101,6 +105,8 @@ class ScheduleController {
 			domainCategories: domainCategories,
 			knowledgeDimensions: knowledgeDimensions,
 			learningDomains: learningDomains,
+			activityTypes:activityTypes,
+			taskEnvironment:taskEnvironment,
 			assessmentFeedback: assessmentFeedback,
 			selectedDomain: selectedDomain,
 			selectedDomainCategory: selectedDomainCategory,
@@ -128,9 +134,17 @@ class ScheduleController {
 	 */
 	def addEvent() {
 
-		DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy HH:mm')
-		DateTime sDate = fmt.parseDateTime(params.startDate)
-		DateTime eDate = fmt.parseDateTime(params.endDate)
+		//DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy HH:mm')
+		DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy')
+
+		def stDate = params.startDate_month +"/"+ params.startDate_day +"/" +params.startDate_year
+		def enDate = params.endDate_month +"/"+ params.endDate_day +"/" +params.endDate_year
+
+		DateTime sDate = fmt.parseDateTime(stDate)
+		DateTime eDate = fmt.parseDateTime(enDate)
+
+		//DateTime sDate = fmt.parseDateTime(params.startDate)
+		//DateTime eDate = fmt.parseDateTime(params.endDate)
 
 		def title = params.title
 		def learningObjectiveID = params.lo.toLong()
@@ -142,6 +156,7 @@ class ScheduleController {
 		def enviro = params.enviro
 		def workTime = params.workTime
 		def notes = params.notes
+		def activity = params.type_of_activity_field
 
 		def event = new ScheduleEvent(
 			title: title,
