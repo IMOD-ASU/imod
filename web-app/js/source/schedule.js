@@ -250,7 +250,7 @@ $(document).ready(function () {
 	chart = new window.CanvasJS.Chart('chartContainer', {
 		colorSet: 'greenShades',
 		title: {
-			text: 'Division of out-of-class hours in Course'
+			text: 'Course Hours'
 		},
 		axisY: {
 			title: 'Percent of total credit hours (' + (assignA.hours + assignB.hours + assignC.hours) + ' out of ' + outClassHours + ') per week'
@@ -440,10 +440,13 @@ $(document).ready(function () {
 			// $('#taskLearnO').html(event.learnO);
 			$('#taskKnowD').html(event.knowD);
 			$('#taskEnviro').html(event.enviro);
-			$('#taskWorkTime').html(event.workTime);
+			$('#taskWorkTime').val(event.workTime);
 			$('#taskLink').attr('href', event.url);
-			$('#taskTime1').text(event.start);
-			$('#taskTime2').text(event.end);
+			$('#taskTitle').val(event.title);
+			$('#tasklearnO').val(event.learnO);
+			$('#taskKnowDimensions').val(event.knowD);
+			$('#taskEnvironment').val(event.enviro);
+			$('#taskActivityType').val(event.activity);
 			$('#taskID').val(event.id);
 			$('#taskContent').dialog({
 				modal: true,
@@ -496,6 +499,7 @@ $(document).ready(function () {
 							end: window.window.moment(obj.endDate, window.window.moment.ISO_8601),
 							learnO: obj.learnO,
 							knowD: obj.knowD,
+							activity: obj.activity,
 							enviro: obj.enviro,
 							workTime: obj.workTime,
 							description: obj.notes,
@@ -603,7 +607,11 @@ $('button[name=cancelButton]').click(function () {
 	return false;
 });
 
-
+$('button[name=cancelButton]').click(function () {
+	'use strict';
+	$('#edit-technique, #topicDialogBackground').hide();
+	return false;
+});
 /*
 ASSESSMENT.JS STARTS HERE
 */
@@ -633,6 +641,22 @@ function openNewAssessmentTechniqueModal () {
 	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
 	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
 	$('#add-new-technique').css('display', 'block');
+	$('#topicDialogBackground').css('display', 'block');
+}
+
+function editAssessmentTechniqueModal () {
+	'use strict';
+
+	// reset form on new modal open
+	$('#edit-technique').find('input:not(#lo, #imodId), select, textarea').val('');
+	$('#dimImageModal')
+		.prop('src', '../../images/content/knowDimNone.png')
+		.prop('title', '');
+
+	$('#techniqueId').val('');
+	$('#learningDomain option[value="null"]').attr('disabled', 'disabled');
+	$('#domainCategory option[value="null"]').attr('disabled', 'disabled');
+	$('#edit-technique').css('display', 'block');
 	$('#topicDialogBackground').css('display', 'block');
 }
 
@@ -1273,6 +1297,11 @@ $(document).ready(
 		// When add new technique button is clicked open modal
 		$('#add-new-technique-button').on('click', function () {
 			openNewAssessmentTechniqueModal();
+			$('.assessment-title').html('<strong>Add New Assessment Technique</strong>');
+		});
+
+		$('#edit-button').on('click', function () {
+			editAssessmentTechniqueModal();
 			$('.assessment-title').html('<strong>Add New Assessment Technique</strong>');
 		});
 
