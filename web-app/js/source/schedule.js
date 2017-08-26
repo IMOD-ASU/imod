@@ -447,15 +447,11 @@ $(document).ready(function () {
 			$('#taskKnowDimensions').val(event.knowD);
 			$('#taskEnvironment').val(event.enviro);
 			$('#taskActivityType').val(event.activity);
-			//$('#taskTime1').Date(event.startDate);
-			//$('#schedule-start-date').;
-			//$('#schedule-end-date').val(event.endDate);
 			$('#taskID').val(event.id);
 			$('#taskContent').dialog({
 				modal: true,
 				title: event.title
 			});
-			//$('.taskContent').css('display', 'block');
 			return false;
 		},
 		events: function (start, end, timezone, callback) {
