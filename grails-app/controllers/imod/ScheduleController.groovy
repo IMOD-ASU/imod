@@ -50,8 +50,7 @@ class ScheduleController {
 		final selectedDomain = selectedDomainCategory?.learningDomain
 		final content = currentImod?.contents
 		final activityTypes = ['Pedagogy', 'Assessment']
-		final taskEnvironment = ['In-class','Out-of-class']
-
+		final taskEnvironment = ['In-class', 'Out-of-class']
 
 		def knowDimensionList = []
 		def dimension = []
@@ -105,8 +104,8 @@ class ScheduleController {
 			domainCategories: domainCategories,
 			knowledgeDimensions: knowledgeDimensions,
 			learningDomains: learningDomains,
-			activityTypes:activityTypes,
-			taskEnvironment:taskEnvironment,
+			activityTypes: activityTypes,
+			taskEnvironment: taskEnvironment,
 			assessmentFeedback: assessmentFeedback,
 			selectedDomain: selectedDomain,
 			selectedDomainCategory: selectedDomainCategory,
@@ -137,8 +136,8 @@ class ScheduleController {
 		//DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy HH:mm')
 		DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy')
 
-		def stDate = params.startDate_month +'/'+ params.startDate_day +'/' +params.startDate_year
-		def enDate = params.endDate_month +'/'+ params.endDate_day +'/' +params.endDate_year
+		def stDate = params.startDate_month + '/' + params.startDate_day + '/' +params.startDate_year
+		def enDate = params.endDate_month + '/' + params.endDate_day + '/' +params.endDate_year
 
 		DateTime sDate = fmt.parseDateTime(stDate)
 		DateTime eDate = fmt.parseDateTime(enDate)
