@@ -136,8 +136,8 @@ class ScheduleController {
 		//DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy HH:mm')
 		DateTimeFormatter fmt = DateTimeFormat.forPattern('MM/dd/yyyy')
 
-		def stDate = params.startDate_month + '/' + params.startDate_day + '/' +params.startDate_year
-		def enDate = params.endDate_month + '/' + params.endDate_day + '/' +params.endDate_year
+		def stDate = params.startDate_month + '/' + params.startDate_day + '/' + params.startDate_year
+		def enDate = params.endDate_month + '/' + params.endDate_day + '/' + params.endDate_year
 
 		DateTime sDate = fmt.parseDateTime(stDate)
 		DateTime eDate = fmt.parseDateTime(enDate)

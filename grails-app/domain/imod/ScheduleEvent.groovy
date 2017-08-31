@@ -14,7 +14,6 @@ class ScheduleEvent {
 	String notes
 	String activity
 
-
 	// relationship with learning objective
 	static belongsTo = [
 		LearningObjective
@@ -33,7 +32,7 @@ class ScheduleEvent {
 		enviro	nullable: true
 		workTime	nullable: true
 		notes	nullable: true
-		activity nullable:true
+		activity nullable: true
     }
 
     static mapping = {
