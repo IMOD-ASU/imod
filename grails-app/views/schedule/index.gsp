@@ -250,7 +250,7 @@
 
 										<div class ="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
 
-											<g:select name = "learnO" id = "tasklearnO" class="add_activity_dropdown custom-dropdown" from="${learningDomains}" value="${}"/>
+											<g:select name = "learnO" id = "tasklearnO" class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
 
 										</div>
 
