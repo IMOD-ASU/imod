@@ -69,32 +69,34 @@
 <body >
 
 <div class="modalBackgroundFavorites"></div>
-<div class="favorites-modal draggable">
-	<fieldset class="titleField draggable-handle">
-		<div id="editTitle">
-			<b> Delete Events</b>
-		</div>
-		TO BE DONE.
-	</fieldset>
+%{--<div class="favorites-modal draggable">--}%
+	%{--<fieldset class="titleField draggable-handle">--}%
+		%{--<div id="editTitle">--}%
+			%{--<b> Delete Events</b>--}%
+		%{--</div>--}%
+		%{--TO BE DONE.--}%
+	%{--</fieldset>--}%
 
-</div>
-<div id="edit-imod" class="content scaffold-edit" role="main">
-	<g:if test="${flash.message}">
-		<div class="message" role="status">
-			${flash.message}
-		</div>
-	</g:if>
+%{--</div>--}%
 
-	<g:hasErrors bean="${currentImod}">
-		<ul class="errors" role="alert">
-			<g:eachError bean="${currentImod}" var="error">
-				<li>
-					<g:message error="${error}"/>
-				</li>
-			</g:eachError>
-		</ul>
-	</g:hasErrors>
-</div>
+
+%{--<div id="edit-imod" class="content scaffold-edit" role="main">--}%
+	%{--<g:if test="${flash.message}">--}%
+		%{--<div class="message" role="status">--}%
+			%{--${flash.message}--}%
+		%{--</div>--}%
+	%{--</g:if>--}%
+
+	%{--<g:hasErrors bean="${currentImod}">--}%
+		%{--<ul class="errors" role="alert">--}%
+			%{--<g:eachError bean="${currentImod}" var="error">--}%
+				%{--<li>--}%
+					%{--<g:message error="${error}"/>--}%
+				%{--</li>--}%
+			%{--</g:eachError>--}%
+		%{--</ul>--}%
+	%{--</g:hasErrors>--}%
+%{--</div>--}%
 
 <div id="topicDialogBackground" class="modalBackground"></div>
 
@@ -222,7 +224,8 @@
 			</div>
 
 
-			<div class="taskContent" title="Task Details" style="display: none;">
+			%{--<div class="draggable" id="edit-technique">--}%
+			<div id="taskContent" title="Task Details" style="display: none;">
 
 				<g:form controller="schedule" method="post" action="addEvent" class="no-warn-form">
 					<g:hiddenField name="imodId" value="${currentImod.id}" />
@@ -230,113 +233,81 @@
 					<fieldset id="courseoverview-form">
 						<table class="inner-table">
 							<tr>
-								<!-- <td class="course-overview-form-td"> -->
 								<td>
-									<!-- <div class="course-overview-form"> -->
 									<div>
-										<div class ="add_activity_text" >
-											<b> Course Title</b>
-
+										<div class ="add_activity_text"  >
+											<b> Activity Title</b>
 										</div>
-										<br>
 										<div>
-											<g:textField name="title" id = "taskTitle" class="add_activity_text" />
+											<g:textField name="title" class="add_activity_text" id = "taskTitle"/>
 										</div>
 										<br>
-										<!--  <div id="editTitle" class="pedagogy-title" > -->
-										<div  class ="add_activity_text" >
-											<b> Learning Objectives</b>
-										</div>
-
-										<div class ="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
-
-											<g:select name = "learnO" id = "tasklearnO" class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
-
-										</div>
-
-										<br>
-
 										<div class ="add_activity_text" >
-											<b> Knowledge Dimensions</b>
+											<b> Learning Domain</b>
 										</div>
-
-
-										<div class="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
-											<g:select name="knowD" id="taskKnowDimensions" class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
+										<div >
+											<g:select name="learnO"  class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
 										</div>
-
 										<br>
-
+										<div class ="add_activity_text" >
+											<b> Knowledge Dimension</b>
+										</div>
+										<div>
+											<g:select name="knowD"  class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
+										</div>
+										<br>
 										<div class ="add_activity_text" >
 											<b> Type Of Activity</b>
-
 										</div>
-
-
-
-										<div class ="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'courseLocation', 'error')} ">
-											<g:select name="type_of_activity_field"  id = "taskActivityType" class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
+										<div >
+											<g:select name="type_of_activity_field"  class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
 										</div>
-
 										<br>
-
 									</div>
 								</td>
 								<td class="schedule-tab course-overview-form-td">
-									<!-- <div class="course-overview-form">	 -->
 									<div>
 										<div class ="add_activity_text" >
-
-											<b> Assigned</b>
+											<b> Assigned Date</b>
 										</div>
-
 										<div class ="add_activity_field" >
-											<g:datePicker name="startDate" id="schedule-start-date" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+											<g:datePicker name="startDate" id="taskStartDate" default="none" noSelection="['':'']" precision="day"  value="${startDate}" years="${2014..2100}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
 										</div>
-
 										<br>
-
 										<div class ="add_activity_text" >
 											<b> Due Date</b>
 										</div>
-
 										<div class ="add_activity_field" >
-											<g:datePicker name="endDate" id="schedule-end-date" default="none" noSelection="['':'']"precision="day" value="${currentImod?.schedule?.endDate}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+											<g:datePicker name="endDate" id="taskEndDate" default="none" noSelection="['':'']" precision="day" value="${""}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
 										</div>
-
 										<br>
-
 										<div class ="add_activity_text" >
 											<b> Task Environment</b>
 										</div>
-
-										<div class ="add_activity_field dateFields fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
-											<g:select name="enviro" id="taskEnvironment" class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
+										<div>
+											<g:select name="enviro"  class="add_activity_dropdown custom-dropdown" from="${taskEnvironment}" />
 										</div>
-
 										<br>
-
 										<div class ="add_activity_text" >
 											<b> Expected Working Hours</b>
 										</div>
-										<br>
 										<div>
-
-											<g:textField name ="workingHours" id="taskWorkTime" class="add_activity_text" />
-											<span>Hours</span>
-											<div id="taskWorkTime"></div>
+											<g:textField name="workTime" class="add_activity_text" id = "taskWorkTime"/>
+											<span><b>Hours</b></span>
 										</div>
-
 									</div>
 								</td>
 							</tr>
 							<br>
 						</table>
 					</fieldset>
-
-
+					<div align="left" class="add_activity_text pedagogy-title"  >
+						<b>  Notes</b>
+					</div>
+					<div align="left" class="add_activity_text">
+						<g:textArea rows="7" cols="82"  name="notes" id="taskInfo"/>
+					</div>
 					<br>
-
 					<!-- <div id="modalButtons" style="align:left"> -->
 
 					<div id="modalButtons" style="align:right">
@@ -363,6 +334,7 @@
 				</g:form>
 
 			</div>
+			%{--</div>--}%
 
 			<script>
 				$("#datetimepicker").datetimepicker({
@@ -422,102 +394,71 @@
 						<fieldset id="courseoverview-form">
 							<table class="inner-table">
 								<tr>
-									<!-- <td class="course-overview-form-td"> -->
 									<td>
-										<!-- <div class="course-overview-form"> -->
 										<div>
-											<div class ="add_activity_text" >
-												<b> Course Title</b>
-
+											<div class ="add_activity_text"  >
+												<b> Activity Title</b>
 											</div>
-											<br>
-
 											<div>
-												<!-- <g:textField name="name" id = "courseName" placeholder ="New Imods" required="" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/> -->
-												<g:textField name="title" class="add_activity_text" />
+												<g:textField name="title" class="add_activity_text" id = "taskTitle"/>
 											</div>
-
 											<br>
-
-											<!--  <div id="editTitle" class="pedagogy-title" > -->
 											<div class ="add_activity_text" >
-												<b> Learning Objectives</b>
+												<b> Learning Domain</b>
 											</div>
-
-											<div class ="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
-												<!-- <g:select class="custom-dropdown2" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /> -->
-												<!-- <g:select name="LDL" id="learning-domain-list" class="custom-dropdown tooltipsterForm" from="${domainList?.name}" /> -->
+											<div >
 												<g:select name="learnO"  class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
 											</div>
-
 											<br>
-
 											<div class ="add_activity_text" >
-												<b> Knowledge Dimensions</b>
+												<b> Knowledge Dimension</b>
 											</div>
-
-
-											<div class="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
+											<div >
 												<g:select name="knowD"  class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
 											</div>
-
 											<br>
-
 											<div class ="add_activity_text" >
 												<b> Type Of Activity</b>
 											</div>
-
-											<div class ="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'courseLocation', 'error')} ">
+											<div >
 												<g:select name="type_of_activity_field"  class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
 											</div>
-
 											<br>
-
 										</div>
 									</td>
 									<td class="schedule-tab course-overview-form-td">
-										<!-- <div class="course-overview-form">	 -->
 										<div>
+											%{--$('.taskStartDate').val(event.startdate_day);--}%
+											%{--$('.taskStartMonth').val(event.startdate_month);--}%
+											%{--$('.taskStartYear').val(event.startdate_year);--}%
 											<div class ="add_activity_text" >
-												<b> Assigned</b>
+												<b> Assigned Date</b>
 											</div>
-
 											<div class ="add_activity_field" >
-												<g:datePicker name="startDate" id="schedule-start-date" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+												<g:datePicker name="startDate" id="taskStartDate" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new taskStartDate"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
 											</div>
-
 											<br>
-
 											<div class ="add_activity_text" >
 												<b> Due Date</b>
 											</div>
-
 											<div class ="add_activity_field" >
-												<g:datePicker name="endDate" id="schedule-end-date" default="none" noSelection="['':'']"precision="day" value="${currentImod?.schedule?.endDate}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+												<g:datePicker name="endDate" id="taskEndDate" default="none" noSelection="['':'']" precision="day" value="${currentImod?.schedule?.endDate}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
 											</div>
-
 											<br>
-
 											<div class ="add_activity_text" >
 												<b> Task Environment</b>
 											</div>
-
-											<div class ="add_activity_field dateFields fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
+											<div>
 												<g:select name="enviro"  class="add_activity_dropdown custom-dropdown" from="${taskEnvironment}" />
 											</div>
-
 											<br>
-
 											<div class ="add_activity_text" >
 												<b> Expected Working Hours</b>
 											</div>
-											<br>
 											<div>
-												<!-- <g:textField name="name" id = "courseName" placeholder ="New Imods" required="" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/> -->
-												<g:textField name="workTime" class="add_activity_text" />
-												<span>Hours</span>
+												<g:textField name="workTime" class="add_activity_text" id ="taskWorkTime"/>
+												<span><b>Hours</b></span>
 											</div>
-
 										</div>
 									</td>
 								</tr>
@@ -528,9 +469,8 @@
 						<div align="left" class="add_activity_text pedagogy-title" >
 							<b>  Notes</b>
 						</div>
-						<br>
 						<div align="left" class="add_activity_text">
-							<g:textArea rows="7" cols="82"  name="notes"/>
+							<g:textArea rows="7" cols="82"  name="notes" id="taskInfo"/>
 						</div>
 
 						<br>
@@ -579,12 +519,12 @@
 		%{--<br>--}%
 
 		<!-- is this even used? This is doubled for some reason -Wesley-->
-			<div id="taskContent" title="Task Details" style="display: none;">
-				<div id="taskInfo"></div>
-				<p>Start:</p>
-				<div id="taskTime"></div>
-				<p><strong><a id="taskLink" target="_blank">For more info.</a></strong></p>
-			</div>
+			%{--<div id="taskContent" title="Task Details" style="display: none;">--}%
+				%{--<div id="taskInfo"></div>--}%
+				%{--<p>Start:</p>--}%
+				%{--<div id="taskTime"></div>--}%
+				%{--<p><strong><a id="taskLink" target="_blank">For more info.</a></strong></p>--}%
+			%{--</div>--}%
 
 			<!-- The chart goes here <div id="chartContainer" type="hidden" style="height: 300px; width: 100%;display: none;"></div> -->
 			<div id="chartContainer"  style="height: 300px; width: 100%; display:block;"></div>

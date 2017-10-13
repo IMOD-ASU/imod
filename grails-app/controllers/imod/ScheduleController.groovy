@@ -156,6 +156,18 @@ class ScheduleController {
 		def workTime = params.workTime
 		def notes = params.notes
 		// def activity = params.type_of_activity_field
+		def startdate_day = params.startDate_day
+		def startdate_month = params.startDate_month
+		def startdate_year = params.startDate_year
+//		def startdate_day = params.startDate_day
+//		def startdate_day = params.startDate_day
+//		def startdate_day = params.startDate_day
+//		def startdate_day = params.startDate_day
+
+		println ("params:")
+		println (params)
+		//println ("startdate:")
+		//println (sDate)
 
 		def event = new ScheduleEvent(
 			title: title,
@@ -167,7 +179,10 @@ class ScheduleController {
 
 			enviro: enviro,
 			workTime: workTime,
-			notes: notes
+			notes: notes,
+			startdate_day : startdate_day,
+			startdate_month : startdate_month,
+			startdate_year : startdate_year
 		)
 		event.save()
 

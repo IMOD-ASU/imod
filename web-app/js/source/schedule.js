@@ -417,8 +417,9 @@ $(document).ready(function () {
 			}
 		},
 		eventClick: function (event) {
+			console.log(event);
 			// all arguments: (event, jsEvent, view)
-
+			console.log(event['start']['_i']);
 			var view = $('#scheduleCalendar').fullCalendar('getView');
 			var beginMonthT = (view.start).toISOString();
 
@@ -448,10 +449,37 @@ $(document).ready(function () {
 			$('#taskEnvironment').val(event.enviro);
 			$('#taskActivityType').val(event.activity);
 			$('#taskID').val(event.id);
+
+			//var obj_StartDate = new Date(event.start);
+			var date_separate = new Array();
+			date_separate = 	event['start']['_i'].split('-');
+			if(date_separate!== null) {
+				//alert(obj_StartDate.getYear());
+				//alert(date_separate[0]);
+				//alert(date_separate[1]);
+				//alert(date_separate[2].substring(0, 2));
+				$("#taskStartDate_day").val(date_separate[2].substring(0, 2));
+				$("#taskStartDate_month").val(date_separate[1]);
+				$("#taskStartDate_year").val(date_separate[0]);
+			}
+			//var obj_EndDate = new Date(event.end);
+			date_separate = 	event['end']['_i'].split('-');
+			if(date_separate !== null) {
+				$("#taskEndDate_day").val(date_separate[2].substring(0, 2));
+				$("#taskEndDate_month").val(date_separate[1]);
+				$("#taskEndDate_year").val(date_separate[0]);
+			}
+
+			// $('.taskStartMonth').val(event.startdate_month);
+			// $('.taskStartYear').val(event.startdate_year);
+			// $('.taskEndDate').Date(event.endDate);
 			$('#taskContent').dialog({
 				modal: true,
-				title: event.title
+				title: event.title,
+				width: 800,
+				draggable: true
 			});
+			$('#taskContent').dialog('option', 'position', [50, 20]);
 			return false;
 		},
 		events: function (start, end, timezone, callback) {

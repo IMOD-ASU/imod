@@ -147,6 +147,7 @@
                                                 <span class="required-indicator">
                                                     *
                                                 </span>
+                                                </span>
                                             </label>
                                             <g:datePicker name="schedule.startDate" id="schedule-start-date" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
                                         </div>
