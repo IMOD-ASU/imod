@@ -417,9 +417,9 @@ $(document).ready(function () {
 			}
 		},
 		eventClick: function (event) {
-			console.log(event);
+
 			// all arguments: (event, jsEvent, view)
-			console.log(event['start']['_i']);
+			console.log(event);
 			var view = $('#scheduleCalendar').fullCalendar('getView');
 			var beginMonthT = (view.start).toISOString();
 
@@ -452,7 +452,9 @@ $(document).ready(function () {
 
 			//var obj_StartDate = new Date(event.start);
 			var date_separate = new Array();
-			date_separate = 	event['start']['_i'].split('-');
+			if (event['start'] != null){
+				date_separate = 	event['start']['_i'].split('-');
+			}
 			if(date_separate!== null) {
 				//alert(obj_StartDate.getYear());
 				//alert(date_separate[0]);
@@ -463,7 +465,9 @@ $(document).ready(function () {
 				$("#taskStartDate_year").val(date_separate[0]);
 			}
 			//var obj_EndDate = new Date(event.end);
-			date_separate = 	event['end']['_i'].split('-');
+			if (event['end'] != null){
+				date_separate = 	event['end']['_i'].split('-');
+			}
 			if(date_separate !== null) {
 				$("#taskEndDate_day").val(date_separate[2].substring(0, 2));
 				$("#taskEndDate_month").val(date_separate[1]);

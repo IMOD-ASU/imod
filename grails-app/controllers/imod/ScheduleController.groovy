@@ -155,6 +155,8 @@ class ScheduleController {
 		def enviro = params.enviro
 		def workTime = params.workTime
 		def notes = params.notes
+
+		def lo = params.lo
 		// def activity = params.type_of_activity_field
 		def startdate_day = params.startDate_day
 		def startdate_month = params.startDate_month
@@ -164,8 +166,7 @@ class ScheduleController {
 //		def startdate_day = params.startDate_day
 //		def startdate_day = params.startDate_day
 
-		println ("params:")
-		println (params)
+
 		//println ("startdate:")
 		//println (sDate)
 
@@ -180,6 +181,8 @@ class ScheduleController {
 			enviro: enviro,
 			workTime: workTime,
 			notes: notes,
+			lo:lo,
+
 			startdate_day : startdate_day,
 			startdate_month : startdate_month,
 			startdate_year : startdate_year
@@ -207,9 +210,12 @@ class ScheduleController {
 		DateTime startDate = fmt.parseDateTime(params.startDate)
 		DateTime endDate = fmt.parseDateTime(params.endDate)
 
+		def lo = loId.toString()
+		println(loId)
+		println(lo)
 		def events = currentLO.withCriteria {
            			scheduleEvents {
-           				or {
+           				//or {
            					and {
            						gt('startDate', startDate.toDate())
 							    lt('startDate', endDate.toDate())
@@ -218,11 +224,17 @@ class ScheduleController {
            						gt('endDate', startDate.toDate())
 							    lt('endDate', endDate.toDate())
            					}
-           				}
+							and {
+								eq('lo',lo)
+							}
+
+           				//}
 
            			}
            		}
 
+
+		println(events.scheduleEvents[0])
 		render (
 			[
 				events: events.scheduleEvents[0]
