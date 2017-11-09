@@ -477,13 +477,13 @@ $(document).ready(function () {
 			// $('.taskStartMonth').val(event.startdate_month);
 			// $('.taskStartYear').val(event.startdate_year);
 			// $('.taskEndDate').Date(event.endDate);
-			$('#taskContent').dialog({
+			$('#add-new-technique').dialog({
 				modal: true,
 				title: event.title,
 				width: 800,
 				draggable: true
 			});
-			$('#taskContent').dialog('option', 'position', [50, 20]);
+			$('#add-new-technique').dialog('option', 'position', [50, 20]);
 			return false;
 		},
 		events: function (start, end, timezone, callback) {
