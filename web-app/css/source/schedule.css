@@ -514,24 +514,22 @@ body{
 	font-weight: bolder;
 }
 .add_activity_text{
-	margin-left: 55px;
+	margin-left: 45px;
 	font-weight: bolder;
 }
 
 .add_activity_field{
 	margin-left: 45px;
 	font-weight: bolder;
+	width: 300px;
 }
 .add_activity_dropdown{
-	position: relative;
+	margin-left: 45px;
 	width: 300px;
-	left: -0.5%;
+	font-weight: bolder;
+	padding: 0;
 }
-.add_activity_text{
-	position: relative;
-	width: 300px;
-	left: -0.5%;
-}
+
 
 .ui-tabs-nav{
 	background: transparent !important;

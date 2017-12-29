@@ -417,8 +417,8 @@ $(document).ready(function () {
 			}
 		},
 		eventClick: function (event) {
+			var dateSeparate = [];
 			// all arguments: (event, jsEvent, view)
-
 			var view = $('#scheduleCalendar').fullCalendar('getView');
 			var beginMonthT = (view.start).toISOString();
 
@@ -435,9 +435,9 @@ $(document).ready(function () {
 			beginMonthF = beginMonthF.add(35, 'days');
 			// alert("The view's title is " + beginMonthA.format('YYYY-M-D') + " " + beginMonthB.format('YYYY-M-D') + " " + beginMonthC.format('YYYY-M-D') + " " + beginMonthD.format('YYYY-M-D') + " " + beginMonthE.format('YYYY-M-D') + " " + beginMonthF.format('YYYY-M-D') + " ");
 
+			event = JSON.parse(JSON.stringify(event));
 			// set the values and open the modal
 			$('#taskInfo').html(event.notes);
-			// $('#taskLearnO').html(event.learnO);
 			$('#taskKnowD').html(event.knowD);
 			$('#taskEnviro').html(event.enviro);
 			$('#taskWorkTime').val(event.workTime);
@@ -448,10 +448,30 @@ $(document).ready(function () {
 			$('#taskEnvironment').val(event.enviro);
 			$('#taskActivityType').val(event.activity);
 			$('#taskID').val(event.id);
-			$('#taskContent').dialog({
-				modal: true,
-				title: event.title
-			});
+			$('#taskID2').val(event.id);
+
+			if (event.start !== null) {
+				dateSeparate = 	event.start.split('-');
+			}
+
+			if (dateSeparate !== null) {
+				$('#taskStartDate_day').val(dateSeparate[2].substring(0, 2));
+				$('#taskStartDate_month').val(dateSeparate[1]);
+				$('#taskStartDate_year').val(dateSeparate[0]);
+			}
+
+			if (event.end !== null) {
+				dateSeparate = 	event.end.split('-');
+			}
+
+			if (dateSeparate !== null) {
+				$('#taskEndDate_day').val(dateSeparate[2].substring(0, 2));
+				$('#taskEndDate_month').val(dateSeparate[1]);
+				$('#taskEndDate_year').val(dateSeparate[0]);
+			}
+
+			$('#add-new-technique').css('display', 'block');
+			$('#topicDialogBackground').css('display', 'block');
 			return false;
 		},
 		events: function (start, end, timezone, callback) {
@@ -1291,6 +1311,36 @@ $(document).ready(
 				return false;
 			}
 
+			return true;
+		});
+
+		$('#editButton').on('click', function () {
+			cloneDetect = document.getElementById('cloneDetect').value;
+
+			if ($('#title').val() === '') {
+				$('#errorMessage').text('Technique must have a title!');
+				return false;
+			}
+
+			if ($('#knowledgeDimension').val() === '') {
+				$('#errorMessage').text('Knowledge Dimensions are required!');
+				return false;
+			}
+
+			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
+				$('#errorMessage').text('Learning Domains are required');
+				return false;
+			}
+
+			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
+				$('#errorMessage').text('Domain Categories are required');
+				return false;
+			}
+			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
+				$('#errorMessage').text('Enter title which is different from the original technique');
+				return false;
+			}
+			$('#editCheck').text('yes...');
 			return true;
 		});
 
