@@ -195,9 +195,9 @@ class ScheduleController {
 			workTime: workTime,
 			notes: notes,
 			lo: lo,
-			startdate_day : startdate_day,
-			startdate_month : startdate_month,
-			startdate_year : startdate_year,
+			startdate_day: startdate_day,
+			startdate_month: startdate_month,
+			startdate_year: startdate_year,
 		)
 		event.save()
 
@@ -238,14 +238,10 @@ class ScheduleController {
 							and {
 								eq('lo', lo)
 							}
-
            				//}
-
            			}
            		}
 
-
-		//println(events.scheduleEvents[0])
 		render (
 			[
 				events: events.scheduleEvents[0]
@@ -253,7 +249,6 @@ class ScheduleController {
 		)
 
 	}
-
 	/**
 	 * Delete an event for a particular learning objective
 	 */
