@@ -417,7 +417,8 @@ $(document).ready(function () {
 			}
 		},
 		eventClick: function (event) {
-
+			var dateSeparate = [];
+			
 			// all arguments: (event, jsEvent, view)
 			var view = $('#scheduleCalendar').fullCalendar('getView');
 			var beginMonthT = (view.start).toISOString();
@@ -437,7 +438,6 @@ $(document).ready(function () {
 
 			// set the values and open the modal
 			$('#taskInfo').html(event.notes);
-			// $('#taskLearnO').html(event.learnO);
 			$('#taskKnowD').html(event.knowD);
 			$('#taskEnviro').html(event.enviro);
 			$('#taskWorkTime').val(event.workTime);
@@ -449,39 +449,30 @@ $(document).ready(function () {
 			$('#taskActivityType').val(event.activity);
 			$('#taskID').val(event.id);
 			$('#taskID2').val(event.id);
-			//var obj_StartDate = new Date(event.start);
-			var date_separate = new Array();
-			if (event['start'] != null){
-				date_separate = 	event['start']['_i'].split('-');
-			}
-			if(date_separate!== null) {
-				$("#taskStartDate_day").val(date_separate[2].substring(0, 2));
-				$("#taskStartDate_month").val(date_separate[1]);
-				$("#taskStartDate_year").val(date_separate[0]);
-			}
-			//var obj_EndDate = new Date(event.end);
-			if (event['end'] != null){
-				date_separate = 	event['end']['_i'].split('-');
-			}
-			if(date_separate !== null) {
-				$("#taskEndDate_day").val(date_separate[2].substring(0, 2));
-				$("#taskEndDate_month").val(date_separate[1]);
-				$("#taskEndDate_year").val(date_separate[0]);
+
+			if (event.start !== null) {
+				dateSeparate = 	event.start._i.split('-');
 			}
 
-			// $('.taskStartMonth').val(event.startdate_month);
-			// $('.taskStartYear').val(event.startdate_year);
-			// $('.taskEndDate').Date(event.endDate);
-			// $('#add-new-technique').dialog({
-			// 	modal: true,
-			// 	title: event.title,
-			// 	width: 800,
-			// 	draggable: true
-			// });
-			// $('#add-new-technique').dialog('option', 'position', [50, 20]);
+			if (dateSeparate !== null) {
+				$('#taskStartDate_day').val(dateSeparate[2].substring(0, 2));
+				$('#taskStartDate_month').val(dateSeparate[1]);
+				$('#taskStartDate_year').val(dateSeparate[0]);
+			}
+
+			if (event.end !== null) {
+				dateSeparate = 	event.end._i.split('-');
+			}
+
+			if (dateSeparate !== null) {
+				$('#taskEndDate_day').val(dateSeparate[2].substring(0, 2));
+				$('#taskEndDate_month').val(dateSeparate[1]);
+				$('#taskEndDate_year').val(dateSeparate[0]);
+			}
+
 			$('#add-new-technique').css('display', 'block');
 			$('#topicDialogBackground').css('display', 'block');
-			 return false;
+			return false;
 		},
 		events: function (start, end, timezone, callback) {
 			$.ajax({
