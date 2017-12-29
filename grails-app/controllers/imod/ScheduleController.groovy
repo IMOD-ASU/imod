@@ -163,7 +163,7 @@ class ScheduleController {
 //		def startdate_day = params.startDate_day
 //		def startdate_day = params.startDate_day
 
-		if (params.edit == "yes"){
+		if ( params.edit == 'yes' ) {
 			def id = params.id
 			//def event1 = ScheduleEvent.findById(id)
 			def event1 = ScheduleEvent.get(id)
@@ -189,18 +189,15 @@ class ScheduleController {
 			title: title,
 			startDate: sDate,
 			endDate: eDate,
-
 			learnO: learnO,
 			knowD: knowD,
-
 			enviro: enviro,
 			workTime: workTime,
 			notes: notes,
-			lo:lo,
-
+			lo: lo,
 			startdate_day : startdate_day,
 			startdate_month : startdate_month,
-			startdate_year : startdate_year
+			startdate_year : startdate_year,
 		)
 		event.save()
 
@@ -239,7 +236,7 @@ class ScheduleController {
 							    lt('endDate', endDate.toDate())
            					}
 							and {
-								eq('lo',lo)
+								eq('lo', lo)
 							}
 
            				//}
