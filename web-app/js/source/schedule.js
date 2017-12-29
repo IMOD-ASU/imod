@@ -419,7 +419,6 @@ $(document).ready(function () {
 		eventClick: function (event) {
 
 			// all arguments: (event, jsEvent, view)
-			console.log(event);
 			var view = $('#scheduleCalendar').fullCalendar('getView');
 			var beginMonthT = (view.start).toISOString();
 
@@ -449,17 +448,13 @@ $(document).ready(function () {
 			$('#taskEnvironment').val(event.enviro);
 			$('#taskActivityType').val(event.activity);
 			$('#taskID').val(event.id);
-
+			$('#taskID2').val(event.id);
 			//var obj_StartDate = new Date(event.start);
 			var date_separate = new Array();
 			if (event['start'] != null){
 				date_separate = 	event['start']['_i'].split('-');
 			}
 			if(date_separate!== null) {
-				//alert(obj_StartDate.getYear());
-				//alert(date_separate[0]);
-				//alert(date_separate[1]);
-				//alert(date_separate[2].substring(0, 2));
 				$("#taskStartDate_day").val(date_separate[2].substring(0, 2));
 				$("#taskStartDate_month").val(date_separate[1]);
 				$("#taskStartDate_year").val(date_separate[0]);
@@ -477,14 +472,16 @@ $(document).ready(function () {
 			// $('.taskStartMonth').val(event.startdate_month);
 			// $('.taskStartYear').val(event.startdate_year);
 			// $('.taskEndDate').Date(event.endDate);
-			$('#add-new-technique').dialog({
-				modal: true,
-				title: event.title,
-				width: 800,
-				draggable: true
-			});
-			$('#add-new-technique').dialog('option', 'position', [50, 20]);
-			return false;
+			// $('#add-new-technique').dialog({
+			// 	modal: true,
+			// 	title: event.title,
+			// 	width: 800,
+			// 	draggable: true
+			// });
+			// $('#add-new-technique').dialog('option', 'position', [50, 20]);
+			$('#add-new-technique').css('display', 'block');
+			$('#topicDialogBackground').css('display', 'block');
+			 return false;
 		},
 		events: function (start, end, timezone, callback) {
 			$.ajax({
@@ -1323,6 +1320,36 @@ $(document).ready(
 				return false;
 			}
 
+			return true;
+		});
+
+		$('#editButton').on('click', function () {
+			cloneDetect = document.getElementById('cloneDetect').value;
+
+			if ($('#title').val() === '') {
+				$('#errorMessage').text('Technique must have a title!');
+				return false;
+			}
+
+			if ($('#knowledgeDimension').val() === '') {
+				$('#errorMessage').text('Knowledge Dimensions are required!');
+				return false;
+			}
+
+			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
+				$('#errorMessage').text('Learning Domains are required');
+				return false;
+			}
+
+			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
+				$('#errorMessage').text('Domain Categories are required');
+				return false;
+			}
+			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
+				$('#errorMessage').text('Enter title which is different from the original technique');
+				return false;
+			}
+			$('#editCheck').text('yes...');
 			return true;
 		});
 

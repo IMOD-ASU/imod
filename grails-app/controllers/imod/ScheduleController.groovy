@@ -20,10 +20,8 @@ class ScheduleController {
 	def index(Long id, Long learningObjectiveID) {
 		// get the selected imod
 		final currentImod = Imod.get(id)
-
 		// finds all the learning objective linked to this imod
 		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
-
 		// If no learning objective is selected
 		// select the first one if it exists
 		if (params.learningObjectiveID == null && learningObjectives.size > 0) {
@@ -34,7 +32,6 @@ class ScheduleController {
 				params: [learningObjectiveID: learningObjectives[0].id]
 			)
 		}
-
 		// select current learning objective
 		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
@@ -166,9 +163,27 @@ class ScheduleController {
 //		def startdate_day = params.startDate_day
 //		def startdate_day = params.startDate_day
 
+		if (params.edit == "yes"){
+			def id = params.id
+			//def event1 = ScheduleEvent.findById(id)
+			def event1 = ScheduleEvent.get(id)
 
-		//println ("startdate:")
-		//println (sDate)
+			final currentImod = Imod.get(params.imodId)
+			final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+
+			if ( event1 != null ) {
+
+				currentLearningObjective.removeFromScheduleEvents(event1)
+				event1.delete()
+			}
+
+//			redirect(
+//				controller: 'Schedule',
+//				action: 'index',
+//				id: params.imodId,
+//				params: [learningObjectiveID: learningObjectiveID]
+//			)
+		}
 
 		def event = new ScheduleEvent(
 			title: title,
@@ -211,8 +226,7 @@ class ScheduleController {
 		DateTime endDate = fmt.parseDateTime(params.endDate)
 
 		def lo = loId.toString()
-		println(loId)
-		println(lo)
+
 		def events = currentLO.withCriteria {
            			scheduleEvents {
            				//or {
@@ -234,7 +248,7 @@ class ScheduleController {
            		}
 
 
-		println(events.scheduleEvents[0])
+		//println(events.scheduleEvents[0])
 		render (
 			[
 				events: events.scheduleEvents[0]
