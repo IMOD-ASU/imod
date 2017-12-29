@@ -418,7 +418,6 @@ $(document).ready(function () {
 		},
 		eventClick: function (event) {
 			var dateSeparate = [];
-			
 			// all arguments: (event, jsEvent, view)
 			var view = $('#scheduleCalendar').fullCalendar('getView');
 			var beginMonthT = (view.start).toISOString();
@@ -436,6 +435,7 @@ $(document).ready(function () {
 			beginMonthF = beginMonthF.add(35, 'days');
 			// alert("The view's title is " + beginMonthA.format('YYYY-M-D') + " " + beginMonthB.format('YYYY-M-D') + " " + beginMonthC.format('YYYY-M-D') + " " + beginMonthD.format('YYYY-M-D') + " " + beginMonthE.format('YYYY-M-D') + " " + beginMonthF.format('YYYY-M-D') + " ");
 
+			event = JSON.parse(JSON.stringify(event));
 			// set the values and open the modal
 			$('#taskInfo').html(event.notes);
 			$('#taskKnowD').html(event.knowD);
@@ -451,7 +451,7 @@ $(document).ready(function () {
 			$('#taskID2').val(event.id);
 
 			if (event.start !== null) {
-				dateSeparate = 	event.start._i.split('-');
+				dateSeparate = 	event.start.split('-');
 			}
 
 			if (dateSeparate !== null) {
@@ -461,7 +461,7 @@ $(document).ready(function () {
 			}
 
 			if (event.end !== null) {
-				dateSeparate = 	event.end._i.split('-');
+				dateSeparate = 	event.end.split('-');
 			}
 
 			if (dateSeparate !== null) {
