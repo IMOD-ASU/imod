@@ -268,7 +268,7 @@ function calculatePercentage (response) {
 		if (pedPercent < 100) {
 			info += 'At least one pedagogy technique needs to be added. \n';
 		}
-		if (loPercent === 100 && instrPercent === 5 && contentPercent === 100 && asstPercent === 100 && pedPercent === 100){
+		if (loPercent === 100 && instrPercent === 5 && contentPercent === 100 && asstPercent === 100 && pedPercent === 100) {
 			info += 'Everything\'s perfect! You have met the minimum requirements to design an IMOD';
 		}
 	}
