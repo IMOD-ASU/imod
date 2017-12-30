@@ -474,17 +474,17 @@ $(document).ready(
 
 		$('#time-ratio').mask('9:9');
 
-		$('.timeFields').find('select').change(
-			function () {
-				return compareStartEndTimes();
-			}
-		);
+		/*$('.timeFields').find('select').change(
+		 function () {
+		 return compareStartEndTimes();
+		 }
+		 );
 
-		$('.dateFields').find('select').change(
-			function () {
-				return compareStartEndTimes();
-			}
-		);
+		 $('.dateFields').find('select').change(
+		 function () {
+		 return compareStartEndTimes();
+		 }
+		 );*/
 
 		$('#attendance-box').click(
 			function () {
