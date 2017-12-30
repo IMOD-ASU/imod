@@ -474,7 +474,7 @@ $(document).ready(
 
 		$('#time-ratio').mask('9:9');
 
-		/*$('.timeFields').find('select').change(
+		/* $('.timeFields').find('select').change(
 		 function () {
 		 return compareStartEndTimes();
 		 }
@@ -484,7 +484,7 @@ $(document).ready(
 		 function () {
 		 return compareStartEndTimes();
 		 }
-		 );*/
+		 ); */
 
 		$('#attendance-box').click(
 			function () {

@@ -69,7 +69,7 @@
 	<div id="parent" class="info-style">
 		IMOD Info
 		<div id="hover-content">
-			Only show this when hovering parent
+			Course design status
 		</div>
 	</div>
 

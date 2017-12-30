@@ -2,7 +2,7 @@ var formSubmitted = false;
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var profileVal = 0;
 var profileBuffer = 100;
-var info = "";
+var info = '';
 
 $(document).ready(function () {
 	'use strict';
@@ -19,7 +19,7 @@ $(document).ready(function () {
 			var value = this.getAttribute('aria-valuenow');
 
 			progressLabel.text('Course Design Completion .......' + progressbar.progressbar('value') + '%');
-			document.getElementById("hover-content").innerHTML = info;
+			document.getElementById('hover-content').innerHTML = info;
 
 			if (value < 15) {
 				$('.ui-widget-header').css({background: '#B71C1C'});
@@ -236,7 +236,7 @@ function calculatePercentage (response) {
 
 	if (checkId === 'new') {
 		coPercent = 0;
-		info = info + "More than two learning objectives, five content topics, at least one assessment and at least one pedagogy techniques should be added."
+		info += 'More than two learning objectives, five content topics, at least one assessment and at least one pedagogy techniques should be added.';
 		// return profileVal;
 	} else {
 		coPercent = 15;
@@ -253,23 +253,23 @@ function calculatePercentage (response) {
 		contentPercent = calculateContent(currentImod.contents);
 		asstPercent = calculateAsst(user.assessmentTechnique, currentImod.learningObjectives);
 		pedPercent = calculatePed(user.pedagogyTechnique, currentImod.learningObjectives);
-		if(instrPercent<5) {
-			info = info + "Add instructor information. \n"
+		if ( instrPercent < 5 ) {
+			info += 'Add instructor information. \n';
 		}
-		if(loPercent<100) {
-			info = info + "More than two learning objectives need to be defined. \n"
+		if ( loPercent < 100 ) {
+			info += 'More than two learning objectives need to be defined. \n';
 		}
-		if(contentPercent<100) {
-			info = info + "More then five differnt content topics needs to be added. \n"
+		if ( contentPercent < 100 ) {
+			info += 'More then five differnt content topics needs to be added. \n';
 		}
-		if(asstPercent<100) {
-			info = info + "At least one assessment technique needs to be added. \n"
+		if ( asstPercent < 100 ) {
+			info += 'At least one assessment technique needs to be added. \n';
 		}
-		if(pedPercent<100) {
-			info = info + "At least one pedagogy technique needs to be added. \n"
+		if ( pedPercent < 100 ) {
+			info += 'At least one pedagogy technique needs to be added. \n';
 		}
-		if(loPercent == 100 && instrPercent==5 && contentPercent == 100 && asstPercent == 100 && pedPercent == 100){
-			info = info + "Everything's perfect! You have met the minimum requirements to design an IMOD" ;
+		if ( loPercent === 100 && instrPercent === 5 && contentPercent === 100 && asstPercent === 100 && pedPercent === 100 ){
+			info += 'Everything\'s perfect! You have met the minimum requirements to design an IMOD';
 		}
 	}
 
