@@ -253,22 +253,22 @@ function calculatePercentage (response) {
 		contentPercent = calculateContent(currentImod.contents);
 		asstPercent = calculateAsst(user.assessmentTechnique, currentImod.learningObjectives);
 		pedPercent = calculatePed(user.pedagogyTechnique, currentImod.learningObjectives);
-		if ( instrPercent < 5 ) {
+		if (instrPercent < 5) {
 			info += 'Add instructor information. \n';
 		}
-		if ( loPercent < 100 ) {
+		if (loPercent < 100) {
 			info += 'More than two learning objectives need to be defined. \n';
 		}
-		if ( contentPercent < 100 ) {
+		if (contentPercent < 100) {
 			info += 'More then five differnt content topics needs to be added. \n';
 		}
-		if ( asstPercent < 100 ) {
+		if (asstPercent < 100) {
 			info += 'At least one assessment technique needs to be added. \n';
 		}
-		if ( pedPercent < 100 ) {
+		if (pedPercent < 100) {
 			info += 'At least one pedagogy technique needs to be added. \n';
 		}
-		if ( loPercent === 100 && instrPercent === 5 && contentPercent === 100 && asstPercent === 100 && pedPercent === 100 ){
+		if (loPercent === 100 && instrPercent === 5 && contentPercent === 100 && asstPercent === 100 && pedPercent === 100){
 			info += 'Everything\'s perfect! You have met the minimum requirements to design an IMOD';
 		}
 	}
