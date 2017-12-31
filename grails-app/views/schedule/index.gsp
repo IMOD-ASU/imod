@@ -29,72 +29,25 @@
 
 	<g:external dir="css/source" file="learningObjective.css" />
 	<g:external dir="css/source" file="iconModule.css" />
-
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-
 	<g:external dir="bower_components/fullcalendar/dist" file="fullcalendar.min.css" />
-
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css" type="text/css" rel="stylesheet" />
-
-	<!--
-		Scheduler css and js imports here
-	-->
-
 	<g:external dir="bower_components/moment/min" file="moment.min.js" />
 	<g:external dir="bower_components/fullcalendar/dist" file="fullcalendar.min.js" />
 
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css" type="text/css" rel="stylesheet" />
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
 	<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-
-	%{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> --}%
 
 	<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.js" />
 	<g:external dir="bower_components/jqueryui-timepicker-addon/dist" file="jquery-ui-timepicker-addon.css" />
-
 	<g:external dir="css/source" file="schedule.css" />
-
-	<script>
-		$(function() {
-			$( "#datetimepicker" ).datetimepicker();
-		});
-
-		$(function() {
-			$( "#datetimepicker2" ).datetimepicker();
-		});
-	</script>
 
 </head>
 
 <body >
 
 <div class="modalBackgroundFavorites"></div>
-<div class="favorites-modal draggable">
-	<fieldset class="titleField draggable-handle">
-		<div id="editTitle">
-			<b> Delete Events</b>
-		</div>
-		TO BE DONE.
-	</fieldset>
-
-</div>
-<div id="edit-imod" class="content scaffold-edit" role="main">
-	<g:if test="${flash.message}">
-		<div class="message" role="status">
-			${flash.message}
-		</div>
-	</g:if>
-
-	<g:hasErrors bean="${currentImod}">
-		<ul class="errors" role="alert">
-			<g:eachError bean="${currentImod}" var="error">
-				<li>
-					<g:message error="${error}"/>
-				</li>
-			</g:eachError>
-		</ul>
-	</g:hasErrors>
-</div>
 
 <div id="topicDialogBackground" class="modalBackground"></div>
 
@@ -167,14 +120,6 @@
 					<hr style=" width: 90%;border: 0;height: 2px;background: #000;opacity: 0.2;">
 					<ul>
 						<g:each var="activityType" in="${activityTypes}" status="index">
-						%{--<li>--}%
-						%{--<g:checkBox  name="learningDomain" value="${learningDomain.id}" id="learning-domain-${index}" checked="${learningDomain.name == selectedDomain.toString()}" />--}%
-						%{--<label for="learning-domain-${index}">--}%
-						%{--${learningDomain.name}--}%
-						%{--</label>--}%
-
-
-						%{--</li> --}%
 
 							<li>
 								<g:checkBox  name="activityType" />
@@ -194,14 +139,8 @@
 					<ul>
 						<g:each var="taskEnv" in="${taskEnvironment}" status="index">
 							<li>
-								%{--<g:checkBox  name="domainCategory" value="${domainCategory.id}" id="domain-category-${index}" checked="${domainCategory.name == selectedDomainCategory.toString()}"/>--}%
-								%{--<label for="domain-category-${index}">--}%
-								%{--${domainCategory.name}--}%
-								%{--</label>--}%
 								<g:checkBox  name="taskEnv" />
 								${taskEnv}
-
-
 							</li>
 						</g:each>
 					</ul>
@@ -221,168 +160,6 @@
 				</div>
 			</div>
 
-
-			<div class="taskContent" title="Task Details" style="display: none;">
-
-				<g:form controller="schedule" method="post" action="addEvent" class="no-warn-form">
-					<g:hiddenField name="imodId" value="${currentImod.id}" />
-					<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
-					<fieldset id="courseoverview-form">
-						<table class="inner-table">
-							<tr>
-								<!-- <td class="course-overview-form-td"> -->
-								<td>
-									<!-- <div class="course-overview-form"> -->
-									<div>
-										<div class ="add_activity_text" >
-											<b> Course Title</b>
-
-										</div>
-										<br>
-										<div>
-											<g:textField name="title" id = "taskTitle" class="add_activity_text" />
-										</div>
-										<br>
-										<!--  <div id="editTitle" class="pedagogy-title" > -->
-										<div  class ="add_activity_text" >
-											<b> Learning Objectives</b>
-										</div>
-
-										<div class ="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
-
-											<g:select name = "learnO" id = "tasklearnO" class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
-
-										</div>
-
-										<br>
-
-										<div class ="add_activity_text" >
-											<b> Knowledge Dimensions</b>
-										</div>
-
-
-										<div class="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
-											<g:select name="knowD" id="taskKnowDimensions" class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
-										</div>
-
-										<br>
-
-										<div class ="add_activity_text" >
-											<b> Type Of Activity</b>
-
-										</div>
-
-
-
-										<div class ="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'courseLocation', 'error')} ">
-											<g:select name="type_of_activity_field"  id = "taskActivityType" class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
-										</div>
-
-										<br>
-
-									</div>
-								</td>
-								<td class="schedule-tab course-overview-form-td">
-									<!-- <div class="course-overview-form">	 -->
-									<div>
-										<div class ="add_activity_text" >
-
-											<b> Assigned</b>
-										</div>
-
-										<div class ="add_activity_field" >
-											<g:datePicker name="startDate" id="schedule-start-date" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
-										</div>
-
-										<br>
-
-										<div class ="add_activity_text" >
-											<b> Due Date</b>
-										</div>
-
-										<div class ="add_activity_field" >
-											<g:datePicker name="endDate" id="schedule-end-date" default="none" noSelection="['':'']"precision="day" value="${currentImod?.schedule?.endDate}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
-										</div>
-
-										<br>
-
-										<div class ="add_activity_text" >
-											<b> Task Environment</b>
-										</div>
-
-										<div class ="add_activity_field dateFields fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
-											<g:select name="enviro" id="taskEnvironment" class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
-										</div>
-
-										<br>
-
-										<div class ="add_activity_text" >
-											<b> Expected Working Hours</b>
-										</div>
-										<br>
-										<div>
-
-											<g:textField name ="workingHours" id="taskWorkTime" class="add_activity_text" />
-											<span>Hours</span>
-											<div id="taskWorkTime"></div>
-										</div>
-
-									</div>
-								</td>
-							</tr>
-							<br>
-						</table>
-					</fieldset>
-
-
-					<br>
-
-					<!-- <div id="modalButtons" style="align:left"> -->
-
-					<div id="modalButtons" style="align:right">
-						<button type="submit" class="new-technique-popup-button">
-							<!--<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button"onclick="addTask()">-->
-							<i class="fa fa-save green"></i>
-							Edit Event
-						</button>
-
-					</div>
-				</g:form>
-
-				<br>
-
-				<g:form controller="schedule" method="post" action="deleteEvent" class="no-warn-form">
-					<g:hiddenField name="id" id="taskID" value="${taskID}" />
-					<g:hiddenField name="imodId" value="${currentImod.id}" />
-					<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
-					<button type="submit" class="new-technique-popup-button">
-						<i class="fa fa-times red"></i>
-						Delete Task
-					</button>
-
-				</g:form>
-
-			</div>
-
-			<script>
-				$("#datetimepicker").datetimepicker({
-					onSelect: function(dateText, inst) {
-						var dateAsString = dateText; //the first parameter of this function
-						var dateAsObject = $(this).datetimepicker( 'getDate' ); //the getDate method
-						console.log(dateAsString);
-						console.log(dateAsObject);
-					}
-				});
-
-				$("#datetimepicker2").datetimepicker({
-					onSelect: function(dateText, inst) {
-						var dateAsString = dateText; //the first parameter of this function
-						var dateAsObject = $(this).datetimepicker( 'getDate' ); //the getDate method
-						console.log(dateAsString);
-						console.log(dateAsObject);
-					}
-				})
-			</script>
 
 			<g:if test="${learningObjectives}">
 				<!-- <div class="topic_addition_widget" align="left"> -->
@@ -405,135 +182,92 @@
 
 				<!--Dialog box for Add New Task to Calendar -->
 
-				<div class="draggable" id="add-new-technique">
-
-					<%--To render the add new Task dialog box--%>
-					<fieldset class="titleField draggable-handle">
-						<div id="editTitle" class="pedagogy-title" >
-							<b> Add New Activity</b>
-						</div>
-						<span id="errorMessage" class="red"></span>
-					</fieldset>
-
+				<div class="draggable" id="add-new-technique" >
 					<g:form controller="schedule" method="post" action="addEvent" class="no-warn-form">
+						<table class="inner-table">
+							<tr>
+								<td>
+									<div>
+										<div class ="add_activity_text"  >
+											<b> Activity Title</b>
+										</div>
+										<div>
+											<g:textField name="title" class="add_activity_text" id = "taskTitle"/>
+										</div>
+										<br>
+										<div class ="add_activity_text" >
+											<b> Learning Domain</b>
+										</div>
+										<div >
+											<g:select name="learnO"  class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
+										</div>
+										<br>
+										<div class ="add_activity_text" >
+											<b> Knowledge Dimension</b>
+										</div>
+										<div>
+											<g:select name="knowD"  class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
+										</div>
+										<br>
+										<div class ="add_activity_text" >
+											<b> Type Of Activity</b>
+										</div>
+										<div >
+											<g:select name="type_of_activity_field"  class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
+										</div>
+										<br>
+									</div>
+								</td>
+								<td class="schedule-tab course-overview-form-td">
+									<div>
+										<div class ="add_activity_text" >
+											<b> Assigned Date</b>
+										</div>
+										<div class ="add_activity_field" >
+											<g:datePicker name="startDate" id="taskStartDate" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new taskStartDate"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+										</div>
+										<br>
+										<div class ="add_activity_text" >
+											<b> Due Date</b>
+										</div>
+										<div class ="add_activity_field" >
+											<g:datePicker name="endDate" id="taskEndDate" default="none" noSelection="['':'']" precision="day" value="${currentImod?.schedule?.endDate}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+										</div>
+										<br>
+										<div class ="add_activity_text" >
+											<b> Task Environment</b>
+										</div>
+										<div>
+											<g:select name="enviro"  class="add_activity_dropdown custom-dropdown" from="${taskEnvironment}" />
+										</div>
+										<br>
+										<div class ="add_activity_text" >
+											<b> Expected Working Hours</b>
+										</div>
+										<div>
+											<g:textField name="workTime" class="add_activity_text" id ="taskWorkTime"/>
+											<span><b>Hours</b></span>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<br>
+						</table>
+
 						<g:hiddenField name="imodId" value="${currentImod.id}" />
 						<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
-
-						<fieldset id="courseoverview-form">
-							<table class="inner-table">
-								<tr>
-									<!-- <td class="course-overview-form-td"> -->
-									<td>
-										<!-- <div class="course-overview-form"> -->
-										<div>
-											<div class ="add_activity_text" >
-												<b> Course Title</b>
-
-											</div>
-											<br>
-
-											<div>
-												<!-- <g:textField name="name" id = "courseName" placeholder ="New Imods" required="" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/> -->
-												<g:textField name="title" class="add_activity_text" />
-											</div>
-
-											<br>
-
-											<!--  <div id="editTitle" class="pedagogy-title" > -->
-											<div class ="add_activity_text" >
-												<b> Learning Objectives</b>
-											</div>
-
-											<div class ="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'imodNumber', 'error')} ">
-												<!-- <g:select class="custom-dropdown2" name="pedagogyFocus" from="${pedagogyFocuses}" optionKey="focus" /> -->
-												<!-- <g:select name="LDL" id="learning-domain-list" class="custom-dropdown tooltipsterForm" from="${domainList?.name}" /> -->
-												<g:select name="learnO"  class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
-											</div>
-
-											<br>
-
-											<div class ="add_activity_text" >
-												<b> Knowledge Dimensions</b>
-											</div>
-
-
-											<div class="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'url', 'error')} ">
-												<g:select name="knowD"  class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
-											</div>
-
-											<br>
-
-											<div class ="add_activity_text" >
-												<b> Type Of Activity</b>
-											</div>
-
-											<div class ="add_activity_field fieldcontain ${hasErrors(bean: currentImod, field: 'courseLocation', 'error')} ">
-												<g:select name="type_of_activity_field"  class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
-											</div>
-
-											<br>
-
-										</div>
-									</td>
-									<td class="schedule-tab course-overview-form-td">
-										<!-- <div class="course-overview-form">	 -->
-										<div>
-											<div class ="add_activity_text" >
-												<b> Assigned</b>
-											</div>
-
-											<div class ="add_activity_field" >
-												<g:datePicker name="startDate" id="schedule-start-date" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
-											</div>
-
-											<br>
-
-											<div class ="add_activity_text" >
-												<b> Due Date</b>
-											</div>
-
-											<div class ="add_activity_field" >
-												<g:datePicker name="endDate" id="schedule-end-date" default="none" noSelection="['':'']"precision="day" value="${currentImod?.schedule?.endDate}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
-											</div>
-
-											<br>
-
-											<div class ="add_activity_text" >
-												<b> Task Environment</b>
-											</div>
-
-											<div class ="add_activity_field dateFields fieldcontain ${hasErrors(bean: currentImod, field: 'endDate', 'error')} required">
-												<g:select name="enviro"  class="add_activity_dropdown custom-dropdown" from="${taskEnvironment}" />
-											</div>
-
-											<br>
-
-											<div class ="add_activity_text" >
-												<b> Expected Working Hours</b>
-											</div>
-											<br>
-											<div>
-												<!-- <g:textField name="name" id = "courseName" placeholder ="New Imods" required="" value="${currentImod?.name}" title="${ message( code:'imod.courseOverview.courseTitle' ) }"/> -->
-												<g:textField name="workTime" class="add_activity_text" />
-												<span>Hours</span>
-											</div>
-
-										</div>
-									</td>
-								</tr>
-								<br>
-							</table>
-						</fieldset>
+						<g:hiddenField name="id" id="taskID2" value="${taskID}" />
+						<fieldset id="courseoverview-form"></fieldset>
 
 						<div align="left" class="add_activity_text pedagogy-title" >
 							<b>  Notes</b>
 						</div>
-						<br>
 						<div align="left" class="add_activity_text">
-							<g:textArea rows="7" cols="82"  name="notes"/>
+							<g:textArea rows="7" cols="82"  name="notes" id="taskInfo"/>
 						</div>
 
 						<br>
+						<g:hiddenField name="edit" id="editCheck" value="yes" />
 
 						<!-- <div id="modalButtons" style="align:left"> -->
 						<div id="modalButtons" style="align:right">
@@ -542,6 +276,13 @@
 								<i class="fa fa-save green"></i>
 								Add Event
 							</button>
+
+							<button type="submit"  id="editButton" class="new-technique-popup-button">
+								<!--<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button"onclick="addTask()">-->
+								<i class="fa fa-save green"></i>
+								Edit Event
+							</button>
+
 							<button type="submit"  id="cancelButton" class="new-technique-popup-button" name = "cancelButton">
 								<!--<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">-->
 								<i class="fa fa-times red"></i>
@@ -551,47 +292,28 @@
 						</div>
 						<br>
 					</g:form>
-				</div>
+
+					<g:form controller="schedule" method="post" action="deleteEvent" class="no-warn-form">
+						<g:hiddenField name="id" id="taskID" value="${taskID}" />
+						<g:hiddenField name="imodId" value="${currentImod.id}" />
+						<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
+						<button type="submit" class="new-technique-popup-button" id="deleteButton">
+							<i class="fa fa-times red"></i>
+							Delete Event
+						</button>
+
+					</g:form>
+        		</div>
 
 
-			<%--Dialog box for Displaying in edit and View mode Technique --%>
+    <%--Dialog box for Displaying in edit and View mode Technique --%>
 				<div id="display-new-technique" title="Display Technique">
 					<%--To render the add new Technique dialog box--%>
 				</div>
 			</g:if>
 
-
-		<!--- Calendar starts after here
-	<div id='calendar'>
-	</div>
-	-->
-
-
-		%{--<div class="container">--}%
-		%{--<div class="row">--}%
-		%{--<div class="col-xs-12">--}%
-		%{--<h1></h1>--}%
-		%{--<br />--}%
-		%{--<div id="scheduleCalendar"></div>--}%
-		%{--</div>--}%
-		%{--</div>--}%
-		%{--</div>--}%
-		%{--<br>--}%
-
-		<!-- is this even used? This is doubled for some reason -Wesley-->
-			<div id="taskContent" title="Task Details" style="display: none;">
-				<div id="taskInfo"></div>
-				<p>Start:</p>
-				<div id="taskTime"></div>
-				<p><strong><a id="taskLink" target="_blank">For more info.</a></strong></p>
-			</div>
-
 			<!-- The chart goes here <div id="chartContainer" type="hidden" style="height: 300px; width: 100%;display: none;"></div> -->
 			<div id="chartContainer"  style="height: 300px; width: 100%; display:block;"></div>
-
-
-
-
 			<!--
 	List out the imods course info dates (demo getting data from the controller file)
 	-->

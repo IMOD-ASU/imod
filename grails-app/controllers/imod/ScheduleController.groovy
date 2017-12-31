@@ -20,10 +20,8 @@ class ScheduleController {
 	def index(Long id, Long learningObjectiveID) {
 		// get the selected imod
 		final currentImod = Imod.get(id)
-
 		// finds all the learning objective linked to this imod
 		final learningObjectives = learningObjectiveService.getAllByImod(currentImod)
-
 		// If no learning objective is selected
 		// select the first one if it exists
 		if (params.learningObjectiveID == null && learningObjectives.size > 0) {
@@ -34,7 +32,6 @@ class ScheduleController {
 				params: [learningObjectiveID: learningObjectives[0].id]
 			)
 		}
-
 		// select current learning objective
 		final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
 
@@ -155,19 +152,52 @@ class ScheduleController {
 		def enviro = params.enviro
 		def workTime = params.workTime
 		def notes = params.notes
+
+		def lo = params.lo
 		// def activity = params.type_of_activity_field
+		def startdate_day = params.startDate_day
+		def startdate_month = params.startDate_month
+		def startdate_year = params.startDate_year
+//		def startdate_day = params.startDate_day
+//		def startdate_day = params.startDate_day
+//		def startdate_day = params.startDate_day
+//		def startdate_day = params.startDate_day
+
+		if ( params.edit == 'yes' ) {
+			def id = params.id
+			//def event1 = ScheduleEvent.findById(id)
+			def event1 = ScheduleEvent.get(id)
+
+			final currentImod = Imod.get(params.imodId)
+			final currentLearningObjective = learningObjectiveService.safeGet(currentImod, learningObjectiveID)
+
+			if ( event1 != null ) {
+
+				currentLearningObjective.removeFromScheduleEvents(event1)
+				event1.delete()
+			}
+
+//			redirect(
+//				controller: 'Schedule',
+//				action: 'index',
+//				id: params.imodId,
+//				params: [learningObjectiveID: learningObjectiveID]
+//			)
+		}
 
 		def event = new ScheduleEvent(
 			title: title,
 			startDate: sDate,
 			endDate: eDate,
-
 			learnO: learnO,
 			knowD: knowD,
-
 			enviro: enviro,
 			workTime: workTime,
-			notes: notes
+			notes: notes,
+			lo: lo,
+			startdate_day: startdate_day,
+			startdate_month: startdate_month,
+			startdate_year: startdate_year,
 		)
 		event.save()
 
@@ -192,9 +222,11 @@ class ScheduleController {
 		DateTime startDate = fmt.parseDateTime(params.startDate)
 		DateTime endDate = fmt.parseDateTime(params.endDate)
 
+		def lo = loId.toString()
+
 		def events = currentLO.withCriteria {
            			scheduleEvents {
-           				or {
+           				//or {
            					and {
            						gt('startDate', startDate.toDate())
 							    lt('startDate', endDate.toDate())
@@ -203,8 +235,10 @@ class ScheduleController {
            						gt('endDate', startDate.toDate())
 							    lt('endDate', endDate.toDate())
            					}
-           				}
-
+							and {
+								eq('lo', lo)
+							}
+           				//}
            			}
            		}
 
@@ -215,7 +249,6 @@ class ScheduleController {
 		)
 
 	}
-
 	/**
 	 * Delete an event for a particular learning objective
 	 */
