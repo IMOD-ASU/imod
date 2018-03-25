@@ -299,7 +299,7 @@
 						<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
 						<button type="submit" class="new-technique-popup-button" id="deleteButton">
 							<i class="fa fa-times red"></i>
-							Delete Event
+							Delete Current Event
 						</button>
 
 					</g:form>
