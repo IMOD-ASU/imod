@@ -1293,6 +1293,7 @@ $(document).ready(
 
 		$('#saveButton').on('click', function () {
 			var errorLabel;
+			
 			$('.date-error').remove();
 			$('.taskError').remove();
 
@@ -1366,6 +1367,7 @@ $(document).ready(
 
 		$('#editButton').on('click', function () {
 			var errorLabel;
+
 			$('.date-error').remove();
 			$('.taskError').remove();
 
