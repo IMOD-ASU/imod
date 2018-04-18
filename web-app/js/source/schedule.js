@@ -1293,7 +1293,7 @@ $(document).ready(
 
 		$('#saveButton').on('click', function () {
 			var errorLabel;
-			
+
 			$('.date-error').remove();
 			$('.taskError').remove();
 
