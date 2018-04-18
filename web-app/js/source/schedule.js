@@ -168,6 +168,14 @@ function evaluateProfile () {
 	});
 }
 
+function newTaskValidationError () {
+	'use strict';
+	if ($('.errorcontain').length) {
+		$('.errorcontain').css('color', 'red');
+		$('.errorcontain').css('font-size', '20');
+	}
+}
+
 window.onload = function () {
 	'use strict';
 	evaluateProfile();
@@ -1200,7 +1208,6 @@ $(document).ready(
 		var currContent;
 		var isPanelSelected;
 		var checkBoxName;
-		var cloneDetect = '';
 
 		// Load techniques on page load
 		filterAssessmentTechniques();
@@ -1285,62 +1292,151 @@ $(document).ready(
 			});
 
 		$('#saveButton').on('click', function () {
-			cloneDetect = document.getElementById('cloneDetect').value;
+			var errorLabel;
 
-			if ($('#title').val() === '') {
-				$('#errorMessage').text('Technique must have a title!');
+			$('.date-error').remove();
+			$('.taskError').remove();
+
+			if ($('#taskTitle').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task title is mandatory</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-
-			if ($('#knowledgeDimension').val() === '') {
-				$('#errorMessage').text('Knowledge Dimensions are required!');
+			if ($('#taskLearningDomain').val() === '' || $('#taskLearningDomain').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose atleast one Learning domain</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-
-			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
-				$('#errorMessage').text('Learning Domains are required');
+			if ($('#taskKnowledgeDimension').val() === '' || $('#taskKnowledgeDimension').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose atleast one Knowledge Dimension</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-
-			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
-				$('#errorMessage').text('Domain Categories are required');
+			if ($('#taskTypeOfActivity').val() === '' || $('#taskTypeOfActivity').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose atleast one type</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
-				$('#errorMessage').text('Enter title which is different from the original technique');
+			if ($('#taskEnvironment').val() === '' || $('#taskEnvironment').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Select task environmant</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-
+			if ($('#taskStartDate_day').val() === '' || $('#taskStartDate_month').val() === '' ||
+				$('#taskStartDate_year').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Start date cannot be empty </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_day').val() === '' || $('#taskEndDate_month').val() === '' ||
+				$('#taskEndDate_year').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be empty </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_year').val() < $('#taskStartDate_year').val()) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_year').val() === $('#taskStartDate_year').val() &&
+				$('#taskEndDate_month').val() < $('#taskStartDate_month').val()) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_year').val() === $('#taskStartDate_year').val() &&
+				$('#taskEndDate_month').val() === $('#taskStartDate_month').val() &&
+				$('#taskEndDate_day').val() < $('#taskStartDate_day').val()) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
 			return true;
 		});
 
 		$('#editButton').on('click', function () {
-			cloneDetect = document.getElementById('cloneDetect').value;
+			var errorLabel;
 
-			if ($('#title').val() === '') {
-				$('#errorMessage').text('Technique must have a title!');
-				return false;
-			}
+			$('.date-error').remove();
+			$('.taskError').remove();
 
-			if ($('#knowledgeDimension').val() === '') {
-				$('#errorMessage').text('Knowledge Dimensions are required!');
+			if ($('#taskTitle').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task title is mandatory</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-
-			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
-				$('#errorMessage').text('Learning Domains are required');
+			if ($('#taskLearningDomain').val() === '' || $('#taskLearningDomain').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose atleast one Learning domain</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-
-			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
-				$('#errorMessage').text('Domain Categories are required');
+			if ($('#taskKnowledgeDimension').val() === '' || $('#taskKnowledgeDimension').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose atleast one Knowledge Dimension</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
-				$('#errorMessage').text('Enter title which is different from the original technique');
+			if ($('#taskTypeOfActivity').val() === '' || $('#taskTypeOfActivity').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose atleast one type</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-			$('#editCheck').text('yes...');
+			if ($('#taskEnvironment').val() === '' || $('#taskEnvironment').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Select task environmant</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskStartDate_day').val() === '' || $('#taskStartDate_month').val() === '' ||
+				$('#taskStartDate_year').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Start date cannot be empty </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_day').val() === '' || $('#taskEndDate_month').val() === '' ||
+				$('#taskEndDate_year').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be empty </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_year').val() < $('#taskStartDate_year').val()) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_year').val() === $('#taskStartDate_year').val() &&
+				$('#taskEndDate_month').val() < $('#taskStartDate_month').val()) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_year').val() === $('#taskStartDate_year').val() &&
+				$('#taskEndDate_month').val() === $('#taskStartDate_month').val() &&
+				$('#taskEndDate_day').val() < $('#taskStartDate_day').val()) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			$('#editCheck').text('yes');
 			return true;
 		});
 
