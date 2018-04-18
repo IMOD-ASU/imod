@@ -32,6 +32,7 @@
 	<g:external dir="bower_components/fullcalendar/dist" file="fullcalendar.min.css" />
 	<g:external dir="bower_components/moment/min" file="moment.min.js" />
 	<g:external dir="bower_components/fullcalendar/dist" file="fullcalendar.min.js" />
+	<g:external dir="bower_components/fontawesome/css" file="font-awesome.min.css" />
 
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css" type="text/css" rel="stylesheet" />
@@ -199,21 +200,21 @@
 											<b> Learning Domain</b>
 										</div>
 										<div >
-											<g:select name="learnO"  class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
+											<g:select name="learnO"  id="taskLearningDomain" class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
 										</div>
 										<br>
 										<div class ="add_activity_text" >
 											<b> Knowledge Dimension</b>
 										</div>
 										<div>
-											<g:select name="knowD"  class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
+											<g:select name="knowD"  id="taskKnowledgeDimension" class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
 										</div>
 										<br>
 										<div class ="add_activity_text" >
 											<b> Type Of Activity</b>
 										</div>
 										<div >
-											<g:select name="type_of_activity_field"  class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
+											<g:select name="type_of_activity_field"  id="taskTypeOfActivity" class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
 										</div>
 										<br>
 									</div>
@@ -238,7 +239,7 @@
 											<b> Task Environment</b>
 										</div>
 										<div>
-											<g:select name="enviro"  class="add_activity_dropdown custom-dropdown" from="${taskEnvironment}" />
+											<g:select name="enviro" id="taskEnvironment" class="add_activity_dropdown custom-dropdown" from="${taskEnvironment}" />
 										</div>
 										<br>
 										<div class ="add_activity_text" >
