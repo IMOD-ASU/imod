@@ -221,11 +221,12 @@
 								</td>
 								<td class="schedule-tab course-overview-form-td">
 									<div>
-										<div class ="add_activity_text" >
+										<div class ="add_activity_text" id="assignedDate" >
 											<b> Assigned Date</b>
 										</div>
-										<div class ="add_activity_field" >
+										<div class ="add_activity_field"  >
 											<g:datePicker name="startDate" id="taskStartDate" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new taskStartDate"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+											<span id="startDateError"></span>
 										</div>
 										<br>
 										<div class ="add_activity_text" >
@@ -233,6 +234,7 @@
 										</div>
 										<div class ="add_activity_field" >
 											<g:datePicker name="endDate" id="taskEndDate" default="none" noSelection="['':'']" precision="day" value="${currentImod?.schedule?.endDate}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+											<span id="endDateError"></span>
 										</div>
 										<br>
 										<div class ="add_activity_text" >
@@ -255,9 +257,18 @@
 							<br>
 						</table>
 
+
 						<g:hiddenField name="imodId" value="${currentImod.id}" />
 						<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
 						<g:hiddenField name="id" id="taskID2" value="${taskID}" />
+
+						<g:javascript> var imodStartDate_year = (${imodStartDate.substring(0,4)}) </g:javascript>
+						<g:javascript> var imodStartDate_month = (${imodStartDate.substring(5,7)}) </g:javascript>
+						<g:javascript> var imodStartDate_day = (${imodStartDate.substring(8)}) </g:javascript>
+						<g:javascript> var imodEndDate_year = (${imodEndDate.substring(0,4)}) </g:javascript>
+						<g:javascript> var imodEndDate_month = (${imodEndDate.substring(5,7)}) </g:javascript>
+						<g:javascript> var imodEndDate_day = (${imodEndDate.substring(8)}) </g:javascript>
+
 						<fieldset id="courseoverview-form"></fieldset>
 
 						<div align="left" class="add_activity_text pedagogy-title" >
@@ -281,7 +292,7 @@
 							<button type="submit"  id="editButton" class="new-technique-popup-button">
 								<!--<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button"onclick="addTask()">-->
 								<i class="fa fa-save green"></i>
-								Edit Event
+								Save Changes
 							</button>
 
 							<button type="submit"  id="cancelButton" class="new-technique-popup-button" name = "cancelButton">

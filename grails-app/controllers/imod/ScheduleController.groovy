@@ -83,6 +83,12 @@ class ScheduleController {
 		timeRatio1 = Imod.get(id).timeRatio
 		currName1 = Imod.get(id).name
 
+		String imodStartDate = Imod.get(id).schedule.startDate
+		String imodEndDate = Imod.get(id).schedule.endDate
+
+		imodStartDate = imodStartDate.substring(0,10)
+		imodEndDate = imodEndDate.substring(0,10)
+
 		[
 			pedagogyFocuses: pedagogyFocuses,
 
@@ -107,7 +113,9 @@ class ScheduleController {
 			selectedDomain: selectedDomain,
 			selectedDomainCategory: selectedDomainCategory,
 			dimension: dimension,
-			dimensionSize: dimensionSize
+			dimensionSize: dimensionSize,
+			imodStartDate:imodStartDate,
+			imodEndDate:imodEndDate
 
 		]
 
