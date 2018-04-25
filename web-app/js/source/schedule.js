@@ -430,7 +430,6 @@ $(document).ready(function () {
 			}
 		},
 		eventClick: function (event) {
-			console.log(event)
 			var dateSeparate = [];
 			// all arguments: (event, jsEvent, view)
 			var view = $('#scheduleCalendar').fullCalendar('getView');
