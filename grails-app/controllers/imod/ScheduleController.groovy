@@ -86,8 +86,8 @@ class ScheduleController {
 		String imodStartDate = Imod.get(id).schedule.startDate
 		String imodEndDate = Imod.get(id).schedule.endDate
 
-		imodStartDate = imodStartDate.substring(0,10)
-		imodEndDate = imodEndDate.substring(0,10)
+		imodStartDate = imodStartDate[0..10]
+		imodEndDate = imodEndDate[0..10]
 
 		[
 			pedagogyFocuses: pedagogyFocuses,
@@ -114,8 +114,8 @@ class ScheduleController {
 			selectedDomainCategory: selectedDomainCategory,
 			dimension: dimension,
 			dimensionSize: dimensionSize,
-			imodStartDate:imodStartDate,
-			imodEndDate:imodEndDate
+			imodStartDate: imodStartDate,
+			imodEndDate: imodEndDate
 
 		]
 
