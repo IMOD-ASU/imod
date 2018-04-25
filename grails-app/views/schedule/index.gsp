@@ -262,12 +262,12 @@
 						<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
 						<g:hiddenField name="id" id="taskID2" value="${taskID}" />
 
-						<g:javascript> var imodStartDate_year = (${imodStartDate.substring(0,4)}) </g:javascript>
-						<g:javascript> var imodStartDate_month = (${imodStartDate.substring(5,7)}) </g:javascript>
-						<g:javascript> var imodStartDate_day = (${imodStartDate.substring(8)}) </g:javascript>
-						<g:javascript> var imodEndDate_year = (${imodEndDate.substring(0,4)}) </g:javascript>
-						<g:javascript> var imodEndDate_month = (${imodEndDate.substring(5,7)}) </g:javascript>
-						<g:javascript> var imodEndDate_day = (${imodEndDate.substring(8)}) </g:javascript>
+						<g:javascript> var imodStartDateYear = (${imodStartDate.substring(0,4)}) </g:javascript>
+						<g:javascript> var imodStartDateMonth = (${imodStartDate.substring(5,7)}) </g:javascript>
+						<g:javascript> var imodStartDateDay = (${imodStartDate.substring(8)}) </g:javascript>
+						<g:javascript> var imodEndDateYear = (${imodEndDate.substring(0,4)}) </g:javascript>
+						<g:javascript> var imodEndDateMonth = (${imodEndDate.substring(5,7)}) </g:javascript>
+						<g:javascript> var imodEndDateDay = (${imodEndDate.substring(8)}) </g:javascript>
 
 						<fieldset id="courseoverview-form"></fieldset>
 

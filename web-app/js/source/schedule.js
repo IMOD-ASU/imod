@@ -4,7 +4,12 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var oldView = 'month';
 var profileVal = 0;
 var profileBuffer = 100;
-
+var imodStartDateYear;
+var imodStartDateMonth;
+var imodStartDateDay;
+var imodEndDateYear;
+var imodEndDateMonth;
+var imodEndDateDay;
 /* Purpose: Javascript Logic for the Schedule View in IMODS.
 *
 * @author Wesley Coomber Wesley.Coomber@asu.edu
@@ -478,10 +483,10 @@ $(document).ready(function () {
 				$('#taskEndDate_year').val(Number(dateSeparate[0]));
 			}
 
-			//$('#saveButton').style.visibility = "hidden";
-
-			document.getElementById("saveButton").style.visibility = "hidden";
-			document.getElementById("editButton").style.visibility = "visible";
+			$('.date-error').remove();
+			$('.taskError').remove();
+			document.getElementById('saveButton').style.visibility = 'hidden';
+			document.getElementById('editButton').style.visibility = 'visible';
 			$('#add-new-technique').css('display', 'block');
 			$('#topicDialogBackground').css('display', 'block');
 			return false;
@@ -666,8 +671,8 @@ function openNewAssessmentTechniqueModal () {
 	// reset form on new modal open
 	$('.date-error').remove();
 	$('.taskError').remove();
-	document.getElementById("saveButton").style.visibility = "visible";
-	document.getElementById("editButton").style.visibility = "hidden";
+	document.getElementById('saveButton').style.visibility = 'visible';
+	document.getElementById('editButton').style.visibility = 'hidden';
 	$('#add-new-technique').find('input:not(#lo, #imodId), select, textarea').val('');
 	$('#dimImageModal')
 		.prop('src', '../../images/content/knowDimNone.png')
@@ -1357,8 +1362,8 @@ $(document).ready(
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskEndDate_year').val()) == Number($('#taskStartDate_year').val())) &&
-				(Number($('#taskEndDate_month').val()) == Number($('#taskStartDate_month').val())) &&
+			if ((Number($('#taskEndDate_year').val()) === Number($('#taskStartDate_year').val())) &&
+				(Number($('#taskEndDate_month').val()) === Number($('#taskStartDate_month').val())) &&
 				(Number($('#taskEndDate_day').val()) < Number($('#taskStartDate_day').val()))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
 				$('#endDateError').parent().append(errorLabel);
@@ -1366,44 +1371,44 @@ $(document).ready(
 				return false;
 			}
 
-			if (Number($('#taskStartDate_year').val()) < Number(imodStartDate_year)) {
+			if (Number($('#taskStartDate_year').val()) < Number(imodStartDateYear)) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date </label></div>';
 				$('#startDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDate_year)) &&
-				(Number($('#taskStartDate_month').val()) < Number(imodStartDate_month))) {
+			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDateYear)) &&
+				(Number($('#taskStartDate_month').val()) < Number(imodStartDateMonth))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date  </label></div>';
 				$('#startDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDate_year)) &&
-				(Number($('#taskStartDate_month').val()) === Number(imodStartDate_month)) &&
-				(Number($('#taskStartDate_day').val()) < Number(imodStartDate_day ))) {
+			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDateYear)) &&
+				(Number($('#taskStartDate_month').val()) === Number(imodStartDateMonth)) &&
+				(Number($('#taskStartDate_day').val()) < Number(imodStartDateDay))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date   </label></div>';
 				$('#startDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
 
-			if (Number($('#taskEndDate_year').val()) > Number(imodEndDate_year)) {
+			if (Number($('#taskEndDate_year').val()) > Number(imodEndDateYear)) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date </label></div>';
 				$('#endDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDate_year)) &&
-				(Number($('#taskEndDate_month').val()) > Number(imodEndDate_month))) {
+			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDateYear)) &&
+				(Number($('#taskEndDate_month').val()) > Number(imodEndDateMonth))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date </label></div>';
 				$('#endDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDate_year)) &&
-				(Number($('#taskEndDate_month').val()) === Number(imodEndDate_month)) &&
-				(Number($('#taskEndDate_day').val()) > Number(imodEndDate_day))) {
+			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDateYear)) &&
+				(Number($('#taskEndDate_month').val()) === Number(imodEndDateMonth)) &&
+				(Number($('#taskEndDate_day').val()) > Number(imodEndDateDay))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date  </label></div>';
 				$('#endDateError').parent().append(errorLabel);
 				newTaskValidationError();
@@ -1485,15 +1490,15 @@ $(document).ready(
 				newTaskValidationError();
 				return false;
 			}
-			if ( (Number($('#taskEndDate_year').val()) === Number($('#taskStartDate_year').val())) &&
+			if ((Number($('#taskEndDate_year').val()) === Number($('#taskStartDate_year').val())) &&
 				(Number($('#taskEndDate_month').val()) < Number($('#taskStartDate_month').val()))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
 				$('#endDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskEndDate_year').val()) == Number($('#taskStartDate_year').val())) &&
-				(Number($('#taskEndDate_month').val()) == Number($('#taskStartDate_month').val())) &&
+			if ((Number($('#taskEndDate_year').val()) === Number($('#taskStartDate_year').val())) &&
+				(Number($('#taskEndDate_month').val()) === Number($('#taskStartDate_month').val())) &&
 				(Number($('#taskEndDate_day').val()) < Number($('#taskStartDate_day').val()))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
 				$('#endDateError').parent().append(errorLabel);
@@ -1501,44 +1506,44 @@ $(document).ready(
 				return false;
 			}
 
-			if (Number($('#taskStartDate_year').val()) < Number(imodStartDate_year)) {
+			if (Number($('#taskStartDate_year').val()) < Number(imodStartDateYear)) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date </label></div>';
 				$('#startDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDate_year)) &&
-				(Number($('#taskStartDate_month').val()) < Number(imodStartDate_month))) {
+			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDateYear)) &&
+				(Number($('#taskStartDate_month').val()) < Number(imodStartDateMonth))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date  </label></div>';
 				$('#startDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDate_year)) &&
-				(Number($('#taskStartDate_month').val()) === Number(imodStartDate_month)) &&
-				(Number($('#taskStartDate_day').val()) < Number(imodStartDate_day ))) {
+			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDateYear)) &&
+				(Number($('#taskStartDate_month').val()) === Number(imodStartDateMonth)) &&
+				(Number($('#taskStartDate_day').val()) < Number(imodStartDateDay))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date   </label></div>';
 				$('#startDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
 
-			if (Number($('#taskEndDate_year').val()) > Number(imodEndDate_year)) {
+			if (Number($('#taskEndDate_year').val()) > Number(imodEndDateYear)) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date </label></div>';
 				$('#endDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDate_year)) &&
-				(Number($('#taskEndDate_month').val()) > Number(imodEndDate_month))) {
+			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDateYear)) &&
+				(Number($('#taskEndDate_month').val()) > Number(imodEndDateMonth))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date </label></div>';
 				$('#endDateError').parent().append(errorLabel);
 				newTaskValidationError();
 				return false;
 			}
-			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDate_year)) &&
-				(Number($('#taskEndDate_month').val()) === Number(imodEndDate_month)) &&
-				(Number($('#taskEndDate_day').val()) > Number(imodEndDate_day))) {
+			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDateYear)) &&
+				(Number($('#taskEndDate_month').val()) === Number(imodEndDateMonth)) &&
+				(Number($('#taskEndDate_day').val()) > Number(imodEndDateDay))) {
 				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date  </label></div>';
 				$('#endDateError').parent().append(errorLabel);
 				newTaskValidationError();
