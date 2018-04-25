@@ -180,6 +180,12 @@
 					</div>
 				</div>
 
+				<g:javascript> var imodStartDateYear = (${imodStartDate.split('-')[0]}) </g:javascript>
+				<g:javascript> var imodStartDateMonth = (${imodStartDate.split('-')[1]}) </g:javascript>
+				<g:javascript> var imodStartDateDay = (${imodStartDate.split('-')[2]}) </g:javascript>
+				<g:javascript> var imodEndDateYear = (${imodEndDate.split('-')[0]}) </g:javascript>
+				<g:javascript> var imodEndDateMonth = (${imodEndDate.split('-')[1]}) </g:javascript>
+				<g:javascript> var imodEndDateDay = (${imodEndDate.split('-')[2]}) </g:javascript>
 
 				<!--Dialog box for Add New Task to Calendar -->
 
@@ -257,17 +263,9 @@
 							<br>
 						</table>
 
-
 						<g:hiddenField name="imodId" value="${currentImod.id}" />
 						<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
 						<g:hiddenField name="id" id="taskID2" value="${taskID}" />
-
-						<g:javascript> var imodStartDateYear = (${imodStartDate.substring(0,4)}) </g:javascript>
-						<g:javascript> var imodStartDateMonth = (${imodStartDate.substring(5,7)}) </g:javascript>
-						<g:javascript> var imodStartDateDay = (${imodStartDate.substring(8)}) </g:javascript>
-						<g:javascript> var imodEndDateYear = (${imodEndDate.substring(0,4)}) </g:javascript>
-						<g:javascript> var imodEndDateMonth = (${imodEndDate.substring(5,7)}) </g:javascript>
-						<g:javascript> var imodEndDateDay = (${imodEndDate.substring(8)}) </g:javascript>
 
 						<fieldset id="courseoverview-form"></fieldset>
 
@@ -289,11 +287,11 @@
 								Add Event
 							</button>
 
-							<button type="submit"  id="editButton" class="new-technique-popup-button">
+							<!-- <button type="submit"  id="editButton" class="new-technique-popup-button"> -->
 								<!--<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button"onclick="addTask()">-->
-								<i class="fa fa-save green"></i>
+								<!--<i class="fa fa-save green"></i>
 								Save Changes
-							</button>
+							</button> -->
 
 							<button type="submit"  id="cancelButton" class="new-technique-popup-button" name = "cancelButton">
 								<!--<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">-->
