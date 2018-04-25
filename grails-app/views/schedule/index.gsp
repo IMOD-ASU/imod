@@ -32,6 +32,7 @@
 	<g:external dir="bower_components/fullcalendar/dist" file="fullcalendar.min.css" />
 	<g:external dir="bower_components/moment/min" file="moment.min.js" />
 	<g:external dir="bower_components/fullcalendar/dist" file="fullcalendar.min.js" />
+	<g:external dir="bower_components/fontawesome/css" file="font-awesome.min.css" />
 
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css" type="text/css" rel="stylesheet" />
@@ -179,6 +180,12 @@
 					</div>
 				</div>
 
+				<g:javascript> var imodStartDateYear = (${imodStartDate.split('-')[0]}) </g:javascript>
+				<g:javascript> var imodStartDateMonth = (${imodStartDate.split('-')[1]}) </g:javascript>
+				<g:javascript> var imodStartDateDay = (${imodStartDate.split('-')[2]}) </g:javascript>
+				<g:javascript> var imodEndDateYear = (${imodEndDate.split('-')[0]}) </g:javascript>
+				<g:javascript> var imodEndDateMonth = (${imodEndDate.split('-')[1]}) </g:javascript>
+				<g:javascript> var imodEndDateDay = (${imodEndDate.split('-')[2]}) </g:javascript>
 
 				<!--Dialog box for Add New Task to Calendar -->
 
@@ -199,32 +206,33 @@
 											<b> Learning Domain</b>
 										</div>
 										<div >
-											<g:select name="learnO"  class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
+											<g:select name="learnO"  id="taskLearningDomain" class="add_activity_dropdown custom-dropdown" from="${learningDomains}" />
 										</div>
 										<br>
 										<div class ="add_activity_text" >
 											<b> Knowledge Dimension</b>
 										</div>
 										<div>
-											<g:select name="knowD"  class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
+											<g:select name="knowD"  id="taskKnowledgeDimension" class="add_activity_dropdown custom-dropdown" from="${knowledgeDimensions}" />
 										</div>
 										<br>
 										<div class ="add_activity_text" >
 											<b> Type Of Activity</b>
 										</div>
 										<div >
-											<g:select name="type_of_activity_field"  class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
+											<g:select name="type_of_activity_field"  id="taskTypeOfActivity" class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
 										</div>
 										<br>
 									</div>
 								</td>
 								<td class="schedule-tab course-overview-form-td">
 									<div>
-										<div class ="add_activity_text" >
+										<div class ="add_activity_text" id="assignedDate" >
 											<b> Assigned Date</b>
 										</div>
-										<div class ="add_activity_field" >
+										<div class ="add_activity_field"  >
 											<g:datePicker name="startDate" id="taskStartDate" default="none" noSelection="['':'']" precision="day"  value="${currentImod?.schedule?.startDate}" years="${2014..2100}" class="show-hover-new taskStartDate"  title="${Help.toolTip("OVERVIEW", "Schedule start Date")}" />
+											<span id="startDateError"></span>
 										</div>
 										<br>
 										<div class ="add_activity_text" >
@@ -232,13 +240,14 @@
 										</div>
 										<div class ="add_activity_field" >
 											<g:datePicker name="endDate" id="taskEndDate" default="none" noSelection="['':'']" precision="day" value="${currentImod?.schedule?.endDate}" years="${2014..2100}" title="${Help.toolTip("OVERVIEW", "Schedule end Date")}" class="show-hover-new" />
+											<span id="endDateError"></span>
 										</div>
 										<br>
 										<div class ="add_activity_text" >
 											<b> Task Environment</b>
 										</div>
 										<div>
-											<g:select name="enviro"  class="add_activity_dropdown custom-dropdown" from="${taskEnvironment}" />
+											<g:select name="enviro" id="taskEnvironment" class="add_activity_dropdown custom-dropdown" from="${taskEnvironment}" />
 										</div>
 										<br>
 										<div class ="add_activity_text" >
@@ -257,6 +266,7 @@
 						<g:hiddenField name="imodId" value="${currentImod.id}" />
 						<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
 						<g:hiddenField name="id" id="taskID2" value="${taskID}" />
+
 						<fieldset id="courseoverview-form"></fieldset>
 
 						<div align="left" class="add_activity_text pedagogy-title" >
@@ -277,11 +287,11 @@
 								Add Event
 							</button>
 
-							<button type="submit"  id="editButton" class="new-technique-popup-button">
+							<!-- <button type="submit"  id="editButton" class="new-technique-popup-button"> -->
 								<!--<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button"onclick="addTask()">-->
-								<i class="fa fa-save green"></i>
-								Edit Event
-							</button>
+								<!--<i class="fa fa-save green"></i>
+								Save Changes
+							</button> -->
 
 							<button type="submit"  id="cancelButton" class="new-technique-popup-button" name = "cancelButton">
 								<!--<button type="submit" name="_action_cancel" value="Cancel" class="new-technique-popup-button">-->

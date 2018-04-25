@@ -4,7 +4,12 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var oldView = 'month';
 var profileVal = 0;
 var profileBuffer = 100;
-
+var imodStartDateYear;
+var imodStartDateMonth;
+var imodStartDateDay;
+var imodEndDateYear;
+var imodEndDateMonth;
+var imodEndDateDay;
 /* Purpose: Javascript Logic for the Schedule View in IMODS.
 *
 * @author Wesley Coomber Wesley.Coomber@asu.edu
@@ -166,6 +171,14 @@ function evaluateProfile () {
 			progressbar.progressbar('value', profileValue);
 		}
 	});
+}
+
+function newTaskValidationError () {
+	'use strict';
+	if ($('.errorcontain').length) {
+		$('.errorcontain').css('color', 'red');
+		$('.errorcontain').css('font-size', '0.8em');
+	}
 }
 
 window.onload = function () {
@@ -417,6 +430,7 @@ $(document).ready(function () {
 			}
 		},
 		eventClick: function (event) {
+			console.log(event)
 			var dateSeparate = [];
 			// all arguments: (event, jsEvent, view)
 			var view = $('#scheduleCalendar').fullCalendar('getView');
@@ -455,9 +469,9 @@ $(document).ready(function () {
 			}
 
 			if (dateSeparate !== null) {
-				$('#taskStartDate_day').val(dateSeparate[2].substring(0, 2));
-				$('#taskStartDate_month').val(dateSeparate[1]);
-				$('#taskStartDate_year').val(dateSeparate[0]);
+				$('#taskStartDate_day').val(Number(dateSeparate[2].substring(0, 2)));
+				$('#taskStartDate_month').val(Number(dateSeparate[1]));
+				$('#taskStartDate_year').val(Number(dateSeparate[0]));
 			}
 
 			if (event.end !== null) {
@@ -465,11 +479,15 @@ $(document).ready(function () {
 			}
 
 			if (dateSeparate !== null) {
-				$('#taskEndDate_day').val(dateSeparate[2].substring(0, 2));
-				$('#taskEndDate_month').val(dateSeparate[1]);
-				$('#taskEndDate_year').val(dateSeparate[0]);
+				$('#taskEndDate_day').val(Number(dateSeparate[2].substring(0, 2)));
+				$('#taskEndDate_month').val(Number(dateSeparate[1]));
+				$('#taskEndDate_year').val(Number(dateSeparate[0]));
 			}
 
+			$('.date-error').remove();
+			$('.taskError').remove();
+			$('#editCheck').text('yes');
+			$('#saveButton').text('Save Changes');
 			$('#add-new-technique').css('display', 'block');
 			$('#topicDialogBackground').css('display', 'block');
 			return false;
@@ -652,6 +670,9 @@ function openNewAssessmentTechniqueModal () {
 	'use strict';
 
 	// reset form on new modal open
+	$('.date-error').remove();
+	$('.taskError').remove();
+	$('#saveButton').text('Add Event');
 	$('#add-new-technique').find('input:not(#lo, #imodId), select, textarea').val('');
 	$('#dimImageModal')
 		.prop('src', '../../images/content/knowDimNone.png')
@@ -1200,7 +1221,6 @@ $(document).ready(
 		var currContent;
 		var isPanelSelected;
 		var checkBoxName;
-		var cloneDetect = '';
 
 		// Load techniques on page load
 		filterAssessmentTechniques();
@@ -1285,62 +1305,137 @@ $(document).ready(
 			});
 
 		$('#saveButton').on('click', function () {
-			cloneDetect = document.getElementById('cloneDetect').value;
+			var errorLabel;
 
-			if ($('#title').val() === '') {
-				$('#errorMessage').text('Technique must have a title!');
+			$('.date-error').remove();
+			$('.taskError').remove();
+
+			if ($('#taskTitle').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task title is mandatory</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskLearningDomain').val() === '' || $('#taskLearningDomain').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose at least one Learning domain</label></div>';
+				$('#taskLearningDomain').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskKnowledgeDimension').val() === '' || $('#taskKnowledgeDimension').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose at least one Knowledge Dimension</label></div>';
+				$('#taskKnowledgeDimension').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskTypeOfActivity').val() === '' || $('#taskTypeOfActivity').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose at least one type</label></div>';
+				$('#taskTypeOfActivity').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#knowledgeDimension').val() === '') {
-				$('#errorMessage').text('Knowledge Dimensions are required!');
+			if ($('#taskStartDate_day').val() === '' || $('#taskStartDate_month').val() === '' ||
+				$('#taskStartDate_year').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Start date cannot be empty </label></div>';
+				$('#startDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_day').val() === '' || $('#taskEndDate_month').val() === '' ||
+				$('#taskEndDate_year').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be empty </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if (Number($('#taskEndDate_year').val()) < Number($('#taskStartDate_year').val())) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ((Number($('#taskEndDate_year').val()) === Number($('#taskStartDate_year').val())) &&
+				(Number($('#taskEndDate_month').val()) < Number($('#taskStartDate_month').val()))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ((Number($('#taskEndDate_year').val()) === Number($('#taskStartDate_year').val())) &&
+				(Number($('#taskEndDate_month').val()) === Number($('#taskStartDate_month').val())) &&
+				(Number($('#taskEndDate_day').val()) < Number($('#taskStartDate_day').val()))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
-				$('#errorMessage').text('Learning Domains are required');
+			if (Number($('#taskStartDate_year').val()) < Number(imodStartDateYear)) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date </label></div>';
+				$('#startDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDateYear)) &&
+				(Number($('#taskStartDate_month').val()) < Number(imodStartDateMonth))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date  </label></div>';
+				$('#startDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDateYear)) &&
+				(Number($('#taskStartDate_month').val()) === Number(imodStartDateMonth)) &&
+				(Number($('#taskStartDate_day').val()) < Number(imodStartDateDay))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date   </label></div>';
+				$('#startDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
-				$('#errorMessage').text('Domain Categories are required');
+			if (Number($('#taskEndDate_year').val()) > Number(imodEndDateYear)) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
-				$('#errorMessage').text('Enter title which is different from the original technique');
+			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDateYear)) &&
+				(Number($('#taskEndDate_month').val()) > Number(imodEndDateMonth))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-
-			return true;
-		});
-
-		$('#editButton').on('click', function () {
-			cloneDetect = document.getElementById('cloneDetect').value;
-
-			if ($('#title').val() === '') {
-				$('#errorMessage').text('Technique must have a title!');
-				return false;
-			}
-
-			if ($('#knowledgeDimension').val() === '') {
-				$('#errorMessage').text('Knowledge Dimensions are required!');
+			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDateYear)) &&
+				(Number($('#taskEndDate_month').val()) === Number(imodEndDateMonth)) &&
+				(Number($('#taskEndDate_day').val()) > Number(imodEndDateDay))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date  </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
-				$('#errorMessage').text('Learning Domains are required');
+			if ($('#taskEnvironment').val() === '' || $('#taskEnvironment').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Select task environmant</label></div>';
+				$('#taskEnvironment').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
-				$('#errorMessage').text('Domain Categories are required');
+			if ($('#taskWorkTime').val() === '' || $('#taskEnvironment').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Please enter working hours</label></div>';
+				$('#taskWorkTime').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
-				$('#errorMessage').text('Enter title which is different from the original technique');
+
+			if (isNaN(Number($('#taskWorkTime').val()))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Please enter numeric vaule for working hours</label></div>';
+				$('#taskWorkTime').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-			$('#editCheck').text('yes...');
+
 			return true;
 		});
 
