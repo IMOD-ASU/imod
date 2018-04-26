@@ -529,10 +529,9 @@ $(document).ready(function () {
 						var tempEnd = window.moment(obj.endDate);
 						var tempStart = window.moment(obj.startDate);
 
-
 						events.push({
 							title: obj.title,
-							allday: 'false',
+							allDay: true,
 							start: window.window.moment(obj.startDate, window.window.moment.ISO_8601),
 							end: window.window.moment(obj.endDate, window.window.moment.ISO_8601),
 							learnO: obj.learnO,
@@ -632,7 +631,7 @@ function addEvent (startDate, endDate, title, desc) {
 			start: startDate,
 			end: endDate,
 			description: desc,
-			allDay: false
+			allDay: true
 		}, true);
 }
 
