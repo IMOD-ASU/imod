@@ -170,6 +170,7 @@ class ScheduleController {
 //		def startdate_day = params.startDate_day
 //		def startdate_day = params.startDate_day
 //		def startdate_day = params.startDate_day
+		def activity = params.typeOfActivityField
 
 		if ( params.edit == 'yes' ) {
 			def id = params.id
@@ -206,6 +207,7 @@ class ScheduleController {
 			startdate_day: startdate_day,
 			startdate_month: startdate_month,
 			startdate_year: startdate_year,
+			activity: activity
 		)
 		event.save()
 

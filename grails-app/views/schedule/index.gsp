@@ -220,7 +220,7 @@
 											<b> Type Of Activity</b>
 										</div>
 										<div >
-											<g:select name="type_of_activity_field"  id="taskTypeOfActivity" class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
+											<g:select name="typeOfActivityField"  id="taskTypeOfActivity" class="add_activity_dropdown custom-dropdown" from="${activityTypes}" />
 										</div>
 										<br>
 									</div>
@@ -284,7 +284,7 @@
 							<button type="submit"  id="saveButton" class="new-technique-popup-button">
 								<!--<button type="submit" name="_action_save" value="Save" id="saveButton" class="new-technique-popup-button"onclick="addTask()">-->
 								<i class="fa fa-save green"></i>
-								Add Event
+								Save Activity
 							</button>
 
 							<!-- <button type="submit"  id="editButton" class="new-technique-popup-button"> -->

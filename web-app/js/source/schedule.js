@@ -449,17 +449,18 @@ $(document).ready(function () {
 			// alert("The view's title is " + beginMonthA.format('YYYY-M-D') + " " + beginMonthB.format('YYYY-M-D') + " " + beginMonthC.format('YYYY-M-D') + " " + beginMonthD.format('YYYY-M-D') + " " + beginMonthE.format('YYYY-M-D') + " " + beginMonthF.format('YYYY-M-D') + " ");
 
 			event = JSON.parse(JSON.stringify(event));
+
 			// set the values and open the modal
-			$('#taskInfo').html(event.notes);
-			$('#taskKnowD').html(event.knowD);
-			$('#taskEnviro').html(event.enviro);
-			$('#taskWorkTime').val(event.workTime);
-			$('#taskLink').attr('href', event.url);
 			$('#taskTitle').val(event.title);
-			$('#tasklearnO').val(event.learnO);
-			$('#taskKnowDimensions').val(event.knowD);
+			$('#taskLearningDomain').val(event.learnO);
+			$('#taskKnowledgeDimension').val(event.knowD);
+			$('#taskInfo').html(event.notes);
+			$('#taskTypeOfActivity').val(event.activity);
 			$('#taskEnvironment').val(event.enviro);
-			$('#taskActivityType').val(event.activity);
+			$('#taskWorkTime').val(event.workTime);
+			$('#taskEnviro').val(event.enviro);
+			$('#taskLink').attr('href', event.url);
+			$('#taskKnowDimensions').val(event.knowD);
 			$('#taskID').val(event.id);
 			$('#taskID2').val(event.id);
 
@@ -486,7 +487,7 @@ $(document).ready(function () {
 			$('.date-error').remove();
 			$('.taskError').remove();
 			$('#editCheck').text('yes');
-			$('#saveButton').text('Save Changes');
+			document.getElementById('deleteButton').style.visibility = 'visible';
 			$('#add-new-technique').css('display', 'block');
 			$('#topicDialogBackground').css('display', 'block');
 			return false;
@@ -671,7 +672,7 @@ function openNewAssessmentTechniqueModal () {
 	// reset form on new modal open
 	$('.date-error').remove();
 	$('.taskError').remove();
-	$('#saveButton').text('Add Event');
+	document.getElementById('deleteButton').style.visibility = 'hidden';
 	$('#add-new-technique').find('input:not(#lo, #imodId), select, textarea').val('');
 	$('#dimImageModal')
 		.prop('src', '../../images/content/knowDimNone.png')
