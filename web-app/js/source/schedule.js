@@ -672,7 +672,6 @@ function openNewAssessmentTechniqueModal () {
 	// reset form on new modal open
 	$('.date-error').remove();
 	$('.taskError').remove();
-	//$('.deleteButton').hide();
 	document.getElementById('deleteButton').style.visibility = 'hidden';
 	$('#add-new-technique').find('input:not(#lo, #imodId), select, textarea').val('');
 	$('#dimImageModal')

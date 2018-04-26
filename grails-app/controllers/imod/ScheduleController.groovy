@@ -207,7 +207,7 @@ class ScheduleController {
 			startdate_day: startdate_day,
 			startdate_month: startdate_month,
 			startdate_year: startdate_year,
-			activity:activity
+			activity: activity
 		)
 		event.save()
 
