@@ -303,7 +303,7 @@ $(document).ready(function () {
 			}]
 		}]
 	});
-	chart.render();
+	// chart.render();
 
 	// end of chart JS
 
@@ -314,7 +314,7 @@ $(document).ready(function () {
 	// Populate the choice box with choices from the years [2010 to 2035] array
 	choiceYear = document.getElementById('chooseYear');
 	for (inc = 0; inc < years.length; inc++) {
-		// console.log(inc);
+		// .log(inc);
 		tempMonth = years[inc];
 		tempEle = document.createElement('option');
 		tempEle.textContent = tempMonth;
@@ -404,7 +404,8 @@ $(document).ready(function () {
 		tempEle.value = tempMonth;
 		choiceHour.appendChild(tempEle);
 	}
-
+	//  hide the chart container on page load
+	document.getElementById('chartContainer').style.visibility = 'hidden';
 	$('#scheduleCalendar').fullCalendar({
 		header: {
 			left: 'prev title next',
@@ -547,8 +548,9 @@ $(document).ready(function () {
 							url: obj.learnO
 						});
 
-						if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
+						// if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
 						// console.log('event within date range!: ' + obj.title);
+						if (tempStart >= start && tempEnd <= end) {
 							eventsForGraph.push({
 								type: 'stackedBar',
 								showInLegend: true,
@@ -566,9 +568,22 @@ $(document).ready(function () {
 					// console.info(eventsForGraph);
 					callback(events);
 
-					if (eventsForGraph.length < chart.options.data.length) {
-						chart.options.data = [];
+					// if (eventsForGraph.length < chart.options.data.length) {
+					// 	chart.options.data = [];
+					// }
+					function compare (firstEvent, secondEvent) {
+						if (firstEvent.dataPoints[0].y < secondEvent.dataPoints[0].y) {
+							return -1;
+						}
+						if (firstEvent.dataPoints[0].y > secondEvent.dataPoints[0].y) {
+							return 1;
+						}
+						return 0;
 					}
+
+					eventsForGraph.sort(compare);
+
+					chart.options.data = [];
 
 					for (iterator = 0; iterator < eventsForGraph.length; iterator++) {
 						chart.options.data[iterator] = eventsForGraph[iterator];
@@ -586,15 +601,14 @@ $(document).ready(function () {
 					chart.options.colorSet = 'greenShades';
 
 					// if less than 85% or greater than 115% of the expected hours are assigned, turn the stacked bar chart orange
-					if (((hourSum / outClassHoursB) < 0.85) || ((hourSum / outClassHoursB) > 1.15)) {
+					if (((hourSum / outClassHoursB) > 0.80) && ((hourSum / outClassHoursB) <= 1.00)) {
 						chart.options.colorSet = 'orangeShades';
 					}
 
 					// if less than 65% or greater than 125% of the expected hours are assigned, turn the stacked bar chart red
-					if (((hourSum / outClassHoursB) < 0.65) || ((hourSum / outClassHoursB) > 1.25)) {
+					if ((hourSum / outClassHoursB) > 1.0) {
 						chart.options.colorSet = 'redShades';
 					}
-
 					chart.render();
 
 					events.splice(0, events.length);
