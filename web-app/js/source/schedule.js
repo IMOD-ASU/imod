@@ -571,11 +571,11 @@ $(document).ready(function () {
 					// if (eventsForGraph.length < chart.options.data.length) {
 					// 	chart.options.data = [];
 					// }
-					function compare (a, b) {
-						if (a.dataPoints[0].y < b.dataPoints[0].y) {
+					function compare (firstEvent, secondEvent) {
+						if (firstEvent.dataPoints[0].y < secondEvent.dataPoints[0].y) {
 							return -1;
 						}
-						if (a.dataPoints[0].y > b.dataPoints[0].y) {
+						if (firstEvent.dataPoints[0].y > secondEvent.dataPoints[0].y) {
 							return 1;
 						}
 						return 0;
