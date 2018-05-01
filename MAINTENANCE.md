@@ -185,23 +185,26 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 
 	sudo apt-get update
 	sudo apt-get install postgresql postgresql-contrib phppgadmin
-	#Create imods user
+	
+	-Create imods user
 	sudo -u postgres psql --command "CREATE USER imod WITH  PASSWORD 'imod4u'"
-	#Create imod db
+	
+	-Create imod db
 	sudo -u postgres createdb --owner imod imod-test
 	sudo -u postgres createdb --owner imod imod-demo
 	
 	iii. Grails
 
-	# if zip and unzip not installed (sudo apt-get install zip, sudo apt-get install unzip)
+	-if zip and unzip not installed (sudo apt-get install zip, sudo apt-get install unzip)
 	unzip grails sdk into export GRAILS_HOME=/opt/grails-2.4.3
 	export GRAILS_HOME=/opt/grails-2.4.3
 	export PATH=$GRAILS_HOME/bin:$PATH
 	
 	iv. Jenkins
-	#add the repository key to the system.
+	-add the repository key to the system.
 	wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
-	#append the Debian package repository address to the server's sources.list
+	
+	-append the Debian package repository address to the server's sources.list
 	https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
 	sudo apt-get update
 	sudo apt-get install jenkins
