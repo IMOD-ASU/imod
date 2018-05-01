@@ -303,7 +303,7 @@ $(document).ready(function () {
 			}]
 		}]
 	});
-	//chart.render();
+	// chart.render();
 
 	// end of chart JS
 
@@ -410,7 +410,7 @@ $(document).ready(function () {
 		header: {
 			left: 'prev title next',
 			center: '',
-			right: 'month basicWeek',
+			right: 'month basicWeek'
 		},
 		lazyFetching: false,
 		// runs when view changes to week and vice-versa.
@@ -548,7 +548,7 @@ $(document).ready(function () {
 							url: obj.learnO
 						});
 
-						//if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
+						// if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
 						// console.log('event within date range!: ' + obj.title);
 						if (tempStart >= start && tempEnd <= end) {
 							eventsForGraph.push({
@@ -571,11 +571,11 @@ $(document).ready(function () {
 					// if (eventsForGraph.length < chart.options.data.length) {
 					// 	chart.options.data = [];
 					// }
-					function compare(event1, event2) {
-						if (event1.dataPoints[0].y < event2.dataPoints[0].y){
+					function compare (a, b) {
+						if (a.dataPoints[0].y < b.dataPoints[0].y) {
 							return -1;
 						}
-						if (event1.dataPoints[0].y > event2.dataPoints[0].y) {
+						if (a.dataPoints[0].y > b.dataPoints[0].y) {
 							return 1;
 						}
 						return 0;
@@ -606,7 +606,7 @@ $(document).ready(function () {
 					}
 
 					// if less than 65% or greater than 125% of the expected hours are assigned, turn the stacked bar chart red
-					if ((hourSum / outClassHoursB) > 1.0 ) {
+					if ((hourSum / outClassHoursB) > 1.0) {
 						chart.options.colorSet = 'redShades';
 					}
 					chart.render();
