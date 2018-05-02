@@ -10,6 +10,7 @@ var imodStartDateDay;
 var imodEndDateYear;
 var imodEndDateMonth;
 var imodEndDateDay;
+var imodId;
 /* Purpose: Javascript Logic for the Schedule View in IMODS.
 *
 * @author Wesley Coomber Wesley.Coomber@asu.edu
@@ -186,9 +187,8 @@ window.onload = function () {
 	evaluateProfile();
 };
 
-$(document).ready(function () {
+function loadCalendar () {
 	'use strict';
-
 	var hourRatio = 3;
 	var inClassHours = 3;
 	var outClassHours = inClassHours * hourRatio;
@@ -227,7 +227,7 @@ $(document).ready(function () {
 
 	window.CanvasJS
 		.addColorSet('greenShades',
-		// colorSet Array
+			// colorSet Array
 		[
 			'#7CFC00',
 			'#00FF00',
@@ -237,7 +237,7 @@ $(document).ready(function () {
 			'#4DBD33',
 			'#49E20E'
 		]
-	);
+		);
 
 	window.CanvasJS.addColorSet('redShades', [
 		// colorSet Array for Red Warnings
@@ -404,8 +404,6 @@ $(document).ready(function () {
 		tempEle.value = tempMonth;
 		choiceHour.appendChild(tempEle);
 	}
-	//  hide the chart container on page load
-	document.getElementById('chartContainer').style.visibility = 'hidden';
 	$('#scheduleCalendar').fullCalendar({
 		header: {
 			left: 'prev title next',
@@ -493,128 +491,190 @@ $(document).ready(function () {
 			$('#topicDialogBackground').css('display', 'block');
 			return false;
 		},
+
 		events: function (start, end, timezone, callback) {
-			$.ajax({
-				url: '../../schedule/getEvents/',
-				data: {
-					learningObjectiveID: $('#lo').val(),
-					// Start date is first day that is displayed
-					// startDate: ((start.subtract(1, 'days')).toISOString()),
-					startDate: (start).toISOString(),
-					// End  date is last day that is displayed
-					// endDate: ((end.add(1, 'days')).toISOString())
-					endDate: (end).toISOString()
-				},
-				method: 'GET'
-			})
-				.done(function (data) {
-					var events = [];
-					// clear the eventsForGraph array
-					var hourSum = 0;
+			if (!document.getElementById('selectAllLOBox').checked) {
+				$.ajax({
+					url: '../../schedule/getEvents/',
+					data: {
+						learningObjectiveID: $('#lo').val(),
+						// Start date is first day that is displayed
+						// startDate: ((start.subtract(1, 'days')).toISOString()),
+						startDate: (start).toISOString(),
+						// End  date is last day that is displayed
+						// endDate: ((end.add(1, 'days')).toISOString())
+						endDate: (end).toISOString()
+					},
+					method: 'GET'
+				})
+					.done(function (data) {
+						var events = [];
+						// clear the eventsForGraph array
+						var hourSum = 0;
 
-					// getting the timeRatio from the dom and run a regular expression that grabs characters not contain a ":" eg. most time ratio is stored as 1:3, this gets us only the 3 value
-					var str = $('#timeRatioH').html();
+						// getting the timeRatio from the dom and run a regular expression that grabs characters not contain a ":" eg. most time ratio is stored as 1:3, this gets us only the 3 value
+						var str = $('#timeRatioH').html();
 
-					var cutStr = /[^:]*$/.exec(str)[0];
+						var cutStr = /[^:]*$/.exec(str)[0];
 
-					var strB = $('#creditHoursH').html();
+						var strB = $('#creditHoursH').html();
 
-					var timeRatI = parseInt(cutStr, 10);
-					var creditHoursI = parseInt(strB, 10);
-					var outClassHoursB;
+						var timeRatI = parseInt(cutStr, 10);
+						var creditHoursI = parseInt(strB, 10);
+						var outClassHoursB;
 
-					var iterator;
+						var iterator;
 
-					eventsForGraph = [];
-					$.each(data.events, function (index, obj) {
-						var tempEnd = window.moment(obj.endDate);
-						var tempStart = window.moment(obj.startDate);
+						eventsForGraph = [];
+						$.each(data.events, function (index, obj) {
+							var tempEnd = window.moment(obj.endDate);
+							var tempStart = window.moment(obj.startDate);
 
-						events.push({
-							title: obj.title,
-							allDay: true,
-							start: window.window.moment(obj.startDate, window.window.moment.ISO_8601),
-							end: window.window.moment(obj.endDate, window.window.moment.ISO_8601),
-							learnO: obj.learnO,
-							knowD: obj.knowD,
-							activity: obj.activity,
-							enviro: obj.enviro,
-							workTime: obj.workTime,
-							description: obj.notes,
-							id: obj.id,
-							notes: obj.notes,
+							events.push({
+								title: obj.title,
+								allDay: true,
+								start: window.window.moment(obj.startDate, window.window.moment.ISO_8601),
+								end: window.window.moment(obj.endDate, window.window.moment.ISO_8601),
+								learnO: obj.learnO,
+								knowD: obj.knowD,
+								activity: obj.activity,
+								enviro: obj.enviro,
+								workTime: obj.workTime,
+								description: obj.notes,
+								id: obj.id,
+								notes: obj.notes,
 
-							// this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
-							url: obj.learnO
+								// this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
+								url: obj.learnO
+							});
+							// if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
+							// console.log('event within date range!: ' + obj.title);
+							if (tempStart >= start && tempEnd <= end) {
+								eventsForGraph.push({
+									type: 'stackedBar',
+									showInLegend: true,
+									name: '' + obj.title,
+									toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
+									dataPoints: [{
+										y: obj.workTime,
+										label: 'iMods Week Visualizer',
+										x: 0
+									}]
+								});
+							}
+						});
+						// console.info(events);
+						// console.info(eventsForGraph);
+						callback(events);
+
+						// if (eventsForGraph.length < chart.options.data.length) {
+						// 	chart.options.data = [];
+						// }
+						function compare (firstEvent, secondEvent) {
+							if (firstEvent.dataPoints[0].y < secondEvent.dataPoints[0].y) {
+								return -1;
+							}
+							if (firstEvent.dataPoints[0].y > secondEvent.dataPoints[0].y) {
+								return 1;
+							}
+							return 0;
+						}
+
+						eventsForGraph.sort(compare);
+
+						chart.options.data = [];
+
+						for (iterator = 0; iterator < eventsForGraph.length; iterator++) {
+							chart.options.data[iterator] = eventsForGraph[iterator];
+
+							hourSum += eventsForGraph[iterator].dataPoints[0].y;
+						}
+						// multiply the credit hours of the course by the time ratio to get the hours per week that students should be working. Eg. 3 credit hour course, a 1:3 time ratio, means 3x3 = 9 hours per week of expected working time.
+						outClassHoursB = timeRatI * creditHoursI;
+
+						chart.options.axisY.title = 'Currently Assigned Working Hours (' + (hourSum) + ' out of ' + outClassHoursB + ') per week';
+
+						chart.options.axisY.maximum = outClassHoursB;
+						// chart.options.axisY.minimum = outClassHoursB
+
+						chart.options.colorSet = 'greenShades';
+
+						// if less than 85% or greater than 115% of the expected hours are assigned, turn the stacked bar chart orange
+						if (((hourSum / outClassHoursB) > 0.80) && ((hourSum / outClassHoursB) <= 1.00)) {
+							chart.options.colorSet = 'orangeShades';
+						}
+
+						// if less than 65% or greater than 125% of the expected hours are assigned, turn the stacked bar chart red
+						if ((hourSum / outClassHoursB) > 1.0) {
+							chart.options.colorSet = 'redShades';
+						}
+						chart.render();
+
+						events.splice(0, events.length);
+					});
+			}
+
+			if (document.getElementById('selectAllLOBox').checked) {
+				$.ajax({
+					url: '../../schedule/getAllEvents/',
+					data: {
+						learningObjectiveID: $('#lo').val(),
+						imodId: imodId,
+						startDate: (start).toISOString(),
+
+						endDate: (end).toISOString()
+					},
+					method: 'GET'
+				})
+					.done(function (data) {
+						var fetchedEvents = [];
+						var events = [];
+						var index;
+
+						for (index = 0; index < data.events.length; index++) {
+							if (!fetchedEvents.includes(data.events[index])) {
+								fetchedEvents = fetchedEvents.concat(data.events[index]);
+							}
+						}
+
+						$.each(fetchedEvents, function (index, obj) {
+							events.push({
+								title: obj.title,
+								allDay: true,
+								start: window.window.moment(obj.startDate, window.window.moment.ISO_8601),
+								end: window.window.moment(obj.endDate, window.window.moment.ISO_8601),
+								learnO: obj.learnO,
+								knowD: obj.knowD,
+								activity: obj.activity,
+								enviro: obj.enviro,
+								workTime: obj.workTime,
+								description: obj.notes,
+								id: obj.id,
+								notes: obj.notes,
+
+								// this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
+								url: obj.learnO
+							});
 						});
 
-						// if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
-						// console.log('event within date range!: ' + obj.title);
-						if (tempStart >= start && tempEnd <= end) {
-							eventsForGraph.push({
-								type: 'stackedBar',
-								showInLegend: true,
-								name: '' + obj.title,
-								toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
-								dataPoints: [{
-									y: obj.workTime,
-									label: 'iMods Week Visualizer',
-									x: 0
-								}]
-							});
-						}
+						callback(events);
 					});
-					// console.info(events);
-					// console.info(eventsForGraph);
-					callback(events);
-
-					// if (eventsForGraph.length < chart.options.data.length) {
-					// 	chart.options.data = [];
-					// }
-					function compare (firstEvent, secondEvent) {
-						if (firstEvent.dataPoints[0].y < secondEvent.dataPoints[0].y) {
-							return -1;
-						}
-						if (firstEvent.dataPoints[0].y > secondEvent.dataPoints[0].y) {
-							return 1;
-						}
-						return 0;
-					}
-
-					eventsForGraph.sort(compare);
-
-					chart.options.data = [];
-
-					for (iterator = 0; iterator < eventsForGraph.length; iterator++) {
-						chart.options.data[iterator] = eventsForGraph[iterator];
-
-						hourSum += eventsForGraph[iterator].dataPoints[0].y;
-					}
-					// multiply the credit hours of the course by the time ratio to get the hours per week that students should be working. Eg. 3 credit hour course, a 1:3 time ratio, means 3x3 = 9 hours per week of expected working time.
-					outClassHoursB = timeRatI * creditHoursI;
-
-					chart.options.axisY.title = 'Currently Assigned Working Hours (' + (hourSum) + ' out of ' + outClassHoursB + ') per week';
-
-					chart.options.axisY.maximum = outClassHoursB;
-					// chart.options.axisY.minimum = outClassHoursB
-
-					chart.options.colorSet = 'greenShades';
-
-					// if less than 85% or greater than 115% of the expected hours are assigned, turn the stacked bar chart orange
-					if (((hourSum / outClassHoursB) > 0.80) && ((hourSum / outClassHoursB) <= 1.00)) {
-						chart.options.colorSet = 'orangeShades';
-					}
-
-					// if less than 65% or greater than 125% of the expected hours are assigned, turn the stacked bar chart red
-					if ((hourSum / outClassHoursB) > 1.0) {
-						chart.options.colorSet = 'redShades';
-					}
-					chart.render();
-
-					events.splice(0, events.length);
-				});
+			}
 		}
 	});
+}
+
+document.getElementById('selectAllLOBox').addEventListener('change', function () {
+	'use strict';
+	$('#scheduleCalendar').fullCalendar('destroy');
+	loadCalendar();
+});
+
+$(document).ready(function () {
+	'use strict';
+	//  hide the chart container on page load
+	document.getElementById('chartContainer').style.visibility = 'hidden';
+	loadCalendar();
 
 	$('#addT').click(function () {
 		var sYear = $('#chooseYear option:selected').text();
