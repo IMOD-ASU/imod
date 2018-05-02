@@ -187,7 +187,8 @@ window.onload = function () {
 	evaluateProfile();
 };
 
-function loadCalendar() {
+function loadCalendar () {
+	'use strict';
 	var hourRatio = 3;
 	var inClassHours = 3;
 	var outClassHours = inClassHours * hourRatio;
@@ -227,15 +228,15 @@ function loadCalendar() {
 	window.CanvasJS
 		.addColorSet('greenShades',
 			// colorSet Array
-			[
-				'#7CFC00',
-				'#00FF00',
-				'#76EE00',
-				'#83F52C',
-				'#5DFC0A',
-				'#4DBD33',
-				'#49E20E'
-			]
+		[
+			'#7CFC00',
+			'#00FF00',
+			'#76EE00',
+			'#83F52C',
+			'#5DFC0A',
+			'#4DBD33',
+			'#49E20E'
+		]
 		);
 
 	window.CanvasJS.addColorSet('redShades', [
@@ -491,9 +492,8 @@ function loadCalendar() {
 			return false;
 		},
 
-
 		events: function (start, end, timezone, callback) {
-			if ( !document.getElementById("selectAllLOBox").checked) {
+			if (!document.getElementById('selectAllLOBox').checked) {
 				$.ajax({
 					url: '../../schedule/getEvents/',
 					data: {
@@ -614,7 +614,7 @@ function loadCalendar() {
 					});
 			}
 
-			if (document.getElementById("selectAllLOBox").checked) {
+			if (document.getElementById('selectAllLOBox').checked) {
 				$.ajax({
 					url: '../../schedule/getAllEvents/',
 					data: {
@@ -627,19 +627,17 @@ function loadCalendar() {
 					method: 'GET'
 				})
 					.done(function (data) {
-						var fetchedEvents = []
+						var fetchedEvents = [];
+						var events = [];
+						var index;
 
-						for (var i = 0; i < data.events.length; i++) {
-							if (!fetchedEvents.includes(data.events[i])) {
-								fetchedEvents = fetchedEvents.concat(data.events[i]);
+						for (index = 0; index < data.events.length; index++) {
+							if (!fetchedEvents.includes(data.events[index])) {
+								fetchedEvents = fetchedEvents.concat(data.events[index]);
 							}
 						}
-						var events = [];
 
 						$.each(fetchedEvents, function (index, obj) {
-							var tempEnd = window.moment(obj.endDate);
-							var tempStart = window.moment(obj.startDate);
-
 							events.push({
 								title: obj.title,
 								allDay: true,
@@ -660,15 +658,14 @@ function loadCalendar() {
 						});
 
 						callback(events);
-					})
+					});
 			}
-
 		}
-
 	});
 }
 
-document.getElementById('selectAllLOBox').addEventListener( 'change', function() {
+document.getElementById('selectAllLOBox').addEventListener('change', function () {
+	'use strict';
 	$('#scheduleCalendar').fullCalendar('destroy');
 	loadCalendar();
 });

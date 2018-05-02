@@ -263,7 +263,6 @@ class ScheduleController {
 
 	def getAllEvents() {
 		def imodId = params.imodId
-		def loId = params.learningObjectiveID
 		def allEvents = []
 		final currentImod = Imod.get(imodId)
 		final allLearningObjectives = learningObjectiveService.getAllByImod(currentImod)
