@@ -64,6 +64,17 @@
 						Learning Objectives
 					</span>
 				</div>
+
+				<div>
+					<span class="title-text">
+						Select All
+					</span>
+					<span >
+						<g:checkBox  name="allLearningObjectives" id="selectAllLOBox" />
+					</span>
+				</div>
+
+
 				<ul class="learning-objective list-wrapper">
 					<g:if test="${learningObjectives}">
 						<g:each var="learningObjective" in="${learningObjectives}">
@@ -186,7 +197,7 @@
 				<g:javascript> var imodEndDateYear = (${imodEndDate.split('-')[0]}) </g:javascript>
 				<g:javascript> var imodEndDateMonth = (${imodEndDate.split('-')[1]}) </g:javascript>
 				<g:javascript> var imodEndDateDay = (${imodEndDate.split('-')[2]}) </g:javascript>
-
+				<g:javascript> var imodId = (${currentImod.id}) </g:javascript>
 				<!--Dialog box for Add New Task to Calendar -->
 
 				<div class="draggable" id="add-new-technique" >
