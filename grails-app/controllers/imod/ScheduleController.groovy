@@ -83,6 +83,12 @@ class ScheduleController {
 		timeRatio1 = Imod.get(id).timeRatio
 		currName1 = Imod.get(id).name
 
+		String imodStartDate = Imod.get(id).schedule.startDate
+		String imodEndDate = Imod.get(id).schedule.endDate
+
+		imodStartDate = imodStartDate[0..10]
+		imodEndDate = imodEndDate[0..10]
+
 		[
 			pedagogyFocuses: pedagogyFocuses,
 
@@ -107,7 +113,9 @@ class ScheduleController {
 			selectedDomain: selectedDomain,
 			selectedDomainCategory: selectedDomainCategory,
 			dimension: dimension,
-			dimensionSize: dimensionSize
+			dimensionSize: dimensionSize,
+			imodStartDate: imodStartDate,
+			imodEndDate: imodEndDate
 
 		]
 
@@ -154,6 +162,7 @@ class ScheduleController {
 		def notes = params.notes
 
 		def lo = params.lo
+		def imodId = params.imodId
 		// def activity = params.type_of_activity_field
 		def startdate_day = params.startDate_day
 		def startdate_month = params.startDate_month
@@ -162,6 +171,7 @@ class ScheduleController {
 //		def startdate_day = params.startDate_day
 //		def startdate_day = params.startDate_day
 //		def startdate_day = params.startDate_day
+		def activity = params.typeOfActivityField
 
 		if ( params.edit == 'yes' ) {
 			def id = params.id
@@ -198,6 +208,8 @@ class ScheduleController {
 			startdate_day: startdate_day,
 			startdate_month: startdate_month,
 			startdate_year: startdate_year,
+			activity: activity,
+			imodId: imodId
 		)
 		event.save()
 
@@ -241,7 +253,6 @@ class ScheduleController {
            				//}
            			}
            		}
-
 		render (
 			[
 				events: events.scheduleEvents[0]
@@ -249,6 +260,46 @@ class ScheduleController {
 		)
 
 	}
+
+	def getAllEvents() {
+		def imodId = params.imodId
+		def loId = params.learningObjectiveID
+		def allEvents = []
+		final currentImod = Imod.get(imodId)
+		final allLearningObjectives = learningObjectiveService.getAllByImod(currentImod)
+
+		DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
+		DateTime startDate = fmt.parseDateTime(params.startDate)
+		DateTime endDate = fmt.parseDateTime(params.endDate)
+
+		for (LearningObjective lo: allLearningObjectives) {
+
+			def events = allLearningObjectives[0].withCriteria {
+				scheduleEvents {
+					and {
+						gt('startDate', startDate.toDate())
+						lt('startDate', endDate.toDate())
+					}
+					and {
+						gt('endDate', startDate.toDate())
+						lt('endDate', endDate.toDate())
+					}
+					and {
+						eq('lo', lo.id.toString())
+					}
+				}
+			}
+			if (events != [] ) {
+				allEvents.push(events[0])
+			}
+		}
+		render (
+			[
+				events: allEvents.scheduleEvents
+			] as JSON
+		)
+	}
+
 	/**
 	 * Delete an event for a particular learning objective
 	 */
