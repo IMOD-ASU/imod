@@ -192,10 +192,11 @@ function filterEvents (selectedKnowledgeDimensions, selectedActivityTypes, selec
 	var filteredEvents = [];
 	var index = 0;
 
-	if ((selectedKnowledgeDimensions === 'undefined' &&
-		selectedActivityTypes === 'undefined' &&
-		selectedTaskEnvironments === 'undefined') ||
-		(selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0)) {
+	if ((!selectedKnowledgeDimensions) &&
+		(!selectedActivityTypes) &&
+		(!selectedTaskEnvironments)){
+		filteredEvents = fetchedEvents;
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0) {
 		filteredEvents = fetchedEvents;
 	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0) {
 		for (index = 0; index < fetchedEvents.length; index++) {
@@ -585,6 +586,17 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 						eventsForGraph = [];
 						filteredEvents = filterEvents(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents);
 
+						console.log(filteredEvents)
+
+						function compare (firstEvent, secondEvent) {
+							return ((firstEvent.startDate < secondEvent.startDate) ? -1 : ((firstEvent.startDate > secondEvent.startDate) ? 1 : 0));
+
+						}
+
+						filteredEvents.sort(compare);
+
+						console.log(filteredEvents)
+
 						$.each(filteredEvents, function (index, obj) {
 							var tempEnd = window.moment(obj.endDate);
 							var tempStart = window.moment(obj.startDate);
@@ -622,6 +634,20 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 								});
 							}
 						});
+
+						if (eventsForGraph.length === 0) {
+							eventsForGraph.push({
+								type: 'stackedBar',
+								showInLegend: true,
+								name: '',
+								toolTipContent: 'No activity',
+								dataPoints: [{
+									y: 0,
+									label: 'iMods Week Visualizer',
+									x: 0
+								}]
+							});
+						}
 						// console.info(events);
 						// console.info(eventsForGraph);
 						callback(events);
@@ -629,17 +655,7 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 						// if (eventsForGraph.length < chart.options.data.length) {
 						// 	chart.options.data = [];
 						// }
-						function compare (firstEvent, secondEvent) {
-							if (firstEvent.dataPoints[0].y < secondEvent.dataPoints[0].y) {
-								return -1;
-							}
-							if (firstEvent.dataPoints[0].y > secondEvent.dataPoints[0].y) {
-								return 1;
-							}
-							return 0;
-						}
 
-						eventsForGraph.sort(compare);
 
 						chart.options.data = [];
 
