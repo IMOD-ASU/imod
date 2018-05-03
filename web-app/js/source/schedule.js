@@ -187,7 +187,69 @@ window.onload = function () {
 	evaluateProfile();
 };
 
-function loadCalendar () {
+function filterEvents (selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents) {
+	'use strict';
+	var filteredEvents = [];
+	var index = 0;
+
+	if ((selectedKnowledgeDimensions === 'undefined' &&
+		selectedActivityTypes === 'undefined' &&
+		selectedTaskEnvironments === 'undefined') ||
+		(selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0)) {
+		filteredEvents = fetchedEvents;
+	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
+				selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
+				selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length !== 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
+				selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
+				selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1 &&
+				selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	}
+	return filteredEvents;
+}
+
+
+function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments) {
 	'use strict';
 	var hourRatio = 3;
 	var inClassHours = 3;
@@ -508,25 +570,22 @@ function loadCalendar () {
 					method: 'GET'
 				})
 					.done(function (data) {
+						var fetchedEvents = data.events;
+						var filteredEvents = [];
 						var events = [];
-						// clear the eventsForGraph array
 						var hourSum = 0;
-
-						// getting the timeRatio from the dom and run a regular expression that grabs characters not contain a ":" eg. most time ratio is stored as 1:3, this gets us only the 3 value
 						var str = $('#timeRatioH').html();
-
 						var cutStr = /[^:]*$/.exec(str)[0];
-
 						var strB = $('#creditHoursH').html();
-
 						var timeRatI = parseInt(cutStr, 10);
 						var creditHoursI = parseInt(strB, 10);
 						var outClassHoursB;
-
 						var iterator;
 
 						eventsForGraph = [];
-						$.each(data.events, function (index, obj) {
+						filteredEvents = filterEvents(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents);
+
+						$.each(filteredEvents, function (index, obj) {
 							var tempEnd = window.moment(obj.endDate);
 							var tempStart = window.moment(obj.startDate);
 
@@ -628,16 +687,19 @@ function loadCalendar () {
 				})
 					.done(function (data) {
 						var fetchedEvents = [];
+						var filteredEvents = [];
 						var events = [];
-						var index;
+						var loopIndex;
 
-						for (index = 0; index < data.events.length; index++) {
-							if (!fetchedEvents.includes(data.events[index])) {
-								fetchedEvents = fetchedEvents.concat(data.events[index]);
+						for (loopIndex = 0; loopIndex < data.events.length; loopIndex++) {
+							if (!fetchedEvents.includes(data.events[loopIndex])) {
+								fetchedEvents = fetchedEvents.concat(data.events[loopIndex]);
 							}
 						}
 
-						$.each(fetchedEvents, function (index, obj) {
+						filteredEvents = filterEvents(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents);
+
+						$.each(filteredEvents, function (index, obj) {
 							events.push({
 								title: obj.title,
 								allDay: true,
@@ -1034,58 +1096,67 @@ function displayAssessmentFavoriteTechniques (data) {
 function filterAssessmentTechniques () {
 	'use strict';
 	// Get all of the selected checkboxes
-	var selectedKnowledgeDimensions = $('input[name=knowledgeDimension]:checked');
-	var selectedLearningDomains = $('input[name=learningDomain]:checked');
-	var selectedDomainCategories = $('input[name=domainCategory]:checked');
-
-	// Arrays to store the data
-	var selectedKnowledgeDimensionsData = [];
-	var selectedLearningDomainsData = [];
-	var selectedDomainCategoriesData = [];
-
+	var knowledgeDimensions = $('input[name=knowledgeDimension]');
+	var activityTypes = $('input[name=activityType]');
+	var taskEnvironments = $('input[name=taskEnv]');
+	var selectedKnowledgeDimensions = [];
+	var selectedActivityTypes = [];
+	var selectedTaskEnvironments = [];
 	var index;
-	var data;
 
-	data = -1;
-	data += 1;
 	// Get the id of the grails domain from the value attribute in the html
-	for (index = 0; index < selectedKnowledgeDimensions.length; index++) {
-		selectedKnowledgeDimensionsData[index] = selectedKnowledgeDimensions[index].value;
-	}
-	for (index = 0; index < selectedLearningDomains.length; index++) {
-		selectedLearningDomainsData[index] = selectedLearningDomains[index].value;
-	}
-	for (index = 0; index < selectedDomainCategories.length; index++) {
-		selectedDomainCategoriesData[index] = selectedDomainCategories[index].value;
+	for (index = 0; index < knowledgeDimensions.length; index++) {
+		if (knowledgeDimensions[index].checked) {
+			selectedKnowledgeDimensions.push(knowledgeDimensions[index].value);
+		}
 	}
 
-	// Bundle the data into an object
-	data = {
-		selectedKnowledgeDimensions: selectedKnowledgeDimensionsData,
-		selectedLearningDomains: selectedLearningDomainsData,
-		selectedDomainCategories: selectedDomainCategoriesData,
-		learningObjectiveID: $('#learningObjectiveID').val()
+	for (index = 0; index < activityTypes.length; index++) {
+		if (activityTypes[index].checked) {
+			selectedActivityTypes.push(activityTypes[index].value);
+		}
+	}
 
-	};
+	for (index = 0; index < taskEnvironments.length; index++) {
+		if (taskEnvironments[index].checked) {
+			selectedTaskEnvironments.push(taskEnvironments[index].value);
+		}
+	}
 
-	// Send the data to the find matching techniques action in grails
-	// and process the response with the display assessment techniques callback
-	/*
-	$.ajax({
-	url: '../findMatchingTechniques',
-	method: 'post',
-	data: JSON.stringify(data),
-	contentType: 'application/json'
-})
-.done(function (data) {
-displayAssessmentTechniques(data);
-showAssessmentTechnique(data);
-checkForAssign(data);
-assessmentEqualHeights('#ideal-matches1');
-assessmentEqualHeights('#extended-matches');
-});
-*/
+	$('#scheduleCalendar').fullCalendar('destroy');
+	loadCalendar(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments);
 }
+
+$('input[name=knowledgeDimension]').on('change',
+	function () {
+		'use strict';
+		var checkBoxName = 'knowledgeDimension';
+
+		updateTextArea(checkBoxName);
+		filterAssessmentTechniques();
+		$('#selectAllkD').prop('checked', false);
+	});
+
+$('input[name=activityType]').on('change',
+	function () {
+		'use strict';
+		var checkBoxName = 'learningDomain';
+
+		updateTextArea(checkBoxName);
+		filterAssessmentTechniques();
+		$('#selectAlllD').prop('checked', false);
+	});
+
+$('input[name=taskEnv]').on('change',
+	function () {
+		'use strict';
+		var checkBoxName = 'domainCategory';
+
+		updateTextArea(checkBoxName);
+		filterAssessmentTechniques();
+		$('#selectAlldC').prop('checked', false);
+	});
+
 
 function truncateString (string, count) {
 	'use strict';
@@ -1097,7 +1168,6 @@ function truncateString (string, count) {
 }
 
 // Load techniques on page load
-filterAssessmentTechniques();
 
 // Filters for the assessment technique are wrapped in a accordian
 $('#filter-assessment-techniques').accordion();
@@ -1145,9 +1215,9 @@ $('#display-new-technique').dialog({
 
 // Attach a listener to the checkboxes, to update the assessment techniques
 // when the filters have been changed
-$('input[name=knowledgeDimension]').on('change', filterAssessmentTechniques);
-$('input[name=learningDomain]').on('change', filterAssessmentTechniques);
-$('input[name=domainCategory]').on('change', filterAssessmentTechniques);
+// $('input[name=knowledgeDimension]').on('change', filterAssessmentTechniques);
+// $('input[name=learningDomain]').on('change', filterAssessmentTechniques);
+// $('input[name=domainCategory]').on('change', filterAssessmentTechniques);
 
 // When add new technique button is clicked open modal
 $('#new-technique-button').on('click', function () {
@@ -1293,10 +1363,8 @@ $(document).ready(
 		var currHeader;
 		var currContent;
 		var isPanelSelected;
-		var checkBoxName;
 
 		// Load techniques on page load
-		filterAssessmentTechniques();
 		// The filters for the assessment technique are wrapped in a accordian
 		// beforeActivate is to be able to open both ideal & extended matches simultaneously
 		$('#filter-assessment-techniques').accordion({
@@ -1353,29 +1421,7 @@ $(document).ready(
 		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
-		$('input[name=knowledgeDimension]').on('change',
-			function () {
-				checkBoxName = 'knowledgeDimension';
-				updateTextArea(checkBoxName);
-				filterAssessmentTechniques();
-				$('#selectAllkD').prop('checked', false);
-			});
 
-		$('input[name=learningDomain]').on('change',
-			function () {
-				checkBoxName = 'learningDomain';
-				updateTextArea(checkBoxName);
-				filterAssessmentTechniques();
-				$('#selectAlllD').prop('checked', false);
-			});
-
-		$('input[name=domainCategory]').on('change',
-			function () {
-				checkBoxName = 'domainCategory';
-				updateTextArea(checkBoxName);
-				filterAssessmentTechniques();
-				$('#selectAlldC').prop('checked', false);
-			});
 
 		$('#saveButton').on('click', function () {
 			var errorLabel;

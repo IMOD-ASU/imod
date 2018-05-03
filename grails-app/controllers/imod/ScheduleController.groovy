@@ -46,6 +46,9 @@ class ScheduleController {
 		final selectedDomainCategory = selectedActionWordCategory?.domainCategory
 		final selectedDomain = selectedDomainCategory?.learningDomain
 		final content = currentImod?.contents
+
+		// final activityTypes = ActivityType.list()
+		// final taskEnvironment = TaskEnvironment.list()
 		final activityTypes = ['Pedagogy', 'Assessment']
 		final taskEnvironment = ['In-class', 'Out-of-class']
 

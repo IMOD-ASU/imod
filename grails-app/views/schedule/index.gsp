@@ -114,7 +114,7 @@
 					<ul>
 						<g:each var="knowledgeDimension" in="${knowledgeDimensions}" status="index">
 							<li>
-								<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.id}" id="knowledge-dimension-${index}" checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}" />
+								<g:checkBox name="knowledgeDimension" value="${knowledgeDimension.description}" id="knowledge-dimension-${index}" checked = "${dimension.find { it.toString() == knowledgeDimension.description.toString() }}" />
 								<label for="knowledge-dimension-${index}">
 									${knowledgeDimension.description}
 								</label>
@@ -134,7 +134,7 @@
 						<g:each var="activityType" in="${activityTypes}" status="index">
 
 							<li>
-								<g:checkBox  name="activityType" />
+								<g:checkBox  name="activityType" value="${activityType}" id="activity-type-${index}" checked = "" />
 								${activityType}
 							</li>
 						</g:each>
@@ -151,7 +151,7 @@
 					<ul>
 						<g:each var="taskEnv" in="${taskEnvironment}" status="index">
 							<li>
-								<g:checkBox  name="taskEnv" />
+								<g:checkBox  name="taskEnv" value="${taskEnv}" id="task-env-${index}" checked = ""/>
 								${taskEnv}
 							</li>
 						</g:each>
@@ -320,7 +320,7 @@
 						<g:hiddenField name="lo" value="${currentLearningObjective.id}"/>
 						<button type="submit" class="new-technique-popup-button" id="deleteButton">
 							<i class="fa fa-times red"></i>
-							Delete Current Event
+							Delete Activity
 						</button>
 
 					</g:form>
