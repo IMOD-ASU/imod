@@ -196,55 +196,52 @@ function filterEvents (selectedKnowledgeDimensions, selectedActivityTypes, selec
 		selectedActivityTypes === 'undefined' &&
 		selectedTaskEnvironments === 'undefined') ||
 		(selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0)) {
-
 		filteredEvents = fetchedEvents;
+	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
+				selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
+				selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length !== 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
+				selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
 	} else {
-		if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0) {
-			for (index =0; index < fetchedEvents.length; index++) {
-				if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 ) {
-					filteredEvents.push(fetchedEvents[index]);
-				}
-			}
-		} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
-			for (index =0; index < fetchedEvents.length; index++) {
-				if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 ) {
-					filteredEvents.push(fetchedEvents[index]);
-				}
-			}
-		} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
-			for (index =0; index < fetchedEvents.length; index++) {
-				if (selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
-					filteredEvents.push(fetchedEvents[index]);
-				}
-			}
-		} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
-			for (index =0; index < fetchedEvents.length; index++) {
-				if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
-					selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1) {
-					filteredEvents.push(fetchedEvents[index]);
-				}
-			}
-		} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
-			for (index =0; index < fetchedEvents.length; index++) {
-				if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
-					selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
-					filteredEvents.push(fetchedEvents[index]);
-				}
-			}
-		} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length !== 0) {
-			for (index = 0; index < fetchedEvents.length; index++) {
-				if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
-					selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
-					filteredEvents.push(fetchedEvents[index]);
-				}
-			}
-		} else {
-			for (index = 0; index < fetchedEvents.length; index++) {
-				if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
-					selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1 &&
-					selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1) {
-					filteredEvents.push(fetchedEvents[index]);
-				}
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
+				selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1 &&
+				selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
 			}
 		}
 	}
