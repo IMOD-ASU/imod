@@ -187,68 +187,70 @@ window.onload = function () {
 	evaluateProfile();
 };
 
-function filterEvents (selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents ) {
+function filterEvents (selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents) {
 	'use strict';
-	var filteredEvents = []
-	if ((selectedKnowledgeDimensions === undefined &&
-		selectedActivityTypes === undefined &&
-		selectedTaskEnvironments === undefined) ||
-		(selectedKnowledgeDimensions.length == 0 && selectedActivityTypes.length == 0 && selectedTaskEnvironments.length == 0)) {
+	var filteredEvents = [];
+	var index = 0;
+
+	if ((selectedKnowledgeDimensions === 'undefined' &&
+		selectedActivityTypes === 'undefined' &&
+		selectedTaskEnvironments === 'undefined') ||
+		(selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0)) {
 
 		filteredEvents = fetchedEvents;
 	}
 	else {
-		if (selectedKnowledgeDimensions.length != 0 && selectedActivityTypes.length == 0 && selectedTaskEnvironments.length == 0) {
-			for (var index =0 ; index < fetchedEvents.length; index++) {
+		if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0) {
+			for (index =0 ; index < fetchedEvents.length ; index ++) {
 				if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 ) {
 					filteredEvents.push(fetchedEvents[index]);
 				}
 			}
 		}
-		else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length != 0 && selectedTaskEnvironments.length === 0) {
-			for (var index =0 ; index < fetchedEvents.length; index++) {
+		else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
+			for (index =0 ; index < fetchedEvents.length ; index ++) {
 				if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 ) {
 					filteredEvents.push(fetchedEvents[index]);
 				}
 			}
 		}
-		else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length != 0) {
-			for (var index =0 ; index < fetchedEvents.length; index++) {
+		else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
+			for (index =0 ; index < fetchedEvents.length ; index ++) {
 				if (selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
 					filteredEvents.push(fetchedEvents[index]);
 				}
 			}
 		}
-		else if (selectedKnowledgeDimensions.length != 0 && selectedActivityTypes.length != 0 && selectedTaskEnvironments.length === 0) {
-			for (var index =0 ; index < fetchedEvents.length; index++) {
+		else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
+			for (index =0 ; index < fetchedEvents.length ; index ++) {
 				if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
 					selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 ) {
-						filteredEvents.push(fetchedEvents[index]);
+					filteredEvents.push(fetchedEvents[index]);
 				}
 			}
 		}
-		else if (selectedKnowledgeDimensions.length != 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length != 0) {
-			for (var index =0 ; index < fetchedEvents.length; index++) {
+		else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
+			for (index =0 ; index < fetchedEvents.length; index ++) {
 				if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
 					selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
-						filteredEvents.push(fetchedEvents[index]);
+					filteredEvents.push(fetchedEvents[index]);
 				}
 			}
 		}
-		else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length != 0 && selectedTaskEnvironments.length != 0) {
-			for (var index =0 ; index < fetchedEvents.length; index++) {
+		else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length !== 0) {
+			for (index = 0 ; index < fetchedEvents.length ; index ++) {
 				if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
 					selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
-						filteredEvents.push(fetchedEvents[index]);
+					filteredEvents.push(fetchedEvents[index]);
 				}
 			}
 		}
 		else {
-			for (var index =0 ; index < fetchedEvents.length; index++) {
+			for (index = 0 ; index < fetchedEvents.length ; index ++) {
 				if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
 					selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1 &&
 					selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1) {
-						filteredEvents.push(fetchedEvents[index]);
+					filteredEvents.push(fetchedEvents[index]);
 				}
 			}
 		}
@@ -591,7 +593,7 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 						var iterator;
 
 						eventsForGraph = [];
-						filteredEvents = filterEvents (selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents)
+						filteredEvents = filterEvents(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents);
 
 						$.each(filteredEvents, function (index, obj) {
 							var tempEnd = window.moment(obj.endDate);
@@ -695,17 +697,17 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 				})
 					.done(function (data) {
 						var fetchedEvents = [];
-						var filteredEvents = []
+						var filteredEvents = [];
 						var events = [];
-						var index;
+						var loopIndex;
 
-						for (index = 0; index < data.events.length; index++) {
-							if (!fetchedEvents.includes(data.events[index])) {
-								fetchedEvents = fetchedEvents.concat(data.events[index]);
+						for (loopIndex = 0; loopIndex < data.events.length; loopIndex++) {
+							if (!fetchedEvents.includes(data.events[loopIndex])) {
+								fetchedEvents = fetchedEvents.concat(data.events[loopIndex]);
 							}
 						}
 
-						filteredEvents = filterEvents (selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents)
+						filteredEvents = filterEvents(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents);
 
 						$.each(filteredEvents, function (index, obj) {
 							events.push({
@@ -1107,14 +1109,10 @@ function filterAssessmentTechniques () {
 	var knowledgeDimensions = $('input[name=knowledgeDimension]');
 	var activityTypes = $('input[name=activityType]');
 	var taskEnvironments = $('input[name=taskEnv]');
-
-	// Arrays to store the data
 	var selectedKnowledgeDimensions = [];
 	var selectedActivityTypes = [];
 	var selectedTaskEnvironments = [];
-
 	var index;
-	var data;
 
 	// Get the id of the grails domain from the value attribute in the html
 	for (index = 0; index < knowledgeDimensions.length; index++) {
@@ -1141,27 +1139,30 @@ function filterAssessmentTechniques () {
 
 $('input[name=knowledgeDimension]').on('change',
 	function () {
-		checkBoxName = 'knowledgeDimension';
+		'use strict';
+		var checkBoxName = 'knowledgeDimension';
 		updateTextArea(checkBoxName);
 		filterAssessmentTechniques();
 		$('#selectAllkD').prop('checked', false);
-});
+	});
 
 $('input[name=activityType]').on('change',
 	function () {
-		checkBoxName = 'learningDomain';
+		'use strict';
+		var checkBoxName = 'learningDomain';
 		updateTextArea(checkBoxName);
 		filterAssessmentTechniques();
 		$('#selectAlllD').prop('checked', false);
-});
+	});
 
 $('input[name=taskEnv]').on('change',
 	function () {
-		checkBoxName = 'domainCategory';
+		'use strict';
+		var checkBoxName = 'domainCategory';
 		updateTextArea(checkBoxName);
 		filterAssessmentTechniques();
 		$('#selectAlldC').prop('checked', false);
-});
+	});
 
 
 function truncateString (string, count) {
@@ -1174,7 +1175,6 @@ function truncateString (string, count) {
 }
 
 // Load techniques on page load
-//filterAssessmentTechniques();
 
 // Filters for the assessment technique are wrapped in a accordian
 $('#filter-assessment-techniques').accordion();
@@ -1370,7 +1370,6 @@ $(document).ready(
 		var currHeader;
 		var currContent;
 		var isPanelSelected;
-		var checkBoxName;
 
 		// Load techniques on page load
 		// The filters for the assessment technique are wrapped in a accordian
