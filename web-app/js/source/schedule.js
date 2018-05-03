@@ -590,7 +590,7 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 							if (firstEvent.startDate < secondEvent.startDate) {
 								return -1;
 							} else if (firstEvent.startDate > secondEvent.startDate) {
-								1;
+								return 1;
 							}
 							return 0;
 						}
