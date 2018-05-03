@@ -194,7 +194,7 @@ function filterEvents (selectedKnowledgeDimensions, selectedActivityTypes, selec
 
 	if ((!selectedKnowledgeDimensions) &&
 		(!selectedActivityTypes) &&
-		(!selectedTaskEnvironments)){
+		(!selectedTaskEnvironments)) {
 		filteredEvents = fetchedEvents;
 	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0) {
 		filteredEvents = fetchedEvents;
@@ -586,16 +586,16 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 						eventsForGraph = [];
 						filteredEvents = filterEvents(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents);
 
-						console.log(filteredEvents)
-
 						function compare (firstEvent, secondEvent) {
-							return ((firstEvent.startDate < secondEvent.startDate) ? -1 : ((firstEvent.startDate > secondEvent.startDate) ? 1 : 0));
-
+							if (firstEvent.startDate < secondEvent.startDate) {
+								return -1;
+							} else if (firstEvent.startDate > secondEvent.startDate) {
+								1;
+							}
+							return 0;
 						}
 
 						filteredEvents.sort(compare);
-
-						console.log(filteredEvents)
 
 						$.each(filteredEvents, function (index, obj) {
 							var tempEnd = window.moment(obj.endDate);
