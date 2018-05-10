@@ -595,7 +595,9 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 							return 0;
 						}
 
-						filteredEvents.sort(compare);
+						if (filteredEvents !== null) {
+							filteredEvents.sort(compare);
+						}
 
 						$.each(filteredEvents, function (index, obj) {
 							var tempEnd = window.moment(obj.endDate);
