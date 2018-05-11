@@ -1048,9 +1048,9 @@ function displayAssessmentInformationInEdit (isClone, block) {
 		});
 }
 
-window.onbeforeunload = function warning() {
+window.onbeforeunload = function warning () {
 	'use strict';
-}
+};
 
 function assessmentEqualHeights (parent) {
 	'use strict';
