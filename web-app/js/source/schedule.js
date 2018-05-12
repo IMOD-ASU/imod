@@ -621,7 +621,7 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 								url: obj.learnO
 							});
 
-							 if (tempEnd > start && tempStart < end) {
+							if (tempEnd > start && tempStart < end) {
 								eventsForGraph.push({
 									type: 'stackedBar',
 									showInLegend: true,
