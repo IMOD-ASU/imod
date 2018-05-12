@@ -241,19 +241,19 @@ class ScheduleController {
 
 		def events = currentLO.withCriteria {
            			scheduleEvents {
-           				//or {
-           					and {
-           						gt('startDate', startDate.toDate())
-							    lt('startDate', endDate.toDate())
-           					}
-           					and {
-           						gt('endDate', startDate.toDate())
-							    lt('endDate', endDate.toDate())
-           					}
+           				// or {
+	//           					and {
+	//           						gt('startDate', startDate.toDate())
+	//							    lt('startDate', endDate.toDate())
+	//           					}
+	//           					and {
+	//           						gt('endDate', startDate.toDate())
+	//							    lt('endDate', endDate.toDate())
+	//           					}
 							and {
 								eq('lo', lo)
 							}
-           				//}
+           				// }
            			}
            		}
 		render (
