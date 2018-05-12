@@ -233,9 +233,9 @@ class ScheduleController {
 		def loId = params.learningObjectiveID
 		def currentLO = LearningObjective.get(loId)
 
-		DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
-		DateTime startDate = fmt.parseDateTime(params.startDate)
-		DateTime endDate = fmt.parseDateTime(params.endDate)
+//		DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
+//		DateTime startDate = fmt.parseDateTime(params.startDate)
+//		DateTime endDate = fmt.parseDateTime(params.endDate)
 
 		def lo = loId.toString()
 

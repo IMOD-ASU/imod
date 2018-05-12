@@ -557,7 +557,6 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 
 		events: function (start, end, timezone, callback) {
 			if (!document.getElementById('selectAllLOBox').checked) {
-				console.log("calling get events")
 				$.ajax({
 					url: '../../schedule/getEvents/',
 					data: {
@@ -572,8 +571,6 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 					method: 'GET'
 				})
 					.done(function (data) {
-						console.log("returned data")
-						console.log(data)
 						var fetchedEvents = data.events;
 						var filteredEvents = [];
 						var events = [];
@@ -598,12 +595,9 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 							return 0;
 						}
 
-						if (filteredEvents !== null ) {
+						if (filteredEvents !== null) {
 							filteredEvents.sort(compare);
 						}
-
-						console.log("filtered events")
-						console.log(filteredEvents)
 
 						$.each(filteredEvents, function (index, obj) {
 							var tempEnd = window.moment(obj.endDate);
@@ -627,10 +621,6 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 								url: obj.learnO
 							});
 
-
-							 //  if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
-							// console.log('event within date range!: ' + obj.title);
-							// if (tempStart >= start && tempEnd <= end) {
 							 if (tempEnd > start && tempStart < end) {
 								eventsForGraph.push({
 									type: 'stackedBar',
