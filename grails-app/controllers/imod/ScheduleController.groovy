@@ -233,27 +233,27 @@ class ScheduleController {
 		def loId = params.learningObjectiveID
 		def currentLO = LearningObjective.get(loId)
 
-		DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
-		DateTime startDate = fmt.parseDateTime(params.startDate)
-		DateTime endDate = fmt.parseDateTime(params.endDate)
+//		DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
+//		DateTime startDate = fmt.parseDateTime(params.startDate)
+//		DateTime endDate = fmt.parseDateTime(params.endDate)
 
 		def lo = loId.toString()
 
 		def events = currentLO.withCriteria {
            			scheduleEvents {
-           				//or {
-           					and {
-           						gt('startDate', startDate.toDate())
-							    lt('startDate', endDate.toDate())
-           					}
-           					and {
-           						gt('endDate', startDate.toDate())
-							    lt('endDate', endDate.toDate())
-           					}
+           				// or {
+	//           					and {
+	//           						gt('startDate', startDate.toDate())
+	//							    lt('startDate', endDate.toDate())
+	//           					}
+	//           					and {
+	//           						gt('endDate', startDate.toDate())
+	//							    lt('endDate', endDate.toDate())
+	//           					}
 							and {
 								eq('lo', lo)
 							}
-           				//}
+           				// }
            			}
            		}
 		render (

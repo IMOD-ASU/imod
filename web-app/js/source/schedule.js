@@ -620,9 +620,8 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 								// this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
 								url: obj.learnO
 							});
-							// if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
-							// console.log('event within date range!: ' + obj.title);
-							if (tempStart >= start && tempEnd <= end) {
+
+							if (tempEnd > start && tempStart < end) {
 								eventsForGraph.push({
 									type: 'stackedBar',
 									showInLegend: true,
