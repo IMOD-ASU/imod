@@ -512,7 +512,6 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 
 			event = JSON.parse(JSON.stringify(event));
 
-			console.log(event)
 			// set the values and open the modal
 			$('#taskTitle').val(event.title);
 			$('#taskLearningDomain').val(event.learnO);
