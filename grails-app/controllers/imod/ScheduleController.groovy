@@ -270,22 +270,22 @@ class ScheduleController {
 		final currentImod = Imod.get(imodId)
 		final allLearningObjectives = learningObjectiveService.getAllByImod(currentImod)
 
-		DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
-		DateTime startDate = fmt.parseDateTime(params.startDate)
-		DateTime endDate = fmt.parseDateTime(params.endDate)
+//		DateTimeFormatter fmt = DateTimeFormat.forPattern('yyyy-MM-dd')
+//		DateTime startDate = fmt.parseDateTime(params.startDate)
+//		DateTime endDate = fmt.parseDateTime(params.endDate)
 
 		for (LearningObjective lo: allLearningObjectives) {
 
 			def events = allLearningObjectives[0].withCriteria {
 				scheduleEvents {
-					and {
-						gt('startDate', startDate.toDate())
-						lt('startDate', endDate.toDate())
-					}
-					and {
-						gt('endDate', startDate.toDate())
-						lt('endDate', endDate.toDate())
-					}
+//					and {
+//						gt('startDate', startDate.toDate())
+//						lt('startDate', endDate.toDate())
+//					}
+//					and {
+//						gt('endDate', startDate.toDate())
+//						lt('endDate', endDate.toDate())
+//					}
 					and {
 						eq('lo', lo.id.toString())
 					}
