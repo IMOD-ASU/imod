@@ -675,15 +675,16 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 
 						chart.options.colorSet = 'greenShades';
 
-						// if less than 85% or greater than 115% of the expected hours are assigned, turn the stacked bar chart orange
-						if (((hourSum / outClassHoursB) > 0.80) && ((hourSum / outClassHoursB) <= 1.00)) {
+						if (((hourSum / outClassHoursB) > 0.0) && ((hourSum / outClassHoursB) <= 0.20)) {
+							chart.options.colorSet = 'redShades';
+						} else if (((hourSum / outClassHoursB) > 0.20) && ((hourSum / outClassHoursB) <= 0.80)) {
 							chart.options.colorSet = 'orangeShades';
-						}
-
-						// if less than 65% or greater than 125% of the expected hours are assigned, turn the stacked bar chart red
-						if ((hourSum / outClassHoursB) > 1.0) {
+						} else if (((hourSum / outClassHoursB) > 0.80) && ((hourSum / outClassHoursB) <= 1.00)) {
+							chart.options.colorSet = 'greenShades';
+						} else {
 							chart.options.colorSet = 'redShades';
 						}
+
 						chart.render();
 
 						events.splice(0, events.length);
@@ -706,7 +707,15 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 						var fetchedEvents = [];
 						var filteredEvents = [];
 						var events = [];
-						var loopIndex;
+						var hourSum = 0;
+						var str = $('#timeRatioH').html();
+						var cutStr = /[^:]*$/.exec(str)[0];
+						var strB = $('#creditHoursH').html();
+						var timeRatI = parseInt(cutStr, 10);
+						var creditHoursI = parseInt(strB, 10);
+						var outClassHoursB;
+						var iterator;
+						var loopIndex = 0;
 
 						for (loopIndex = 0; loopIndex < data.events.length; loopIndex++) {
 							if (!fetchedEvents.includes(data.events[loopIndex])) {
@@ -714,9 +723,26 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 							}
 						}
 
+						eventsForGraph = [];
 						filteredEvents = filterEvents(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents);
 
+						function compare (firstEvent, secondEvent) {
+							if (firstEvent.startDate < secondEvent.startDate) {
+								return -1;
+							} else if (firstEvent.startDate > secondEvent.startDate) {
+								return 1;
+							}
+							return 0;
+						}
+
+						if (filteredEvents !== null) {
+							filteredEvents.sort(compare);
+						}
+
 						$.each(filteredEvents, function (index, obj) {
+							var tempEnd = window.moment(obj.endDate);
+							var tempStart = window.moment(obj.startDate);
+
 							events.push({
 								title: obj.title,
 								allDay: true,
@@ -734,9 +760,74 @@ function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selec
 								// this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
 								url: obj.learnO
 							});
+
+							if (tempEnd > start && tempStart < end) {
+								eventsForGraph.push({
+									type: 'stackedBar',
+									showInLegend: true,
+									name: '' + obj.title,
+									toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
+									dataPoints: [{
+										y: obj.workTime,
+										label: 'iMods Week Visualizer',
+										x: 0
+									}]
+								});
+							}
 						});
 
+						if (eventsForGraph.length === 0) {
+							eventsForGraph.push({
+								type: 'stackedBar',
+								showInLegend: true,
+								name: '',
+								toolTipContent: 'No activity',
+								dataPoints: [{
+									y: 0,
+									label: 'iMods Week Visualizer',
+									x: 0
+								}]
+							});
+						}
+						// console.info(events);
+						// console.info(eventsForGraph);
 						callback(events);
+
+						// if (eventsForGraph.length < chart.options.data.length) {
+						// 	chart.options.data = [];
+						// }
+
+
+						chart.options.data = [];
+
+						for (iterator = 0; iterator < eventsForGraph.length; iterator++) {
+							chart.options.data[iterator] = eventsForGraph[iterator];
+
+							hourSum += eventsForGraph[iterator].dataPoints[0].y;
+						}
+						// multiply the credit hours of the course by the time ratio to get the hours per week that students should be working. Eg. 3 credit hour course, a 1:3 time ratio, means 3x3 = 9 hours per week of expected working time.
+						outClassHoursB = timeRatI * creditHoursI;
+
+						chart.options.axisY.title = 'Currently Assigned Working Hours (' + (hourSum) + ' out of ' + outClassHoursB + ') per week';
+
+						chart.options.axisY.maximum = outClassHoursB;
+						// chart.options.axisY.minimum = outClassHoursB
+
+						chart.options.colorSet = 'greenShades';
+
+						if (((hourSum / outClassHoursB) > 0.0) && ((hourSum / outClassHoursB) <= 0.20)) {
+							chart.options.colorSet = 'redShades';
+						} else if (((hourSum / outClassHoursB) > 0.20) && ((hourSum / outClassHoursB) <= 0.80)) {
+							chart.options.colorSet = 'orangeShades';
+						} else if (((hourSum / outClassHoursB) > 0.80) && ((hourSum / outClassHoursB) <= 1.00)) {
+							chart.options.colorSet = 'greenShades';
+						} else {
+							chart.options.colorSet = 'redShades';
+						}
+
+						chart.render();
+
+						events.splice(0, events.length);
 					});
 			}
 		}
