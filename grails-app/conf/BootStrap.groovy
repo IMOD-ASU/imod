@@ -22,7 +22,8 @@ import imod.ScheduleRepeatsEvery
 import imod.ScheduleWeekDays
 import imod.Audience
 import imod.AssessmentFeedback
-
+import imod.ActivityType
+import imod.TaskEnvironment
 
 class BootStrap {
 
@@ -421,6 +422,26 @@ class BootStrap {
 
 			def learningDomainPsychomotor = new LearningDomain(
 				name: 'Psychomotor'
+			).save()
+
+			/**
+			 * Generate activity types
+			 */
+
+			def activityTypePedagogy = new ActivityType(
+				name: 'Pedagogy'
+			).save()
+
+			def activityTypeAssessment = new ActivityType(
+				name: 'Assessment'
+			).save()
+
+			def taskEnvironmentInClass = new TaskEnvironment(
+				name: 'In-Class'
+			).save()
+
+			def taskEnvironmentOutOfClass = new TaskEnvironment(
+				name: 'Out-Of-Class'
 			).save()
 
 			/**

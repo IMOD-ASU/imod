@@ -52,6 +52,7 @@
 			</g:if>
 			<g:if test="${controllerName == 'assessment'}">Content area for information on assessment technique</g:if>
 			<g:if test="${controllerName == 'pedagogy'}">Content area for information on pedagogy technique</g:if>
+			<g:if test="${controllerName == 'schedule'}">Content area for scheduling course activities</g:if>
 
 		</div>
 

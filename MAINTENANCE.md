@@ -157,3 +157,67 @@ Done! the next Travis CI build will be a bit slow, but will not hang on installi
 6. cd into the new version
 7. run `sudo ./bin/npm install -g bower`
 8. update the path to Node JS in each of the Jenkins project configurations
+
+### Important Commands
+
+1. Restart apache 2 server - sudo service apache2 reload
+2. Start Tomcte server  - sudo /opt/tomcat/apache-tomcat-7.0.63/bin/startup.sh
+3. Restart Jenkins - sudo /etc/init.d/jenkins restart
+4. Restart Postgres - sudo /etc/init.d/postgresql restart
+5. Run postgres in debug mode - sudo -u postgres -i /usr/lib/postgresql/8.4/bin/postgres -d 3 -D /var/lib/postgresql/8.4/main -c config_file=/etc/postgresql/8.4/main/postgresql.conf
+6. Run tomcat in debug mode - sudo /opt/tomcat/apache-tomcat-7.0.63/bin catalina.sh run
+7. List all listening ports - sudo netstat -plnt 
+
+### System Migration / Setup
+1. Configure Services
+
+	i. Java
+	sudo apt-get update
+	sudo apt-get install default-jre
+	sudo apt-get install default-jdk (Optional)
+	sudo apt-get install oracle-java8-installer
+
+	Set environment variable		
+	JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+	source /etc/environment
+	
+	ii. Postgres
+
+	sudo apt-get update
+	sudo apt-get install postgresql postgresql-contrib phppgadmin
+	
+	-Create imods user
+	sudo -u postgres psql --command "CREATE USER imod WITH  PASSWORD 'imod4u'"
+	
+	-Create imod db
+	sudo -u postgres createdb --owner imod imod-test
+	sudo -u postgres createdb --owner imod imod-demo
+	
+	iii. Grails
+
+	-if zip and unzip not installed (sudo apt-get install zip, sudo apt-get install unzip)
+	unzip grails sdk into export GRAILS_HOME=/opt/grails-2.4.3
+	export GRAILS_HOME=/opt/grails-2.4.3
+	export PATH=$GRAILS_HOME/bin:$PATH
+	
+	iv. Jenkins
+	-add the repository key to the system.
+	wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+	
+	-append the Debian package repository address to the server's sources.list
+	https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
+	sudo apt-get update
+	sudo apt-get install jenkins
+	
+	v. Node JS	
+	sudo apt-get update
+	sudo apt-get install nodejs
+	sudo apt-get install npm
+	
+	vi. Apache tomcat.
+	Download Apache tomcat 7.0.63 (Or preferred version) and extract in  /opt directory
+
+2. Static data Migration.
+
+	i. Copy all the files from /opt/tomcat/apache-tomcat-7.0.63/webapps$ of old server to same folder in new server
+	ii. Copy all the files from  /var/www/html$ of old server to same folder of new server.

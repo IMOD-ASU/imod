@@ -4,7 +4,13 @@ var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var oldView = 'month';
 var profileVal = 0;
 var profileBuffer = 100;
-
+var imodStartDateYear;
+var imodStartDateMonth;
+var imodStartDateDay;
+var imodEndDateYear;
+var imodEndDateMonth;
+var imodEndDateDay;
+var imodId;
 /* Purpose: Javascript Logic for the Schedule View in IMODS.
 *
 * @author Wesley Coomber Wesley.Coomber@asu.edu
@@ -168,14 +174,84 @@ function evaluateProfile () {
 	});
 }
 
+function newTaskValidationError () {
+	'use strict';
+	if ($('.errorcontain').length) {
+		$('.errorcontain').css('color', 'red');
+		$('.errorcontain').css('font-size', '0.8em');
+	}
+}
+
 window.onload = function () {
 	'use strict';
 	evaluateProfile();
 };
 
-$(document).ready(function () {
+function filterEvents (selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents) {
 	'use strict';
+	var filteredEvents = [];
+	var index = 0;
 
+	if ((!selectedKnowledgeDimensions) &&
+		(!selectedActivityTypes) &&
+		(!selectedTaskEnvironments)) {
+		filteredEvents = fetchedEvents;
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0) {
+		filteredEvents = fetchedEvents;
+	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length === 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length === 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
+				selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length !== 0 && selectedActivityTypes.length === 0 && selectedTaskEnvironments.length !== 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1 &&
+				selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else if (selectedKnowledgeDimensions.length === 0 && selectedActivityTypes.length !== 0 && selectedTaskEnvironments.length !== 0) {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
+				selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	} else {
+		for (index = 0; index < fetchedEvents.length; index++) {
+			if (selectedActivityTypes.indexOf(fetchedEvents[index].activity) > -1 &&
+				selectedTaskEnvironments.indexOf(fetchedEvents[index].enviro) > -1 &&
+				selectedKnowledgeDimensions.indexOf(fetchedEvents[index].knowD) > -1) {
+				filteredEvents.push(fetchedEvents[index]);
+			}
+		}
+	}
+	return filteredEvents;
+}
+
+
+function loadCalendar (selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments) {
+	'use strict';
 	var hourRatio = 3;
 	var inClassHours = 3;
 	var outClassHours = inClassHours * hourRatio;
@@ -214,7 +290,7 @@ $(document).ready(function () {
 
 	window.CanvasJS
 		.addColorSet('greenShades',
-		// colorSet Array
+			// colorSet Array
 		[
 			'#7CFC00',
 			'#00FF00',
@@ -224,7 +300,7 @@ $(document).ready(function () {
 			'#4DBD33',
 			'#49E20E'
 		]
-	);
+		);
 
 	window.CanvasJS.addColorSet('redShades', [
 		// colorSet Array for Red Warnings
@@ -290,7 +366,7 @@ $(document).ready(function () {
 			}]
 		}]
 	});
-	chart.render();
+	// chart.render();
 
 	// end of chart JS
 
@@ -301,7 +377,7 @@ $(document).ready(function () {
 	// Populate the choice box with choices from the years [2010 to 2035] array
 	choiceYear = document.getElementById('chooseYear');
 	for (inc = 0; inc < years.length; inc++) {
-		// console.log(inc);
+		// .log(inc);
 		tempMonth = years[inc];
 		tempEle = document.createElement('option');
 		tempEle.textContent = tempMonth;
@@ -391,7 +467,6 @@ $(document).ready(function () {
 		tempEle.value = tempMonth;
 		choiceHour.appendChild(tempEle);
 	}
-
 	$('#scheduleCalendar').fullCalendar({
 		header: {
 			left: 'prev title next',
@@ -436,17 +511,18 @@ $(document).ready(function () {
 			// alert("The view's title is " + beginMonthA.format('YYYY-M-D') + " " + beginMonthB.format('YYYY-M-D') + " " + beginMonthC.format('YYYY-M-D') + " " + beginMonthD.format('YYYY-M-D') + " " + beginMonthE.format('YYYY-M-D') + " " + beginMonthF.format('YYYY-M-D') + " ");
 
 			event = JSON.parse(JSON.stringify(event));
+
 			// set the values and open the modal
-			$('#taskInfo').html(event.notes);
-			$('#taskKnowD').html(event.knowD);
-			$('#taskEnviro').html(event.enviro);
-			$('#taskWorkTime').val(event.workTime);
-			$('#taskLink').attr('href', event.url);
 			$('#taskTitle').val(event.title);
-			$('#tasklearnO').val(event.learnO);
-			$('#taskKnowDimensions').val(event.knowD);
+			$('#taskLearningDomain').val(event.learnO);
+			$('#taskKnowledgeDimension').val(event.knowD);
+			$('#taskInfo').html(event.notes);
+			$('#taskTypeOfActivity').val(event.activity);
 			$('#taskEnvironment').val(event.enviro);
-			$('#taskActivityType').val(event.activity);
+			$('#taskWorkTime').val(event.workTime);
+			$('#taskEnviro').val(event.enviro);
+			$('#taskLink').attr('href', event.url);
+			$('#taskKnowDimensions').val(event.knowD);
 			$('#taskID').val(event.id);
 			$('#taskID2').val(event.id);
 
@@ -455,9 +531,9 @@ $(document).ready(function () {
 			}
 
 			if (dateSeparate !== null) {
-				$('#taskStartDate_day').val(dateSeparate[2].substring(0, 2));
-				$('#taskStartDate_month').val(dateSeparate[1]);
-				$('#taskStartDate_year').val(dateSeparate[0]);
+				$('#taskStartDate_day').val(Number(dateSeparate[2].substring(0, 2)));
+				$('#taskStartDate_month').val(Number(dateSeparate[1]));
+				$('#taskStartDate_year').val(Number(dateSeparate[0]));
 			}
 
 			if (event.end !== null) {
@@ -465,125 +541,310 @@ $(document).ready(function () {
 			}
 
 			if (dateSeparate !== null) {
-				$('#taskEndDate_day').val(dateSeparate[2].substring(0, 2));
-				$('#taskEndDate_month').val(dateSeparate[1]);
-				$('#taskEndDate_year').val(dateSeparate[0]);
+				$('#taskEndDate_day').val(Number(dateSeparate[2].substring(0, 2)));
+				$('#taskEndDate_month').val(Number(dateSeparate[1]));
+				$('#taskEndDate_year').val(Number(dateSeparate[0]));
 			}
 
+			$('.date-error').remove();
+			$('.taskError').remove();
+			$('#editCheck').text('yes');
+			document.getElementById('deleteButton').style.visibility = 'visible';
 			$('#add-new-technique').css('display', 'block');
 			$('#topicDialogBackground').css('display', 'block');
 			return false;
 		},
+
 		events: function (start, end, timezone, callback) {
-			$.ajax({
-				url: '../../schedule/getEvents/',
-				data: {
-					learningObjectiveID: $('#lo').val(),
-					// Start date is first day that is displayed
-					// startDate: ((start.subtract(1, 'days')).toISOString()),
-					startDate: (start).toISOString(),
-					// End  date is last day that is displayed
-					// endDate: ((end.add(1, 'days')).toISOString())
-					endDate: (end).toISOString()
-				},
-				method: 'GET'
-			})
-				.done(function (data) {
-					var events = [];
-					// clear the eventsForGraph array
-					var hourSum = 0;
+			if (!document.getElementById('selectAllLOBox').checked) {
+				$.ajax({
+					url: '../../schedule/getEvents/',
+					data: {
+						learningObjectiveID: $('#lo').val(),
+						// Start date is first day that is displayed
+						// startDate: ((start.subtract(1, 'days')).toISOString()),
+						startDate: (start).toISOString(),
+						// End  date is last day that is displayed
+						// endDate: ((end.add(1, 'days')).toISOString())
+						endDate: (end).toISOString()
+					},
+					method: 'GET'
+				})
+					.done(function (data) {
+						var fetchedEvents = data.events;
+						var filteredEvents = [];
+						var events = [];
+						var hourSum = 0;
+						var str = $('#timeRatioH').html();
+						var cutStr = /[^:]*$/.exec(str)[0];
+						var strB = $('#creditHoursH').html();
+						var timeRatI = parseInt(cutStr, 10);
+						var creditHoursI = parseInt(strB, 10);
+						var outClassHoursB;
+						var iterator;
 
-					// getting the timeRatio from the dom and run a regular expression that grabs characters not contain a ":" eg. most time ratio is stored as 1:3, this gets us only the 3 value
-					var str = $('#timeRatioH').html();
+						eventsForGraph = [];
+						filteredEvents = filterEvents(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents);
 
-					var cutStr = /[^:]*$/.exec(str)[0];
+						function compare (firstEvent, secondEvent) {
+							if (firstEvent.startDate < secondEvent.startDate) {
+								return -1;
+							} else if (firstEvent.startDate > secondEvent.startDate) {
+								return 1;
+							}
+							return 0;
+						}
 
-					var strB = $('#creditHoursH').html();
+						if (filteredEvents !== null) {
+							filteredEvents.sort(compare);
+						}
 
-					var timeRatI = parseInt(cutStr, 10);
-					var creditHoursI = parseInt(strB, 10);
-					var outClassHoursB;
+						$.each(filteredEvents, function (index, obj) {
+							var tempEnd = window.moment(obj.endDate);
+							var tempStart = window.moment(obj.startDate);
 
-					var iterator;
+							events.push({
+								title: obj.title,
+								allDay: true,
+								start: window.window.moment(obj.startDate, window.window.moment.ISO_8601),
+								end: window.window.moment(obj.endDate, window.window.moment.ISO_8601),
+								learnO: obj.learnO,
+								knowD: obj.knowD,
+								activity: obj.activity,
+								enviro: obj.enviro,
+								workTime: obj.workTime,
+								description: obj.notes,
+								id: obj.id,
+								notes: obj.notes,
 
-					eventsForGraph = [];
-					$.each(data.events, function (index, obj) {
-						var tempEnd = window.moment(obj.endDate);
-						var tempStart = window.moment(obj.startDate);
+								// this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
+								url: obj.learnO
+							});
 
-
-						events.push({
-							title: obj.title,
-							allday: 'false',
-							start: window.window.moment(obj.startDate, window.window.moment.ISO_8601),
-							end: window.window.moment(obj.endDate, window.window.moment.ISO_8601),
-							learnO: obj.learnO,
-							knowD: obj.knowD,
-							activity: obj.activity,
-							enviro: obj.enviro,
-							workTime: obj.workTime,
-							description: obj.notes,
-							id: obj.id,
-							notes: obj.notes,
-
-							// this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
-							url: obj.learnO
+							if (tempEnd > start && tempStart < end) {
+								eventsForGraph.push({
+									type: 'stackedBar',
+									showInLegend: true,
+									name: '' + obj.title,
+									toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
+									dataPoints: [{
+										y: obj.workTime,
+										label: 'iMods Week Visualizer',
+										x: 0
+									}]
+								});
+							}
 						});
 
-						if ((((tempStart).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempEnd).isAfter(start)) && ((tempEnd).isBefore(end))) || (((tempStart).isAfter(start)) && ((tempStart).isBefore(end)))) {
-						// console.log('event within date range!: ' + obj.title);
+						if (eventsForGraph.length === 0) {
 							eventsForGraph.push({
 								type: 'stackedBar',
 								showInLegend: true,
-								name: '' + obj.title,
-								toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
+								name: '',
+								toolTipContent: 'No activity',
 								dataPoints: [{
-									y: obj.workTime,
+									y: 0,
 									label: 'iMods Week Visualizer',
 									x: 0
 								}]
 							});
 						}
-					});
-					// console.info(events);
-					// console.info(eventsForGraph);
-					callback(events);
+						// console.info(events);
+						// console.info(eventsForGraph);
+						callback(events);
 
-					if (eventsForGraph.length < chart.options.data.length) {
+						// if (eventsForGraph.length < chart.options.data.length) {
+						// 	chart.options.data = [];
+						// }
+
+
 						chart.options.data = [];
-					}
 
-					for (iterator = 0; iterator < eventsForGraph.length; iterator++) {
-						chart.options.data[iterator] = eventsForGraph[iterator];
+						for (iterator = 0; iterator < eventsForGraph.length; iterator++) {
+							chart.options.data[iterator] = eventsForGraph[iterator];
 
-						hourSum += eventsForGraph[iterator].dataPoints[0].y;
-					}
-					// multiply the credit hours of the course by the time ratio to get the hours per week that students should be working. Eg. 3 credit hour course, a 1:3 time ratio, means 3x3 = 9 hours per week of expected working time.
-					outClassHoursB = timeRatI * creditHoursI;
+							hourSum += eventsForGraph[iterator].dataPoints[0].y;
+						}
+						// multiply the credit hours of the course by the time ratio to get the hours per week that students should be working. Eg. 3 credit hour course, a 1:3 time ratio, means 3x3 = 9 hours per week of expected working time.
+						outClassHoursB = timeRatI * creditHoursI;
 
-					chart.options.axisY.title = 'Currently Assigned Working Hours (' + (hourSum) + ' out of ' + outClassHoursB + ') per week';
+						chart.options.axisY.title = 'Currently Assigned Working Hours (' + (hourSum) + ' out of ' + outClassHoursB + ') per week';
 
-					chart.options.axisY.maximum = outClassHoursB;
-					// chart.options.axisY.minimum = outClassHoursB
+						chart.options.axisY.maximum = outClassHoursB;
+						// chart.options.axisY.minimum = outClassHoursB
 
-					chart.options.colorSet = 'greenShades';
+						chart.options.colorSet = 'greenShades';
 
-					// if less than 85% or greater than 115% of the expected hours are assigned, turn the stacked bar chart orange
-					if (((hourSum / outClassHoursB) < 0.85) || ((hourSum / outClassHoursB) > 1.15)) {
-						chart.options.colorSet = 'orangeShades';
-					}
+						if (((hourSum / outClassHoursB) > 0.0) && ((hourSum / outClassHoursB) <= 0.20)) {
+							chart.options.colorSet = 'redShades';
+						} else if (((hourSum / outClassHoursB) > 0.20) && ((hourSum / outClassHoursB) <= 0.80)) {
+							chart.options.colorSet = 'orangeShades';
+						} else if (((hourSum / outClassHoursB) > 0.80) && ((hourSum / outClassHoursB) <= 1.00)) {
+							chart.options.colorSet = 'greenShades';
+						} else {
+							chart.options.colorSet = 'redShades';
+						}
 
-					// if less than 65% or greater than 125% of the expected hours are assigned, turn the stacked bar chart red
-					if (((hourSum / outClassHoursB) < 0.65) || ((hourSum / outClassHoursB) > 1.25)) {
-						chart.options.colorSet = 'redShades';
-					}
+						chart.render();
 
-					chart.render();
+						events.splice(0, events.length);
+					});
+			}
 
-					events.splice(0, events.length);
-				});
+			if (document.getElementById('selectAllLOBox').checked) {
+				$.ajax({
+					url: '../../schedule/getAllEvents/',
+					data: {
+						learningObjectiveID: $('#lo').val(),
+						imodId: imodId,
+						startDate: (start).toISOString(),
+
+						endDate: (end).toISOString()
+					},
+					method: 'GET'
+				})
+					.done(function (data) {
+						var fetchedEvents = [];
+						var filteredEvents = [];
+						var events = [];
+						var hourSum = 0;
+						var str = $('#timeRatioH').html();
+						var cutStr = /[^:]*$/.exec(str)[0];
+						var strB = $('#creditHoursH').html();
+						var timeRatI = parseInt(cutStr, 10);
+						var creditHoursI = parseInt(strB, 10);
+						var outClassHoursB;
+						var iterator;
+						var loopIndex = 0;
+
+						for (loopIndex = 0; loopIndex < data.events.length; loopIndex++) {
+							if (!fetchedEvents.includes(data.events[loopIndex])) {
+								fetchedEvents = fetchedEvents.concat(data.events[loopIndex]);
+							}
+						}
+
+						eventsForGraph = [];
+						filteredEvents = filterEvents(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments, fetchedEvents);
+
+						function compare (firstEvent, secondEvent) {
+							if (firstEvent.startDate < secondEvent.startDate) {
+								return -1;
+							} else if (firstEvent.startDate > secondEvent.startDate) {
+								return 1;
+							}
+							return 0;
+						}
+
+						if (filteredEvents !== null) {
+							filteredEvents.sort(compare);
+						}
+
+						$.each(filteredEvents, function (index, obj) {
+							var tempEnd = window.moment(obj.endDate);
+							var tempStart = window.moment(obj.startDate);
+
+							events.push({
+								title: obj.title,
+								allDay: true,
+								start: window.window.moment(obj.startDate, window.window.moment.ISO_8601),
+								end: window.window.moment(obj.endDate, window.window.moment.ISO_8601),
+								learnO: obj.learnO,
+								knowD: obj.knowD,
+								activity: obj.activity,
+								enviro: obj.enviro,
+								workTime: obj.workTime,
+								description: obj.notes,
+								id: obj.id,
+								notes: obj.notes,
+
+								// this used to be a temporary learnO variable input, but due to time constraints I've made it the field where you enter in a url for additional online resources
+								url: obj.learnO
+							});
+
+							if (tempEnd > start && tempStart < end) {
+								eventsForGraph.push({
+									type: 'stackedBar',
+									showInLegend: true,
+									name: '' + obj.title,
+									toolTipContent: '{name}: {y} Hours. ' + obj.enviro,
+									dataPoints: [{
+										y: obj.workTime,
+										label: 'iMods Week Visualizer',
+										x: 0
+									}]
+								});
+							}
+						});
+
+						if (eventsForGraph.length === 0) {
+							eventsForGraph.push({
+								type: 'stackedBar',
+								showInLegend: true,
+								name: '',
+								toolTipContent: 'No activity',
+								dataPoints: [{
+									y: 0,
+									label: 'iMods Week Visualizer',
+									x: 0
+								}]
+							});
+						}
+						// console.info(events);
+						// console.info(eventsForGraph);
+						callback(events);
+
+						// if (eventsForGraph.length < chart.options.data.length) {
+						// 	chart.options.data = [];
+						// }
+
+
+						chart.options.data = [];
+
+						for (iterator = 0; iterator < eventsForGraph.length; iterator++) {
+							chart.options.data[iterator] = eventsForGraph[iterator];
+
+							hourSum += eventsForGraph[iterator].dataPoints[0].y;
+						}
+						// multiply the credit hours of the course by the time ratio to get the hours per week that students should be working. Eg. 3 credit hour course, a 1:3 time ratio, means 3x3 = 9 hours per week of expected working time.
+						outClassHoursB = timeRatI * creditHoursI;
+
+						chart.options.axisY.title = 'Currently Assigned Working Hours (' + (hourSum) + ' out of ' + outClassHoursB + ') per week';
+
+						chart.options.axisY.maximum = outClassHoursB;
+						// chart.options.axisY.minimum = outClassHoursB
+
+						chart.options.colorSet = 'greenShades';
+
+						if (((hourSum / outClassHoursB) > 0.0) && ((hourSum / outClassHoursB) <= 0.20)) {
+							chart.options.colorSet = 'redShades';
+						} else if (((hourSum / outClassHoursB) > 0.20) && ((hourSum / outClassHoursB) <= 0.80)) {
+							chart.options.colorSet = 'orangeShades';
+						} else if (((hourSum / outClassHoursB) > 0.80) && ((hourSum / outClassHoursB) <= 1.00)) {
+							chart.options.colorSet = 'greenShades';
+						} else {
+							chart.options.colorSet = 'redShades';
+						}
+
+						chart.render();
+
+						events.splice(0, events.length);
+					});
+			}
 		}
 	});
+}
+
+document.getElementById('selectAllLOBox').addEventListener('change', function () {
+	'use strict';
+	$('#scheduleCalendar').fullCalendar('destroy');
+	loadCalendar();
+});
+
+$(document).ready(function () {
+	'use strict';
+	//  hide the chart container on page load
+	document.getElementById('chartContainer').style.visibility = 'hidden';
+	loadCalendar();
 
 	$('#addT').click(function () {
 		var sYear = $('#chooseYear option:selected').text();
@@ -614,7 +875,7 @@ function addEvent (startDate, endDate, title, desc) {
 			start: startDate,
 			end: endDate,
 			description: desc,
-			allDay: false
+			allDay: true
 		}, true);
 }
 
@@ -652,6 +913,9 @@ function openNewAssessmentTechniqueModal () {
 	'use strict';
 
 	// reset form on new modal open
+	$('.date-error').remove();
+	$('.taskError').remove();
+	document.getElementById('deleteButton').style.visibility = 'hidden';
 	$('#add-new-technique').find('input:not(#lo, #imodId), select, textarea').val('');
 	$('#dimImageModal')
 		.prop('src', '../../images/content/knowDimNone.png')
@@ -874,6 +1138,10 @@ function displayAssessmentInformationInEdit (isClone, block) {
 		});
 }
 
+window.onbeforeunload = function warning () {
+	'use strict';
+};
+
 function assessmentEqualHeights (parent) {
 	'use strict';
 	var max = 0;
@@ -940,58 +1208,67 @@ function displayAssessmentFavoriteTechniques (data) {
 function filterAssessmentTechniques () {
 	'use strict';
 	// Get all of the selected checkboxes
-	var selectedKnowledgeDimensions = $('input[name=knowledgeDimension]:checked');
-	var selectedLearningDomains = $('input[name=learningDomain]:checked');
-	var selectedDomainCategories = $('input[name=domainCategory]:checked');
-
-	// Arrays to store the data
-	var selectedKnowledgeDimensionsData = [];
-	var selectedLearningDomainsData = [];
-	var selectedDomainCategoriesData = [];
-
+	var knowledgeDimensions = $('input[name=knowledgeDimension]');
+	var activityTypes = $('input[name=activityType]');
+	var taskEnvironments = $('input[name=taskEnv]');
+	var selectedKnowledgeDimensions = [];
+	var selectedActivityTypes = [];
+	var selectedTaskEnvironments = [];
 	var index;
-	var data;
 
-	data = -1;
-	data += 1;
 	// Get the id of the grails domain from the value attribute in the html
-	for (index = 0; index < selectedKnowledgeDimensions.length; index++) {
-		selectedKnowledgeDimensionsData[index] = selectedKnowledgeDimensions[index].value;
-	}
-	for (index = 0; index < selectedLearningDomains.length; index++) {
-		selectedLearningDomainsData[index] = selectedLearningDomains[index].value;
-	}
-	for (index = 0; index < selectedDomainCategories.length; index++) {
-		selectedDomainCategoriesData[index] = selectedDomainCategories[index].value;
+	for (index = 0; index < knowledgeDimensions.length; index++) {
+		if (knowledgeDimensions[index].checked) {
+			selectedKnowledgeDimensions.push(knowledgeDimensions[index].value);
+		}
 	}
 
-	// Bundle the data into an object
-	data = {
-		selectedKnowledgeDimensions: selectedKnowledgeDimensionsData,
-		selectedLearningDomains: selectedLearningDomainsData,
-		selectedDomainCategories: selectedDomainCategoriesData,
-		learningObjectiveID: $('#learningObjectiveID').val()
+	for (index = 0; index < activityTypes.length; index++) {
+		if (activityTypes[index].checked) {
+			selectedActivityTypes.push(activityTypes[index].value);
+		}
+	}
 
-	};
+	for (index = 0; index < taskEnvironments.length; index++) {
+		if (taskEnvironments[index].checked) {
+			selectedTaskEnvironments.push(taskEnvironments[index].value);
+		}
+	}
 
-	// Send the data to the find matching techniques action in grails
-	// and process the response with the display assessment techniques callback
-	/*
-	$.ajax({
-	url: '../findMatchingTechniques',
-	method: 'post',
-	data: JSON.stringify(data),
-	contentType: 'application/json'
-})
-.done(function (data) {
-displayAssessmentTechniques(data);
-showAssessmentTechnique(data);
-checkForAssign(data);
-assessmentEqualHeights('#ideal-matches1');
-assessmentEqualHeights('#extended-matches');
-});
-*/
+	$('#scheduleCalendar').fullCalendar('destroy');
+	loadCalendar(selectedKnowledgeDimensions, selectedActivityTypes, selectedTaskEnvironments);
 }
+
+$('input[name=knowledgeDimension]').on('change',
+	function () {
+		'use strict';
+		var checkBoxName = 'knowledgeDimension';
+
+		updateTextArea(checkBoxName);
+		filterAssessmentTechniques();
+		$('#selectAllkD').prop('checked', false);
+	});
+
+$('input[name=activityType]').on('change',
+	function () {
+		'use strict';
+		var checkBoxName = 'learningDomain';
+
+		updateTextArea(checkBoxName);
+		filterAssessmentTechniques();
+		$('#selectAlllD').prop('checked', false);
+	});
+
+$('input[name=taskEnv]').on('change',
+	function () {
+		'use strict';
+		var checkBoxName = 'domainCategory';
+
+		updateTextArea(checkBoxName);
+		filterAssessmentTechniques();
+		$('#selectAlldC').prop('checked', false);
+	});
+
 
 function truncateString (string, count) {
 	'use strict';
@@ -1003,7 +1280,6 @@ function truncateString (string, count) {
 }
 
 // Load techniques on page load
-filterAssessmentTechniques();
 
 // Filters for the assessment technique are wrapped in a accordian
 $('#filter-assessment-techniques').accordion();
@@ -1051,9 +1327,9 @@ $('#display-new-technique').dialog({
 
 // Attach a listener to the checkboxes, to update the assessment techniques
 // when the filters have been changed
-$('input[name=knowledgeDimension]').on('change', filterAssessmentTechniques);
-$('input[name=learningDomain]').on('change', filterAssessmentTechniques);
-$('input[name=domainCategory]').on('change', filterAssessmentTechniques);
+// $('input[name=knowledgeDimension]').on('change', filterAssessmentTechniques);
+// $('input[name=learningDomain]').on('change', filterAssessmentTechniques);
+// $('input[name=domainCategory]').on('change', filterAssessmentTechniques);
 
 // When add new technique button is clicked open modal
 $('#new-technique-button').on('click', function () {
@@ -1199,11 +1475,8 @@ $(document).ready(
 		var currHeader;
 		var currContent;
 		var isPanelSelected;
-		var checkBoxName;
-		var cloneDetect = '';
 
 		// Load techniques on page load
-		filterAssessmentTechniques();
 		// The filters for the assessment technique are wrapped in a accordian
 		// beforeActivate is to be able to open both ideal & extended matches simultaneously
 		$('#filter-assessment-techniques').accordion({
@@ -1260,87 +1533,140 @@ $(document).ready(
 		$('#selectKnowledgeDimensions').on('change', 'input:checkbox', changePic);
 		// Attach a listener to the checkboxes, to update the pedaogy techniques
 		// when the filters have been changed
-		$('input[name=knowledgeDimension]').on('change',
-			function () {
-				checkBoxName = 'knowledgeDimension';
-				updateTextArea(checkBoxName);
-				filterAssessmentTechniques();
-				$('#selectAllkD').prop('checked', false);
-			});
 
-		$('input[name=learningDomain]').on('change',
-			function () {
-				checkBoxName = 'learningDomain';
-				updateTextArea(checkBoxName);
-				filterAssessmentTechniques();
-				$('#selectAlllD').prop('checked', false);
-			});
-
-		$('input[name=domainCategory]').on('change',
-			function () {
-				checkBoxName = 'domainCategory';
-				updateTextArea(checkBoxName);
-				filterAssessmentTechniques();
-				$('#selectAlldC').prop('checked', false);
-			});
 
 		$('#saveButton').on('click', function () {
-			cloneDetect = document.getElementById('cloneDetect').value;
+			var errorLabel;
 
-			if ($('#title').val() === '') {
-				$('#errorMessage').text('Technique must have a title!');
+			$('.date-error').remove();
+			$('.taskError').remove();
+
+			if ($('#taskTitle').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task title is mandatory</label></div>';
+				$('#taskTitle').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskLearningDomain').val() === '' || $('#taskLearningDomain').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose at least one Learning domain</label></div>';
+				$('#taskLearningDomain').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskKnowledgeDimension').val() === '' || $('#taskKnowledgeDimension').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose at least one Knowledge Dimension</label></div>';
+				$('#taskKnowledgeDimension').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskTypeOfActivity').val() === '' || $('#taskTypeOfActivity').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Choose at least one type</label></div>';
+				$('#taskTypeOfActivity').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#knowledgeDimension').val() === '') {
-				$('#errorMessage').text('Knowledge Dimensions are required!');
+			if ($('#taskStartDate_day').val() === '' || $('#taskStartDate_month').val() === '' ||
+				$('#taskStartDate_year').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Start date cannot be empty </label></div>';
+				$('#startDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ($('#taskEndDate_day').val() === '' || $('#taskEndDate_month').val() === '' ||
+				$('#taskEndDate_year').val() === '') {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be empty </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if (Number($('#taskEndDate_year').val()) < Number($('#taskStartDate_year').val())) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ((Number($('#taskEndDate_year').val()) === Number($('#taskStartDate_year').val())) &&
+				(Number($('#taskEndDate_month').val()) < Number($('#taskStartDate_month').val()))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ((Number($('#taskEndDate_year').val()) === Number($('#taskStartDate_year').val())) &&
+				(Number($('#taskEndDate_month').val()) === Number($('#taskStartDate_month').val())) &&
+				(Number($('#taskEndDate_day').val()) < Number($('#taskStartDate_day').val()))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">End date cannot be smaller than start date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
-				$('#errorMessage').text('Learning Domains are required');
+			if (Number($('#taskStartDate_year').val()) < Number(imodStartDateYear)) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date </label></div>';
+				$('#startDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDateYear)) &&
+				(Number($('#taskStartDate_month').val()) < Number(imodStartDateMonth))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date  </label></div>';
+				$('#startDateError').parent().append(errorLabel);
+				newTaskValidationError();
+				return false;
+			}
+			if ((Number($('#taskStartDate_year').val()) === Number(imodStartDateYear)) &&
+				(Number($('#taskStartDate_month').val()) === Number(imodStartDateMonth)) &&
+				(Number($('#taskStartDate_day').val()) < Number(imodStartDateDay))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task start date should be greater than imod start date   </label></div>';
+				$('#startDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
-				$('#errorMessage').text('Domain Categories are required');
+			if (Number($('#taskEndDate_year').val()) > Number(imodEndDateYear)) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
-				$('#errorMessage').text('Enter title which is different from the original technique');
+			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDateYear)) &&
+				(Number($('#taskEndDate_month').val()) > Number(imodEndDateMonth))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-
-			return true;
-		});
-
-		$('#editButton').on('click', function () {
-			cloneDetect = document.getElementById('cloneDetect').value;
-
-			if ($('#title').val() === '') {
-				$('#errorMessage').text('Technique must have a title!');
-				return false;
-			}
-
-			if ($('#knowledgeDimension').val() === '') {
-				$('#errorMessage').text('Knowledge Dimensions are required!');
+			if ((Number($('#taskEndDate_year').val()) === Number(imodEndDateYear)) &&
+				(Number($('#taskEndDate_month').val()) === Number(imodEndDateMonth)) &&
+				(Number($('#taskEndDate_day').val()) > Number(imodEndDateDay))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Task end date should be less than imod end date  </label></div>';
+				$('#endDateError').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#learningDomain').val() === '' || $('#learningDomain').val() === null) {
-				$('#errorMessage').text('Learning Domains are required');
+			if ($('#taskEnvironment').val() === '' || $('#taskEnvironment').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Select task environmant</label></div>';
+				$('#taskEnvironment').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
 
-			if ($('#domainCategory').val() === '' || $('#domainCategory').val() === null) {
-				$('#errorMessage').text('Domain Categories are required');
+			if ($('#taskWorkTime').val() === '' || $('#taskEnvironment').val() === null) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Please enter working hours</label></div>';
+				$('#taskWorkTime').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-			if ($('#title').val() === $('#titlecheck').val() && cloneDetect === 'clone') {
-				$('#errorMessage').text('Enter title which is different from the original technique');
+
+			if (isNaN(Number($('#taskWorkTime').val()))) {
+				errorLabel = '<div class="errorcontain" ><label class="taskError error">Please enter numeric vaule for working hours</label></div>';
+				$('#taskWorkTime').parent().append(errorLabel);
+				newTaskValidationError();
 				return false;
 			}
-			$('#editCheck').text('yes...');
+
 			return true;
 		});
 
