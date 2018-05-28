@@ -67,12 +67,26 @@
 	<sec:ifLoggedIn>
 		<div id="progressbar"><div class="progress-label">Loading...</div></div>
 	</sec:ifLoggedIn>
+
+	%{--<div id="module" class="info-style">--}%
+		%{--IMOD Info--}%
+		%{--<div class="collapse" aria-expanded="false" id ="hover-content">--}%
+
+			%{--Course Design Status--}%
+			%{--<a role="button" class="collapsed" data-toggle="collapse" href="#hover-content" aria-expanded="false" aria-controls="hover-content">--}%
+			%{--</a>--}%
+		%{--</div>--}%
+	%{--</div>--}%
+
+
 	<div id="parent" class="info-style">
 		IMOD Info
 		<div id="hover-content">
 			Course design status
 		</div>
 	</div>
+
+
 
 	<div class="message banner">
 

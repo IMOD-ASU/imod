@@ -1512,7 +1512,7 @@ label[for=weekdays] {
 }
 
 .message.banner {
-	margin-top: 1.5%;
+	margin-top: 2.5%;
 
 	font-size: 20px;
 	font-weight: bold;
@@ -1655,9 +1655,9 @@ Class for error message as label
 	background-color: white;
 	padding: 5px 5px 2px 5px;
 }
-#parent:hover #hover-content {
+/*#parent:hover #hover-content {
 	display:block;
-}
+}*/
 .info-style {
 	color: white;
 	text-align: center;
@@ -1666,4 +1666,18 @@ Class for error message as label
 	word-wrap: normal;
 	background-color: #1b4176;
 	padding: 5px 0px 5px 0px
+}
+
+#module {
+	width: 500px;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+#module a.collapsed:after  {
+	content: '+ Show More';
+}
+
+#module a:not(.collapsed):after {
+	content: '- Show Less';
 }

@@ -19,7 +19,7 @@ $(document).ready(function () {
 			var value = this.getAttribute('aria-valuenow');
 
 			progressLabel.text('Course Design Completion .......' + progressbar.progressbar('value') + '%');
-			document.getElementById('hover-content').innerHTML = info;
+			document.getElementById('parent').innerHTML = info;
 
 			if (value < 15) {
 				$('.ui-widget-header').css({background: '#B71C1C'});
@@ -130,27 +130,15 @@ $(document).ready(function () {
 function calculateLO (learningObjectives) {
 	'use strict';
 	var count = learningObjectives.length;
-	var loPercent = 0;
 
-	if (count > 2) {
-		loPercent = 100;
-	}
-	return loPercent;
+	return count;
 }
 
 function calculateContent (contents) {
 	'use strict';
 	var count = contents.length;
-	var contentPercent = 0;
 
-	if (count < 2) {
-		contentPercent = 0;
-	} else if (count >= 2 && count <= 5) {
-		contentPercent = 80;
-	} else {
-		contentPercent = 100;
-	}
-	return contentPercent;
+	return count;
 }
 
 function getAssignedTechniqueCount (lo) {
@@ -199,45 +187,76 @@ function calculateAssignedPedTechCount (loList) {
 	return count;
 }
 
-function calculateAsst (assessmentTech, lolist) {
-	'use strict';
-	var asstPercent = 0;
-	var count = calculateAssignedTechCount(lolist);
+// function calculateAsst (assessmentTech, lolist) {
+// 	'use strict';
+// 	var asstPercent = 0;
+// 	var count = calculateAssignedTechCount(lolist);
+//
+// 	if (count > 0) {
+// 		asstPercent = 100;
+// 	}
+// 	return asstPercent;
+// }
+//
+// function calculatePed (pedagogyTech, lolist) {
+// 	'use strict';
+// 	var pedPercent = 0;
+// 	var count = calculateAssignedPedTechCount(lolist);
+//
+// 	if (count > 0) {
+// 		pedPercent = 100;
+// 	}
+// 	return pedPercent;
+// }
 
-	if (count > 0) {
-		asstPercent = 100;
-	}
-	return asstPercent;
-}
+// function asstResponseCount (lo) {
+// 	'use strict';
+// 	return $.ajax({
+// 		url: baseUrl + 'assessmentTechnique/getAssignedAssessmtMatchCount',
+// 		type: 'GET',
+// 		dataType: 'json',
+// 		async: false,
+// 		data: {
+// 			id: lo.id
+// 		}
+// 	});
+// }
+//
+// function asstHighCount (loList) {
+// 	'use strict';
+//
+// 	var do_high_count = 660;
+//
+// 	$.each(loList, function (index, value) {
+// 		//console.log(asstResponseCount(value).responseJSON.count);
+// 		do_high_count+= asstResponseCount(value).responseJSON.count;
+// 	});
+// 	return do_high_count;
+//
+// }
 
-function calculatePed (pedagogyTech, lolist) {
-	'use strict';
-	var pedPercent = 0;
-	var count = calculateAssignedPedTechCount(lolist);
-
-	if (count > 0) {
-		pedPercent = 100;
-	}
-	return pedPercent;
-}
 
 function calculatePercentage (response) {
 	'use strict';
 	var data = response;
 	var currentImod = data.currentImod;
-	var user = data.user;
+	// var user = data.user;
+	var req = 0;
+	var contentCount = 0;
 	var coPercent = 0;
 	var instrPercent = 0;
+	var loCount = 0;
 	var loPercent = 0;
 	var contentPercent = 0;
+	var asstCount = 0;
+	var pedCount = 0;
 	var asstPercent = 0;
 	var pedPercent = 0;
 	var checkId = localStorage.getItem('checkId');
 
 	if (checkId === 'new') {
 		coPercent = 0;
-		info += 'More than two learning objectives, five content topics, at least one assessment and at least one pedagogy techniques should be added.';
-		// return profileVal;
+		info += 'Please fill the course overview to see the minimum requirements to complete the course design. \n';
 	} else {
 		coPercent = 15;
 		if (currentImod.instructors.length > 0) {
@@ -249,23 +268,41 @@ function calculatePercentage (response) {
 		} else {
 			profileBuffer = currentImod.learningObjectives.length * 40;
 		}
-		loPercent = calculateLO(currentImod.learningObjectives);
-		contentPercent = calculateContent(currentImod.contents);
-		asstPercent = calculateAsst(user.assessmentTechnique, currentImod.learningObjectives);
-		pedPercent = calculatePed(user.pedagogyTechnique, currentImod.learningObjectives);
+		loCount = calculateLO(currentImod.learningObjectives);
+		if (loCount > 2) {
+			loPercent = 100;
+		}
+		contentCount = calculateContent(currentImod.contents);
+		if (contentCount < 2) {
+			contentPercent = 0;
+		} else if (contentCount >= 2 && contentCount <= 5) {
+			contentPercent = 80;
+		} else {
+			contentPercent = 100;
+		}
+		asstCount = calculateAssignedTechCount(currentImod.learningObjectives);
+		if (asstCount > 0) {
+			asstPercent = 100;
+		}
+		pedCount = calculateAssignedPedTechCount(currentImod.learningObjectives);
+		if (pedCount > 0) {
+			pedPercent = 100;
+		}
 		if (instrPercent < 5) {
 			info += 'Add instructor information. \n';
 		}
 		if (loPercent < 100) {
-			info += 'More than two learning objectives need to be defined. \n';
+			info += 'At least three learning objectives needed but ' + loCount + ' defined. \n';
 		}
-		if (contentPercent < 100) {
-			info += 'More then five differnt content topics needs to be added. \n';
+		if (contentCount < 6) {
+			req = 6 - contentCount;
+			info += req + ' content topics need to be added. \n';
 		}
-		if (asstPercent < 100) {
+		if (asstCount < 1) {
 			info += 'At least one assessment technique needs to be added. \n';
 		}
-		if (pedPercent < 100) {
+
+		if (pedCount < 1) {
 			info += 'At least one pedagogy technique needs to be added. \n';
 		}
 		if (loPercent === 100 && instrPercent === 5 && contentPercent === 100 && asstPercent === 100 && pedPercent === 100) {
