@@ -130,7 +130,6 @@ $(document).ready(function () {
 function calculateLO (learningObjectives) {
 	'use strict';
 	var count = learningObjectives.length;
-	var loPercent = 0;
 
 	return count;
 }
@@ -138,15 +137,7 @@ function calculateLO (learningObjectives) {
 function calculateContent (contents) {
 	'use strict';
 	var count = contents.length;
-	var contentPercent = 0;
 
-	if (count < 2) {
-		contentPercent = 0;
-	} else if (count >= 2 && count <= 5) {
-		contentPercent = 80;
-	} else {
-		contentPercent = 100;
-	}
 	return count;
 }
 
@@ -249,7 +240,8 @@ function calculatePercentage (response) {
 	'use strict';
 	var data = response;
 	var currentImod = data.currentImod;
-	var user = data.user;
+	// var user = data.user;
+	var req = 0;
 	var contentCount = 0;
 	var coPercent = 0;
 	var instrPercent = 0;
@@ -260,11 +252,10 @@ function calculatePercentage (response) {
 	var pedCount = 0;
 	var asstPercent = 0;
 	var pedPercent = 0;
-	var asstHigh = 0;
 	var checkId = localStorage.getItem('checkId');
+
 	if (checkId === 'new') {
 		coPercent = 0;
-		//info += 'At least three learning objectives, six content topics, one assessment and one pedagogy technique should be added.';
 		info += 'Please fill the course overview to see the minimum requirements to complete the course design. \n';
 	} else {
 		coPercent = 15;
@@ -301,12 +292,11 @@ function calculatePercentage (response) {
 			info += 'Add instructor information. \n';
 		}
 		if (loPercent < 100) {
-			var x = loCount;
-			info += 'At least three learning objectives needed but ' + x + ' defined. \n';
+			info += 'At least three learning objectives needed but ' + loCount + ' defined. \n';
 		}
 		if (contentCount < 6) {
-			var req = 6 - contentCount;
-			info +=  req + ' content topics need to be added. \n';
+			req = 6 - contentCount;
+			info += req + ' content topics need to be added. \n';
 		}
 		if (asstCount < 1) {
 			info += 'At least one assessment technique needs to be added. \n';
