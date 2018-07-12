@@ -35,6 +35,8 @@ This creates a clearly focused course.
 
 7. Run `npm install --global bower`
 
+8. Run 'bower install'
+
 ## Key Concepts
 
 ### Objectives Based Learning
