@@ -257,16 +257,14 @@ function calculatePercentage (response) {
 		asstCount = calculateAssignedTechCount(currentImod.learningObjectives);
 		if (asstCount >= loCount) {
 			asstPercent = totalPercent;
-		}
-		else {
+		} else {
 			diffOne = loCount - asstCount;
 			asstPercent = 100 - (diffOne * 100 / loCount);
 		}
 		pedCount = calculateAssignedPedTechCount(currentImod.learningObjectives);
 		if (pedCount >= loCount) {
 			pedPercent = totalPercent;
-		}
-		else {
+		} else {
 			diffTwo = loCount - pedCount;
 			pedPercent = 100 - (diffTwo * 100 / loCount);
 		}
