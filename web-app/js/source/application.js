@@ -209,8 +209,8 @@ function calculatePercentage (response) {
 	var pedPercent = 0;
 	var minLo = 3;
 	var minInstr = 1;
-	var diff1 = 0;
-	var diff2 = 0;
+	var diffOne = 0;
+	var diffTwo = 0;
 	var minContent = 6;
 	var contentMid = 2;
 	var contentHigh = 5;
@@ -259,16 +259,16 @@ function calculatePercentage (response) {
 			asstPercent = totalPercent;
 		}
 		else {
-			diff1 = loCount - asstCount;
-			asstPercent = 100 - (diff * 100 / loCount);
+			diffOne = loCount - asstCount;
+			asstPercent = 100 - (diffOne * 100 / loCount);
 		}
 		pedCount = calculateAssignedPedTechCount(currentImod.learningObjectives);
 		if (pedCount >= loCount) {
 			pedPercent = totalPercent;
 		}
 		else {
-			diff2 = loCount - pedCount;
-			pedPercent = 100 - (diff * 100 / loCount);
+			diffTwo = loCount - pedCount;
+			pedPercent = 100 - (diffTwo * 100 / loCount);
 		}
 		if (instrPercent < assignedInstrPercent) {
 			info += instStatus;
