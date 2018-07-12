@@ -172,7 +172,9 @@ function calculateAssignedTechCount (loList) {
 	var count = 0;
 
 	$.each(loList, function (index, value) {
-		count += getAssignedTechniqueCount(value).responseJSON.count;
+		if (getAssignedTechniqueCount(value).responseJSON.count >= 1) {
+			count += 1;
+		}
 	});
 	return count;
 }
@@ -182,59 +184,12 @@ function calculateAssignedPedTechCount (loList) {
 	var count = 0;
 
 	$.each(loList, function (index, value) {
-		count += getAssignedPedTechniqueCount(value).responseJSON.count;
+		if (getAssignedPedTechniqueCount(value).responseJSON.count >= 1) {
+			count += 1;
+		}
 	});
 	return count;
 }
-
-// function calculateAsst (assessmentTech, lolist) {
-// 	'use strict';
-// 	var asstPercent = 0;
-// 	var count = calculateAssignedTechCount(lolist);
-//
-// 	if (count > 0) {
-// 		asstPercent = 100;
-// 	}
-// 	return asstPercent;
-// }
-//
-// function calculatePed (pedagogyTech, lolist) {
-// 	'use strict';
-// 	var pedPercent = 0;
-// 	var count = calculateAssignedPedTechCount(lolist);
-//
-// 	if (count > 0) {
-// 		pedPercent = 100;
-// 	}
-// 	return pedPercent;
-// }
-
-// function asstResponseCount (lo) {
-// 	'use strict';
-// 	return $.ajax({
-// 		url: baseUrl + 'assessmentTechnique/getAssignedAssessmtMatchCount',
-// 		type: 'GET',
-// 		dataType: 'json',
-// 		async: false,
-// 		data: {
-// 			id: lo.id
-// 		}
-// 	});
-// }
-//
-// function asstHighCount (loList) {
-// 	'use strict';
-//
-// 	var do_high_count = 660;
-//
-// 	$.each(loList, function (index, value) {
-// 		//console.log(asstResponseCount(value).responseJSON.count);
-// 		do_high_count+= asstResponseCount(value).responseJSON.count;
-// 	});
-// 	return do_high_count;
-//
-// }
-
 
 function calculatePercentage (response) {
 	'use strict';
@@ -252,61 +207,86 @@ function calculatePercentage (response) {
 	var pedCount = 0;
 	var asstPercent = 0;
 	var pedPercent = 0;
+	var minLo = 3;
+	var minInstr = 1;
+	var diffOne = 0;
+	var diffTwo = 0;
+	var minContent = 6;
+	var contentMid = 2;
+	var contentHigh = 5;
+	var contentHighPercent = 80;
+	var coPercentAssigned = 15;
+	var totalPercent = 100;
+	var assignedInstrPercent = 5;
 	var checkId = localStorage.getItem('checkId');
+	var initial = 'Please fill the course overview to see the minimum requirements to complete the course design.';
+	var instStatus = 'Add instructor information. \n';
+	var loStatus = 'At least three learning objectives needed - ';
+	var contentStatus = ' content topics need to be added. \n';
+	var asstStatus = 'At least one assessment technique needs to be added for each objective. \n';
+	var pedStatus = 'At least one pedagogy technique needs to be added for each objective. \n';
+	var compStatement = 'You have met the minimum requirements to design an IMOD';
+
 
 	if (checkId === 'new') {
 		coPercent = 0;
-		info += 'Please fill the course overview to see the minimum requirements to complete the course design. \n';
+		info += initial;
 	} else {
-		coPercent = 15;
-		if (currentImod.instructors.length > 0) {
-			instrPercent = 5;
+		coPercent = coPercentAssigned;
+		if (currentImod.instructors.length >= minInstr) {
+			instrPercent = assignedInstrPercent;
 		}
 
-		if (currentImod.learningObjectives.length > 2) {
+		if (currentImod.learningObjectives.length >= minLo) {
 			profileBuffer -= 20;
 		} else {
 			profileBuffer = currentImod.learningObjectives.length * 40;
 		}
 		loCount = calculateLO(currentImod.learningObjectives);
-		if (loCount > 2) {
-			loPercent = 100;
+		if (loCount >= minLo) {
+			loPercent = totalPercent;
 		}
 		contentCount = calculateContent(currentImod.contents);
-		if (contentCount < 2) {
+		if (contentCount < contentMid) {
 			contentPercent = 0;
-		} else if (contentCount >= 2 && contentCount <= 5) {
-			contentPercent = 80;
+		} else if (contentCount >= contentMid && contentCount <= contentHigh) {
+			contentPercent = contentHighPercent;
 		} else {
-			contentPercent = 100;
+			contentPercent = totalPercent;
 		}
 		asstCount = calculateAssignedTechCount(currentImod.learningObjectives);
-		if (asstCount > 0) {
-			asstPercent = 100;
+		if (asstCount >= loCount) {
+			asstPercent = totalPercent;
+		} else {
+			diffOne = loCount - asstCount;
+			asstPercent = 100 - (diffOne * 100 / loCount);
 		}
 		pedCount = calculateAssignedPedTechCount(currentImod.learningObjectives);
-		if (pedCount > 0) {
-			pedPercent = 100;
+		if (pedCount >= loCount) {
+			pedPercent = totalPercent;
+		} else {
+			diffTwo = loCount - pedCount;
+			pedPercent = 100 - (diffTwo * 100 / loCount);
 		}
-		if (instrPercent < 5) {
-			info += 'Add instructor information. \n';
+		if (instrPercent < assignedInstrPercent) {
+			info += instStatus;
 		}
-		if (loPercent < 100) {
-			info += 'At least three learning objectives needed but ' + loCount + ' defined. \n';
+		if (loPercent < totalPercent) {
+			info += loStatus + loCount + ' defined. \n';
 		}
-		if (contentCount < 6) {
-			req = 6 - contentCount;
-			info += req + ' content topics need to be added. \n';
+		if (contentCount < minContent) {
+			req = minContent - contentCount;
+			info += req + contentStatus;
 		}
-		if (asstCount < 1) {
-			info += 'At least one assessment technique needs to be added. \n';
+		if (asstCount < loCount) {
+			info += asstStatus;
 		}
 
-		if (pedCount < 1) {
-			info += 'At least one pedagogy technique needs to be added. \n';
+		if (pedCount < loCount) {
+			info += pedStatus;
 		}
-		if (loPercent === 100 && instrPercent === 5 && contentPercent === 100 && asstPercent === 100 && pedPercent === 100) {
-			info += 'Everything\'s perfect! You have met the minimum requirements to design an IMOD';
+		if (loPercent === totalPercent && instrPercent === assignedInstrPercent && contentPercent === totalPercent && asstPercent === totalPercent && pedPercent === totalPercent) {
+			info += compStatement;
 		}
 	}
 
