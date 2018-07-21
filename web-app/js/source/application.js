@@ -196,7 +196,6 @@ function calculatePercentage (response) {
 	var data = response;
 	var currentImod = data.currentImod;
 	// var user = data.user;
-	var req = 0;
 	var contentCount = 0;
 	var coPercent = 0;
 	var instrPercent = 0;
@@ -222,7 +221,7 @@ function calculatePercentage (response) {
 	var initial = 'Please fill the course overview to see the minimum requirements to complete the course design.';
 	var instStatus = '* Add instructor information. </br>';
 	var loStatus = '* At least three learning objectives needed - ';
-	var contentStatus = ' content topics need to be added. </br>';
+	var contentStatus = '* At least six content topics need to be added - ';
 	var asstStatus = '* At least one assessment technique needs to be added for each objective. </br>';
 	var pedStatus = '* At least one pedagogy technique needs to be added for each objective. </br>';
 	var compStatement = 'You have met the minimum requirements of an IMOD';
@@ -274,8 +273,7 @@ function calculatePercentage (response) {
 			info += loStatus + loCount + ' defined. </br>';
 		}
 		if (contentCount < minContent) {
-			req = minContent - contentCount;
-			info += '* ' + req + contentStatus;
+			info += contentStatus + contentCount + ' defined. </br>';
 		}
 		if (asstCount < loCount) {
 			info += asstStatus;
