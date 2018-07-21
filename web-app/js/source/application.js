@@ -2,7 +2,7 @@ var formSubmitted = false;
 var baseUrl = window.location.pathname.match(/\/[^\/]+\//)[0];
 var profileVal = 0;
 var profileBuffer = 100;
-var info = '';
+var info = 'IMOD Info </br>';
 
 $(document).ready(function () {
 	'use strict';
@@ -220,13 +220,12 @@ function calculatePercentage (response) {
 	var assignedInstrPercent = 5;
 	var checkId = localStorage.getItem('checkId');
 	var initial = 'Please fill the course overview to see the minimum requirements to complete the course design.';
-	var instStatus = 'Add instructor information. \n';
-	var loStatus = 'At least three learning objectives needed - ';
-	var contentStatus = ' content topics need to be added. \n';
-	var asstStatus = 'At least one assessment technique needs to be added for each objective. \n';
-	var pedStatus = 'At least one pedagogy technique needs to be added for each objective. \n';
-	var compStatement = 'You have met the minimum requirements to design an IMOD';
-
+	var instStatus = '* Add instructor information. </br>';
+	var loStatus = '* At least three learning objectives needed - ';
+	var contentStatus = ' content topics need to be added. </br>';
+	var asstStatus = '* At least one assessment technique needs to be added for each objective. </br>';
+	var pedStatus = '* At least one pedagogy technique needs to be added for each objective. </br>';
+	var compStatement = 'You have met the minimum requirements of an IMOD';
 
 	if (checkId === 'new') {
 		coPercent = 0;
@@ -272,11 +271,11 @@ function calculatePercentage (response) {
 			info += instStatus;
 		}
 		if (loPercent < totalPercent) {
-			info += loStatus + loCount + ' defined. \n';
+			info += loStatus + loCount + ' defined. </br>';
 		}
 		if (contentCount < minContent) {
 			req = minContent - contentCount;
-			info += req + contentStatus;
+			info += '* ' + req + contentStatus;
 		}
 		if (asstCount < loCount) {
 			info += asstStatus;

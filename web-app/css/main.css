@@ -1649,7 +1649,7 @@ Class for error message as label
 	display:none;
 	color: black;
 	text-align: center;
-	height: 1.5em;
+	height: auto;
 	word-wrap: normal;
 	width: auto;
 	background-color: white;
@@ -1661,7 +1661,7 @@ Class for error message as label
 .info-style {
 	color: white;
 	text-align: center;
-	height: 1.5em;
+	height: auto;
 	width: auto;
 	word-wrap: normal;
 	background-color: #1b4176;
