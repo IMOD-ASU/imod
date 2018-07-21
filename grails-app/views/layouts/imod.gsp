@@ -79,9 +79,9 @@
 	%{--</div>--}%
 
 
-	<div id="parent" class="info-style">
+	<div id="parent" align="center" style="background-color:#1b4176; color:white">
 		IMOD Info
-		<div id="hover-content">
+		<div id="hover-content" align="center">
 			Course design status
 		</div>
 	</div>
